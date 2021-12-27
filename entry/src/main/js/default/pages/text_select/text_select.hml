@@ -1,0 +1,48 @@
+<!--* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*-->
+<!--单个消息-->
+<div class="container">
+    <!--返回按钮-->
+    <image class="select-back" src="/common/icon/ic_back.svg" onclick="singleMsgBack"/>
+    <div class="select-area">
+        <text style="font-family:{{fontFamily}};font-size:{{fontSize}}px;line-height: {{lineHeight}}px; top:
+                {{textPoint.y}}px; left: {{textPoint.x}}px;" class="select-area-text">
+            {{content}}
+        </text>
+        <canvas ref="canvas1" class="text-select-canvas" ontouchstart="canvasStart" ontouchend="canvasEnd"
+                ontouchmove="canvasMove" onclick="canvasClick"></canvas>
+        <image show="{{textSelectStatus != 0}}" class="text-select-image" src="/common/icon/msg_picture_false.svg"
+                style="left:{{startPoint.x}}px; top:{{startPoint.y+lineHeight}}px;" @touchstart="imgStart(true)"
+                @touchmove="imgMove(true)"/>
+        <image show="{{textSelectStatus != 0}}" class="text-select-image" src="/common/icon/msg_picture_true.svg"
+                style="left:{{endPoint.x+cursorWidth}}px; top:{{endPoint.y+lineHeight}}px;" @touchstart="imgStart(false)"
+                @touchmove="imgMove(false)"/>
+    </div>
+    <!--选择菜单栏-->
+    <div if="{{textSelectStatus != 0}}" class="paste-menu" style="top: {{startPoint.y-lineHeight}}px;">
+        <div class="paste-menu-item">
+            <text class="paste-menu-text" @click="pasteMenu(0)">{{$t('strings.msg_copy')}}</text>
+            <text class="paste-menu-text" @click="pasteMenu(1)" show="{{!isSelectAllStatus}}">{{$t('strings.msg_select_all')}}</text>
+            <text class="paste-menu-text" @click="pasteMenu(2)">{{$t('strings.share')}}</text>
+            <image id="paste_menu_more" class="paste-menu-image" @click="pasteMenu(3)" src="/common/icon/msg_more_false.svg" />
+        </div>
+    </div>
+    <!--更多单栏-->
+    <menu id="more_menu" onselected="moreMenu">
+        <option value="0" icon="/common/icon/ic_search.svg">{{$t('strings.search')}}
+        </option>
+        <option value="1" icon="/common/icon/ic_back.svg">{{$t('strings.back')}}
+        </option>
+    </menu>
+</div>

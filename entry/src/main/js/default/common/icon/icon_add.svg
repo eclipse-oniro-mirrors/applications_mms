@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.0" id="图层_3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 96 96" style="enable-background:new 0 0 96 96;" xml:space="preserve">
+    <title>ic_favourites</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M44,0 C68.300529,0 88,19.699471 88,44 C88,68.300529 68.300529,88 44,88 C19.699471,88 0,68.300529 0,44 C0,19.699471 19.699471,0 44,0 Z M44,6 C23.0131795,6 6,23.0131795 6,44 C6,64.9868205 23.0131795,82 44,82 C64.9868205,82 82,64.9868205 82,44 C82,23.0131795 64.9868205,6 44,6 Z M44,20 C45.6568542,20 47,21.3431458 47,23 L47,41 L65,41 C66.6568542,41 68,42.3431458 68,44 C68,45.6568542 66.6568542,47 65,47 L47,47 L47,65 C47,66.6568542 45.6568542,68 44,68 C42.3431458,68 41,66.6568542 41,65 L41,47 L23,47 C21.3431458,47 20,45.6568542 20,44 C20,42.3431458 21.3431458,41 23,41 L41,41 L41,23 C41,21.3431458 42.3431458,20 44,20 Z" id="path-1"></path>
+    </defs>
+    <g id="port" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="message_rcs_group_chat" transform="translate(-100.000000, -2900.000000)">
+            <g id="Textfield/Light/With-bg/filled/Basic+icon_normal备份" transform="translate(0.000000, 2832.000000)">
+                <g id="ic/add/ic_add_norm" transform="translate(96.000000, 64.000000)">
+                    <g id="add" transform="translate(4.000000, 4.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="合并形状" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        <rect id="color/#000000" fill="#000000" mask="url(#mask-2)" x="-4" y="-4" width="96" height="96"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

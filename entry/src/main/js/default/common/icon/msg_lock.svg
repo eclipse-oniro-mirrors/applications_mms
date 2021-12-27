@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>ic_lock</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M32,5.33333333 C39.0489642,5.33333333 44.6666667,11.3523003 44.6666667,18.6666667 L44.6666667,25.3333333 L46,25.3333333 C48.9455187,25.3333333 51.3333333,27.721148 51.3333333,30.6666667 L51.3333333,53.3333333 C51.3333333,56.278852 48.9455187,58.6666667 46,58.6666667 L18,58.6666667 C15.0544813,58.6666667 12.6666667,56.278852 12.6666667,53.3333333 L12.6666667,30.6666667 C12.6666667,27.721148 15.0544813,25.3333333 18,25.3333333 L19.3326667,25.3333333 L19.3333333,18.6666667 C19.3333333,11.3523003 24.9510358,5.33333333 32,5.33333333 Z M32,36.6666667 C29.0544813,36.6666667 26.6666667,39.0544813 26.6666667,42 C26.6666667,44.9455187 29.0544813,47.3333333 32,47.3333333 C34.9455187,47.3333333 37.3333333,44.9455187 37.3333333,42 C37.3333333,39.0544813 34.9455187,36.6666667 32,36.6666667 Z M32,12 C28.7396489,12 26,14.9353381 26,18.6666667 L25.9996667,25.3333333 L37.9996667,25.3333333 L38,18.6666667 C38,14.9353381 35.2603511,12 32,12 Z" id="path-1"></path>
+    </defs>
+    <g id="port" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="message_single_chat_encryption_2" transform="translate(-336.000000, -2768.000000)">
+            <g id="Bars/Light/Textfield/With-bg/filled/Basic+icon_normal备份" transform="translate(0.000000, 2688.000000)">
+                <g id="Bars/Light/Textfield/items/box/gray/normal" transform="translate(256.000000, 40.000000)">
+                    <g id="sliceGroup" transform="translate(80.000000, 40.000000)">
+                        <g id="ic/unlock/ic_unlock">
+                            <g id="symbol/frame/symbol_grid24"></g>
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="合并形状" fill="#000000" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

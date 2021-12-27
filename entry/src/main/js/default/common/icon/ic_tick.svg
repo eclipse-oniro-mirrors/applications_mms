@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+     viewBox="0 0 96 96"
+     version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>ic_tick</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path
+            d="M86.8786797,14.552006 C88.0502525,13.3804332 89.9497475,13.3804332 91.1213203,14.552006 C92.2928932,15.7235789 92.2928932,17.6230739 91.1213203,18.7946467 L37.7946467,72.1213203 C36.6230739,73.2928932 34.7235789,73.2928932 33.552006,72.1213203 L4.87867966,43.447994 C3.70710678,42.2764211 3.70710678,40.3769261 4.87867966,39.2053533 C6.05025253,38.0337804 7.94974747,38.0337804 9.12132034,39.2053533 L35.6733264,65.7573593 L86.8786797,14.552006 Z"
+            id="path-1"></path>
+    </defs>
+    <g
+        id="port"
+        stroke="none"
+        stroke-width="1"
+        fill="none"
+        fill-rule="evenodd">
+        <g
+            id="message_location_search_halfscreen"
+            transform="translate(-1248.000000, -160.000000)">
+            <g
+                id="SearchBar/Light/without-bg/Basic"
+                transform="translate(0.000000, 96.000000)">
+                <g
+                    id="sliceGroup"
+                    transform="translate(1248.000000, 64.000000)">
+                    <g id="ic/scan/ic_scan">
+                        <g id="symbol/frame/symbol_grid24"></g>
+                        <mask
+                            id="mask-2"
+                            fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use
+                            id="Path-21"
+                            fill="#000000"
+                            fill-rule="nonzero"
+                            xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

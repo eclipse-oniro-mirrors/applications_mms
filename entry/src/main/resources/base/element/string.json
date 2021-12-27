@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "信息"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "mmsapi_description",
+      "value": "hap sample empty service"
+    }
+  ]
+}
