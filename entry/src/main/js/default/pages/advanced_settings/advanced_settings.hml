@@ -1,0 +1,241 @@
+<!--/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+<!--高级界面最大的布局-->
+<div class="advanced">
+
+<!--高级TitleBar-->
+    <div class="advanced-bar">
+
+    <!--返回按钮-->
+        <image class="advanced-bar-back" src="/common/icon/icon_back.svg" onclick="back"/>
+
+    <!--高级-->
+        <text class="advanced-bar-set">{{ $t('strings.advanced') }}</text>
+    <!--还原按钮-->
+        <image id="setting_bar_image" class="advanced-bar-restore" src="/common/icon/icon_more.svg"/>
+    </div>
+    <menu target="setting_bar_image" @selected="showDialog">
+        <option value="1">{{ $t('strings.restore_default_settings') }}</option>
+    </menu>
+
+<!--送达报告-->
+    <div class="advanced-delivery-report" onclick="showDeliveryReport">
+
+    <!--左侧文字-->
+        <div class="delivery-report-left">
+            <text class="setting-title-typeface">{{ $t('strings.delivery_reports') }}</text>
+            <text class="msg-integration-text2">{{ $t('strings.delivery_reports_hint') }}</text>
+        </div>
+        <div class="delivery-report-right">
+        <!--右侧按钮-->
+            <text class="msg-integration-text2">{{ deliveryReportSwitchInText }}</text>
+            <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+        </div>
+
+    <!--送达报告dialog-->
+        <dialog id="delivery-report-dialog">
+            <div class="advanced-download-restore-dialog">
+
+            <!--送达报告标题-->
+                <div class="advanced-download-text">
+                    <text class="advanced-download-text-reports">{{ $t('strings.delivery_reports') }}</text>
+                </div>
+                <div class="advanced-download-choose">
+
+                <!--短信-->
+                    <div class="advanced-download-choose-sms" on:click="clickSmsDiv">
+                        <text class="advanced-download-choose-sms-text">{{ $t('strings.sms') }}</text>
+                        <input type="checkbox" checked="{{ checkedValueOfSms }}" on:change="clickSmsCheckbox"></input>
+                    </div>
+
+                <!--横线-->
+                    <divider class="advanced-download-transverse-divider" vertical="false"></divider>
+
+                <!--彩信-->
+                    <div class="advanced-download-choose-sms" on:click="clickMmsDiv">
+                        <text class="advanced-download-choose-sms-text">{{ $t('strings.mms') }}</text>
+                        <input type="checkbox" checked="{{ checkedValueOfMms }}" on:change="clickMmsCheckbox"></input>
+                    </div>
+                </div>
+                <div class="advanced-download-button">
+
+                <!--取消-->
+                    <button type="capsule" value="{{ $t('strings.cancel') }}" onclick="cancelRestore" class="button-choose"></button>
+
+                <!--竖线-->
+                    <divider class="advanced-download-vertical-divider" vertical="true"></divider>
+
+                <!--确定-->
+                    <button type="capsule" value="{{ $t('strings.ok') }}" onclick="setRestore" class="button-choose">
+                    </button>
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+<!--下划线-->
+    <divider class="setting-underline" vertical="false"></divider>
+
+<!--自动下载短信-->
+    <div class="advanced-download" on:click="showAutoRetrieveMmsDialog">
+        <div class="advanced-left">
+            <text class="setting-title-typeface">{{ $t('strings.auto_retrieve_mms') }}</text>
+        </div>
+        <div class="delivery-report-right">
+            <text class="msg-integration-text2">{{ autoRetrieveMmsSwitchInText }}</text>
+            <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+        </div>
+
+    <!--自动下载彩信dialog-->
+        <dialog id="auto-retrieve-mms-dialog">
+            <div class="auto-retrieve-mms">
+
+            <!--自动下载彩信标题-->
+                <div class="auto-retrieve-left">
+                    <text class="auto-retrieve-left-text">{{ $t('strings.auto_retrieve_mms') }}</text>
+                </div>
+
+            <!--所有网络下-->
+                <div class="auto-retrieve-center-between" on:click="clickDiv(2)">
+                    <div style="flex-direction : column; align-items : flex-start; justify-content : space-evenly;">
+                        <text class="auto-retrieve-center-between-tips">{{ $t('strings.always') }}</text>
+                        <text class="auto-retrieve-center-between-remark">{{ $t('strings.roaming_fees_may_apply') }}
+                        </text>
+                    </div>
+                    <image class="auto-retrieve-center-between-image"
+                           src="{{ autoRetrieveMmsSwitch == 2 ? '/common/icon/circle_selected.svg' : '/common/icon/circle_unselected.svg'
+                                   }}"></image>
+                </div>
+
+            <!--非漫游时-->
+                <divider class="grey-divider" vertical="false"></divider>
+                <div class="auto-retrieve-center-between" on:click="clickDiv(1)">
+                    <text class="auto-retrieve-center-between-tips">{{ $t('strings.not_when_roaming') }}</text>
+                    <image class="auto-retrieve-center-between-image"
+                           src="{{ autoRetrieveMmsSwitch == 1 ? '/common/icon/circle_selected.svg' : '/common/icon/circle_unselected.svg'
+                                   }}"></image>
+                </div>
+
+            <!--关闭-->
+                <divider class="grey-divider" vertical="false"></divider>
+                <div class="auto-retrieve-center-between" on:click="clickDiv(0)">
+                    <text class="auto-retrieve-center-between-tips">{{ $t('strings.off') }}</text>
+                    <image class="auto-retrieve-center-between-image"
+                           src="{{ autoRetrieveMmsSwitch == 0 ? '/common/icon/circle_selected.svg' : '/common/icon/circle_unselected.svg'
+                                   }}"></image>
+                </div>
+
+            <!--取消-->
+                <div class="auto-retrieve-center" on:click="closeAutoRetrieveMmsDialog">
+                    <text class="auto-retrieve-center-cancel">{{ $t('strings.cancel') }}</text>
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+<!--下划线-->
+    <divider class="setting-underlines" vertical="false"></divider>
+
+<!--取消发送-->
+    <div class="advanced-delivery-report">
+
+    <!--左侧文字-->
+        <div class="recall-msg-left">
+            <text class="setting-title-typeface">{{ $t('strings.recall_messages') }}</text>
+            <text class="msg-integration-text2">{{ $t('strings.recall_messages_hint') }}</text>
+        </div>
+
+    <!--右侧按钮-->
+        <div class="advanced-right-button">
+            <switch class="msg-integration-button" checked="{{ recallMessageSwitch }}" onchange="recallMsg">
+            </switch>
+        </div>
+    </div>
+
+<!--下划线-->
+    <divider class="setting-underline" vertical="false"></divider>
+
+<!--自动删除通知信息-->
+    <div class="advanced-delivery-report">
+
+    <!--左侧文字-->
+        <div class="recall-msg-left">
+            <text class="setting-title-typeface">{{ $t('strings.auto_delete_info_messages') }}</text>
+            <text class="msg-integration-text2">{{ $t('strings.auto_delete_info_messages_hint') }}</text>
+        </div>
+
+    <!--右侧按钮-->
+        <div class="advanced-right-button">
+            <switch class="msg-integration-button" checked="{{ tempAutoDeleteInfoSwitch }}" onchange="autoDeleteInfo">
+            </switch>
+        </div>
+    </div>
+
+<!--下划线-->
+    <divider class="setting-underlines" vertical="false"></divider>
+
+<!--短信中心-->
+<!--如果是1张卡，则只显示'短信中心'-->
+    <div if="{{ (simCount != 2) && spnNameOfOneSimCard != snpNameOfChinaTelecom }}"
+         class="setting-msg-voice" on:click="jumpToSmsCenterPage(1)"
+         style="opacity : {{ simCount == 0 ? 0.5 : 1 }};" disabled="{{simCount == 0}}">
+        <text class="setting-title-typeface">
+            {{ $t('strings.sms_center') }}</text>
+        <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+    </div>
+
+<!--如果是2张卡-->
+    <div if="{{ simCount == 2 }}" style="flex-direction : column;">
+
+    <!--卡1短信中心-->
+        <div show="{{ firstSpnNameOfTwoSimCard != snpNameOfChinaTelecom }}" class="setting-msg-voice"
+             on:click="jumpToSmsCenterPage(1)">
+            <text class="setting-title-typeface">{{ $t('strings.sim') }} 1 {{ $t('strings.sms_center') }}</text>
+            <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+        </div>
+
+    <!--卡2短信中心-->
+        <div show="{{ secondSpnNameOfTwoSimCard != snpNameOfChinaTelecom }}" class="setting-msg-voice"
+             on:click="jumpToSmsCenterPage(2)">
+            <text class="setting-title-typeface">{{ $t('strings.sim') }} 2 {{ $t('strings.sms_center') }}</text>
+            <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+        </div>
+    </div>
+
+<!--下划线-->
+    <divider class="setting-underline" vertical="false"></divider>
+
+<!--管理SIM卡中的信息-->
+    <div if="{{ simCount != 2 }}" class="setting-msg-voice" on:click="jumpToManageSimPage(1)"
+         style="opacity : {{ simCount == 0 ? 0.5 : 1 }}; "  disabled="{{simCount == 0}}">
+        <text class="setting-title-typeface">
+            {{ $t('strings.manage_sim_card_messages') }}</text>
+        <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+    </div>
+    <div else style="flex-direction : column;">
+
+    <!--管理卡1信息-->
+        <div class="setting-msg-voice" on:click="jumpToManageSimPage(1)">
+            <text class="setting-title-typeface">{{ $t('strings.manage') }} 1 {{ $t('strings.messages') }}</text>
+            <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+        </div>
+
+    <!--管理卡2信息-->
+        <div class="setting-msg-voice" on:click="jumpToManageSimPage(2)">
+            <text class="setting-title-typeface">{{ $t('strings.manage') }} 2 {{ $t('strings.messages') }}</text>
+            <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.0" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 96 96" style="enable-background:new 0 0 96 96;" xml:space="preserve">
+    <title>ic_transfer</title>
+    <desc>Created with Sketch.</desc>
+    <g id="port" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="message_rcs_group_chat_multi_select" transform="translate(-423.000000, -2864.000000)">
+            <g id="ToolBar/Light/Basic/Item_5备份" transform="translate(0.000000, 2832.000000)">
+                <g id="Bars/ToolBar/Item-Copy" transform="translate(357.000000, 32.000000)">
+                    <g id="Bars/ToolBar/Item" transform="translate(0.363636, 0.000000)">
+                        <g id="sliceGroup" transform="translate(65.636364, 0.000000)">
+                            <g id="ic/forward/ic_forward">
+                                <g id="symbol/frame/symbol_grid24"></g>
+                                <path d="M28.4346506,53.8331928 C29.0232642,53.0921453 29.6370293,52.3706403 30.2879051,51.6784458 C33.2528647,48.5281942 36.5739389,45.8002723 40.3095001,43.5808771 C48.4078246,38.7670649 57.9082605,38.0508215 67.3496987,37.8625955 L67.3496987,49.6242349 L88.606216,30.7129767 L81.9387878,24.7943656 L67.3496987,11.8442873 L67.3496987,24.3609683 C58.5175329,24.5904034 50.1279122,27.6864554 43.2927292,32.8028409 C37.1718895,37.3845141 32.2945046,43.5887287 29.4754026,50.8222351 C29.0885281,51.8142041 28.742566,52.8180475 28.4346506,53.8331928 Z" id="Fill-1" stroke="#000000" stroke-width="6"></path>
+                                <g id="email" stroke-width="1" fill-rule="evenodd" transform="translate(7.000000, 15.000000)" stroke="#000000" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M45.2582573,0 L10,0 C4.4771525,-7.61826213e-16 -6.76353751e-16,4.4771525 0,10 L0,56 C6.76353751e-16,61.5228475 4.4771525,66 10,66 L72,66 C77.5228475,66 82,61.5228475 82,56 L82,33.0454267 L82,33.0454267" id="路径" stroke-width="6"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

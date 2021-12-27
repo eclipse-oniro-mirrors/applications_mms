@@ -1,0 +1,86 @@
+<!--/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+<!--设置界面最大的布局-->
+<div class="settings">
+    <!--设置TitleBar-->
+    <div class="setting-bar">
+        <!--返回按钮-->
+        <image class="setting-bar-back" src="/common/icon/icon_back.svg" onclick="back"/>
+        <!--设置-->
+        <text class="setting-bar-set">{{$t('strings.settings')}}</text>
+        <!--还原按钮-->
+        <image id="setting_bar_image" class="setting-bar-restore" src="/common/icon/icon_more.svg"/>
+    </div>
+    <menu target="setting_bar_image" @selected="showDialog">
+        <option value="1">{{$t('strings.restore_default_settings')}}</option>
+    </menu>
+
+    <!--通知信息整合-->
+    <div class="setting-msg-integration">
+        <!--左侧文字-->
+        <div class="setting-msg-integration-div">
+            <text class="setting-title-typeface">{{$t('strings.archive_info_messages')}}</text>
+            <text class="msg-integration-text2">{{$t('strings.archive_info_messages_hint')}}</text>
+        </div>
+        <!--右侧按钮-->
+        <div class="setting-right-button">
+            <switch class="msg-integration-button" checked="{{integrationSwitch}}" onchange="integration"></switch>
+        </div>
+    </div>
+    <!--下划线-->
+    <divider class="setting-underline" vertical="false"></divider>
+
+    <!--恶意网站识别-->
+    <div class="setting-msg-integration">
+        <!--左侧文字-->
+        <div class="setting-msg-integration-div">
+            <text class="setting-title-typeface">{{$t('strings.malicious_website_identification')}}</text>
+            <text class="msg-integration-text2">{{$t('strings.malicious_website_identification_hint')}}</text>
+        </div>
+        <!--右侧按钮-->
+        <div class="setting-right-button">
+            <switch class="msg-integration-button" checked="{{maliciousWebSwitch}}" onchange="maliciousWeb"></switch>
+        </div>
+    </div>
+
+    <!--下划线-->
+    <divider class="setting-underlines" vertical="false"></divider>
+
+    <!--信息铃声-->
+    <div class="setting-msg-voice" @click="jumpToMessageTonePage">
+        <text class="setting-title-typeface">{{$t('strings.message_tone')}}</text>
+        <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+    </div>
+
+    <!--下划线-->
+    <divider class="setting-underline" vertical="false"></divider>
+
+    <!--显示联系人头像-->
+    <div class="setting-msg-voice">
+        <text class="setting-title-typeface">{{$t('strings.show_contact_profile_pics')}}</text>
+        <div class="setting-right-button">
+            <switch class="msg-integration-button" checked="{{showContactSwitch}}" onchange="showContact"></switch>
+        </div>
+    </div>
+
+    <!--下划线-->
+    <divider class="setting-underline" vertical="false"></divider>
+
+    <!--高级-->
+    <div class="setting-msg-voice" onclick="advancedSetting">
+        <text class="setting-title-typeface">{{$t('strings.advanced')}}</text>
+        <image class="setting-msg-voice-more" src="/common/icon/icon_next.svg"/>
+    </div>
+</div>

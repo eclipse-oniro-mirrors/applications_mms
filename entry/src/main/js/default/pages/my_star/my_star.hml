@@ -1,0 +1,228 @@
+<!--* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*-->
+<element name="msgHighlight" src="../component/msg_highlight/msg_highlight.hml"></element>
+<!--单个消息-->
+<div class="container">
+    <div class="title-bar">
+        <div class="title-bar-div" if="{{ hasCheckboxStatus }}">
+
+        <!--取消按钮-->
+            <div class="single-back-div">
+                <image class="single-back" src="/common/icon/ic_cancel_black.svg" onclick="single_msg_cancel_back"/>
+            </div>
+
+        <!--联系人名称/号码-->
+            <div class="star-title-div">
+                <text class="title">{{
+                    selectMsgCount == 0 ? $t('strings.msg_unselected_tip') : $t('strings.msg_selected_tip', { number : selectMsgCount })
+                    }}</text>
+            </div>
+        </div>
+        <div class="title-bar-div" else>
+        <!--返回按钮-->
+            <div class="single-back-div">
+                <image class="single-back" src="/common/icon/ic_back.svg" onclick="singleMsgBack"/>
+            </div>
+
+        <!--联系人名称/号码-->
+            <div class="star-title-div">
+                <text class="title">{{ $t('strings.my_msg_star') }}</text>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <list class="msg_star_list" scrollbar="auto" @requestitem="requestItem" cachedcount="{{limit}}">
+            <list-item for="{{ mmsList }}" class="list-item" clickeffect="false">
+
+                <!--头像和具体信息-->
+                <div class="image-detail">
+                    <!--头像-->
+                    <div class="head-image-div" ontouchstart="avatarClickEventHandler({{$item}})">
+                        <image id="head-image" class="head-image" src="{{$item.image}}"/>
+                    </div>
+                    <!--收藏信息-->
+                    <div class="body-star" onclick="detail({{$item}})"  onlongpress="mmsListLongPress({{ $idx }})"
+                         ontouchstart="touchStart">
+                        <text class="my-star-title">{{$item.address == null || $item.address == '' ? $t('strings.me') : $item.address}}</text>
+                        <!-- 信息/复选框-->
+                        <div class="mms-text">
+                            <div class="mms-describe" if="{{$item.msgShowType==0||$item.msgShowType==4}}">
+                                <!--图片-->
+                                <image if="{{$item.msgType==1}}" class="star-image"
+                                       src="{{ $item.msgUriPath }}" onclick="showMsgImage({{ $idx }})"/>
+                                <!--音频-->
+                                <div elif="{{$item.msgType==3}}" onclick="playMsgAudio({{ $idx }})"
+                                     class="mms-edit-area-audio mms-item-margin">
+                                    <image src="/common/icon/ic_voice_left.svg" class="mms-edit-audio-delete"/>
+                                    <text class="mms-edit-audio-text"> {{$item.audioTime}}</text>
+                                </div>
+                                <!--视频-->
+                                <div elif="{{$item.msgType==2}}" onclick="showVideoOperation({{$idx}})" class="mms-item-margin">
+                                    <image class="mms-video-base" src="{{$item.msgUriPath}}"/>
+                                    <image class="mms-video-tag" src="/common/icon/ic_play_tag.svg"/>
+                                </div>
+                                <div elif="{{$item.msgType==5}}" class="star-mms-edit-card">
+                                    <image src="/common/icon/msg_contacts.svg" class="star-edit-card-img"/>
+                                    <div class="star-mms-edit-card-item">
+                                        <text class="star-mms-edit-card-text">{{$item.msgUriPath}}</text>
+                                        <text class="star-mms-edit-card-text" if="{{$item.audioTime!=''}}">{{$item.audioTime}}</text>
+                                    </div>
+                                </div>
+                                <text if="{{$item.content!==''}}" class="mms-describe-text {{$item.isReceive ? 'mms-describe-receive-bg-color' : 'mms-describe-send-bg-color'}}" onclick="doubleClick({{$idx}})">
+                                    <msghighlight text="{{$item.content}}" keyword="{{searchContent}}"></msghighlight>
+                                </text>
+                            </div>
+                            <div class="star-mms-send-text-left-row" elif="{{$item.msgShowType==1||$item.msgShowType==2}}"
+                                 @click="clickStarMms({{$item}})">
+                                <image class="star-ppt-image" src="/common/icon/ppt.svg"></image>
+                                <div class="star-theme-text" if="{{$item.content!=''}}">
+                                    <text>
+                                        <msghighlight text="{{$item.content}}" keyword="{{searchContent}}"></msghighlight>
+                                    </text>
+                                </div>
+                            </div>
+                            <div class="star-mms-left-slide" else @click="clickStarMms({{$item}})">
+                                <image class="star-mms-image" object-fit="fill" src="{{$item.msgUriPath}}"></image>
+                                <text class="star-mms-slide-text" if="{{$item.content!=''}}">
+                                    <msghighlight text="{{$item.content}}" keyword="{{searchContent}}"></msghighlight>
+                                </text>
+                            </div>
+                            <div class="mms-input">
+                                <input type="checkbox" show="{{hasCheckboxStatus}}" checked="{{$item.isCbChecked}}" onchange="listCheckBoxChange({{$idx}})"/>
+                            </div>
+                        </div>
+
+                        <!--发送/接收日期和发送/接收时间-->
+                        <div class="date-time">
+
+                            <!--日期-->
+                            <text class="mms-date">{{ $item.date }}</text>
+
+                            <!--发送/接收时间-->
+                            <text class="mms-time">{{ $item.time }}</text>
+                        </div>
+                    </div>
+                </div>
+            </list-item>
+            <list-item if="{{mmsList.length == 0 && hasDataEcho}}" style="justify-content: center; align-items: center;height:100%; flex-direction: column;">
+                <image class="search-status-image"   src="{{$t('svg.session')}}"/>
+                <!--显示搜索状态-->
+                <text class="search-status-text" style="opacity: 0.5;">{{$t('strings.no_star_info')}}</text>
+            </list-item>
+        </list>
+    </div>
+    <div class="bottom-bar">
+
+        <!--底部更多选项 -->
+        <div class="send-bar-details-more" if="{{ hasCheckboxStatus }}">
+
+            <!--删除-->
+            <div class="send-msg-detail {{selectMsgCount == 1 ? 'send-msg-detail-one-width' : 'send-msg-detail-no-one-width'}}" onclick="clickBottomDelete" id="send_msg_delete"
+                 style="opacity : {{ selectMsgCount == 0 ? 0.5 : 1 }};">
+                <image class="send-bar-detail-image" src="{{ $t('svg.delete') }}"/>
+                <text class="send-bar-detail-text">{{ $t('strings.delete') }}
+                </text>
+            </div>
+            <!--转发-->
+            <div class="send-msg-detail {{selectMsgCount == 1 ? 'send-msg-detail-one-width' : 'send-msg-detail-no-one-width'}}" onclick="clickGroupTransmit"
+                 style="opacity: {{selectMsgCount == 0  ? 0.5 : 1}};">
+                <image class="send-bar-detail-image" src="{{$t('svg.transfer')}}"/>
+                <text class="send-bar-detail-text">{{$t('strings.msg_transmit')}}
+                </text>
+            </div>
+            <!--复制-->
+            <div class="send-msg-detail {{selectMsgCount == 1 ? 'send-msg-detail-one-width' : 'send-msg-detail-no-one-width'}}" onclick="clickGroupCopy"
+                 style="opacity: {{selectMsgTextCount == 0 ? 0.5 : 1}};">
+                <image class="send-bar-detail-image" src="{{$t('svg.favorites.copy')}}"/>
+                <text class="send-bar-detail-text">{{$t('strings.msg_copy')}}
+                </text>
+            </div>
+            <!--全选-->
+            <div class="send-msg-detail {{selectMsgCount == 1 ? 'send-msg-detail-one-width' : 'send-msg-detail-no-one-width'}}" onclick="clickGroupCheckAll" id="send_msg_select_all">
+                <image class="send-bar-detail-image" src="{{$t('svg.select_all')}}"/>
+                <text class="send-bar-detail-text" style="color:{{selectMsgCount === mmsList.length ? '#007DFF':'#2C2C2C'}}">
+                    {{selectMsgCount === mmsList.length ? $t('strings.msg_deselect_all') : $t('strings.msg_select_all')}}
+                </text>
+            </div>
+            <!--更多-->
+            <div class="send-msg-detail {{selectMsgCount == 1 ? 'send-msg-detail-one-width' : 'send-msg-detail-no-one-width'}}" id="group_more_menu" show="{{selectMsgCount == 1}}">
+                <image class="send-bar-detail-image" src="{{$t('svg.more')}}"/>
+                <text class="send-bar-detail-text">{{$t('strings.more')}}
+                </text>
+            </div>
+        </div>
+    </div>
+
+    <!--长按提示-->
+    <menu id="menu_long_press" onselected="longPressSelected">
+        <option value="0" focusable="false">{{ $t('strings.msg_copy') }}</option>
+        <option value="1" focusable="false">{{ $t('strings.msg_transmit') }}</option>
+        <option value="2" focusable="false">{{ $t('strings.delete') }}</option>
+        <option value="3" focusable="false">{{ $t('strings.msg_select_text') }}</option>
+        <option value="4" focusable="false">{{ $t('strings.more') }}</option>
+    </menu>
+    <!-- 长按彩信 -->
+    <menu id="menu_long_press_mms" onselected="longPressSelected">
+        <option value="1" focusable="false">{{ $t('strings.msg_transmit') }}</option>
+        <option value="2" focusable="false">{{ $t('strings.delete') }}</option>
+        <option value="5" focusable="false">{{$t('strings.msg_save')}}</option>
+        <option value="4" focusable="false">{{$t('strings.more')}}</option>
+    </menu>
+    <menu id="menu_long_press_mms_sms" onselected="longPressSelected">
+        <option value="0" focusable="false">{{$t('strings.msg_copy')}}</option>
+        <option value="1" focusable="false">{{$t('strings.msg_transmit')}}</option>
+        <option value="2" focusable="false">{{$t('strings.delete')}}</option>
+        <option value="3" focusable="false">{{$t('strings.msg_select_text')}}</option>
+        <option value="5" focusable="false">{{$t('strings.msg_save')}}</option>
+        <option value="4" focusable="false">{{$t('strings.more')}}</option>
+    </menu>
+
+    <!--选择状态下 更多提示-->
+    <menu target="group_more_menu" onselected="moreSelected">
+        <option value="1" show="{{selectMsgCount ==1 && hasSelectTextShow}}" style="opacity: {{selectMsgCount == 0 ? 0.5 : 1}};" >{{$t('strings.msg_select_text')}}
+        </option>
+        <option value="2" show="{{selectMsgCount ==1}}" style="opacity: {{selectMsgCount == 0 ? 0.5 : 1}};" >{{$t('strings.share')}}
+        </option>
+    </menu>
+    <!-- 删除提示框 -->
+    <dialog id="delete_dialog">
+        <div class="delete-dialog-div">
+            <div class="dialog-inner-cb" show="{{!allShow}}">
+                <text class="dialog-inner-cb-text" >
+                    {{ selectMsgCount == 1 ? $t('strings.msg_delete_dialog_tip1') : selectMsgCount > 1 ? $t('strings.msg_delete_dialog_tip2', { number : selectMsgCount }) : '' }}
+                </text>
+            </div>
+            <div class="dialog-inner-cb" show="{{allShow}}" >
+                <text class="dialog-inner-cb-text">
+                  {{$t('strings.msg_delete_dialog_tip3')}}
+                </text>
+            </div>
+            <div class="dialog-inner-logic">
+                <text class="dialog-inner-logic-cancel" onclick="deleteDialogCancel">
+                    {{ $t('strings.msg_delete_dialog_cancel') }}
+                </text>
+                <div class="dialog-inner-logic-vertical"></div>
+                <text class="dialog-inner-logic-delete" onclick="deleteDialogConfirm">{{ $t('strings.delete') }}</text>
+            </div>
+        </div>
+    </dialog>
+
+    <!--  提示框  -->
+    <dialog id="tip_details_dialog">
+        <div class="tip-details">
+            <!--信息详情-->
+            <text class="mms-details-title">The feature is not yet developed</text>
+        </div>
+    </dialog>
+</div>

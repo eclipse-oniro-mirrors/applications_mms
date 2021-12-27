@@ -1,0 +1,353 @@
+/**
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/*最大DIV样式*/
+.container {
+    flex-direction: column;/*flex容器主轴方向  垂直方向从上到下*/
+    display: flex;/*弹性布局*/
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+/*上方TitleBar*/
+.title-bar {
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100px;
+}
+
+.single-back-div {
+    height: 100%;
+    width: 125px;
+    align-items: center;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 15px;
+}
+
+.star-title-div {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    padding: 20px;
+    padding-left: 15px;
+}
+
+/*返回按钮*/
+.single-back {
+    width: 70px;
+    height: 60px;
+}
+
+/*标题样式*/
+.title {
+    align-content: flex-start;
+    font-size: 36px;
+}
+
+.content-body {
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+/*list*/
+.msg_star_list {
+    width: 100%;
+}
+
+/*list-item*/
+.list-item {
+    padding-left: 25px;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.image-detail {
+    flex-direction: row;
+}
+
+/*头像背景*/
+.head-image-div {
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 25px;
+    padding-right: 20px;
+}
+
+/*头像样式*/
+.head-image {
+    width: 85px;
+    height: 70px;
+}
+
+/*body-star*/
+.body-star {
+    flex-direction: column;
+}
+
+/*发件人*/
+.my-star-title {
+    font-size: 20px;
+    height: 40px;
+    justify-content: center;
+}
+
+/*收藏详情和checkbox*/
+.mms-text {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.star-image {
+    width: 80%;
+    height: 150px;
+}
+
+.mms-input {
+    justify-content: flex-end;
+}
+
+/*文本信息*/
+.mms-describe {
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+}
+
+.mms-img-base {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 660px;
+    width: 380px;
+}
+
+.mms-edit-area-audio {
+    width: 150px;
+}
+
+.mms-item-margin {
+    margin-bottom: 10px;
+}
+
+.mms-describe-text {
+    font-size: 30px;
+    padding: 15px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.mms-describe-receive-bg-color {
+    background-color: #F2F2F2;
+}
+
+.mms-describe-send-bg-color {
+    background-color: #F0FFF0;
+}
+.star-mms-send-text-left-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #F0FFF0;
+    border-top-left-radius: 0;
+}
+.star-ppt-image {
+    width: 64px;
+    height: 64px;
+    margin-right: 20px;
+}
+
+.star-theme-text {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.star-mms-left-slide {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 15px;
+    background-color: #F0FFF0;
+    border-top-left-radius: 0;
+    width: 60%;
+}
+
+.star-mms-image {
+    width: 100%;
+    height: 150px;
+}
+
+.star-mms-slide-text {
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.star-mms-edit-card {
+    display: flex;
+    height: 100px;
+    flex-direction: row;
+    background-color: #F0FFF0;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.star-edit-card-img {
+    width: 48px;
+    height: 48px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.star-mms-edit-card-item {
+    flex-direction: column;
+    padding: 5px;
+    margin-right: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.star-mms-edit-card-text {
+    height: 50px;
+    align-items: flex-start;
+}
+
+/*发送/接收日期和发送/接收时间*/
+.date-time {
+    height: 40px;
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-end;
+}
+
+/*发送/接收日期*/
+.mms-date {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+/*发送/接收时间*/
+.mms-time {
+    font-size: 20px;
+}
+
+.search-status-image {
+    width: 128px;
+    height: 128px;
+    opacity: .5;
+}
+
+.bottom-bar {
+    align-items: center;
+    background-color: #F7F7F7;
+}
+
+.send-bar-details-more {
+    width: 100%;
+    height: 140px;
+    padding-left: 30px;
+    padding-right: 30px;
+    flex-direction: row;
+    padding-top: 20px;
+}
+
+/*更多详情 dev*/
+.send-msg-detail {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.send-msg-detail-one-width {
+    width: 20%;
+}
+.send-msg-detail-no-one-width {
+    width: 25%;
+}
+
+/*更多栏目图片*/
+.send-bar-detail-image {
+    width: 48px;
+    height: 48px;
+}
+
+.send-bar-detail-text {
+    font-size: 22px;
+}
+
+.tip-details {
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mms-details-title {
+    margin-left: 30px;
+}
+
+.delete-dialog-div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.dialog-inner-cb {
+    width: 100%;
+    height: 80px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-inner-cb-text {
+    height: 100%;
+}
+
+.dialog-inner-logic {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.dialog-inner-logic-cancel {
+    flex: 1;
+    text-align: center;
+    color: #00f;
+}
+
+.dialog-inner-logic-vertical {
+    width: 2px;
+    height: 50px;
+    background-color: darkgrey;
+}
+
+.dialog-inner-logic-delete {
+    flex: 1;
+    text-align: center;
+    color: #f00;
+}
