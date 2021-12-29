@@ -1,0 +1,91 @@
+{
+  "app": {
+    "bundleName": "com.ohos.mms",
+    "vendor": "ohos",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.ohos.mms",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": true
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "orientation": "unspecified",
+        "name": "com.ohos.mms.MainAbility",
+        "icon": "$media:smsmms",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard",
+        "srcPath": "default",
+        "srcLanguage": "js"
+      },
+      {
+        "srcPath": "ServiceAbility",
+        "name": ".ServiceAbility",
+        "icon": "$media:icon",
+        "srcLanguage": "js",
+        "description": "service",
+        "type": "service"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index",
+          "pages/conversation_list/conversation_list",
+          "pages/info_msg/info_msg",
+          "pages/conversation/conversation",
+          "pages/text_select/text_select",
+          "pages/group_detail/group_detail",
+          "pages/full_screen_input/full_screen_input",
+          "pages/my_star/my_star",
+          "pages/full_screen_show_picture/full_screen_show_picture",
+          "pages/video_operation/video_operation",
+          "pages/contact_item_pick/contact_item_pick",
+          "pages/transmit_msg/transmit_msg",
+          "pages/transmit_search/transmit_search",
+          "pages/settings/settings",
+          "pages/sms_center/sms_center",
+          "pages/advanced_settings/advanced_settings",
+          "pages/manage_sim/manage_sim",
+          "pages/query_report/query_report",
+          "pages/slide_detail/slide_detail"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      }
+    ]
+  }
+}

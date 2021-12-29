@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 96 96"
+     version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>ic_cancel</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path
+            d="M54,54 L54,20 C54,18.3431458 55.3431458,17 57,17 C58.6568542,17 60,18.3431458 60,20 L60,54 L94,54 C95.6568542,54 97,55.3431458 97,57 C97,58.6568542 95.6568542,60 94,60 L60,60 L60,94 C60,95.6568542 58.6568542,97 57,97 C55.3431458,97 54,95.6568542 54,94 L54,60 L20,60 C18.3431458,60 17,58.6568542 17,57 C17,55.3431458 18.3431458,54 20,54 L54,54 Z"
+            id="path-1"></path>
+    </defs>
+    <g
+        id="port"
+        stroke="none"
+        stroke-width="1"
+        fill="none"
+        fill-rule="evenodd">
+        <g
+            id="message_list_prompt_2"
+            transform="translate(-1184.000000, -944.000000)">
+            <g
+                id="prompt_card"
+                transform="translate(0.000000, 832.000000)">
+                <g
+                    id="sliceGroup"
+                    transform="translate(1175.000000, 103.000000)">
+                    <g id="ic/close/ic_cancel">
+                        <g
+                            id="symbol/frame/symbol_grid24"
+                            transform="translate(9.000000, 9.000000)"></g>
+                        <g id="Group">
+                            <mask
+                                id="mask-2"
+                                fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use
+                                id="路径"
+                                fill="#000000"
+                                fill-rule="nonzero"
+                                transform="translate(57.000000, 57.000000) rotate(45.000000) translate(-57.000000, -57.000000) "
+                                xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

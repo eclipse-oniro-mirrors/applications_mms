@@ -1,0 +1,172 @@
+/**
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#slideDetail {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.title-bar {
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.mms-back {
+    height: 48px;
+    width: 48px;
+}
+.title-text {
+    font-size: 45px;
+    width: 100%;
+    margin-left: 20px;
+    weights: 500;
+}
+.item-container {
+    flex-direction: column;
+}
+.item {
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    padding: 15px 20px;
+    width: 100%;
+}
+.theme-item {
+    width: 100%;
+    text-align: left;
+}
+.image-item-container {
+    flex-direction: column;
+    width: 85%;
+    padding-left: 8%;
+    align-items: center;
+}
+.image-item {
+    width: 50%;
+    height: 200px;
+}
+.save-image-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.audio-item {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.image-container {
+    flex-direction: column;
+    width: 85%;
+    padding-left: 8%;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.play-image {
+    width: 64px;
+    height: 64px;
+}
+.play-progress {
+    flex-direction: row;
+}
+.progress {
+    width: 60%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.save-image {
+    width: 55px;
+    height: 55px;
+}
+.text-item {
+    width: 100%;
+    text-align: center;
+}
+.line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.divider {
+    height: 1px;
+    width: 45%;
+    margin-top: 15px;
+    background-color: lightgray;
+}
+.divider-text {
+    width: 70px;
+    text-align: center;
+}
+.mms-bottom {
+    width: 100%;
+    height: 160px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.bottom-button {
+    width: 22%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+.button-image {
+    width: 55px;
+    height: 55px;
+}
+.button-text {
+    font-size: 22px;
+}
+.delete-dialog-div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 20px;
+}
+.dialog-inner-logic {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+.dialog-inner-text {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.dialog-inner-logic-cancel {
+    flex: 1;
+    text-align: center;
+    color: #00f;
+}
+.dialog-inner-logic-delete {
+    flex: 1;
+    text-align: center;
+    color: #f00;
+}
+.dialog-inner-logic-vertical {
+    width: 2px;
+    height: 50px;
+    background-color: darkgrey;
+}

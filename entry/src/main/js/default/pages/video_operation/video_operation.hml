@@ -1,0 +1,63 @@
+<!--* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*-->
+<!--视频编辑界面-->
+<div class="video-operation">
+    <!--头部标题栏-->
+    <div class="video-title-bar">
+        <!--返回按钮-->
+        <image src="/common/icon/ic_back.svg" class="video-title-bar-back" onclick="titleBarBack"></image>
+        <!--标题文字-->
+        <text class="video-title-bar-text">{{$t('strings.mms')}}</text>
+    </div>
+
+    <!--视频-->
+    <div class="video-operation-video">
+        <div class="video-div">
+            <!--视频播放控件-->
+            <video id='vedioId' src='/common/icon/aaa.mp4' muted='false' autoplay='false' controls="{{isControls}}"
+                    onprepared='preparedCallback' onstart='startCallback' onpause='pauseCallback'
+                    onfinish='finishCallback' onerror='errorCallback' onseeking='seekingCallback'
+                    onseeked='seekedCallback' ontimeupdate='timeupdateCallback' class="single-video"
+                    onlongpress='changeFullscreenchange' onclick="changeStartPause"></video>
+            <!--视频播放按钮-->
+            <image class="video-play" src="/common/icon/msg_play.svg" onclick="playVideo" show="{{isPlayImage}}">
+            </image>
+        </div>
+        <image class="video-image" src="/common/icon/msg_save.svg"></image>
+    </div>
+
+    <!--底部菜单栏-->
+    <div class="video-menu-bar">
+        <!--全部保存-->
+        <div class="menu-bar-div" onclick="clickVideoSave">
+            <image class="menu-bar-div-image" src="/common/icon/msg_save.svg"></image>
+            <text class="send-bar-detale-text">{{$t('strings.all_save')}}</text>
+        </div>
+        <!--转发-->
+        <div class="menu-bar-div" onclick="clickVideoTransmit">
+            <image class="menu-bar-div-image" src="/common/icon/ic_transfer.svg"></image>
+            <text class="send-bar-detale-text">{{$t('strings.msg_transmit')}}</text>
+        </div>
+        <!--锁定-->
+        <div class="menu-bar-div" onclick="clickVideoLock">
+            <image class="menu-bar-div-image" src="/common/icon/msg_lock.svg"></image>
+            <text class="send-bar-detale-text">{{$t('strings.lock')}}</text>
+        </div>
+        <!--删除-->
+        <div class="menu-bar-div" onclick="clickVideoCheckAll">
+            <image class="menu-bar-div-image" src="/common/icon/ic_delete_m.svg"></image>
+            <text class="send-bar-detale-text">{{$t('strings.delete')}}</text>
+        </div>
+    </div>
+</div>

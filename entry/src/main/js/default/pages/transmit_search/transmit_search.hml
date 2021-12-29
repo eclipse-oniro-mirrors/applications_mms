@@ -1,0 +1,287 @@
+<!--/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+<!--转发搜索列表-->
+<element name="highlight" src="../component/contact_high_light/contact_highlight.hml"></element>
+<div id="container" class="container">
+    <div class="search-div">
+
+    <!--返回按钮-->
+        <image id="searchBack" src="/common/icon/ic_back.svg" class="search-div-back" onclick="clickSearchBack"></image>
+
+    <!--搜索框-->
+        <search id="search" class="search" hint="{{$t('strings.searchHit')}}" onchange="clickToSearch" focusable="true"
+               ></search>
+    </div>
+    <list class="message-list" scrollpage="true">
+
+    <!--真正的信息列表-->
+        <list-item id="item" class="messaging-body" for="{{ messageList }}"
+                   if="{{ ! searchMatchResult && ! isInputText }}">
+
+        <!--未读标志-->
+            <div class="unread-flag-div" id="unread_flag">
+                <button class="unread-flag" type="circle" if="{{ $item.countOfUnread > 0 }}"></button>
+            </div>
+
+        <!--头像-->
+            <div class="head-image-div" onclick="clickToGroupDetail({{ $idx }})" if="{{isShowContactHeadIcon}}">
+                <div if="{{$item.contactsNum == 1}}" class="head-image-div-single">
+                    <image id="head-image" class="head-image" src="{{$item.icon}}"/>
+                </div>
+                <div if="{{$item.contactsNum == 2}}" class="head-image-div-double">
+                    <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                    <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                </div>
+                <div if="{{$item.contactsNum == 3}}" class="head-image-div-all">
+                    <div class="head-image-all-one">
+                        <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                    </div>
+                    <div class="head-image-all-two">
+                        <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                        <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                    </div>
+                </div>
+                <div if="{{$item.contactsNum >= 4}}" class="head-image-div-all">
+                    <div class="head-image-all-one">
+                        <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                        <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                    </div>
+                    <div class="head-image-all-two">
+                        <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                        <image id="head-image" class="head-image-multi" src="{{$item.icon}}"/>
+                    </div>
+                </div>
+            </div>
+            <div id="body"  class="{{isShowContactHeadIcon ? 'body' : 'body-no-head'}}"
+                 onclick="clickToConversation({{ $idx }})">
+                <div class="body-half">
+
+                <!--电话号码或名字-->
+                    <div class="body-up-left" id="name_or_telephone_number">
+                        <text class="body-up-left-text">{{
+                            ($item.name) ? ($item.name) : ($item.telephoneFormat) }}</text>
+                    </div>
+
+                <!--日期时间-->
+                    <div class="body-up-right">
+                        <text class="body-up-right-text">{{ $item.time }}</text>
+                    </div>
+                </div>
+
+            <!--最新消息的内容缩略语-->
+                <div class="body-down-left" id="msg_content">
+
+                <!--最新的消息是否未发送成功，如果是-->
+                    <text class="red-exception" if="{{ $item.sendingFailed }}">{{ $t('strings.messageSendFailed') }}
+                    </text>
+
+                <!--如果不是-->
+                    <text class="message-detail" if="{{ ! $item.sendingFailed }}">
+
+                    <!--最新的消息是否是草稿，如果是-->
+                        <span class="red-exception" if="{{ $item.isDraft }}">[{{ $t('strings.draft') }}]</span>
+
+                    <!--如果不是，且未读的消息个数>1条-->
+                        <span if="{{ ! $item.isDraft && $item.countOfUnread > 1 }}">{{ $item.countOfUnread }} {{
+                            $t('strings.multiUnread') }}</span>
+
+                    <!--最新消息的内容缩略语-->
+                        <span>{{ $item.content }}</span>
+                    </text>
+                </div>
+            </div>
+        </list-item>
+
+    <!--搜索输入号码大于等于三个显示-->
+        <list-item if="{{ judgeSendInputText }}" class="search-contacts-item-top" @click="clickShowDialog">
+            <div class="search-contacts-item-top-div">
+                <text class="search-contacts-send">{{ $t('strings.msg_send_to') }}</text>
+                <text class="search-contacts-send-number">{{ myText }}</text>
+            </div>
+        </list-item>
+
+    <!--横线分割-->
+        <list-item if="{{ judgeSendInputText && searchTotal > 0 }}" class="search-contacts-item-middle">
+            <div class="search-contacts-item-div"></div>
+        </list-item>
+
+    <!--搜索到的联系人数量-->
+        <list-item if="{{ searchMatchResult && isInputText }}" class="search-contacts-item-title">
+            <text class="search-contacts-num">{{ contactsFoundText }}</text>
+        </list-item>
+
+    <!--搜索联系人列表-->
+        <list-item if="{{ searchMatchResult && isInputText }}" for="{{ contactsMatching }}"
+                   class="contacts-list-item">
+            <div class="contact-image-div" id="contact_head_image" if="{{isShowContactHeadIcon}}">
+                <image src="{{ $item.headImage }}" class="contact-image" @click="titleBarAvatar({{ $idx }})"/>
+            </div>
+            <div class="contact-text-div" id="name_or_telephone" @click="clickSendMessage({{ $idx }})">
+                <div if="{{$item.contactName == '' || $item.contactName == null}}"
+                     class="contact-text-div-tel">
+                    <highlight texts="{{$item.telephoneFormat}}" search="{{myText}}"></highlight>
+                </div>
+                <div else class="contact-text-div-name">
+                    <highlight texts="{{$item.contactName}}" search="{{myText.toLowerCase()}}"></highlight>
+                    <highlight texts="{{$item.telephoneFormat}}" search="{{myText}}"></highlight>
+                </div>
+            </div>
+        </list-item>
+
+    <!--搜索的联系人展开收起展示-->
+        <list-item class="open_retract_item" if="{{ searchTotal > 3 && searchMatchResult && isInputText }}">
+            <div class="open_retract" onclick="openRetract">
+                <text class="open_retract_text">{{ showOpenOrRetract }}</text>
+                <image class="open_retract_img" src="{{ openOrRetract ?
+                        '/common/icon/msg_contacts_open.svg' : '/common/icon/msg_contacts_retract.svg' }}"/>
+            </div>
+        </list-item>
+    </list>
+
+
+<!--图层用于搜索的展示-->
+    <div class="searchCoverage" if="{{ ! searchMatchResult && ! isInputText }}" onclick="searchCoverageClick"></div>
+
+<!--如果没有会话信息，也就是搜索结果为空，则显示空白图片-->
+    <div class="message-list" if="{{ ! searchMatchResult && ! judgeSendInputText && isInputText }}"
+        >
+        <image class="message-list-image" src="/common/icon/ic_massage_m.svg"/>
+
+    <!--显示搜索状态-->
+        <text>{{ showSearchStatus }}</text>
+    </div>
+
+<!--转发的弹出对话框-->
+    <dialog id="dialog" class="dialog" oncancel="cancelDialog">
+        <div class="transmit_dialog">
+
+        <!--标题-->
+            <div class="transmit_text">
+                <text class="{{ titleChecked ? 'transmit_text_title_min' : 'transmit_text_title'}}">{{
+                    $t('strings.contentSentTo') }} {{ contactName == '' ? telephoneFormat : contactName }}
+                </text>
+            </div>
+
+        <!--文本输入提示-->
+            <div if="{{ ! isChecked }}" class="transmit_text_tips">
+                <text class="txt-prompt">{{ $t('strings.tap_content_to_edit') }}
+                </text>
+            </div>
+
+        <!--转发的内容-->
+            <div style="max-height: 50%; width: 100%;">
+                <list scrollbar="auto" class="transmit_content_list">
+                    <list-item class="transmit_content_item" for="{{transmitContentList}}" clickeffect="false">
+                        <div class="transmit-content-container">
+                            <div if="{{$item.msgShowType==0 || $item.msgShowType==4}}" class="column-style">
+                                <div if="{{$item.msgUriPath!=''&&($item.msgType==1||$item.msgType==2)}}" class="transmit-image-background">
+                                    <image class="transmit-image" object-fit="fill" src="{{$item.msgUriPath}}"></image>
+                                </div>
+                                <div if="{{$item.msgUriPath!=''&&$item.msgType==5}}" class="mms-edit-card">
+                                    <image src="/common/icon/msg_contacts.svg" class="edit-card-img"/>
+                                    <div class="mms-edit-card-item">
+                                        <text class="mms-edit-card-text">{{$item.msgUriPath}}</text>
+                                        <text class="mms-edit-card-text" if="{{$item.audioTime!=''}}">{{$item.audioTime}}</text>
+                                    </div>
+                                </div>
+                                <div class="transmit-base-background" if="{{$item.content!=''}}">
+                                    <div if="{{isChecked || (!isChecked&&$item.isMsm)}}" class="transmit-content">
+                                        <text>{{$item.contentInfo}}</text>
+                                        <text>{{$item.content}}</text>
+                                    </div>
+                                    <div elif="{{!isChecked&&!$item.isMsm}}">
+                                        <textarea class="content-text" extend="true" value="{{$item.content}}"
+                                                  onchange="changeValue({{$item}})"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="transmit-base-background" elif="{{$item.msgShowType==1||$item.msgShowType==2}}">
+                                <image class="transmit-ppt-image" src="/common/icon/ppt.svg"></image>
+                                <div class="transmit-theme-text" if="{{$item.content!=''}}">
+                                    <text>{{$item.content}}</text>
+                                </div>
+                            </div>
+                            <div class="transmit-image-background" else>
+                                <image class="transmit-image" object-fit="fill" src="{{$item.msgUriPath}}"></image>
+                                <text class="transmit-slide-text" if="{{$item.content!=''}}">{{$item.content}}</text>
+                            </div>
+                        </div>
+                    </list-item>
+                </list>
+            </div>
+
+        <!--是否包含转发来源选中按钮-->
+            <div if="{{ includeTextSMS }}" class="transmit_source">
+                <input class="transmit_source_input" type="checkbox" checked="{{ isChecked }}"
+                       onchange="clickChecked" disabled="{{ isDisabled }}"></input>
+                <text class="{{ isDisabled ? 'transmit_source_text_grey' : 'transmit_source_text' }}">
+                    {{ $t('strings.showSource') }}
+                </text>
+            </div>
+
+        <!--底部按钮-->
+            <div class="transmit_button">
+                <div if="{{ doubleCard }}" class="transmit_button_single">
+                    <button type="text" value="{{ $t('strings.cancel') }}" onclick="cancelTransmit"
+                            class="btn_cancel"></button>
+                    <divider class="transmit_divider" vertical="true"></divider>
+                    <button type="text" value="{{ $t('strings.transmitButtonOne') }}" onclick="transmit({{ simOne }})"
+                            class="btn_restore" disabled="{{ isCanSend }}"></button>
+                    <divider class="transmit_divider" vertical="true"></divider>
+                    <button type="text" value="{{ $t('strings.transmitButtonTwo') }}" onclick="transmit({{ simTwo }})"
+                            class="btn_restore" disabled="{{ isCanSend }}"></button>
+                </div>
+                <div else class="transmit_button_single">
+                    <button type="text" value="{{ $t('strings.cancel') }}" onclick="cancelTransmit"
+                            class="btn_cancel_double"></button>
+                    <divider class="transmit_divider" vertical="true"></divider>
+                    <button type="text" value="{{ $t('strings.transmitButton') }}" onclick="transmit({{ simOne }})"
+                            class="btn_restore_double" disabled="{{ isCanSend }}"></button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="dialog_transmit" class="dialog_transmit" oncancel="cancelDialog">
+        <div class="transmit_dialog">
+        <!--标题-->
+            <div class="transmit_text">
+                <text class="{{ titleChecked ? 'transmit_text_title_min' : 'transmit_text_title'}}">{{
+                    $t('strings.contentSentContentTo') }} {{ contactName == '' ? telephoneFormat : contactName }}
+                </text>
+            </div>
+        <!--底部按钮-->
+            <div class="transmit_button">
+                <div if="{{ doubleCard }}" class="transmit_button_single">
+                    <button type="text" value="{{ $t('strings.cancel') }}" onclick="cancelTransmit"
+                            class="btn_cancel"></button>
+                    <divider class="transmit_divider" vertical="true"></divider>
+                    <button type="text" value="{{ $t('strings.transmitButtonOne') }}" onclick="transmit({{ simOne }})"
+                            class="btn_restore" disabled="{{ isCanSend }}"></button>
+                    <divider class="transmit_divider" vertical="true"></divider>
+                    <button type="text" value="{{ $t('strings.transmitButtonTwo') }}" onclick="transmit({{ simTwo }})"
+                            class="btn_restore" disabled="{{ isCanSend }}"></button>
+                </div>
+                <div else class="transmit_button_single">
+                    <button type="text" value="{{ $t('strings.cancel') }}" onclick="cancelTransmit"
+                            class="btn_cancel_double"></button>
+                    <divider class="transmit_divider" vertical="true"></divider>
+                    <button type="text" value="{{ $t('strings.transmitButton') }}" onclick="transmit({{ simOne }})"
+                            class="btn_restore_double" disabled="{{ isCanSend }}"></button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>

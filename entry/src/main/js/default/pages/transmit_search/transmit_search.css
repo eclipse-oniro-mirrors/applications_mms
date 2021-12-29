@@ -1,0 +1,609 @@
+/**
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.open_retract_item {
+    margin-top: 20px;
+    margin-bottom: 140px;
+}
+
+.open_retract {
+    width: 100%;
+    height: 80px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.open_retract_text {
+    font-size: 25px;
+    color: #C1000000;
+    font-weight: 500;
+}
+
+.open_retract_img {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+}
+
+.message-list {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 130px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-list-image {
+    width: 128px;
+    height: 128px;
+}
+
+.search-div {
+    flex-direction: row;
+    height: 130px;
+    align-items: center;
+    justify-content: center;
+}
+
+.search {
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    margin-left: 30px;
+    margin-right: 50px;
+    background-color: #F2F2F2;
+}
+
+.messaging-body {
+    width: 100%;
+    height: 150px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchCoverage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 130px;
+    background-color: #000;
+    opacity: .15;
+}
+
+.unread-flag-div {
+    width: 8%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.unread-flag {
+    radius: 8px;
+    background-color: #FF1E90FF;
+}
+
+.head-image-div {
+    width: 13%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+.head-image-div-single {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.head-image-div-double {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.head-image-div-all {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.head-image-all-one {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -2px;
+}
+.head-image-all-two {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.head-image {
+    width: 80px;
+    height: 80px;
+}
+.head-image-multi {
+    width: 38px;
+    height: 38px;
+    margin: 1px;
+}
+
+.body {
+    height: 100%;
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.body-no-head {
+    height: 100%;
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.body-up-left {
+    height: 100%;
+    width: 50%;
+    align-items: flex-end;
+    flex: 1;
+    margin-bottom: 2px;
+}
+
+.body-up-left-text {
+    text-overflow: ellipsis;
+    color: #191919;
+    font-size: 36px;
+}
+
+.body-up-right-text {
+    color: grey;
+}
+
+.body-up-right {
+    height: 100%;
+    justify-content: flex-end;
+    padding-right: 30px;
+    align-items: flex-end;
+}
+
+.body-half {
+    height: 50%;
+    width: 100%;
+}
+
+
+.body-down-left {
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.red-exception {
+    font-size: 30px;
+    color: #F00;
+}
+
+.message-detail {
+    font-size: 30px;
+    max-lines: 1;
+    text-overflow: ellipsis;
+    color: #666;
+}
+
+.search-contacts-item-top {
+    padding-top: 20px;
+    padding-left: 48px;
+    padding-bottom: 20px;
+    padding-right: 50px;
+}
+
+.search-contacts-item-top-div {
+    flex-direction: column;
+}
+
+.search-contacts-item-middle {
+    width: 100%;
+}
+
+.search-contacts-item-title {
+    padding-left: 48px;
+    height: 80px;
+}
+
+.search-contacts-send {
+    font-size: 28px;
+    color: #E4000000;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.search-contacts-send-number {
+    font-size: 28px;
+    color: #0040FF;
+    font-weight: 500;
+}
+
+.search-contacts-item-div {
+    height: 15px;
+    width: 100%;
+    background-color: #12A9A9A9;
+}
+
+.search-contacts-num {
+    font-size: 25px;
+    color: #C1000000;;
+    font-weight: 500;
+}
+
+.contacts-list-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 138px;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 10px;
+}
+
+.contact-image {
+    width: 100px;
+    height: 100px;
+}
+
+.contact-image-div {
+    width: 150px;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-text-div {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.contact-text-div-tel {
+    flex-direction: row;
+}
+
+.contact-text-div-name {
+    flex-direction: column;
+}
+
+.contact-text-name {
+    font-size: 30px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    color: #000;
+}
+
+.contact-text-name-light {
+    font-size: 30px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    color: #FF0000FF;
+    flex-direction: row;
+}
+
+.contact-text-telephone {
+    font-size: 25px;
+    color: grey;
+    flex-direction: row;
+}
+
+.contact-text-telephone-light {
+    font-size: 25px;
+    color: #FF0000FF;
+    flex-direction: row;
+}
+
+.dialog {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/*弹框展示*/
+.transmit_dialog {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.transmit_text {
+    margin-bottom: 10px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+.transmit_text_title {
+    font-size: 48px;
+    font-weight: 600;
+    max-lines: 2;
+    text-overflow: ellipsis;
+}
+
+.transmit_text_title_min {
+    font-size: 30px;
+    font-weight: 600;
+    max-lines: 2;
+    text-overflow: ellipsis;
+}
+
+.transmit_text_tips {
+    margin-bottom: 15px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+.transmit_content {
+    flex-direction: column;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;;
+    border-bottom-right-radius: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+}
+
+.transmit_content_list {
+    min-height: 120px;
+    margin-bottom: 10px;
+    margin-left: 45px;
+    margin-right: 10px;
+    background-color: #fff;
+}
+
+.transmit_content_item_mms {
+    background-color: #FFF;
+    margin-right: 45px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;;
+    border-bottom-right-radius: 20px;
+}
+
+.transmit_content_item {
+    margin-right: 45px;
+}
+
+.transmit-content-container {
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.column-style {
+    flex-direction: column;
+}
+
+.transmit-content {
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.content-text {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.transmit-base-background {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #20A9A9A9;
+    border-top-left-radius: 0;
+}
+
+.transmit-image-background {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 15px;
+    background-color: #20A9A9A9;
+    border-top-left-radius: 0;
+    width: 60%;
+}
+
+.transmit-ppt-image {
+    width: 64px;
+    height: 64px;
+}
+
+.transmit-theme-text {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.transmit-slide-text {
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.transmit-image {
+    width: 100%;
+    height: 150px;
+}
+
+.mms-edit-card {
+    display: flex;
+    height: 100px;
+    flex-direction: row;
+    background-color: #20A9A9A9;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.edit-card-img {
+    width: 48px;
+    height: 48px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mms-edit-card-item {
+    flex-direction: column;
+    padding: 5px;
+    margin-right: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.transmit_content_textarea {
+    background-color: #20A9A9A9;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.transmit_content_body {
+    flex-direction: column;
+}
+
+.transmit_content_multi_mms {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.transmit_content_mms {
+    flex-direction: column;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;;
+    border-bottom-right-radius: 20px;
+}
+
+.txt-prompt {
+    color: grey;
+    font-size: 30px;
+}
+
+.image_single {
+    width: 150px;
+    height: 250px;
+}
+
+.transmit_content_multi_text {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.txt-content {
+    font-size: 32px;
+    color: #FF000000;
+    margin-bottom: 40px;
+}
+
+.txt-content-single {
+    font-size: 32px;
+    color: #FF000000;
+    margin-bottom: 10px;
+}
+
+.transmit_source {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: -5px;
+    margin-bottom: -10px;
+    margin-left: 20px;
+    width: 100%;
+}
+
+.transmit_source_input {
+    width: 95px;
+    height: 95px;
+}
+
+.transmit_source_text {
+    color: #FF000000;
+}
+
+.transmit_source_text_grey {
+    color: grey;
+}
+
+.transmit_button {
+    flex-direction: row;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+}
+
+.transmit_button_single {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_cancel {
+    color: #F30000FF;
+    width: 33%;
+}
+
+.btn_restore {
+    color: #F30000FF;
+    width: 33%;
+}
+
+.btn_cancel_double {
+    color: #F30000FF;
+    width: 50%;
+}
+
+.btn_restore_double {
+    color: #F30000FF;
+    width: 50%;
+}
+
+.transmit_divider {
+    stroke-width: 1px;
+    height: 50px;
+    color: #A1808080;
+}
+
+/*搜索返回按钮*/
+.search-div-back {
+    width: 96px;
+    height: 96px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 30px;
+    margin-left: 18px;
+}
