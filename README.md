@@ -58,7 +58,7 @@ The MMS application is pre-installed in OpenHarmony and provides functions such 
 
 ## Usage<a name="section123459000"></a>
 
-   For details, see [SMS/MMS Usage Instructions](./doc/Instructions.md).
+   For details, see [MMS Usage Instructions](./doc/Instructions.md).
 
 ## Repositories Involved<a name="section1371113476307"></a>
 
