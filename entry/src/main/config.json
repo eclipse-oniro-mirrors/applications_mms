@@ -11,14 +11,17 @@
   "module": {
     "package": "com.ohos.mms",
     "name": ".MyApplication",
+    "mainAbility": "com.ohos.mms.MainAbility",
     "deviceType": [
-      "phone"
+      "phone",
+      "tablet",
+      "car"
     ],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
       "moduleType": "entry",
-      "installationFree": true
+      "installationFree": false
     },
     "abilities": [
       {
@@ -37,43 +40,46 @@
         "name": "com.ohos.mms.MainAbility",
         "icon": "$media:smsmms",
         "description": "$string:mainability_description",
-        "label": "$string:app_name",
+        "label": "$string:messages",
         "type": "page",
-        "launchType": "standard",
+        "launchType": "singleton",
         "srcPath": "default",
-        "srcLanguage": "js"
+        "srcLanguage": "ets",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "hwc-theme",
+              "value": "androidhwext:style/Theme.Emui.Light.NoTitleBar",
+              "extra": ""
+            }
+          ]
+        }
       },
       {
-        "srcPath": "ServiceAbility",
-        "name": ".ServiceAbility",
+        "name": "com.ohos.mms.ServiceAbility",
         "icon": "$media:icon",
-        "srcLanguage": "js",
         "description": "service",
-        "type": "service"
+        "type": "service",
+        "srcPath": "ServiceAbility",
+        "srcLanguage": "ets",
+        "visible": true
       }
     ],
     "js": [
       {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
         "pages": [
           "pages/index/index",
-          "pages/conversation_list/conversation_list",
-          "pages/info_msg/info_msg",
+          "pages/conversationlist/conversationList",
           "pages/conversation/conversation",
-          "pages/text_select/text_select",
-          "pages/group_detail/group_detail",
-          "pages/full_screen_input/full_screen_input",
-          "pages/my_star/my_star",
-          "pages/full_screen_show_picture/full_screen_show_picture",
-          "pages/video_operation/video_operation",
-          "pages/contact_item_pick/contact_item_pick",
-          "pages/transmit_msg/transmit_msg",
-          "pages/transmit_search/transmit_search",
+          "pages/info_msg/InfoMsg",
           "pages/settings/settings",
-          "pages/sms_center/sms_center",
-          "pages/advanced_settings/advanced_settings",
-          "pages/manage_sim/manage_sim",
-          "pages/query_report/query_report",
-          "pages/slide_detail/slide_detail"
+          "pages/settings/advancedSettings/advancedSettings",
+          "pages/settings/ringtoneSettings/ringtoneSettings",
+          "pages/query_report/query_report"
         ],
         "name": "default",
         "window": {
@@ -84,7 +90,39 @@
     ],
     "reqPermissions": [
       {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.READ_CONTACTS"
+      },
+      {
+        "name": "ohos.permission.READ_MESSAGES"
+      },
+      {
+        "name": "ohos.permission.READ_USER_STORAGE"
+      },
+      {
+        "name": "ohos.permission.WRITE_USER_STORAGE"
+      },
+      {
+        "name": "ohos.permission.SEND_MESSAGES"
+      },
+      {
+        "name": "ohos.permission.SET_TELEPHONY_STATE"
+      },
+      {
+        "name": "ohos.permission.GET_TELEPHONY_STATE"
+      },
+      {
+        "name": "ohos.permission.RECEIVE_SMS"
+      },
+      {
+        "name": "ohos.permission.PLACE_CALL"
+      }
+    ],
+    "defPermissions": [
+      {
+        "name": "com.ohos.mms.DataAbilityShellProvider.PROVIDER"
       }
     ]
   }

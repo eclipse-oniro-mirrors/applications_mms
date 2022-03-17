@@ -1,67 +1,38 @@
-# MMS<a name="EN-US_TOPIC_0000001103421572"></a>
+# mms_app
 
--   [Introduction](#section11660541593)
-    -   [Architecture](#section48896451454)
+#### 简介
+mms_app是基于OpenHarmony系统ETS UI框架开发的短信项目，主要的功能包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能；
 
--   [Directory Structure](#section161941989596)
--   [Usage](#section123459000)
--   [Repositories Involved](#section1371113476307)
+#### 架构图
+主要针对架构目标、关键架构需求、假设和约束加以说明，对架构的原则性进行必要说明，针对架构的相关视图，进行绘制并加以说明（主要包含用例视图、逻辑视图、开发视图、部署视图、运行视图）。
 
-## Introduction<a name="section11660541593"></a>
+![screenshot-20211129-202627](./doc/image/screenshot-20211129-202627.png)
 
-The MMS application is pre-installed in OpenHarmony and provides functions such as sending, receiving, forwarding, favoriting, locking, and resending of SMS and MMS messages.
+#### 目录
 
-
-### Architecture<a name="section48896451454"></a>
-
-![](./doc/image/mms-architecture.png)
-
-## Directory Structure<a name="section161941989596"></a>
-
-```
-/applications/standard/mms
-├── figures                             		# Architecture diagram
-├── entry                               		# Main entry module
+/mms/
+├── entry                               		# 主entry模块目录
 │    ├── src		
 │      ├── main		
-│        └── js                         		# JS code
+│        └── ets                         		# js代码目录
 │          └── default		
-│            └── common.icon            		# Icon
-│              └── i18n                 		# Internationalization
-│			   └── model                		# Data management layer
-│			   └── pages                		# Pages
-│                └── advanced_settings  		# Advanced settings page
-│                └── component          		# Components
-│				 └── conversation       		# Conversation page
-│				 └── conversation_list  		# Conversation list page
-│				 └── full_screen_input  		# Full-screen input page
-│				 └── full_srceen_show_picture  	# Full-screen image display page
-│				 └── group_detail              	# Group details page
-│				 └── info_msg                  	# Notification message list page
-│				 └── index                     	# Homepage
-│				 └── manage_sim                	# SIM card management page
-│				 └── my_star                   	# Favorites page
-│				 └── query_report               # Query report page
-│				 └── settings                  	# Settings page
-│                └── sms_center 	           	# SMSC page
-│				 └── text_select               	# Text selection page
-│				 └── transmit_select           	# Message forwarding page
-│				 └── transmit_search           	# Forwarded message search page
-│			   └── service             			# Service logic
-│			   └── utils               			# Utilities
-│        └── resources                 			# Resources
-│        └── config.json               			# Global configuration file
+│              └── data                 		# 自定义数据类型
+│			   └── model                		# 对接数据库
+│			   └── pages                		# 页面
+│				 └── conversation       		# 会话详情页面
+│				 └── conversationlist     		# 信息列表页面
+│				 └── index                     	# 首页
+│				 └── info_msg                	# 通知信息列表页面
+│				 └── query_report               # 报告详情页面
+│				 └── settings                  	# 设置页面
+│			   └── service             			# 业务逻辑
+│			   └── utils               			# 工具类
+│			   └── views               			# 自定义组件
+│          └── ServiceAbility                   # 后台常驻服务
+│        └── java                 			    # Ability
+│        └── resources                 			# 资源存放目录
+│        └── config.json               			# 全局配置文件
 ├── gradle                             			# gradle
-│    ├──wrapper            			
-├── KeyStore                           			# License file
-```
+│    ├──wrapper
 
-## Usage<a name="section123459000"></a>
 
-   For details, see [MMS Usage Instructions](./doc/Instructions.md).
-
-## Repositories Involved<a name="section1371113476307"></a>
-
-System applications
-
-**applications\_standard_mms**
