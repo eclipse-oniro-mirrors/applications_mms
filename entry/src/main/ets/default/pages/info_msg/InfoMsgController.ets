@@ -373,7 +373,6 @@ export default class InfoMsgController {
     }
     // 跳转至会话详情页面
     jumpToConversationPage(item){
-        HiLog.i(TAG, 'jumpToConversationPage, item: ' + JSON.stringify(item));
         router.push({
             uri: 'pages/conversation/conversation',
             params: {
@@ -501,7 +500,6 @@ export default class InfoMsgController {
             hasRead: 0
         };
         notificationService.cancelMessageNotify(actionData, res => {
-            HiLog.i(TAG, 'cancelMessageInfoNotify, success res: ' + res);
             callback();
         });
     }
@@ -781,7 +779,6 @@ export default class InfoMsgController {
         commonEvent.subscribe(commonEventData, this.subscriberCallBack.bind(this));
     }
     subscriberCallBack(err, data){
-        HiLog.i(TAG, 'subscriberCallBack data: ' + JSON.stringify(data));
         this.page = 1;
         this.queryAllMessages();
     }
@@ -795,9 +792,8 @@ export default class InfoMsgController {
     jumpToContract(actionData){
         var str = commonService.commonContractParam(actionData);
         featureAbility.startAbility(str).then((data) => {
-            HiLog.i(TAG, 'jumpToContract, data: ' + JSON.stringify(data));
         }).catch((error) => {
-            HiLog.e(TAG, 'jumpToContract, failed: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'jumpToContract, failed: ' + JSON.stringify(error.message));
         })
     }
     // 获取整合通知信息和显示联系人头像的开关值

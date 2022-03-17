@@ -144,7 +144,6 @@ export default {
             if (result.code == common.int.SUCCESS) {
                 HiLog.i(TAG, 'shareSmsEnterSelectedText, success');
             } else {
-                HiLog.w(TAG, 'shareSmsEnterSelectedText, fail: ' + JSON.stringify(result.abilityResult));
             }
         });
     },

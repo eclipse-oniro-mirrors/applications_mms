@@ -555,7 +555,6 @@ export default class ConversationListController {
     let that = this;
     messageService.statisticalData(actionData, function (result) {
       if (result.code == common.int.SUCCESS) {
-        HiLog.i(TAG, 'statisticalData, Success result: ' + JSON.stringify(result));
         // 列表的总数
         that.unreadTotal = result.response.totalListCount;
         // 通知信息的未读数
@@ -572,7 +571,6 @@ export default class ConversationListController {
     if (result) {
       this.hasAggregate = result.hasAggregate;
       this.isShowContactHeadIcon = result.isShowContactHeadIcon;
-      HiLog.i(TAG, 'getSettingFlagForConvListPage, result: ' + JSON.stringify(result));
     }
   };
 
@@ -630,7 +628,7 @@ export default class ConversationListController {
     featureAbility.startAbility(str).then((data) => {
       HiLog.i(TAG, 'jumpToContract, startAbility success');
     }).catch((error) => {
-      HiLog.e(TAG, 'jumpToContract, failed Cause: ' + JSON.stringify(error));
+      HiLog.e(TAG, 'jumpToContract, failed Cause: ' + JSON.stringify(error.message));
     })
   };
 
@@ -669,7 +667,6 @@ export default class ConversationListController {
     actionData.page = this.page;
     actionData.limit = this.limit;
     messageService.querySessionList(actionData, result => {
-      HiLog.i(TAG, 'queryAllMessages, querySessionList result: ' + JSON.stringify(result));
       if (result.code == common.int.SUCCESS) {
         let res = [];
         result.response.forEach(item => {
@@ -749,7 +746,6 @@ export default class ConversationListController {
       hasRead: 0
     };
     notificationService.cancelMessageNotify(actionData, res => {
-      HiLog.i(TAG, 'cancelMessageInfoNotify, cancelMessageNotify res: ' + JSON.stringify(res));
       callback();
     });
   };
@@ -778,7 +774,6 @@ export default class ConversationListController {
 
   // 跳转至会话详情页面
   jumpToConversationPage(item) {
-    HiLog.i(TAG, 'jumpToConversationPage, item: ' + JSON.stringify(item));
     router.push({
       uri: 'pages/conversation/conversation',
       params: {

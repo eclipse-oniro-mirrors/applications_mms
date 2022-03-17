@@ -35,7 +35,6 @@ export default {
         }
         let result: LooseObject = {};
         call.dial(params.telephone).then((value) => {
-            HiLog.i(TAG, 'call, dial success: ' + value);
             result.code = common.int.SUCCESS;
             callback(result);
         }).catch((err) => {

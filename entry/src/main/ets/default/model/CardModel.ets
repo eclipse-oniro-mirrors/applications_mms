@@ -26,24 +26,21 @@ export default class CardModel extends BaseModel {
     getSimSpn(preferences) {
         telephonySim.getSimSpn(common.int.SIM_ONE, (err, value) => {
             if (err) {
-                HiLog.e(TAG, 'getSimSpn, SIM_ONE error: ' + JSON.stringify(err));
+                HiLog.e(TAG, 'getSimSpn, SIM_ONE error: ' + JSON.stringify(err.message));
             } else {
                 preferences.setValueForSwitch(common.string.KEY_OF_SIM_0_SPN, value);
-                HiLog.i(TAG, 'getSimSpn, SIM_ONE spn=' + value);
             }
         });
         telephonySim.getSimSpn(common.int.SIM_TWO, (err, value) => {
             if (err) {
-                HiLog.e(TAG, 'getSimSpn, SIM_TWO error: ' + JSON.stringify(err));
+                HiLog.e(TAG, 'getSimSpn, SIM_TWO error: ' + JSON.stringify(err.message));
             } else {
                 preferences.setValueForSwitch(common.string.KEY_OF_SIM_1_SPN, value);
-                HiLog.i(TAG, 'getSimSpn, SIM_TWO spn=' + value);
             }
         });
     }
 
     getSmscNumber(slotId, preferences, callback) {
-        HiLog.i(TAG, 'getSmscNumber, slotId:' + slotId);
         let smsNumber = common.string.EMPTY_STR;
         let simOne = preferences.getNewSmscOfSim1();
         let simTwo = preferences.getNewSmscOfSim2();
@@ -62,7 +59,7 @@ export default class CardModel extends BaseModel {
                 }
                 callback(smsNumber);
             }).catch((error) => {
-                HiLog.e(TAG, 'getSmscNumber, error: ' + JSON.stringify(error));
+                HiLog.e(TAG, 'getSmscNumber, error: ' + JSON.stringify(error.message));
             });
         }
         callback(smsNumber);
@@ -74,7 +71,7 @@ export default class CardModel extends BaseModel {
         let simMessageList = [];
         telephonySMS.getAllSimMessages(index, (error, msgArray) => {
             if (error) {
-                HiLog.e(TAG, 'queryMessageInSimCard, error: ' + JSON.stringify(error));
+                HiLog.e(TAG, 'queryMessageInSimCard, error: ' + JSON.stringify(error.message));
                 return;
             }
             for (let i = 0;i < msgArray.length; i++) {
@@ -101,29 +98,25 @@ export default class CardModel extends BaseModel {
         let msgIndex = actionData.indexOnSim;
         telephonySMS.delSimMessage(index, msgIndex, (error, value) => {
             if (error) {
-                HiLog.e(TAG, 'delSimMessage, error: ' + JSON.stringify(error));
+                HiLog.e(TAG, 'delSimMessage, error: ' + JSON.stringify(error.message));
             } else {
-                HiLog.i(TAG, 'delSimMessage, value=' + value);
             }
         });
     }
 
     getSimCardNum(preferences) {
-        HiLog.i(TAG, 'getSimCardNum start ' + telephonySim);
         telephonySim.hasSimCard(common.int.SIM_ONE, (error, value) => {
             if (error) {
-                HiLog.e(TAG, 'getSimCardNum, SIM_ONE error: ' + JSON.stringify(error));
+                HiLog.e(TAG, 'getSimCardNum, SIM_ONE error: ' + JSON.stringify(error.message));
             } else {
-                HiLog.i(TAG, 'getSimCardNum, SIM_ONE value=' + value);
                 let result = value ? common.bool.TRUE : common.bool.FALSE;
                 preferences.setValueForSwitch(common.string.KEY_OF_SIM_0_EXIST_FLAG, result);
             }
         });
         telephonySim.hasSimCard(common.int.SIM_TWO, (error, value) => {
             if (error) {
-                HiLog.e(TAG, 'getSimCardNum, SIM_TWO error: ' + JSON.stringify(error));
+                HiLog.e(TAG, 'getSimCardNum, SIM_TWO error: ' + JSON.stringify(error.message));
             } else {
-                HiLog.i(TAG, 'getSimCardNum, SIM_TWO value=' + value);
                 let result = value ? common.bool.TRUE : common.bool.FALSE;
                 preferences.setValueForSwitch(common.string.KEY_OF_SIM_1_EXIST_FLAG, result);
             }
@@ -134,17 +127,15 @@ export default class CardModel extends BaseModel {
         HiLog.i(TAG, 'getSimTelephoneNumber start');
         telephonySim.getSimTelephoneNumber(common.int.SIM_ONE, (error, value) => {
             if (error) {
-                HiLog.e(TAG, 'getSimTelephoneNumber, SIM_ONE error: ' + JSON.stringify(error));
+                HiLog.e(TAG, 'getSimTelephoneNumber, SIM_ONE error: ' + JSON.stringify(error.message));
             } else {
-                HiLog.i(TAG, 'getSimTelephoneNumber, SIM_ONE value=' + value);
                 preferences.setValueForSwitch(common.string.KEY_OF_SIM_0_NUMBER, value);
             }
         });
         telephonySim.getSimTelephoneNumber(common.int.SIM_TWO, (error, value) => {
             if (error) {
-                HiLog.e(TAG, 'getSimTelephoneNumber, SIM_TWO error: ' + JSON.stringify(error));
+                HiLog.e(TAG, 'getSimTelephoneNumber, SIM_TWO error: ' + JSON.stringify(error.message));
             } else {
-                HiLog.i(TAG, 'getSimTelephoneNumber, SIM_TWO value=' + value);
                 preferences.setValueForSwitch(common.string.KEY_OF_SIM_1_NUMBER, value);
             }
         });

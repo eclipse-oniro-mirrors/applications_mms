@@ -55,7 +55,7 @@ export default class ConversationModel extends BaseModel {
             }
             callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
         }).catch(error => {
-            HiLog.e(TAG, 'queryMessageDetail, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryMessageDetail, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -149,7 +149,7 @@ export default class ConversationModel extends BaseModel {
             }
             callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
         }).catch(error => {
-            HiLog.e(TAG, 'searchSmsMessageByContent, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'searchSmsMessageByContent, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -183,10 +183,9 @@ export default class ConversationModel extends BaseModel {
         let dataAbilityHelper = await featureAbility.acquireDataAbilityHelper(common.string.URI_MESSAGE_LOG);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.insert(managerUri, actionData.stringValue).then(data => {
-            HiLog.d(TAG, 'insertMessageDetail, success: ' + JSON.stringify(data));
             callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
         }).catch(error => {
-            HiLog.e(TAG, 'insertMessageDetail, fail: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'insertMessageDetail, fail: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -203,7 +202,7 @@ export default class ConversationModel extends BaseModel {
         dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
             callback(this.encapsulateReturnCode(common.int.SUCCESS));
         }).catch((err) => {
-            HiLog.e(TAG, 'updateLock, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'updateLock, err: ' + JSON.stringify(err.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -228,7 +227,7 @@ export default class ConversationModel extends BaseModel {
         dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
             callback(this.encapsulateReturnCode(common.int.SUCCESS));
         }).catch((err) => {
-            HiLog.e(TAG, 'updateCollect, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'updateCollect, err: ' + JSON.stringify(err.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -250,7 +249,7 @@ export default class ConversationModel extends BaseModel {
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.delete(managerUri, condition).then((data) => {
         }).catch((err) => {
-            HiLog.e(TAG, 'deleteMessageByGroupIds, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'deleteMessageByGroupIds, err: ' + JSON.stringify(err.message));
         });
     }
 
@@ -266,7 +265,7 @@ export default class ConversationModel extends BaseModel {
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.delete(managerUri, condition).then((data) => {
         }).catch((err) => {
-            HiLog.e(TAG, 'deleteMessageBySessionIds, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'deleteMessageBySessionIds, err: ' + JSON.stringify(err.message));
         });
     }
 
@@ -279,7 +278,7 @@ export default class ConversationModel extends BaseModel {
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.delete(managerUri, condition).then((data) => {
         }).catch((err) => {
-            HiLog.e(TAG, 'deleteMessageBySessionIdsAndLock, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'deleteMessageBySessionIdsAndLock, err: ' + JSON.stringify(err.message));
         });
     }
 
@@ -296,7 +295,7 @@ export default class ConversationModel extends BaseModel {
             HiLog.i(TAG, 'updateById, end');
             callback(this.encapsulateReturnCode(common.int.SUCCESS));
         }).catch((err) => {
-            HiLog.e(TAG, 'updateById, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'updateById, err: ' + JSON.stringify(err.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -316,7 +315,7 @@ export default class ConversationModel extends BaseModel {
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
         }).catch((err) => {
-            HiLog.e(TAG, 'markAllAsRead, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'markAllAsRead, err: ' + JSON.stringify(err.message));
         });
     }
 
@@ -332,7 +331,7 @@ export default class ConversationModel extends BaseModel {
         let dataAbilityHelper = await featureAbility.acquireDataAbilityHelper(common.string.URI_MESSAGE_LOG);
         dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
         }).catch((err) => {
-            HiLog.e(TAG, 'markAllToRead, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'markAllToRead, err: ' + JSON.stringify(err.message));
         });
     }
 
@@ -396,7 +395,7 @@ export default class ConversationModel extends BaseModel {
             }
             callback(this.encapsulateReturnResult(common.int.SUCCESS, mmsList));
         }).catch((err) => {
-            HiLog.e(TAG, 'queryMessageThirty, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'queryMessageThirty, err: ' + JSON.stringify(err.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -418,7 +417,7 @@ export default class ConversationModel extends BaseModel {
             }
             callback(this.encapsulateReturnResult(common.int.SUCCESS, count));
         }).catch((err) => {
-            HiLog.e(TAG, 'statisticsUnreadNotify, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'statisticsUnreadNotify, err: ' + JSON.stringify(err.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -434,7 +433,7 @@ export default class ConversationModel extends BaseModel {
             let resultList = this.dealMmsPartResult(resultSet);
             callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
         }).catch(error => {
-            HiLog.e(TAG, 'searchMmsPartByContent, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'searchMmsPartByContent, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -450,7 +449,7 @@ export default class ConversationModel extends BaseModel {
             let resultList = this.dealMmsPartResult(resultSet);
             callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
         }).catch(error => {
-            HiLog.e(TAG, 'queryMmsPart, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryMmsPart, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -495,7 +494,7 @@ export default class ConversationModel extends BaseModel {
         let dataAbilityHelper = await featureAbility.acquireDataAbilityHelper(common.string.URI_MESSAGE_LOG);
         dataAbilityHelper.delete(managerUri, condition).then((data) => {
         }).catch((err) => {
-            HiLog.e(TAG, 'deleteMmsPartByGroupIds, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'deleteMmsPartByGroupIds, err: ' + JSON.stringify(err.message));
         });
     }
 
@@ -514,7 +513,7 @@ export default class ConversationModel extends BaseModel {
         dataAbilityHelper.insert(managerUri, stringValue).then(data => {
             callback(this.encapsulateReturnResult(data, common.int.SUCCESS));
         }).catch(error => {
-            HiLog.e(TAG, 'insertMmsPart, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'insertMmsPart, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -536,7 +535,7 @@ export default class ConversationModel extends BaseModel {
             }
             callback(this.encapsulateReturnResult(common.int.SUCCESS, lockStatus));
         }).catch(error => {
-            HiLog.e(TAG, 'queryMessageLockBySessionId, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryMessageLockBySessionId, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -558,7 +557,7 @@ export default class ConversationModel extends BaseModel {
             } while (resultSet.goToNextRow());
             callback(this.encapsulateReturnResult(common.int.SUCCESS, groupIds));
         }).catch(error => {
-            HiLog.e(TAG, 'queryGroupIdBySessionId, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryGroupIdBySessionId, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }

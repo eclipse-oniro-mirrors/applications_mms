@@ -17,7 +17,6 @@ import appStorage from './AppStorageUtil';
 import common from '../data/commonData';
 import dataStorage from '@ohos.data.storage';
 import featureAbility from '@ohos.ability.featureAbility';
-import HiLog from './HiLog';
 const TAG = 'PreferencesUtil';
 
 var prefIns = undefined;
@@ -170,7 +169,6 @@ export default {
      */
     setValueForSwitch(keyOfSwitch, valueOfSwitch) {
         let prefIns = this.getPreferencesInstance();
-        HiLog.i(TAG, 'setValueForSwitch, keyOfSwitch=' + keyOfSwitch + ', valueOfSwitch=' + valueOfSwitch);
         prefIns.putSync(keyOfSwitch, valueOfSwitch);
         prefIns.flushSync();
     }

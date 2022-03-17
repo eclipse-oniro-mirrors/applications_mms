@@ -49,7 +49,7 @@ export default {
             HiLog.i(TAG, 'insert, first done: ' + rowId);
             rowId = ret;
         }).catch((err) => {
-            HiLog.e(TAG, 'insert, first fail: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'insert, first fail: ' + JSON.stringify(err.message));
         })
         await insertPromise;
         return rowId;

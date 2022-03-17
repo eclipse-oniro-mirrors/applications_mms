@@ -154,7 +154,7 @@ export default {
         promise.then((value) => {
             formatPhoneNumber = value;
         }).catch((err) => {
-            HiLog.e(TAG, 'formatPhoneNumber, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'formatPhoneNumber, error: ' + JSON.stringify(err.message));
         });
         await promise;
         return formatPhoneNumber;

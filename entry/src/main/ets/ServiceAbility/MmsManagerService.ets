@@ -60,8 +60,7 @@ export default class MmsManagerService {
     }
 
     subscriberCallBack(err, data) {
-        HiLog.i(TAG, 'subscriberCallBack, err: ' + JSON.stringify(err));
-        HiLog.d(TAG, 'subscriberCallBack, data: ' + JSON.stringify(data));
+        HiLog.i(TAG, 'subscriberCallBack, err: ' + JSON.stringify(err.message));
         // 短信接收
         if (data.event === common.string.SUBSCRIBER_EVENT) {
             this.dealSmsReceiveData(data);
@@ -90,7 +89,7 @@ export default class MmsManagerService {
                 result.content += shortMessage.visibleMessageBody;
             })
         }).catch((err) => {
-            HiLog.e(TAG, 'dealSmsReceiveData, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'dealSmsReceiveData, err: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
         });
         await createMessagePromise;
@@ -136,7 +135,7 @@ export default class MmsManagerService {
                     readTimeout: 50000,
                     connectTimeout: 50000
                 }, (err, data) => {
-                    HiLog.i(TAG, 'saveAttachment, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
+                    HiLog.i(TAG, 'saveAttachment, err: ' + JSON.stringify(err.message));
                 }
             );
         }
@@ -237,7 +236,7 @@ export default class MmsManagerService {
             HiLog.i(TAG, 'initRdb, createRdbStore first done: ' + ret);
             await this.createTable(mmsTable.table.session);
         }).catch((err) => {
-            HiLog.e(TAG, 'initRdb, createRdbStore error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'initRdb, createRdbStore error: ' + JSON.stringify(err.message));
         });
     }
 
@@ -298,9 +297,7 @@ export default class MmsManagerService {
         }
         this.insertSession(valueBucket, res => {
             // 这里调用短信数据库，插入短信信息
-            HiLog.i(TAG, 'insertNoExitingSession, res: ' + JSON.stringify(res));
             this.dealInsertMessageDetail(value, actionData, res.rowId, initDatas => {
-                HiLog.i(TAG, 'insertNoExitingSession, initDatas:' + JSON.stringify(initDatas));
                 let result = {
                     rowId: res.rowId,
                     initDatas: initDatas
@@ -311,7 +308,6 @@ export default class MmsManagerService {
     }
 
     insertExitingSession(response, param, actionData, callback) {
-        HiLog.i(TAG, 'insertExitingSession, response: ' + JSON.stringify(response));
         let sessionId = response.id;
         // 这里调用短信数据库，插入短信信息
         let threadIds = [sessionId];
@@ -334,10 +330,8 @@ export default class MmsManagerService {
             'has_attachment': actionData.hasAttachment ? 1 : 0
         };
         this.updateById(threadIds, valueBucket, res => {
-            HiLog.i(TAG, 'insertExitingSession, res: ' + JSON.stringify(res));
             // 这里调用短信数据库，插入短信信息
             this.dealInsertMessageDetail(param, actionData, sessionId, initDatas => {
-                HiLog.i(TAG, 'insertExitingSession, initDatas: ' + JSON.stringify(initDatas));
                 let result = {
                     rowId: sessionId,
                     initDatas: initDatas
@@ -351,12 +345,11 @@ export default class MmsManagerService {
         let result: LooseObject = {};
         let queryPromise = this.querySessionByTelephoneRdb(telephone);
         Promise.all([queryPromise]).then((res) => {
-            HiLog.i(TAG, 'querySessionByTelephone, res: ' + JSON.stringify(res[0]));
             result.code = common.int.SUCCESS;
             result.response = res[0];
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, 'querySessionByTelephone, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'querySessionByTelephone, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });
@@ -404,7 +397,7 @@ export default class MmsManagerService {
             result.rowId = ret;
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, 'insertSessionRdb, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'insertSessionRdb, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });
@@ -414,14 +407,13 @@ export default class MmsManagerService {
      * 新增数据
      */
     async insert(tableName, valueBucket) {
-        HiLog.i(TAG, 'insert, tableName:' + JSON.stringify(tableName));
         let promise = await rdbStore.insert(tableName, valueBucket);
         let rowId = 0;
         promise.then((ret) => {
             rowId = ret;
             HiLog.i(TAG, 'insert, first success: ' + rowId);
         }).catch((err) => {
-            HiLog.e(TAG, 'insert, err: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'insert, err: ' + JSON.stringify(err.message));
         })
         await promise;
         return rowId;
@@ -528,7 +520,6 @@ export default class MmsManagerService {
             'is_send_report': 0,
             'group_id': value.groupId
         };
-        HiLog.i(TAG, 'insertMessageDetail, stringValue: ' + JSON.stringify(stringValue));
         actionData.stringValue = stringValue;
         this.insertMessageDetailRdb(actionData, msgId => {
             HiLog.i(TAG, 'insertMessageDetail, msgId: ' + msgId);
@@ -554,7 +545,6 @@ export default class MmsManagerService {
             };
             bacthmsParts.push(stringValue);
         }
-        HiLog.i(TAG, 'batchInsertMmsPart, bacthmsParts: ' + JSON.stringify(bacthmsParts));
         for(let stringValue of bacthmsParts) {
             this.insertMmsPart(stringValue);
         }
@@ -564,9 +554,8 @@ export default class MmsManagerService {
         let dataAbilityHelper = await particleAbility.acquireDataAbilityHelper(common.string.URI_MESSAGE_LOG);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
         dataAbilityHelper.insert(managerUri, stringValue).then(data => {
-            HiLog.i(TAG, 'insertMmsPart, success data: ' + JSON.stringify(data));
         }).catch(error => {
-            HiLog.e(TAG, 'insertMmsPart, fail: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'insertMmsPart, fail: ' + JSON.stringify(error.meaasge));
         });
     }
 
@@ -577,10 +566,9 @@ export default class MmsManagerService {
         let dataAbilityHelper = await particleAbility.acquireDataAbilityHelper(common.string.URI_MESSAGE_LOG);
         let promise = dataAbilityHelper.insert(managerUri, actionData.stringValue);
         await promise.then(data => {
-            HiLog.i(TAG, 'insertMessageDetailRdb, success data: ' + JSON.stringify(data));
             callback(data);
         }).catch(error => {
-            HiLog.e(TAG, 'insertMessageDetailRdb, fail: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'insertMessageDetailRdb, fail: ' + JSON.stringify(error.message));
         });
     }
 
@@ -597,7 +585,6 @@ export default class MmsManagerService {
                 let predicates = new ohosDataRdb.RdbPredicates(common.tableName.SESSION);
                 await predicates.equalTo(mmsTable.sessionField.id, threadId);
                 this.update(predicates, valueBucket, res => {
-                    HiLog.i(TAG, 'updateById, res: ' + JSON.stringify(res));
                     callback(res);
                 });
             }
@@ -644,7 +631,7 @@ export default class MmsManagerService {
             }
             callback(result);
         }).catch(error => {
-            HiLog.e(TAG, 'queryMaxGroupIdDb, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryMaxGroupIdDb, error: ' + JSON.stringify(error.message));
         });
     }
 
@@ -662,7 +649,6 @@ export default class MmsManagerService {
             isOrdered: false,
             data: JSON.stringify(actionData)
         }, (res) => {
-            HiLog.i(TAG, 'publishData, callback res: ' + JSON.stringify(res));
         });
     }
 
@@ -725,7 +711,7 @@ export default class MmsManagerService {
             }
             callback(contracts);
         }).catch(error => {
-            HiLog.e(TAG, 'queryContactDataByTelephone error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryContactDataByTelephone error: ' + JSON.stringify(error.message));
         });
     }
 }

@@ -49,7 +49,6 @@ export default {
           if (data.authResults == undefined) {
             return;
           }
-          HiLog.i(TAG, "data authResults:" + JSON.stringify(data.authResults));
           for (let i = 0; i < data.authResults.length; i++) {
             if (data.authResults[i] == -1) {
               HiLog.i(TAG, 'Application requestPermissionsFromUser failed');
@@ -61,7 +60,7 @@ export default {
         HiLog.i(TAG, 'Application requestPermissionsFromUser end');
       }
     }).catch((err) => {
-      HiLog.e(TAG, 'verifyPermissions, error: ' + JSON.stringify(err));
+      HiLog.e(TAG, 'verifyPermissions, error: ' + JSON.stringify(err.message));
     });
     // 初始化数据库
     this.initRdb();
@@ -84,7 +83,6 @@ export default {
 
   initStorage() {
     preferences.initDataStorage().then((prefIns) => {
-      HiLog.i(TAG, 'initStorage, first done:' + prefIns);
       appStorage.setPreferences(prefIns);
       // 获取simCount
       this.initSimCardNum(preferences);
@@ -122,12 +120,11 @@ export default {
       // 页面跳转
       this.jump();
     }).catch((error) => {
-      HiLog.e(TAG, 'getWant, failed Cause: ' + JSON.stringify(error));
+      HiLog.e(TAG, 'getWant, failed Cause: ' + JSON.stringify(error.message));
     })
   },
 
   jump() {
-    HiLog.i(TAG, "jump, pageFlag=" + this.pageFlag);
     let result = {
       uri: '',
       params: ''
@@ -155,7 +152,6 @@ export default {
   jumpIsNewPage(result) {
     // 判断是否
     conversationListService.querySessionByTelephone(this.contractParams.strContactsNumber, res => {
-      HiLog.i(TAG, 'jumpIsNewPage, querySessionByTelephone res: ' + JSON.stringify(res));
       if (res.code == common.int.SUCCESS && res.response.id > 0) {
         result.params.threadId = res.response.id;
       } else {
@@ -185,12 +181,10 @@ export default {
     let requestPermissions: Array<string> = [];
     for (let i = 0;i < array.length; i++) {
       var result = await atManager.verifyAccessToken(tokenID, array[i]);
-      HiLog.i(TAG, 'verifyPermissions %s', JSON.stringify(result));
       if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
         requestPermissions.push(array[i]);
       }
     }
-    HiLog.i(TAG, 'verifyPermissions %s', JSON.stringify(requestPermissions));
     return requestPermissions;
   }
 }

@@ -260,7 +260,6 @@ export default class ConversationController {
         }
         // 判断是否插入了电话卡
         this.haveSimCard = conversationService.judgeHasSimCard();
-        HiLog.i(TAG, 'haveSimCard = ' + this.haveSimCard);
         // 判断发送按钮是否可点击
         this.judgeSendBtnCanClicked();
         // 初始化转发的数据
@@ -362,7 +361,6 @@ export default class ConversationController {
     }
 
     initRouterData() {
-        HiLog.i(TAG, 'initRouterData: ' + JSON.stringify(router.getParams()))
         this.strContactsName =
             router.getParams().strContactsName == undefined ? '' : router.getParams().strContactsName;
         this.strContactsNumber =
@@ -430,7 +428,6 @@ export default class ConversationController {
             return;
         }
         let source = this.getMmsSource();
-        HiLog.i(TAG, 'titleBarBack, source is ' + JSON.stringify(source))
         // 不存在草稿或者需要更新草稿的操作
         this.insertAndUpdateSessionDraft(source);
         // 存在草稿的情况下，需要做下面的操作
@@ -465,13 +462,11 @@ export default class ConversationController {
             // 如果选择联系人不为空
             if (this.selectContacts.length > 0) {
                 actionData.selectContacts = this.selectContacts;
-                HiLog.i(TAG, 'insertAndUpdateSessionDraft, selectContacts=' + actionData.selectContacts)
                 conversationListService.insertSessionDraft(actionData);
             }
             // 如果收件人输入栏不为空
             else if (this.receiveContactValue != common.string.EMPTY_STR) {
                 actionData.receiveContactValue = this.receiveContactValue;
-                HiLog.i(TAG, 'insertAndUpdateSessionDraft, receiveContactValue=' + actionData.receiveContactValue)
                 conversationListService.insertSessionDraft(actionData);
             }
         }
@@ -935,7 +930,6 @@ export default class ConversationController {
         actionData.contactsNum = this.contactsNum;
 
         conversationService.queryMessageDetail(actionData, result => {
-            HiLog.i(TAG, 'queryMessageDetail, queryMessageDetail result: ' + JSON.stringify(result));
             if (result.code == common.int.SUCCESS) {
                 this.initIsShowMsgLongMenu(result)
                 this.dealMessageDetailTime(result);
@@ -1076,7 +1070,6 @@ export default class ConversationController {
         this.draftContent = item.content;
         this.draftGroupId = item.groupId;
         this.receiveContactValue = this.strContactsNumber
-        HiLog.d(TAG, 'dealDraftData, item: ' + JSON.stringify(item))
         this.setDraft();
         if (item.isMsm) {
             this.isEditMms = true;
@@ -1154,7 +1147,6 @@ export default class ConversationController {
             return;
         } else {
             this.canSendMessage = this.haveSimCard && !this.isFlightMode;
-            HiLog.i(TAG, 'setSmsTip, canSendMessage=' + this.canSendMessage + ', haveSimCard=' + this.haveSimCard);
         }
         if (this.isNewMsg) {
             this.setCanSendMsgStatus();
@@ -1561,7 +1553,6 @@ export default class ConversationController {
         HiLog.i(TAG, 'sendMassMessage, start')
         let sendNumber = hosts;
         this.insertInitData(sendNumber, content, item, result => {
-            HiLog.i(TAG, 'sendMassMessage, insertInitData result: ' + JSON.stringify(result));
             // 处理发送的结果
             this.threadId = result.rowId;
             item.groupId = result.groupId;
@@ -1617,7 +1608,6 @@ export default class ConversationController {
             content: this.textValue,
             isEditMms: this.isEditMms
         };
-        HiLog.i(TAG, 'send, content: ' + this.textValue)
         // 真实的发送短信
         this.sendInterval(actionData, this.mmsList);
         this.textValue = common.string.EMPTY_STR;
@@ -1639,7 +1629,6 @@ export default class ConversationController {
     }
 
     newSend() {
-        HiLog.i(TAG, 'newSend, selectContacts.length=' + this.selectContacts.length);
         // 先校验输入的内容是否有值
         if (this.receiveContactValue != common.string.EMPTY_STR) {
             if (!this.isPhoneNumber(this.receiveContactValue)) {
@@ -1760,7 +1749,6 @@ export default class ConversationController {
     }
 
     changeValue(e) {
-        HiLog.i(TAG, 'changeValue, e: ' + JSON.stringify(e))
         this.textValue = e;
         if (e == null || e == common.string.EMPTY_STR) {
             if (this.mmsEditList.length != 0) {
@@ -2104,7 +2092,7 @@ export default class ConversationController {
         featureAbility.startAbility(str).then((data) => {
             HiLog.i(TAG, 'jumpToContract, startAbility Success');
         }).catch((error) => {
-            HiLog.e(TAG, 'jumpToContract, failed. Cause: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'jumpToContract, failed. Cause: ' + JSON.stringify(error.message));
         })
     }
     // 点击联系人头像，跳转至联系人详情
