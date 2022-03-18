@@ -25,7 +25,6 @@ const TAG = 'ContactsModel';
 
 export default class ContactsModel extends BaseModel {
     async queryContactDataByIds(actionData, callback) {
-        HiLog.i(TAG, 'queryContactDataByIds, params:' + JSON.stringify(actionData));
         let dataHelper = await featureAbility.acquireDataAbilityHelper(common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.detailInfo,
@@ -41,12 +40,11 @@ export default class ContactsModel extends BaseModel {
         dataHelper.query(contactDataUri, resultColumns, condition).then(resultSet => {
             callback(this.dealResultSet(resultSet));
         }).catch(error => {
-            HiLog.e(TAG, 'queryContactDataByIds, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryContactDataByIds, error: ' + JSON.stringify(error.message));
         });
     }
 
     async queryContactDataByTelephone(actionData, callback) {
-        HiLog.i(TAG, 'begin queryContactDataByTelephone: ' + JSON.stringify(actionData));
         let telephoneDataHelp = await featureAbility.acquireDataAbilityHelper(common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.detailInfo,
@@ -62,7 +60,7 @@ export default class ContactsModel extends BaseModel {
         telephoneDataHelp.query(contactDataUri, resultColumns, condition).then(resultSet => {
             callback(this.dealResultSet(resultSet));
         }).catch(error => {
-            HiLog.e(TAG, 'queryContactDataByTelephone, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryContactDataByTelephone, error: ' + JSON.stringify(error.message));
         });
     }
 
@@ -95,7 +93,7 @@ export default class ContactsModel extends BaseModel {
             }
             callback(rawContactIds);
         }).catch(error => {
-            HiLog.e(TAG, 'queryContact, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryContact, error: ' + JSON.stringify(error.message));
         });
     }
 
@@ -114,7 +112,7 @@ export default class ContactsModel extends BaseModel {
             }
             callback(count);
         }).catch(error => {
-            HiLog.e(TAG, 'countContact, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'countContact, error: ' + JSON.stringify(error.message));
         });
     }
 
@@ -136,7 +134,7 @@ export default class ContactsModel extends BaseModel {
             let contracts = this.dealResultSet(resultSet);
             callback(this.encapsulateReturnResult(common.int.SUCCESS, contracts));
         }).catch(error => {
-            HiLog.e(TAG, 'searchContracts, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'searchContracts, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }
@@ -163,7 +161,7 @@ export default class ContactsModel extends BaseModel {
             resultSet.close();
             callback(count);
         }).catch(error => {
-            HiLog.e(TAG, 'queryProfile, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'queryProfile, error: ' + JSON.stringify(error.message));
         });
     }
 }

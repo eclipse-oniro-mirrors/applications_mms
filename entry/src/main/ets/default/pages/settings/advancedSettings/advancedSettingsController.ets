@@ -79,7 +79,6 @@ export default class AdvancedSettingsController {
     let that = this;
     settingService.getAdvancedPageSwitchValue(function (result) {
       if (result.code === common.int.SUCCESS) {
-        HiLog.i(TAG, 'getAdvancedPageSwitchValue, success result: ' + JSON.stringify(result));
         let switchValue = result.abilityResult;
         that.deliveryReportSwitch = switchValue.deliveryReportSwitch;
         that.returnDeliveryReportResultInText(that.deliveryReportSwitch);

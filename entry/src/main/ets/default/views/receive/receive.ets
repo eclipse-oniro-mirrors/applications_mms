@@ -122,7 +122,7 @@ export struct Receive {
             .onClick(() => {
               // 跳转到联系人模块选择联系人界面
               this.mReceiveController.clickToContracts((receiverData) => {
-                //                this.mConversationController.setReceiveContactValue(receiverData);
+                                this.mConversationController.setReceiveContactValue(receiverData);
               })
             })
         }

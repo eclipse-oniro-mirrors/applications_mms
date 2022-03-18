@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HiLog from './HiLog';
 
 const TAG = 'AppStorageUtil';
 export default class AppStorageUtil {

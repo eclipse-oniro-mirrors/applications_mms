@@ -141,7 +141,6 @@ export default class ConversationListModel extends BaseModel {
                 result.unreadCount = resultSet.getString(1);
                 result.unreadTotalOfInfo = resultSet.getString(2);
             }
-            HiLog.i(TAG, 'statisticalData, result:' + JSON.stringify(result));
             callback(this.encapsulateReturnResult(common.int.SUCCESS, result));
         });
     }
@@ -189,12 +188,11 @@ export default class ConversationListModel extends BaseModel {
         let insertPromise = rdbStore.insert(tableName, valueBucket);
         let result: LooseObject = {};
         insertPromise.then((ret) => {
-            HiLog.i(TAG, 'insertSession, rowId:' + ret);
             result.code = common.int.SUCCESS;
             result.rowId = ret;
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, 'insertSession, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'insertSession, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });

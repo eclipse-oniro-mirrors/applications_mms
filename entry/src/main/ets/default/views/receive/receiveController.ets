@@ -86,7 +86,6 @@ export default class ReceiveController {
   }
 
   changeMyText(value) {
-    HiLog.i(TAG, 'changeMyText: ' + value);
     this.myText = value;
   }
 
@@ -97,7 +96,6 @@ export default class ReceiveController {
     };
     // 查询联系人
     contractService.queryContact(actionData, contacts => {
-      HiLog.i(TAG, 'queryContact, contracts:' + JSON.stringify(contacts));
       if (common.int.SUCCESS == contacts.code) {
         let response = this.contacts.concat(contacts.response);
         this.contacts = [];
@@ -157,6 +155,7 @@ export default class ReceiveController {
     } else {
       this.styleTextarea = 'content-addressee-text';
       this.strSelectContact = this.setShowContactName();
+      this.myText = this.strSelectContact;
     }
   }
 
@@ -220,7 +219,6 @@ export default class ReceiveController {
     //    this.searchContacts(this.myText, code => {
     //      if (code == common.int.SUCCESS) {
     this.setContactValue(call);
-    HiLog.d(TAG, 'searchChange, textValue: ' + this.myText);
     this.dealSearchData();
     this.setContactValue(call);
     //      }
@@ -237,7 +235,6 @@ export default class ReceiveController {
       let textValue = this.myText.toLowerCase();
       // 过滤逻辑
       this.filterContacts(textValue);
-      HiLog.d(TAG, 'dealSearchData, contact: ' + JSON.stringify(this.contacts))
     }
   }
 
@@ -280,16 +277,22 @@ export default class ReceiveController {
     if (this.selectContacts.length == 0) {
       return '';
     }
-    let myName = this.selectContacts[0].contactName.trim();
-    if (myName == '') {
-      myName = this.selectContacts[0].telephone;
-    }
-    if (this.selectContacts.length >= 2) {
-      // name以及其他number个
-      return $r('app.string.and_others', myName, this.selectContacts.length - 1)
-    } else {
-      return myName
-    }
+    /*
+       * 控件不支持，没法像手机一样，选择1个联系人，就显示一个胶囊图标，330需求也不支持多联系人发送。
+       * 目前先改成，选择联系人后，只显示第1个联系人的号码在编辑框（非胶囊形状）
+       */
+    return this.selectContacts[0].telephone;
+
+//    let myName = this.selectContacts[0].contactName.trim();
+//    if (myName == '') {
+//      myName = this.selectContacts[0].telephone;
+//    }
+//    if (this.selectContacts.length >= 2) {
+//      // name以及其他number个
+//      return $r('app.string.and_others', myName, this.selectContacts.length - 1)
+//    } else {
+//      return myName
+//    }
   }
 
   myContactFocus() {
@@ -342,7 +345,6 @@ export default class ReceiveController {
   jumpToContract(actionData) {
     let str = commonService.commonContractParam(actionData);
     featureAbility.startAbility(str).then((data) => {
-      HiLog.i(TAG, 'jumpToContract, data: ' + JSON.stringify(data));
     }).catch((error) => {
       HiLog.i(TAG, 'jumpToContract failed');
     });
@@ -358,6 +360,7 @@ export default class ReceiveController {
 
   dealContractParams(contactObjects, call) {
     let params = JSON.parse(contactObjects);
+    this.selectContacts = [];
     for (let element of params) {
       let selectContact: LooseObject = {};
       selectContact.headImage = '/common/icon/user_avatar_full_fill.svg';

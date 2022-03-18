@@ -28,7 +28,6 @@ export default class SettingModel extends BaseModel {
         data.integrationSwitch = preferences.getValueOfIntegrationSwitch();
         data.maliciousWebSwitch = preferences.getValueOfMaliciousWebSwitch();
         data.showContactSwitch = preferences.getValueOfShowContactSwitch();
-        HiLog.i(TAG, 'setOnSettingValueListener, data = ' + JSON.stringify(data));
         callback(data);
     }
 
@@ -37,7 +36,6 @@ export default class SettingModel extends BaseModel {
         settingValues.hasAggregate = preferences.getValueOfIntegrationSwitch();
         settingValues.isShowContactHeadIcon = preferences.getValueOfShowContactSwitch();
         settingValues.recallMessagesFlag = preferences.getValueOfRecallMessageSwitch();
-        HiLog.i(TAG, 'getSettingValue, settingValues: ' + JSON.stringify(settingValues));
         callback(this.encapsulateReturnResult(common.int.SUCCESS, settingValues));
     }
 
@@ -76,7 +74,6 @@ export default class SettingModel extends BaseModel {
         let index = actionData.index - 1;
         let newTelNum = actionData.number;
         telephonySMS.setSmscAddr(index, newTelNum, (value) => {
-            HiLog.i(TAG, 'updateSmscNumber, setSmscAddr, value: ' + value);
             // 如果是卡1
             if(index == common.int.SIM_ONE) {
                 preferences.setValueForSwitch(common.string.KEY_OF_NEW_SIM_0_SMSC, newTelNum);
@@ -85,7 +82,7 @@ export default class SettingModel extends BaseModel {
             }
             callback(this.encapsulateReturnResult(common.int.SUCCESS, common.string.SUCCESS));
         }).catch((error) => {
-            HiLog.e(TAG, 'updateSmscNumber, setSmscAddr, error: ' + JSON.stringify(error));
+            HiLog.e(TAG, 'updateSmscNumber, setSmscAddr, error: ' + JSON.stringify(error.message));
             callback(this.encapsulateReturnCode(common.int.FAILURE));
         });
     }

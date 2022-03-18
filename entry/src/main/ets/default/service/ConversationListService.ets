@@ -61,7 +61,7 @@ export default {
                 callback(result);
             });
         }).catch((err) => {
-            HiLog.e(TAG, 'querySessionList, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'querySessionList, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });
@@ -412,12 +412,11 @@ export default {
         let result: LooseObject = {};
         let queryPromise = conversationListModel.querySessionList(actionData);
         Promise.all([queryPromise]).then((res) => {
-            HiLog.i(TAG, 'querySessionByNumberType, result: ' + JSON.stringify(res[0]));
             result.code = common.int.SUCCESS;
             result.response = res[0].response;
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, 'querySessionByNumberType, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'querySessionByNumberType, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });
@@ -438,12 +437,11 @@ export default {
             HiLog.i(TAG, 'querySessionByTelephone, telephone != null')
             let queryPromise = conversationListModel.querySessionByTelephone(telephone);
             Promise.all([queryPromise]).then((res) => {
-                HiLog.i(TAG, ', querySessionByTelephone, res: ' + JSON.stringify(res[0]));
                 result.code = common.int.SUCCESS;
                 result.response = res[0];
                 callback(result);
             }).catch((err) => {
-                HiLog.e(TAG, ', querySessionByTelephone, error: ' + JSON.stringify(err));
+                HiLog.e(TAG, ', querySessionByTelephone, error: ' + JSON.stringify(err.message));
                 result.code = common.int.FAILURE;
                 callback(result);
             });
@@ -460,12 +458,11 @@ export default {
         HiLog.i(TAG, 'querySessionById, threadId:' + threadId);
         let queryPromise = conversationListModel.querySessionById(threadId);
         Promise.all([queryPromise]).then((res) => {
-            HiLog.i(TAG, 'querySessionById, res: ' + JSON.stringify(res[0]));
             result.code = common.int.SUCCESS;
             result.response = res[0];
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, 'querySessionById, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'querySessionById, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });
@@ -552,7 +549,7 @@ export default {
             result.search = searchText;
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, 'searchMessageWithLike, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'searchMessageWithLike, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });
@@ -576,7 +573,7 @@ export default {
                 callback(result);
             });
         }).catch((err) => {
-            HiLog.e(TAG, 'searchSessionByTelephone, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'searchSessionByTelephone, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });

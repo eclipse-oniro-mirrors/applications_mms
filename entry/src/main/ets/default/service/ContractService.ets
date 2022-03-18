@@ -162,7 +162,6 @@ export default {
     judgeIsExitProfile(actionData, callback) {
         HiLog.i(TAG, 'judgeIsExitProfile, start');
         mContactsModel.queryProfile(actionData, res => {
-            HiLog.i(TAG, 'judgeIsExitProfile, res: ' + res);
             let result = false;
             if (res > 0) {
                 result = true;

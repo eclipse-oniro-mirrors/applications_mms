@@ -29,12 +29,10 @@ export default {
      * @return
      */
     sendMessage(params, callback) {
-        HiLog.i(TAG, 'sendMessage, params: ' + JSON.stringify(params));
 
 //        let hasSmsCapability = sms.hasSmsCapability;
 //        HiLog.i(TAG, 'sendMessage, hasSmsCapability: ' + hasSmsCapability)
 //        sms.getDefaultSmsSlotId((err, data) => {
-//            HiLog.i(TAG, 'sendMessage, getDefaultSmsSlotId err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data))
 //        });
         sms.sendMessage({
             slotId: params.slotId,
@@ -43,7 +41,7 @@ export default {
             sendCallback: (err, value) => {
                 let sendStatus;
                 if (err) {
-                    HiLog.w(TAG, 'sendMessage, sendCallback failed err: ' + JSON.stringify(err));
+                    HiLog.w(TAG, 'sendMessage, sendCallback failed err: ' + JSON.stringify(err.message));
                     sendStatus = common.int.SEND_MESSAGE_SUCCESS;
                 } else {
                     sendStatus = this.dealSendResult(value);
@@ -53,10 +51,9 @@ export default {
             },
             deliveryCallback: (err, value) => {
                 if (err) {
-                    HiLog.w(TAG, 'sendMessage, deliveryCallback failed err: ' + JSON.stringify(err));
+                    HiLog.w(TAG, 'sendMessage, deliveryCallback failed err: ' + JSON.stringify(err.message));
                     return;
                 }
-                HiLog.i(TAG, 'sendMessage, deliveryCallback value: ' + JSON.stringify(value));
             }
         });
     },
@@ -70,7 +67,6 @@ export default {
         return sendStatus;
     },
     sendMmsMessage(params, callback) {
-        HiLog.i(TAG, 'sendMmsMessage, params: ' + JSON.stringify(params));
         let httpRequest = http.createHttp();
         httpRequest.request(common.string.MMS_URL,
             {
@@ -86,10 +82,9 @@ export default {
             }, (err, data) => {
                 let sendStatus;
                 if (err) {
-                    HiLog.i(TAG, 'sendMmsMessage, error: ' + JSON.stringify(err));
+                    HiLog.i(TAG, 'sendMmsMessage, error: ' + JSON.stringify(err.message));
                     sendStatus = common.int.SEND_MESSAGE_FAILED;
                 } else {
-                    HiLog.w(TAG, 'sendMmsMessage, success data: ' + JSON.stringify(data));
                     sendStatus = common.int.SEND_MESSAGE_SUCCESS;
                 }
                 callback(sendStatus);

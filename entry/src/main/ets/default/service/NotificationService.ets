@@ -50,7 +50,6 @@ export default {
      * @return
      */
     getWantAgent(agentInfo, callback) {
-        HiLog.i(TAG, 'getWantAgent, agentInfo: ' + JSON.stringify(agentInfo));
         wantAgent.getWantAgent(agentInfo).then(data1 => {
             callback(data1);
         });
@@ -115,7 +114,6 @@ export default {
             let count = 0;
             for(let item of res.response) {
                 this.cancelNotify(parseInt(item.id), result => {
-                    HiLog.i(TAG, 'cancelMessageNotify, result: ' + JSON.stringify(result));
                     count ++;
                     if (count == res.response.length) {
                         callback(common.int.SUCCESS);
@@ -127,19 +125,17 @@ export default {
     cancelNotify(msgId, callback) {
         notify.cancel(msgId, label + msgId, (err, data) => {
             if (err) {
-                HiLog.w(TAG, 'cancelNotify, error: ' + JSON.stringify(err));
+                HiLog.w(TAG, 'cancelNotify, error: ' + JSON.stringify(err.message));
                 callback(common.int.FAILURE);
             }
-            HiLog.i(TAG, 'cancelNotify, success data: ' + JSON.stringify(data));
             callback(common.int.SUCCESS);
         });
     },
     cancelAllNotify() {
         let promise = notify.cancelAll();
         promise.then((ret) => {
-            HiLog.i(TAG, 'cancelAllNotify, success ret: ' + JSON.stringify(ret));
         }).catch((err) => {
-            HiLog.e(TAG, 'cancelAllNotify, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'cancelAllNotify, error: ' + JSON.stringify(err.message));
         });
     }
 };

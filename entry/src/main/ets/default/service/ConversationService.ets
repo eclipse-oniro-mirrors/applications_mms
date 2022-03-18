@@ -250,7 +250,6 @@ export default {
             'has_mms': actionData.isMms ? 1 : 0,
             'has_attachment': actionData.hasAttachment ? 1 : 0
         }
-        HiLog.i(TAG, 'dealNoExitingSession, valueBucket: ' + JSON.stringify(valueBucket))
         conversationListService.insertSession(valueBucket, sessionResult => {
             HiLog.i(TAG, 'dealNoExitingSession, insertSession callback')
             // 这里调用短信数据库，插入短信信息
@@ -454,7 +453,6 @@ export default {
             'group_id': param.groupId,
             'is_send_report': param.hasReport
         };
-        HiLog.i(TAG, 'insertMessageDetail, stringValue: ' + JSON.stringify(stringValue));
         actionData.stringValue = stringValue;
         actionData.featureAbility = param.featureAbility;
         mConversationModel.insertMessageDetail(actionData, result => {
@@ -593,7 +591,7 @@ export default {
             result.code = res.code;
             callback(result);
         }).catch(e=> {
-            HiLog.e(TAG, 'updateById, error: ' + JSON.stringify(e))
+            HiLog.e(TAG, 'updateById, error: ' + JSON.stringify(e.message))
         });
     },
 
@@ -724,7 +722,7 @@ export default {
             result.response = this.dealMessageSort(resultList);
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, 'searchMessageByContent, error: ' + JSON.stringify(err));
+            HiLog.e(TAG, 'searchMessageByContent, error: ' + JSON.stringify(err.message));
             result.code = common.int.FAILURE;
             callback(result);
         });
