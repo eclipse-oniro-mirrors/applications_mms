@@ -12,16 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import wantAgent from '@ohos.wantAgent';
-import notify from '@ohos.notification';
+import WantAgent from '@ohos.wantAgent';
+import Notification from '@ohos.notification';
 import common from '../data/commonData';
 import HiLog from '../utils/HiLog';
 import conversationService from './ConversationService';
-const label = 'notification_';
 
+const label = 'notification_';
 const TAG = 'NotificationService';
 
-export default {
+export default class NotificationService {
+    private static sInstance: NotificationService;
+
+    static getInstance() {
+        if (NotificationService.sInstance == null) {
+            NotificationService.sInstance = new NotificationService();
+        }
+        return NotificationService.sInstance;
+    }
+
+    constructor() {
+        HiLog.i(TAG, 'new start');
+    }
 
     /**
      * 发送通知
@@ -33,15 +45,14 @@ export default {
         let wantAgentInfo = this.buildWantAgentInfo(actionData);
         // 构建发送请求
         let notificationRequest = this.buildNotificationRequest(actionData);
-        wantAgentInfo.requestCode = actionData.msgId;
         this.getWantAgent(wantAgentInfo, (data) => {
             notificationRequest.wantAgent = data;
             notificationRequest.id = actionData.msgId;
             notificationRequest.label = label + actionData.msgId;
-//            notify.publish(notificationRequest);
+            Notification.publish(notificationRequest);
             HiLog.i(TAG, 'sendNotify finished');
         });
-    },
+    }
 
     /**
      * 创建需要发送的跳转的Want
@@ -50,89 +61,93 @@ export default {
      * @return
      */
     getWantAgent(agentInfo, callback) {
-        wantAgent.getWantAgent(agentInfo).then(data1 => {
+        WantAgent.getWantAgent(agentInfo).then(data1 => {
             callback(data1);
         });
-    },
+    }
 
     /**
      * 构建分布式拉起参数
      * @param actionData 参数
      * @return
      */
-    buildWantAgentInfo(actionData) {
+    buildWantAgentInfo(actionData): any {
         let parameters = {
-            pageFlag: '',
-            contactObjects: ''
+            pageFlag: "conversation",
+            contactObjects: actionData.contactObjects
         };
-        parameters.pageFlag = 'conversation';
-        parameters.contactObjects = actionData.contactObjects;
         let wantAgentInfo = {
             wants: [
                 {
-                    deviceId: 'receive',
+                    deviceId: "",
                     bundleName: common.string.BUNDLE_NAME,
                     abilityName: common.string.ABILITY_NAME,
-                    entities: [common.string.COMMON_ENTITIES],
-                    type: 'MIMETYPE',
-                    uri: parameters.pageFlag,
-                    parameters: parameters,
+                    action: "mms.event.notification",
+                    entities: [],
+                    type: "MIMETYPE",
+                    uri: ""
                 }
             ],
-            operationType: wantAgent.OperationType.START_ABILITY,
-            requestCode: 0
+            operationType: WantAgent.OperationType.START_ABILITY,
+            requestCode: actionData.msgId,
+            wantAgentFlags: [WantAgent.WantAgentFlags.CONSTANT_FLAG],
+            extraInfo: parameters
         };
         return wantAgentInfo;
-    },
+    }
 
     /**
      * 构建通知参数
      * @param actionData 参数
      * @return
      */
-    buildNotificationRequest(actionData) {
+    buildNotificationRequest(actionData): any {
         let message = actionData.message;
         let notificationRequest = {
-            content:{
-                contentType: notify.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+            content: {
+                contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
                 normal: {
                     title: message.title,
                     text: message.text
                 },
             },
             wantAgent: '',
-            slotType: notify.SlotType.OTHER_TYPES,
-            deliveryTime: new Date().getTime()
+            slotType: Notification.SlotType.OTHER_TYPES,
+            deliveryTime: new Date().getTime(),
+            groupName: "MMS"
         };
         return notificationRequest;
-    },
+    }
+
     cancelMessageNotify(actionData, callback) {
         conversationService.queryMessageDetail(actionData, res => {
             if (res.code == common.int.FAILURE || res.response.length == 0) {
                 callback(common.int.FAILURE);
             }
             let count = 0;
-            for(let item of res.response) {
+            for (let item of res.response) {
                 this.cancelNotify(parseInt(item.id), result => {
-                    count ++;
+                    count++;
                     if (count == res.response.length) {
                         callback(common.int.SUCCESS);
                     }
                 });
             }
         });
-    },
+    }
+
     cancelNotify(msgId, callback) {
-        notify.cancel(msgId, label + msgId, (err, data) => {
+        Notification.cancel(msgId, label + msgId, (err, data) => {
             if (err) {
                 HiLog.w(TAG, 'cancelNotify, error: ' + JSON.stringify(err.message));
                 callback(common.int.FAILURE);
             }
             callback(common.int.SUCCESS);
         });
-    },
+    }
+
     cancelAllNotify() {
-        let promise = notify.cancelAll();
+        let promise = Notification.cancelAll();
         promise.then((ret) => {
         }).catch((err) => {
             HiLog.e(TAG, 'cancelAllNotify, error: ' + JSON.stringify(err.message));

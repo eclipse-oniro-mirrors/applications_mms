@@ -20,6 +20,7 @@ import prompt from '@system.prompt';
 import common from '../../data/commonData';
 import contractService from '../../service/ContractService';
 import commonService from '../../service/CommonService'
+import commonCtrl from '../../pages/conversation/common'
 import featureAbility from '@ohos.ability.featureAbility';
 import LooseObject from '../../data/LooseObject'
 
@@ -28,7 +29,9 @@ let ReceiveCtrl;
 const TAG = 'ReceiveController';
 
 export default class ReceiveController {
-  paramContact: LooseObject = {};
+  private static sInstance: ReceiveController;
+  commonCtrl = commonCtrl.getInstance();
+  refresh: boolean = false;
   // 收件人信息(已经选择)
   selectContacts: Array<any> = [];
   contacts: Array<any> = [];
@@ -52,16 +55,16 @@ export default class ReceiveController {
   totalMessage: number = 0;
 
   static getInstance() {
-    if (ReceiveCtrl == null) {
-      ReceiveCtrl = new ReceiveController();
-      appStorage.setAndLink('ReceiveController', ReceiveCtrl);
+    if (ReceiveController.sInstance == null) {
+      ReceiveController.sInstance = new ReceiveController();
     }
-    return ReceiveCtrl;
+    return ReceiveController.sInstance;
   }
 
   onInit(call) {
-    this.selectContacts = this.paramContact.transmitContracts;
+    HiLog.i(TAG, "onInit()")
     //    this.$watch('paramContact', 'onPropertyChange');
+    this.selectContacts = this.commonCtrl.paramContact.transmitContracts;
     if (this.selectContacts.length > 0) {
       let that = this;
       setTimeout(function () {
@@ -71,6 +74,7 @@ export default class ReceiveController {
       this.setInputStatus(false);
     }
     this.requestItem()
+    this.refresh = !this.refresh;
   }
 
   requestItem() {
@@ -83,10 +87,6 @@ export default class ReceiveController {
       this.page++;
       this.queryContacts();
     }
-  }
-
-  changeMyText(value) {
-    this.myText = value;
   }
 
   queryContacts() {
@@ -150,12 +150,8 @@ export default class ReceiveController {
 
   setInputStatus(flag) {
     this.isInputStatus = flag;
-    if (flag) {
-      this.styleTextarea = 'select-contact-textarea';
-    } else {
-      this.styleTextarea = 'content-addressee-text';
+    if (!flag) {
       this.strSelectContact = this.setShowContactName();
-      this.myText = this.strSelectContact;
     }
   }
 
@@ -175,7 +171,7 @@ export default class ReceiveController {
       for (let index in this.contacts) {
         let contract = this.contacts[index];
         if (contract.telephone == that.myText) {
-          selectContact.headImage = '/common/icon/user_avatar_full_fill.svg';
+          selectContact.headImage = 'icon/user_avatar_full_fill.svg';
           selectContact.contactName = contract.contactName;
           selectContact.telephone = contract.telephone;
           selectContact.telephoneFormat = contract.telephone;
@@ -193,6 +189,7 @@ export default class ReceiveController {
       }
       HiLog.i(TAG, 'checkReceive, isPhoneNumber yes');
       this.selectContacts.push(selectContact);
+      this.refresh = !this.refresh;
       this.setInputStatus(false);
       this.isShowSearch = false;
       this.setContactValue(call);
@@ -204,35 +201,43 @@ export default class ReceiveController {
         message: $r('app.string.invalid_receive', this.myText),
         duration: 1000,
       });
-      this.setInputStatus(false);
-      this.isShowSearch = false;
+      this.myText = "";
+      this.isShowSearch = true;
+      this.setContactValue(call);
     }
   }
 
   searchChange(text, call) {
     HiLog.d(TAG, 'searchChange, start');
+    if (this.checkSingle()) {
+      this.setInputStatus(false);
+      this.isShowSearch = false;
+      return;
+    }
     this.myText = text;
     if (!this.isInputStatus) {
       HiLog.w(TAG, 'searchChange, isInputStatus false');
       return;
     }
-    //    this.searchContacts(this.myText, code => {
-    //      if (code == common.int.SUCCESS) {
-    this.setContactValue(call);
-    this.dealSearchData();
-    this.setContactValue(call);
-    //      }
-    //    });
+    this.searchContacts(this.myText, code => {
+      if (code == common.int.SUCCESS && this.myText.trim() != "") {
+        this.setContactValue(call);
+        this.dealSearchData();
+        this.setContactValue(call);
+      } else {
+        this.setContactValue(call);
+      }
+    });
   }
 
   dealSearchData() {
-    if (false) {
+    if (this.myText.trim() == "") {
       this.contacts = this.contactsTemp.slice(0);
       //      this.$element('receiveTxt').focus({
       //        focus: true
       //      });
     } else {
-      let textValue = this.myText.toLowerCase();
+      let textValue = this.myText.trim().toLowerCase();
       // 过滤逻辑
       this.filterContacts(textValue);
     }
@@ -241,7 +246,7 @@ export default class ReceiveController {
   setContactValue(call) {
     // 将收件人信息,传给调用的父组件
     call({
-      // 输入框的内容
+      // 选择联系人之前的输入框的内容
       contactValue: this.myText,
       // 已经选择的收件人信息
       selectContacts: this.selectContacts,
@@ -250,8 +255,20 @@ export default class ReceiveController {
     });
   }
 
-  addContact(index) {
+  addContact(index, call) {
     let curItem = this.contacts[index];
+    if (this.checkSingle()) {
+      return;
+    }
+    if (curItem.telephone.toString().trim() == "") {
+      prompt.showToast({
+        // 无效收件人
+        // @ts-ignore
+        message: $r('app.string.invalid_receive', this.myText),
+        duration: 1000,
+      });
+      return;
+    }
     this.selectContacts.push(curItem);
     this.contactsTemp = this.contactsTemp.filter((item) => {
       return item.telephone != curItem.telephone
@@ -262,13 +279,11 @@ export default class ReceiveController {
     if (this.selectContacts.length == 1) {
       this.setInputStatus(false);
       this.isShowSearch = false;
-      // 未开发list区域，暂传null
-      this.setContactValue(null);
+      this.setContactValue(call);
     } else {
       this.setInputStatus(true);
       this.isShowSearch = true;
-      // 未开发list区域，暂传null
-      this.setContactValue(null);
+      this.setContactValue(call);
     }
     HiLog.i(TAG, 'addContact, isInputStatus: ' + this.isInputStatus);
   }
@@ -277,22 +292,16 @@ export default class ReceiveController {
     if (this.selectContacts.length == 0) {
       return '';
     }
-    /*
-       * 控件不支持，没法像手机一样，选择1个联系人，就显示一个胶囊图标，330需求也不支持多联系人发送。
-       * 目前先改成，选择联系人后，只显示第1个联系人的号码在编辑框（非胶囊形状）
-       */
-    return this.selectContacts[0].telephone;
-
-//    let myName = this.selectContacts[0].contactName.trim();
-//    if (myName == '') {
-//      myName = this.selectContacts[0].telephone;
-//    }
-//    if (this.selectContacts.length >= 2) {
-//      // name以及其他number个
-//      return $r('app.string.and_others', myName, this.selectContacts.length - 1)
-//    } else {
-//      return myName
-//    }
+    let myName = this.selectContacts[0].contactName.trim();
+    if (myName == '') {
+      myName = this.selectContacts[0].telephone;
+    }
+    if (this.selectContacts.length >= 2) {
+      // name以及其他number个
+      return $r('app.string.and_others', myName, this.selectContacts.length - 1)
+    } else {
+      return myName
+    }
   }
 
   myContactFocus() {
@@ -315,18 +324,24 @@ export default class ReceiveController {
     }
   }
 
-  nameClick(idx) {
+  nameClick(idx, call) {
+    HiLog.i(TAG, "click-->" + idx)
     if (this.selectContacts[idx].select) {
       let item = this.selectContacts.splice(idx, 1);
       // 已经删除的添加到 需要搜索的集合
       this.contactsTemp.push(item);
-      this.contacts.push(item[0]);
+      if (item[0].telephoneFormat.toString().trim() != "") {
+        this.contacts.push(item[0]);
+      }
+      this.refresh = !this.refresh;
+      this.setContactValue(call);
       return;
     }
     for (let element of this.selectContacts) {
       element.select = false;
     }
     this.selectContacts[idx].select = true;
+    this.refresh = !this.refresh;
   }
 
   clickToContracts(call) {
@@ -360,10 +375,13 @@ export default class ReceiveController {
 
   dealContractParams(contactObjects, call) {
     let params = JSON.parse(contactObjects);
-    this.selectContacts = [];
-    for (let element of params) {
+    if (params.length > 1 || this.checkSingle()) {
+      return;
+    }
+    if (params.length == 1) {
+      let element = params[0]
       let selectContact: LooseObject = {};
-      selectContact.headImage = '/common/icon/user_avatar_full_fill.svg';
+      selectContact.headImage = 'icon/user_avatar_full_fill.svg';
       selectContact.contactName = element.contactName;
       selectContact.telephone = element.telephone;
       selectContact.telephoneFormat = element.telephone;
@@ -376,8 +394,8 @@ export default class ReceiveController {
       this.isShowSearch = false;
       this.setContactValue(call);
     }
-    this.paramContact.isSelectContact = false;
-    this.paramContact.isNewRecallMessagesFlag = false;
+    this.commonCtrl.paramContact.isSelectContact = false;
+    this.commonCtrl.paramContact.isNewRecallMessagesFlag = false;
   }
 
   deleteRepetitionContracts(contacts, selectContacts) {
@@ -412,6 +430,21 @@ export default class ReceiveController {
       for (let index of selectContactIndexs) {
         selectContacts.splice(index, 1);
       }
+    }
+  }
+
+  // 目前只支持单个收件人，先规避操作只能输入一个收件人
+  checkSingle() {
+    if (this.selectContacts.length > 0) {
+      prompt.showToast({
+        // 无效收件人
+        // @ts-ignore
+        message: "只支持单个收件人",
+        duration: 1000,
+      });
+      return true;
+    } else {
+      return false;
     }
   }
 }

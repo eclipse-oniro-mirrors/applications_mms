@@ -61,6 +61,7 @@ export default class ContactsModel extends BaseModel {
             callback(this.dealResultSet(resultSet));
         }).catch(error => {
             HiLog.e(TAG, 'queryContactDataByTelephone, error: ' + JSON.stringify(error.message));
+            callback([]);
         });
     }
 

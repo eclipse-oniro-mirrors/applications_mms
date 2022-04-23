@@ -12,17 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HiLog from './utils/HiLog';
-import AppStorageUtil from './utils/AppStorageUtil';
 
-const TAG = 'app';
-
-export default {
-  onCreate() {
-    HiLog.i(TAG, 'onCreate version: 1.0.0.8');
-    new AppStorageUtil();
-  },
-  onDestroy() {
-    HiLog.i(TAG, 'onDestroy');
-  }
-};
+/**
+ * Observed参数需要自定义类，不能是基础类型，所以新增一个Boolean自定义类
+ */
+@Observed
+export default class MmsBoolean {
+    public value : boolean;
+    constructor(v: boolean) {
+        this.value = v;
+    }
+}

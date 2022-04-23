@@ -21,7 +21,6 @@ import mmsTable from '../data/tableData';
 import HiLog from '../utils/HiLog'
 import LooseObject from '../data/LooseObject'
 import featureAbility from '@ohos.ability.featureAbility';
-import particleAbility from '@ohos.ability.particleAbility';
 import dataAbility from '@ohos.data.dataAbility';
 
 const TAG = 'ConversationModel';

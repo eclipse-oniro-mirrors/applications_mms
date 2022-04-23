@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import appStorage from '../../../utils/AppStorageUtil';
 import LooseObject from '../../../data/LooseObject'
 import HiLog from '../../../utils/HiLog';
 import router from '@system.router';
@@ -20,11 +19,10 @@ import prompt from '@system.prompt';
 import settingService from '../../../service/SettingService'
 import common from '../../../data/commonData';
 
-const TAG = 'AdvancedSettingsController';
-
-let sAdvancedSettingsCtrl;
+const TAG = "AdvancedSettingsController";
 
 export default class AdvancedSettingsController {
+  private static sInstance: AdvancedSettingsController;
   // 送达报告短信
   checkedValueOfSms: boolean = false;
   // 送达报告彩信
@@ -55,12 +53,10 @@ export default class AdvancedSettingsController {
   secondSpnNameOfTwoSimCard: string = '';
 
   static getInstance() {
-    sAdvancedSettingsCtrl = appStorage.Link('AdvancedSettingsController');
-    if (sAdvancedSettingsCtrl == null) {
-      sAdvancedSettingsCtrl = new AdvancedSettingsController();
-      appStorage.setAndLink('AdvancedSettingsController', sAdvancedSettingsCtrl);
+    if (AdvancedSettingsController.sInstance == null) {
+      AdvancedSettingsController.sInstance = new AdvancedSettingsController();
     }
-    return sAdvancedSettingsCtrl;
+    return AdvancedSettingsController.sInstance;
   }
 
   constructor() {
@@ -178,7 +174,9 @@ export default class AdvancedSettingsController {
     this.returnDeliveryReportResultInText(this.deliveryReportSwitch);
   }
   // 送达报告dialog，确定
-  setRestore() {
+  setRestore(isOnOfSms: boolean, isOnOfMms: boolean) {
+    this.checkedValueOfSms = isOnOfSms;
+    this.checkedValueOfMms = isOnOfMms;
     this.deliveryReportSwitch = common.string.EMPTY_STR;
     if (this.checkedValueOfSms && this.checkedValueOfMms) {
       this.deliveryReportSwitch = common.DELIVERY_REPORTS.SMS_AND_MMS;

@@ -24,7 +24,7 @@ import telSim from '@ohos.telephony.sms';
 import ohosDataRdb from '@ohos.data.rdb';
 import commonService from '../default/service/CommonService';
 import http from '@ohos.net.http';
-import notificationService from '../default/service/NotificationService';
+import NotificationService from '../default/service/NotificationService';
 import LooseObject from '../default/data/LooseObject'
 
 // 数据库实例对象
@@ -666,7 +666,7 @@ export default class MmsManagerService {
             };
             actionData.message = message;
             actionData.msgId = msgId;
-            notificationService.sendNotify(actionData);
+            NotificationService.getInstance().sendNotify(actionData);
         });
     }
 

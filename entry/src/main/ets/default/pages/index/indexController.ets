@@ -13,15 +13,12 @@
  * limitations under the License.
  */
 
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import appStorage from '../../utils/AppStorageUtil';
-import bundle from '@ohos.bundle'
 // JS公共常量
 import common from '../../data/commonData';
 import contactService from '../../service/ContractService';
 import conversationListService from '../../service/ConversationListService';
 import featureAbility from '@ohos.ability.featureAbility';
-import LooseObject from '../../data/LooseObject'
 import HiLog from '../../utils/HiLog';
 import mmsTable from '../../data/tableData';
 import preferences from '../../utils/PreferencesUtil';
@@ -39,31 +36,32 @@ export default {
   contractParams: null,
 
   onInit() {
-    let insertPromise = this.verifyPermissions();
-    insertPromise.then((requestPermissions) => {
-      if (requestPermissions.length == 0 || requestPermissions == []) {
-        this.getWant();
-      } else {
-        let context = featureAbility.getContext();
-        context.requestPermissionsFromUser(requestPermissions, 1, (data) => {
-          if (data.authResults == undefined) {
-            return;
-          }
-          for (let i = 0; i < data.authResults.length; i++) {
-            if (data.authResults[i] == -1) {
-              HiLog.i(TAG, 'Application requestPermissionsFromUser failed');
-              return;
-            }
-          }
-          this.getWant();
-        });
-        HiLog.i(TAG, 'Application requestPermissionsFromUser end');
-      }
-    }).catch((err) => {
-      HiLog.e(TAG, 'verifyPermissions, error: ' + JSON.stringify(err.message));
-    });
+    this.initPermissions()
     // 初始化数据库
     this.initRdb();
+  },
+
+  async initPermissions() {
+    let requestPermissions: Array<string> = [
+      "ohos.permission.READ_CONTACTS",
+      "ohos.permission.READ_MESSAGES",
+      "ohos.permission.SEND_MESSAGES",
+      "ohos.permission.RECEIVE_SMS"
+    ];
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(requestPermissions, 1, (data) => {
+      if (data.authResults == undefined) {
+        return;
+      }
+      for (let i = 0; i < data.authResults.length; i++) {
+        if (data.authResults[i] == -1) {
+          HiLog.i(TAG, 'Application requestPermissionsFromUser failed');
+          return;
+        }
+      }
+      this.getWant();
+    });
+    HiLog.i(TAG, 'Application requestPermissionsFromUser end');
   },
 
   onShow() {
@@ -104,7 +102,6 @@ export default {
 
   getWant() {
     featureAbility.getWant().then((want) => {
-      HiLog.i(TAG, 'getWant, want: ' + JSON.stringify(want));
       if (want.hasOwnProperty("uri")) {
         this.uri = want.uri;
       }
@@ -129,6 +126,7 @@ export default {
       uri: '',
       params: ''
     };
+    HiLog.i(TAG, 'want.pageFlag: ' + this.pageFlag);
     switch (this.pageFlag) {
       case 'conversationList':
         result.uri = 'pages/conversationlist/conversationList';
@@ -154,6 +152,7 @@ export default {
     conversationListService.querySessionByTelephone(this.contractParams.strContactsNumber, res => {
       if (res.code == common.int.SUCCESS && res.response.id > 0) {
         result.params.threadId = res.response.id;
+        this.markAllAsRead(result.params.threadId);
       } else {
         result.params.isNewMsg = true;
       }
@@ -161,30 +160,14 @@ export default {
     });
   },
 
-  async verifyPermissions() {
-    let array: Array<string> = [
-      "ohos.permission.READ_CONTACTS",
-      "ohos.permission.READ_MESSAGES",
-      "ohos.permission.SEND_MESSAGES",
-      "ohos.permission.SET_TELEPHONY_STATE",
-      "ohos.permission.GET_TELEPHONY_STATE",
-      "ohos.permission.RECEIVE_SMS",
-      "ohos.permission.PLACE_CALL"
-    ];
-
-    var bundleFlag = 0;
-    var tokenID = undefined;
-    var userID = 100;
-    var appInfo = await bundle.getApplicationInfo('com.ohos.mms', bundleFlag, userID);
-    tokenID = appInfo.accessTokenId;
-    var atManager = abilityAccessCtrl.createAtManager();
-    let requestPermissions: Array<string> = [];
-    for (let i = 0;i < array.length; i++) {
-      var result = await atManager.verifyAccessToken(tokenID, array[i]);
-      if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-        requestPermissions.push(array[i]);
+  markAllAsRead(threadId) {
+    let actionData = {
+      threadIds: [threadId],
+      hasRead: 1,
+      valueBucket: {
+        'unread_count': 0
       }
-    }
-    return requestPermissions;
+    };
+    conversationListService.markAllAsRead(actionData);
   }
 }

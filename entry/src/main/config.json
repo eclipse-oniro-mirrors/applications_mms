@@ -2,16 +2,21 @@
   "app": {
     "bundleName": "com.ohos.mms",
     "vendor": "ohos",
+    "singleton": true,
     "version": {
       "code": 1000000,
       "name": "1.0.0"
     }
   },
-  "deviceConfig": {},
+  "deviceConfig": {
+    "default": {
+      "keepAlive": true
+    }
+  },
   "module": {
     "package": "com.ohos.mms",
     "name": ".MyApplication",
-    "mainAbility": "com.ohos.mms.MainAbility",
+    "mainAbility": "com.ohos.mms.ServiceAbility",
     "deviceType": [
       "phone",
       "tablet",
@@ -81,7 +86,7 @@
           "pages/settings/ringtoneSettings/ringtoneSettings",
           "pages/query_report/query_report"
         ],
-        "name": "default",
+        "name": "com.ohos.mms.MainAbility",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false

@@ -19,8 +19,6 @@ import dataStorage from '@ohos.data.storage';
 import featureAbility from '@ohos.ability.featureAbility';
 const TAG = 'PreferencesUtil';
 
-var prefIns = undefined;
-
 /**
  * 获取轻量级偏好数据库实例
  */

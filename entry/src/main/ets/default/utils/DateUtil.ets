@@ -89,7 +89,7 @@ export default {
     },
 
     timeTwelveHourSystem(hoursOfSms, minutesOfSmsStr, hoursOfSmsStr) {
-        let time = common.string.EMPTY_STR;
+        let time: Resource = null;
         if (hoursOfSms <= 12) {
             time = this.morningTimeTwelveHourSystem(hoursOfSms, minutesOfSmsStr, hoursOfSmsStr);
         } else {
@@ -155,13 +155,13 @@ export default {
         let monthOfNow = now.getMonth() + 1;
         let dayOfNow = now.getDate();
         let timeMillisecond = messageItem.timeMillisecond;
-        messageItem.date = this.convertTimeStampToDate(timeMillisecond, yearOfNow, monthOfNow, dayOfNow);
+        this.convertTimeStampToDate(messageItem, timeMillisecond, yearOfNow, monthOfNow, dayOfNow);
     },
 
     /**
      * 把时间戳形式转换为日期形式
      */
-    convertTimeStampToDate(timeStampFromDb, yearOfNow, monthOfNow, dayOfNow) {
+    convertTimeStampToDate(messageItem, timeStampFromDb, yearOfNow, monthOfNow, dayOfNow) {
         let date: Resource = null;
         let sms = new Date(timeStampFromDb);
         let yearOfSms = sms.getFullYear();
@@ -169,15 +169,16 @@ export default {
         let dayOfSms = sms.getDate();
         let weekOfSms = sms.getDay();
         if (yearOfNow == yearOfSms && monthOfNow == monthOfSms && dayOfNow == dayOfSms) {
-            date = $r('app.string.recentDateToday', this.getWeek(weekOfSms));
+            date = $r('app.string.recentDateToday', '');
         } else if (yearOfNow == yearOfSms && monthOfNow == monthOfSms && dayOfNow - dayOfSms == 1) {
-            date = $r('app.string.recentDateYesterday', this.getWeek(weekOfSms));
+            date = $r('app.string.recentDateYesterday', '');
         } else if (yearOfNow == yearOfSms) {
-            date = $r('app.string.monthDayDate', monthOfSms, dayOfSms, this.getWeek(weekOfSms));
+            date = $r('app.string.monthDayDate', monthOfSms, dayOfSms, '');
         } else {
-            date = $r('app.string.yearMonthDayDate', yearOfSms, monthOfSms, dayOfSms, this.getWeek(weekOfSms));
+            date = $r('app.string.yearMonthDayDate', yearOfSms, monthOfSms, dayOfSms, '');
         }
-        return date;
+        messageItem.date = date;
+        messageItem.week = this.getWeek(weekOfSms);
     },
 
     /**
