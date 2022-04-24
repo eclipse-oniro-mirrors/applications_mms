@@ -12,15 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import DeviceUtil from "../../utils/DeviceUtil";
+import InfoMsgController from "./InfoMsgController";
+import { DeleteDialog } from "../../views/MmsDialogs";
+import { MmsListItem } from "../../views/MmsListItem";
+import { MmsMenu } from "../../views/MmsMenu";
 
-import InfoMsgController from './InfoMsgController'
-import {DeleteDialog} from '../../views/MmsDialogs';
-import {MmsListItem} from '../../views/MmsListItem';
-import common from '../../data/commonData'
 @Entry
 @Component
 export default struct InfoMsg {
   @StorageLink('InfoMsgController') mInfoMsgCtrl: InfoMsgController = InfoMsgController.getInstance();
+  @State gridColumns: number = DeviceUtil.isTablet() ? 12 : 4;
+  @State gridSizeType: SizeType = DeviceUtil.isTablet() ? SizeType.LG : SizeType.SM;
+  @State gridGutter: string = "24vp";
+  @State gridMargin: string = "24vp";
+  private dialogAlignment: DialogAlignment = DeviceUtil.isTablet() ? DialogAlignment.Center : DialogAlignment.Bottom;
+  private dialogOffset: Offset = DeviceUtil.isTablet() ? { dx: 0, dy: 0 } : { dx: 0, dy: -12 };
   delDialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteDialog({
       cancel: () => {
@@ -40,9 +47,26 @@ export default struct InfoMsg {
       }
     }),
     autoCancel: false,
-    alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: '-20vp' }
+    alignment: this.dialogAlignment,
+    offset: this.dialogOffset
   })
+
+  private menuItems: Array<any> = [
+    {
+      value: $r("app.string.delete"),
+      action: () => {
+        this.mInfoMsgCtrl.selectInMoreMenu(1);
+      },
+      enabled: true
+    },
+    {
+      value: $r("app.string.blocked"),
+      action: () => {
+        this.mInfoMsgCtrl.selectInMoreMenu(2);
+      },
+      enabled: true
+    }
+  ];
 
   /**
    * 函数在创建自定义组件的新实例后，在执行其build函数之前执行。
@@ -89,248 +113,244 @@ export default struct InfoMsg {
   }
 
   build() {
-    //通知信息
-    Column() {
-      if (this.mInfoMsgCtrl.isMultipleSelectState) {
-        //多选状态标题
-        Flex({ direction: FlexDirection.Column }) {
-          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-            Image($rawfile("icon/conversation_select_exit.svg"))
-              .width('24vp')
-              .height('24vp')
-              .onClick(() => {
-                this.onBackPress()
-              })
-            Text(this.mInfoMsgCtrl.conversationSelectedNumber == 0 ? $r('app.string.msg_unselected_tip') :
-            $r('app.string.msg_selected_tip', this.mInfoMsgCtrl.conversationSelectedNumber))
-              .padding({ left: '16vp' })
-              .fontSize('20fp')
-              .fontWeight(FontWeight.Bold)
+
+    GridContainer({ columns: this.gridColumns, sizeType: this.gridSizeType, gutter: this.gridGutter, margin: this.gridMargin }) {
+      //通知信息
+      Column() {
+        if (this.mInfoMsgCtrl.isMultipleSelectState) {
+          //多选状态标题
+          Flex({ direction: FlexDirection.Column }) {
+            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+              Image($rawfile("icon/ic_public_cancel.svg"))
+                .width('24vp')
+                .height('24vp')
+                .onClick(() => {
+                  this.onBackPress()
+                })
+              Text(this.mInfoMsgCtrl.conversationSelectedNumber == 0 ? $r('app.string.msg_unselected_tip') :
+              $r('app.string.msg_selected_tip', this.mInfoMsgCtrl.conversationSelectedNumber))
+                .padding({ left: '16vp' })
+                .fontSize('20fp')
+                .fontWeight(FontWeight.Bold)
+            }
+            .height('56vp')
           }
+          .width('100%')
+          .height('56vp')
+        } else if (!this.mInfoMsgCtrl.searchStatus) {
+          //标题行
+          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+            Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+              Image($rawfile("icon/ic_message_back.svg"))
+                .width('24vp')
+                .height('24vp')
+                .onClick(() => {
+                  this.mInfoMsgCtrl.back()
+                })
+              Text($r("app.string.infoMessages"))
+                .padding({ left: '16vp' })
+                .fontSize('20fp')
+                .fontWeight(FontWeight.Bold)
+            }
+            .height('56vp')
+          }
+          .width('100%')
           .height('56vp')
         }
-        .width('100%')
-        .height('56vp')
-        .padding({ left: '24vp' })
-      } else if (!this.mInfoMsgCtrl.searchStatus) {
-        //标题行
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+
+        Row() {
+          //返回按钮
+          if (this.mInfoMsgCtrl.isShowSearchBack) {
             Image($rawfile("icon/ic_message_back.svg"))
-              .width('24vp')
-              .height('24vp')
-              .onClick(() => {
-                this.mInfoMsgCtrl.back()
+              .width(24)
+              .height(24)
+              .onClick((event: ClickEvent) => {
+                this.mInfoMsgCtrl.clickSearchBack();
               })
-            Text($r("app.string.infoMessages"))
-              .padding({ left: '16vp' })
-              .fontSize('20fp')
-              .fontWeight(FontWeight.Bold)
           }
-          .height('56vp')
+          //搜索框
+          // @ts-ignore
+          Search({ value: this.mInfoMsgCtrl.inputValueOfSearch, placeholder: "搜索通知信息" })
+            .layoutWeight(1)
+            .height('40vp')
+            .border({ radius: '20vp' })
+              //            .focusable(this.mInfoMsgCtrl.isSearchFocusable)
+            .enabled(!this.mInfoMsgCtrl.isMultipleSelectState)
+            .backgroundColor($r("app.color.search_input_background"))
+            .onChange((value: string) => {
+              this.mInfoMsgCtrl.clickToSearch(value);
+            })
+            .onSubmit((value: string) => {
+              this.mInfoMsgCtrl.clickToSearch(value);
+            })
+          //          .onTouch((event: TouchEvent) => {
+          //            if (event.type === TouchType.Down) {
+          //              this.mInfoMsgCtrl.searchTouchStart(true, event)
+          //            }
+          //          })
         }
+        .visibility(Visibility.None)
         .width('100%')
         .height('56vp')
-        .padding({ left: '24vp' })
-      }
+        .padding({ left: 24, right: 24 })
+        .alignItems(VerticalAlign.Center)
 
-      Row() {
-        //返回按钮
-        if (this.mInfoMsgCtrl.isShowSearchBack) {
-          Image($rawfile("icon/ic_message_back.svg"))
-            .width(24)
-            .height(24)
-            .onClick((event: ClickEvent) => {
-              this.mInfoMsgCtrl.clickSearchBack();
-            })
-        }
-        //搜索框
-        // @ts-ignore
-        Search({ value: this.mInfoMsgCtrl.inputValueOfSearch, placeholder: $r("app.string.search2") })
-          .layoutWeight(1)
-          .height('40vp')
-          .border({ radius: '20vp' })
-            //            .focusable(this.mInfoMsgCtrl.isSearchFocusable)
-          .enabled(!this.mInfoMsgCtrl.isMultipleSelectState)
-          .backgroundColor($r("app.color.search_input_background"))
-          .onChange((value: string) => {
-            this.mInfoMsgCtrl.clickToSearch(value);
-          })
-          .onSubmit((value: string) => {
-            this.mInfoMsgCtrl.clickToSearch(value);
-          })
-//          .onTouch((event: TouchEvent) => {
-//            if (event.type === TouchType.Down) {
-//              this.mInfoMsgCtrl.searchTouchStart(true, event)
-//            }
-//          })
-      }
-      .visibility(Visibility.None)
-      .width('100%')
-      .height('56vp')
-      .padding({ left: 24, right: 24 })
-      .alignItems(VerticalAlign.Center)
-
-      //短信展示列表
-      Stack() {
-        Column() {
-          List({ initialIndex: 0 }) {
-            ForEach(this.mInfoMsgCtrl.messageList, (item, index) => {
-              //真正的信息列表
-              if (this.mInfoMsgCtrl.isSearchStatus) {
-                ListItem() {
-                  MmsListItem({
-                    item: item,
-                    index: index,
-                    isShowHead: this.mInfoMsgCtrl.isShowContactHeadIcon,
-                    isMultipleSelectState: this.mInfoMsgCtrl.isMultipleSelectState,
-                    onClickHead: (event: ClickEvent) => {
-                      this.mInfoMsgCtrl.clickToGroupDetail(index);
-                    },
-                    onClickBody: (event: ClickEvent) => {
-                      this.mInfoMsgCtrl.clickInfoToConversation(index);
-                    },
-                    onItemLongPress: (event: GestureEvent) => {
-                      this.mInfoMsgCtrl.conversationLongPress(index)
-                    },
-                    onTouchStart: (event: GestureEvent) => {
-                      this.mInfoMsgCtrl.touchStart(event, index);
-                    },
-                    onTouchUpdate: (event: GestureEvent) => {
-                      this.mInfoMsgCtrl.touchMove(event, index);
-                    },
-                    onTouchEnd: (event: GestureEvent) => {
-                      this.mInfoMsgCtrl.touchEnd(event, index);
-                    },
-                    onClickFirstSlipBtn: (event: ClickEvent) => {
-                      this.mInfoMsgCtrl.markAllAsReadByIndex(index);
-                    },
-                    onClickSecondSlipBtn: (event: ClickEvent) => {
-                      this.mInfoMsgCtrl.deleteAction(index);
-                      this.delDialogController.open();
-                    }
-                  })
+        //短信展示列表
+        Stack({ alignContent: Alignment.Top }) {
+          Column() {
+            List({ initialIndex: 0 }) {
+              LazyForEach(this.mInfoMsgCtrl.conversationListDataSource, (item, index) => {
+                //真正的信息列表
+                if (this.mInfoMsgCtrl.isSearchStatus) {
+                  ListItem() {
+                    MmsListItem({
+                      item: item,
+                      index: index,
+                      isShowHead: this.mInfoMsgCtrl.isShowContactHeadIcon,
+                      isMultipleSelectState: this.mInfoMsgCtrl.isMultipleSelectState,
+                      onClickHead: (event: ClickEvent) => {
+                        this.mInfoMsgCtrl.clickToGroupDetail(item.index);
+                      },
+                      onClickBody: (event: ClickEvent) => {
+                        this.mInfoMsgCtrl.clickInfoToConversation(item.index);
+                      },
+                      onItemLongPress: (event: GestureEvent) => {
+                        this.mInfoMsgCtrl.conversationLongPress(item.index)
+                      },
+                      onTouchStart: (event: GestureEvent) => {
+                        this.mInfoMsgCtrl.touchStart(event, item.index);
+                      },
+                      onTouchUpdate: (event: GestureEvent) => {
+                        this.mInfoMsgCtrl.touchMove(event, item.index);
+                      },
+                      onTouchEnd: (event: GestureEvent) => {
+                        this.mInfoMsgCtrl.touchEnd(event, item.index);
+                      },
+                      onClickFirstSlipBtn: (event: ClickEvent) => {
+                        this.mInfoMsgCtrl.markAllAsReadByIndex(item.index);
+                      },
+                      onClickSecondSlipBtn: (event: ClickEvent) => {
+                        this.mInfoMsgCtrl.deleteAction(item.index);
+                        this.delDialogController.open();
+                      }
+                    })
+                  }
+                  .width('100%')
+                  .height('64vp')
+                  .alignSelf(ItemAlign.Start)
                 }
-                .width('100%')
-                .height('64vp')
-                .alignSelf(ItemAlign.Start)
-              }
-            }, item => item.threadId)
+              }, item => item.threadId)
+            }
+            .align(Alignment.Top)
+            .cachedCount(this.mInfoMsgCtrl.limit)
+          }.width('100%')
+          //搜索上方
+          //短信搜索会话item
+          //左侧头像
+          //右侧信息等
+          //上方的name和日期
+          //下方的信息详情
+          //中间间隔线
+          //搜索信息列表 信息条码数量
+          //搜索信息列表
+          //左侧头像
+          //右侧信息等
+          //上方的name和日期
+          //下方的信息详情
+          //如果没有会话信息，也就是{{total}}为0，则显示空白图片
+          //显示搜索状态
+          if (this.mInfoMsgCtrl.isSearchCoverage) {
+            //图层用于搜索的展示
+            Flex()
+              .width('100%')
+              .height('100%')
+              .opacity(0.2)
+              .backgroundColor(Color.Gray)
+              .onTouch((event: TouchEvent) => {
+                if (event.type === TouchType.Down) {
+                  this.mInfoMsgCtrl.searchCoverageClick()
+                }
+              })
           }
-          .align(Alignment.Top)
-          .cachedCount(this.mInfoMsgCtrl.limit)
-        }.width('100%').height('100%')
-        //搜索上方
-        //短信搜索会话item
-        //左侧头像
-        //右侧信息等
-        //上方的name和日期
-        //下方的信息详情
-        //中间间隔线
-        //搜索信息列表 信息条码数量
-        //搜索信息列表
-        //左侧头像
-        //右侧信息等
-        //上方的name和日期
-        //下方的信息详情
-        //如果没有会话信息，也就是{{total}}为0，则显示空白图片
-        //显示搜索状态
-        if (this.mInfoMsgCtrl.isSearchCoverage) {
-          //图层用于搜索的展示
-          Flex()
-            .width('100%')
-            .height('100%')
-            .opacity(0.2)
-            .backgroundColor(Color.Gray)
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.mInfoMsgCtrl.searchCoverageClick()
+        }
+        .flexGrow(1)
+        //单个会话长按选项
+        if (this.mInfoMsgCtrl.isMultipleSelectState) {
+          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+            //删除
+            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+              Image($rawfile(this.mInfoMsgCtrl.svgDelete))
+                .width('24vp')
+                .height('24vp')
+                .margin({ top: '3vp' })
+              Text($r("app.string.delete")).fontSize('10fp')
+            }
+            .width('50%')
+            .opacity(this.mInfoMsgCtrl.checkSelectedNumberIsEmpty() ? 0.4 : 1)
+            .onClick(() => {
+              if (!this.mInfoMsgCtrl.checkSelectedNumberIsEmpty()) {
+                this.mInfoMsgCtrl.clickConversationDelete()
+                this.delDialogController.open()
               }
             })
+            //全选
+            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+              Image($rawfile(this.mInfoMsgCtrl.isConversationCheckAll ? 'icon/ic_select_all_filled.svg' : 'icon/ic_select_all.svg'))
+                .width('24vp')
+                .height('24vp')
+                .margin({ top: '3vp' })
+              Text(this.mInfoMsgCtrl.strCheckBoxSelectTip)
+                .fontSize('10fp')
+                .fontColor(this.mInfoMsgCtrl.isConversationCheckAll ? '#007DFF' : '#2C2C2C')
+            }
+            .width('50%')
+            .onClick(() => {
+              this.mInfoMsgCtrl.clickConversationCheckAll()
+            })
+          }
+          .width('100%')
+          .height('56vp')
+          .padding({ left: '86vp', right: '86vp' })
         }
-      }
-      .flexGrow(1)
-      //单个会话长按选项
-      if (this.mInfoMsgCtrl.isMultipleSelectState) {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-          //删除
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image($rawfile(this.mInfoMsgCtrl.svgDelete))
-              .width('24vp')
-              .height('24vp')
-              .margin({ top: '3vp' })
-            Text($r("app.string.delete")).fontSize('10fp')
+        //全部已读和更多
+        if (!this.mInfoMsgCtrl.isMultipleSelectState && this.mInfoMsgCtrl.showToolBar) {
+          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+            //全部已读
+            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+              Image($rawfile('icon/ic_allread.svg'))
+                .width('24vp')
+                .height('24vp')
+                .margin({ top: '3vp' })
+              Text($r("app.string.markAllAsRead")).fontSize('10fp')
+            }
+            .width('50%')
+            .opacity(this.mInfoMsgCtrl.unreadTotalOfInfo == 0 ? 0.4 : 1)
+            .onClick(() => {
+              this.mInfoMsgCtrl.clickToMarkAllAsReadForInfo()
+            })
+            //更多
+            Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+              MmsMenu({
+                menuItems: this.menuItems,
+                sizeType: this.gridSizeType,
+                menuText: $r("app.string.more")
+              })
+            }
+            .width('50%')
           }
-          .width('50%')
-          .opacity(this.mInfoMsgCtrl.conversationSelectedNumber == 0 ? 0.5 : 1)
-          .onClick(() => {
-            this.mInfoMsgCtrl.clickConversationDelete()
-            this.delDialogController.open()
-          })
-          //全选
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image($rawfile(this.mInfoMsgCtrl.isConversationCheckAll ? 'icon/ic_select_all_filled.svg' : 'icon/ic_select_all.svg'))
-              .width('24vp')
-              .height('24vp')
-              .margin({ top: '3vp' })
-            Text(this.mInfoMsgCtrl.strCheckBoxSelectTip)
-              .fontSize('10fp')
-              .fontColor(this.mInfoMsgCtrl.isConversationCheckAll ? '#007DFF' : '#2C2C2C')
-          }
-          .width('50%')
-          .onClick(() => {
-            this.mInfoMsgCtrl.clickConversationCheckAll()
-          })
+          .width('100%')
+          .height('56vp')
+          .padding({ left: '86vp', right: '86vp' })
         }
-        .width('100%')
-        .height('56vp')
-        .padding({ left: '86vp', right: '86vp' })
+        //设置导航栏显示背景
+        //删除弹出对话框
       }
-      //全部已读和更多
-      if (!this.mInfoMsgCtrl.isMultipleSelectState && this.mInfoMsgCtrl.showToolBar) {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-          //全部已读
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image($rawfile('icon/ic_allread.svg'))
-              .width('24vp')
-              .height('24vp')
-              .margin({ top: '3vp' })
-            Text($r("app.string.markAllAsRead")).fontSize('10fp')
-          }
-          .width('50%')
-          .opacity(this.mInfoMsgCtrl.unreadTotalOfInfo == 0 ? 0.5 : 1)
-          .onClick(() => {
-            this.mInfoMsgCtrl.clickToMarkAllAsReadForInfo()
-          })
-          //更多
-          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image($rawfile('icon/ic_more_24x24.svg')).width('24vp').height('24vp')
-              .margin({ top: '3vp' })
-            Text($r("app.string.more")).fontSize('10fp')
-          }
-          .width('50%')
-          .bindMenu([{
-                       // @ts-ignore
-                       value: $r("app.string.delete"),
-                       action: () => {
-                         this.mInfoMsgCtrl.selectInMoreMenu(1)
-                       }
-                     }, {
-                       // @ts-ignore
-                       value: $r("app.string.blocked"),
-                       action: () => {
-                         this.mInfoMsgCtrl.selectInMoreMenu(2)
-                       }
-                     },])
-        }
-        .width('100%')
-        .height('56vp')
-        .padding({ left: '86vp', right: '86vp' })
-      }
-      //设置导航栏显示背景
-      //删除弹出对话框
+      .width('100%')
+      .height('100%')
+      .useSizeType({
+        xs: { span: 4, offset: 0 }, sm: { span: 4, offset: 0 },
+        md: { span: 12, offset: 0 }, lg: { span: 12, offset: 0 }
+      })
     }
-    .width('100%')
-    .height('100%')
   }
 }

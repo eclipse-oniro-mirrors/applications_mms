@@ -55,9 +55,11 @@ export default {
             let messageList = this.convertSessionList(res[0].response, telephones);
             result.total = res[1].total;
             result.showInfoDivWhenSearchFlag = res[2];
+            HiLog.i(TAG, "querySessionList, messageList length=" + messageList.length
+                + ", total=" + result.total + ", showInfoDivWhenSearchFlag=" + result.showInfoDivWhenSearchFlag);
             this.dealContactsName(telephones, actionData, messageList, sessionList => {
+                HiLog.i(TAG, 'querySessionList, dealContactsName len=' + sessionList.length);
                 result.response = sessionList;
-                HiLog.i(TAG, 'querySessionList, dealContactsName callback');
                 callback(result);
             });
         }).catch((err) => {
@@ -107,11 +109,13 @@ export default {
     dealContactsName(telephones, actionData, sessionLists, callback) {
         actionData.telephones = telephones;
         if(telephones.length == 0) {
+            HiLog.w(TAG, 'dealContactsName, has no telephones');
             callback(sessionLists);
             return;
         }
         contractService.queryContactDataByTelephone(actionData, contacts => {
             if(contacts.length == 0) {
+                HiLog.w(TAG, 'dealContactsName, has no contacts');
                 callback(sessionLists);
             } else {
                 // 将结果转换为Map,key:手机号，value: 名称
@@ -414,6 +418,7 @@ export default {
         Promise.all([queryPromise]).then((res) => {
             result.code = common.int.SUCCESS;
             result.response = res[0].response;
+            HiLog.i(TAG, "querySessionList SUCCESS. len=" + result.response.length);
             callback(result);
         }).catch((err) => {
             HiLog.e(TAG, 'querySessionByNumberType, error: ' + JSON.stringify(err.message));

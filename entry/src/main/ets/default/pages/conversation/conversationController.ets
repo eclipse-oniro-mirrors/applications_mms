@@ -29,23 +29,23 @@ import callService from '../../service/CallService';
 import sendMsgService from '../../service/SendMsgService'
 import preferences from '../../utils/PreferencesUtil';
 import dateUtil from '../../utils/DateUtil';
-import appConfig from '../../app';
-import rdbStore from '../../utils/RdbStoreUtil';
 import featureAbility from '@ohos.ability.featureAbility';
 import appStorage from '../../utils/AppStorageUtil';
-import notificationService from '../../service/NotificationService';
-
+import NotificationService from '../../service/NotificationService';
+import observer from '@ohos.telephony.observer';
+import telephonySim from '@ohos.telephony.sim';
+import commonCtrl from './common'
 const TAG = 'ConversationController';
 const ANIMATION_DURATION = 1500;
 const TRANSFORM_SCALE_MIN = '1.0';
 const TRANSFORM_SCALE_MAX = '3.0';
 const COMMON_FILE_SIZE_STRING = '/300KB';
-const COMMON_FILE_SIZE = 300;
 
-let conversationCtrl;
 let commonEventData = null;
 
 export default class ConversationController {
+    private static sInstance: ConversationController;
+    commonCtrl = commonCtrl.getInstance();
     // 短信列表刷新flag
     refresh: boolean = false;
     // 信息删除提示
@@ -161,8 +161,6 @@ export default class ConversationController {
     selectContacts: Array<any> = [];
     // 收件人输入框内容
     receiveContactValue: string = '';
-    // 给receive传递的参数数据
-    paramContact: LooseObject = {};
     // 控制最后div显示与隐藏
     isSendStatus: boolean = false;
     // 会话列表的id
@@ -230,11 +228,10 @@ export default class ConversationController {
     mmsDateSet: Set<any> = new Set();
 
     static getInstance() {
-        if (conversationCtrl == null) {
-            conversationCtrl = new ConversationController();
-            appStorage.setAndLink('ConversationController', conversationCtrl);
+        if (ConversationController.sInstance == null) {
+            ConversationController.sInstance = new ConversationController();
         }
-        return conversationCtrl;
+        return ConversationController.sInstance;
     }
 
     onInit() {
@@ -249,17 +246,15 @@ export default class ConversationController {
         //    this.setTabTitleText();
         // 获取真实数据,新建无需查询数据
         if (!this.isNewMsg) {
-            this.queryMessageDetail(this.strContactsNumber, this.threadId);
+            this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {});
         }
     }
 
     onShow() {
         HiLog.i(TAG, 'onShow');
-        if (this.mmsDateSet.size > 0) {
-            this.mmsDateSet.clear();
-        }
+        this.addSimChangeListener();
         // 判断是否插入了电话卡
-        this.haveSimCard = conversationService.judgeHasSimCard();
+        this.getSimState();
         // 判断发送按钮是否可点击
         this.judgeSendBtnCanClicked();
         // 初始化转发的数据
@@ -285,6 +280,43 @@ export default class ConversationController {
 
     onHide() {
         this.unSubscribeDetail();
+    }
+
+    getSimState() {
+        telephonySim.getSimState(common.int.SIM_ONE, (err, value) => {
+            if (err) {
+                HiLog.e(TAG, 'getSimState, SIM_ONE error: ' + JSON.stringify(err.message));
+            } else {
+                HiLog.i(TAG, 'getSimState, SIM_ONE value: ' + value);
+                if (value == 0 || value == 1 || value == undefined) {
+                    this.haveSimCard = false;
+                } else {
+                    this.haveSimCard = true;
+                }
+                this.initSendTip();
+                HiLog.i(TAG, 'haveSimCard1 = ' + this.haveSimCard);
+            }
+        });
+    }
+
+    // 监听SIM卡状态
+    addSimChangeListener() {
+        observer.on('simStateChange', {
+            slotId: common.int.SIM_ONE
+        }, data => {
+            let simState = data.state;
+            let isEffective: boolean;
+            HiLog.i(TAG, 'addSimChangeListener simState = ' + simState);
+            if (simState == 0 || simState == 1 || simState == undefined) {
+                isEffective = false;
+            } else {
+                isEffective = true;
+            }
+            HiLog.i(TAG, 'simState is = ' + isEffective);
+            preferences.setValueForSwitch(common.string.KEY_OF_SIM_0_EXIST_FLAG, isEffective);
+            this.haveSimCard = isEffective;
+            this.initSendTip();
+        });
     }
 
     initData() {
@@ -331,7 +363,6 @@ export default class ConversationController {
         this.textValue = '';
         this.receiveContactValue = '';
         this.isDraft = false;
-        this.isNewMsg = false;
         this.mmsList = [];
     }
 
@@ -355,9 +386,9 @@ export default class ConversationController {
                 transmitContracts.push(item);
             }
         }
-        this.paramContact.transmitContracts = transmitContracts;
-        this.paramContact.isSelectContact = false;
-        this.paramContact.isNewRecallMessagesFlag = false;
+        this.commonCtrl.paramContact.transmitContracts = transmitContracts;
+        this.commonCtrl.paramContact.isSelectContact = false;
+        this.commonCtrl.paramContact.isNewRecallMessagesFlag = false;
     }
 
     initRouterData() {
@@ -769,6 +800,7 @@ export default class ConversationController {
             // 通过filter删除选中的item
             for (let element of this.mmsList) {
                 if (!element.isCbChecked || (element.isLock && !this.isSelectLockMsg)) {
+                    this.setDateShow(element, mmsListCopy);
                     mmsListCopy.push(element);
                 } else {
                     groupIds.push(element.groupId);
@@ -783,6 +815,7 @@ export default class ConversationController {
                 if (this.mmsIndex == i) {
                     continue;
                 } else {
+                    this.setDateShow(this.mmsList[i], mmsListCopy);
                     mmsListCopy.push(this.mmsList[i]);
                 }
             }
@@ -879,13 +912,14 @@ export default class ConversationController {
                 },
                 primaryButton: {
                     value: $r("app.string.cancel"),
+                  fontColor: $r("app.color.control_activated_color"),
                     action: () => {
                         this.deleteDialogCancel()
                     }
                 },
                 secondaryButton: {
                     value: $r("app.string.delete"),
-                    fontColor: Color.Red,
+                    fontColor: $r("app.color.message_send_failed"),
                     action: () => {
                         this.deleteDialogConfirm()
                     }
@@ -918,7 +952,7 @@ export default class ConversationController {
        * @return
        */
     // 查询信息会话列表
-    queryMessageDetail(telephone, threadId) {
+    queryMessageDetail(telephone, threadId, callback) {
         HiLog.i(TAG, 'queryMessageDetail, start');
         let actionData: LooseObject = {};
         if (telephone != common.string.EMPTY_STR) {
@@ -937,12 +971,12 @@ export default class ConversationController {
                 if (this.mmsList.length == 0 && this.isDraft) {
                     HiLog.i(TAG, 'queryMessageDetail, isNewMsg = true');
                     this.isNewMsg = true;
-                    return;
                 }
             } else {
                 HiLog.w(TAG, 'queryMessageDetail, failed');
             }
             this.deleteDraftData();
+            callback();
         });
     }
 
@@ -982,6 +1016,7 @@ export default class ConversationController {
             for (let item of result.response) {
                 item.timeMillisecond = parseInt(item.timeMillisecond);
                 dateUtil.convertTimeStampToDateWeek(item, false);
+                this.setDateShow(item, resultList);
                 dateUtil.convertDateFormatForItem(item, false);
                 if (item.sendStatus == common.int.SEND_DRAFT) {
                     this.dealDraftData(item);
@@ -1069,7 +1104,6 @@ export default class ConversationController {
         this.isDraft = true;
         this.draftContent = item.content;
         this.draftGroupId = item.groupId;
-        this.receiveContactValue = this.strContactsNumber
         this.setDraft();
         if (item.isMsm) {
             this.isEditMms = true;
@@ -1115,8 +1149,8 @@ export default class ConversationController {
     }
     // 设置发送状态
     setCanSendMsgStatus() {
-        if (this.receiveContactValue == common.string.EMPTY_STR && this.selectContacts && this.selectContacts.length == 0) {
-            HiLog.d(TAG, 'setCanSendMsgStatus: ' + this.canSendMessage)
+        if (this.receiveContactValue == common.string.EMPTY_STR && this.selectContacts.length == 0) {
+            HiLog.d(TAG, 'setCanSendMsgStatus: ' + this.canSendMessage);
             this.canSendMessage = false;
         }
     }
@@ -1147,6 +1181,7 @@ export default class ConversationController {
             return;
         } else {
             this.canSendMessage = this.haveSimCard && !this.isFlightMode;
+            HiLog.i(TAG, 'setSmsTip, canSendMessage=' + this.canSendMessage + ', haveSimCard=' + this.haveSimCard);
         }
         if (this.isNewMsg) {
             this.setCanSendMsgStatus();
@@ -1330,10 +1365,21 @@ export default class ConversationController {
         item.msgShowType = this.getMsgShowType(item);
         item.mmsSource = this.getMmsSource();
         item.isMsm = this.isEditMms;
+        this.setDateShow(item, this.mmsList);
         this.mmsList.push(item);
         this.refresh = !this.refresh
     }
-
+    // 判断每条短信上方的时间是否显示
+    setDateShow(item, list) {
+        item.dateShow = true;
+        let tempDateId = item.date.id;
+        let tempWeekId = item.week.id;
+        if (list.length > 0) {
+            item.dateShow =
+            (tempDateId != (list[list.length-1]).date.id)
+            && (tempWeekId != (list[list.length-1]).week.id)
+        }
+    }
     getMmsSource() {
         HiLog.i(TAG, 'getMmsSource, start')
         let sources = [];
@@ -1594,8 +1640,15 @@ export default class ConversationController {
         // 新建状态切换到会话状态
         if (this.isNewMsg) {
             HiLog.i(TAG, 'send, isNewMsg=true');
-            this.newSend();
+            this.newSend(() => {
+                this.sendDataRefresh();
+            });
+        } else {
+            this.sendDataRefresh();
         }
+    }
+
+    sendDataRefresh() {
         this.isSendStatus = true;
         // 发送文本
         if (this.textValue != common.string.EMPTY_STR || this.mmsEditList.length != 0 ||
@@ -1619,6 +1672,7 @@ export default class ConversationController {
         this.distanceBottomFlag = false;
         this.receiveContactValue = common.string.EMPTY_STR;
         this.selectContacts = [];
+        this.isNewMsg = false;
     }
 
     isPhoneNumber(str) {
@@ -1628,14 +1682,14 @@ export default class ConversationController {
         return pattern.test(str);
     }
 
-    newSend() {
+    newSend(callback) {
         // 先校验输入的内容是否有值
         if (this.receiveContactValue != common.string.EMPTY_STR) {
             if (!this.isPhoneNumber(this.receiveContactValue)) {
                 // 无效收件人
                 this.showToast($r('app.string.invalid_receive', this.receiveContactValue))
                 HiLog.w(TAG, 'newSend, PhoneNumber is invalidate');
-                //        return;
+                return;
             }
         }
         if (this.selectContacts.length > 0 && this.receiveContactValue != common.string.EMPTY_STR) {
@@ -1661,15 +1715,15 @@ export default class ConversationController {
         // 如果设置取消发送，直接设置为true
         if (this.recallMessagesFlag) {
             this.isNewRecallMessagesFlag = true;
-            this.paramContact.isNewRecallMessagesFlag = true;
+            this.commonCtrl.paramContact.isNewRecallMessagesFlag = true;
         }
         // 当新建页面全屏跳转过来，需要获取下列表数据
         if (true) {
-            this.queryOldMessageList(this.strContactsNumber);
+            this.queryOldMessageList(this.strContactsNumber, callback);
         }
     }
 
-    queryOldMessageList(telephone) {
+    queryOldMessageList(telephone, callback) {
         HiLog.i(TAG, 'queryOldMessageList, start');
         if (telephone == common.string.EMPTY_STR) {
             return;
@@ -1679,9 +1733,10 @@ export default class ConversationController {
             HiLog.i(TAG, 'queryOldMessageList, querySessionByTelephone res.response.id: ' + res.response.id)
             if (res.code == common.int.SUCCESS && res.response.id > 0) {
                 this.threadId = res.response.id;
-                this.queryMessageDetail(telephone, res.response.id);
+                this.queryMessageDetail(telephone, res.response.id, callback);
             } else {
                 this.threadId = 0;
+                callback();
             }
         });
     }
@@ -1841,7 +1896,7 @@ export default class ConversationController {
         HiLog.i(TAG, 'subscriberCallBack, start');
         // 接收短信更新
         setTimeout(() => {
-            this.queryMessageDetail(this.strContactsNumber, this.threadId);
+            this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {});
             let valueBucket = {
                 'unread_count': 0,
             };
@@ -1850,7 +1905,7 @@ export default class ConversationController {
                 hasRead: 0,
                 valueBucket: valueBucket
             };
-            notificationService.cancelMessageNotify(actionData, res => {
+            NotificationService.getInstance().cancelMessageNotify(actionData, res => {
                 actionData.hasRead = 1;
                 conversationListService.markAllAsRead(actionData);
             });
@@ -2123,7 +2178,7 @@ export default class ConversationController {
     }
     // 判断字符串是否包含中文
     checkChinese(str) {
-        return escape(str).indexOf('%u') != -1;
+        return true;
     }
 
     getTime(nS) {
@@ -2135,18 +2190,59 @@ export default class ConversationController {
     }
 
     // 新建页面,返回的联系人数据
-    setReceiveContactValue(e) {
-        this.receiveContactValue = e.contactValue;
-        this.setCanSendMessage(this.receiveContactValue)
+    setReceiveContactValue(receiverData) {
+        let selectContacts = receiverData.selectContacts;
+        let receiveContactValue = selectContacts.length > 0 ? common.string.EMPTY_STR : receiverData.contactValue;
+        let hasBlur = receiverData.hasBlur;
+        let telephone = common.string.EMPTY_STR;
+        this.setCanSendMessage(selectContacts, receiveContactValue)
+        if (hasBlur && receiveContactValue != common.string.EMPTY_STR) {
+            let index = -1;
+            for (let i = 0; i < selectContacts.length; i++) {
+                let contact = selectContacts[i];
+                if(contact.telephone == receiveContactValue) {
+                    index = i;
+                    break;
+                }
+            }
+            if(index >= 0) {
+                selectContacts.splice(index, 1);
+            }
+        }
+        if(receiveContactValue != common.string.EMPTY_STR) {
+            this.receiveContactValue = receiveContactValue;
+        } else {
+            this.receiveContactValue = common.string.EMPTY_STR;
+        }
+        if(selectContacts.length > 0) {
+            this.selectContacts = selectContacts;
+        } else {
+            this.selectContacts = [];
+        }
+        if (this.selectContacts.length > 0) {
+            for (let element of this.selectContacts) {
+                telephone += element.telephone + common.string.COMMA;
+            }
+        }
+        if(this.receiveContactValue != common.string.EMPTY_STR) {
+            telephone += this.receiveContactValue + common.string.COMMA;
+        }
+        if (telephone != common.string.EMPTY_STR) {
+            telephone = telephone.substring(0, telephone.length - 1);
+        }
+        this.initSendTip();
+        if (!hasBlur && telephone != "") {
+            this.queryOldMessageList(telephone, null);
+        }
     }
 
-    setCanSendMessage(/*selectContacts, */receiveContactValue) {
+    setCanSendMessage(selectContacts, receiveContactValue) {
         if (this.textValue != common.string.EMPTY_STR || this.isEditMms) {
             if (this.canSendMessage) {
-                if (/*selectContacts.length == 0 && */receiveContactValue == common.string.EMPTY_STR) {
+                if (selectContacts.length == 0 && receiveContactValue == common.string.EMPTY_STR) {
                     this.canSendMessage = false;
                 }
-            } else if ((/*selectContacts.length != 0 || */receiveContactValue != common.string.EMPTY_STR)
+            } else if ((selectContacts.length != 0 || receiveContactValue != common.string.EMPTY_STR)
             && this.haveSimCard) {
                 this.canSendMessage = true;
             }

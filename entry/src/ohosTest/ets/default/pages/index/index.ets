@@ -14,7 +14,6 @@
  */
 import {Core, ExpectExtend, InstrumentLog} from "deccjsunit/index"
 import testsuite from "../../../test/List.test"
-import app from '@system.app'
 import featureAbility from "@ohos.ability.featureAbility"
 
 @Entry

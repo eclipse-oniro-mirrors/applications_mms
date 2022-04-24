@@ -21,11 +21,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import LooseObject from '../../data/LooseObject';
 import messageService from '../../service/ConversationListService';
 import HiLog from '../../utils/HiLog';
-import rdbStore from '../../utils/RdbStoreUtil';
 import SettingService from '../../service/SettingService'
 import commonService from '../../service/CommonService';
-import notificationService from '../../service/NotificationService';
+import NotificationService from '../../service/NotificationService';
 import AppStorageUtil from '../../utils/AppStorageUtil';
+import ConversationListDataSource from '../../model/ConversationListDataSource'
 
 let ConversationCtrl;
 
@@ -34,6 +34,7 @@ let commonEventData = null;
 const TAG = 'ConversationListController';
 
 export default class ConversationListController {
+  hasNoMessage: boolean = false;
   svgDelete: string = '';
   strCheckBoxSelectTip: Resource;
   strMsgDeleteDialogTip: Resource;
@@ -124,6 +125,8 @@ export default class ConversationListController {
   page: number = 0;
   // 列表分页，数量
   limit: number = 1000;
+  // conversation list adapters
+  conversationListDataSource: ConversationListDataSource = new ConversationListDataSource();
 
   static getInstance() {
     if (ConversationCtrl == null) {
@@ -148,11 +151,13 @@ export default class ConversationListController {
     this.statisticalData();
     this.page = 0;
     this.messageList = [];
+    this.conversationListDataSource.refresh(this.messageList);
     this.requestItem();
     let hasInfoMsg = false;
     hasInfoMsg = AppStorageUtil.getHasInfoMsg();
     if (!hasInfoMsg && this.messageList.length == 0) {
       this.total = 0;
+      this.hasNoMessage = true;
     }
   };
 
@@ -427,10 +432,13 @@ export default class ConversationListController {
         element.isCbChecked = false;
       }
       this.isMultipleSelectState = false;
+      return true;
     }
     if (!this.isSearchStatus) {
       this.backSearch();
+      return true;
     }
+    return false;
   };
 
   deleteDialogConfirm() {
@@ -453,7 +461,9 @@ export default class ConversationListController {
     this.isMultipleSelectState = false;
     this.isSelectLockMsg = false;
     this.messageList = mmsList;
+    this.conversationListDataSource.refresh(this.messageList);
     this.total = this.messageList.length;
+    this.hasNoMessage = this.total == 0 ? true : false;
     if (threadIds.length > 0) {
       let actionData = {
         threadIds: threadIds
@@ -513,9 +523,11 @@ export default class ConversationListController {
   };
 
   jumpToSettingsPage() {
-    // 暂时跳转到高级设置且只显示一个送达报告开关
     router.push({
-      uri: 'pages/settings/advancedSettings/advancedSettings'
+      uri: "pages/settings/settings",
+      params: {
+        pageFlag: "settingsDetail",
+      }
     });
   };
 
@@ -667,6 +679,7 @@ export default class ConversationListController {
     actionData.page = this.page;
     actionData.limit = this.limit;
     messageService.querySessionList(actionData, result => {
+      HiLog.i(TAG, "querySessionList code=" + result.code);
       if (result.code == common.int.SUCCESS) {
         let res = [];
         result.response.forEach(item => {
@@ -681,7 +694,9 @@ export default class ConversationListController {
           res.push(obj);
         });
         this.messageList = res;
+        this.conversationListDataSource.refresh(this.messageList);
         this.total = result.total;
+        this.hasNoMessage = this.total == 0 ? true : false;
         this.showInfoDivWhenSearchFlag = result.showInfoDivWhenSearchFlag;
       }
     });
@@ -736,6 +751,7 @@ export default class ConversationListController {
       }
     }
     this.messageList = tempMsgList;
+    this.conversationListDataSource.refresh(this.messageList);
     this.unreadTotalOfInfo = this.unreadTotalOfInfo - threadIds.length;
     HiLog.i(TAG, 'markAllAsRead, unreadTotalOfInfo=' + this.unreadTotalOfInfo)
   };
@@ -745,7 +761,7 @@ export default class ConversationListController {
       threadIds: threadIds,
       hasRead: 0
     };
-    notificationService.cancelMessageNotify(actionData, res => {
+    NotificationService.getInstance().cancelMessageNotify(actionData, res => {
       callback();
     });
   };
@@ -903,4 +919,16 @@ export default class ConversationListController {
       });
     }
   };
+
+  checkHasCommonMessage() {
+    return this.messageList.length > 0;
+  }
+
+  showMultipleSelectView() {
+    this.resetTouch();
+    if (this.checkHasCommonMessage()) {
+      this.isMultipleSelectState =  true;
+      this.setConversationCheckAll(common.int.CHECKBOX_SELECT_UNKNOWN)
+    }
+  }
 }

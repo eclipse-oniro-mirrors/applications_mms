@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import MmsBoolean from '../data/MmsBoolean'
 /**
  * 设置项：双标题，1开关
  */
@@ -19,8 +20,9 @@
 export struct SettingItemSwitch {
   primaryTitle: string | Resource;
   secondaryTitle?: string | Resource;
-  isEnable: boolean;
+  @ObjectLink isEnable: MmsBoolean;
   showBottomDivider ?: boolean = false;
+  visibility ?: Visibility = Visibility.Visible;
   onChange: (isOn: boolean) => void;
 
   build() {
@@ -46,18 +48,35 @@ export struct SettingItemSwitch {
         }
         .layoutWeight(1)
 
-        Toggle({ type: ToggleType.Switch, isOn: this.isEnable })
+        Toggle({ type: ToggleType.Switch, isOn: this.isEnable.value })
           .width($r('app.float.settings_item_switch_width'))
-          .onChange(this.onChange)
+          .selectedColor($r("app.color.control_activated_color"))
+          .onChange((isOn: boolean) => {
+            if (typeof isOn === "number") {
+              let newIsOn: number = isOn;
+              switch (newIsOn) {
+                case 1:
+                  isOn = true;
+                  break;
+                case 0:
+                  isOn = false;
+                  break;
+                default:
+                  break;
+              }
+            }
+            this.onChange(isOn);
+          })
       }
       .layoutWeight(1)
 
       if (this.showBottomDivider) {
-        Divider().vertical(false).strokeWidth(1).color($r("app.color.default_main_background")).lineCap(LineCapStyle.Round)
+        Divider().vertical(false).strokeWidth(1).color($r("app.color.divider_color")).lineCap(LineCapStyle.Round)
       }
     }
     .width('100%')
     .height(this.secondaryTitle != undefined ? $r('app.float.settings_item_height_2') : $r('app.float.settings_item_height_1'))
+    .visibility(this.visibility)
   }
 }
 
@@ -70,8 +89,8 @@ export struct SettingItemJump {
   secondaryTitle ?: string | Resource;
   @State statusTitle ?: string | Resource = "";
   showBottomDivider ?: boolean = false;
+  visibility ?: Visibility = Visibility.Visible;
   onClick: (event?: ClickEvent) => void;
-  isVisible: Visibility = Visibility.Visible;
 
   build() {
     Column() {
@@ -116,11 +135,11 @@ export struct SettingItemJump {
       .onClick(this.onClick)
 
       if (this.showBottomDivider) {
-        Divider().vertical(false).strokeWidth(1).color($r("app.color.default_main_background")).lineCap(LineCapStyle.Round)
+        Divider().vertical(false).strokeWidth(1).color($r("app.color.divider_color")).lineCap(LineCapStyle.Round)
       }
     }
     .width('100%')
     .height(this.secondaryTitle != undefined ? $r('app.float.settings_item_height_2') : $r('app.float.settings_item_height_1'))
-    .visibility(this.isVisible)
+    .visibility(this.visibility)
   }
 }
