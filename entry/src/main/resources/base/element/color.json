@@ -9,12 +9,8 @@
       "value": "#FFFFFFFF"
     },
     {
-      "name": "default_main_background",
-      "value": "#F1F3F5"
-    },
-    {
       "name": "sender_bubble",
-      "value": "#C0EBDF"
+      "value": "#3300CB87"
     },
     {
       "name": "receiver_bubble",
@@ -46,7 +42,7 @@
     },
     {
       "name": "divider_color",
-      "value": "#33000000"
+      "value": "#0D000000"
     },
     {
       "name": "control_activated_color",
@@ -55,6 +51,22 @@
     {
       "name": "placeholder_color",
       "value": "#99000000"
+    },
+    {
+      "name": "setting_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "detail_main_background",
+      "value": "#DAEFF9"
+    },
+    {
+      "name": "transparent_color",
+      "value": "#00FFFFFF"
+    },
+    {
+      "name": "mask_color",
+      "value": "#26000000"
     }
   ]
 }

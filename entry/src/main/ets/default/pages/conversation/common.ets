@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HiLog from './utils/HiLog';
-import AppStorageUtil from './utils/AppStorageUtil';
 
-const TAG = 'app';
+import LooseObject from '../../data/LooseObject'
 
-export default {
-  onCreate() {
-    HiLog.i(TAG, 'onCreate version: 1.0.0.8');
-    new AppStorageUtil();
-  },
-  onDestroy() {
-    HiLog.i(TAG, 'onDestroy');
+export default class Common {
+  private static sInstance: Common;
+  // 给receive传递的参数数据
+  paramContact: LooseObject = {};
+  static getInstance() {
+    if (Common.sInstance == null) {
+      Common.sInstance = new Common();
+    }
+    return Common.sInstance;
   }
-};
+}

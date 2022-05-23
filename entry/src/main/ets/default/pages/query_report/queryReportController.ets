@@ -29,6 +29,8 @@ export default class QueryReportController {
   sendStatus: number = 0;
   // 时间
   mmsTime: Resource;
+  // 具体上下午时间
+  specificTime: Resource;
   // 时间戳
   timeMillisecond: string = '0';
   // 手机号
@@ -68,6 +70,6 @@ export default class QueryReportController {
   };
   dealTime() {
     this.mmsTime = dateUtil.convertTimeStampDate(this.timeMillisecond);
-    HiLog.i(TAG, 'dealTime mmsTime=' + this.mmsTime)
+    this.specificTime = dateUtil.convertTimeStampTime(this.timeMillisecond, false)
   }
 }

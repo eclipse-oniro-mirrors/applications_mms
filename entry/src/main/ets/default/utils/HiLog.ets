@@ -24,7 +24,6 @@
  * 5. the function execute many times can not print.
  * 6. uniqueness.
  *
- * @author m00445151
  * @since 2022-02-18
  */
 export default class HiLog {

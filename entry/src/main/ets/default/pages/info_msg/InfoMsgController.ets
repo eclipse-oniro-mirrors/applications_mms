@@ -23,11 +23,13 @@ import LooseObject from '../../data/LooseObject'
 import messageService from '../../service/ConversationListService';
 // log工具类
 import HiLog from '../../utils/HiLog';
-import notificationService from '../../service/NotificationService';
+import NotificationService from '../../service/NotificationService';
 // 通知信息
 import router from '@system.router';
 // 获取设置开关
 import settingService from '../../service/SettingService';
+import ConversationListDataSource from '../../model/ConversationListDataSource'
+
 const TAG = 'InfoMsgController'
 
 let sInfoMsgCtrl;
@@ -109,6 +111,9 @@ export default class InfoMsgController {
     page: number = 0;
     // 信息总数
     totalMessage: number = 0;
+    // notification conversation list adapters
+    conversationListDataSource: ConversationListDataSource = new ConversationListDataSource();
+
     static getInstance() {
         if (sInfoMsgCtrl == null) {
             sInfoMsgCtrl = new InfoMsgController();
@@ -142,6 +147,7 @@ export default class InfoMsgController {
                 HiLog.i(TAG, 'queryAllMessages, Success');
                 let res = this.buildSessionList(result);
                 this.messageList = res;
+                this.conversationListDataSource.refresh(this.messageList);
                 this.totalMessage = result.total;
                 this.total = this.messageList.length;
                 if (this.totalMessage === this.total) {
@@ -499,7 +505,7 @@ export default class InfoMsgController {
             threadIds: threadIds,
             hasRead: 0
         };
-        notificationService.cancelMessageNotify(actionData, res => {
+        NotificationService.getInstance().cancelMessageNotify(actionData, res => {
             callback();
         });
     }
@@ -522,6 +528,7 @@ export default class InfoMsgController {
             }
         }
         this.messageList = tempMsgList;
+        this.conversationListDataSource.refresh(this.messageList);
         this.unreadTotalOfInfo = this.unreadTotalOfInfo - threadIds.length;
     }
     selectInMoreMenu(menuId: number) {
@@ -548,6 +555,9 @@ export default class InfoMsgController {
             this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.conversationSelectedNumber);
         }
         this.hasLockMsg = (this.messageList.some((element, index) => element.isCbChecked && element.isLock));
+    }
+    checkSelectedNumberIsEmpty() {
+        return this.conversationSelectedNumber == common.int.MESSAGE_CODE_ZERO
     }
     // 取消弹出
     deleteDialogCancel() {
@@ -583,6 +593,7 @@ export default class InfoMsgController {
         this.showToolBar = true;
         this.isSelectLockMsg = false;
         this.messageList = mmsList;
+        this.conversationListDataSource.refresh(this.messageList);
         this.total = mmsList.length;
         if (this.total == 0) {
             router.back();

@@ -50,7 +50,7 @@
     },
     {
       "name": "settings_items_radius",
-      "value": "24vp"
+      "value": "16vp"
     },
     {
       "name": "settings_item_padding_left",
@@ -111,6 +111,10 @@
     {
       "name": "settings_item_next_image_height",
       "value": "24vp"
+    },
+    {
+      "name": "conversation_list_no_message_fs",
+      "value": "14fp"
     }
   ]
 }

@@ -59,7 +59,7 @@ export default {
     },
     dealSendResult(value) {
         let sendStatus = common.int.SEND_MESSAGE_SENDING;
-        if (value.result == sms.SEND_SMS_SUCCESS) {
+        if (value.result == sms.SendSmsResult.SEND_SMS_SUCCESS) {
             sendStatus = common.int.SEND_MESSAGE_SUCCESS;
         } else {
             sendStatus = common.int.SEND_MESSAGE_FAILED;

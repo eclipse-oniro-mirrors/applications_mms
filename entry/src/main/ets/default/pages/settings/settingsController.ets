@@ -12,33 +12,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import appStorage from '../../utils/AppStorageUtil';
 import LooseObject from '../../data/LooseObject'
+import MmsBoolean from '../../data/MmsBoolean'
 import HiLog from '../../utils/HiLog';
 import router from '@system.router';
-import prompt from '@system.prompt';
 // JS公共常量
 import common from '../../data/commonData';
 import settingService from '../../service/SettingService'
 
-let sSettingsCtrl;
+const TAG = "SettingsController";
 
-const TAG = 'SettingsController';
-
-export default class SettingsController{
+export default class SettingsController {
+  private static sInstance: SettingsController;
   // 通知信息整合
-  integrationSwitch: boolean = false;
+  integrationSwitch: MmsBoolean = new MmsBoolean(true);
   // 恶意网站选择
   maliciousWebSwitch: boolean = false;
+  // 验证码安全保护
+  verificationCodeSwitch: boolean = false;
   // 显示联系人头像
-  showContactSwitch: boolean = false
+  showContactSwitch: boolean = true
 
   static getInstance() {
-    if(sSettingsCtrl == null) {
-      sSettingsCtrl = new SettingsController();
-      appStorage.setAndLink(TAG, sSettingsCtrl);
+    if(SettingsController.sInstance == null) {
+      SettingsController.sInstance = new SettingsController();
     }
-    return sSettingsCtrl;
+    return SettingsController.sInstance;
+  }
+
+  constructor() {
+    HiLog.i(TAG, 'constructor, start');
+    this.getSettingPageSwitchValue();
   }
 
   onInit() {
@@ -46,28 +50,26 @@ export default class SettingsController{
   };
 
   onShow() {
-    this.getSettingPageSwitchValue();
+    HiLog.i(TAG, 'onShow, start');
   };
 
   // 初始化setting页面的开关
   getSettingPageSwitchValue() {
     HiLog.i(TAG, 'getSettingPageSwitchValue, start');
-    settingService.setOnSettingValueListener(this.initializeSettingData);
-  };
-
-  // 初始化setting数据
-  initializeSettingData(data) {
-    this.integrationSwitch = data.integrationSwitch;
-    this.maliciousWebSwitch = data.maliciousWebSwitch;
-    this.showContactSwitch = data.showContactSwitch;
+    let that = this;
+    settingService.setOnSettingValueListener(function (result) {
+      that.integrationSwitch.value = result.integrationSwitch;
+      that.maliciousWebSwitch = result.maliciousWebSwitch;
+      that.showContactSwitch = result.showContactSwitch;
+    });
   };
 
   // 通知信息整合
-  integration(e) {
+  integration(isOn: boolean) {
     let messageCode = common.route.MESSAGE_CODE_UPDATE_ARCHIVE_INFO_MESSAGES_VALUE;
     let actionData: LooseObject = {};
-    this.integrationSwitch = e.checked;
-    if(this.integrationSwitch) {
+    this.integrationSwitch.value = isOn;
+    if(this.integrationSwitch.value) {
       actionData.booleanValue = common.bool.TRUE;
     } else {
       actionData.booleanValue = common.bool.FALSE;
@@ -110,11 +112,12 @@ export default class SettingsController{
 
   // 还原设置页面的默认值
   restoreSettingsPageSwitchValue() {
+    let that = this;
     settingService.restoreSwitchValue(function (result) {
       if (result.code === common.int.SUCCESS) {
-        this.integrationSwitch = true;
-        this.maliciousWebSwitch = false;
-        this.showContactSwitch = true;
+        that.integrationSwitch.value = true;
+        that.maliciousWebSwitch = false;
+        that.showContactSwitch = true;
         HiLog.i(TAG, 'restoreSettingsPageSwitchValue, success');
       } else {
         HiLog.w(TAG, 'restoreSettingsPageSwitchValue, failed');

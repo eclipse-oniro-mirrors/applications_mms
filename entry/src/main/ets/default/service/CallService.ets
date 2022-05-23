@@ -16,9 +16,7 @@
 import call from '@ohos.telephony.call';
 import HiLog from '../utils/HiLog';
 import common from '../data/commonData';
-interface LooseObject {
-    [key: string]: any
-}
+import LooseObject from '../data/LooseObject'
 
 const TAG = 'CallService';
 export default {

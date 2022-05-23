@@ -15,86 +15,75 @@
 /**
  * 信息/彩信查看界面
  */
-import ConversationController from './conversationController'
-import {Receive} from '../../views/receive/receive'
-import LooseObject from '../../data/LooseObject'
-import mediaquery from '@ohos.mediaquery'
-import observer from '@ohos.telephony.observer';
-let portraitFunc = null
+import ConversationController from "./conversationController";
+import DeviceUtil from "../../utils/DeviceUtil";
+import { Receive } from "../../views/receive/receive";
+import LooseObject from "../../data/LooseObject";
+import { MmsMenu } from "../../views/MmsMenu";
+import Common from "./common";
+
 @Entry
 @Component
 export struct Conversation {
-  @StorageLink('ConversationController') conversationController: ConversationController = ConversationController.getInstance();
+  @State mConversationCtrl: ConversationController = ConversationController.getInstance();
+  @State mCommonCtrl: Common = Common.getInstance();
+  @State sizeType: SizeType = DeviceUtil.isTablet() ? SizeType.LG : SizeType.SM;
+  @State columns: number = DeviceUtil.isTablet() ? 12 : 4;
+  @State gutter: string = "24vp";
+  @State margin: string = DeviceUtil.isTablet() ? "24vp" : "12vp";
+
+  private menuItems: Array<any> = [
+    {
+      value: $r("app.string.delete"),
+      action: () => {
+        this.mConversationCtrl.longPressMore(0);
+      },
+      enabled: true
+    }
+  ];
+
   /** 短信详情弹框 */
   dialogController: CustomDialogController = new CustomDialogController({
     builder: DetailsDialog({
-      item: this.conversationController.mmsList[this.conversationController.mmsIndex],
-      receiver: this.conversationController.strContactsName == ''
-        ? this.conversationController.strContactsNumber :
-        this.conversationController.strContactsName
+      item: this.mConversationCtrl.mmsList[this.mConversationCtrl.mmsIndex],
+      receiver: this.mConversationCtrl.strContactsName == ''
+        ? this.mConversationCtrl.strContactsNumber :
+        this.mConversationCtrl.strContactsName
     }),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -30 }
   })
-  // 监听横竖屏
-  listener = mediaquery.matchMediaSync('(orientation: landscape)')
-  onPortrait(mediaQueryResult) {
-    if (mediaQueryResult.matches) {
-      console.log("mediaQuery landScape")
-      this.sizeType = SizeType.LG
-    } else {
-      console.log("mediaQuery vert")
-      this.sizeType = SizeType.XS
-      this.columns = 4
-      this.margin = '12vp'
-    }
+
+  aboutToAppear() {
+    this.mConversationCtrl.onInit()
   }
 
-  private aboutToAppear(): void  {
-    this.onPortrait(this.listener)
-    portraitFunc = this.onPortrait.bind(this)
-    this.listener.on('change', portraitFunc)
-    // 实时监听SIM卡状态
-    observer.on('simStateChange', data => {
-      let simState = data.state
-      if (simState == 0 || simState == 1) {
-        this.conversationController.haveSimCard = false
-      } else {
-        this.conversationController.haveSimCard = true
-      }
-      this.conversationController.initSendTip()
-    });
-    this.conversationController.onInit()
-    // 初始化函数
+  onPageShow() {
+    this.mConversationCtrl.onShow()
   }
 
-  private onPageShow(): void  {
-    this.conversationController.onShow()
+  onPageHide() {
+    this.mConversationCtrl.onHide()
   }
 
-  private onBackPress(): void {
-    this.conversationController.onBackPress()
+  onBackPress() {
+    return this.mConversationCtrl.onBackPress();
   }
-
-  @State columns: number = 12;
-  @State sizeType: SizeType = SizeType.LG;
-  @State gutter: string = '24vp';
-  @State margin: string = '24vp';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Flex({ direction: FlexDirection.Column,alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
         // <!--上方titleBar-->
         // 新建界面
-        if (this.conversationController.isNewMsg) {
+        if (this.mConversationCtrl.isNewMsg) {
           Row() {
             Image($rawfile('icon/ic_message_back.svg'))
               .width('24vp')
               .height('24vp')
               .onClick(() => {
                 // 点击返回恢复到未选中短信状态
-                this.conversationController.titleBarBack()
+                this.mConversationCtrl.titleBarBack()
               })
             Text($r("app.string.new_message"))
               .margin({ left: '24vp' })
@@ -114,16 +103,16 @@ export struct Conversation {
         else {
           Row() {
             // 选择状态
-            if (this.conversationController.isSelectStatus) {
+            if (this.mConversationCtrl.isSelectStatus) {
               Row() {
-                Image($rawfile('icon/ic_cancel_black.svg'))
+                Image($rawfile('icon/ic_public_cancel.svg'))
                   .width(24)
                   .height(24)
                   .onClick(() => {
                     // 点击返回恢复到未选中短信状态
-                    this.conversationController.titleBarCancel()
+                    this.mConversationCtrl.titleBarCancel()
                   })
-                Text(this.conversationController.selectDeleteMsgCount == 0 ? $r("app.string.msg_unselected_tip") : $r("app.string.msg_selected_tip", this.conversationController.selectDeleteMsgCount))
+                Text(this.mConversationCtrl.selectDeleteMsgCount == 0 ? $r("app.string.msg_unselected_tip") : $r("app.string.msg_selected_tip", this.mConversationCtrl.selectDeleteMsgCount))
                   .margin({ left: 16 })
                   .fontSize(20)
                   .fontColor($r('app.color.main_font_color'))
@@ -143,14 +132,14 @@ export struct Conversation {
                       .width(24)
                       .height(24)
                       .onClick(() => {
-                        this.conversationController.titleBarBack()
+                        this.mConversationCtrl.titleBarBack()
                       })
                     Image($rawfile('icon/user_avatar_full_fill.svg'))
                       .width(40)
                       .height(40)
                       .margin({ left: 16 })
                       .onClick(() => {
-                        this.conversationController.titleBarAvatar();
+                        this.mConversationCtrl.titleBarAvatar();
                       })
                   }
                   .flexBasis(80)
@@ -161,14 +150,14 @@ export struct Conversation {
                       justifyContent: FlexAlign.Center,
                       alignItems: ItemAlign.Start
                     }) {
-                      if (this.conversationController.contactsNum > 1) {
-                        Text(this.conversationController.strContactsName).fontSize(16).fontColor($r('app.color.main_font_color'))
-                        Text($r("app.string.members", this.conversationController.contactsNum)).fontSize(14).fontColor($r('app.color.main_font_color_40'))
-                      } else if (this.conversationController.strContactsName == '' || this.conversationController.strContactsName == null) {
-                        Text(this.conversationController.strContactsNumberFormat).fontSize(16).fontColor($r('app.color.main_font_color'))
+                      if (this.mConversationCtrl.contactsNum > 1) {
+                        Text(this.mConversationCtrl.strContactsName).fontSize(16).fontColor($r('app.color.main_font_color'))
+                        Text($r("app.string.members", this.mConversationCtrl.contactsNum)).fontSize(14).fontColor($r('app.color.main_font_color_40'))
+                      } else if (this.mConversationCtrl.strContactsName == '' || this.mConversationCtrl.strContactsName == null) {
+                        Text(this.mConversationCtrl.strContactsNumberFormat).fontSize(16).fontColor($r('app.color.main_font_color'))
                       } else {
-                        Text(this.conversationController.strContactsName).fontSize(16).fontColor($r('app.color.main_font_color'))
-                        Text(this.conversationController.strContactsNumberFormat).fontSize(14).fontColor($r('app.color.main_font_color_40'))
+                        Text(this.mConversationCtrl.strContactsName).fontSize(16).fontColor($r('app.color.main_font_color'))
+                        Text(this.mConversationCtrl.strContactsNumberFormat).fontSize(14).fontColor($r('app.color.main_font_color_40'))
                       }
                     }
                   }
@@ -181,49 +170,15 @@ export struct Conversation {
                       .width(24)
                       .height(24)
                       .onClick(() => {
-                        this.conversationController.clickCall();
+                        this.mConversationCtrl.clickCall();
                       })
-                    Image($rawfile('icon/ic_message_more1.svg'))
-                      .width(24)
-                      .height(24)
-                      .margin({ left: 16 })
-                      .bindMenu([
-                        {
-                          // @ts-ignore
-                          value: $r("app.string.delete"),
-                          action: () => {
-                            this.conversationController.longPressMore(0);
-                          }
-                        },
-                        //                    {
-                        //                      // @ts-ignore
-                        //                      value: $r("app.string.msg_new_contact"),
-                        //                      action: () => {
-                        //                        this.conversationController.longPressMore(1);
-                        //                      }
-                        //                    },
-                        //                    {
-                        //                      // @ts-ignore
-                        //                      value: $r("app.string.msg_save_to_an_existing_contact"),
-                        //                      action: () => {
-                        //                        this.conversationController.longPressMore(2);
-                        //                      }
-                        //                    },
-                        //                    {
-                        //                      // @ts-ignore
-                        //                      value: $r("app.string.msg_pre_call_editor"),
-                        //                      action: () => {
-                        //                        this.conversationController.longPressMore(3);
-                        //                      }
-                        //                    },
-                        //                    {
-                        //                      // @ts-ignore
-                        //                      value: $r("app.string.msg_blacklist"),
-                        //                      action: () => {
-                        //
-                        //                      }
-                        //                    }
-                      ])
+                    Column() {
+                      MmsMenu({
+                        menuItems: this.menuItems,
+                        sizeType: this.sizeType
+                      })
+                    }
+                    .margin({ left: 16 })
                   }
                   .flexBasis(64)
 
@@ -240,16 +195,16 @@ export struct Conversation {
         // <!--中间内容区域-->
         Row() {
           // 新建消息内容
-          if (this.conversationController.isNewMsg) {
+          if (this.mConversationCtrl.isNewMsg) {
             Row() {
-              Receive()
+              Receive({ mConversationController: $mConversationCtrl })
             }.margin({ top: 8 })
           }
           // 短信内容
           // <!--信息列表-->
-          if (!this.conversationController.isNewMsg) {
-            List({ space: 10, initialIndex: this.conversationController.mmsList.length - 1 }) {
-              ForEach(this.conversationController.mmsList, (item, index) => {
+          if (!this.mConversationCtrl.isNewMsg) {
+            List({ space: 10, initialIndex: this.mConversationCtrl.mmsList.length - 1 }) {
+              ForEach(this.mConversationCtrl.mmsList, (item, index) => {
                 ListItem() {
                   Column() {
                     GridContainer({
@@ -270,19 +225,14 @@ export struct Conversation {
                             Text($r("app.string.msg_note_mms")).fontSize(12).lineHeight(16).fontColor($r('app.color.main_font_color_60')).margin({ bottom: 2 })
                           }
                           // 时间
-                          if (!this.conversationController.mmsDateSet.has(item.date.id) &&
-                          this.conversationController.mmsDateSet.add(item.date.id)) {
-                            Text(item.date).fontSize(12).lineHeight(16).fontColor($r('app.color.main_font_color_60')).margin({ bottom: 8 })
+                          if (item.dateShow) {
+                            Text(){
+                              Span(item.date).fontSize(12).fontColor($r('app.color.main_font_color_60'))
+                              Span(item.week).fontSize(12).fontColor($r('app.color.main_font_color_60'))
+                            }.lineHeight(16).margin({ bottom: 8 })
                           }
-                          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+                          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Start }) {
                             Column() {
-//                              if (this.conversationController.isSelectStatus == false && item.isShowMsgLongMenu) {
-//                                menu({
-////                                  controller: this.conversationController,
-//                                  index: index,
-//                                  isSender: true
-//                                })
-//                              }
                               Flex({
                                 justifyContent: FlexAlign.End,
                                 alignItems: ItemAlign.End
@@ -293,7 +243,7 @@ export struct Conversation {
                                   alignItems: ItemAlign.End
                                 }) {
                                   // <!--发送失败icon-->
-                                  if (!item.isMsm && ((this.conversationController.contactsNum == 1 && item.sendStatus == 2) || (this.conversationController.contactsNum > 1 && item.failuresNumber > 0 && item.completeNumber == this.conversationController.contactsNum))) {
+                                  if (!item.isMsm && ((this.mConversationCtrl.contactsNum == 1 && item.sendStatus == 2) || (this.mConversationCtrl.contactsNum > 1 && item.failuresNumber > 0 && item.completeNumber == this.mConversationCtrl.contactsNum))) {
                                     Row() {
                                       Image($rawfile('icon/ic_send_fail.svg'))
                                         .width(24)
@@ -304,6 +254,7 @@ export struct Conversation {
                                   }
                                   // 消息气泡
                                   bubbleText({
+                                    conversationCtrl: $mConversationCtrl,
                                     borderRadius: [4, 24],
                                     direction: 'right',
                                     content: item.content,
@@ -315,11 +266,11 @@ export struct Conversation {
                               }
                               // <!--发送时间、发送状态那行-->
                               Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
-                                if (this.conversationController.contactsNum == 1 && item.sendStatus != 1) {
+                                if (this.mConversationCtrl.contactsNum == 1 && item.sendStatus != 1) {
                                   Text(item.time).textAlign(TextAlign.Start).fontSize(10).lineHeight(13).fontColor($r('app.color.main_font_color_60')).margin({ top: 8, right: 5 })
                                 }
                                 // 卡1还是卡2
-                                if (this.conversationController.cardImage) {
+                                if (this.mConversationCtrl.cardImage) {
                                   Image(item.subId == 0 ? $rawfile('icon/icon_mms_sim_1.svg') : $rawfile('icon/icon_mms_sim_2.svg'))
                                     .width(10)
                                     .height(10)
@@ -367,24 +318,31 @@ export struct Conversation {
                             }
                             .width(50)
                             .height(30)
-                            .visibility(this.conversationController.contactsNum > 1 ? Visibility.Visible : Visibility.None)
+                            .visibility(this.mConversationCtrl.contactsNum > 1 ? Visibility.Visible : Visibility.None)
                             // <!--信息checkbox-->
-                            Toggle({ type: ToggleType.Checkbox, isOn: item.isCbChecked })
-                              .width(20)
-                              .height(20)
-                              .visibility(this.conversationController.isSelectStatus ? Visibility.Visible : Visibility.None)
-                              .onChange(((isOn: boolean) => {
-                                this.conversationController.listCheckBoxChange(index, isOn)
-                              }))
+                            if (this.mConversationCtrl.isSelectStatus) {
+                              Row() {
+                                Toggle({ type: ToggleType.Checkbox, isOn: item.isCbChecked })
+                                  .width(24)
+                                  .height(24)
+                                  .selectedColor($r("app.color.control_activated_color"))
+                                  .onChange(((isOn: boolean) => {
+                                    this.mConversationCtrl.listCheckBoxChange(index, isOn)
+                                  }))
+                              }
+                              .width(48)
+                              .height(48)
+                              .margin({ left: 4 })
+                            }
                           }
                           .useSizeType({
-                            xs: { span: 4, offset: 0 }, sm: { span: 8, offset: 2 },
+                            xs: { span: 4, offset: 0 }, sm: { span: 4, offset: 0 },
                             md: { span: 8, offset: 2 }, lg: { span: 8, offset: 2 }
                           })
                         }
                         .width('100%')
                         .useSizeType({
-                          xs: { span: 4, offset: 0 }, sm: { span: 12, offset: 0 },
+                          xs: { span: 4, offset: 0 }, sm: { span: 4, offset: 0 },
                           md: { span: 12, offset: 0 }, lg: { span: 12, offset: 0 }
                         })
                       }
@@ -401,23 +359,19 @@ export struct Conversation {
                             Text($r("app.string.msg_note_mms")).fontSize(12).lineHeight(16).fontColor($r('app.color.main_font_color_60')).margin({ bottom: 2 })
                           }
                           // 时间
-                          if (!this.conversationController.mmsDateSet.has(item.date.id) &&
-                          this.conversationController.mmsDateSet.add(item.date.id)) {
-                            Text(item.date).fontSize(12).lineHeight(16).fontColor($r('app.color.main_font_color_60')).margin({ bottom: 8 })
+                          if (item.dateShow) {
+                            Text(){
+                              Span(item.date).fontSize(12).fontColor($r('app.color.main_font_color_60'))
+                              Span(item.week).fontSize(12).fontColor($r('app.color.main_font_color_60'))
+                            }.lineHeight(16).margin({ bottom: 8 })
                           }
 
-                          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+                          Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Start }) {
                             Column() {
-//                              if (this.conversationController.isSelectStatus == false && item.isShowMsgLongMenu) {
-//                                menu({
-////                                  controller: this.conversationController,
-//                                  index: index,
-//                                  isSender: false
-//                                })
-//                              }
                               Flex({ alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
                                 // 消息气泡
                                 bubbleText({
+                                  conversationCtrl: $mConversationCtrl,
                                   borderRadius: [4, 24],
                                   direction: 'left',
                                   content: item.content,
@@ -427,14 +381,14 @@ export struct Conversation {
                                 })
                               }
                               .useSizeType({
-                                xs: { span: 4, offset: 0 }, sm: { span: 8, offset: 0 },
+                                xs: { span: 4, offset: 0 }, sm: { span: 4, offset: 0 },
                                 md: { span: 8, offset: 0 }, lg: { span: 8, offset: 0 }
                               })
                               // <!--发送时间、发送状态那行-->
                               Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
                                 Text(item.time).textAlign(TextAlign.Start).fontSize(10).lineHeight(13).fontColor($r('app.color.main_font_color_60')).margin({ top: 8, right: 5 })
                                 // 卡1还是卡2
-                                if (this.conversationController.cardImage) {
+                                if (this.mConversationCtrl.cardImage) {
                                   Image(item.subId == 0 ? $rawfile('icon/icon_mms_sim_1.svg') : $rawfile('icon/icon_mms_sim_2.svg'))
                                     .width(10)
                                     .height(10)
@@ -452,29 +406,35 @@ export struct Conversation {
                             .width('100%')
                             .alignItems(HorizontalAlign.Start)
 
-                            Toggle({ type: ToggleType.Checkbox, isOn: item.isCbChecked })
-                              .width(20)
-                              .height(20)
-                              .visibility(this.conversationController.isSelectStatus ? Visibility.Visible : Visibility.None)
-                              .onChange(((isOn: boolean) => {
-                                this.conversationController.listCheckBoxChange(index, isOn)
-                              }))
+                            if (this.mConversationCtrl.isSelectStatus) {
+                              Row() {
+                                Toggle({ type: ToggleType.Checkbox, isOn: item.isCbChecked })
+                                  .width(24)
+                                  .height(24)
+                                  .selectedColor($r("app.color.control_activated_color"))
+                                  .onChange(((isOn: boolean) => {
+                                    this.mConversationCtrl.listCheckBoxChange(index, isOn)
+                                  }))
+                              }
+                              .margin({ left: 4 })
+                              .width(48)
+                              .height(48)
+                            }
                           }
                         }.width('100%')
                         .useSizeType({
-                          xs: { span: 4, offset: 0 }, sm: { span: 12, offset: 0 },
+                          xs: { span: 4, offset: 0 }, sm: { span: 4, offset: 0 },
                           md: { span: 12, offset: 0 }, lg: { span: 12, offset: 0 }
                         })
                       }
                     }
                   }
                 }.onClick(() => {
-                  if (this.conversationController.isSelectStatus) {
-                    this.conversationController.listCheckBoxChange(index,!item.isCbChecked)
+                  if (this.mConversationCtrl.isSelectStatus) {
+                    this.mConversationCtrl.listCheckBoxChange(index,!item.isCbChecked)
                   }
                 })
-//                .padding({ left: 24, right: 24 })
-
+                .padding(index == this.mConversationCtrl.mmsList.length - 1 ? { bottom: 20 } : null)
               }, item => item.id)
             }
             .listDirection(Axis.Vertical) // 排列方向
@@ -484,13 +444,13 @@ export struct Conversation {
         }
         .width('100%')
         .flexBasis('auto')
-
+        .flexShrink(1)
       }
       .width('100%')
       // <!--底部输入框-->
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         // <!--底部更多选项 -->
-        if (this.conversationController.isSelectStatus && !this.conversationController.hasDetailDelete) {
+        if (this.mConversationCtrl.isSelectStatus && !this.mConversationCtrl.hasDetailDelete) {
           /** 底部选中了信息按钮 */
           Flex({
             direction: FlexDirection.Row,
@@ -503,14 +463,14 @@ export struct Conversation {
               alignItems: ItemAlign.Center,
               justifyContent: FlexAlign.Center
             }) {
-              Image($rawfile('icon/ic_delete_m.svg'))
+              Image($rawfile('icon/ic_public_delete.svg'))
                 .width(24)
                 .height(24)
               Text($r("app.string.delete")).fontSize(10).margin({ top: 3 }).fontColor($r('app.color.main_font_color'))
-            }.width('25%').opacity(this.conversationController.selectDeleteMsgCount == 0 ? 0.4 : 1)
+            }.width('25%').opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
             .onClick(() => {
-              if (this.conversationController.selectDeleteMsgCount != 0) {
-                this.conversationController.clickGroupDelete()
+              if (this.mConversationCtrl.selectDeleteMsgCount != 0) {
+                this.mConversationCtrl.clickGroupDelete()
               }
             })
             /** 转发 */
@@ -523,7 +483,7 @@ export struct Conversation {
               Text($r("app.string.msg_transmit")) {
 
               }.fontSize(10).margin({ top: 3 }).fontColor($r('app.color.main_font_color'))
-            }.width('25%').opacity(this.conversationController.selectDeleteMsgCount == 0 ? 0.4 : 1)
+            }.width('25%').opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
             .onClick(() => {
 
             })
@@ -537,7 +497,7 @@ export struct Conversation {
               Text($r("app.string.msg_star")) {
 
               }.fontSize(10).margin({ top: 3 }).fontColor($r('app.color.main_font_color'))
-            }.width('25%').opacity(this.conversationController.selectDeleteMsgCount == 0 ? 0.4 : 1)
+            }.width('25%').opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
             .onClick(() => {
 
             })
@@ -545,14 +505,18 @@ export struct Conversation {
             Flex({ direction: FlexDirection.Column,
               alignItems: ItemAlign.Center,
               justifyContent: FlexAlign.Center }) {
-              Image(this.conversationController.isMessageCheckAll ? $rawfile('icon/ic_select_all_filled.svg') : $rawfile('icon/ic_select_all.svg'))
+              Image(this.mConversationCtrl.isMessageCheckAll ? $rawfile('icon/ic_select_all_filled.svg') : $rawfile('icon/ic_select_all.svg'))
                 .width(24)
                 .height(24)
-              Text(this.conversationController.isMessageCheckAll ? $r("app.string.msg_deselect_all") : $r("app.string.msg_select_all")) {
-              }.fontSize(10).margin({ top: 3 }).fontColor($r('app.color.main_font_color'))
+              Text(this.mConversationCtrl.isMessageCheckAll ? $r("app.string.msg_deselect_all") : $r("app.string.msg_select_all")) {
+              }
+              .fontSize(10)
+              .margin({ top: 3 })
+              .fontColor(this.mConversationCtrl.isMessageCheckAll ?
+              $r("app.color.control_activated_color") : $r("app.color.main_font_color"))
             }.width('25%')
             .onClick(() => {
-              this.conversationController.clickGroupCheckAll()
+              this.mConversationCtrl.clickGroupCheckAll()
             })
             /** 更多 */
             Flex({ direction: FlexDirection.Column,
@@ -565,7 +529,7 @@ export struct Conversation {
               }.fontSize(10).margin({ top: 3 }).fontColor($r('app.color.main_font_color'))
             }.width('25%')
             // @ts-ignore
-            .bindMenu(this.conversationController.selectDeleteMsgCount == 1 ?
+            .bindMenu(this.mConversationCtrl.selectDeleteMsgCount == 1 ?
               [
 //                {
 //                  value: $r("app.string.msg_copy"),
@@ -595,15 +559,15 @@ export struct Conversation {
                   value: $r("app.string.query_details"),
                   action: () => {
                     this.dialogController.open()
-                    this.conversationController.isSelectStatus = !this.conversationController.isSelectStatus
-                    this.conversationController.isMessageCheckAll = false
-                    this.conversationController.cancleCheckedAll()
+                    this.mConversationCtrl.isSelectStatus = !this.mConversationCtrl.isSelectStatus
+                    this.mConversationCtrl.isMessageCheckAll = false
+                    this.mConversationCtrl.cancleCheckedAll()
                   }
                 },
-                this.conversationController.hasReport ? {
+                this.mConversationCtrl.hasReport ? {
                   value: $r("app.string.query_report"),
                   action: () => {
-                    this.conversationController.moreSelected(6)
+                    this.mConversationCtrl.moreSelected(6)
                   }
                 } : {}
               ] : [{}
@@ -625,7 +589,7 @@ export struct Conversation {
           .height(56)
         }
         // <!--底部发送栏-->
-        if (!this.conversationController.isSelectStatus) {
+        if (!this.mConversationCtrl.isSelectStatus) {
           Flex({ alignItems: ItemAlign.End, justifyContent: FlexAlign.Center }) {
             // <!--左侧更多和全屏显示-->
             Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -640,11 +604,11 @@ export struct Conversation {
               }
             }
             .flexBasis('40')
-            .visibility(Visibility.None)
+            .visibility(Visibility.Hidden)
             // <!--输入框-->
             Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
               Flex({ alignItems: ItemAlign.Center }) {
-                Image(this.conversationController.slotId == 0 ? $rawfile('icon/ic_message_card1.svg') : $rawfile('icon/ic_message_card2.svg'))
+                Image(this.mConversationCtrl.slotId == 0 ? $rawfile('icon/ic_message_card1.svg') : $rawfile('icon/ic_message_card2.svg'))
                   .width(22)
                   .height(22)
                 Image($rawfile('icon/icon_down.svg'))
@@ -652,26 +616,30 @@ export struct Conversation {
                   .height(22)
               }
               .flexBasis(36)
-              .visibility(this.conversationController.cardImage ? Visibility.Visible : Visibility.None)
+              .visibility(this.mConversationCtrl.cardImage ? Visibility.Visible : Visibility.None)
 
               Flex() {
                 TextArea({
                   placeholder: $r("app.string.msg_note_mms"),
-                  text: this.conversationController.textValue
+                  text: this.mConversationCtrl.textValue
                 })
                   .placeholderColor($r('app.color.placeholder_color'))
                   .caretColor($r('app.color.control_activated_color'))
-                  .backgroundColor($r('app.color.default_main_background'))
+                  .backgroundColor($r("app.color.transparent_color"))
                   .borderRadius(20)
                   .onChange(value => {
-                    this.conversationController.changeValue(value);
+                    this.mConversationCtrl.changeValue(value);
                   })
-              }.flexGrow(1).constraintSize({ minHeight: 40, maxHeight: 584 })
+              }
+              .flexGrow(1)
+              .flexShrink(1)
+              .constraintSize({ minHeight: 40, maxHeight: 584 })
             }
-            .backgroundColor($r('app.color.default_main_background'))
-            .padding({ left: 8, right: 8 })
+            .backgroundColor($r("app.color.search_input_background"))
+            .padding(this.mConversationCtrl.cardImage ? { left: 8, right: 8 } : 0)
             .borderRadius(20)
             .flexBasis('auto')
+            .flexShrink(1)
             Column().width(12)
             Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
               Flex() {
@@ -682,24 +650,23 @@ export struct Conversation {
               }
             }
             .flexBasis('40')
-            .visibility(Visibility.None)
+            .visibility(Visibility.Hidden)
             // <!--发送-->
             Flex({
               direction: FlexDirection.Row,
               alignItems: ItemAlign.Center,
               justifyContent: FlexAlign.Start
             }) {
-              //                Text((this.conversationController.textValue.length !=0 || this.conversationController.isEditMms)
-              //                 ? this.conversationController.msgSendTip : '').fontSize(12)
+              //                Text((this.mConversationCtrl.textValue.length !=0 || this.mConversationCtrl.isEditMms)
+              //                 ? this.mConversationCtrl.msgSendTip : '').fontSize(12)
               Flex() {
-                Image(this.conversationController.canSendMessage ? $rawfile('icon/ic_message_send_filled.svg') : $rawfile('icon/ic_message_send.svg'))
+                Image(this.mConversationCtrl.canSendMessage ? $rawfile('icon/ic_message_send_filled.svg') : $rawfile('icon/ic_message_send.svg'))
                   .onClick(() => {
                     //  点击发送按钮
-                    this.conversationController.send()
+                    this.mConversationCtrl.send()
                   })
                   .width(24)
                   .height(24)
-                  .opacity(this.conversationController.canSendMessage ? 1 : 0.4)
                   .margin({ bottom: 16 })
               }
             }
@@ -710,10 +677,10 @@ export struct Conversation {
         }
       }
       .width('100%')
-      .padding({ left: 24, right: 24 })
+      .padding({ left: 24, right: 12 })
       .backgroundColor($r("app.color.white"))
     }
-    .backgroundColor($r("app.color.default_main_background"))
+    .backgroundColor($r("app.color.detail_main_background"))
     .width('100%')
     .height('100%')
   }
@@ -767,7 +734,7 @@ struct DetailsDialog {
 // 自定义聊天气泡
 @Component
 struct bubbleText {
-  @StorageLink('ConversationController') controller: ConversationController = ConversationController.getInstance();
+  @Link conversationCtrl: ConversationController;
   private borderRadius: Array<number>; // 圆角大小，共两个参数
   private direction: string; // left:左上角 right: 右上角
   private content: string; // 气泡显示内容
@@ -777,67 +744,45 @@ struct bubbleText {
   @State showMenu: boolean = false
   @Builder MenuBuilder() {
     Row() {
-      //      Button($r("app.string.msg_copy"))
-      //        .fontSize(14)
-      //        .fontColor(Color.Black)
-      //        .backgroundColor($r("app.color.white"))
-      //      Button($r("app.string.msg_transmit"))
-      //        .fontSize(14)
-      //        .fontColor(Color.Black)
-      //        .backgroundColor($r("app.color.white"))
       Button($r("app.string.delete"))
         .fontSize(14)
-        .fontColor(Color.Black)
+        .fontColor($r('app.color.main_font_color'))
         .backgroundColor($r("app.color.white"))
         .onClick(() => {
-          this.controller.longPressSelected(2)
+          this.conversationCtrl.longPressSelected(2)
           this.showMenu = false
         })
-      //      Button($r("app.string.msg_select_text"))
-      //        .fontSize(12)
-      //        .fontColor(Color.Black)
-      //        .backgroundColor($r("app.color.white"))
       Button($r("app.string.more"))
         .fontSize(14)
-        .fontColor(Color.Black)
+        .fontColor($r('app.color.main_font_color'))
         .backgroundColor($r("app.color.white"))
         .onClick(() => {
-          this.controller.longPressSelected(4)
+          this.conversationCtrl.longPressSelected(4)
           this.showMenu = false
         })
     }
     .height(40)
-//    .padding(10)
     .borderRadius(20)
     .backgroundColor($r("app.color.white"))
   }
 
   build() {
     Row() {
-      Stack({ alignContent: this.direction == 'left' ? Alignment.TopStart : Alignment.TopEnd }) {
-        Text()
-          .backgroundColor(this.backgroundColor)
-          .borderRadius(this.borderRadius[0])
-          .width(24)
-          .height(24)
-          .visibility(this.content ? Visibility.Visible : Visibility.None)
-        Text(this.content)
-          .fontSize(16)
-          .lineHeight(21)
-          .padding({ left: 12, right: 12, top: 8, bottom: 8 })
-          .backgroundColor(this.backgroundColor)
-          .borderRadius(this.borderRadius[1])
-          .fontColor($r('app.color.main_font_color'))
-
-      }
+      Text(this.content)
+        .fontSize(16)
+        .lineHeight(21)
+        .padding({ left: 12, right: 12, top: 8, bottom: 8 })
+        .backgroundColor(this.backgroundColor)
+        .borderRadius(this.borderRadius[1])
+        .fontColor($r('app.color.main_font_color'))
     }
     .flexBasis('auto')
     .gesture(
     LongPressGesture({ repeat: false, duration: 500 })
       //长按动作存在会连续触发
       .onAction(() => {
-        if (!this.controller.isSelectStatus) {
-          this.controller.mmsListLongPress(this.itemIndex)
+        if (!this.conversationCtrl.isSelectStatus) {
+          this.conversationCtrl.mmsListLongPress(this.itemIndex)
           this.showMenu = true
         }
       })
@@ -845,8 +790,8 @@ struct bubbleText {
     .bindPopup(this.showMenu, {
       builder: this.MenuBuilder,
       placement: this.direction == 'left' ? Placement.TopRight :  Placement.TopLeft,
-      maskColor: 0x33000000,
-      popupColor: Color.White,
+      maskColor: $r("app.color.mask_color"),
+      popupColor: $r("app.color.transparent_color"),
       enableArrow: false,
       onStateChange: (e) => {
         if (!e.isVisible) {
