@@ -1,72 +1,16 @@
 {
   "color": [
     {
-      "name": "white",
-      "value": "#FFFFFF"
-    },
-    {
-      "name": "back_Transparent",
-      "value": "#FFFFFFFF"
-    },
-    {
       "name": "sender_bubble",
       "value": "#3300CB87"
     },
     {
-      "name": "receiver_bubble",
-      "value": "#FFFFFF"
-    },
-    {
-      "name": "search_input_background",
-      "value": "#F2F2F2"
-    },
-    {
-      "name": "title_bar_background",
-      "value": "#F2F2F2"
-    },
-    {
-      "name": "message_send_failed",
-      "value": "#FA2A2D"
-    },
-    {
-      "name": "main_font_color",
-      "value": "#182431"
-    },
-    {
-      "name": "main_font_color_40",
-      "value": "#66182431"
-    },
-    {
-      "name": "main_font_color_60",
-      "value": "#99182431"
-    },
-    {
-      "name": "divider_color",
-      "value": "#0D000000"
-    },
-    {
-      "name": "control_activated_color",
-      "value": "#007DFF"
-    },
-    {
-      "name": "placeholder_color",
-      "value": "#99000000"
-    },
-    {
-      "name": "setting_background",
+      "name": "detail_main_background",
       "value": "#F1F3F5"
     },
     {
-      "name": "detail_main_background",
-      "value": "#DAEFF9"
-    },
-    {
-      "name": "transparent_color",
-      "value": "#00FFFFFF"
-    },
-    {
-      "name": "mask_color",
-      "value": "#26000000"
+      "name": "ic_user_head_color",
+      "value": "#99007dff"
     }
   ]
 }
