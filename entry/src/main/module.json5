@@ -1,0 +1,92 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "description": "$string:entry_description",
+    "mainElement": "com.ohos.mms.MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "car"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "com.ohos.mms.MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:mainability_description",
+        "icon": "$media:smsmms",
+        "label": "$string:messages",
+        "startWindowIcon": "$media:smsmms",
+        "startWindowBackground": "$color:detail_main_background",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [{
+      "description": "subscriber",
+      "icon": "$media:smsmms",
+      "metadata": [{
+        "name": "ohos.extension.staticSubscriber",
+        "resource": "$profile:static_subscriber_config"
+      }],
+      "name": "Subscriber",
+      "srcEntrance": "./ets/StaticSubscriber/MmsStaticSubscriber.ts",
+      "type": "staticSubscriber",
+      "visible": true
+    }],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "$string:bundle_info_privileged"
+      },
+      {
+        "name": "ohos.permission.READ_CONTACTS",
+        "reason": "$string:permission_read_write_contacts"
+      },
+      {
+        "name": "ohos.permission.READ_MESSAGES",
+        "reason": "$string:permission_read_write_messages"
+      },
+      {
+        "name": "ohos.permission.SEND_MESSAGES",
+        "reason": "$string:permission_send_messages"
+      },
+      {
+        "name": "ohos.permission.SET_TELEPHONY_STATE",
+        "reason": "$string:permission_set_telephone_status"
+      },
+      {
+        "name": "ohos.permission.GET_TELEPHONY_STATE",
+        "reason": "$string:permission_get_telephone_status"
+      },
+      {
+        "name": "ohos.permission.RECEIVE_SMS",
+        "reason": "$string:permission_receive_message_service"
+      },
+      {
+        "name": "ohos.permission.PLACE_CALL",
+        "reason": "$string:permission_call_place"
+      },
+      {
+        "name": "ohos.permission.NOTIFICATION_CONTROLLER",
+        "reason": "$string:permission_notification_controller"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+      }
+    ]
+  }
+}

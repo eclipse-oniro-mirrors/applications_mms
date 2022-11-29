@@ -34,7 +34,7 @@
     },
     {
       "name": "action_bar_space",
-      "value": "16vp"
+      "value": "24vp"
     },
     {
       "name": "action_bar_text_size",
@@ -50,7 +50,7 @@
     },
     {
       "name": "settings_items_radius",
-      "value": "16vp"
+      "value": "24vp"
     },
     {
       "name": "settings_item_padding_left",
@@ -115,6 +115,34 @@
     {
       "name": "conversation_list_no_message_fs",
       "value": "14fp"
+    },
+    {
+      "name": "empty_text_top_margin",
+      "value": "9vp"
+    },
+    {
+      "name": "space_24",
+      "value": "24vp"
+    },
+    {
+      "name": "space_16",
+      "value": "16vp"
+    },
+    {
+      "name": "menu_layout_padding_left",
+      "value": "24vp"
+    },
+    {
+      "name": "menu_layout_padding_right",
+      "value": "24vp"
+    },
+    {
+      "name": "page_padding_left",
+      "value": "12vp"
+    },
+    {
+      "name": "page_padding_right",
+      "value": "12vp"
     }
   ]
 }

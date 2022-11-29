@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/index",
+    "pages/conversation/conversation",
+    "pages/infomsg/InfoMsg",
+    "pages/settings/settings",
+    "pages/settings/advancedSettings/advancedSettings",
+    "pages/settings/ringtoneSettings/ringtoneSettings",
+    "pages/queryreport/queryReport"
+  ]
+}
