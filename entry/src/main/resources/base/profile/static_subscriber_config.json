@@ -1,0 +1,12 @@
+{
+  "commonEvents": [
+    {
+      "name": "Subscriber",
+      "permission": "",
+      "types": [],
+      "events": [
+        "usual.event.SMS_RECEIVE_COMPLETED"
+      ]
+    }
+  ]
+}

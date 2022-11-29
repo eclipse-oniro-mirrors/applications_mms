@@ -30,10 +30,16 @@
         <filefilterlist>
             <filefilter name="defaultFilter" desc="Files not to check">
                 <filteritem type="filename" name="*.json" desc=""/>
-                <filteritem type="filepath" name="dir name underproject/.*.uvwxyz" desc="Describe the reason for filtering scan results"/>
+                <filteritem type="filepath" name="dir name underproject/.*.uvwxyz"
+                            desc="Describe the reason for filtering scan results"/>
                 <filteritem type="filepath" name="projectroot/[a-zA-Z0-9]{20,}.sh" desc="Temp files"/>
-				<filteritem type="filepath" name="signs/.*" desc="out put files"/>
-				<filteritem type="filepath" name="gradle/.*" desc="out put files"/>
+                <filteritem type="filepath" name="signs/.*" desc="out put files"/>
+                <filteritem type="filepath" name="gradle/.*" desc="out put files"/>
+                <filteritem type="filepath" name=".*.json5" desc="build config file"/>
+                <filteritem type="filepath" name="AppScope/.*.json5" desc="build config file"/>
+                <filteritem type="filepath" name="entry/.*.json5" desc="build config file"/>
+                <filteritem type="filepath" name="entry/src/main/ets/MainAbility/workers/.*.js" desc="worker file"/>
+                <filteritem type="filepath" name="entry/src/main/.*.json5" desc="build config file"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="Filters for compatibility，license header policies">
             </filefilter>
@@ -45,42 +51,24 @@
             </filefilter>
             <filefilter name="readmeOpenSourcefileNamePolicyFilter" desc="Filters for README.OpenSource file policies">
             </filefilter>
-            <filefilter
-                desc="Files not to check"
-                name="defaultFilter">
-                <filteritem
-                    desc="build config file"
-                    name=".*.json5"
-                    type="filepath"/>
-                <filteritem
-                    desc="build config file"
-                    name="AppScope/.*.json5"
-                    type="filepath"/>
-                <filteritem
-                    desc="build config file"
-                    name="entry/.*.json5"
-                    type="filepath"/>
-                <filteritem
-                    desc="build config file"
-                    name="entry/src/main/.*.json5"
-                    type="filepath"/>
-                <filteritem
-                    desc="build config file"
-                    name="entry/src/main/ets/MainAbility/workers/.*.js"
-                    type="filepath"/>
-            </filefilter>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies">
-			<filteritem type="filepath" name="doc/image/.*.png" desc="self developed image"/>
-				<filteritem type="filepath" name="entry/src/main/resources/base/media/.*.png" desc="self developed image"/>
-				<filteritem type="filepath" name="entry/src/main/resources/base/media/.*.svg" desc="self developed image"/>
-				<filteritem type="filepath" name="entry/src/main/resources/rawfile/icon/.*.png" desc="self developed image"/>
-				<filteritem type="filepath" name="entry/src/main/resources/rawfile/icon/.*.svg" desc="self developed image"/>
-				<filteritem type="filepath" name="entry/src/ohosTest/resources/base/media/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="doc/image/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="entry/src/main/resources/base/media/.*.png"
+                            desc="self developed image"/>
+                <filteritem type="filepath" name="entry/src/main/resources/base/media/.*.svg"
+                            desc="self developed image"/>
+                <filteritem type="filepath" name="entry/src/main/resources/rawfile/icon/.*.png"
+                            desc="self developed image"/>
+                <filteritem type="filepath" name="entry/src/main/resources/rawfile/icon/.*.svg"
+                            desc="self developed image"/>
+                <filteritem type="filepath" name="entry/src/ohosTest/resources/base/media/.*.png"
+                            desc="self developed image"/>
             </filefilter>
 
         </filefilterlist>
         <licensematcherlist>
-            <licensematcher name="uvwxyz License" desc="If the scanning result is InvalidLicense, you can define matching rules here. Note that quotation marks must be escaped.">
+            <licensematcher name="uvwxyz License"
+                            desc="If the scanning result is InvalidLicense, you can define matching rules here. Note that quotation marks must be escaped.">
                 <licensetext name="
                     uvwxyz license text xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 				 " desc=""/>

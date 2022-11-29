@@ -25,14 +25,14 @@ Mms应用是OpenHarmony中预置的系统应用，主要的功能包含信息查
 │                       ├── conversation       # 会话详情页面
 │                       ├── conversationlist   # 信息列表页面
 │                       ├── index              # 初始页面
-│                       ├── info_msg           # 通知信息列表页面
-│                       ├── query_report       # 报告详情页面
+│                       ├── infomsg           # 通知信息列表页面
+│                       ├── queryreport       # 报告详情页面
 │                       └── settings           # 设置页面
 │                   ├── service                # 业务逻辑
 │                   ├── utils                  # 工具类
 │                   ├── views                  # 自定义组件
 │                   └── app.ets                # 应用生命周期
-│               └── ServiceAbility             # 后台常驻服务
+│               └── StaticSubscriber           # 静态事件监听
 │           ├── resources                      # 资源配置文件存放目录
 │           └── config.json                    # 全局配置文件
 ├── signs                                      # 签名

@@ -1,0 +1,60 @@
+{
+  "float": [
+    {
+      "name": "message_bar_height",
+      "value": "82vp"
+    },
+    {
+      "name": "empty_image_width",
+      "value": "120vp"
+    },
+    {
+      "name": "empty_image_height",
+      "value": "120vp"
+    },
+    {
+      "name": "addressee_font_size",
+      "value": "14vp"
+    },
+    {
+      "name": "addressee_line_height",
+      "value": "22vp"
+    },
+    {
+      "name": "new_message_margin_top",
+      "value": "0vp"
+    },
+    {
+      "name": "bottom_send_bar_padding_right",
+      "value": "16vp"
+    },
+    {
+      "name": "user_avatar_left_margin",
+      "value": "18vp"
+    },
+    {
+      "name": "settings_items_radius",
+      "value": "24vp"
+    },
+    {
+      "name": "settings_item_padding_left",
+      "value": "12vp"
+    },
+    {
+      "name": "settings_item_padding_right",
+      "value": "12vp"
+    },
+    {
+      "name": "dialog_bottom_margin",
+      "value": "-12vp"
+    },
+    {
+      "name": "menu_layout_padding_left",
+      "value": "24vp"
+    },
+    {
+      "name": "menu_layout_padding_right",
+      "value": "24vp"
+    }
+  ]
+}
