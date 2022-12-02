@@ -564,7 +564,7 @@ export struct Conversation {
                                     }
                                 })
                                 .padding(index == this.mConversationCtrl.mmsList.length - 1 ? { bottom: 20 } : null)
-                            }, item => item.id)
+                            }, item => JSON.stringify(item))
                         }
                         .listDirection(Axis.Vertical) // Arrange Direction
                         .edgeEffect(EdgeEffect.Spring) // Sliding to the edge has no effect
@@ -619,6 +619,20 @@ export struct Conversation {
                         .onClick(() => {
 
                         })
+                        //                        Column() {
+                        //                            Image($rawfile("icon/ic_transfer.svg"))
+                        //                                .width(24)
+                        //                                .height(24)
+                        //                            Text($r("app.string.msg_transmit")) {
+                        //
+                        //                            }.fontSize(10).margin({ top: 3 })
+                        //                            .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                        //                            .fontWeight(FontWeight.Medium)
+                        //                            .lineHeight(14)
+                        //                        }.width("25%").opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
+                        //                        .onClick(() => {
+                        //
+                        //                        })
                         /** Favorites */
                         Column() {
                             Image($rawfile("icon/ic_msg_favorite_m.svg"))
@@ -883,6 +897,14 @@ struct bubbleText {
 
     @Builder MenuBuilder() {
         Row() {
+            Button($r("app.string.msg_transmit"))
+                .fontSize(14)
+                .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                .backgroundColor($r("sys.color.ohos_id_color_dialog_bg"))
+                .onClick(() => {
+                    this.conversationCtrl.longPressSelected(1)
+                    this.showMenu = false
+                })
             Button($r("app.string.delete"))
                 .fontSize(14)
                 .fontColor($r("sys.color.ohos_id_color_text_primary"))

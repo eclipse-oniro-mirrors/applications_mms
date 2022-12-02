@@ -275,8 +275,10 @@ export default class ConversationController {
         //      // Used for full-screen pages.
         //      this.fullScreenSend();
         //    }
-        //    // Forwarding and sending
-        //    this.transmitSend();
+        // Initialize the forwarded data
+        this.initTransmitMeg();
+        // Forwarding and sending
+        this.transmitSend();
         //    // Obtaining data from external applications
         //    this.dataFromPick();
     }
@@ -714,7 +716,7 @@ export default class ConversationController {
                 break;
             case 1:
             // Forwarding
-            //        this.transmitMsgSingle();
+                this.transmitMsgSingle();
                 break;
             case 2:
             // Delete
@@ -736,6 +738,198 @@ export default class ConversationController {
                 break;
         }
     }
+
+    // Initializing Forwarding Data
+    initTransmitMeg() {
+        let routerParams: LooseObject = router.getParams();
+        if (routerParams.transmitFlag) {
+            this.threadId = routerParams.threadId;
+            //this.slotId = routerParams.slotId;
+            this.contactsNum = this.contactsNum;
+            this.strContactsName = routerParams.strContactsName;
+            this.strContactsNumber = routerParams.strContactsNumber;
+            this.strContactsNumberFormat = routerParams.strContactsNumberFormat;
+            this.initNewPageContracts();
+        }
+    }
+
+    // Forwarding and sending
+    transmitSend() {
+        // Send Flag
+        let transmitFlag = router.getParams().transmitFlag;
+        //Indicates whether the slide page is an MMS message.
+        let isSlideDetail = router.getParams().isSlideDetail;
+        if (transmitFlag) {
+            if(isSlideDetail) {
+                // Indicates whether the currently edited message is an MMS message.
+                this.isEditMms = true;
+                this.mmsTransmitSend();
+            } else {
+                this.generalTransmitSend();
+            }
+        }
+    }
+
+    generalTransmitSend() {
+        let transmitSource = router.getParams().transmitSource;
+        let isSource = router.getParams().isContainerOriginSource;
+        this.canSendMessage = false;
+        for (let element of transmitSource) {
+            let content = common.string.EMPTY_STR;
+            if (isSource && !element.isMsm) {
+                content = element.contentInfo + element.content;
+            } else {
+                content = element.content;
+            }
+            let actionData = {
+                content: content,
+                mmsSource: element.mms,
+                msgUriPath: element.msgUriPath
+            };
+            this.delayTransmitSend(actionData, element.isMsm);
+        }
+    }
+
+    delayTransmitSend(element, isMms) {
+        setTimeout(() => {
+            this.sendSms(element.content, element.msgUriPath, isMms, element.mmsSource);
+        }, 500);
+    }
+
+    sendSms(content, msgUriPath, isMms, mmsSource) {
+        HiLog.i(TAG, 'JS_conversation , sendSms start');
+        // Sending an SMS Message on a Full-Screen Page
+        this.isSendStatus = true;
+        // Initialize the data to be sent.
+        this.initSendSms(content, msgUriPath, isMms, mmsSource);
+        let actionData = {
+            slotId: this.slotId,
+            destinationHost: this.strContactsNumber,
+            content: content,
+            isEditMms: isMms
+        };
+        this.dealNewRecallMessagesFlag(this.mmsList);
+        HiLog.i(TAG, 'JS_conversation , sendSms send start');
+        // Cancel Sending and Normal Sending Methods
+        this.sendInterval(actionData, this.mmsList);
+        HiLog.i(TAG, 'JS_conversation , sendSms send end');
+        if (this.isEditMms) {
+            this.isEditMms = false;
+        }
+    }
+
+    initSendSms(content, msgUriPath, isMms, mmsSource) {
+        // Obtain the day of the week.
+        let item = {};
+        item.date = common.string.EMPTY_STR;
+        item.time = $r('app.string.just');
+        item.timeMillisecond = new Date().getTime();
+        dateUtil.convertTimeStampToDateWeek(item, false, this);
+        item.content = content;
+        if (isMms) {
+            item.msgType = common.MSG_ITEM_TYPE.IMAGE;
+            item.msgUriPath = msgUriPath;
+        }
+        item.isFullScreenImg = false;
+        let time = (this.mmsEditList.length != 0 && (this.mmsEditList[0].type == 3 || this.mmsEditList[0].type == 5)) ?
+        this.mmsEditList[0].time : common.string.SUCCESS;
+        item.audioTime = time;
+        item.isCbChecked = false;
+        item.isLock = false;
+        item.isStared = false;
+        item.isReceive = false;
+        item.sendStatus = 1;
+        item.subId = this.slotId;
+        item.isMsm = isMms;
+        this.contactsNum = this.strContactsNumber.split(',').length;
+        item.contactsNum = this.contactsNum;
+        item.cancelTimeCount = common.int.CANCEL_TIME_COUNT;
+        item.mmsEditListTemp = this.fillmmsEditListTemp(msgUriPath, isMms);
+        if (this.contactsNum > 1) {
+            item.completeNumber = 0;
+            item.failuresNumber = 0;
+        }
+        item.hasReport = settingService.judgeIsDeliveryReport(item.isMsm);
+        item.mmsSource = mmsSource;
+        if (this.isEditMms || isMms) {
+            item.msgShowType = commonService.getDisplay(mmsSource);
+            commonService.setItemMmsContent(item, mmsSource);
+            item.content = this.dealItemContent(item.msgShowType, item.content, mmsSource);
+        } else {
+            item.msgShowType = common.MESSAGE_SHOW_TYPE.NORMAL;
+        }
+        this.mmsList.push(item);
+    }
+
+    fillmmsEditListTemp(msgUriPath, isMsm) {
+        let mmsEditListTemp = [];
+        if (this.recallMessagesFlag && isMsm) {
+            let item = {};
+            item.type = common.MSG_ITEM_TYPE.IMAGE;
+            item.uriPath = msgUriPath;
+            mmsEditListTemp.push(item);
+        }
+        return mmsEditListTemp;
+    }
+
+    dealNewRecallMessagesFlag(mmsList) {
+        let count = common.int.MESSAGE_CODE_ZERO;
+        for (let index in mmsList) {
+            let item = mmsList[index];
+            if (!item.isDraft) {
+                count++;
+            }
+        }
+        if (count == common.int.MESSAGE_CODE_ONE) {
+            this.isNewRecallMessagesFlag = true;
+            this.paramContact.isNewRecallMessagesFlag = true;
+        }
+        if (count == common.int.MESSAGE_CODE_ZERO && this.isNewRecallMessagesFlag) {
+            this.isNewMsg = true;
+            this.isNewRecallMessagesFlag = false;
+        }
+    }
+
+    // Single Forwarding
+    transmitMsgSingle() {
+        // Forwarding a single message
+        let item = this.mmsList[this.mmsIndex];
+        let transmitObj = {};
+        let contactsName = common.string.EMPTY_STR;
+        if (this.strContactsName && this.strContactsName != common.string.EMPTY_STR) {
+            contactsName = $r('app.string.transmitContentReceive',  this.strContactsName);
+        } else {
+            contactsName = $r('app.string.transmitContentReceive', this.strContactsNumberFormat);
+        }
+        transmitObj.contactsName = contactsName;
+        transmitObj.isMsm = item.isMsm;
+        transmitObj.msgShowType = item.msgShowType;
+        transmitObj.mms = item.mms;
+        transmitObj.content = item.content;
+        transmitObj.msgUriPath = item.msgUriPath ? item.msgUriPath : common.string.EMPTY_STR;
+        transmitObj.contentInfo = common.string.EMPTY_STR;
+        transmitObj.msgType = item.msgType;
+        let transmitContentList = [];
+        transmitContentList.push(transmitObj);
+        let transmitContent = item.isReceive ? contactsName : $r('app.string.transmitContent');
+        this.jumpTransmitMsg(transmitContent, transmitContentList, item.isMsm);
+    }
+
+    jumpTransmitMsg(transmitContent, transmitContentList, isMms) {
+        router.push({
+            uri: 'pages/transmitmsg/transmitMsg',
+            params: {
+                threadId: this.threadId,
+                doubleCard: this.cardImage,
+                transmitContent: transmitContent,
+                transmitContentList: transmitContentList,
+                isMulti: true,
+                isMms: isMms,
+                isMyStartPage: false
+            }
+        });
+    }
+
     // Delete a dialog box.
     deleteDialogShow() {
         this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
