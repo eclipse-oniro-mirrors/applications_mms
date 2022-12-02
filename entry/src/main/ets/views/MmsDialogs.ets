@@ -310,3 +310,191 @@ export struct CheckBoxDialog {
         .padding({ left: 24, right: 24, top: 24, bottom: 16 })
     }
 }
+
+@CustomDialog
+export struct TransmitMsgDialog {
+    scroller: Scroller = new Scroller()
+    controller: CustomDialogController;
+    /**
+     * Cancel an event
+     */
+    cancel: () => void;
+    /**
+     * Acknowledgment Events
+     */
+    confirm: () => void;
+    /**
+     * Message content
+     */
+    msg: object | Resource | any;
+
+    isChecked: boolean = true;
+
+    changeValue?: () => void;
+
+    clickChecked?: () => void;
+
+    build() {
+        Column() {
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+                Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }){
+                    // Title
+                    Column() {
+                        if(this.msg.contactsParam.contactsNum > 1) {
+                            Text() {
+                                Span($r("app.string.contentSentTo"))
+                                    .fontSize(20)
+                                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                    .fontWeight(FontWeight.Bold)
+                                Span(this.msg.contactsParam.contactName == "" ?
+                                this.msg.contactsParam.telephoneFormatSplit :
+                                this.msg.contactsParam.contactNameSplit)
+                                    .fontSize(20)
+                                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                    .fontWeight(FontWeight.Bold)
+                                Span($r('app.string.including'))
+                                    .fontSize(20)
+                                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                    .fontWeight(FontWeight.Bold)
+                                Span(this.msg.contactsParam.contactsNum)
+                                    .fontSize(20)
+                                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                    .fontWeight(FontWeight.Bold)
+                                Span($r('app.string.people'))
+                                    .fontSize(20)
+                                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                    .fontWeight(FontWeight.Bold)
+                            }
+                        } else {
+                            Text() {
+                                Span($r("app.string.contentSentTo"))
+                                    .fontSize(20)
+                                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                    .fontWeight(FontWeight.Bold)
+                                Span(this.msg.contactsParam.contactName == '' ?
+                                this.msg.contactsParam.telephoneFormat :
+                                this.msg.contactsParam.contactName)
+                                    .fontSize(20)
+                                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                    .fontWeight(FontWeight.Bold)
+                            }
+                        }
+                    }
+                    .alignItems(HorizontalAlign.Start)
+                    .width("100%")
+
+                    // Forwarded content
+                    Column(){
+                        List() {
+                            ForEach(this.msg.transmitContentList, item => {
+                                ListItem() {
+                                    if( item.msgShowType == 0 || item.msgShowType == 4){
+                                        Flex() {
+                                            if( item.msgUriPath != '' && (item.msgType==1 || item.msgType == 2)) {
+                                                Image($rawfile(item.msgUriPath))
+                                                    .width('100%')
+                                                    .height(150)
+                                            } else if( item.msgUriPath != '' && item.msgType == 5) {
+                                                Image($rawfile("icon/msg_contacts.svg"))
+                                                    .height(48)
+                                                    .width(48)
+                                                    .margin({left: 10, right: 10})
+                                                Flex() {
+                                                    Text(item.msgUriPath)
+                                                        .align(Alignment.Center)
+                                                    if(item.audioTime != '') {
+                                                        Text(item.audioTime)
+                                                            .align(Alignment.Center)
+                                                    }
+                                                }
+                                                .padding(5)
+                                                .margin({right: 40})
+                                            } else if(item.content != '') {
+                                                if(this.isChecked || (!this.isChecked && item.isMsm)) {
+                                                    Flex() {
+                                                        Text(item.contentInfo)
+                                                        Text(item.content)
+                                                            .fontSize(16)
+                                                    }
+                                                    .padding({ top: 20 })
+
+                                                } else if(!this.isChecked && !item.isMsm) {
+                                                    TextArea({
+                                                        text: item.content
+                                                    })
+                                                        .onChange((item) => {
+                                                            this.changeValue()
+                                                        })
+                                                }
+                                            }
+                                        }
+                                    } else if(item.msgShowType == 1 || item.msgShowType == 2) {
+                                        Flex() {
+                                            Image($rawfile("icon/ppt.svg"))
+                                                .width('100%')
+                                                .height(150)
+                                            if(item.content != '') {
+                                                Text(item.content)
+                                            }
+                                        }
+                                        .padding(20)
+                                        .backgroundColor('#20A9A9A9')
+                                        .borderRadius(15)
+                                    } else {
+                                        Flex() {
+                                            if(item.content != '') {
+                                                Text(item.content)
+                                                    .margin({ top: 10, left: 30, bottom: 10})
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }, item => item.msgType.toString())
+                        }
+                    }
+                    .alignItems(HorizontalAlign.Start)
+                    .width("100%")
+                }
+            }
+
+            Flex({ justifyContent: FlexAlign.SpaceAround }) {
+                Button() {
+                    Text($r("app.string.cancel"))
+                        .textAlign(TextAlign.Center)
+                        .fontSize(16)
+                        .fontColor($r("sys.color.ohos_id_color_floating_button_bg_normal"))
+                        .fontWeight(FontWeight.Medium)
+                        .fontFamily("HarmonyHeiTi")
+                        .lineHeight(22)
+                }
+                .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+                .layoutWeight(1)
+                .onClick(() => {
+                    this.controller.close();
+                    this.cancel();
+                })
+
+                Divider().vertical(true).strokeWidth("1px").height("20vp").color($r("sys.color.ohos_id_color_list_separator"))
+                Button() {
+                    Text($r("app.string.msg_transmit"))
+                        .textAlign(TextAlign.Center)
+                        .fontSize(16)
+                        .fontColor($r("sys.color.ohos_id_color_warning"))
+                        .fontWeight(FontWeight.Medium)
+                        .fontFamily("HarmonyHeiTi")
+                        .lineHeight(22)
+                }
+                .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+                .layoutWeight(1)
+                .onClick(() => {
+                    this.controller.close();
+                    this.confirm();
+                })
+            }
+        }
+        .width("100%")
+        .height(200)
+        .padding({ left: 24, right: 24, top: 24, bottom:40 })
+    }
+}
