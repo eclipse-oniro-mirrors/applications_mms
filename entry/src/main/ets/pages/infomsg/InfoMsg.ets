@@ -21,7 +21,8 @@ import { MoreMenu } from "../../views/MmsMenu";
 @Entry
 @Component
 export default struct InfoMsg {
-    @StorageLink("InfoMsgController") mInfoMsgCtrl: InfoMsgController = InfoMsgController.getInstance();
+    @StorageLink("InfoMsgController") @Watch("changeSelectState") mInfoMsgCtrl: InfoMsgController = InfoMsgController.getInstance();
+    @State mIsMultipleSelectState : boolean = false;
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
     private gridGutter: string = "24vp";
@@ -71,6 +72,12 @@ export default struct InfoMsg {
 //            enabled: true
 //        }
     ];
+
+    changeSelectState() {
+        this.mIsMultipleSelectState = this.mInfoMsgCtrl.isMultipleSelectState
+        // @ts-ignore
+        this.forceCompleteRerender(true) // recusvise
+    }
 
     /**
      * The function executes after a new instance of the custom component is created and before its build function
@@ -131,7 +138,7 @@ export default struct InfoMsg {
             GridCol({ span: this.girdSpan }) {
                 //Notification Information
                 Column() {
-                    if (this.mInfoMsgCtrl.isMultipleSelectState) {
+                    if (this.mIsMultipleSelectState) {
                         //Multi-Select Status Title
                         Flex({ direction: FlexDirection.Column }) {
                             Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
@@ -189,7 +196,7 @@ export default struct InfoMsg {
                             .layoutWeight(1)
                             .height("40vp")
                             .border({ radius: "20vp" })
-                            .enabled(!this.mInfoMsgCtrl.isMultipleSelectState)
+                            .enabled(!this.mIsMultipleSelectState)
                             .backgroundColor($r("sys.color.ohos_id_color_text_field_bg"))
                             .onChange((value: string) => {
                                 this.mInfoMsgCtrl.clickToSearch(value);
@@ -215,7 +222,7 @@ export default struct InfoMsg {
                                             MmsListItem({
                                                 item: item,
                                                 isShowHead: this.mInfoMsgCtrl.isShowContactHeadIcon,
-                                                isMultipleSelectState: this.mInfoMsgCtrl.isMultipleSelectState,
+                                                isMultipleSelectState: this.mIsMultipleSelectState,
                                                 onClickHead: (event: ClickEvent) => {
                                                     this.mInfoMsgCtrl.clickToGroupDetail(item.index);
                                                 },
@@ -233,6 +240,8 @@ export default struct InfoMsg {
                                                 },
                                                 onTouchEnd: (event: GestureEvent) => {
                                                     this.mInfoMsgCtrl.touchEnd(event, item.index);
+                                                    // @ts-ignore
+                                                    this.forceCompleteRerender(true) // recusvise
                                                 },
                                                 onClickFirstSlipBtn: (event: ClickEvent) => {
                                                     this.mInfoMsgCtrl.markAllAsReadByIndex(item.index);
@@ -248,7 +257,7 @@ export default struct InfoMsg {
                                         .height("64vp")
                                         .alignSelf(ItemAlign.Start)
                                     }
-                                }, item => item.threadId)
+                                }, item => JSON.stringify(item))
                             }
                             .align(Alignment.Top)
                             .cachedCount(this.mInfoMsgCtrl.limit)

@@ -38,26 +38,9 @@ export struct MmsListItem {
                         Stack() {
                             Column() {
                                 Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-                                    if (this.item.conversation.countOfUnread > 0) {
-                                        Text(this.item.conversation.countOfUnread < 100 ?
-                                        this.item.conversation.countOfUnread.toString() : "99+")
-                                            .fontSize(10)
-                                            .align(Alignment.Center)
-                                            .padding({ left: 5, right: 5 })
-                                            .height(20)
-                                            .backgroundColor($r("sys.color.ohos_id_color_badge_red"))
-                                            .fontColor($r("sys.color.ohos_id_color_background"))
-                                            .zIndex(2)
-                                            .position({ x: "60%", y: "-10%" })
-                                            .border({
-                                                width: 2,
-                                                color: $r("sys.color.ohos_id_color_background"),
-                                                radius: 50
-                                            })
-                                    }
                                     //SMS message type. 0: common; 1: notification
-                                    if(this.item.conversation.smsType === 0) {
-                                        if(this.item.conversation.photoFirstName === '') {
+                                    if (this.item.conversation.smsType === 0) {
+                                        if (this.item.conversation.photoFirstName === '') {
                                             Image($rawfile("icon/ic_user_portrait.svg"))
                                                 .objectFit(ImageFit.Fill)
                                                 .width("40vp")
@@ -80,6 +63,23 @@ export struct MmsListItem {
                                             .objectFit(ImageFit.Fill)
                                             .width("40vp")
                                             .height("40vp")
+                                    }
+                                    if (this.item.conversation.countOfUnread > 0) {
+                                        Text(this.item.conversation.countOfUnread < 100 ?
+                                        this.item.conversation.countOfUnread.toString() : "99+")
+                                            .fontSize(10)
+                                            .align(Alignment.Center)
+                                            .padding({ left: 5, right: 5 })
+                                            .height(20)
+                                            .backgroundColor($r("sys.color.ohos_id_color_badge_red"))
+                                            .fontColor($r("sys.color.ohos_id_color_background"))
+                                            .zIndex(2)
+                                            .position({ x: "60%", y: "-10%" })
+                                            .border({
+                                                width: 2,
+                                                color: $r("sys.color.ohos_id_color_background"),
+                                                radius: 50
+                                            })
                                     }
                                 }
                                 .width("40vp")
@@ -169,8 +169,9 @@ export struct MmsListItem {
                             .width("20vp")
                             .height("20vp")
                             .selectedColor($r("sys.color.ohos_id_color_activated"))
-                            .enabled(false)
-                            .margin({ right: -14 })
+                            .hitTestBehavior(HitTestMode.None)
+                        //              .enabled(false)
+                        //              .margin({ right: -14 })
                     }
                 }
                 .alignItems(VerticalAlign.Top)

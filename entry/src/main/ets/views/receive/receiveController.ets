@@ -377,6 +377,7 @@ export default class ReceiveController {
     }
 
     dealContractParams(contactObjects, call) {
+        this.selectContacts = [];
         let params = JSON.parse(contactObjects);
         if (this.checkSingle()) {
             return;
