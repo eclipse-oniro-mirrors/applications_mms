@@ -6,6 +6,7 @@
     "pages/settings/settings",
     "pages/settings/advancedSettings/advancedSettings",
     "pages/settings/ringtoneSettings/ringtoneSettings",
-    "pages/queryreport/queryReport"
+    "pages/queryreport/queryReport",
+    "pages/transmitmsg/transmitMsg"
   ]
 }

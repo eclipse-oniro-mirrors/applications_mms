@@ -24,11 +24,18 @@ const TAG = "ConversationList";
 
 @Component
 export default struct ConversationList {
-    @Link mConListCtrl: ConListController;
+    @Link @Watch("changeSelectState") mConListCtrl: ConListController;
     private dialogAlignment: DialogAlignment = DeviceUtil.isTablet() ? DialogAlignment.Center : DialogAlignment.Bottom;
     private dialogOffset: Offset = DeviceUtil.isTablet() ? { dx: 0, dy: 0 } : { dx: 0, dy: -12 };
     private dialogGridCount: number = 4;
     delDialogController: CustomDialogController = null;
+    @State mIsMultipleSelectState: boolean = false;
+
+    changeSelectState() {
+        this.mIsMultipleSelectState = this.mConListCtrl.isMultipleSelectState;
+        // @ts-ignore
+        this.forceCompleteRerender(true) // recusvise
+    }
 
     /**
      * The function executes after a new instance of the custom component is created and before its build function
@@ -263,7 +270,7 @@ export default struct ConversationList {
                                     MmsListItem({
                                         item: item,
                                         isShowHead: this.mConListCtrl.isShowContactHeadIcon,
-                                        isMultipleSelectState: this.mConListCtrl.isMultipleSelectState,
+                                        isMultipleSelectState: this.mIsMultipleSelectState,
                                         onClickHead: (event: ClickEvent) => {
                                             this.mConListCtrl.clickToGroupDetail(item.index);
                                         },
@@ -278,6 +285,8 @@ export default struct ConversationList {
                                         },
                                         onTouchUpdate: (event: GestureEvent) => {
                                             this.mConListCtrl.touchMove(event, item.index);
+                                            // @ts-ignore
+                                            this.forceCompleteRerender(true) // recusvise
                                         },
                                         onTouchEnd: (event: GestureEvent) => {
                                             this.mConListCtrl.touchEnd(event, item.index);
@@ -360,7 +369,7 @@ export default struct ConversationList {
             .height("100%")
             if (this.mConListCtrl.hasNoOrdinaryMsg && !(this.mConListCtrl.hasAggregate && this.mConListCtrl.hasInfoMsg
             && this.mConListCtrl.isSearchStatus)) {
-                EmptyView()
+                EmptyView().hitTestBehavior(HitTestMode.Transparent)
             }
         }
         .width("100%")
@@ -372,7 +381,7 @@ export default struct ConversationList {
 struct EmptyView {
 
     build() {
-        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
             Column() {
                 Image($rawfile("icon/ic_massage_m.svg"))
                     .width($r("app.float.empty_image_width"))
@@ -384,8 +393,8 @@ struct EmptyView {
                     .fontSize($r("app.float.conversation_list_no_message_fs"))
                     .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
             }
-            .margin({ top: '40%' })
-            .offset({ y: -60 })
+            //             .margin({ top: '40%' })
+            //             .offset({ y: -60 })
         }
         .height("100%")
         .width("100%")
