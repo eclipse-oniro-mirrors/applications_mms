@@ -514,7 +514,7 @@ export default {
     updateLastItemContent(actionData) {
         let length = actionData.mmsList.length;
         let item = actionData.mmsList[length - 1];
-        let content = item.content;
+        let content = item.content || '';
         let threadIds = [actionData.threadId];
         let hasAttachment = false;
         if (item.isMsm) {

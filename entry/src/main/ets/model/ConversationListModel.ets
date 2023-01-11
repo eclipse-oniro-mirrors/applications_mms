@@ -34,7 +34,7 @@ export default class ConversationListModel extends BaseModel {
         }
         await predicates.orderByDesc(mmsTable.sessionField.time);
         await predicates.limitAs(actionData.limit);
-        let offset = actionData.page < 3 ? (actionData.page - 1) * 50 : (actionData.page - 2) * 500 + 50;
+        let offset = actionData.page < 3 ? (actionData.page - 1) * 50 : (actionData.page - 2) * 100 + 50;
         await predicates.offsetAs(offset);
         let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
         let sessionList = [];
@@ -118,10 +118,7 @@ export default class ConversationListModel extends BaseModel {
             await predicates.equalTo(mmsTable.sessionField.smsType, numberType);
         }
         let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
-        let count = 0;
-        while (resultSet.goToNextRow()) {
-            count++;
-        }
+        let count = resultSet.rowCount;
         let result = {
             total: count,
         }

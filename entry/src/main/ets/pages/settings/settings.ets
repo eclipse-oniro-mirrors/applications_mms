@@ -19,6 +19,8 @@ import router from "@system.router";
 import { SettingItemSwitch, SettingItemJump } from "../../views/SettingItem";
 import SettingsController from "./settingsController";
 import HiLog from "../../utils/HiLog";
+import WantUtil from "../../utils/WantUtil";
+
 const TAG = "Settings";
 @Entry
 @Component
@@ -76,7 +78,8 @@ struct Settings {
      * and background, only customized components modified by @Entry take effect.
      */
     onPageShow() {
-        this.mSettingsCtrl.onShow()
+        this.mSettingsCtrl.onShow();
+        WantUtil.getWant();
     }
 
     /**

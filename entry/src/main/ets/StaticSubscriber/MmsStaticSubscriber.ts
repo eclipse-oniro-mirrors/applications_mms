@@ -623,8 +623,12 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             if (content.length > 15) {
                 content = content.substring(0, 15) + "...";
             }
+            let title = telephone;
+            if(contracts.length > 0) {
+                title = contracts[0].displayName
+            }
             let message = {
-                title: content,
+                title: title,
                 text: content,
             };
             actionData.message = message;

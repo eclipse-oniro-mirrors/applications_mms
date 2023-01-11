@@ -18,6 +18,7 @@ import { MmsSimpleDialog } from "../../../views/MmsDialogs";
 import { MoreMenu } from "../../../views/MmsMenu";
 import router from "@system.router";
 import { SettingItemJump } from "../../../views/SettingItem";
+import WantUtil from "../../../utils/WantUtil";
 
 @Entry
 @Component
@@ -84,7 +85,8 @@ struct AdvancedSettings {
      * and background, only customized components modified by @Entry take effect.
      */
     onPageShow() {
-        this.mAdvancedSettingsCtrl.onShow()
+        this.mAdvancedSettingsCtrl.onShow();
+        WantUtil.getWant();
     }
     /**
      * Triggers once when this page disappears. In scenarios such as routing and application access to the foreground
@@ -371,6 +373,7 @@ struct DeliveryReportsDialog {
             .padding({ left: 16, right: 16, bottom: 16 })
         }
         .width("100%")
+        .borderRadius(16)  // Customdialog need to set borderRadius
         .backgroundColor($r("sys.color.ohos_id_color_dialog_bg"))
     }
 }

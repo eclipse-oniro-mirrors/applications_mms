@@ -136,6 +136,7 @@
     {"name": "putTime", "value": "Put: "},
     {"name": "addSlide", "value": "Add slide"},
     {"name": "sendAddresser", "value": "From: "},
+    {"name": "sender", "value": "Sender: "},
     {"name": "putAddresser", "value": "To: "},
     {"name": "invalid_receive", "value": "Invalid receive:%s"},
     {"name": "and_others", "value": "%s and %d others"},

@@ -82,6 +82,9 @@ export struct MoreMenu {
                     .lineHeight(14)
                     .fontColor(this.menuTextColor)
                     .margin({ top: 3 })
+                    .fontSize($r("sys.float.ohos_id_text_size_caption"))
+                    .fontWeight(FontWeight.Medium)
+                    .fontColor($r("sys.color.ohos_id_color_toolbar_text"))
             }
         }
         .bindMenu(this.PopupBuilder)

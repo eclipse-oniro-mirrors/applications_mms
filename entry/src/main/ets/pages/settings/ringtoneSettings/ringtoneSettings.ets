@@ -12,9 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import WantUtil from "../../../utils/WantUtil";
 @Entry
 @Component
 struct RingtoneSettings {
+    onPageShow() {
+        WantUtil.getWant();
+    }
     build() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Text("这是铃声设置界面")

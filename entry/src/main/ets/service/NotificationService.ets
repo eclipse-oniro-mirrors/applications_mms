@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import WantAgent from "@ohos.wantAgent";
-import Notification from "@ohos.notification";
+import WantAgent from "@ohos.app.ability.wantAgent";
+import Notification from "@ohos.notificationManager";
 import common from "../data/commonData";
 import HiLog from "../utils/HiLog";
 import conversationService from "./ConversationService";

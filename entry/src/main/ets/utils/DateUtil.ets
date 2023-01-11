@@ -253,5 +253,32 @@ export default {
             return $r("app.string.hourAndMinute", hoursOfSmsStr, minutesOfSmsStr);
         }
         return this.timeTwelveHourSystem(hoursOfSms, minutesOfSmsStr, hoursOfSmsStr);
+    },
+
+    fullDate(item) {
+                let timeOfSms: Resource = null;
+        let fullDate: Resource = null;
+        let sms = new Date(item.timeMillisecond);
+        let yearOfSms = sms.getFullYear();
+        let monthOfSms = sms.getMonth() + 1;
+        let dayOfSms = sms.getDate();
+        let hoursOfSms = sms.getHours();
+        let minutesOfSms = sms.getMinutes();
+        let hoursOfSmsStr: string = hoursOfSms + '';
+        let minutesOfSmsStr: string = minutesOfSms + '';
+        if (hoursOfSms > 12) {
+            hoursOfSmsStr = "" + (hoursOfSms - 12);
+        }
+        if (minutesOfSms < 10) {
+            minutesOfSmsStr = "0" + minutesOfSms;
+        }
+        if( hoursOfSms < 12) {
+            timeOfSms = $r("app.string.forenoon", hoursOfSmsStr, minutesOfSmsStr);
+        } else {
+            timeOfSms = $r("app.string.afternoon", hoursOfSmsStr, minutesOfSmsStr);
+        }
+        fullDate = $r("app.string.yearMonthDayDate", yearOfSms, monthOfSms, dayOfSms, '');
+        item.fullDate = fullDate;
+        item.timeOfSms = timeOfSms;
     }
 }
