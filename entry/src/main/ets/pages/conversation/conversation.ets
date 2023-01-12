@@ -22,6 +22,8 @@ import LooseObject from "../../data/LooseObject";
 import { MoreMenu } from "../../views/MmsMenu";
 import Common from "./common";
 import router from "@system.router";
+import WantUtil from "../../utils/WantUtil";
+import { DelConversionDialog } from "../../views/MmsDialogs";
 
 @Entry
 @Component
@@ -40,6 +42,9 @@ export struct Conversation {
             value: $r("app.string.delete"),
             action: () => {
                 this.mConversationCtrl.longPressMore(0);
+                if (this.mConversationCtrl.mmsList.length == 1) {
+                    this.delConversionController.open();
+                }
             },
             enabled: true
         },
@@ -65,6 +70,21 @@ export struct Conversation {
         offset: { dx: 0, dy: $r("app.float.dialog_bottom_margin") },
         gridCount: this.dialogGridCount
     })
+    delConversionController: CustomDialogController = new CustomDialogController({
+        builder: DelConversionDialog({
+            cancel: () => {
+                this.mConversationCtrl.deleteDialogCancel()
+            },
+            confirm: () => {
+                this.mConversationCtrl.deleteDialogConfirm()
+            },
+            msg: this.mConversationCtrl.strMsgDeleteDialogTip,
+        }),
+        autoCancel: false,
+        alignment: DialogAlignment.Bottom,
+        offset: { dx: 0, dy: $r("app.float.dialog_bottom_margin") },
+        gridCount: this.dialogGridCount
+    });
 
     aboutToAppear() {
         this.mConversationCtrl.onInit();
@@ -77,6 +97,7 @@ export struct Conversation {
     }
 
     onPageShow() {
+        WantUtil.getWant();
     }
 
     onPageHide() {
@@ -172,8 +193,8 @@ export struct Conversation {
                                                 })
                                         } else {
                                             Text(this.mConversationCtrl.photoFirstName)
-                                                .fontSize("30vp")
-                                                .fontWeight(FontWeight.Bold)
+                                                .fontSize($r("sys.float.ohos_id_text_size_headline8"))
+                                                .fontWeight(FontWeight.Medium)
                                                 .fontColor(Color.White)
                                                 .height("40vp")
                                                 .width("40vp")
@@ -197,19 +218,21 @@ export struct Conversation {
                                                 Text(this.mConversationCtrl.strContactsName)
                                                     .maxLines(1)
                                                     .textOverflow({ overflow: TextOverflow.Ellipsis })
-                                                    .fontSize(16)
+                                                    .fontSize(20)
                                                     .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                                    .fontWeight(FontWeight.Medium)
                                                 Text($r("app.string.members", this.mConversationCtrl.contactsNum))
                                                     .maxLines(1)
                                                     .textOverflow({ overflow: TextOverflow.Ellipsis })
-                                                    .fontSize(14)
+                                                    .fontSize(20)
                                                     .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
+                                                    .fontWeight(FontWeight.Medium)
                                             } else if (this.mConversationCtrl.strContactsName == '' ||
                                                       this.mConversationCtrl.strContactsName == null) {
                                                 Text(this.mConversationCtrl.strContactsNumberFormat)
                                                     .maxLines(1)
                                                     .textOverflow({ overflow: TextOverflow.Ellipsis })
-                                                    .fontSize(16)
+                                                    .fontSize(20)
                                                     .fontColor($r("sys.color.ohos_id_color_text_primary"))
                                                     .fontWeight(FontWeight.Medium)
                                             } else {
@@ -223,9 +246,10 @@ export struct Conversation {
                                                 Text(this.mConversationCtrl.strContactsNumberFormat)
                                                     .maxLines(1)
                                                     .textOverflow({ overflow: TextOverflow.Ellipsis })
-                                                    .fontSize(14)
+                                                    .fontSize(20)
                                                     .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
                                                     .lineHeight(19)
+                                                    .fontWeight(FontWeight.Medium)
                                             }
                                         }
                                     }
@@ -270,10 +294,10 @@ export struct Conversation {
                     // SMS message content
                     // <!--Information List-->
                     if (!this.mConversationCtrl.isNewMsg) {
-                        List({ space: 10, initialIndex: this.mConversationCtrl.mmsList.length - 1 }) {
+                        List({ space: 10, initialIndex: this.mConversationCtrl.mmsList.length - 1, scroller: this.mConversationCtrl.scroller }) {
                             ForEach(this.mConversationCtrl.mmsList, (item, index) => {
                                 ListItem() {
-                                    Column() {
+                                    Row() {
                                         GridRow({ columns: this.gridColumns, gutter: this.gridGutter }) {
                                             // <!--Information Sending Item-->
                                             if (!item.isReceive && !item.isDraft) {
@@ -349,8 +373,10 @@ export struct Conversation {
                                                                             content: item.content,
                                                                             bubbleTextBackgroundColor: $r("app.color.sender_bubble"),
                                                                             isShowMsgLongMenu: item.isShowMsgLongMenu,
-                                                                            itemIndex: index
+                                                                            itemIndex: index,
+                                                                            delConversionController: this.delConversionController
                                                                         })
+                                                                            .constraintSize({maxWidth: 284})
                                                                     }
                                                                 }
                                                                 // <!--Sending time and sending status-->
@@ -423,24 +449,6 @@ export struct Conversation {
                                                             .height(30)
                                                             .visibility(this.mConversationCtrl.contactsNum > 1 ?
                                                             Visibility.Visible : Visibility.None)
-                                                            // Information Checkbox
-                                                            if (this.mConversationCtrl.isSelectStatus) {
-                                                                Row() {
-                                                                    Toggle({
-                                                                        type: ToggleType.Checkbox,
-                                                                        isOn: item.isCbChecked
-                                                                    })
-                                                                        .selectedColor($r("sys.color.ohos_id_color_activated"))
-                                                                        .width(24)
-                                                                        .height(24)
-                                                                        .onChange(((isOn: boolean) => {
-                                                                            this.mConversationCtrl.listCheckBoxChange(index, isOn)
-                                                                        }))
-                                                                }
-                                                                .width(48)
-                                                                .height(48)
-                                                                .margin({ left: 4 })
-                                                            }
                                                         }
                                                     }
                                                     .width("100%")
@@ -474,7 +482,7 @@ export struct Conversation {
                                                                     .fontColor($r("sys.color.ohos_id_color_text_secondary"))
                                                             }.lineHeight(16).margin({ bottom: 8 })
                                                         }
-                                                   }.width("100%")
+                                                    }.width("100%")
                                                 }
                                                 GridCol({ span: this.messageGirdSpan }) {
                                                     Flex({
@@ -499,8 +507,10 @@ export struct Conversation {
                                                                         content: item.content,
                                                                         bubbleTextBackgroundColor: $r("sys.color.ohos_id_color_card_bg"),
                                                                         isShowMsgLongMenu: item.isShowMsgLongMenu,
-                                                                        itemIndex: index
+                                                                        itemIndex: index,
+                                                                        delConversionController: this.delConversionController
                                                                     })
+                                                                        .constraintSize({maxWidth: 284})
                                                                 }
                                                                 // <!--Sending time and sending status-->
                                                                 Flex({
@@ -533,31 +543,32 @@ export struct Conversation {
                                                             }
                                                             .width("100%")
                                                             .alignItems(HorizontalAlign.Start)
-
-                                                            if (this.mConversationCtrl.isSelectStatus) {
-                                                                Row() {
-                                                                    Toggle({
-                                                                        type: ToggleType.Checkbox,
-                                                                        isOn: item.isCbChecked
-                                                                    })
-                                                                        .selectedColor($r("sys.color.ohos_id_color_activated"))
-                                                                        .width(24)
-                                                                        .height(24)
-                                                                        .onChange(((isOn: boolean) => {
-                                                                            this.mConversationCtrl.listCheckBoxChange(index, isOn)
-                                                                        }))
-                                                                }
-                                                                .margin({ left: 4 })
-                                                                .width(48)
-                                                                .height(48)
-                                                            }
                                                         }
                                                     }.width("100%")
                                                 }
                                             }
+                                        }.layoutWeight(1)
+                                        if (this.mConversationCtrl.isSelectStatus) {
+                                            Row() {
+                                                Toggle({
+                                                    type: ToggleType.Checkbox,
+                                                    isOn: item.isCbChecked
+                                                })
+                                                    .selectedColor($r("sys.color.ohos_id_color_activated"))
+                                                    .width(24)
+                                                    .height(24)
+                                                    .onChange(((isOn: boolean) => {
+                                                        this.mConversationCtrl.listCheckBoxChange(index, isOn)
+                                                    }))
+                                            }
+                                            .margin({ left: 4 })
+                                            .width(48)
+                                            .height(48)
                                         }
-                                        .margin(this.curBp === 'sm' ? { left: 16, right: 16 } : { left: 24, right: 24})
                                     }
+                                    .padding(this.curBp === 'sm' ? { left: 16, right: 16 } : { left: 24, right: 24})
+                                    .width('100%')
+                                    .alignItems(VerticalAlign.Center)
                                 }.onClick(() => {
                                     if (this.mConversationCtrl.isSelectStatus) {
                                         this.mConversationCtrl.listCheckBoxChange(index,!item.isCbChecked)
@@ -601,24 +612,11 @@ export struct Conversation {
                         }.width("25%").opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
                         .onClick(() => {
                             if (this.mConversationCtrl.selectDeleteMsgCount != 0) {
-                                this.mConversationCtrl.clickGroupDelete()
+                                this.mConversationCtrl.clickGroupDelete();
+                                this.delConversionController.open();
                             }
                         })
                         /** Forwarding */
-                        Column() {
-                            Image($rawfile("icon/ic_transfer.svg"))
-                                .width(24)
-                                .height(24)
-                            Text($r("app.string.msg_transmit")) {
-
-                            }.fontSize(10).margin({ top: 3 })
-                            .fontColor($r("sys.color.ohos_id_color_text_primary"))
-                            .fontWeight(FontWeight.Medium)
-                            .lineHeight(14)
-                        }.width("25%").opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
-                        .onClick(() => {
-
-                        })
                         //                        Column() {
                         //                            Image($rawfile("icon/ic_transfer.svg"))
                         //                                .width(24)
@@ -634,20 +632,20 @@ export struct Conversation {
                         //
                         //                        })
                         /** Favorites */
-                        Column() {
-                            Image($rawfile("icon/ic_msg_favorite_m.svg"))
-                                .width(24)
-                                .height(24)
-                            Text($r("app.string.msg_star")) {
-
-                            }.fontSize(10).margin({ top: 3 })
-                            .fontColor($r("sys.color.ohos_id_color_text_primary"))
-                            .fontWeight(FontWeight.Medium)
-                            .lineHeight(14)
-                        }.width("25%").opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
-                        .onClick(() => {
-
-                        })
+                        //                        Column() {
+                        //                            Image($rawfile("icon/ic_msg_favorite_m.svg"))
+                        //                                .width(24)
+                        //                                .height(24)
+                        //                            Text($r("app.string.msg_star")) {
+                        //
+                        //                            }.fontSize(10).margin({ top: 3 })
+                        //                            .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                        //                            .fontWeight(FontWeight.Medium)
+                        //                            .lineHeight(14)
+                        //                        }.width("25%").opacity(this.mConversationCtrl.selectDeleteMsgCount == 0 ? 0.4 : 1)
+                        //                        .onClick(() => {
+                        //
+                        //                        })
                         /** Select All */
                         Column() {
                             Image(this.mConversationCtrl.isMessageCheckAll ? $rawfile("icon/ic_select_all_filled.svg")
@@ -727,7 +725,7 @@ export struct Conversation {
                                         })
                                         .borderRadius(20)
                                         .fontSize(16)
-                                }.constraintSize({ minHeight: 40, maxHeight: 584 })
+                                }.constraintSize({ minHeight: 40 })
                             }
                             .backgroundColor($r("sys.color.ohos_id_color_text_field_sub_bg"))
                             .padding(this.mConversationCtrl.cardImage ? { left: 8, right: 8 } : 0)
@@ -845,7 +843,7 @@ struct DetailsDialog {
             .fontFamily("HarmonyHeiTi")
 
             Text() {
-                Span($r("app.string.putAddresser")).fontSize(16)
+                Span(this.item.isReceive ? $r("app.string.sender") : $r("app.string.putAddresser")).fontSize(16)
                 Span(this.receiver).fontSize(16)
             }
             .fontSize(16)
@@ -855,7 +853,8 @@ struct DetailsDialog {
 
             Text() {
                 Span($r("app.string.sendTime")).fontSize(16)
-                Span(this.item.date).fontSize(16)
+                Span(this.item.fullDate ).fontSize(16)
+                Span(this.item.timeOfSms ).fontSize(16)
             }
             .fontSize(16)
             .fontColor($r("sys.color.ohos_id_color_text_primary"))
@@ -871,7 +870,8 @@ struct DetailsDialog {
                         .fontColor($r("sys.color.ohos_id_color_floating_button_bg_normal"))
                 }
                 .width(200)
-                .backgroundColor($r("sys.color.ohos_id_color_dialog_bg"))
+                .backgroundColor(Color.Transparent)
+                .margin({top: 5})
                 .onClick(() => {
                     this.controller.close()
                 })
@@ -887,6 +887,7 @@ struct DetailsDialog {
 @Component
 struct bubbleText {
     @Link conversationCtrl: ConversationController;
+    private delConversionController: any;
     private bubbleTextBorderRadius: Array<number>; // Fillet size, two parameters in total
     private bubbleTextDirection: string; // left: upper left corner right: upper right corner
     private content: string; // Bubble Display Content
@@ -894,6 +895,10 @@ struct bubbleText {
     private isShowMsgLongMenu: boolean;
     private itemIndex: number;
     @State showMenu: boolean = false
+
+    aboutToAppear() {
+        this.showMenu = this.isShowMsgLongMenu
+    }
 
     @Builder MenuBuilder() {
         Row() {
@@ -912,6 +917,7 @@ struct bubbleText {
                 .onClick(() => {
                     this.conversationCtrl.longPressSelected(2)
                     this.showMenu = false
+                    this.delConversionController.open();
                 })
             Button($r("app.string.more"))
                 .fontSize(14)

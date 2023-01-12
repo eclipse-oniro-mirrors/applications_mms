@@ -290,6 +290,8 @@ export default struct ConversationList {
                                         },
                                         onTouchEnd: (event: GestureEvent) => {
                                             this.mConListCtrl.touchEnd(event, item.index);
+                                            // @ts-ignore
+                                            this.forceCompleteRerender(true) // recusvise
                                         },
                                         onClickFirstSlipBtn: (event: ClickEvent) => { //Read
                                             this.mConListCtrl.markAllAsReadByIndex(item.index);
@@ -301,7 +303,7 @@ export default struct ConversationList {
                                     })
                                 }.width("100%")
                                 .height("64vp")
-                            }, (item: any) => item.conversation.threadId.toString())
+                            }, (item: any) => JSON.stringify(item))
                         }
                         .edgeEffect(EdgeEffect.Spring)
                         .width("100%")
@@ -394,7 +396,7 @@ struct EmptyView {
                     .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
             }
             //             .margin({ top: '40%' })
-            //             .offset({ y: -60 })
+            .offset({ y: -60 })
         }
         .height("100%")
         .width("100%")

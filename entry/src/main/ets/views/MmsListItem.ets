@@ -18,7 +18,7 @@ import LooseObject from "../data/LooseObject";
 export struct MmsListItem {
     @State item: LooseObject = {};
     private isShowHead: boolean = true;
-    private isMultipleSelectState: boolean = false;
+    @Prop isMultipleSelectState: boolean;
     onClickHead: (event?: ClickEvent) => void;
     onClickBody: (event?: ClickEvent) => void;
     onItemLongPress: (event?: GestureEvent) => void;
@@ -97,7 +97,7 @@ export struct MmsListItem {
                                 //Phone number or first name
                                 Text(this.item.conversation.name != '' ? this.item.conversation.name :
                                 this.item.conversation.telephoneFormat)
-                                    .fontSize("16fp")
+                                    .fontSize($r("sys.float.ohos_id_text_size_body1"))
                                     .textOverflow({ overflow: TextOverflow.Ellipsis })
                                     .fontColor($r("sys.color.ohos_id_color_text_primary"))
                                     .maxLines(1)
@@ -177,7 +177,7 @@ export struct MmsListItem {
                 .alignItems(VerticalAlign.Top)
                 .width("100%")
                 .height("100%")
-                .translate({
+                .offset({
                     x: this.item.conversation.itemLeft
                 })
                 //Swipe left to delete icon
@@ -202,7 +202,7 @@ export struct MmsListItem {
                     .height("100%")
                     .flexShrink(0)
                     .backgroundColor($r("sys.color.ohos_id_color_background"))
-                    .translate({
+                    .offset({
                         x: this.item.conversation.itemLeft
                     })
                 }

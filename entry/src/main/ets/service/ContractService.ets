@@ -87,7 +87,13 @@ export default {
      */
     dealContractParams(contactObjects) {
         if (contactObjects && contactObjects != common.string.EMPTY_STR) {
-            let params = JSON.parse(contactObjects);
+            let params = [];
+            try {
+                params = JSON.parse(contactObjects);
+            } catch (Error) {
+                HiLog.i(TAG, `JSON.parse error ${Error}`);
+                return {};
+            }
             let contactsNumber = common.string.EMPTY_STR;
             let contactsName = common.string.EMPTY_STR;
             let contactsNumberFormat = common.string.EMPTY_STR;

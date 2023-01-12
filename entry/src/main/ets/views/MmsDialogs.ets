@@ -120,6 +120,83 @@ export struct DeleteDialog {
     }
 }
 
+@CustomDialog
+export struct DelConversionDialog {
+    controller: CustomDialogController;
+    /**
+     * Cancel Event
+     */
+    cancel: () => void;
+    /**
+     * Acknowledge Event
+     */
+    confirm: () => void;
+    /**
+     * Message content
+     */
+    msg: string | Resource;
+
+    build() {
+        Column() {
+            Text(this.msg)
+                .width("100%")
+                .margin({ bottom: 8 })
+                .textAlign(TextAlign.Center)
+                .fontSize(16)
+                .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                .lineHeight(22)
+                .fontWeight(FontWeight.Regular)
+                .fontFamily("HarmonyHeiTi")
+            Flex({
+                direction: FlexDirection.Row,
+                justifyContent: FlexAlign.SpaceEvenly,
+                alignItems: ItemAlign.Center
+            }) {
+                Button() {
+                    Text($r("app.string.cancel"))
+                        .textAlign(TextAlign.Center)
+                        .fontSize(16)
+                        .fontColor($r("sys.color.ohos_id_color_floating_button_bg_normal"))
+                        .fontWeight(FontWeight.Medium)
+                        .fontFamily("HarmonyHeiTi")
+                        .lineHeight(22)
+                }
+                .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+                .layoutWeight(1)
+                .onClick(() => {
+                    this.controller.close();
+                    this.cancel();
+                })
+
+                Divider()
+                    .vertical(true)
+                    .strokeWidth("1px")
+                    .height("20vp")
+                    .color($r("sys.color.ohos_id_color_list_separator"))
+                Button() {
+                    Text($r("app.string.delete"))
+                        .textAlign(TextAlign.Center)
+                        .fontSize(16)
+                        .fontColor($r("sys.color.ohos_id_color_warning"))
+                        .fontWeight(FontWeight.Medium)
+                        .fontFamily("HarmonyHeiTi")
+                        .lineHeight(22)
+                }
+                .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+                .layoutWeight(1)
+                .onClick(() => {
+                    this.controller.close();
+                    this.confirm();
+                })
+            }
+            .width("100%")
+            .height(40)
+        }
+        .width("100%")
+        .padding({ left: 24, right: 24, top: 24, bottom: 16 })
+    }
+}
+
 export class MmsSimpleDialog {
     value: AlertDialogParamWithMms;
     private dialogGridCount: number = 4;
@@ -411,12 +488,20 @@ export struct TransmitMsgDialog {
                                                 .margin({right: 40})
                                             } else if(item.content != '') {
                                                 if(this.isChecked || (!this.isChecked && item.isMsm)) {
-                                                    Flex() {
-                                                        Text(item.contentInfo)
-                                                        Text(item.content)
-                                                            .fontSize(16)
+                                                    Column() {
+                                                        Column() {
+                                                            Text(this.msg.transmitContent)
+                                                            Text(item.contentInfo)
+                                                        }
+                                                        Column() {
+                                                            Text(item.content)
+                                                                .fontSize(16)
+                                                                .margin({ top: 5})
+                                                        }
                                                     }
                                                     .padding({ top: 20 })
+                                                    .width('100%')
+                                                    .alignItems(HorizontalAlign.Start)
 
                                                 } else if(!this.isChecked && !item.isMsm) {
                                                     TextArea({

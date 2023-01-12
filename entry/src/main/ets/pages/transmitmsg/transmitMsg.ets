@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import TransmitMsgController from "./TransmitMsgController";
+import TransmitMsgController from "./transmitMsgController";
 import DeviceUtil from "../../utils/DeviceUtil";
 import router from "@system.router";
 import { TransmitMsgDialog } from "../../views/MmsDialogs";
+import WantUtil from "../../utils/WantUtil";
 
 @Entry
 @Component
@@ -58,6 +59,7 @@ export default struct TransmitMsg {
     }
 
     onPageShow() {
+        WantUtil.getWant();
         if(this.mTransmitMsgCtrl.DialogShow){
             this.delDialogController.open();
         }

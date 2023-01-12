@@ -668,7 +668,7 @@ export default class ConversationListController {
         if (this.page == 1) {
             this.limit = 50;
         } else {
-            this.limit = 500;
+            this.limit = 100;
         }
         let actionData: LooseObject = {};
         // Whether notification information needs to be integrated
@@ -693,7 +693,7 @@ export default class ConversationListController {
                     this.page++;
                     setTimeout(() => {
                         this.queryAllMessages();
-                    },this.page == 2 ? 200 : 1);
+                    },this.page == 2 ? 200 : 100);
                 } else {
                     this.page = 0;
                     globalThis.needToUpdate = false;
@@ -706,12 +706,14 @@ export default class ConversationListController {
         let res = [];
         result.response.forEach(item => {
             // Inherit selected items
-            this.messageList.some(oldItem => {
-                if (item.threadId === oldItem.threadId) {
-                    item.isCbChecked = oldItem.isCbChecked;
-                    return true;
-                }
-            });
+            if(this.isMultipleSelectState) {
+                this.messageList.some(oldItem => {
+                    if (item.threadId === oldItem.threadId) {
+                        item.isCbChecked = oldItem.isCbChecked;
+                        return true;
+                    }
+                });
+            }
             let obj: LooseObject = {};
             obj = item;
             obj.isDelShow = false;

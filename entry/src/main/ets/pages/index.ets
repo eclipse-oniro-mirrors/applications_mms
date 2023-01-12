@@ -19,6 +19,7 @@ import ConListController from "./conversationlist/conversationListController";
 import DeviceUtil from "../utils/DeviceUtil";
 import MmsPreferences from "../utils/MmsPreferences";
 import HiLog from "../utils/HiLog"
+import WantUtil from "../utils/WantUtil";
 
 const TAG = "Index";
 
@@ -86,6 +87,7 @@ struct Index {
    * and background, only customized components modified by @Entry take effect.
    */
   async onPageShow() {
+    WantUtil.getWant();
     this.mIndexCtrl.onShow();
     this.mConListCtrl.onShow();
     await MmsPreferences.getInstance().initPreferences();

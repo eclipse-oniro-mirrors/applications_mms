@@ -230,6 +230,7 @@ export default class ConversationController {
     photoFirstName: string = '';
     portraitColor: string = '';
     reg: string = /^[a-zA-Z]+$/;
+    scroller: Scroller = new Scroller();
 
     static getInstance() {
         if (ConversationController.sInstance == null) {
@@ -252,6 +253,7 @@ export default class ConversationController {
         if (!this.isNewMsg) {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             });
+            this.scroller.scrollToIndex(this.mmsList.length - 1)
         }
     }
 
@@ -744,7 +746,7 @@ export default class ConversationController {
         let routerParams: LooseObject = router.getParams();
         if (routerParams.transmitFlag) {
             this.threadId = routerParams.threadId;
-            //this.slotId = routerParams.slotId;
+            this.slotId = common.int.SIM_ONE;
             this.contactsNum = this.contactsNum;
             this.strContactsName = routerParams.strContactsName;
             this.strContactsNumber = routerParams.strContactsNumber;
@@ -791,9 +793,9 @@ export default class ConversationController {
     }
 
     delayTransmitSend(element, isMms) {
-        setTimeout(() => {
+        this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             this.sendSms(element.content, element.msgUriPath, isMms, element.mmsSource);
-        }, 500);
+        });
     }
 
     sendSms(content, msgUriPath, isMms, mmsSource) {
@@ -803,7 +805,7 @@ export default class ConversationController {
         // Initialize the data to be sent.
         this.initSendSms(content, msgUriPath, isMms, mmsSource);
         let actionData = {
-            slotId: this.slotId,
+            slotId: common.int.SIM_ONE,
             destinationHost: this.strContactsNumber,
             content: content,
             isEditMms: isMms
@@ -825,6 +827,7 @@ export default class ConversationController {
         item.time = $r('app.string.just');
         item.timeMillisecond = new Date().getTime();
         dateUtil.convertTimeStampToDateWeek(item, false, this);
+        dateUtil.fullDate(item);
         item.content = content;
         if (isMms) {
             item.msgType = common.MSG_ITEM_TYPE.IMAGE;
@@ -882,7 +885,7 @@ export default class ConversationController {
         }
         if (count == common.int.MESSAGE_CODE_ONE) {
             this.isNewRecallMessagesFlag = true;
-            this.paramContact.isNewRecallMessagesFlag = true;
+            this.commonCtrl.paramContact.isNewRecallMessagesFlag = true;
         }
         if (count == common.int.MESSAGE_CODE_ZERO && this.isNewRecallMessagesFlag) {
             this.isNewMsg = true;
@@ -897,7 +900,7 @@ export default class ConversationController {
         let transmitObj = {};
         let contactsName = common.string.EMPTY_STR;
         if (this.strContactsName && this.strContactsName != common.string.EMPTY_STR) {
-            contactsName = $r('app.string.transmitContentReceive',  this.strContactsName);
+            contactsName = $r('app.string.transmitContentReceive', this.strContactsName);
         } else {
             contactsName = $r('app.string.transmitContentReceive', this.strContactsNumberFormat);
         }
@@ -937,7 +940,6 @@ export default class ConversationController {
         item.isShowMsgLongMenu = false
         HiLog.i(TAG, "deleteDialogShow, isShowMsgLongMenu=" + item.isShowMsgLongMenu);
         this.hasLockMsg = item.isLock;
-        this.deleteDialog();
         if (!item.isMsm) {
             this.hasContent = true;
             return;
@@ -1035,7 +1037,7 @@ export default class ConversationController {
             // Set to non-multi-choice status
             this.setSelectStatus(false);
             this.mmsList = mmsListCopy;
-        } else if (!this.mmsList[this.mmsIndex].isLock || this.isSelectLockMsg) {
+        } else if ((this.mmsList[this.mmsIndex] != undefined && !this.mmsList[this.mmsIndex].isLock) || this.isSelectLockMsg) {
             let item = this.mmsList[this.mmsIndex];
             for (let i = 0; i < this.mmsList.length; i++) {
                 if (this.mmsIndex == i) {
@@ -1056,6 +1058,7 @@ export default class ConversationController {
             // Check whether the length of the deleted list is 0.
             if (this.mmsList.length === 0 && this.textValue === common.string.EMPTY_STR) {
                 router.back();
+                globalThis.needToUpdate = true;
                 this.deleteMessageById(this.threadId);
             } else {
                 this.updateSessionLock(false);
@@ -1125,37 +1128,8 @@ export default class ConversationController {
             this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.selectDeleteMsgCount);
         }
         this.hasLockMsg = (this.mmsList.some((element, index) => element.isCbChecked && element.isLock));
-        this.deleteDialog();
     }
 
-    deleteDialog() {
-        AlertDialog.show(
-            {
-                message: this.strMsgDeleteDialogTip,
-                alignment: DialogAlignment.Bottom,
-                offset: {
-                    dx: 0, dy: -30
-                },
-                primaryButton: {
-                    value: $r("app.string.cancel"),
-                    fontColor: $r("sys.color.ohos_id_color_floating_button_bg_normal"),
-                    action: () => {
-                        this.deleteDialogCancel()
-                    }
-                },
-                secondaryButton: {
-                    value: $r("app.string.delete"),
-                    fontColor: $r("sys.color.ohos_id_color_warning"),
-                    action: () => {
-                        this.deleteDialogConfirm()
-                    }
-                },
-                cancel: () => {
-                    HiLog.i(TAG, "deleteDialog, cancel")
-                }
-            }
-        )
-    }
     // Check whether a contact exists.
     judgeContactExists() {
         let telephones = [this.strContactsNumber];
@@ -1244,6 +1218,7 @@ export default class ConversationController {
             let resultList = [];
             for (let item of result.response) {
                 item.timeMillisecond = parseInt(item.timeMillisecond);
+                dateUtil.fullDate(item);
                 dateUtil.convertTimeStampToDateWeek(item, false);
                 this.setDateShow(item, resultList);
                 dateUtil.convertDateFormatForItem(item, false);
@@ -1571,6 +1546,7 @@ export default class ConversationController {
         item.time = $r("app.string.justNow");
         item.timeMillisecond = new Date().getTime();
         dateUtil.convertTimeStampToDateWeek(item, false);
+        dateUtil.fullDate(item);
         item.content = this.textValue;
         item.msgType = this.mmsEditList.length != 0 ? this.mmsEditList[0].type : common.MSG_ITEM_TYPE.TEXT;
         item.isFullScreenImg = false;
@@ -1835,6 +1811,7 @@ export default class ConversationController {
                 conversationListService.deleteMessageBySessionId([this.threadId]);
             }
             this.threadId = result.rowId;
+            this.portraitColor = AvatarColor.background.Color[Math.abs(parseInt(this.threadId, 10)) % 6];
             item.groupId = result.groupId;
             item.id = result.initDatas[0].id;
             this.refresh = !this.refresh
@@ -1972,7 +1949,9 @@ export default class ConversationController {
                     conversationListService.deleteMessageBySessionId([this.threadId]);
                 }
                 this.threadId = res.response.id;
+                this.portraitColor = AvatarColor.background.Color[Math.abs(parseInt(this.threadId, 10)) % 6];
                 this.queryMessageDetail(telephone, res.response.id, callback);
+                this.scroller.scrollToIndex(this.mmsList.length - 1)
             } else {
                 callback();
             }
@@ -1992,8 +1971,6 @@ export default class ConversationController {
             contactsNumberFormat = contactsNumberFormat + item.telephoneFormat + common.string.COMMA;
             if (item.contactName != common.string.EMPTY_STR) {
                 contactsName += (item.contactName + common.string.COMMA);
-            } else {
-                contactsName += (item.telephone + common.string.COMMA);
             }
         }
         this.strContactsNumber = contactsNumber.substring(0, contactsNumber.length - 1);
@@ -2125,6 +2102,7 @@ export default class ConversationController {
         setTimeout(() => {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             });
+            this.scroller.scrollToIndex(this.mmsList.length - 1)
             let valueBucket = {
                 "unread_count": 0,
             };
@@ -2344,7 +2322,6 @@ export default class ConversationController {
     deleteDetail() {
         if (this.mmsList.length == 1) {
             this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip3");
-            this.deleteDialog();
         } else {
             this.hasDetailDelete = false;
             this.isSelectStatus = true;
@@ -2450,7 +2427,10 @@ export default class ConversationController {
                         item.contactName = common.string.EMPTY_STR;
                     }
                 }
-                this.selectContacts.push(item)
+                if (this.selectContacts.length > 1) {
+                    break
+                }
+                this.selectContacts = selectContacts;
             }
         } else {
             this.selectContacts = [];

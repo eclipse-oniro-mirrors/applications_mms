@@ -15,6 +15,7 @@
 import DeviceUtil from "../../utils/DeviceUtil";
 import router from "@system.router";
 import QueryReportController from "./queryReportController";
+import WantUtil from "../../utils/WantUtil";
 
 @Entry
 @Component
@@ -26,7 +27,8 @@ struct queryReport {
     private gridMargin: string = "24vp";
 
     onPageShow(): void  {
-        this.queryReportController.onShow()
+        this.queryReportController.onShow();
+        WantUtil.getWant();
     }
 
     aboutToAppear(): void {
