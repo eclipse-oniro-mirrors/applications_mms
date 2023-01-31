@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import TransmitMsgController from "./TransmitMsgController";
+import TransmitMsgController from "./transmitMsgController";
 import DeviceUtil from "../../utils/DeviceUtil";
 import router from "@system.router";
 import { TransmitMsgDialog } from "../../views/MmsDialogs";
