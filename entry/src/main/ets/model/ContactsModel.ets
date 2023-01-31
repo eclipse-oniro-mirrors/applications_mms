@@ -25,6 +25,7 @@ const TAG = "ContactsModel";
 
 export default class ContactsModel extends BaseModel {
     async queryContactDataByIds(actionData, callback) {
+        //由于数据库切换stage模型未完成，需对acquireDataAbilityHelper接口做入侵式修改
         let dataHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.detailInfo,
