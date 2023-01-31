@@ -132,6 +132,7 @@ export default class ConversationListModel extends BaseModel {
         } else {
             mmsContext = globalThis.mmsContext;
         }
+        //由于数据库切换stage模型未完成，需对acquireDataAbilityHelper接口做入侵式修改
         let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(mmsContext, common.string.URI_MESSAGE_LOG);
         let resultColumns = [
             "totalListCount",

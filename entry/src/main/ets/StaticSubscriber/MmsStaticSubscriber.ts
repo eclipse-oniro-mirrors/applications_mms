@@ -513,6 +513,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     async insertMmsPart(stringValue) {
+        //由于数据库切换stage模型未完成，需对acquireDataAbilityHelper接口做入侵式修改
         let dataAbilityHelper = particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_MESSAGE_LOG);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
         dataAbilityHelper.insert(managerUri, stringValue).then(data => {

@@ -29,6 +29,7 @@ let morkDataModel = new MorkDataModel();
 
 export default class ConversationModel extends BaseModel {
     async queryMessageDetail(actionData, callback) {
+        //由于数据库切换stage模型未完成，需对acquireDataAbilityHelper接口做入侵式修改
         let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var resultColumns = this.buildResultColumns();
         let condition = this.buildQueryCondition(actionData);
