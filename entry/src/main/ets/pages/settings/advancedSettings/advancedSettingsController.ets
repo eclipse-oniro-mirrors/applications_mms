@@ -30,7 +30,7 @@ export default class AdvancedSettingsController {
     // Value of Delivery Report Switch
     deliveryReportSwitch: string = common.DELIVERY_REPORTS.DISABLED;
     // Delivery Report Text
-    deliveryReportSwitchInText: Resource | string = $r("app.string.disabled");
+    deliveryReportSwitchInText: Resource = $r("app.string.disabled");
     // Automatic MM Download Switch
     autoRetrieveMmsSwitch: string = common.AUTO_RETRIEVE_MMS.OFF;
     // Text for automatically downloading MMS messages
@@ -51,6 +51,7 @@ export default class AdvancedSettingsController {
     firstSpnNameOfTwoSimCard: string = '';
     // If there are two cards, the carrier name of card 2 is the name of card 2.
     secondSpnNameOfTwoSimCard: string = '';
+    refresh: boolean = false;
 
     static getInstance() {
         if (AdvancedSettingsController.sInstance == null) {
@@ -101,7 +102,7 @@ export default class AdvancedSettingsController {
     // Returns the text version of the delivery report result based on an integer value
     returnDeliveryReportResultInText(intValue) {
         let tempValue;
-        if (intValue == common.DELIVERY_REPORTS.DISABLED) {
+        if (intValue == common.DELIVERY_REPORTS.DISABLED || intValue == '') {
             tempValue = $r("app.string.disabled");
             this.checkedValueOfSms = false;
             this.checkedValueOfMms = false;
@@ -119,6 +120,7 @@ export default class AdvancedSettingsController {
             this.checkedValueOfMms = true;
         }
         this.deliveryReportSwitchInText = tempValue;
+        this.refresh = !this.refresh;
     }
     // Returns the text version of the delivery report result based on an integer value
     returnAutoRetrieveMmsResultInText(intValue) {

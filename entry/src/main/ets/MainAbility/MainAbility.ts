@@ -10,7 +10,7 @@ const TAG = "app";
 
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
-        HiLog.i(TAG, "Ability onCreate com.ohos.mms version: 1.0.0.32");
+        HiLog.i(TAG, "Ability onCreate com.ohos.mms version: 1.0.0.34");
         globalThis.mmsContext = this.context;
         globalThis.abilityWant = want;
         globalThis.MmsDatabaseHelper = new MmsDatabaseHelper();

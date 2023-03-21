@@ -20,6 +20,7 @@ import DeviceUtil from "../../utils/DeviceUtil";
 import { Receive } from "../../views/receive/receive";
 import LooseObject from "../../data/LooseObject";
 import { MoreMenu } from "../../views/MmsMenu";
+import { MultiSimCardMenu } from '../../views/MultiSimCardMenu';
 import Common from "./common";
 import router from "@system.router";
 import WantUtil from "../../utils/WantUtil";
@@ -31,18 +32,19 @@ export struct Conversation {
     @StorageLink('curBp') curBp: string = 'sm'
     @State mConversationCtrl: ConversationController = ConversationController.getInstance();
     @State mCommonCtrl: Common = Common.getInstance();
+    @State slotId: number = this.mConversationCtrl.getSelectedSlotId();
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private timeGirdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
     private messageGirdSpan: GridColColumnOption = { sm: 4, md: 6, lg: 8 };
     private gridColOffset: GridColColumnOption = { sm: 0, md: 2, lg: 4 };
     private gridGutter: string = "24vp";
     private dialogGridCount: number = 4;
-    private menuItems: Array<any> = [
+    @Provide menuItems: Array<any> = [
         {
             value: $r("app.string.delete"),
             action: () => {
                 this.mConversationCtrl.longPressMore(0);
-                if (this.mConversationCtrl.mmsList.length == 1) {
+                if(this.mConversationCtrl.mmsList.length == 1) {
                     this.delConversionController.open();
                 }
             },
@@ -267,9 +269,7 @@ export struct Conversation {
                                             })
                                         Blank().width($r("app.float.space_16"))
                                         Column() {
-                                            MoreMenu({
-                                                menuItems: this.menuItems
-                                            })
+                                            MoreMenu()
                                         }
                                     }
                                     .flexShrink(0)
@@ -702,16 +702,29 @@ export struct Conversation {
                             Blank().width(16)
 
                             Row() {
-                                Row() {
-                                    Image(this.mConversationCtrl.slotId == 0 ? $rawfile("icon/ic_message_card1.svg")
-                                                                             : $rawfile("icon/ic_message_card2.svg"))
-                                        .width(22)
-                                        .height(22)
-                                    Image($rawfile("icon/icon_down.svg"))
-                                        .width(16)
-                                        .height(22)
-                                }.visibility(this.mConversationCtrl.cardImage ? Visibility.Visible : Visibility.None)
-
+                                MultiSimCardMenu ({
+                                    cardImage: this.mConversationCtrl.cardImage,
+                                    slotId: this.slotId,
+                                    multiSimCardItems: [{
+                                        img: $rawfile('icon/icon_mms_sim_card_1.svg'),
+                                        operator: this.mConversationCtrl.spnOfSim1,
+                                        mobileNumber: this.mConversationCtrl.telephonyNumberOfSim1,
+                                        action: () => {
+                                            this.slotId = 0;
+                                            this.mConversationCtrl.slotId = 0;
+                                            this.mConversationCtrl.setSelectedSlotId(0);
+                                        }
+                                    },{
+                                        img: $rawfile('icon/icon_mms_sim_card_2.svg'),
+                                        operator: this.mConversationCtrl.spnOfSim2,
+                                        mobileNumber: this.mConversationCtrl.telephonyNumberOfSim2,
+                                        action: () => {
+                                            this.slotId = 1;
+                                            this.mConversationCtrl.slotId = 1;
+                                            this.mConversationCtrl.setSelectedSlotId(1);
+                                        }
+                                    }]
+                                })
                                 Row() {
                                     TextArea({
                                         placeholder: $r("app.string.msg_note_mms"),

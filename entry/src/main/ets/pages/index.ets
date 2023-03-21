@@ -88,9 +88,9 @@ struct Index {
    */
   async onPageShow() {
     WantUtil.getWant();
+    await MmsPreferences.getInstance().initPreferences();
     this.mIndexCtrl.onShow();
     this.mConListCtrl.onShow();
-    await MmsPreferences.getInstance().initPreferences();
   }
 
   /**

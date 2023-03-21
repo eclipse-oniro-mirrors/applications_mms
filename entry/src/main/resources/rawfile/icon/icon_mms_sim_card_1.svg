@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>SD1</title>
+    <defs>
+        <path d="M10.009,0.666666667 L14,4.65666667 L14,12.6666667 C14,14.139426 12.8060927,15.3333333 11.3333333,15.3333333 L4.66666667,15.3333333 C3.19390733,15.3333333 2,14.139426 2,12.6666667 L2,3.33333333 C2,1.860574 3.19390733,0.666666667 4.66666667,0.666666667 L10.009,0.666666667 Z M9,4 L7.82264151,4 L6.33333333,5.18032787 L6.33333333,6.90710383 L7.57106918,5.93442623 L7.57106918,12 L9,12 L9,4 Z" id="path-1"></path>
+    </defs>
+    <g id="SD1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" x="0" y="0" width="16" height="16"></rect>
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="形状结合" fill-opacity="0.4" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+    </g>
+</svg>

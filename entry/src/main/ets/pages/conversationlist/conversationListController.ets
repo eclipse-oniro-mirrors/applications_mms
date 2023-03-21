@@ -129,7 +129,8 @@ export default class ConversationListController {
     page: number = 0;
     // List pagination, quantity
     limit: number = 0;
-    reg: string = /^[a-zA-Z]+$/;
+    reg: RegExp = /^[a-zA-Z]+$/;
+    delItem: number;
     // conversation list adapters
     conversationListDataSource: ConversationListDataSource = new ConversationListDataSource();
 
@@ -478,6 +479,7 @@ export default class ConversationListController {
     }
 
     deleteDialogCancel() {
+        this.messageList[this.delItem].isCbChecked = false;
         // Cancel Ejection
         if (this.isSelectLockMsg) {
             this.isSelectLockMsg = false;
@@ -588,7 +590,7 @@ export default class ConversationListController {
             this.page++;
             this.queryAllMessages();
         } else {
-            Hilog.i(TAG, "isLoading");
+            HiLog.i(TAG, "isLoading");
         }
     }
 
@@ -660,7 +662,6 @@ export default class ConversationListController {
         this.isSelectLockMsg = e.checked;
     }
 
-
     // Querying All Lists
     queryAllMessages() {
         HiLog.i(TAG, "queryAllMessages, start");
@@ -682,10 +683,8 @@ export default class ConversationListController {
             HiLog.i(TAG, "querySessionList code=" + result.code);
             if (result.code == common.int.SUCCESS) {
                 let res = this.buildSessionList(result);
-                if (res.length != 0) {
-                    this.messageList = this.messageList.concat(res);
-                    this.conversationListDataSource.refresh(this.messageList);
-                }
+                this.messageList = this.messageList.concat(res);
+                this.conversationListDataSource.refresh(this.messageList);
                 this.total = result.total;
                 this.hasNoOrdinaryMsg = this.total == 0 ? true : false;
                 this.hasInfoMsg = result.hasInfoMsg;
@@ -846,6 +845,7 @@ export default class ConversationListController {
     }
 
     deleteAction(idx) {
+        this.delItem = idx;
         let element = this.messageList[idx];
         this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
         element.isCbChecked = true;

@@ -11,6 +11,10 @@
     {
       "name": "ic_user_head_color",
       "value": "#99007dff"
+    },
+    {
+      "name": "light_background_color",
+      "value": "#19000000"
     }
   ]
 }

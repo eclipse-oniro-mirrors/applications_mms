@@ -99,7 +99,7 @@ export struct SettingItemSwitch {
 export struct SettingItemJump {
     primaryTitle: string | Resource;
     secondaryTitle ?: string | Resource;
-    private statusTitle ?: string | Resource = "";
+    @Consume statusTitle : Resource;
     showBottomDivider ?: boolean = false;
     visibilityShow ?: Visibility = Visibility.Visible;
     OnClick: (event?: ClickEvent) => void;
