@@ -20,7 +20,7 @@ import DeviceUtil from "../utils/DeviceUtil";
 @Component
 export struct MoreMenu {
     @StorageLink('curBp') curBp: string = 'sm'
-    private menuItems: Array<any>;
+    @Consume menuItems:Array<any>;
     private menuImage: Resource = $rawfile("icon/ic_public_more.svg");
     private placement: Placement = Placement.Bottom;
     private defaultColor: Resource = $r("sys.color.ohos_id_color_dialog_bg");

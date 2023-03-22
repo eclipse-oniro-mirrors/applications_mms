@@ -30,9 +30,33 @@ export default struct ConversationList {
     private dialogGridCount: number = 4;
     delDialogController: CustomDialogController = null;
     @State mIsMultipleSelectState: boolean = false;
+    @Provide menuItems:any = [];
 
     changeSelectState() {
         this.mIsMultipleSelectState = this.mConListCtrl.isMultipleSelectState;
+        this.menuItems = [
+            {
+                value: $r("app.string.delete"),
+                action: () => {
+                    this.mConListCtrl.showMultipleSelectView();
+                },
+                enabled: true
+            },
+            {
+                value: $r("app.string.markAllAsRead"),
+                action: () => {
+                    this.mConListCtrl.clickToMarkAllAsRead();
+                },
+                enabled: this.mConListCtrl.unreadTotal == 0 ? false : true
+            },
+            {
+                value: $r("app.string.settings"),
+                action: () => {
+                    this.mConListCtrl.jumpToSettingsPage();
+                },
+                enabled: true
+            }
+        ];
         // @ts-ignore
         this.forceCompleteRerender(true) // recusvise
     }
@@ -104,29 +128,7 @@ export default struct ConversationList {
                                         })
                                 })
                             Column() {
-                                MoreMenu({
-                                    menuItems: [
-                                        {
-                                            value: $r("app.string.delete"),
-                                            action: () => {
-                                                this.mConListCtrl.showMultipleSelectView();
-                                            },
-                                            enabled: true
-                                        }, {
-                                            value: $r("app.string.markAllAsRead"),
-                                            action: () => {
-                                                this.mConListCtrl.clickToMarkAllAsRead();
-                                            },
-                                            enabled: this.mConListCtrl.unreadTotal == 0 ? false : true
-                                        }, {
-                                            value: $r("app.string.settings"),
-                                            action: () => {
-                                                this.mConListCtrl.jumpToSettingsPage();
-                                            },
-                                            enabled: true
-                                        }
-                                    ]
-                                })
+                                MoreMenu()
                             }
                             .margin({ left: $r("app.float.action_bar_space") })
                         } else {
@@ -157,7 +159,7 @@ export default struct ConversationList {
                             }.margin({ top: 8 })
 
                             // Unread Message
-                            Text($r("app.string.unread_messages", this.mConListCtrl.unreadTotal))
+                            Text($r("app.string.unread_messages", String(this.mConListCtrl.unreadTotal)))
                                 .fontSize($r("sys.float.ohos_id_text_size_over_line"))
                                 .fontColor($r("sys.color.ohos_id_color_text_secondary"))
                                 .fontWeight(FontWeight.Regular)

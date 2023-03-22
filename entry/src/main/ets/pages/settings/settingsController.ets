@@ -67,6 +67,9 @@ export default class SettingsController {
     // Notification information integration
     integration(isOn: boolean) {
         let messageCode = common.route.MESSAGE_CODE_UPDATE_ARCHIVE_INFO_MESSAGES_VALUE;
+        if (this.integrationSwitch.value != isOn) {
+            globalThis.needToUpdate = true;
+        }
         let actionData: LooseObject = {};
         this.integrationSwitch.value = isOn;
         if (this.integrationSwitch.value) {
@@ -118,6 +121,7 @@ export default class SettingsController {
                 that.integrationSwitch.value = true;
                 that.maliciousWebSwitch = false;
                 that.showContactSwitch = true;
+                globalThis.needToUpdate = true;
                 HiLog.i(TAG, "restoreSettingsPageSwitchValue, success");
             } else {
                 HiLog.w(TAG, "restoreSettingsPageSwitchValue, failed");

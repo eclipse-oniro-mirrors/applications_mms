@@ -22,6 +22,18 @@ import telephonySMS from "@ohos.telephony.sms";
 import telephonySim from "@ohos.telephony.sim";
 
 const TAG = "CardModel";
+// The SIM card status is unknown
+const SIM_STATE_UNKNOWN: number = 0;
+// Indicates that the SIM card is in the not present state, that is, no SIM card is inserted in the card slot.
+const SIM_STATE_NOT_PRESENT: number = 1;
+// Indicates that the SIM card is locked, that is, the SIM card is locked by a PIN, PUK, or network lock.
+const SIM_STATE_LOCKED: number = 2;
+// Indicates that the SIM card is in the not ready state, that is, the SIM card is in place but not working.
+const SIM_STATE_NOT_READY: number = 3;
+// Indicates that the SIM card is in the ready state, that is, the SIM card is in place and working properly.
+const SIM_STATE_READY: number = 4;
+// Indicates that the SIM card is loaded, that is, the SIM card is in place and all card files are loaded.
+const SIM_STATE_LOADED: number = 5;
 
 export default class CardModel extends BaseModel {
     getSimSpn() {
@@ -105,7 +117,10 @@ export default class CardModel extends BaseModel {
         });
     }
 
-    getSimCardNum() {
+    /**
+     * Get the number of sim card.
+     */
+    getSimCardNum():void {
         telephonySim.hasSimCard(common.int.SIM_ONE, (error, value) => {
             if (error) {
                 HiLog.e(TAG, "getSimCardNum, SIM_ONE error: " + JSON.stringify(error.message));
@@ -124,8 +139,10 @@ export default class CardModel extends BaseModel {
         });
     }
 
-    getSimTelephoneNumber() {
-        HiLog.i(TAG, "get sim telephone number start");
+    /**
+     * Get the telephoneNumber from sim1 and sim2.
+     */
+    getSimTelephoneNumber():void {
         telephonySim.getSimTelephoneNumber(common.int.SIM_ONE, (error, value) => {
             if (error) {
                 HiLog.e(TAG, "get SIM_ONE telephone number error: " + JSON.stringify(error.message));

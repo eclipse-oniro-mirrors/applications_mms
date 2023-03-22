@@ -24,6 +24,7 @@ import WantUtil from "../../utils/WantUtil";
 export default struct InfoMsg {
     @StorageLink("InfoMsgController") @Watch("changeSelectState") mInfoMsgCtrl: InfoMsgController = InfoMsgController.getInstance();
     @State mIsMultipleSelectState : boolean = false;
+    @State misShowContactHeadIcon : boolean = true;
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
     private gridGutter: string = "24vp";
@@ -56,7 +57,7 @@ export default struct InfoMsg {
         offset: this.dialogOffset,
         gridCount: this.dialogGridCount
     })
-    private menuItems: Array<any> = [
+    @Provide menuItems: Array<any> = [
         {
             value: $r("app.string.delete"),
             action: () => {
@@ -76,6 +77,7 @@ export default struct InfoMsg {
 
     changeSelectState() {
         this.mIsMultipleSelectState = this.mInfoMsgCtrl.isMultipleSelectState
+        this.misShowContactHeadIcon = this.mInfoMsgCtrl.isShowContactHeadIcon
         // @ts-ignore
         this.forceCompleteRerender(true) // recusvise
     }
@@ -217,13 +219,13 @@ export default struct InfoMsg {
                     Stack({ alignContent: Alignment.Top }) {
                         Column() {
                             List({ initialIndex: 0 }) {
-                                LazyForEach(this.mInfoMsgCtrl.conversationListDataSource, (item, index) => {
-                                    //A real list of information
-                                    if (this.mInfoMsgCtrl.isSearchStatus) {
+                                if (this.mInfoMsgCtrl.isSearchStatus) {
+                                    LazyForEach(this.mInfoMsgCtrl.conversationListDataSource, (item, index) => {
+                                        //A real list of information
                                         ListItem() {
                                             MmsListItem({
                                                 item: item,
-                                                isShowHead: this.mInfoMsgCtrl.isShowContactHeadIcon,
+                                                isShowHead: this.misShowContactHeadIcon,
                                                 isMultipleSelectState: this.mIsMultipleSelectState,
                                                 onClickHead: (event: ClickEvent) => {
                                                     this.mInfoMsgCtrl.clickToGroupDetail(item.index);
@@ -258,11 +260,13 @@ export default struct InfoMsg {
                                         .width("100%")
                                         .height("64vp")
                                         .alignSelf(ItemAlign.Start)
-                                    }
-                                }, item => JSON.stringify(item))
+                                    }, item => JSON.stringify(item))
+                                }
                             }
                             .align(Alignment.Top)
                             .cachedCount(this.mInfoMsgCtrl.limit)
+                            .edgeEffect(EdgeEffect.Spring)
+                            .width("100%")
                             .divider({
                                 strokeWidth: 1,
                                 startMargin: this.mInfoMsgCtrl.isShowContactHeadIcon ? 52 : 12,
@@ -394,7 +398,6 @@ export default struct InfoMsg {
                                 alignItems: ItemAlign.Center
                             }) {
                                 MoreMenu({
-                                    menuItems: this.menuItems,
                                     menuText: $r("app.string.more")
                                 })
                             }
@@ -414,6 +417,6 @@ export default struct InfoMsg {
                 .height("100%")
             }
         }
-        .margin({ left: this.gridMargin, right: this.gridMargin })
+        .margin({ left: this.gridMargin })
     }
 }

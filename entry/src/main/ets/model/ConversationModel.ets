@@ -20,8 +20,9 @@ import mmsTable from "../data/tableData";
 // log Tools
 import HiLog from "../utils/HiLog"
 import LooseObject from "../data/LooseObject"
-import featureAbility from "@ohos.ability.featureAbility";
-import dataAbility from "@ohos.data.dataAbility";
+
+import dataShare from "@ohos.data.dataShare";
+import dataSharePredicates from "@ohos.data.dataSharePredicates";
 
 const TAG = "ConversationModel";
 
@@ -29,12 +30,11 @@ let morkDataModel = new MorkDataModel();
 
 export default class ConversationModel extends BaseModel {
     async queryMessageDetail(actionData, callback) {
-        //由于数据库切换stage模型未完成，需对acquireDataAbilityHelper接口做入侵式修改
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var resultColumns = this.buildResultColumns();
         let condition = this.buildQueryCondition(actionData);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then(resultSet => {
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then(resultSet => {
             let resultList = [];
             if( !resultSet.goToFirstRow() ) {
                 callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
@@ -65,7 +65,7 @@ export default class ConversationModel extends BaseModel {
     }
 
     buildQueryCondition(actionData) {
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         if (actionData.isDraft != null && actionData.isDraft) {
             condition.equalTo(mmsTable.messageInfo.groupId, actionData.groupId);
             condition.equalTo(mmsTable.messageInfo.msgState, actionData.sendStatus);
@@ -93,6 +93,7 @@ export default class ConversationModel extends BaseModel {
     buildBaseColumns() {
         var resultColumns = [
             mmsTable.messageInfo.msgId,
+            mmsTable.messageInfo.slotId,
             // Recipient Mobile Number
             mmsTable.messageInfo.receiverNumber,
             mmsTable.messageInfo.senderNumber,
@@ -131,9 +132,9 @@ export default class ConversationModel extends BaseModel {
     }
 
     async searchSmsMessageByContent(actionData, callback) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var resultColumns = this.buildSearchResultColums();
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.like(mmsTable.messageInfo.msgContent, "%" + actionData.content + "%");
         condition.equalTo(mmsTable.messageInfo.msgType, 0);
         if (actionData.numberType != null) {
@@ -141,7 +142,7 @@ export default class ConversationModel extends BaseModel {
         }
         let resultList = [];
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then(resultSet => {
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then(resultSet => {
             while (resultSet.goToNextRow()) {
                 let result: LooseObject = {};
                 this.dealBaseColumsData(result, resultSet);
@@ -171,6 +172,7 @@ export default class ConversationModel extends BaseModel {
 
     dealBaseColumsData(result, resultSet) {
         result.msgId = resultSet.getString(resultSet.getColumnIndex("msg_id"));
+        result.slotId = resultSet.getString(resultSet.getColumnIndex("slot_id"));
         result.receiverNumber = resultSet.getString(resultSet.getColumnIndex("receiver_number"));
         result.senderNumber = resultSet.getString(resultSet.getColumnIndex("sender_number"));
         result.startTime = resultSet.getString(resultSet.getColumnIndex("start_time"));
@@ -184,7 +186,8 @@ export default class ConversationModel extends BaseModel {
 
     async insertMessageDetail(actionData, callback) {
         HiLog.i(TAG, "insertMessageDetail, start")
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        //TODO
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.insert(managerUri, actionData.stringValue).then(data => {
             callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
@@ -195,15 +198,15 @@ export default class ConversationModel extends BaseModel {
     }
 
     async updateLock(actionData, callback) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var groupIds = this.groupIdToString(actionData.groupIds);
-        var condition = new dataAbility.DataAbilityPredicates();
+        var condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.messageInfo.groupId, groupIds);
         var stringValue = {
             "is_lock": actionData.hasLock,
         };
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
+        dataAbilityHelper.update(managerUri, condition, stringValue).then((data) => {
             callback(this.encapsulateReturnCode(common.int.SUCCESS));
         }).catch((err) => {
             HiLog.e(TAG, "updateLock, err: " + JSON.stringify(err.message));
@@ -220,15 +223,15 @@ export default class ConversationModel extends BaseModel {
     }
 
     async updateCollect(actionData, callback) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var groupIds = this.groupIdToString(actionData.groupIds);
-        var condition = new dataAbility.DataAbilityPredicates();
+        var condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.messageInfo.groupId, groupIds);
         var stringValue = {
             "is_collect": actionData.hasCollect,
         };
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
+        dataAbilityHelper.update(managerUri, condition, stringValue).then((data) => {
             callback(this.encapsulateReturnCode(common.int.SUCCESS));
         }).catch((err) => {
             HiLog.e(TAG, "updateCollect, err: " + JSON.stringify(err.message));
@@ -237,18 +240,18 @@ export default class ConversationModel extends BaseModel {
     }
 
     async deleteMessageByIds(actionData) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var msgIds = actionData.msgIds;
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.messageInfo.msgId, msgIds);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.delete(managerUri, condition);
     }
 
     async deleteMessageByGroupIds(actionData) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var groupIds = this.groupIdToString(actionData.groupIds);
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.messageInfo.groupId, groupIds);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.delete(managerUri, condition).then((data) => {
@@ -258,13 +261,13 @@ export default class ConversationModel extends BaseModel {
     }
 
     async deleteMessageBySessionIds(actionData) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         let threadIds = [];
         for (let id of actionData.threadIds) {
             let threadId = id + common.string.EMPTY_STR;
             threadIds.push(threadId);
         }
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.messageInfo.sessionId, threadIds);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
         dataAbilityHelper.delete(managerUri, condition).then((data) => {
@@ -274,9 +277,9 @@ export default class ConversationModel extends BaseModel {
     }
 
     async deleteMessageBySessionIdsAndLock(actionData) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         let threadIds = this.groupIdToString(actionData.threadIds);
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.equalTo(mmsTable.messageInfo.isLock, actionData.hasLock);
         condition.in(mmsTable.messageInfo.sessionId, threadIds);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
@@ -287,15 +290,15 @@ export default class ConversationModel extends BaseModel {
     }
 
     async updateById(actionData, callback) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         var msgId = actionData.msgId;
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.equalTo(mmsTable.messageInfo.msgId, msgId);
         var stringValue = {
             "msg_state": actionData.sendStatus,
         };
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
+        dataAbilityHelper.update(managerUri, condition, stringValue).then((data) => {
             HiLog.i(TAG, "updateById, end");
             callback(this.encapsulateReturnCode(common.int.SUCCESS));
         }).catch((err) => {
@@ -305,26 +308,26 @@ export default class ConversationModel extends BaseModel {
     }
 
     async markAllAsRead(actionData) {
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         let threadIds = [];
         for (let id of actionData.threadIds) {
             let threadId = id + common.string.EMPTY_STR;
             threadIds.push(threadId);
         }
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.messageInfo.sessionId, threadIds);
         var stringValue = {
             "is_read": actionData.hasRead
         };
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
+        dataAbilityHelper.update(managerUri, condition, stringValue).then((data) => {
         }).catch((err) => {
             HiLog.e(TAG, "markAllAsRead, err: " + JSON.stringify(err.message));
         });
     }
 
     async markAllToRead(actionData) {
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.equalTo(mmsTable.messageInfo.isRead, 0);
         condition.equalTo(mmsTable.messageInfo.smsType, actionData.smsType);
         var stringValue = {
@@ -332,8 +335,8 @@ export default class ConversationModel extends BaseModel {
         };
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.update(managerUri, stringValue, condition).then((data) => {
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.update(managerUri, condition, stringValue).then((data) => {
         }).catch((err) => {
             HiLog.e(TAG, "markAllToRead, err: " + JSON.stringify(err.message));
         });
@@ -343,11 +346,12 @@ export default class ConversationModel extends BaseModel {
         let resultColumns = [
             "maxGroupId"
         ];
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MAX_GROUP;
         //        condition.orderByAsc(mmsTable.messageInfo.groupId);
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.query(managerUri, resultColumns, condition, (err, resultSet) => {
+        //TODO
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.query(managerUri, condition, resultColumns, (err, resultSet) => {
             HiLog.i(TAG, "queryMaxGroupId, query callback");
             let result: LooseObject = {};
             while (resultSet.goToNextRow()) {
@@ -383,13 +387,13 @@ export default class ConversationModel extends BaseModel {
             mmsTable.messageInfo.msgId,
             mmsTable.messageInfo.sessionId
         ];
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.lessThan(mmsTable.messageInfo.endTime, lastTime);
         condition.equalTo(mmsTable.messageInfo.smsType, actionData.numberType);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then((resultSet) => {
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then((resultSet) => {
             let mmsList = [];
             while (resultSet.goToNextRow()) {
                 let item: LooseObject = {};
@@ -411,7 +415,7 @@ export default class ConversationModel extends BaseModel {
         } else {
             mmsContext = globalThis.mmsContext;
         }
-        var condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.equalTo(mmsTable.messageInfo.isRead, 0);
         condition.equalTo(mmsTable.messageInfo.smsType, 1);
         let resultColumns = [
@@ -419,8 +423,8 @@ export default class ConversationModel extends BaseModel {
         ];
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then((resultSet) => {
+        let dataAbilityHelper = await dataShare.createDataShareHelper(mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then((resultSet) => {
             let count = 0;
             while (resultSet.goToNextRow()) {
                 count++;
@@ -434,12 +438,12 @@ export default class ConversationModel extends BaseModel {
 
     async searchMmsPartByContent(actionData, callback) {
         let resultColumns = this.buildMmsPartResultColumns();
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.like(mmsTable.mmsPart.content, "%" + actionData.content + "%");
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then(resultSet => {
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then(resultSet => {
             let resultList = this.dealMmsPartResult(resultSet);
             callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
         }).catch(error => {
@@ -450,12 +454,12 @@ export default class ConversationModel extends BaseModel {
 
     async queryMmsPart(actionData, callback) {
         var resultColumns = this.buildMmsPartResultColumns();
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.mmsPart.msgId, actionData.msgIds);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then(resultSet => {
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then(resultSet => {
             let resultList = this.dealMmsPartResult(resultSet);
             callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
         }).catch(error => {
@@ -497,11 +501,11 @@ export default class ConversationModel extends BaseModel {
 
     async deleteMmsPartByGroupIds(actionData) {
         let groupIds = this.groupIdToString(actionData.groupIds);
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         condition.in(mmsTable.mmsPart.groupId, groupIds);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         dataAbilityHelper.delete(managerUri, condition).then((data) => {
         }).catch((err) => {
             HiLog.e(TAG, "deleteMmsPartByGroupIds, err: " + JSON.stringify(err.message));
@@ -519,7 +523,7 @@ export default class ConversationModel extends BaseModel {
     async insertMmsPart(actionData, stringValue, callback) {
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
         dataAbilityHelper.insert(managerUri, stringValue).then(data => {
             callback(this.encapsulateReturnResult(data, common.int.SUCCESS));
         }).catch(error => {
@@ -530,13 +534,13 @@ export default class ConversationModel extends BaseModel {
 
     async queryMessageLockBySessionId(actionData, callback) {
         var resultColumns = [mmsTable.messageInfo.isLock];
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         let sessionId = actionData.threadId + common.string.EMPTY_STR;
         condition.equalTo(mmsTable.messageInfo.sessionId, sessionId);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then(resultSet => {
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then(resultSet => {
             let lockStatus = [];
             while (resultSet.goToNextRow()) {
                 let result: LooseObject = {};
@@ -552,13 +556,13 @@ export default class ConversationModel extends BaseModel {
 
     async queryGroupIdBySessionId(actionData, callback) {
         var resultColumns = [mmsTable.messageInfo.groupId];
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         let threadIds = this.groupIdToString(actionData.threadIds);
         condition.in(mmsTable.messageInfo.sessionId, threadIds);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
 
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then(resultSet => {
+        let dataAbilityHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_MESSAGE_LOG);
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then(resultSet => {
             let groupIds = [];
             resultSet.goToFirstRow();
             do {

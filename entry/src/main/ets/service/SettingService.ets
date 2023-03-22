@@ -37,13 +37,13 @@ export default {
             showContactSwitch: false,
         };
         mSettingModel.setOnSettingValueListener(settingValue => {
-            if (settingValue.integrationSwitch === common.bool.TRUE) {
+            if (settingValue.integrationSwitch === common.bool.TRUE || settingValue.integrationSwitch === '') {
                 result.integrationSwitch = true;
             }
-            if (settingValue.maliciousWebSwitch === common.bool.TRUE) {
+            if (settingValue.maliciousWebSwitch === common.bool.TRUE || settingValue.integrationSwitch === '') {
                 result.maliciousWebSwitch = true;
             }
-            if (settingValue.showContactSwitch === common.bool.TRUE) {
+            if (settingValue.showContactSwitch === common.bool.TRUE || settingValue.integrationSwitch === '') {
                 result.showContactSwitch = true;
             }
         });
@@ -161,13 +161,16 @@ export default {
         mSettingModel.getSettingValue(settingValue => {
             if (settingValue.code === common.int.SUCCESS) {
                 HiLog.i(TAG, "getSettingFlagForConvListPage, Success");
-                if (settingValue.abilityResult.isShowContactHeadIcon === common.bool.TRUE) {
+                if (settingValue.abilityResult.isShowContactHeadIcon === common.bool.TRUE ||
+                    settingValue.abilityResult.isShowContactHeadIcon === '') {
                     result.isShowContactHeadIcon = true;
                 }
-                if (settingValue.abilityResult.hasAggregate == common.bool.TRUE) {
+                if (settingValue.abilityResult.hasAggregate == common.bool.TRUE ||
+                    settingValue.abilityResult.hasAggregate === '') {
                     result.hasAggregate = true;
                 }
-                if (settingValue.abilityResult.recallMessagesFlag == common.bool.TRUE) {
+                if (settingValue.abilityResult.recallMessagesFlag == common.bool.TRUE ||
+                    settingValue.abilityResult.recallMessagesFlag === '') {
                     result.recallMessagesFlag = true;
                 }
             } else {

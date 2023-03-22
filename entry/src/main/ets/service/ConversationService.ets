@@ -92,7 +92,7 @@ export default {
             } else {
                 result.sendStatus = common.int.SEND_DRAFT;
             }
-            result.subId = 0;
+            result.subId = item.slotId;
             result.timeMillisecond = item.startTime;
             result.isMsm = item.msgType == 0 ? false : true;
             result.isCbChecked = false;

@@ -51,7 +51,6 @@ export struct Receive {
                                                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                                                 .fontSize(12)
                                                 .flexShrink(1)
-                                                .constraintSize({ minWidth: 50 })
                                         }
                                         if (item.contactName != "" && item.contactName != null) {
                                             Text(item.contactName)
@@ -60,7 +59,6 @@ export struct Receive {
                                                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                                                 .fontSize(12)
                                                 .flexShrink(1)
-                                                .constraintSize({ minWidth: 50 })
                                         }
                                         if (item.select) {
                                             Image($rawfile("icon/ic_public_cancel.svg"))
@@ -75,7 +73,7 @@ export struct Receive {
                                     .borderRadius(24)
                                     .height(28)
                                     .alignItems(VerticalAlign.Center)
-                                    .constraintSize({ maxWidth: item.select ? 236 : 220 ,minWidth: 60})
+                                    .constraintSize({ maxWidth: item.select ? 244 : 228 ,minWidth: 68})
                                     .onClick(() => {
                                         this.mReceiveController.nameClick(index, (receiverData) => {
                                             this.mConversationController.setReceiveContactValue(receiverData);
