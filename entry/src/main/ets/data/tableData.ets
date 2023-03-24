@@ -59,6 +59,7 @@ export default {
     // Name of the field corresponding to the SMS message details.
     messageInfo: {
         msgId: "msg_id", //sms_mms_info Table id   integer
+        slotId: "slot_id", //slot_id integer
         receiverNumber: "receiver_number", //Recipient number  TEXT
         senderNumber: "sender_number", //Sender number  TEXT
         startTime: "start_time", //Start Time  TEXT

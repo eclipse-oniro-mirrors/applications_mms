@@ -15,13 +15,14 @@
 
 import BaseModel from "./BaseModel";
 import common from "../data/commonData";
-import dataAbility from "@ohos.data.dataAbility";
 import mmsTable from "../data/tableData";
 import HiLog from "../utils/HiLog";
 import LooseObject from "../data/LooseObject"
 import MmsDatabaseHelper from "../utils/MmsDatabaseHelper";
-import featureAbility from "@ohos.ability.featureAbility";
 import ohosDataRdb from "@ohos.data.rdb";
+
+import dataShare from "@ohos.data.dataShare";
+import dataSharePredicates from "@ohos.data.dataSharePredicates";
 
 const TAG = "ConversationListModel";
 
@@ -34,7 +35,7 @@ export default class ConversationListModel extends BaseModel {
         }
         await predicates.orderByDesc(mmsTable.sessionField.time);
         await predicates.limitAs(actionData.limit);
-        let offset = actionData.page < 3 ? (actionData.page - 1) * 50 : (actionData.page - 2) * 500 + 50;
+        let offset = actionData.page < 3 ? (actionData.page - 1) * 50 : (actionData.page - 2) * 100 + 50;
         await predicates.offsetAs(offset);
         let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
         let sessionList = [];
@@ -118,10 +119,7 @@ export default class ConversationListModel extends BaseModel {
             await predicates.equalTo(mmsTable.sessionField.smsType, numberType);
         }
         let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
-        let count = 0;
-        while (resultSet.goToNextRow()) {
-            count++;
-        }
+        let count = resultSet.rowCount;
         let result = {
             total: count,
         }
@@ -135,16 +133,15 @@ export default class ConversationListModel extends BaseModel {
         } else {
             mmsContext = globalThis.mmsContext;
         }
-        //由于数据库切换stage模型未完成，需对acquireDataAbilityHelper接口做入侵式修改
-        let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(mmsContext, common.string.URI_MESSAGE_LOG);
         let resultColumns = [
             "totalListCount",
             "unreadCount",
             "unreadTotalOfInfo"
         ];
-        let condition = new dataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_UNREAD_COUNT;
-        dataAbilityHelper.query(managerUri, resultColumns, condition, (err, resultSet) => {
+        let dataShareHelper = await dataShare.createDataShareHelper(mmsContext, common.string.URI_MESSAGE_LOG);
+        dataShareHelper.query(managerUri, condition, resultColumns, (err, resultSet) => {
             let result: LooseObject = {};
             while (resultSet.goToNextRow()) {
                 result.totalListCount = resultSet.getString(0);

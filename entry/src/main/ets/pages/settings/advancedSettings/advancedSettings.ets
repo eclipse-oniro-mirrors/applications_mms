@@ -18,11 +18,12 @@ import { MmsSimpleDialog } from "../../../views/MmsDialogs";
 import { MoreMenu } from "../../../views/MmsMenu";
 import router from "@system.router";
 import { SettingItemJump } from "../../../views/SettingItem";
+import WantUtil from "../../../utils/WantUtil";
 
 @Entry
 @Component
 struct AdvancedSettings {
-    @State mAdvancedSettingsCtrl: AdvancedSettingsController = AdvancedSettingsController.getInstance();
+    @StorageLink("AdvancedSettingsController") @Watch("changeSelectState") mAdvancedSettingsCtrl: AdvancedSettingsController = AdvancedSettingsController.getInstance();
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 6, lg: 8 };
     private gridColOffset: GridColColumnOption = { md: 1, lg: 2 };
@@ -44,7 +45,7 @@ struct AdvancedSettings {
             }
         }
     });
-    private menuItems: Array<any> = [
+    @Provide menuItems: Array<any> = [
         {
             value: $r("app.string.restore_default_settings"),
             action: () => {
@@ -53,6 +54,10 @@ struct AdvancedSettings {
             enabled: true
         }
     ];
+    @Provide statusTitle: Resource = this.mAdvancedSettingsCtrl.deliveryReportSwitchInText;
+    changeSelectState(){
+        this.statusTitle = this.mAdvancedSettingsCtrl.deliveryReportSwitchInText
+    }
     deliveryReportsDialogCtrl: CustomDialogController = new CustomDialogController({
         builder: DeliveryReportsDialog({
             cancel: () => {
@@ -84,7 +89,8 @@ struct AdvancedSettings {
      * and background, only customized components modified by @Entry take effect.
      */
     onPageShow() {
-        this.mAdvancedSettingsCtrl.onShow()
+        this.mAdvancedSettingsCtrl.onShow();
+        WantUtil.getWant();
     }
     /**
      * Triggers once when this page disappears. In scenarios such as routing and application access to the foreground
@@ -132,9 +138,7 @@ struct AdvancedSettings {
                 Row().width("100%").flexShrink(1)
 
                 Column() {
-                    MoreMenu({
-                        menuItems: this.menuItems
-                    })
+                    MoreMenu()
                 }
                 .margin({ right: $r("app.float.action_bar_margin_right") })
             }
@@ -152,7 +156,6 @@ struct AdvancedSettings {
                                 SettingItemJump({
                                     primaryTitle: $r("app.string.delivery_reports"),
                                     secondaryTitle: $r("app.string.delivery_reports_hint"),
-                                    statusTitle: this.mAdvancedSettingsCtrl.deliveryReportSwitchInText,
                                     showBottomDivider: false,
                                     OnClick: (event?: ClickEvent) => {
                                         this.deliveryReportsDialogCtrl.open();
@@ -161,7 +164,7 @@ struct AdvancedSettings {
                                 // Automatically downloading MMs
                                 SettingItemJump({
                                     primaryTitle: $r("app.string.auto_retrieve_mms"),
-                                    statusTitle: this.mAdvancedSettingsCtrl.autoRetrieveMmsSwitchInText,
+//                                    statusTitle: this.mAdvancedSettingsCtrl.autoRetrieveMmsSwitchInText,
                                     visibilityShow: Visibility.None,
                                     OnClick: (event?: ClickEvent) => {
                                         this.mAdvancedSettingsCtrl.showAutoRetrieveMmsDialog();
@@ -238,6 +241,7 @@ struct AdvancedSettings {
                 }
             }
             .layoutWeight(1)
+            .align(Alignment.Top)
         }
         .width("100%")
         .height("100%")
@@ -283,15 +287,14 @@ struct DeliveryReportsDialog {
                     Toggle({ type: ToggleType.Checkbox, isOn: this.isOnOfSms })
                         .width(20)
                         .height(20)
-                        .enabled(false)
                         .offset({ x: 16, y: 0 })
                         .selectedColor($r("sys.color.ohos_id_color_activated"))
+                        .onChange((isOn: boolean) => {
+                            this.isOnOfSms = isOn
+                        })
                 }
                 .width("100%")
                 .height(48)
-                .onClick((event: ClickEvent) => {
-                    this.isOnOfSms = !this.isOnOfSms;
-                })
 
                 Divider()
                     .vertical(false)
@@ -313,15 +316,14 @@ struct DeliveryReportsDialog {
                     Toggle({ type: ToggleType.Checkbox, isOn: this.isOnOfMms })
                         .width(20)
                         .height(20)
-                        .enabled(false)
                         .offset({ x: 16, y: 0 })
                         .selectedColor($r("sys.color.ohos_id_color_activated"))
+                        .onChange((isOn: boolean) => {
+                            this.isOnOfMms = isOn
+                        })
                 }
                 .width("100%")
                 .height(48)
-                .onClick((event: ClickEvent) => {
-                    this.isOnOfMms = !this.isOnOfMms;
-                })
 
             }
             .padding({ left: 24, right: 24, bottom: 9 })
@@ -371,6 +373,7 @@ struct DeliveryReportsDialog {
             .padding({ left: 16, right: 16, bottom: 16 })
         }
         .width("100%")
+        .borderRadius(16)  // Customdialog need to set borderRadius
         .backgroundColor($r("sys.color.ohos_id_color_dialog_bg"))
     }
 }

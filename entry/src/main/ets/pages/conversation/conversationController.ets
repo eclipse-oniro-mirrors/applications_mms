@@ -87,10 +87,16 @@ export default class ConversationController {
     curSize: number = 0;
     // Recording Start Time
     startRecordTime: number = 0;
-    // Whether the SIM card is contained
-    haveSimCard: boolean = false;
     // Display Card Icon
     cardImage: boolean = false;
+    // spn of sim1
+    spnOfSim1: string = '';
+    // spn of sim2
+    spnOfSim2: string = '';
+    // telephony number of sim1
+    telephonyNumberOfSim1: string = '';
+    // telephony number of sim2
+    telephonyNumberOfSim2: string = '';
     // Airplane mode
     isFlightMode: boolean = false;
     // Information Attachment Size Tips
@@ -229,7 +235,8 @@ export default class ConversationController {
     mmsDateSet: Set<any> = new Set();
     photoFirstName: string = '';
     portraitColor: string = '';
-    reg: string = /^[a-zA-Z]+$/;
+    reg: RegExp = /^[a-zA-Z]+$/;
+    scroller: Scroller = new Scroller();
 
     static getInstance() {
         if (ConversationController.sInstance == null) {
@@ -252,14 +259,19 @@ export default class ConversationController {
         if (!this.isNewMsg) {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             });
+            this.scroller.scrollToIndex(this.mmsList.length - 1)
         }
+        this.initSimCardData();
     }
 
     onShow() {
         HiLog.i(TAG, "onShow");
-        this.addSimChangeListener();
-        // Determine whether a phone card is inserted.
-        this.getSimState();
+        if (MmsPreferences.getInstance().isMultiSimCardEnabled()) {
+            this.cardImage = true;
+            this.getMultiSimCardData();
+        } else {
+            this.cardImage = false;
+        }
         // Check whether the Send button can be clicked.
         this.judgeSendBtnCanClicked();
         //    // Obtains the status of canceling sending.
@@ -283,6 +295,41 @@ export default class ConversationController {
         //    this.dataFromPick();
     }
 
+    getMultiSimCardData():void {
+        // spn of sim1
+        this.spnOfSim1 = this.getLocalSpnBySlotId(common.int.SIM_ONE);
+        // spn of sim2
+        this.spnOfSim2 = this.getLocalSpnBySlotId(common.int.SIM_TWO);
+        // telephony number of sim1
+        this.telephonyNumberOfSim1 = MmsPreferences.getInstance().getValueFromMap(common.string.KEY_OF_SIM_0_NUMBER,
+        common.string.EMPTY_STR);
+        // telephony number of sim2
+        this.telephonyNumberOfSim2 = MmsPreferences.getInstance().getValueFromMap(common.string.KEY_OF_SIM_1_NUMBER,
+        common.string.EMPTY_STR);
+    }
+
+    getLocalSpnBySlotId(slotId:number) {
+        let spn: string = common.string.EMPTY_STR;
+        if (slotId == common.int.SIM_ONE) {
+            spn = MmsPreferences.getInstance().getValueFromMap(common.string.KEY_OF_SIM_0_SPN, common.string.EMPTY_STR);
+        } else if (slotId == common.int.SIM_TWO) {
+            spn = MmsPreferences.getInstance().getValueFromMap(common.string.KEY_OF_SIM_1_SPN, common.string.EMPTY_STR);
+        } else {
+            HiLog.i(TAG, "getLocalSpnBySlotId, invalid slotId: " + slotId);
+            return spn;
+        }
+
+        let localSpn: string = spn;
+        if (common.SPN_CHINA.MOBILE == spn) {
+            localSpn = common.LOCAL_SPN_CHINA.MOBILE;
+        } else if (common.SPN_CHINA.TELECOM == spn) {
+            localSpn = common.LOCAL_SPN_CHINA.TELECOM;
+        } else if (common.SPN_CHINA.UNICOM == spn) {
+            localSpn = common.LOCAL_SPN_CHINA.UNICOM;
+        }
+        return localSpn;
+    }
+
     onHide() {
         HiLog.i(TAG, "onHide");
         this.unSubscribeDetail();
@@ -294,13 +341,19 @@ export default class ConversationController {
                 HiLog.e(TAG, "getSimState, SIM_ONE error: " + JSON.stringify(err.message));
             } else {
                 HiLog.i(TAG, "getSimState, SIM_ONE value: " + value);
-                if (value == 0 || value == 1 || value == undefined) {
-                    this.haveSimCard = false;
-                } else {
-                    this.haveSimCard = true;
-                }
+                let isSimCardExist:string = this.judgeSimCardExistBySimState(value);
+                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_0_EXIST_FLAG, isSimCardExist);
                 this.initSendTip();
-                HiLog.i(TAG, "haveSimCard1 = " + this.haveSimCard);
+            }
+        });
+        telephonySim.getSimState(common.int.SIM_TWO, (err, value) => {
+            if (err) {
+                HiLog.e(TAG, "getSimState, SIM_TWO error: " + JSON.stringify(err.message));
+            } else {
+                HiLog.i(TAG, "getSimState, SIM_TWO value: " + value);
+                let isSimCardExist:string = this.judgeSimCardExistBySimState(value);
+                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_1_EXIST_FLAG, isSimCardExist);
+                this.initSendTip();
             }
         });
     }
@@ -310,17 +363,18 @@ export default class ConversationController {
         observer.on("simStateChange", {
             slotId: common.int.SIM_ONE
         }, data => {
-            let simState = data.state;
-            let isEffective: boolean;
-            HiLog.i(TAG, "addSimChangeListener simState = " + simState);
-            if (simState == 0 || simState == 1 || simState == undefined) {
-                isEffective = false;
-            } else {
-                isEffective = true;
-            }
-            HiLog.i(TAG, "simState is = " + isEffective);
-            MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_0_EXIST_FLAG, isEffective);
-            this.haveSimCard = isEffective;
+            HiLog.i(TAG, "addSimChangeListener sim1State = " + data.state);
+            let isSimCardExist:string = this.judgeSimCardExistBySimState(data.state);
+            MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_0_EXIST_FLAG, isSimCardExist);
+            this.initSendTip();
+        });
+
+        observer.on("simStateChange", {
+            slotId: common.int.SIM_TWO
+        }, data => {
+            HiLog.i(TAG, "addSimChangeListener sim2State = " + data.state);
+            let isSimCardExist:string = this.judgeSimCardExistBySimState(data.state);
+            MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_1_EXIST_FLAG, isSimCardExist);
             this.initSendTip();
         });
     }
@@ -367,6 +421,15 @@ export default class ConversationController {
             arr.push(i);
         }
         this.slideDurations = arr;
+    }
+
+    initSimCardData() {
+        try {
+            this.addSimChangeListener();
+            this.getSimState();
+        } catch(err) {
+            HiLog.e(TAG,`Sim err = ${JSON.stringify(err)}`)
+        }
     }
 
     release() {
@@ -744,7 +807,7 @@ export default class ConversationController {
         let routerParams: LooseObject = router.getParams();
         if (routerParams.transmitFlag) {
             this.threadId = routerParams.threadId;
-            //this.slotId = routerParams.slotId;
+            //this.slotId = common.int.SIM_ONE;
             this.contactsNum = this.contactsNum;
             this.strContactsName = routerParams.strContactsName;
             this.strContactsNumber = routerParams.strContactsNumber;
@@ -763,7 +826,7 @@ export default class ConversationController {
             if(isSlideDetail) {
                 // Indicates whether the currently edited message is an MMS message.
                 this.isEditMms = true;
-                this.mmsTransmitSend();
+                //this.mmsTransmitSend();
             } else {
                 this.generalTransmitSend();
             }
@@ -791,9 +854,9 @@ export default class ConversationController {
     }
 
     delayTransmitSend(element, isMms) {
-        setTimeout(() => {
+        this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             this.sendSms(element.content, element.msgUriPath, isMms, element.mmsSource);
-        }, 500);
+        });
     }
 
     sendSms(content, msgUriPath, isMms, mmsSource) {
@@ -825,6 +888,7 @@ export default class ConversationController {
         item.time = $r('app.string.just');
         item.timeMillisecond = new Date().getTime();
         dateUtil.convertTimeStampToDateWeek(item, false, this);
+        dateUtil.fullDate(item);
         item.content = content;
         if (isMms) {
             item.msgType = common.MSG_ITEM_TYPE.IMAGE;
@@ -882,7 +946,7 @@ export default class ConversationController {
         }
         if (count == common.int.MESSAGE_CODE_ONE) {
             this.isNewRecallMessagesFlag = true;
-            this.paramContact.isNewRecallMessagesFlag = true;
+            this.commonCtrl.paramContact.isNewRecallMessagesFlag = true;
         }
         if (count == common.int.MESSAGE_CODE_ZERO && this.isNewRecallMessagesFlag) {
             this.isNewMsg = true;
@@ -897,7 +961,7 @@ export default class ConversationController {
         let transmitObj = {};
         let contactsName = common.string.EMPTY_STR;
         if (this.strContactsName && this.strContactsName != common.string.EMPTY_STR) {
-            contactsName = $r('app.string.transmitContentReceive',  this.strContactsName);
+            contactsName = $r('app.string.transmitContentReceive', this.strContactsName);
         } else {
             contactsName = $r('app.string.transmitContentReceive', this.strContactsNumberFormat);
         }
@@ -937,7 +1001,6 @@ export default class ConversationController {
         item.isShowMsgLongMenu = false
         HiLog.i(TAG, "deleteDialogShow, isShowMsgLongMenu=" + item.isShowMsgLongMenu);
         this.hasLockMsg = item.isLock;
-        this.deleteDialog();
         if (!item.isMsm) {
             this.hasContent = true;
             return;
@@ -1035,7 +1098,7 @@ export default class ConversationController {
             // Set to non-multi-choice status
             this.setSelectStatus(false);
             this.mmsList = mmsListCopy;
-        } else if (!this.mmsList[this.mmsIndex].isLock || this.isSelectLockMsg) {
+        } else if ((this.mmsList[this.mmsIndex] != undefined && !this.mmsList[this.mmsIndex].isLock) || this.isSelectLockMsg) {
             let item = this.mmsList[this.mmsIndex];
             for (let i = 0; i < this.mmsList.length; i++) {
                 if (this.mmsIndex == i) {
@@ -1056,6 +1119,7 @@ export default class ConversationController {
             // Check whether the length of the deleted list is 0.
             if (this.mmsList.length === 0 && this.textValue === common.string.EMPTY_STR) {
                 router.back();
+                globalThis.needToUpdate = true;
                 this.deleteMessageById(this.threadId);
             } else {
                 this.updateSessionLock(false);
@@ -1125,37 +1189,8 @@ export default class ConversationController {
             this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.selectDeleteMsgCount);
         }
         this.hasLockMsg = (this.mmsList.some((element, index) => element.isCbChecked && element.isLock));
-        this.deleteDialog();
     }
 
-    deleteDialog() {
-        AlertDialog.show(
-            {
-                message: this.strMsgDeleteDialogTip,
-                alignment: DialogAlignment.Bottom,
-                offset: {
-                    dx: 0, dy: -30
-                },
-                primaryButton: {
-                    value: $r("app.string.cancel"),
-                    fontColor: $r("sys.color.ohos_id_color_floating_button_bg_normal"),
-                    action: () => {
-                        this.deleteDialogCancel()
-                    }
-                },
-                secondaryButton: {
-                    value: $r("app.string.delete"),
-                    fontColor: $r("sys.color.ohos_id_color_warning"),
-                    action: () => {
-                        this.deleteDialogConfirm()
-                    }
-                },
-                cancel: () => {
-                    HiLog.i(TAG, "deleteDialog, cancel")
-                }
-            }
-        )
-    }
     // Check whether a contact exists.
     judgeContactExists() {
         let telephones = [this.strContactsNumber];
@@ -1244,6 +1279,7 @@ export default class ConversationController {
             let resultList = [];
             for (let item of result.response) {
                 item.timeMillisecond = parseInt(item.timeMillisecond);
+                dateUtil.fullDate(item);
                 dateUtil.convertTimeStampToDateWeek(item, false);
                 this.setDateShow(item, resultList);
                 dateUtil.convertDateFormatForItem(item, false);
@@ -1345,7 +1381,7 @@ export default class ConversationController {
         // If the content is a draft, the draft content needs to be displayed.
         if (this.isDraft) {
             this.textValue = this.draftContent;
-            this.canSendMessage = this.haveSimCard;
+            this.canSendMessage = conversationService.judgeHasSimCard();
             //      this.judgeFullScreenSend(this.textValue);
         }
     }
@@ -1408,8 +1444,8 @@ export default class ConversationController {
             this.msgSendTip = common.string.EMPTY_STR;
             return;
         } else {
-            this.canSendMessage = this.haveSimCard && !this.isFlightMode;
-            HiLog.i(TAG, "setSmsTip, canSendMessage=" + this.canSendMessage + ", haveSimCard=" + this.haveSimCard);
+            this.canSendMessage = conversationService.judgeHasSimCard() && !this.isFlightMode;
+            HiLog.i(TAG, "setSmsTip, canSendMessage=" + this.canSendMessage);
         }
         if (this.isNewMsg) {
             this.setCanSendMsgStatus();
@@ -1571,6 +1607,7 @@ export default class ConversationController {
         item.time = $r("app.string.justNow");
         item.timeMillisecond = new Date().getTime();
         dateUtil.convertTimeStampToDateWeek(item, false);
+        dateUtil.fullDate(item);
         item.content = this.textValue;
         item.msgType = this.mmsEditList.length != 0 ? this.mmsEditList[0].type : common.MSG_ITEM_TYPE.TEXT;
         item.isFullScreenImg = false;
@@ -1835,6 +1872,7 @@ export default class ConversationController {
                 conversationListService.deleteMessageBySessionId([this.threadId]);
             }
             this.threadId = result.rowId;
+            this.portraitColor = AvatarColor.background.Color[Math.abs(parseInt(this.threadId, 10)) % 6];
             item.groupId = result.groupId;
             item.id = result.initDatas[0].id;
             this.refresh = !this.refresh
@@ -1972,7 +2010,9 @@ export default class ConversationController {
                     conversationListService.deleteMessageBySessionId([this.threadId]);
                 }
                 this.threadId = res.response.id;
+                this.portraitColor = AvatarColor.background.Color[Math.abs(parseInt(this.threadId, 10)) % 6];
                 this.queryMessageDetail(telephone, res.response.id, callback);
+                this.scroller.scrollToIndex(this.mmsList.length - 1)
             } else {
                 callback();
             }
@@ -1992,8 +2032,6 @@ export default class ConversationController {
             contactsNumberFormat = contactsNumberFormat + item.telephoneFormat + common.string.COMMA;
             if (item.contactName != common.string.EMPTY_STR) {
                 contactsName += (item.contactName + common.string.COMMA);
-            } else {
-                contactsName += (item.telephone + common.string.COMMA);
             }
         }
         this.strContactsNumber = contactsNumber.substring(0, contactsNumber.length - 1);
@@ -2088,7 +2126,7 @@ export default class ConversationController {
     }
     // Check whether the sending icon can be highlighted.
     judgeSendBtnCanClicked() {
-        if (this.haveSimCard &&
+        if (conversationService.judgeHasSimCard() &&
         (this.mmsEditList.length != 0 ||
         this.textValue != common.string.EMPTY_STR ||
         this.textareaDatasource.length !== 0)) {
@@ -2121,10 +2159,12 @@ export default class ConversationController {
 
     subscriberCallBack(err, data) {
         HiLog.i(TAG, "subscriberCallBack, start");
+        globalThis.needToUpdate = true;
         // Receiving SMS Updates
         setTimeout(() => {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             });
+            this.scroller.scrollToIndex(this.mmsList.length - 1)
             let valueBucket = {
                 "unread_count": 0,
             };
@@ -2344,7 +2384,6 @@ export default class ConversationController {
     deleteDetail() {
         if (this.mmsList.length == 1) {
             this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip3");
-            this.deleteDialog();
         } else {
             this.hasDetailDelete = false;
             this.isSelectStatus = true;
@@ -2422,6 +2461,7 @@ export default class ConversationController {
         let receiveContactValue = selectContacts.length > 0 ? common.string.EMPTY_STR : receiverData.contactValue;
         let hasBlur = receiverData.hasBlur;
         let telephone = common.string.EMPTY_STR;
+        this.textValue = common.string.EMPTY_STR;
         this.setCanSendMessage(selectContacts, receiveContactValue)
         if (hasBlur && receiveContactValue != common.string.EMPTY_STR) {
             let index = -1;
@@ -2450,7 +2490,10 @@ export default class ConversationController {
                         item.contactName = common.string.EMPTY_STR;
                     }
                 }
-                this.selectContacts.push(item)
+                if (this.selectContacts.length > 1) {
+                    break
+                }
+                this.selectContacts = selectContacts;
             }
         } else {
             this.selectContacts = [];
@@ -2479,9 +2522,50 @@ export default class ConversationController {
                     this.canSendMessage = false;
                 }
             } else if ((selectContacts.length != 0 || receiveContactValue != common.string.EMPTY_STR)
-            && this.haveSimCard) {
+            && conversationService.judgeHasSimCard()) {
                 this.canSendMessage = true;
             }
         }
     }
+
+    /**
+     * Judge sim card exist by sim state.
+     *
+     * @param simState
+     */
+    judgeSimCardExistBySimState(simState:number):string {
+        let isSimCardExist:string = common.bool.FALSE;
+        if (simState == 0 || simState == 1 || simState == undefined) {
+            isSimCardExist = common.bool.FALSE;
+        } else {
+            isSimCardExist = common.bool.TRUE;
+        }
+        return isSimCardExist;
+    }
+
+    /**
+     * Set selected slotId of sim card.
+     *
+     * @param slotId
+     */
+    setSelectedSlotId(slotId:number):void {
+        if (slotId != undefined) {
+            MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SELECTED_SLOTID, slotId.toString());
+        }
+    }
+
+    /**
+     * Get selected slotId of sim card.
+     */
+    getSelectedSlotId():number {
+        try {
+            let slotId: number = parseInt(MmsPreferences.getInstance().getValueFromMap(
+            common.string.KEY_OF_SELECTED_SLOTID, common.int.SIM_ONE.toString()));
+            return slotId;
+        } catch (e) {
+            HiLog.e(TAG, 'getSelectedSlotId exception: ' + JSON.stringify(e));
+            return common.int.SIM_ONE;
+        }
+    }
+
 }

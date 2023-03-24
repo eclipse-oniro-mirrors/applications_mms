@@ -1,5 +1,5 @@
-import AbilityStage from "@ohos.app.ability.AbilityStage"
-import notification from "@ohos.notification";
+import AbilityStage from "@ohos.app.ability.UIAbility"
+import notification from "@ohos.notificationManager";
 import HiLog from "../utils/HiLog";
 
 const TAG = "MyAbilityStage"
@@ -8,7 +8,7 @@ export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         HiLog.i(TAG, "AbilityStage onCreate");
         globalThis.AbilityStageConstant = this.context;
-        notification.enableNotification({
+        notification.setNotificationEnable({
             bundle: "com.ohos.mms"
         }, true, (err, data) => {
             if (err) {

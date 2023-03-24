@@ -17,6 +17,7 @@ import TransmitMsgController from "./transmitMsgController";
 import DeviceUtil from "../../utils/DeviceUtil";
 import router from "@system.router";
 import { TransmitMsgDialog } from "../../views/MmsDialogs";
+import WantUtil from "../../utils/WantUtil";
 
 @Entry
 @Component
@@ -58,6 +59,7 @@ export default struct TransmitMsg {
     }
 
     onPageShow() {
+        WantUtil.getWant();
         if(this.mTransmitMsgCtrl.DialogShow){
             this.delDialogController.open();
         }

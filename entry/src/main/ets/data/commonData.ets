@@ -143,6 +143,7 @@ export default {
         // Mobile number of the SIM card
         KEY_OF_SIM_0_NUMBER: "sim_0_number",
         KEY_OF_SIM_1_NUMBER: "sim_1_number",
+        KEY_OF_SELECTED_SLOTID: "selected_slotId",
         // Events for Subscribing to Notifications     usual.event.SMS_RECEIVE_COMPLETED
         SUBSCRIBER_EVENT: "usual.event.SMS_RECEIVE_COMPLETED",
         // Receiving and forwarding
@@ -150,7 +151,7 @@ export default {
         // MMS message receiving event
         MMS_SUBSCRIBER_EVENT: "usual.event.MMS_RECEIVE_COMPLETED",
         // Contact database
-        URI_ROW_CONTACTS: "dataability:///com.ohos.contactsdataability",
+        URI_ROW_CONTACTS: "datashare:///com.ohos.contactsdataability",
         // Contact Information
         CONTACT_DATA_URI: "/contacts/contact_data",
         // Business Card Contact
@@ -160,7 +161,7 @@ export default {
         // Contact Information
         CONTACT_URI: "/contacts/contact",
         // SMS database
-        URI_MESSAGE_LOG: "dataability:///com.ohos.smsmmsability",
+        URI_MESSAGE_LOG: "datashare:///com.ohos.smsmmsability",
         // Querying SMs
         URI_MESSAGE_INFO_TABLE: "/sms_mms/sms_mms_info",
         // Statistic
@@ -274,5 +275,13 @@ export default {
         PPT_IMAGE_HEIGHT: 220,
         DISTANCE: 20,
         TOTAL_HEIGHT: 650
-    }
+    },
+    LOCAL_SPN_CHINA: {
+        // TELECOM
+        TELECOM: "中国电信",
+        // MOBILE
+        MOBILE: "中国移动",
+        // UNICOM
+        UNICOM: "中国联通",
+    },
 }

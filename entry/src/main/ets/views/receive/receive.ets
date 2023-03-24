@@ -73,13 +73,13 @@ export struct Receive {
                                     .borderRadius(24)
                                     .height(28)
                                     .alignItems(VerticalAlign.Center)
-                                    .constraintSize({ maxWidth: item.select ? 136 : 120 })
+                                    .constraintSize({ maxWidth: item.select ? 244 : 228 ,minWidth: 68})
                                     .onClick(() => {
                                         this.mReceiveController.nameClick(index, (receiverData) => {
                                             this.mConversationController.setReceiveContactValue(receiverData);
                                         })
                                     })
-                                }, item => item.toString())
+                                }, item => JSON.stringify(item))
                             }
                             Flex() {
                                 TextArea({ text: this.mReceiveController.myText })
@@ -135,7 +135,7 @@ export struct Receive {
                         this.mReceiveController.clickToContracts((receiverData) => {
                             this.mConversationController.setReceiveContactValue(receiverData);
                         })
-                })
+                    })
 
             }
             .constraintSize({ minHeight: 56, maxHeight:200 })
@@ -146,13 +146,13 @@ export struct Receive {
             Column() {
                 // Indicates whether to display the recent contact list.
                 if (this.mReceiveController.isShowSearch && this.mReceiveController.contacts.length > 0) {
-                    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-                        Text("最近联系人")
-                            .fontSize(16)
-                            .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
-                            .fontWeight(FontWeight.Regular)
-                    }
-                    .height(48)
+                    //                    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+                    //                        Text("最近联系人")
+                    //                            .fontSize(16)
+                    //                            .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
+                    //                            .fontWeight(FontWeight.Regular)
+                    //                    }
+                    //                    .height(48)
                     // List area
                     List({ space: 0, initialIndex: 0 }) {
                         ForEach(this.mReceiveController.contacts, (item, index) => {
@@ -199,7 +199,7 @@ export struct Receive {
                                 .width('100%')
                                 .height(64)
                             }
-                        }, item => item.toString())
+                        }, item => JSON.stringify(item))
                     }
                     .listDirection(Axis.Vertical) // Arrange Direction
                     .edgeEffect(EdgeEffect.Spring) // Sliding to the edge has no effect
