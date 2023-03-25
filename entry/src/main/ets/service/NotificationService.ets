@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import WantAgent from "@ohos.wantAgent";
-import Notification from "@ohos.notification";
+import WantAgent from "@ohos.app.ability.wantAgent";
+import Notification from "@ohos.notificationManager";
 import common from "../data/commonData";
 import HiLog from "../utils/HiLog";
 import conversationService from "./ConversationService";
 
+var notificationManager = globalThis.requireNapi("notificationManager");
 const label = "notification_";
 const TAG = "NotificationService";
 
@@ -50,6 +51,10 @@ export default class NotificationService {
             notificationRequest.id = actionData.msgId;
             notificationRequest.label = label + actionData.msgId;
             notificationRequest.badgeNumber = Number(actionData.unreadTotal);
+            if(Number(actionData.unreadTotal) >= 0){
+                HiLog.i(TAG, `unreadTotal is: ${Number(actionData.unreadTotal)}`)
+                notificationManager.setBadgeNumber(Number(actionData.unreadTotal));
+            }
             Notification.publish(notificationRequest);
             HiLog.i(TAG, "sendNotify finished");
         });

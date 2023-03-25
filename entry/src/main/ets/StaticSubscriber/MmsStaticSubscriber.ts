@@ -513,8 +513,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     async insertMmsPart(stringValue) {
-        //由于数据库切换stage模型未完成，需对acquireDataAbilityHelper接口做入侵式修改
-        let dataAbilityHelper = particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(this.context, common.string.URI_MESSAGE_LOG);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
         dataAbilityHelper.insert(managerUri, stringValue).then(data => {
         }).catch(error => {
@@ -526,7 +525,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     async insertMessageDetailRdb(actionData, callback) {
         // Obtains the DataAbilityHelper object.
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        let dataAbilityHelper = particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(this.context, common.string.URI_MESSAGE_LOG);
         let promise = dataAbilityHelper.insert(managerUri, actionData.stringValue);
         await promise.then(data => {
             callback(data);
@@ -581,13 +580,13 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
 
     // Get the largest groupId
     async queryMaxGroupIdDb(actionData, callback) {
-        let dataAbilityHelper = particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await dataShare.createDataShareHelper(this.context, common.string.URI_MESSAGE_LOG);
         let resultColumns = [
             "maxGroupId"
         ];
-        let condition = new ohosDataAbility.DataAbilityPredicates();
+        let condition = new dataSharePredicates.DataSharePredicates();
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MAX_GROUP;
-        dataAbilityHelper.query(managerUri, resultColumns, condition).then( resultSet => {
+        dataAbilityHelper.query(managerUri, condition, resultColumns).then( resultSet => {
             let result: LooseObject = {};
             while (resultSet.goToNextRow()) {
                 result.maxGroupId = resultSet.getString(0);
@@ -624,8 +623,12 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             if (content.length > 15) {
                 content = content.substring(0, 15) + "...";
             }
+            let title = telephone;
+            if(contracts.length > 0) {
+                title = contracts[0].displayName
+            }
             let message = {
-                title: content,
+                title: title,
                 text: content,
             };
             actionData.message = message;
@@ -669,13 +672,13 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             mmsTable.contactDataColumns.displayName,
         ];
         let contactDataAbilityHelper =
-        particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_ROW_CONTACTS);
-        let condition = new ohosDataAbility.DataAbilityPredicates();
+            await dataShare.createDataShareHelper(this.context, common.string.URI_ROW_CONTACTS);
+        let condition = new dataSharePredicates.DataSharePredicates();
         let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         condition.in(mmsTable.contactDataColumns.detailInfo, telephones);
         condition.and();
         condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
-        contactDataAbilityHelper.query(contactDataUri, resultColumns, condition).then(resultSet => {
+        contactDataAbilityHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
             let contracts = [];
             while (resultSet.goToNextRow()) {
                 let contract = {

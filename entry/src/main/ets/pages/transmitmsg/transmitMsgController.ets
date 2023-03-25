@@ -88,7 +88,7 @@ export default class TransmitMsgController {
     // MMS list data
     mmsSource: Array<any> = [];
     transmitItemSources: Array<any> = [];
-    reg: string = /^[a-zA-Z]+$/;
+    reg: RegExp = /^[a-zA-Z]+$/;
     dialogMsg: LooseObject = {};
     DialogShow: false;
     transmitMsgDataSource: TransmitMsgDataSource = new TransmitMsgDataSource();
@@ -104,6 +104,8 @@ export default class TransmitMsgController {
         // List of contents forwarded by multiple messages
         this.transmitContentList = router.getParams().transmitContentList;
         this.dialogMsg.transmitContentList = this.transmitContentList;
+        this.dialogMsg.transmitContent = router.getParams().transmitContent;
+        this.threadId = router.getParams().threadId;
     }
 
     onShow() {
@@ -191,6 +193,7 @@ export default class TransmitMsgController {
         contactsParamMsg.telephone = item.conversation.telephone;
         contactsParamMsg.contactNameSplit = item.conversation.name.split(common.string.COMMA)[0];
         contactsParamMsg.telephoneFormatSplit = item.conversation.telephoneFormat.split(common.string.COMMA)[0];
+        this.threadId = item.conversation.threadId;
         this.dialogMsg.contactsParam = contactsParamMsg;
         // Determine the font length of a contact.
         this.checkContactNameLen();
@@ -217,7 +220,7 @@ export default class TransmitMsgController {
         let data = await globalThis.mmsContext.startAbilityForResult(str);
         this.dialogMsg.data = data;
         if (data.resultCode == 0 && JSON.parse(data.want.parameters.contactObjects).length != 0) {
-            this.DialogShow =true;
+            this.DialogShow = true;
             let contactsParam = contactService.dealContractParams(data.want.parameters.contactObjects);
             let contactsParamMsg: LooseObject = {};
             contactsParamMsg.contactsNum = contactsParam.contactsNum;
@@ -234,7 +237,7 @@ export default class TransmitMsgController {
                 } else {
                     this.threadId = 0;
                 }
-                this.clickSendMessage();
+                this.checkContactNameLen();
             });
             callback();
 
@@ -248,7 +251,7 @@ export default class TransmitMsgController {
 
     transmit() {
         let params = {
-            threadId: router.getParams().threadId,
+            threadId: this.threadId,
             strContactsName: this.dialogMsg.contactsParam.contactName, //Contact Name
             strContactsNumber: this.dialogMsg.contactsParam.telephone, //Mobile phone number
             strContactsNumberFormat: this.dialogMsg.contactsParam.telephoneFormat, //Format the mobile number.
@@ -259,7 +262,7 @@ export default class TransmitMsgController {
             transmitSource: this.transmitContentList,//List of contents forwarded by multiple messages
             isContainerOriginSource: this.isChecked //Whether selected
         }
-        router.replace({
+        router.replaceUrl({
             url: 'pages/conversation/conversation',
             params: params
         });

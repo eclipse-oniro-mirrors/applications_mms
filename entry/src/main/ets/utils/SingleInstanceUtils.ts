@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,20 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import WantUtil from "../../../utils/WantUtil";
-@Entry
-@Component
-struct RingtoneSettings {
-    onPageShow() {
-        WantUtil.getWant();
+const TAG = "SingleInstanceHelper";
+
+export default function createOrGet<T>(objectClass: { new(): T }, storageKey: string): T {
+    if (!globalThis[storageKey]) {
+        globalThis[storageKey] = new objectClass();
     }
-    build() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-            Text("这是铃声设置界面")
-                .fontSize(50)
-                .fontWeight(FontWeight.Bold)
-        }
-        .width("100%")
-        .height("100%")
-    }
+    return globalThis[storageKey];
 }

@@ -23,39 +23,44 @@ import router from "@system.router";
 const TAG = "WantUtil";
 
 export default {
-  pageFlag: "0",
-  contractParams: {},
 
   getWant() {
     HiLog.i(TAG, "getWant start");
-      if (globalThis.abilityWant.hasOwnProperty("parameters")) {
-        let parameters = globalThis.abilityWant.parameters;
+    if(globalThis.abilityWant == null) {
+      return;
+    }
+    let abilityWant = globalThis.abilityWant;
+    globalThis.abilityWant = null;
+
+    if (abilityWant.hasOwnProperty("parameters")) {
+        let parameters = abilityWant.parameters;
+        let pageFlag = '';
         if (parameters.hasOwnProperty("pageFlag")) {
-          this.pageFlag = parameters.pageFlag;
-          HiLog.i(TAG, "pageFlag = " + this.pageFlag);
+          pageFlag = parameters.pageFlag;
+          HiLog.i(TAG, "pageFlag = " + pageFlag);
         }
+        let contractParams = {}
         if (parameters.hasOwnProperty("contactObjects")) {
-          this.contractParams = contactService.dealContractParams(parameters.contactObjects);
+          contractParams = contactService.dealContractParams(parameters.contactObjects);
         }
+        this.jump(pageFlag, contractParams);
       }
-      // Page redirection
-      this.jump();
   },
 
-  jump() {
+  jump(pageFlag, contractParams) {
     let result = {
       uri: '',
       params: {}
     };
-    HiLog.i(TAG, "want.pageFlag: " + this.pageFlag);
-    switch (this.pageFlag) {
+    HiLog.i(TAG, "want.pageFlag: " + pageFlag);
+    switch (pageFlag) {
       case "conversation":
         result.uri = "pages/conversation/conversation";
-        if (this.contractParams) {
-          result.params = this.contractParams;
-          this.jumpIsNewPage(result);
+        if (contractParams) {
+          result.params = contractParams;
+          this.jumpIsNewPage(result, contractParams);
         } else {
-          router.replace(result);
+          router.push(result);
         }
         break;
       default:
@@ -63,9 +68,9 @@ export default {
     }
   },
 
-  async jumpIsNewPage(result) {
+  async jumpIsNewPage(result, contractParams) {
     // Check whether a session has been created for the current phone number in the SMS message.
-    conversationListService.querySessionByTelephone(this.contractParams.strContactsNumber, res => {
+    conversationListService.querySessionByTelephone(contractParams.strContactsNumber, res => {
       if (res.code == common.int.SUCCESS && res.response.id > 0) {
         result.params.threadId = res.response.id;
         this.markAllAsRead(result.params.threadId);
@@ -77,7 +82,7 @@ export default {
       } else {
         result.params.isNewMsg = true;
       }
-      router.replace(result);
+      router.push(result);
     });
   },
 

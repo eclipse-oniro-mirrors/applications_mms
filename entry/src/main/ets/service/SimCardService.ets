@@ -68,7 +68,15 @@ export default {
     initSimCardNum() {
         cardModel.getSimCardNum();
     },
+
     delSimMessage(actionData) {
         cardModel.delSimMessage(actionData);
+    },
+
+    /**
+     * Obtains the telephoneNumber from SIM cards.
+     */
+    getSimTelephoneNumber() {
+        cardModel.getSimTelephoneNumber();
     }
 }

@@ -19,6 +19,8 @@ import router from "@system.router";
 import { SettingItemSwitch, SettingItemJump } from "../../views/SettingItem";
 import SettingsController from "./settingsController";
 import HiLog from "../../utils/HiLog";
+import WantUtil from "../../utils/WantUtil";
+
 const TAG = "Settings";
 @Entry
 @Component
@@ -43,7 +45,7 @@ struct Settings {
             }
         }
     });
-    private menuItems: Array<any> = [
+    @Provide menuItems: Array<any> = [
         {
             value: $r("app.string.restore_default_settings"),
             action: () => {
@@ -52,6 +54,7 @@ struct Settings {
             enabled: true
         }
     ];
+    @Provide statusTitle: Resource = $r("app.string.enabled");
 
     /**
      * The function executes after a new instance of the custom component is created and before its build function
@@ -76,7 +79,8 @@ struct Settings {
      * and background, only customized components modified by @Entry take effect.
      */
     onPageShow() {
-        this.mSettingsCtrl.onShow()
+        this.mSettingsCtrl.onShow();
+        WantUtil.getWant();
     }
 
     /**
@@ -119,9 +123,7 @@ struct Settings {
                 Row().width("100%").flexShrink(1)
 
                 Column() {
-                    MoreMenu({
-                        menuItems: this.menuItems
-                    })
+                    MoreMenu()
                 }
                 .margin({ right: $r("app.float.action_bar_margin_right") })
             }
@@ -138,7 +140,6 @@ struct Settings {
                                 // Enhanced Information
                                 SettingItemJump({
                                     primaryTitle: $r("app.string.enhanced_information"),
-                                    statusTitle: $r("app.string.enabled"),
                                     visibilityShow: this.isEnhanceShow,
                                     OnClick: (event?: ClickEvent) => {
                                         // The page for setting enhanced information is displayed.
@@ -148,7 +149,6 @@ struct Settings {
                                 // Intelligent information
                                 SettingItemJump({
                                     primaryTitle: $r("app.string.intelligent_information"),
-                                    statusTitle: $r("app.string.enabled"),
                                     OnClick: (event?: ClickEvent) => {
                                         // The ringtone setting page is displayed.
                                     }
@@ -237,6 +237,7 @@ struct Settings {
                 }
             }
             .layoutWeight(1)
+            .align(Alignment.Top)
         }
         .width("100%")
         .height("100%")

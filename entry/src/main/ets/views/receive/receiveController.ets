@@ -258,7 +258,7 @@ export default class ReceiveController {
         if (this.checkSingle()) {
             return;
         }
-        if (curItem.telephone.toString().trim() == "") {
+        if (curItem != undefined && curItem.telephone != undefined && curItem.telephone.toString().trim() == "") {
             prompt.showToast({
                 // Invalid Recipient
                 // @ts-ignore
@@ -333,7 +333,8 @@ export default class ReceiveController {
             let item = this.selectContacts.splice(idx, 1);
             // Deleted items are added to the collection to be searched.
             this.contactsTemp.push(item);
-            if (item[0].telephoneFormat.toString().trim() != "") {
+            if (item[0] != undefined && item[0].telephoneFormat != undefined &&
+            item[0].telephoneFormat.toString().trim() != "") {
                 this.contacts.push(item[0]);
             }
             this.refresh = !this.refresh;
