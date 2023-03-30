@@ -17,6 +17,8 @@ import Notification from "@ohos.notificationManager";
 import common from "../data/commonData";
 import HiLog from "../utils/HiLog";
 import conversationService from "./ConversationService";
+import LooseObject from "../data/LooseObject";
+import messageService from "../service/ConversationListService";
 
 var notificationManager = globalThis.requireNapi("notificationManager");
 const label = "notification_";
@@ -38,8 +40,8 @@ export default class NotificationService {
 
     /**
      * Send Notifications
+     *
      * @param actionData
-     * @return
      */
     sendNotify(actionData) {
         // Creating Want Information
@@ -50,7 +52,6 @@ export default class NotificationService {
             notificationRequest.wantAgent = data;
             notificationRequest.id = actionData.msgId;
             notificationRequest.label = label + actionData.msgId;
-            notificationRequest.badgeNumber = Number(actionData.unreadTotal);
             if(Number(actionData.unreadTotal) >= 0){
                 HiLog.i(TAG, `unreadTotal is: ${Number(actionData.unreadTotal)}`)
                 notificationManager.setBadgeNumber(Number(actionData.unreadTotal));
@@ -61,10 +62,10 @@ export default class NotificationService {
     }
 
     /**
-     * Create a Wanted message to be sent.
+     * Create a wanted message to be sent.
+     *
      * @param agentInfo
-     * @param callback
-     * @return
+     * @callback callback
      */
     getWantAgent(agentInfo, callback) {
         WantAgent.getWantAgent(agentInfo).then(data1 => {
@@ -73,9 +74,9 @@ export default class NotificationService {
     }
 
     /**
-     * Constructing Distributed Startup Parameters
+     * Constructing distributed startup parameters
+     *
      * @param actionData
-     * @return
      */
     buildWantAgentInfo(actionData): any {
         let parameters = {
@@ -103,9 +104,9 @@ export default class NotificationService {
     }
 
     /**
-     * Building Notification Parameters
+     * Building notification parameters
+     *
      * @param actionData
-     * @return
      */
     buildNotificationRequest(actionData): any {
         let message = actionData.message;
@@ -149,6 +150,13 @@ export default class NotificationService {
                 callback(common.int.FAILURE);
             }
             callback(common.int.SUCCESS);
+        });
+        let params: LooseObject = {};
+        messageService.statisticalData(params, function (res) {
+            if (res.code == common.int.SUCCESS) {
+                notificationManager.setBadgeNumber(Number(res.response.totalListCount));
+                HiLog.i(TAG, "sendNotification, callback actionData");
+            }
         });
     }
 

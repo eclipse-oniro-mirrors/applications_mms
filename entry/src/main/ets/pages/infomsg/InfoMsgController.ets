@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import common from "../../data/commonData";
-import commonEvent from "@ohos.commonEvent";
+import commonEvent from "@ohos.commonEventManager";
 import commonService from "../../service/CommonService";
 import dateUtil from "../../utils/DateUtil";
 import featureAbility from "@ohos.ability.featureAbility";
@@ -135,6 +135,9 @@ export default class InfoMsgController {
         this.page = 0;
         this.requestItem();
         this.subscribeInfo();
+        let actionData = {};
+        NotificationService.getInstance().cancelMessageNotify(actionData, res => {
+        });
     }
 
     onHide() {
@@ -396,7 +399,7 @@ export default class InfoMsgController {
         this.isJumping = true;
         // If the contact has unread information, a message needs to be sent to the backend PA to mark all information
         // of the contact as read.
-        if (this.messageList[index].countOfUnread > common.int.MESSAGE_CODE_ZERO) {
+        if (this.messageList[index]?.countOfUnread > common.int.MESSAGE_CODE_ZERO) {
             this.markAllAsReadByIndex(index);
         }
         this.jumpToConversationPage(this.messageList[index]);
@@ -704,8 +707,8 @@ export default class InfoMsgController {
         }
         this.isJumping = true;
         // Determine whether to redirect to the contact details page or to the list page of multiple recipients.
-        var contactsNum = this.messageList[index].contactsNum;
-        var telephone = this.messageList[index].telephone;
+        var contactsNum = this.messageList[index]?.contactsNum;
+        var telephone = this.messageList[index]?.telephone;
         if (contactsNum == common.int.MESSAGE_CODE_ONE) {
             var actionData = {
                 phoneNumber: telephone,
@@ -714,7 +717,7 @@ export default class InfoMsgController {
             this.jumpToContract(actionData);
         } else {
             let threadId = this.messageList[index].threadId;
-            let contactsNum = this.messageList[index].contactsNum;
+            let contactsNum = this.messageList[index]?.contactsNum;
             this.jumpToGroupDetail(threadId, contactsNum);
         }
     }

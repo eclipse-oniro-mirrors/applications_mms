@@ -92,6 +92,12 @@ export default struct ConversationList {
             gridCount: this.dialogGridCount
         });
 
+        this.mConListCtrl.registerDataChangeObserver(this.onContactChange, getContext(this));
+    }
+
+    onContactChange = () => {
+        this.mConListCtrl.messageList = [];
+        this.mConListCtrl.requestItem();
     }
 
     /**
@@ -100,6 +106,7 @@ export default struct ConversationList {
      * can cause erratic application behavior.
      */
     aboutToDisappear() {
+        this.mConListCtrl.unregisterDataChangeObserver(this.onContactChange, getContext(this))
     }
 
     build() {

@@ -13,17 +13,12 @@
  * limitations under the License.
  */
 import HiLog from "../../utils/HiLog";
-// Recipient
 import prompt from "@system.prompt";
-// JS public constant
 import common from "../../data/commonData";
 import contractService from "../../service/ContractService";
 import commonService from "../../service/CommonService"
 import commonCtrl from "../../pages/conversation/common"
-import featureAbility from "@ohos.ability.featureAbility";
 import LooseObject from "../../data/LooseObject"
-
-let ReceiveCtrl;
 
 const TAG = "ReceiveController";
 
@@ -125,18 +120,23 @@ export default class ReceiveController {
             callback(code);
         });
     }
+
     // Filter search terms to match contacts
     filterContacts(textValue) {
-        this.contacts = this.contactsTemp.filter((contact) => {
-            if (contact.contactName && contact.contactName.toLowerCase().search(textValue) != -1) {
-                HiLog.i(TAG, "filterContacts, contactName");
-                return true;
-            } else if (contact.telephone && contact.telephone.toLowerCase().search(textValue) != -1) {
-                HiLog.i(TAG, "filterContacts, telephone");
-                return true;
-            }
-            return false;
-        });
+        try {
+            this.contacts = this.contactsTemp.filter((contact) => {
+                if (contact.contactName && contact.contactName.toLowerCase().search(textValue) != -1) {
+                    HiLog.i(TAG, "filterContacts, contactName");
+                    return true;
+                } else if (contact.telephone && contact.telephone.toLowerCase().search(textValue) != -1) {
+                    HiLog.i(TAG, "filterContacts, telephone");
+                    return true;
+                }
+                return false;
+            });
+        } catch (Error) {
+            HiLog.i(TAG, `error message: ${JSON.stringify(Error)}`);
+        }
     }
 
     isPhoneNumber(str) {
@@ -156,7 +156,7 @@ export default class ReceiveController {
     checkReceive(call) {
         HiLog.i(TAG, "checkReceive, isInputStatus: " + this.isInputStatus);
         if (this.myText.trim() == common.string.EMPTY_STR) {
-            this.setInputStatus(false);
+            this.strSelectContact = this.setShowContactName();
             this.isShowSearch = false;
             return;
         }
@@ -290,8 +290,8 @@ export default class ReceiveController {
         if (this.selectContacts.length == 0) {
             return '';
         }
-        let myName = this.selectContacts[0].contactName.trim();
-        let telephone = this.selectContacts[0].telephone
+        let myName = this.selectContacts[0]?.contactName.trim();
+        let telephone = this.selectContacts[0]?.telephone
         if (!this.isPhoneNumber(telephone)) {
             myName = telephone.replace(new RegExp(/e|-|#|\*|\./, "g"), common.string.EMPTY_STR);
         } else {
@@ -356,7 +356,7 @@ export default class ReceiveController {
     // Tap a contact's avatar to go to the contact details page.
     titleBarAvatar(index) {
         var actionData: LooseObject = {};
-        actionData.phoneNumber = this.contacts[index].telephone;
+        actionData.phoneNumber = this.contacts[index]?.telephone;
         actionData.pageFlag = common.contractPage.PAGE_FLAG_CONTACT_DETAILS;
         this.jumpToContract(actionData);
     }
