@@ -19,11 +19,15 @@ import { MoreMenu } from "../../../views/MmsMenu";
 import router from "@system.router";
 import { SettingItemJump } from "../../../views/SettingItem";
 import WantUtil from "../../../utils/WantUtil";
+import SettingsController from  "../settingsController"
 
 @Entry
 @Component
 struct AdvancedSettings {
-    @StorageLink("AdvancedSettingsController") @Watch("changeSelectState") mAdvancedSettingsCtrl: AdvancedSettingsController = AdvancedSettingsController.getInstance();
+    @StorageLink("AdvancedSettingsController") @Watch("changeSelectState") mAdvancedSettingsCtrl:
+        AdvancedSettingsController = AdvancedSettingsController.getInstance();
+    @StorageLink("SettingsController") @Watch("changeSelectState") mSettingsCtrl:
+        SettingsController = SettingsController.getInstance()
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 6, lg: 8 };
     private gridColOffset: GridColColumnOption = { md: 1, lg: 2 };
@@ -42,6 +46,7 @@ struct AdvancedSettings {
             value: $r("app.string.restore"),
             action: () => {
                 this.mAdvancedSettingsCtrl.restoreSettingPageSwitchValue();
+                this.mSettingsCtrl.restoreSettingsPageSwitchValue();
             }
         }
     });

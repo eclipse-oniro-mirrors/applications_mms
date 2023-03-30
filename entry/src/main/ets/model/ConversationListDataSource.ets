@@ -22,7 +22,6 @@ export default class ConversationListDataSource extends BaseDataSource {
     private mmsList: Array = [];
 
     public totalCount(): number {
-        HiLog.i(TAG, "totalCount is %s", this.mmsList.length);
         return this.mmsList.length;
     }
 

@@ -14,29 +14,32 @@
  */
 
 import HiLog from "../utils/HiLog";
-import ContactsModel from "../model/ContactsModel";
 import common from "../data/commonData";
 import telephoneUtil from "../utils/TelephoneUtil";
 import LooseObject from "../data/LooseObject"
 
 const TAG = "ContractService";
 
-let mContactsModel = new ContactsModel();
-
 export default {
 
     /**
-     * Querying the Contact List
+     * Querying the contact list
+     *
      * @param actionData
-     * @return
+     * @callback callback
      */
     queryContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        mContactsModel.queryContact(actionData, rawContractIds => {
+        globalThis.DataWorker.sendRequest("queryContact", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, rawContractIds => {
             let result: LooseObject = {};
             actionData.contractIds = rawContractIds;
-            // Based on rawContractIds
-            mContactsModel.queryContactDataByIds(actionData, contracts => {
+            globalThis.DataWorker.sendRequest("queryContactDataByIds", {
+                actionData: actionData,
+                context: globalThis.mmsContext
+            }, contracts => {
                 result.code = common.int.SUCCESS;
                 this.convertContracts(contracts, messageList => {
                     result.response = messageList;
@@ -48,12 +51,16 @@ export default {
 
     /**
      * Counting the number of rows of contacts
+     *
      * @param actionData
-     * @return
+     * @callback callback
      */
     countContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        mContactsModel.countContact(actionData, count => {
+        globalThis.DataWorker.sendRequest("countContact", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, count => {
             let result: LooseObject = {};
             result.code = common.int.SUCCESS;
             result.response = count;
@@ -62,9 +69,10 @@ export default {
     },
 
     /**
-     * Convert Contact Parameters
+     * Convert contact parameters
+     *
      * @param contracts
-     * @return
+     * @callback callback
      */
     async convertContracts(contracts, callback) {
         let messageList = [];
@@ -81,23 +89,24 @@ export default {
     },
 
     /**
-     * Process Contact Parameters
+     * Process contact parameters
+     *
      * @param contactObjects
-     * @return
      */
-    dealContractParams(contactObjects) {
+    dealContractParams(contactObjects): LooseObject {
+        let contractParams: LooseObject = {};
         if (contactObjects && contactObjects != common.string.EMPTY_STR) {
-            let params = [];
+            let params: Array<LooseObject> = [];
             try {
                 params = JSON.parse(contactObjects);
             } catch (Error) {
                 HiLog.i(TAG, `JSON.parse error ${Error}`);
-                return {};
+                return contractParams;
             }
-            let contactsNumber = common.string.EMPTY_STR;
-            let contactsName = common.string.EMPTY_STR;
-            let contactsNumberFormat = common.string.EMPTY_STR;
-            let length = params.length;
+            let contactsNumber: string = common.string.EMPTY_STR;
+            let contactsName: string = common.string.EMPTY_STR;
+            let contactsNumberFormat: string = common.string.EMPTY_STR;
+            let length: number = params.length;
             for (let item of params) {
                 contactsNumber = contactsNumber + item.telephone + common.string.COMMA;
                 contactsNumberFormat = contactsNumberFormat + item.telephone + common.string.COMMA;
@@ -107,45 +116,51 @@ export default {
                     contactsName += (item.telephone + common.string.COMMA);
                 }
             }
-            let telephnoe = contactsNumber.substring(0, contactsNumber.length - 1);
-            contactsNumber = telephoneUtil.dealTelephoneSort(telephnoe);
-            let contractParams = {
-                strContactsNumber: contactsNumber,
-                strContactsNumberFormat: contactsNumber,
-                strContactsName: contactsName.substring(0, contactsName.length - 1),
-                contactsNum: length,
-            }
-            return contractParams;
+            let telephone: string = contactsNumber.substring(0, contactsNumber.length - 1);
+            contactsNumber = telephoneUtil.dealTelephoneSort(telephone);
+            contractParams.strContactsNumber = contactsNumber;
+            contractParams.strContactsNumberFormat = contactsNumber;
+            contractParams.strContactsName = contactsName.substring(0, contactsName.length - 1);
+            contractParams.contactsNum = length;
         }
+        return contractParams;
     },
 
     /**
      * Query a contact by mobile number.
+     *
      * @param actionData
-     * @param callback
+     * @callback callback
      */
     queryContactDataByTelephone(actionData, callback) {
-        mContactsModel.queryContactDataByTelephone(actionData, contracts => {
-            HiLog.i(TAG, "queryContactDataByTelephone, success");
+        globalThis.DataWorker.sendRequest("queryContactDataByTelephone", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, contracts => {
             callback(contracts);
-        })
+        });
     },
 
     /**
-     * Fuzzy Search for Contacts
+     * Fuzzy search for contacts
+     *
      * @param actionData
-     * @param callback
+     * @callback callback
      */
     searchContracts(actionData, callback) {
         let result: LooseObject = {};
-        mContactsModel.searchContracts(actionData, res => {
+        globalThis.DataWorker.sendRequest("searchContracts", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, (res) =>{
             result.code = res.code
             if (res.code == common.int.SUCCESS) {
                 result.response = this.dealSearchContracts(res.abilityResult);
                 callback(result);
             }
-        })
+        });
     },
+
     dealSearchContracts(contracts) {
         let searchContracts = []
         for (let item of contracts) {
@@ -162,12 +177,14 @@ export default {
     /**
      * Check whether a business card exists.
      *
-     * @param {Object} actionData
-     * @param {Object} callback
+     * @param actionData
+     * @callback callback
      */
     judgeIsExitProfile(actionData, callback) {
-        HiLog.i(TAG, "judgeIsExitProfile, start");
-        mContactsModel.queryProfile(actionData, res => {
+        globalThis.DataWorker.sendRequest("queryProfile", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
             let result = false;
             if (res > 0) {
                 result = true;

@@ -13,29 +13,24 @@
  * limitations under the License.
  */
 
-// log Tools
 import HiLog from "../utils/HiLog";
-// Common constants
 import common from "../data/commonData";
-
-// Obtain fake data.
 import ConversationListModel from "../model/ConversationListModel";
-
-let conversationListModel = new ConversationListModel();
 import conversationService from "./ConversationService";
 import contractService from "./ContractService";
 import commonService from "./CommonService";
 import telephoneUtils from "../utils/TelephoneUtil";
 import LooseObject from "../data/LooseObject"
 
+let conversationListModel = new ConversationListModel();
 const TAG = "ConversationListService";
 
 export default {
     /**
-     * Querying List Data
+     * Querying list data
+     *
      * @param actionData
-     * @param tableName
-     * @return
+     * @callback callback
      */
     querySessionList(actionData, callback) {
         // Querying Data Lists
@@ -68,6 +63,7 @@ export default {
             callback(result);
         });
     },
+
     convertSessionList(sessionList, telephones) {
         let messageList = [];
         for (let session of sessionList) {
@@ -107,6 +103,7 @@ export default {
         }
         return messageList;
     },
+
     dealContactsName(telephones, actionData, sessionLists, callback) {
         actionData.telephones = telephones;
         if (telephones.length == 0) {
@@ -126,6 +123,7 @@ export default {
             }
         });
     },
+
     getTelephoneMap(contacts) {
         let telephoneMap = new Map();
         for (let item of contacts) {
@@ -137,6 +135,7 @@ export default {
         }
         return telephoneMap;
     },
+
     buildName(sessionLists, telephoneMap) {
         // Match the result based on the mobile number.
         for (let session of sessionLists) {
@@ -148,6 +147,7 @@ export default {
             }
         }
     },
+
     dealMultiName(session, telephoneMap) {
         let telephones = session.telephone.split(common.string.COMMA);
         let name = common.string.EMPTY_STR;
@@ -163,7 +163,8 @@ export default {
 
     /**
      * Check whether notification data exists.
-     * @param callback
+     *
+     * @callback callback
      */
     judgeIsNotificationData(callback) {
         let param = {
@@ -182,9 +183,9 @@ export default {
 
     /**
      * statistical data
+     *
      * @param actionData
-     * @param callBack
-     * @return
+     * @callBack callBack
      */
     statisticalData(actionData, callBack) {
         let normalPromise = new Promise<LooseObject>((resolve) => {
@@ -224,13 +225,12 @@ export default {
             }
             callBack(result);
         });
-
     },
 
     /**
-     * Delete data based on the primary key ID.
+     * Delete data based on the primary key id.
+     *
      * @param threadIds Session ID
-     * @return
      */
     deleteMessageById(actionData) {
         // Deletes data from the session list.
@@ -240,7 +240,8 @@ export default {
     },
 
     /**
-     * Delete data based on the primary key ID.
+     * Delete data based on the primary key id.
+     *
      * @param threadIds Session ID
      */
     deleteMessageBySessionId(threadIds) {
@@ -250,9 +251,10 @@ export default {
     },
 
     /**
-     * Update data based on the primary key ID.
+     * Update data based on the primary key id.
+     *
      * @param threadIds Session ID
-     * @return
+     * @param valueBucket
      */
     updateById(threadIds, valueBucket) {
         conversationListModel.updateById(threadIds, valueBucket);
@@ -261,9 +263,8 @@ export default {
 
     /**
      * Marking a read SMS message
-     * @param threadIds Session ID
-     * @param valueBucket Number of Marked Reads
-     * @return
+     *
+     * @param actionData
      */
     markAllAsRead(actionData) {
         if (actionData.threadIds.length == 0) {
@@ -277,8 +278,7 @@ export default {
 
     /**
      * Updates all unread information to read.
-
-
+     *
      * @param actionData
      */
     markAllToRead(actionData) {
@@ -287,10 +287,10 @@ export default {
     },
 
     /**
-     * 新增会话列表
-     * @param valueBucket 新增的数据
-     * @param callback 回调
-     * @return
+     * Add a new session list
+     *
+     * @param valueBucket New data
+     * @callback callback
      */
     insertSession(valueBucket, callback) {
         conversationListModel.insertSession(valueBucket, res => {
@@ -300,9 +300,9 @@ export default {
 
     /**
      * Adding a session draft list
+     *
      * @param valueBucket New Data
-     * @param callback Callback
-     * @return
+     * @callback callback
      */
     insertSessionDraft(actionData, callback) {
         let param = this.dealSendResults(actionData);
@@ -322,6 +322,7 @@ export default {
             globalThis.needToUpdate = true;
         });
     },
+
     dealInsertSession(param, actionData, callback) {
         let valueBucket = {
             "telephone": param.telephone,
@@ -343,6 +344,7 @@ export default {
             });
         });
     },
+
     deleteDraftDataOrUpdate(actionData, response, param, callback) {
         if (actionData.groupId > 0) {
             let groupIds = [actionData.groupId];
@@ -357,6 +359,7 @@ export default {
             callback();
         }
     },
+
     updateDraftData(response, param, actionData, callback) {
         let sessionId = response.id;
         // Invoke the SMS database to insert SMS messages.
@@ -374,6 +377,7 @@ export default {
             callback();
         });
     },
+
     dealSendResults(actionData) {
         let contractsNum = 1;
         let telephone = common.string.EMPTY_STR;
@@ -387,7 +391,7 @@ export default {
                 telephone = telephone.substring(0, telephone.length - 1);
                 contractsNum = selectContacts.length;
             } else if (selectContacts.length == 1) {
-                telephone = selectContacts[0].telephone;
+                telephone = selectContacts[0]?.telephone;
             }
             let receiveContactValue = actionData.receiveContactValue;
             if (receiveContactValue != common.string.EMPTY_STR) {
@@ -424,8 +428,9 @@ export default {
 
     /**
      * Querying the session list by mobile number
-     * @param telephone
-     * @return
+     *
+     * @param actionData
+     * @callback callback
      */
     querySessionByNumberType(actionData, callback) {
         let result: LooseObject = {};
@@ -444,8 +449,9 @@ export default {
 
     /**
      * Querying the session list by mobile number
+     *
      * @param telephone
-     * @return
+     * @callback callback
      */
     querySessionByTelephone(telephone, callback) {
         let result: LooseObject = {};
@@ -470,8 +476,9 @@ export default {
 
     /**
      * Querying the session list by mobile number
+     *
      * @param telephone
-     * @return
+     * @callback callback
      */
     querySessionById(threadId, callback) {
         let result: LooseObject = {};
@@ -487,9 +494,11 @@ export default {
             callback(result);
         });
     },
+
     deleteMessageBySessionIdsAndLock(actionData) {
         conversationService.deleteMessageBySessionIdsAndLock(actionData);
     },
+
     dealMessageLockContent(actionData, callback) {
         let threadIds = actionData.threadIds;
         let length = threadIds.length;
@@ -511,6 +520,7 @@ export default {
             });
         }
     },
+
     updateLastItemContent(actionData) {
         let length = actionData.mmsList.length;
         let item = actionData.mmsList[length - 1];
@@ -531,11 +541,12 @@ export default {
         };
         this.updateById(threadIds, valueBucket);
     },
+
     /**
-     * search
-     * @param actionData Parameters
-     * @param callback Callback
-     * @return
+     * Search message with text
+     *
+     * @param actionData
+     * @callback callback
      */
     searchMessageWithLike(actionData, callback) {
         // Session Details Search Data
@@ -577,7 +588,9 @@ export default {
 
     /**
      * Fuzzy match of the session list based on the mobile number
-     * @param actionData   Database instance
+     *
+     * @param actionData
+     * @callback callback
      */
     async searchSessionByTelephone(actionData, callback) {
         let result: LooseObject = {};
@@ -598,6 +611,7 @@ export default {
             callback(result);
         });
     },
+
     dealSessionLikeData(mmList) {
         let sessionList = [];
         for (let item of mmList) {

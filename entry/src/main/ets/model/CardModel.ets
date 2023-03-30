@@ -15,147 +15,252 @@
 
 import BaseModel from "./BaseModel";
 import common from "../data/commonData";
-import LooseObject from "../data/LooseObject"
 import HiLog from "../utils/HiLog";
 import MmsPreferences from "../utils/MmsPreferences";
 import telephonySMS from "@ohos.telephony.sms";
 import telephonySim from "@ohos.telephony.sim";
+import observer from '@ohos.telephony.observer';
+import CommonEvent from '@ohos.commonEventManager';
+import emitter from '@ohos.events.emitter'
+import radio from '@ohos.telephony.radio';
 
 const TAG = "CardModel";
-// The SIM card status is unknown
-const SIM_STATE_UNKNOWN: number = 0;
-// Indicates that the SIM card is in the not present state, that is, no SIM card is inserted in the card slot.
-const SIM_STATE_NOT_PRESENT: number = 1;
-// Indicates that the SIM card is locked, that is, the SIM card is locked by a PIN, PUK, or network lock.
-const SIM_STATE_LOCKED: number = 2;
-// Indicates that the SIM card is in the not ready state, that is, the SIM card is in place but not working.
-const SIM_STATE_NOT_READY: number = 3;
-// Indicates that the SIM card is in the ready state, that is, the SIM card is in place and working properly.
-const SIM_STATE_READY: number = 4;
-// Indicates that the SIM card is loaded, that is, the SIM card is in place and all card files are loaded.
-const SIM_STATE_LOADED: number = 5;
 
-export default class CardModel extends BaseModel {
-    getSimSpn() {
-        telephonySim.getSimSpn(common.int.SIM_ONE, (err, value) => {
-            if (err) {
-                HiLog.e(TAG, "getSimSpn, SIM_ONE error: " + JSON.stringify(err.message));
-            } else {
-                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_0_SPN, value);
-            }
-        });
-        telephonySim.getSimSpn(common.int.SIM_TWO, (err, value) => {
-            if (err) {
-                HiLog.e(TAG, "getSimSpn, SIM_TWO error: " + JSON.stringify(err.message));
-            } else {
-                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_1_SPN, value);
-            }
-        });
+class CardModel extends BaseModel {
+  public SIM_STATE_CHANGE_EVENT: emitter.InnerEvent = {
+    eventId: common.int.EVENT_SIM_STATE_CHANGE,
+    priority: emitter.EventPriority.HIGH
+  }
+  public SLOTID_CHANGE_EVENT: emitter.InnerEvent = {
+    eventId: common.int.EVENT_SLOTID_CHANGE,
+    priority: emitter.EventPriority.HIGH
+  }
+  private mSimStateArray: Array<telephonySim.SimState> = [telephonySim.SimState.SIM_STATE_UNKNOWN,
+  telephonySim.SimState.SIM_STATE_UNKNOWN];
+  private spn: string = '';
+  private spnEventSubscriber: any;
+  private haveMultiSimCardReady: boolean = false;
+  private haveSimCardReady: boolean = false;
+
+  public init(): void {
+    try {
+      HiLog.i(TAG, "init start.");
+      this.setMaxSimCountToMap();
+      this.getSimState();
+      this.addSimStateChangeListener();
+      this.subscribeSpnObserver();
+    } catch (error) {
+      HiLog.e(TAG, "init error: " + JSON.stringify(error));
     }
+  }
 
-    getSmscNumber(slotId, callback) {
-        let smsNumber = common.string.EMPTY_STR;
-        let simOne = MmsPreferences.getInstance().getNewSmscOfSim1();
-        let simTwo = MmsPreferences.getInstance().getNewSmscOfSim2();
-        if (slotId == common.int.SIM_ONE && simOne != common.string.EMPTY_STR) {
-            smsNumber = simOne;
-        } else if (slotId == common.int.SIM_TWO && simTwo != common.string.EMPTY_STR) {
-            smsNumber = simTwo;
+  public deInit(): void {
+    try {
+      HiLog.i(TAG, "deInit start.");
+      this.mSimStateArray = [telephonySim.SimState.SIM_STATE_UNKNOWN, telephonySim.SimState.SIM_STATE_UNKNOWN];
+      this.removeSimStateChangeListener();
+      this.unsubscribeSpnObserver();
+    } catch (error) {
+      HiLog.e(TAG, "deInit error: " + JSON.stringify(error));
+    }
+  }
+
+  public isSimReady(slotId: number): boolean {
+    return this.mSimStateArray[slotId] == telephonySim.SimState.SIM_STATE_READY
+    || this.mSimStateArray[slotId] == telephonySim.SimState.SIM_STATE_LOADED;
+  }
+
+  private setMaxSimCountToMap(): void {
+    MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_MAX_SIM_COUNT, telephonySim.getMaxSimCount());
+  }
+
+  private getSimState(): void {
+    for (let i = 0; i < telephonySim.getMaxSimCount(); i++) {
+      telephonySim.getSimState(i, (err, value) => {
+        if (err) {
+          HiLog.e(TAG, "getSimState, slotId: " + i + ", error: " + JSON.stringify(err));
         } else {
-            // Invoke the API to obtain the information.
-            telephonySMS.getSmscAddr(slotId).then((simPhoneNumber) => {
-                smsNumber = simPhoneNumber;
-                if (slotId == common.int.SIM_ONE) {
-                    MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_NEW_SIM_0_SMSC, simPhoneNumber);
-                } else if (slotId == common.int.SIM_TWO) {
-                    MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_NEW_SIM_1_SMSC, simPhoneNumber);
-                }
-                callback(smsNumber);
-            }).catch((error) => {
-                HiLog.e(TAG, "get SMSC number error: " + JSON.stringify(error.message));
-            });
+          this.notifySimStateChange(i, value);
         }
-        callback(smsNumber);
+      });
     }
+  }
 
-    queryMessageInSimCard(actionData, callback) {
-        let index = actionData.index - 1;
-        // Currently, the API for obtaining SIM card information is not provided. Obtaining SIM card SMS messages
-        let simMessageList = [];
-        telephonySMS.getAllSimMessages(index, (error, msgArray) => {
-            if (error) {
-                HiLog.e(TAG, "queryMessageInSimCard, error: " + JSON.stringify(error.message));
-                return;
-            }
-            for (let i = 0;i < msgArray.length; i++) {
-                let data: LooseObject = {};
-                data.image = "/common/icon/user_avatar_full_fill.svg";
-                data.date = common.string.EMPTY_STR;
-                data.time = common.string.EMPTY_STR;
-                data.timeMillisecond = msgArray[i].shortMessage.scTimestamp;
-                data.content = msgArray[i].shortMessage.visibleMessageBody;
-                data.indexOnSim = msgArray[i].indexOnSim;
-                data.isCbChecked = false;
-                data.msgType = [0];
-                data.type = 0;
-                data.address = msgArray[i].shortMessage.visibleRawAddress;
-                data.isMsm = false;
-                simMessageList.push(data);
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, simMessageList));
-        });
-    }
+  private removeSimStateChangeListener(): void {
+    observer.off('simStateChange');
+  }
 
-    delSimMessage(actionData) {
-        let index = actionData.index - 1;
-        let msgIndex = actionData.indexOnSim;
-        telephonySMS.delSimMessage(index, msgIndex, (error, value) => {
-            if (error) {
-                HiLog.e(TAG, "delSimMessage, error: " + JSON.stringify(error.message));
-            } else {
-            }
-        });
+  private addSimStateChangeListener(): void {
+    for (let i = 0; i < telephonySim.getMaxSimCount(); i++) {
+      observer.on('simStateChange', {
+        slotId: i
+      }, value => {
+        let simState = value?.state;
+        HiLog.i(TAG, "simStateChange slotId: " + i + ", simState: " + simState);
+        this.notifySimStateChange(i, simState);
+      });
     }
+  }
 
-    /**
-     * Get the number of sim card.
-     */
-    getSimCardNum():void {
-        telephonySim.hasSimCard(common.int.SIM_ONE, (error, value) => {
-            if (error) {
-                HiLog.e(TAG, "getSimCardNum, SIM_ONE error: " + JSON.stringify(error.message));
-            } else {
-                let result = value ? common.bool.TRUE : common.bool.FALSE;
-                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_0_EXIST_FLAG, result);
-            }
-        });
-        telephonySim.hasSimCard(common.int.SIM_TWO, (error, value) => {
-            if (error) {
-                HiLog.e(TAG, "getSimCardNum, SIM_TWO error: " + JSON.stringify(error.message));
-            } else {
-                let result = value ? common.bool.TRUE : common.bool.FALSE;
-                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_1_EXIST_FLAG, result);
-            }
-        });
+  private notifySimStateChange(slotId: number, simState): void {
+    let changed: boolean = (simState != this.mSimStateArray[slotId]);
+    if (!changed) {
+      return;
     }
+    this.mSimStateArray[slotId] = simState;
+    if (this.isSimReady(slotId)) {
+      this.setSpnToMap(slotId);
+      this.setSimTelephoneNumberToMap(slotId);
+      this.setSmscNumberToPref(slotId);
+    }
+    this.setSimCardReadyFlagToMap(slotId, simState);
+    this.setDefaultSlotToMap();
+    emitter.emit(this.SIM_STATE_CHANGE_EVENT, {
+      data: {
+        "simState": simState,
+        "slotId": slotId
+      }
+    });
+  }
 
-    /**
-     * Get the telephoneNumber from sim1 and sim2.
-     */
-    getSimTelephoneNumber():void {
-        telephonySim.getSimTelephoneNumber(common.int.SIM_ONE, (error, value) => {
-            if (error) {
-                HiLog.e(TAG, "get SIM_ONE telephone number error: " + JSON.stringify(error.message));
-            } else {
-                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_0_NUMBER, value);
-            }
+  private setSimCardReadyFlagToMap(slotId: number, simState): void {
+    this.haveSimCardReady = this.isSimReady(common.int.SIM_ONE) || this.isSimReady(common.int.SIM_TWO);
+    this.haveMultiSimCardReady = this.isSimReady(common.int.SIM_ONE) && this.isSimReady(common.int.SIM_TWO);
+    HiLog.i(TAG, "updateSimCardReadyFlag slotId: " + slotId + ", simState: " + simState + ", haveSimCardReady: "
+    + this.haveSimCardReady + ", haveMultiSimCardReady: " + this.haveMultiSimCardReady);
+    MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_HAVE_MULTI_SIM_CARD_READY,
+    this.haveMultiSimCardReady);
+    MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_HAVE_SIM_CARD_READY, this.haveSimCardReady);
+  }
+
+  private setDefaultSlotToMap() {
+    if (this.haveSimCardReady) {
+      if (!this.haveMultiSimCardReady) {
+        if (this.isSimReady(common.int.SIM_ONE)) {
+          MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_DEFAULT_SLOT, common.int.SIM_ONE);
+        } else {
+          MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_DEFAULT_SLOT, common.int.SIM_TWO);
+        }
+      } else {
+        telephonySim.getDefaultVoiceSlotId((error, slotId: number) => {
+          if (error) {
+            HiLog.e(TAG, "getDefaultVoiceSlotId error, slotId: " + slotId + ", error: " + JSON.stringify(error));
+          } else {
+            MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_DEFAULT_SLOT, slotId);
+          }
         });
-        telephonySim.getSimTelephoneNumber(common.int.SIM_TWO, (error, value) => {
-            if (error) {
-                HiLog.e(TAG, "get SIM_TWO telephone number error: " + JSON.stringify(error.message));
-            } else {
-                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_SIM_1_NUMBER, value);
-            }
-        });
+      }
     }
+  }
+
+  private setSpnToMap(slotId: number): void {
+    // get spn from sim card
+    telephonySim.getSimSpn(slotId, (error, data) => {
+      if (error || !data) {
+        HiLog.w(TAG, "getSpnFromSim fail, slotId: " + slotId + ", data: " + data + ", error: "
+        + JSON.stringify(error));
+      } else {
+        this.notifySetSimSpnToMap(slotId, data);
+        return;
+      }
+    });
+    // get spn from network
+    radio.getOperatorName(slotId, (error, data) => {
+      if (error || !data) {
+        HiLog.w(TAG, "getSpnFromSim fail, slotId: " + slotId + ", data: " + data + ", error: "
+        + JSON.stringify(error));
+      } else {
+        this.notifySetSimSpnToMap(slotId, data);
+        return;
+      }
+    });
+    // get plmn to replace spn
+    telephonySim.getSimOperatorNumeric(slotId, (error, data) => {
+      if (error || !data) {
+        HiLog.w(TAG, "getSimOperatorNumeric fail, slotId: " + slotId + ", data: " + data + ", error: "
+        + JSON.stringify(error));
+      } else {
+        if (common.int.SIM_ONE === slotId) {
+          MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SIM_0_SPN, this.spn);
+        } else {
+          MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SIM_1_SPN, this.spn);
+        }
+        return;
+      }
+    });
+  }
+
+  private notifySetSimSpnToMap(slotId: number, spn: string): void {
+    HiLog.d(TAG, "notifyUpdateSimSpn slotId: " + slotId + ", spn: " + spn);
+    this.spn = spn;
+    if (common.SPN_CHINA.MOBILE == spn) {
+      this.spn = globalThis.mmsContext.resourceManager.getStringSync($r('app.string.china_mobile').id);
+    } else if (common.SPN_CHINA.TELECOM == spn) {
+      this.spn = globalThis.mmsContext.resourceManager.getStringSync($r('app.string.china_telecom').id);
+    } else if (common.SPN_CHINA.UNICOM == spn) {
+      this.spn = globalThis.mmsContext.resourceManager.getStringSync($r('app.string.china_unicom').id);
+    }
+    if (common.int.SIM_ONE === slotId) {
+      MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SIM_0_SPN, this.spn);
+    } else {
+      MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SIM_1_SPN, this.spn);
+    }
+  }
+
+  private setSimTelephoneNumberToMap(slotId: number): void {
+    telephonySim.getSimTelephoneNumber(slotId, (error, value) => {
+      if (error) {
+        HiLog.e(TAG, "get slotId: " + slotId + " telephone number error: " + JSON.stringify(error));
+      } else {
+        if (common.int.SIM_ONE === slotId) {
+          MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SIM_0_NUMBER, value);
+        } else {
+          MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SIM_1_NUMBER, value);
+        }
+      }
+    });
+  }
+
+  private unsubscribeSpnObserver() {
+    if (this.spnEventSubscriber) {
+      CommonEvent.unsubscribe(this.spnEventSubscriber);
+    }
+  }
+
+  private subscribeSpnObserver() {
+    let subscribeInfo = {
+      events: ['usual.event.SPN_INFO_CHANGED']
+    };
+    CommonEvent.createSubscriber(subscribeInfo, (err, data) => {
+      if (err) {
+        HiLog.e(TAG, "subscribeSpnObserver error: " + JSON.stringify(err))
+        return
+      }
+      this.spnEventSubscriber = data;
+      CommonEvent.subscribe(data, (err, data) => {
+        if (data && data.parameters) {
+          let spn = data.parameters.CUR_SPN ? data.parameters.CUR_SPN : data.parameters.CUR_PLMN;
+          if (spn) {
+            HiLog.i(TAG, "SPN_INFO_CHANGED notify slotId: " + data.parameters.CUR_SLOT_ID + ", spn: " + spn);
+            this.notifySetSimSpnToMap(data.parameters.CUR_SLOT_ID, spn);
+          }
+        }
+      })
+    });
+  }
+
+  private setSmscNumberToPref(slotId: number): void {
+    telephonySMS.getSmscAddr(slotId).then((simPhoneNumber) => {
+      if (slotId == common.int.SIM_ONE) {
+        MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_NEW_SIM_0_SMSC, simPhoneNumber);
+      } else if (slotId == common.int.SIM_TWO) {
+        MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_NEW_SIM_1_SMSC, simPhoneNumber);
+      }
+    }).catch((error) => {
+      HiLog.e(TAG, "setSmscNumberToPref error: " + JSON.stringify(error.message));
+    });
+  }
 }
+
+// Singleton
+export default new CardModel();

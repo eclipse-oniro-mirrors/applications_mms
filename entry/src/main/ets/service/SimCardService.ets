@@ -13,70 +13,28 @@
  * limitations under the License.
  */
 
-import CardModel from "../model/CardModel"
-import common from "../data/commonData";
-import LooseObject from "../data/LooseObject"
+import emitter from '@ohos.events.emitter';
+import cardModel from "../model/CardModel"
 import HiLog from "../utils/HiLog";
 
-let cardModel = new CardModel();
+const TAG: string = "SimCardService";
 
-const TAG = "SimCardService";
+class SimCardService {
+  public SIM_STATE_CHANGE_EVENT: emitter.InnerEvent = cardModel.SIM_STATE_CHANGE_EVENT;
+  public SLOTID_CHANGE_EVENT: emitter.InnerEvent = cardModel.SLOTID_CHANGE_EVENT;
 
-export default {
+  public init(): void {
+    cardModel.init();
+  }
 
-    /**
-     * Setting SIM Card Information
-     *
-     * @param {Object} preferences         bias database
-     */
-    simInfoHandler() {
-        cardModel.getSimSpn();
-    },
+  public deInit(): void {
+    cardModel.deInit();
+  }
 
-    /**
-     * Querying SMSC Numbers
-     * @param actionData
-     * @param callback
-     * @return
-     */
-    querySmscNumber(actionData, callback) {
-        let result: LooseObject = {};
-        let index = actionData.index - 1;
-        HiLog.i(TAG, "query SMSC number, slotId=" + index);
-        cardModel.getSmscNumber(index, smsNumber => {
-            result.code = common.int.SUCCESS;
-            result.smsNumber = smsNumber;
-            callback(result);
-        });
-    },
-
-    /**
-     * Querying SIM Card SMS Messages
-     * @param actionData
-     * @param callback
-     * @return
-     */
-    queryMessageInSimCard(actionData, callback) {
-        cardModel.queryMessageInSimCard(actionData, callback);
-    },
-
-    /**
-     * Obtains the number of SIM cards.
-     *
-     * @param {Object} preferences
-     */
-    initSimCardNum() {
-        cardModel.getSimCardNum();
-    },
-
-    delSimMessage(actionData) {
-        cardModel.delSimMessage(actionData);
-    },
-
-    /**
-     * Obtains the telephoneNumber from SIM cards.
-     */
-    getSimTelephoneNumber() {
-        cardModel.getSimTelephoneNumber();
-    }
+  public isSimReady(slotId: number): boolean {
+    return cardModel.isSimReady(slotId);
+  }
 }
+
+// Singleton
+export default new SimCardService();

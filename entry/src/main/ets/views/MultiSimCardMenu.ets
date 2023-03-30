@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import MmsPreferences from "../utils/MmsPreferences";
+import common from "../data/commonData";
 
 /**
  * Custom multi-SimCard pop-up menu
@@ -19,45 +21,78 @@
 @Component
 export struct MultiSimCardMenu {
   @Prop slotId: number;
-  private cardImage: boolean;
-  private multiSimCardItems: Array<any>;
+  private spnOfSim1: string = MmsPreferences.getInstance().getSpnOfSim1();
+  private spnOfSim2: string = MmsPreferences.getInstance().getTelephoneNumberOfSim2();
+  private telephoneNumberOfSim1: string = MmsPreferences.getInstance().getTelephoneNumberOfSim1();
+  private telephoneNumberOfSim2: string = MmsPreferences.getInstance().getTelephoneNumberOfSim2();
 
   @Builder PopupBuilder() {
     Column() {
       List() {
-        ForEach(this.multiSimCardItems, (item, index) => {
-          ListItem() {
-            Button({type: ButtonType.Normal}) {
-              Column(){
-                Row() {
-                  Image(item.img)
-                    .width(15)
-                    .height(18)
-                  Text(item.operator)
-                    .fontSize('16vp')
-                    .fontWeight(FontWeight.Medium)
-                    .fontColor($r("sys.color.ohos_id_color_text_primary"))
-                    .padding({ left: 2 })
-                }
-                Text(item.mobileNumber)
-                  .padding({ left: 19, top: 2 })
-                  .fontSize('14vp')
-                  .fontWeight(FontWeight.Regular)
-                  .fontColor($r("sys.color.ohos_id_color_text_secondary"))
+        ListItem() {
+          Button({ type: ButtonType.Normal }) {
+            Column() {
+              Row() {
+                Image($rawfile('icon/icon_mms_sim_card_1.svg'))
+                  .width(15)
+                  .height(18)
+                Text(this.spnOfSim1)
+                  .fontSize('16vp')
+                  .fontWeight(FontWeight.Medium)
+                  .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                  .padding({ left: 2 })
               }
-              .justifyContent(FlexAlign.Center)
-              .alignItems(HorizontalAlign.Start)
-              .padding({ left: 16 })
-              .width('100%')
+              Text(this.telephoneNumberOfSim1)
+                .padding({ left: 19, top: 2 })
+                .fontSize('14vp')
+                .fontWeight(FontWeight.Regular)
+                .fontColor($r("sys.color.ohos_id_color_text_secondary"))
             }
-            .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+            .justifyContent(FlexAlign.Center)
+            .alignItems(HorizontalAlign.Start)
+            .padding({ left: 16 })
             .width('100%')
-            .height('64vp')
-            .onClick(() => {
-              item.action();
-            })
           }
-        })
+          .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+          .width('100%')
+          .height('64vp')
+          .onClick(() => {
+            this.slotId = common.int.SIM_ONE;
+            MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SELECTED_SLOTID, this.slotId);
+          })
+        }
+        ListItem() {
+          Button({ type: ButtonType.Normal }) {
+            Column() {
+              Row() {
+                Image($rawfile('icon/icon_mms_sim_card_2.svg'))
+                  .width(15)
+                  .height(18)
+                Text(this.spnOfSim2)
+                  .fontSize('16vp')
+                  .fontWeight(FontWeight.Medium)
+                  .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                  .padding({ left: 2 })
+              }
+              Text(this.telephoneNumberOfSim2)
+                .padding({ left: 19, top: 2 })
+                .fontSize('14vp')
+                .fontWeight(FontWeight.Regular)
+                .fontColor($r("sys.color.ohos_id_color_text_secondary"))
+            }
+            .justifyContent(FlexAlign.Center)
+            .alignItems(HorizontalAlign.Start)
+            .padding({ left: 16 })
+            .width('100%')
+          }
+          .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+          .width('100%')
+          .height('64vp')
+          .onClick(() => {
+            this.slotId = common.int.SIM_TWO;
+            MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SELECTED_SLOTID, this.slotId);
+          })
+        }
       }
       .listDirection(Axis.Vertical)
       .divider({
@@ -75,16 +110,21 @@ export struct MultiSimCardMenu {
   }
 
   build() {
-    if (this.cardImage) {
-      Row() {
-        Image(this.slotId == 0 ? $rawfile("icon/ic_message_card1.svg") : $rawfile("icon/ic_message_card2.svg"))
-          .width(22)
-          .height(22)
-        Image($rawfile("icon/icon_down.svg"))
-          .width(16)
-          .height(22)
-      }
-      .bindMenu(this.PopupBuilder)
+    Row() {
+      Image(this.slotId == 0 ? $rawfile("icon/ic_message_card1.svg") : $rawfile("icon/ic_message_card2.svg"))
+        .width(24)
+        .height(24)
+      Image($rawfile("icon/ic_public_spinner.svg"))
+        .width(12)
+        .height(24)
     }
+    .size({ width: 36, height: 24 })
+    .bindMenu(this.PopupBuilder)
+    .onClick(() => {
+      this.spnOfSim1 = MmsPreferences.getInstance().getSpnOfSim1();
+      this.spnOfSim2 = MmsPreferences.getInstance().getSpnOfSim2();
+      this.telephoneNumberOfSim1 = MmsPreferences.getInstance().getTelephoneNumberOfSim1();
+      this.telephoneNumberOfSim2 = MmsPreferences.getInstance().getTelephoneNumberOfSim2();
+    })
   }
 }

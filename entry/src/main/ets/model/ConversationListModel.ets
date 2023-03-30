@@ -39,9 +39,11 @@ export default class ConversationListModel extends BaseModel {
         await predicates.offsetAs(offset);
         let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
         let sessionList = [];
-        while (resultSet.goToNextRow()) {
-            let item = await this.buildResultSet(resultSet);
-            sessionList.push(item);
+        if (resultSet != undefined) {
+            while (resultSet.goToNextRow()) {
+                let item = await this.buildResultSet(resultSet);
+                sessionList.push(item);
+            }
         }
         let result = {
             response: sessionList,
@@ -86,9 +88,11 @@ export default class ConversationListModel extends BaseModel {
         }
         let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
         let sessionList = [];
-        while (resultSet.goToNextRow()) {
-            let item = await this.buildResultSet(resultSet);
-            sessionList.push(item);
+        if (resultSet != undefined) {
+            while (resultSet.goToNextRow()) {
+                let item = await this.buildResultSet(resultSet);
+                sessionList.push(item);
+            }
         }
         return sessionList;
     }
@@ -143,10 +147,12 @@ export default class ConversationListModel extends BaseModel {
         let dataShareHelper = await dataShare.createDataShareHelper(mmsContext, common.string.URI_MESSAGE_LOG);
         dataShareHelper.query(managerUri, condition, resultColumns, (err, resultSet) => {
             let result: LooseObject = {};
-            while (resultSet.goToNextRow()) {
-                result.totalListCount = resultSet.getString(0);
-                result.unreadCount = resultSet.getString(1);
-                result.unreadTotalOfInfo = resultSet.getString(2);
+            if (resultSet != undefined) {
+                if (resultSet.goToLastRow()) {
+                    result.totalListCount = resultSet.getString(0);
+                    result.unreadCount = resultSet.getString(1);
+                    result.unreadTotalOfInfo = resultSet.getString(2);
+                }
             }
             callback(this.encapsulateReturnResult(common.int.SUCCESS, result));
         });

@@ -49,13 +49,16 @@ export default {
     },
 
     formatTelephone(telephone) {
+        let formatTelephone: string = telephone;
         if (telephone == null || telephone == common.string.EMPTY_STR) {
-            return common.string.EMPTY_STR;
+            formatTelephone = common.string.EMPTY_STR;
         }
-        if (telephone.indexOf("+86") >= 0) {
-            return telephone.substring(3);
+        if (formatTelephone.startsWith("+86")) {
+            formatTelephone = formatTelephone.substring(3);
+        } else if(formatTelephone.startsWith("86")) {
+            formatTelephone = formatTelephone.substring(2);
         }
-        return telephone;
+        return formatTelephone;
     },
 
     dealSelectContactsSort(selectContacts) {

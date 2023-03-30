@@ -88,7 +88,7 @@ export default class TransmitMsgController {
     // MMS list data
     mmsSource: Array<any> = [];
     transmitItemSources: Array<any> = [];
-    reg: RegExp = /^[a-zA-Z]+$/;
+    reg: RegExp = /^[\u4e00-\u9fa5_a-zA-Z]+$/;
     dialogMsg: LooseObject = {};
     DialogShow: false;
     transmitMsgDataSource: TransmitMsgDataSource = new TransmitMsgDataSource();
