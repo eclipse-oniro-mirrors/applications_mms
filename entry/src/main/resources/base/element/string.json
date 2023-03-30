@@ -107,7 +107,7 @@
     {"name": "query_details", "value": "查看详情"},
     {"name": "msg_delete_dialog_tip1", "value": "是否删除此信息?"},
     {"name": "msg_delete_dialog_tip2", "value": "是否删除%d条信息?"},
-    {"name": "msg_delete_dialog_tip3", "value": "是否删除全部信息?"},
+    {"name": "msg_delete_dialog_tip3", "value": "是否删除全部会话?"},
     {"name": "msg_delete_dialog_cb_tip", "value": "同时删除锁定信息"},
     {"name": "msg_delete_dialog_lock", "value": "是否删除此锁定的信息?"},
     {"name": "msg_selected_tip", "value": "已选择 %d 项"},
@@ -305,6 +305,9 @@
     {"name": "permission_get_telephone_status", "value": "用于获取电话状态"},
     {"name": "permission_receive_message_service", "value": "短信接收服务"},
     {"name": "permission_call_place", "value": "归属地管理"},
-    {"name": "permission_notification_controller", "value": "用于通知管理"}
+    {"name": "permission_notification_controller", "value": "用于通知管理"},
+    {"name": "china_mobile", "value": "中国移动"},
+    {"name": "china_telecom", "value": "中国电信"},
+    {"name": "china_unicom", "value": "中国联通"}
   ]
 }

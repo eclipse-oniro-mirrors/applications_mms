@@ -20,12 +20,16 @@ import { SettingItemSwitch, SettingItemJump } from "../../views/SettingItem";
 import SettingsController from "./settingsController";
 import HiLog from "../../utils/HiLog";
 import WantUtil from "../../utils/WantUtil";
+import AdvancedSettingsController from "./advancedSettings/advancedSettingsController"
 
 const TAG = "Settings";
 @Entry
 @Component
 struct Settings {
-    @State mSettingsCtrl: SettingsController = SettingsController.getInstance();
+    @StorageLink("SettingsController") @Watch("changeSelectState") mSettingsCtrl:
+        SettingsController = SettingsController.getInstance()
+    @StorageLink("AdvancedSettingsController") @Watch("changeSelectState") mAdvancedSettingsCtrl:
+        AdvancedSettingsController = AdvancedSettingsController.getInstance();
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 6, lg: 8 };
     private gridColOffset: GridColColumnOption = { md: 1, lg: 2 };
@@ -42,9 +46,14 @@ struct Settings {
             value: $r("app.string.restore"),
             action: () => {
                 this.mSettingsCtrl.restoreSettingsPageSwitchValue();
+                this.mAdvancedSettingsCtrl.restoreSettingPageSwitchValue();
             }
         }
     });
+
+    changeSelectState(){
+    }
+
     @Provide menuItems: Array<any> = [
         {
             value: $r("app.string.restore_default_settings"),
@@ -54,7 +63,7 @@ struct Settings {
             enabled: true
         }
     ];
-    @Provide statusTitle: Resource = $r("app.string.enabled");
+    @Provide statusTitle: any = '' ;
 
     /**
      * The function executes after a new instance of the custom component is created and before its build function

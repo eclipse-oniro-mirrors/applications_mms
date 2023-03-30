@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import commonEvent from "@ohos.commonEvent";
+import commonEvent from "@ohos.commonEventManager";
 import common from "../data/commonData";
 import mmsTable from "../data/tableData";
 import telephoneUtils from "../utils/TelephoneUtil";
@@ -68,6 +68,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         });
         await createMessagePromise;
         let actionData = {
+            slotId: data.parameters.slotId,
             telephone: result.telephone,
             content: result.content,
             isMms: false,
@@ -88,6 +89,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         actionData.content = content;
         actionData.isMms = true;
         actionData.mmsSource = result.mmsSource;
+        actionData.slotId = data.slotId;
         this.insertMessageDetailBy(actionData, res => {
             let notificationContent = this.getNotificationContent(result.mmsSource, content);
             this.sendNotification(result.telephone, res.initDatas[0].id, notificationContent);
@@ -147,6 +149,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     insertMessageDetailBy(param, callback) {
         let sendResults = [];
         let sendResult = {
+            slotId: param.slotId,
             telephone: param.telephone,
             content: param.content,
             sendStatus: 0
@@ -154,6 +157,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         sendResults.push(sendResult);
         let hasAttachment = commonService.judgeIsAttachment(param.mmsSource);
         let actionData: LooseObject = {};
+        actionData.slotId = param.slotId;
         actionData.sendResults = sendResults;
         actionData.isReceive = true;
         actionData.ownNumber = common.string.EMPTY_STR;
@@ -315,7 +319,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
 
     // Obtains the session list based on the mobile number.
     async querySessionByTelephoneRdb(telephone) {
-        HiLog.i(TAG, "querySessionByTelephoneRdb" + JSON.stringify(telephone));
         // Creating a query condition object
         let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
         // If this parameter is left blank, all list data is queried.
@@ -396,6 +399,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         let sendResults = actionData.sendResults;
         sendResults.forEach(sendResult => {
             let insertDetail = {
+                slotId: actionData.slotId,
                 receiverNumber: common.string.EMPTY_STR,
                 senderNumber: common.string.EMPTY_STR,
                 smsType: param.smsType,
@@ -461,6 +465,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         let time = new Date();
         let timeStr = time.getTime() + common.string.EMPTY_STR;
         var stringValue = {
+            "slot_id": common.int.SIM_ONE,
             "receiver_number": value.receiverNumber,
             "sender_number": value.senderNumber,
             "start_time": timeStr,
@@ -482,6 +487,9 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             "is_send_report": 0,
             "group_id": value.groupId
         };
+        if (value.slotId != null) {
+            stringValue.slot_id = value.slotId;
+        }
         actionData.stringValue = stringValue;
         this.insertMessageDetailRdb(actionData, msgId => {
             HiLog.i(TAG, "insertMessageDetail, msgId: " + msgId);
@@ -588,8 +596,10 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MAX_GROUP;
         dataAbilityHelper.query(managerUri, condition, resultColumns).then( resultSet => {
             let result: LooseObject = {};
-            while (resultSet.goToNextRow()) {
-                result.maxGroupId = resultSet.getString(0);
+            if (resultSet != undefined) {
+                if (resultSet.goToLastRow()) {
+                    result.maxGroupId = resultSet.getString(0);
+                }
             }
             callback(result);
         }).catch(error => {
@@ -680,12 +690,14 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
         contactDataAbilityHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
             let contracts = [];
-            while (resultSet.goToNextRow()) {
-                let contract = {
-                    detailInfo: resultSet.getString(0),
-                    displayName: resultSet.getString(1)
-                };
-                contracts.push(contract);
+            if (resultSet != undefined) {
+                while (resultSet.goToNextRow()) {
+                    let contract = {
+                        detailInfo: resultSet.getString(0),
+                        displayName: resultSet.getString(1)
+                    };
+                    contracts.push(contract);
+                }
             }
             callback(contracts);
         }).catch(error => {

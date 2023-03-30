@@ -305,6 +305,9 @@
     {"name": "permission_get_telephone_status", "value": "Used to get telephone status"},
     {"name": "permission_receive_message_service", "value": "SMS message receiving service"},
     {"name": "permission_call_place", "value": "Used to manage home location"},
-    {"name": "permission_notification_controller", "value": "Used to notification management"}
+    {"name": "permission_notification_controller", "value": "Used to notification management"},
+    {"name": "china_mobile", "value": "China Mobile"},
+    {"name": "china_telecom", "value": "China Telecom"},
+    {"name": "china_unicom", "value": "China Unicom"}
   ]
 }

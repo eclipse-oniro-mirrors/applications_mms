@@ -23,10 +23,10 @@ const TAG = "SendMsgService"
 export default {
 
     /**
-     * Sending SMS Messages
+     * Sending sms messages
+     *
      * @param params Including the card slot, phone number, and SMS message content
-     * @param callback Return the message sending status.
-     * @return
+     * @callback callback Return the message sending status.
      */
     sendMessage(params, callback) {
         sms.sendMessage({
@@ -52,6 +52,7 @@ export default {
             }
         });
     },
+
     dealSendResult(value) {
         let sendStatus = common.int.SEND_MESSAGE_SENDING;
         if (value.result == sms.SendSmsResult.SEND_SMS_SUCCESS) {
@@ -61,6 +62,7 @@ export default {
         }
         return sendStatus;
     },
+
     sendMmsMessage(params, callback) {
         let httpRequest = http.createHttp();
         httpRequest.request(common.string.MMS_URL,

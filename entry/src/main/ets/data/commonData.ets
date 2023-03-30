@@ -91,6 +91,8 @@ export default {
         CANCEL_TIME_COUNT: 6,
         // Number of words in full screen
         FULL_SCREEN_SEND_LENGTH: 38,
+        EVENT_SIM_STATE_CHANGE: 1,
+        EVENT_SLOTID_CHANGE: 2,
     },
     string: {
         SMS_TYPE: "0",
@@ -144,6 +146,10 @@ export default {
         KEY_OF_SIM_0_NUMBER: "sim_0_number",
         KEY_OF_SIM_1_NUMBER: "sim_1_number",
         KEY_OF_SELECTED_SLOTID: "selected_slotId",
+        KEY_OF_MAX_SIM_COUNT: "maxSimCount",
+        KEY_OF_HAVE_MULTI_SIM_CARD_READY: "haveMultiSimCardReady",
+        KEY_OF_HAVE_SIM_CARD_READY: "haveSimCardReady",
+        KEY_OF_DEFAULT_SLOT: "defaultSlot",
         // Events for Subscribing to Notifications     usual.event.SMS_RECEIVE_COMPLETED
         SUBSCRIBER_EVENT: "usual.event.SMS_RECEIVE_COMPLETED",
         // Receiving and forwarding
@@ -275,13 +281,5 @@ export default {
         PPT_IMAGE_HEIGHT: 220,
         DISTANCE: 20,
         TOTAL_HEIGHT: 650
-    },
-    LOCAL_SPN_CHINA: {
-        // TELECOM
-        TELECOM: "中国电信",
-        // MOBILE
-        MOBILE: "中国移动",
-        // UNICOM
-        UNICOM: "中国联通",
-    },
+    }
 }

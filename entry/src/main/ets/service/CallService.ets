@@ -24,8 +24,9 @@ export default {
 
     /**
      * Calling
-     * @param params    Phone number
-     * @return
+     *
+     * @param telephone
+     * @callback callback
      */
     call(telephone, callback) {
         if (telephone == null || telephone == common.string.EMPTY_STR) {

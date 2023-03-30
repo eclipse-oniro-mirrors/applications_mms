@@ -15,7 +15,7 @@
  */
 import common from "../../data/commonData"
 import router from "@system.router";
-import commonEvent from "@ohos.commonEvent";
+import commonEvent from "@ohos.commonEventManager";
 import DateUtil from "../../utils/DateUtil";
 import featureAbility from "@ohos.ability.featureAbility";
 import LooseObject from "../../data/LooseObject";
@@ -26,14 +26,18 @@ import commonService from "../../service/CommonService";
 import NotificationService from "../../service/NotificationService";
 import ConversationListDataSource from "../../model/ConversationListDataSource"
 import AvatarColor from "../../model/common/AvatarColor"
+import dataShare from "@ohos.data.dataShare";
 
 let ConversationCtrl;
 
 const TAG = "ConversationListController";
+const CONTACT_URI: string = "datashare:///com.ohos.contactsdataability/contacts/contact_data";
+const CONTENT_URI: String = "datashare:///com.ohos.contactsdataability";
 
 export default class ConversationListController {
     // Determine whether to perform initialization. (To avoid the onShow time sequence problem immediately after the
     // index is started.)
+    private dataShareHelper;
     isInited: boolean = false;
 
     commonEventData: any = null;
@@ -129,7 +133,7 @@ export default class ConversationListController {
     page: number = 0;
     // List pagination, quantity
     limit: number = 0;
-    reg: RegExp = /^[a-zA-Z]+$/;
+    reg: RegExp = /^[\u4e00-\u9fa5_a-zA-Z]+$/;
     delItem: number;
     // conversation list adapters
     conversationListDataSource: ConversationListDataSource = new ConversationListDataSource();
@@ -149,6 +153,33 @@ export default class ConversationListController {
         this.strCheckBoxSelectTip = $r("app.string.msg_select_all");
         this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.conversationSelectedNumber);
         this.showSearchStatus = $r("app.string.noMessages");
+    }
+
+    private async getDataAbilityHelper(context?) {
+        if (this.dataShareHelper == undefined) {
+            this.dataShareHelper = await dataShare.createDataShareHelper(context ? context : globalThis.context, CONTENT_URI);
+        }
+        return this.dataShareHelper;
+    }
+
+    registerDataChangeObserver(callback, context?) {
+        this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
+            if (dataAbilityHelper) {
+                dataAbilityHelper.on("dataChange", CONTACT_URI, callback);
+            }
+        }).catch(error => {
+            HiLog.w(TAG, 'error:%s' + JSON.stringify(error.message));
+        });
+    }
+
+    unregisterDataChangeObserver(callback, context?) {
+        this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
+            if (dataAbilityHelper) {
+                dataAbilityHelper.off("dataChange", CONTACT_URI, callback);
+            }
+        }).catch(error => {
+            HiLog.w(TAG, 'error:%s' + JSON.stringify(error.message));
+        });
     }
 
     onShow() {
@@ -479,7 +510,9 @@ export default class ConversationListController {
     }
 
     deleteDialogCancel() {
-        this.messageList[this.delItem].isCbChecked = false;
+        if (!this.isMultipleSelectState) {
+            this.messageList[this.delItem].isCbChecked = false;
+        }
         // Cancel Ejection
         if (this.isSelectLockMsg) {
             this.isSelectLockMsg = false;
@@ -568,6 +601,9 @@ export default class ConversationListController {
                 that.unreadTotal = result.response.totalListCount;
                 // Unreading of notification messages
                 that.unreadTotalOfInfo = result.response.unreadTotalOfInfo;
+                let actionData = {};
+                NotificationService.getInstance().cancelMessageNotify(actionData, res => {
+                });
             } else {
                 HiLog.w(TAG, "statisticalData, failed");
             }
@@ -614,8 +650,8 @@ export default class ConversationListController {
         }
         this.isJumping = true;
         // Determine whether to redirect to the contact details page or to the list page of multiple recipients.
-        var contactsNum = this.messageList[index].contactsNum;
-        var telephone = this.messageList[index].telephone;
+        var contactsNum = this.messageList[index]?.contactsNum;
+        var telephone = this.messageList[index]?.telephone;
         if (contactsNum == common.int.MESSAGE_CODE_ONE) {
             var actionData = {
                 phoneNumber: telephone,
@@ -624,7 +660,7 @@ export default class ConversationListController {
             this.jumpToContract(actionData);
         } else {
             let threadId = this.messageList[index].threadId;
-            let contactsNum = this.messageList[index].contactsNum;
+            let contactsNum = this.messageList[index]?.contactsNum;
             this.jumpToGroupDetail(threadId, contactsNum);
         }
     }
@@ -810,7 +846,7 @@ export default class ConversationListController {
         this.isJumping = true;
         // If the contact has unread information, a message needs to be sent to the backend PA to mark all information
         // of the contact as read.
-        if (this.messageList[index].countOfUnread > common.int.MESSAGE_CODE_ZERO) {
+        if (this.messageList[index]?.countOfUnread > common.int.MESSAGE_CODE_ZERO) {
             this.markAllAsReadByIndex(index);
         }
         this.jumpToConversationPage(this.messageList[index]);

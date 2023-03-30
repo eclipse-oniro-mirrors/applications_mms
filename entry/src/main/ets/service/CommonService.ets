@@ -27,6 +27,7 @@ export default {
         };
         return str;
     },
+
     getDisplay(mmsParts) {
         let display = common.MESSAGE_SHOW_TYPE.NORMAL;
         let first = mmsParts[0];
@@ -54,6 +55,7 @@ export default {
         }
         return display;
     },
+
     setItemMmsContent(item, mmsParts) {
         item.msgUriPath = common.string.EMPTY_STR;
         item.content = common.string.EMPTY_STR;
@@ -91,6 +93,7 @@ export default {
             }
         }
     },
+
     getMmsSource(mmsParts) {
         let source = [];
         mmsParts.forEach(part => {
@@ -106,6 +109,7 @@ export default {
         });
         return source;
     },
+
     getMmsContent(mmsSource) {
         let content = common.string.EMPTY_STR;
         for (let mms of mmsSource) {
@@ -117,6 +121,7 @@ export default {
         }
         return content;
     },
+
     checkIsMms(dataSource) {
         // Indicates whether the SMS message is a common message.
         let isMsg = false;
@@ -129,6 +134,7 @@ export default {
         }
         return isMsg;
     },
+
     judgeIsSelectText(mmsSource) {
         let flage = false;
         for (let item of mmsSource) {
@@ -146,6 +152,7 @@ export default {
         }
         return flage;
     },
+
     judgeIsImage(mmsSource) {
         let flage = false;
         for (let item of mmsSource) {
@@ -156,6 +163,7 @@ export default {
         }
         return flage;
     },
+
     getTransmitContentHeight(list) {
         let height = 0;
         list.forEach((item) => {
@@ -176,7 +184,8 @@ export default {
         }
         return height;
     },
-    judgeIsAttachment(mmsSource) {
+
+    judgeIsAttachment(mmsSource): boolean {
         let flage = false;
         if (mmsSource == null || mmsSource.length == 0) {
             return flage;

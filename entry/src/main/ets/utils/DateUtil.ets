@@ -218,12 +218,13 @@ export default {
     },
 
     convertTimeStampDate(timeStampFromDb) {
-        let sms = new Date(timeStampFromDb);
+        let date : Resource = null;
+        let sms = new Date(Number(timeStampFromDb));
         let yearOfSms = sms.getFullYear();
         let monthOfSms = sms.getMonth() + 1;
         let dayOfSms = sms.getDate();
         let weekOfSms = sms.getDay();
-        let date = $r("app.string.yearMonthDayDate", yearOfSms, monthOfSms, dayOfSms, '');
+        date = $r("app.string.yearMonthDayDate", yearOfSms, monthOfSms, dayOfSms, '');
         //        let time = this.convertTimeStampTime(timeStampFromDb, false);
         //        return date + " " + time;
         return date;
@@ -237,7 +238,7 @@ export default {
      * @return
      */
     convertTimeStampTime(timeStampFromDb, is24HourTime) {
-        let sms = new Date(timeStampFromDb);
+        let sms = new Date(Number(timeStampFromDb));
         let hoursOfSms = sms.getHours();
         let minutesOfSms = sms.getMinutes();
         let hoursOfSmsStr: string = hoursOfSms + '';

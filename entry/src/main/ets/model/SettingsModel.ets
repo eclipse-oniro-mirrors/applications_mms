@@ -54,37 +54,12 @@ export default class SettingModel extends BaseModel {
         if (MmsPreferences.getInstance().getValueOfAutoDeleteInfoSwitch() == common.bool.TRUE) {
             result.autoDeleteInfoSwitch = true;
         }
-        result.simCount = MmsPreferences.getInstance().getCountOfSim();
-        if (result.simCount == common.int.SIM_COUNT) {
-            result.firstSpnNameOfTwoSimCard = MmsPreferences.getInstance().getSpnOfSim1();
-            result.secondSpnNameOfTwoSimCard = MmsPreferences.getInstance().getSpnOfSim2();
-        } else {
-            if (MmsPreferences.getInstance().getSim1ExistFlag() == common.bool.TRUE) {
-                result.spnNameOfOneSimCard = MmsPreferences.getInstance().getSpnOfSim1();
-            } else if (MmsPreferences.getInstance().getSim2ExistFlag() == common.bool.TRUE) {
-                result.spnNameOfOneSimCard = MmsPreferences.getInstance().getSpnOfSim2();
-            } else {
-                result.spnNameOfOneSimCard = common.string.EMPTY_STR;
-            }
-        }
         callback(this.encapsulateReturnResult(common.int.SUCCESS, result));
     }
 
     updateSmscNumber(actionData, callback) {
         let index = actionData.index - 1;
         let newTelNum = actionData.number;
-//        telephonySMS.setSmscAddr(index, newTelNum, (value) => {
-//            // If card 1
-//            if (index == common.int.SIM_ONE) {
-//                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_NEW_SIM_0_SMSC, newTelNum);
-//            } else if (index == common.int.SIM_TWO) {
-//                MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_NEW_SIM_1_SMSC, newTelNum);
-//            }
-//            callback(this.encapsulateReturnResult(common.int.SUCCESS, common.string.SUCCESS));
-//        }).catch((error) => {
-//            HiLog.e(TAG, "updateSmscNumber, setSmscAddr, error: " + JSON.stringify(error.message));
-//            callback(this.encapsulateReturnCode(common.int.FAILURE));
-//        });
         telephonySMS.setSmscAddr(index, newTelNum).then( value => {
             // If card 1
             if (index == common.int.SIM_ONE) {

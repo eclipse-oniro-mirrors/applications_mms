@@ -26,23 +26,24 @@ import MmsPreferences from "../utils/MmsPreferences";
 
 const TAG = "ConversationService";
 
-let mContactsModel = new ContactsModel();
 let mConversationModel = new ConversationModel();
 
 export default {
 
     /**
      * Check whether a contact exists.
-     * @param params     Contact Phone Number
-     * @param callback   Whether the contact exists
-     * @return
+     *
+     * @param params contact phone number
+     * @callback Whether the contact exists
      */
-    judgeContactExists(params, callback) {
-        mContactsModel.queryContactDataByTelephone(params, function (result) {
+    judgeContactExists(actionData, callback) {
+        globalThis.DataWorker.sendRequest("queryContactDataByTelephone", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, result => {
             let hasExitContract = false;
             if (result.length >= 1) {
                 // Whether the contact exists
-                HiLog.i(TAG, "judgeContactExists, queryContactDataByTelephone success");
                 hasExitContract = true;
             }
             callback(hasExitContract);
@@ -51,14 +52,16 @@ export default {
 
     /**
      * Obtain information details.
-     * @param params      Phone Number/Session ID
-     * @param callback
-     * @return
+     *
+     * @param params phone number/session id
+     * @callback callback
      */
     queryMessageDetail(actionData, callback) {
-        let result: LooseObject = {};
-        mConversationModel.queryMessageDetail(actionData, res => {
-            HiLog.i(TAG, "queryMessageDetail, queryMessageDetail success")
+        globalThis.DataWorker.sendRequest("queryMessageDetail", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            let result: LooseObject = {};
             result.code = res.code;
             if (res.code == common.int.SUCCESS) {
                 this.groupDetailMessage(res.abilityResult, actionData, resultList => {
@@ -66,11 +69,12 @@ export default {
                     callback(result);
                 });
             } else {
-                HiLog.w(TAG, "groupDetailMessage, failed");
+                HiLog.w(TAG, "queryMessageDetail, failed");
                 callback(result);
             }
         });
     },
+
     convertConversationList(mmsList) {
         let resultList = [];
         for (let item of mmsList) {
@@ -113,6 +117,7 @@ export default {
         }
         return resultList;
     },
+
     groupDetailMessage(mmsList, actionData, callback) {
         let details = this.convertConversationList(mmsList);
         let msgIds = [];
@@ -157,6 +162,7 @@ export default {
             callback(res);
         });
     },
+
     dealMmsPartData(resultList, msgIds, actionData, callback) {
         if (msgIds.length == 0) {
             callback(resultList);
@@ -188,6 +194,7 @@ export default {
             callback(resultList);
         });
     },
+
     convertConversationMap(details) {
         let conversationMap = new Map();
         // grouping
@@ -205,21 +212,19 @@ export default {
     },
 
     /**
-     * Inserting Session Details and SMS Details
-     * @param sendResults Sending result
-     * @param threadId Session List ID
-     * @param isReceive Received or not
-     * @return
+     * Inserting session details and sms details
+     *
+     * @param actionData
+     * @callback callback
      */
-    insertSessionAndDetail(actionData, callback) {
-        HiLog.i(TAG, "insertSessionAndDetail, start");
-        let sendResults = actionData.sendResults;
-        let isReceive = actionData.isReceive;
+    insertSessionAndDetail(actionData, callback): void {
+        let sendResults: Array<LooseObject> = actionData.sendResults;
+        let isReceive: boolean = actionData.isReceive;
         if (sendResults.length == 0) {
             HiLog.w(TAG, "insertSessionAndDetail, sendResults.length == 0");
             return;
         }
-        let param = this.dealSendResults(sendResults);
+        let param: LooseObject = this.dealSendResults(sendResults);
         // Check whether a session list has been created.
         conversationListService.querySessionByTelephone(param.telephone, res => {
             let response = res.response;
@@ -230,12 +235,13 @@ export default {
             }
         });
     },
+
     dealNoExitingSession(isReceive, param, actionData, callback) {
         let unreadCount = 0;
         if (isReceive) {
             unreadCount = 1;
         }
-        let valueBucket = {
+        let valueBucket: LooseObject = {
             "telephone": param.telephone,
             "content": param.content,
             "contacts_num": param.contractsNum,
@@ -249,7 +255,7 @@ export default {
             "has_attachment": actionData.hasAttachment ? 1 : 0
         }
         conversationListService.insertSession(valueBucket, sessionResult => {
-            HiLog.i(TAG, "dealNoExitingSession, insertSession callback")
+            HiLog.i(TAG, "dealNoExitingSession, insertSession callback");
             // Invoke the SMS database to insert SMS messages.
             this.dealInsertMessageDetail(param, actionData, sessionResult.rowId, res => {
                 let result = {
@@ -261,13 +267,13 @@ export default {
             });
         });
     },
-    dealExitingSession(response, param, actionData, callback) {
-        HiLog.i(TAG, "dealExitingSession")
+
+    dealExitingSession(response, param, actionData, callback): void {
         let sessionId = response.id;
         // Invoke the SMS database to insert SMS messages.
         let threadIds = [sessionId];
         let time = new Date();
-        let unreadCount = 0;
+        let unreadCount: number = 0;
         if (actionData.isReceive) {
             unreadCount = response.unreadCount;
             unreadCount = unreadCount + 1;
@@ -278,7 +284,7 @@ export default {
         }
         let messageCount = response.messageCount;
         messageCount = messageCount + 1;
-        let valueBucket = {
+        let valueBucket: LooseObject = {
             "content": param.content,
             "unread_count": unreadCount,
             "time": time.getTime(),
@@ -291,7 +297,7 @@ export default {
         conversationListService.updateById(threadIds, valueBucket);
         // Invoke the SMS database to insert SMS messages.
         this.dealInsertMessageDetail(param, actionData, sessionId, res => {
-            let result = {
+            let result: LooseObject = {
                 rowId: sessionId,
                 initDatas: res.initDatas,
                 groupId: res.groupId
@@ -299,10 +305,10 @@ export default {
             callback(result);
         });
     },
+
     dealInsertMessageDetail(param, actionData, threadId, callback) {
-        HiLog.i(TAG, "dealInsertMessageDetail")
         this.queryMaxGroupId(actionData, res => {
-            let maxGroupId = 0;
+            let maxGroupId: number = 0;
             if (res.code === common.int.SUCCESS) {
                 HiLog.i(TAG, "dealInsertMessageDetail, queryMaxGroupId maxGroupId=" + res.response.maxGroupId)
                 maxGroupId = res.response.maxGroupId == common.string.EMPTY_STR ? 0 : Number(res.response.maxGroupId);
@@ -316,14 +322,15 @@ export default {
             });
         });
     },
+
     insertMessageDetailByMaxGroupId(param, actionData, threadId, maxGroupId, callback) {
-        let count = 0;
-        let initDatas = [];
+        let count: number = 0;
+        let initDatas: Array<LooseObject> = [];
         let result: LooseObject = {};
         result.groupId = maxGroupId;
         let sendResults = actionData.sendResults;
         sendResults.forEach(sendResult => {
-            let insertDetail = this.initInsertDetail(param, actionData, threadId, maxGroupId);
+            let insertDetail: LooseObject = this.initInsertDetail(param, actionData, threadId, maxGroupId);
             if (actionData.isReceive) {
                 insertDetail.receiverNumber = actionData.ownNumber;
                 insertDetail.senderNumber = sendResult.telephone;
@@ -342,10 +349,13 @@ export default {
             if (sendResult.time != null) {
                 insertDetail.time = sendResult.time;
             }
+            if (sendResult.slotId != null) {
+                insertDetail.slotId = sendResult.slotId;
+            }
             this.insertMessageDetail(insertDetail, id => {
                 HiLog.d(TAG, "insertMessageDetailByMaxGroupId, insertMessageDetail id=" + id);
                 count++;
-                let initData = {
+                let initData: LooseObject = {
                     id: id,
                     telephone: sendResult.telephone
                 };
@@ -357,14 +367,15 @@ export default {
             });
         })
     },
+
     initInsertDetail(param, actionData, threadId, maxGroupId) {
-        HiLog.i(TAG, "initInsertDetail")
         let insertDetail: LooseObject = {
+            slotId: common.int.SIM_ONE,
             receiverNumber: common.string.EMPTY_STR,
             senderNumber: common.string.EMPTY_STR,
             smsType: param.smsType,
             content: param.content,
-            sendStatus: 2,
+            sendStatus: common.int.SEND_MESSAGE_FAILED,
             sessionType: 0,
             threadId: threadId,
             isSender: actionData.isSender,
@@ -377,14 +388,13 @@ export default {
         };
         return insertDetail;
     },
-    dealSendResults(sendResults) {
-        HiLog.i(TAG, "dealSendResults")
-        let contractsNum = sendResults.length;
-        let telephone = common.string.EMPTY_STR;
-        let content = common.string.EMPTY_STR;
-        // Sending succeeded.
-        let sendStatus = 0;
-        let failSum = 0;
+
+    dealSendResults(sendResults: Array<LooseObject>): LooseObject {
+        let contractsNum: number = sendResults.length;
+        let telephone: string = common.string.EMPTY_STR;
+        let content: string = common.string.EMPTY_STR;
+        let sendStatus: number = common.int.SEND_MESSAGE_SUCCESS;
+        let failSum: number = 0;
         let time = common.string.EMPTY_STR;
         for (let sendResult of sendResults) {
             telephone = telephone + sendResult.telephone + common.string.COMMA;
@@ -406,7 +416,7 @@ export default {
             sendStatus = common.int.SEND_MESSAGE_FAILED;
         }
         telephone = telephone.substring(0, telephone.length - 1);
-        let smsType = 0;
+        let smsType: number = 0;
         if (contractsNum == 1 && telephoneUtils.judgeIsInfoMsg(telephone)) {
             smsType = 1;
         }
@@ -422,15 +432,17 @@ export default {
     },
 
     /**
-     * Inserting SMS Messages
-     * @param actionData   Session IDs
-     * @return
+     * Inserting sms messages
+     *
+     * @param actionData session ids
+     * @callback callback
      */
     insertMessageDetail(param, callback) {
         let actionData: LooseObject = {};
         let time = new Date();
         let timeStr = param.time != common.string.EMPTY_STR ? param.time : time.getTime() + common.string.EMPTY_STR;
-        var stringValue = {
+        let stringValue: LooseObject = {
+            "slot_id": common.int.SIM_ONE,
             "receiver_number": param.receiverNumber,
             "sender_number": param.senderNumber,
             "start_time": timeStr,
@@ -451,17 +463,23 @@ export default {
             "group_id": param.groupId,
             "is_send_report": param.hasReport
         };
+        if (param.slotId != null) {
+            stringValue.slot_id = param.slotId;
+        }
         actionData.stringValue = stringValue;
         actionData.featureAbility = param.featureAbility;
-        mConversationModel.insertMessageDetail(actionData, result => {
+        globalThis.DataWorker.sendRequest("insertMessageDetail", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, result => {
             if (result.code == common.int.SUCCESS) {
-                HiLog.i(TAG, "insertMessageDetail, callback success")
                 this.dealBatchInsertMmsPart(param, result, callback);
             } else {
                 HiLog.w(TAG, "insertMessageDetail, fail");
             }
         });
     },
+
     dealBatchInsertMmsPart(param, result, callback) {
         if (param.isMms) {
             param.msgId = result.abilityResult;
@@ -472,10 +490,11 @@ export default {
             callback(result.abilityResult);
         }
     },
+
     batchInsertMmsPart(param, callback) {
         let actionData: LooseObject = {};
         actionData.featureAbility = param.featureAbility;
-        let bacthmsParts = [];
+        let batchMmsParts: Array<LooseObject> = [];
         for (let mms of param.mmsSource) {
             let stringValue = {
                 "msg_id": param.msgId,
@@ -487,11 +506,17 @@ export default {
                 "part_size": (mms.fileSize + ''),
                 "state": param.messageType
             };
-            bacthmsParts.push(stringValue);
+            batchMmsParts.push(stringValue);
         }
-        actionData.bacthmsParts = bacthmsParts;
-        mConversationModel.batchInsertMmsPart(actionData, callback);
+        actionData.batchMmsParts = batchMmsParts;
+        globalThis.DataWorker.sendRequest("batchInsertMmsPart", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, result => {
+            callback(result);
+        });
     },
+
     updateSessionAndDetail(actionData) {
         let sendResults = actionData.sendResults;
         if (sendResults.length == 0) {
@@ -522,97 +547,134 @@ export default {
     },
 
     /**
-     * Deletes list data in batches based on session IDs.
-     * @param threadIds    Session IDs
-     * @return
+     * Deletes list data in batches based on session ids.
+     *
+     * @param actionData session ids
      */
     deleteMessageBySessionIds(actionData) {
-        mConversationModel.queryGroupIdBySessionId(actionData, res => {
+        globalThis.DataWorker.sendRequest("queryGroupIdBySessionId", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
             if (res.code == common.int.SUCCESS) {
-                mConversationModel.deleteMessageBySessionIds(actionData);
+                globalThis.DataWorker.sendRequest("deleteMessageBySessionIds", {
+                    actionData: actionData,
+                    context: globalThis.mmsContext
+                }, res => {
+                    // do nothing
+                });
                 let groupIds = res.abilityResult;
                 actionData.groupIds = groupIds;
-                mConversationModel.deleteMmsPartByGroupIds(actionData);
+                globalThis.DataWorker.sendRequest("deleteMmsPartByGroupIds", {
+                    actionData: actionData,
+                    context: globalThis.mmsContext
+                }, res => {
+                    // do nothing
+                });
             }
         });
     },
 
     /**
-     * Deletes list data in batches based on IDs.
-     * @param Primary Key ID      Session IDs
-     * @return
+     * Deletes list data in batches based on ids.
+     *
+     * @param actionData primary key id session ids
      */
     deleteMessageByIds(actionData) {
         mConversationModel.deleteMessageByIds(actionData);
     },
+
     deleteMessageBySessionIdsAndLock(actionData) {
-        mConversationModel.deleteMessageBySessionIdsAndLock(actionData);
-    },
-
-    /**
-     * Deletes list data in batches based on the group ID.
-     * @param Primary Key ID      Session IDs
-     * @return
-     */
-    deleteMessageByGroupIds(actionData) {
-        mConversationModel.deleteMessageByGroupIds(actionData);
-        // Deleting MMS Data
-        mConversationModel.deleteMmsPartByGroupIds(actionData);
-    },
-
-    /**
-     * Based on Batch Marking
-     * @param actionData
-     * @return
-     */
-    markAllAsRead(actionData) {
-        mConversationModel.markAllAsRead(actionData);
-    },
-
-    /**
-     * Based on Batch Marking
-     * @param actionData
-     * @return
-     */
-    markAllToRead(actionData) {
-        mConversationModel.markAllToRead(actionData);
-    },
-
-    /**
-     * Update based on a single ID.
-     * @param actionData
-     * @param callback
-     */
-    updateById(actionData, callback) {
-        let result: LooseObject = {};
-        mConversationModel.updateById(actionData, res => {
-            result.code = res.code;
-            callback(result);
-        }).catch(e => {
-            HiLog.e(TAG, "updateById, error: " + JSON.stringify(e.message))
+        globalThis.DataWorker.sendRequest("deleteMessageBySessionIdsAndLock", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            // do nothing
         });
     },
 
     /**
-     * Check whether the card exists.
+     * Deletes list data in batches based on the group id.
+     *
+     * @param actionData session ids
      */
-    judgeHasSimCard() {
-        let count = MmsPreferences.getInstance().getCountOfSim();
-        if (count > 0) {
-            return true;
-        }
-        return false;
+    deleteMessageByGroupIds(actionData) {
+        globalThis.DataWorker.sendRequest("deleteMessageByGroupIds", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            // do nothing
+        });
+        // Deleting mms data
+        globalThis.DataWorker.sendRequest("deleteMmsPartByGroupIds", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            // do nothing
+        });
     },
 
     /**
-     * Query the maximum group ID.
+     * Based on batch marking
+     *
      * @param actionData
-     * @param callBack
-     * @return
+     * @callback callback
+     */
+    markAllAsRead(actionData, callback?) {
+        globalThis.DataWorker.sendRequest("markAllAsRead", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            if (callback) {
+                callback(res);
+            }
+        });
+    },
+
+    /**
+     * Based on batch marking
+     *
+     * @param actionData
+     * @callback callback
+     */
+    markAllToRead(actionData, callback?) {
+        globalThis.DataWorker.sendRequest("markAllToRead", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            if (callback) {
+                callback(res);
+            }
+        });
+    },
+
+    /**
+     * Update based on a single id.
+     *
+     * @param actionData
+     * @callback callback
+     */
+    updateById(actionData, callback) {
+        globalThis.DataWorker.sendRequest("updateById", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            callback(res);
+        });
+    },
+
+    /**
+     * Query the maximum group id.
+     *
+     * @param actionData
+     * @callBack callBack
      */
     queryMaxGroupId(actionData, callBack) {
-        let result: LooseObject = {};
-        mConversationModel.queryMaxGroupId(actionData, res => {
+        globalThis.DataWorker.sendRequest("queryMaxGroupId", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            let result: LooseObject = {};
             result.code = res.code;
             if (res.code == common.int.SUCCESS) {
                 result.response = res.abilityResult;
@@ -624,10 +686,10 @@ export default {
     },
 
     /**
-     * Save Picture
-     * @param params threadId，pduId
-     * @param callback     Save Status
-     * @return
+     * Save picture
+     *
+     * @param params threadId, pduId
+     * @callback callback
      */
     saveImage(params, callback) {
         mConversationModel.saveImage(params, function (result) {
@@ -645,10 +707,10 @@ export default {
     },
 
     /**
-     * Share
+     * Go to share
+     *
      * @param actionData
-     * @param callback
-     * @return
+     * @callback callback
      */
     gotoShare(actionData, callback) {
         let result: LooseObject = {};
@@ -659,10 +721,10 @@ export default {
     },
 
     /**
-     * 更新锁标记
+     * Update the lock tag
+     *
      * @param actionData
-     * @param callback
-     * @return
+     * @callback callback
      */
     updateLock(actionData, callback) {
         let result: LooseObject = {};
@@ -673,10 +735,10 @@ export default {
     },
 
     /**
-     * Update Favorites
+     * Update favorites
+     *
      * @param actionData
-     * @param callback
-     * @return
+     * @callback callback
      */
     updateCollect(actionData, callback) {
         let result: LooseObject = {};
@@ -688,8 +750,9 @@ export default {
 
     /**
      * Fuzzy search, by content
+     *
      * @param actionData
-     * @return
+     * @callback callback
      */
     searchMessageByContent(actionData, callback) {
         let smsPromise = new Promise((resolve, reject) => {
@@ -725,6 +788,7 @@ export default {
             callback(result);
         });
     },
+
     dealMessageSort(resultList) {
         let favoriteList = [];
         let messageList = [];
@@ -757,8 +821,9 @@ export default {
 
     /**
      * Fuzzy search, by content
+     *
      * @param actionData
-     * @return
+     * @callback callback
      */
     searchSmsMessageByContent(actionData, callback) {
         let searchText = actionData.inputValue;
@@ -779,6 +844,7 @@ export default {
             }
         });
     },
+
     convertLikeConversation(mmsList, searchText, telephones, mmsPartMap) {
         let resultList = [];
         for (let item of mmsList) {
@@ -811,6 +877,7 @@ export default {
         }
         return resultList;
     },
+
     dealContactsName(telephones, actionData, resultList, callback) {
         actionData.telephones = telephones;
         if (telephones.length == 0) {
@@ -854,6 +921,7 @@ export default {
             callback(lists);
         });
     },
+
     getGroupIdMap(resultList, telephoneMap) {
         let groupIdMap: LooseObject = {};
         for (let map of resultList) {
@@ -876,6 +944,7 @@ export default {
         }
         return groupIdMap;
     },
+
     convertingMessageByGroup(resultList) {
         let groupIdMap: LooseObject = {};
         for (let element of resultList) {
@@ -887,9 +956,10 @@ export default {
     },
 
     /**
-     * Fuzzy search for MMS messages by content
+     * Fuzzy search for mms messages by content
+     *
      * @param actionData
-     * @return
+     * @callback callback
      */
     searchMmsPartByContent(actionData, callback) {
         let searchText = actionData.inputValue;
@@ -916,6 +986,7 @@ export default {
             }
         });
     },
+
     buildMmsPartContacts(actionData, searchText, mmsPartMap, callback) {
         mConversationModel.queryMessageDetail(actionData, messageDetails => {
             let telephones = [];
@@ -926,6 +997,7 @@ export default {
             });
         });
     },
+
     getMmsPartMap(mmsParts) {
         let mmsPartMap = new Map();
         // grouping
@@ -936,6 +1008,7 @@ export default {
         }
         return mmsPartMap;
     },
+
     getMsgIds(mmsPartMap) {
         let msgIds = [];
         for (let msgId of mmsPartMap.keys()) {
@@ -946,9 +1019,9 @@ export default {
 
     /**
      * Get pictures and videos from gallery
+     *
      * @param actionData
-     * @param callback
-     * @return
+     * @callback callback
      */
     queryFromGallery(actionData, callback) {
         let result: LooseObject = {};
@@ -960,10 +1033,10 @@ export default {
     },
 
     /**
-     * Querying SMS Messages in the Last 30 Days
+     * Querying sms messages in the last 30 days
+     *
      * @param actionData
-     * @param callBack
-     * @return
+     * @callback callback
      */
     queryMessageThirty(actionData, callBack) {
         let result: LooseObject = {};
@@ -979,9 +1052,10 @@ export default {
     },
 
     /**
-     * Inserting data into the SIM card
+     * Inserting data into the sim card
+     *
      * @param actionData
-     * @param callback
+     * @callback callback
      */
     insertManageSimData(actionData, callback) {
         HiLog.i(TAG, "insertManageSimData")
@@ -1032,9 +1106,10 @@ export default {
     },
 
     /**
-     * Counting the Number of Unread Notifications
+     * Counting the number of unread notifications
+     *
      * @param actionData
-     * @param callback
+     * @callback callback
      */
     statisticsUnreadNotify(actionData, callback) {
         mConversationModel.statisticsUnreadNotify(actionData, res => {
@@ -1049,12 +1124,16 @@ export default {
 
     /**
      * This interface is used to query MMS information based on groupId.
+     *
      * @param actionData
-     * @param callback
+     * @callback callback
      */
     queryMmsPartByIds(actionData, callback) {
-        let result: LooseObject = {};
-        mConversationModel.queryMmsPart(actionData, res => {
+        globalThis.DataWorker.sendRequest("queryMmsPart", {
+            actionData: actionData,
+            context: globalThis.mmsContext
+        }, res => {
+            let result: LooseObject = {};
             result.code = res.code;
             if (res.code == common.int.SUCCESS) {
                 result.response = res.abilityResult;
@@ -1066,10 +1145,10 @@ export default {
     },
 
     /**
-     * Obtains the lock status based on SessionId.
+     * Obtains the lock status based on sessionId.
+     *
      * @param actionData
-     * @param callback
-     * @return
+     * @callback callback
      */
     queryMessageLockBySessionId(actionData, callback) {
         let result: LooseObject = {};

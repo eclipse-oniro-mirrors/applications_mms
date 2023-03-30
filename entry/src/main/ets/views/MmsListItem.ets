@@ -49,7 +49,7 @@ export struct MmsListItem {
                                                 .backgroundColor(this.item.conversation.portraitColor)
                                         } else {
                                             Text(this.item.conversation.photoFirstName)
-                                                .fontSize("30vp")
+                                                .fontSize($r("sys.float.ohos_id_text_size_headline8"))
                                                 .fontWeight(FontWeight.Bold)
                                                 .fontColor(Color.White)
                                                 .height("40vp")
@@ -122,18 +122,11 @@ export struct MmsListItem {
                                     //If it's not
                                     Row() {
                                         Text() {
-                                            //Whether the latest message is a draft, and if so
                                             if (this.item.conversation.isDraft) {
                                                 Span($r("app.string.draft"))
                                                     .fontSize("14fp")
                                                     .fontColor(Color.Red)
                                             }
-                                        }
-                                        .margin({ right: 2 })
-                                        .maxLines(1)
-                                        .textOverflow({ overflow: TextOverflow.Ellipsis })
-
-                                        Text() {
                                             //If no, and the number of unread messages is greater than 1.
                                             if (!this.item.conversation.isDraft &&
                                             this.item.conversation.countOfUnread > 1) {
@@ -142,7 +135,7 @@ export struct MmsListItem {
                                                     .fontColor($r("sys.color.ohos_id_color_help_tip_bg"))
                                             }
                                             //Content Abbreviations for Latest News
-                                            Span(this.item.conversation.content)
+                                            Span(this.item.conversation.content.replace(/[\r\n]/g, " "))
                                                 .fontSize("14fp")
                                                 .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
                                         }
