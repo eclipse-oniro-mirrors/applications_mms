@@ -14,7 +14,6 @@
  */
 
 import HiLog from "../utils/HiLog";
-import simCardService from "../service/SimCardService";
 
 const TAG = "IndexController";
 
@@ -32,10 +31,6 @@ export default class IndexController {
 
     onInit() {
         HiLog.i(TAG, "onInit");
-        // Obtains simCount.
-        this.initSimCardNum();
-        // Carrier for obtaining the card
-        this.simInfoProcessor();
     }
 
     onShow() {
@@ -48,14 +43,5 @@ export default class IndexController {
 
     onDestroy() {
         HiLog.i(TAG, "onDestroy");
-    }
-
-    initSimCardNum() {
-        simCardService.initSimCardNum();
-    }
-
-    // Processes SIM card-related information, including the number of SIM cards and the name of the carrier.
-    simInfoProcessor() {
-        simCardService.simInfoHandler();
     }
 }

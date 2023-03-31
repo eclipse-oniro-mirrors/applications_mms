@@ -15,24 +15,26 @@
 /**
  * Message/MMS viewing page
  */
+import router from "@system.router";
+import emitter from '@ohos.events.emitter';
 import ConversationController from "./conversationController";
-import DeviceUtil from "../../utils/DeviceUtil";
 import { Receive } from "../../views/receive/receive";
 import LooseObject from "../../data/LooseObject";
 import { MoreMenu } from "../../views/MmsMenu";
 import { MultiSimCardMenu } from '../../views/MultiSimCardMenu';
-import Common from "./common";
-import router from "@system.router";
 import WantUtil from "../../utils/WantUtil";
 import { DelConversionDialog } from "../../views/MmsDialogs";
+import MmsPreferences from "../../utils/MmsPreferences";
+import common from "../../data/commonData";
+import simCardService from "../../service/SimCardService"
 
 @Entry
 @Component
 export struct Conversation {
     @StorageLink('curBp') curBp: string = 'sm'
     @State mConversationCtrl: ConversationController = ConversationController.getInstance();
-    @State mCommonCtrl: Common = Common.getInstance();
-    @State slotId: number = this.mConversationCtrl.getSelectedSlotId();
+    @State slotId: number = MmsPreferences.getInstance().getSelectedSlotId();
+    @State cardImage: boolean = MmsPreferences.getInstance().haveMultiSimCardReady();
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private timeGirdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
     private messageGirdSpan: GridColColumnOption = { sm: 4, md: 6, lg: 8 };
@@ -91,11 +93,17 @@ export struct Conversation {
     aboutToAppear() {
         this.mConversationCtrl.onInit();
         this.mConversationCtrl.onShow();
-
+        emitter.on(simCardService.SIM_STATE_CHANGE_EVENT, () => {
+            this.cardImage = MmsPreferences.getInstance().haveMultiSimCardReady();
+        });
+        emitter.on(simCardService.SLOTID_CHANGE_EVENT, () => {
+            this.slotId = MmsPreferences.getInstance().getSelectedSlotId();
+        });
     }
 
     aboutToDisappear() {
-        this.mConversationCtrl.simChangeListenerOff();
+        emitter.off(common.int.EVENT_SIM_STATE_CHANGE);
+        emitter.off(common.int.EVENT_SLOTID_CHANGE);
     }
 
     onPageShow() {
@@ -126,9 +134,7 @@ export struct Conversation {
                                     router.back();
                                 }
                             })
-
                         Row().width($r("app.float.space_16"))
-
                         Text($r("app.string.new_message"))
                             .fontSize(20)
                             .lineHeight(28)
@@ -209,7 +215,6 @@ export struct Conversation {
                                         }
                                     }
                                     .flexBasis(80)
-
                                     Column() {
                                         Flex({
                                             direction: FlexDirection.Column,
@@ -245,13 +250,16 @@ export struct Conversation {
                                                     .fontColor($r("sys.color.ohos_id_color_text_primary"))
                                                     .fontWeight(FontWeight.Medium)
                                                     .lineHeight(28)
-                                                Text(this.mConversationCtrl.strContactsNumberFormat)
-                                                    .maxLines(1)
-                                                    .textOverflow({ overflow: TextOverflow.Ellipsis })
-                                                    .fontSize(20)
-                                                    .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
-                                                    .lineHeight(19)
-                                                    .fontWeight(FontWeight.Medium)
+                                                if (this.mConversationCtrl.strContactsName !==
+                                                this.mConversationCtrl.strContactsNumberFormat) {
+                                                    Text(this.mConversationCtrl.strContactsNumberFormat)
+                                                        .maxLines(1)
+                                                        .textOverflow({ overflow: TextOverflow.Ellipsis })
+                                                        .fontSize(20)
+                                                        .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
+                                                        .lineHeight(19)
+                                                        .fontWeight(FontWeight.Medium)
+                                                }
                                             }
                                         }
                                     }
@@ -259,6 +267,7 @@ export struct Conversation {
                                     .flexShrink(1)
                                     .alignItems(HorizontalAlign.Start)
                                     .padding({ left: 12, right: 16 })
+                                    .margin({left: this.mConversationCtrl.strContactsNumberFormat.length > 17 ? 25 : 0})
 
                                     Row() {
                                         Image($rawfile("icon/ic_message_phone.svg"))
@@ -394,7 +403,7 @@ export struct Conversation {
                                                                             .margin({ top: 8, right: 5 })
                                                                     }
                                                                     // Card 1 or Card 2
-                                                                    if (this.mConversationCtrl.cardImage) {
+                                                                    if (this.cardImage) {
                                                                         Image(item.subId == 0 ?
                                                                         $rawfile("icon/icon_mms_sim_1.svg") :
                                                                         $rawfile("icon/icon_mms_sim_2.svg"))
@@ -524,7 +533,7 @@ export struct Conversation {
                                                                         .fontColor($r("sys.color.ohos_id_color_text_secondary"))
                                                                         .margin({ top: 8, right: 5 })
                                                                     // Card 1 or Card 2
-                                                                    if (this.mConversationCtrl.cardImage) {
+                                                                    if (this.cardImage) {
                                                                         Image(item.subId == 0 ?
                                                                         $rawfile("icon/icon_mms_sim_1.svg") :
                                                                         $rawfile("icon/icon_mms_sim_2.svg"))
@@ -688,7 +697,6 @@ export struct Conversation {
                 if (!this.mConversationCtrl.isSelectStatus) {
                     Flex({ alignItems: ItemAlign.End, justifyContent: FlexAlign.Center }) {
                         // <!--Left More and Full Screen Display-->
-
                         Row() {
                             Image($rawfile("icon/msg_add.svg"))
                                 .onClick(() => {
@@ -698,33 +706,13 @@ export struct Conversation {
                                 .height(24)
                                 .visibility(Visibility.Visible)
                                 .opacity(0.3)
-
                             Blank().width(16)
-
                             Row() {
-                                MultiSimCardMenu ({
-                                    cardImage: this.mConversationCtrl.cardImage,
-                                    slotId: this.slotId,
-                                    multiSimCardItems: [{
-                                        img: $rawfile('icon/icon_mms_sim_card_1.svg'),
-                                        operator: this.mConversationCtrl.spnOfSim1,
-                                        mobileNumber: this.mConversationCtrl.telephonyNumberOfSim1,
-                                        action: () => {
-                                            this.slotId = 0;
-                                            this.mConversationCtrl.slotId = 0;
-                                            this.mConversationCtrl.setSelectedSlotId(0);
-                                        }
-                                    },{
-                                        img: $rawfile('icon/icon_mms_sim_card_2.svg'),
-                                        operator: this.mConversationCtrl.spnOfSim2,
-                                        mobileNumber: this.mConversationCtrl.telephonyNumberOfSim2,
-                                        action: () => {
-                                            this.slotId = 1;
-                                            this.mConversationCtrl.slotId = 1;
-                                            this.mConversationCtrl.setSelectedSlotId(1);
-                                        }
-                                    }]
-                                })
+                                if (this.cardImage) {
+                                    MultiSimCardMenu({
+                                        slotId: this.slotId
+                                    })
+                                }
                                 Row() {
                                     TextArea({
                                         placeholder: $r("app.string.msg_note_mms"),
@@ -736,34 +724,32 @@ export struct Conversation {
                                         .onChange(value => {
                                             this.mConversationCtrl.changeValue(value);
                                         })
-                                        .borderRadius(20)
+                                        .padding({left: 0, right: this.cardImage ? 42 : 0})
+                                        .borderRadius(0)
                                         .fontSize(16)
                                 }.constraintSize({ minHeight: 40 })
                             }
                             .backgroundColor($r("sys.color.ohos_id_color_text_field_sub_bg"))
-                            .padding(this.mConversationCtrl.cardImage ? { left: 8, right: 8 } : 0)
+                            .padding({ left: 8, right: 8})
                             .borderRadius(20)
-                            .width(100)
+                            .width('100%')
                             .layoutWeight(1)
-
                             Image($rawfile("icon/ic_message_emoji.svg"))
                                 .width(24)
                                 .height(24)
                                 .margin({left:16})
                                 .visibility(Visibility.Visible)
                                 .opacity(0.3)
-
                             // <!--send-->
                             Image(this.mConversationCtrl.canSendMessage ? $rawfile("icon/ic_message_send_filled.svg")
                                                                         : $rawfile("icon/ic_message_send.svg"))
                                 .onClick(() => {
                                     //  Click Send.
-                                    this.mConversationCtrl.send()
+                                    this.mConversationCtrl.send();
                                 })
                                 .width(24)
                                 .height(24)
                                 .margin({left:16})
-
                         }.width("100%")
                     }
                     .constraintSize({ minHeight: 56 })

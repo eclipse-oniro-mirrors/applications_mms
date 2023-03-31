@@ -25,8 +25,9 @@ import dataSharePredicates from "@ohos.data.dataSharePredicates";
 const TAG = "ContactsModel";
 
 export default class ContactsModel extends BaseModel {
-    async queryContactDataByIds(actionData, callback) {
-        let dataHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
+    async queryContactDataByIds(actionData, callback, context?) {
+        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
+        common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.detailInfo,
             mmsTable.contactDataColumns.displayName,
@@ -45,8 +46,8 @@ export default class ContactsModel extends BaseModel {
         });
     }
 
-    async queryContactDataByTelephone(actionData, callback) {
-        let telephoneDataHelp = await dataShare.createDataShareHelper(globalThis.mmsContext,
+    async queryContactDataByTelephone(actionData, callback, context?) {
+        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
                                 common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.detailInfo,
@@ -59,7 +60,7 @@ export default class ContactsModel extends BaseModel {
         condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
         condition.and();
         condition.equalTo(mmsTable.contactDataColumns.hasDelete, "0");
-        telephoneDataHelp.query(contactDataUri, condition, resultColumns).then(resultSet => {
+        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
             callback(this.dealResultSet(resultSet));
         }).catch(error => {
             HiLog.e(TAG, "queryContactDataByTelephone, error: " + JSON.stringify(error.message));
@@ -69,29 +70,33 @@ export default class ContactsModel extends BaseModel {
 
     dealResultSet(resultSet) {
         let contracts = [];
-        while (resultSet.goToNextRow()) {
-            let contract: LooseObject = {};
-            contract.detailInfo = resultSet.getString(0);
-            contract.displayName = resultSet.getString(1);
-            contracts.push(contract);
+        if (resultSet != undefined) {
+            while (resultSet.goToNextRow()) {
+                let contract: LooseObject = {};
+                contract.detailInfo = resultSet.getString(0);
+                contract.displayName = resultSet.getString(1);
+                contracts.push(contract);
+            }
         }
         return contracts;
     }
 
-    async queryContact(actionData, callback) {
-        let DAHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
+    async queryContact(actionData, callback, context?) {
+        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
+        common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactColumns.id
         ];
         let condition = new dataSharePredicates.DataSharePredicates();
         let rawContactUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
         let offset = (actionData.page - 1) * actionData.limit;
-        condition.limit(actionData.limit, offset)
-            .orderByDesc(mmsTable.contactColumns.lastestContactedTime)
-        DAHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
+        condition.limit(actionData.limit, offset).orderByDesc(mmsTable.contactColumns.lastestContactedTime);
+        dataHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
             let rawContactIds = [];
-            while (resultSet.goToNextRow()) {
-                rawContactIds.push(resultSet.getString(0));
+            if (resultSet != undefined) {
+                while (resultSet.goToNextRow()) {
+                    rawContactIds.push(resultSet.getString(0));
+                }
             }
             callback(rawContactIds);
         }).catch(error => {
@@ -99,18 +104,19 @@ export default class ContactsModel extends BaseModel {
         });
     }
 
-    async countContact(actionData, callback) {
-        let DAHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
+    async countContact(actionData, callback, context?) {
+        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
+        common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactColumns.id
         ];
         let condition = new dataSharePredicates.DataSharePredicates();
         let rawContactUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
         condition.orderByDesc(mmsTable.contactColumns.lastestContactedTime);
-        DAHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
+        dataHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
             let count = 0;
-            while (resultSet.goToNextRow()) {
-                count++;
+            if (resultSet != undefined) {
+                count = resultSet.rowCount;
             }
             callback(count);
         }).catch(error => {
@@ -118,8 +124,8 @@ export default class ContactsModel extends BaseModel {
         });
     }
 
-    async searchContracts(actionData, callback) {
-        let searchDataHelper = await dataShare.createDataShareHelper(globalThis.mmsContext,
+    async searchContracts(actionData, callback, context?) {
+        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
         common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.searchContactView.detailInfo,
@@ -133,7 +139,7 @@ export default class ContactsModel extends BaseModel {
             .or()
             .contains(mmsTable.searchContactView.detailInfo, actionData.telephone)
             .endWrap();
-        searchDataHelper.query(searchContactsUri, condition, resultColumns).then(resultSet => {
+        dataHelper.query(searchContactsUri, condition, resultColumns).then(resultSet => {
             let contracts = this.dealResultSet(resultSet);
             callback(this.encapsulateReturnResult(common.int.SUCCESS, contracts));
         }).catch(error => {
@@ -143,25 +149,27 @@ export default class ContactsModel extends BaseModel {
     }
 
     /**
-     * Querying Business Card Data
-     * @param actionData    Query parameters
-     * @param callback
+     * Querying business card data
+     *
+     * @param actionData query parameters
+     * @callback callback
+     * @param context
      */
-    async queryProfile(actionData, callback) {
-        HiLog.i(TAG, "queryProfile start ");
-        let DAHelper = await dataShare.createDataShareHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
+    async queryProfile(actionData, callback, context?) {
+        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
+        common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.id,
         ];
         let condition = new dataSharePredicates.DataSharePredicates();
         let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.PROFILE_DATA_URI;
-        DAHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
+        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
             let count = 0;
-            while (resultSet.goToNextRow()) {
-                count++;
+            if (resultSet != undefined) {
+                count = resultSet.rowCount;
+                HiLog.i(TAG, "queryProfile, goToNextRow: " + count);
+                resultSet.close();
             }
-            HiLog.i(TAG, "queryProfile, goToNextRow: " + count);
-            resultSet.close();
             callback(count);
         }).catch(error => {
             HiLog.e(TAG, "queryProfile, error: " + JSON.stringify(error.message));
