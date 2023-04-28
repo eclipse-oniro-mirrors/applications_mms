@@ -157,7 +157,7 @@ export default class ConversationListController {
 
     private async getDataAbilityHelper(context?) {
         if (this.dataShareHelper == undefined) {
-            this.dataShareHelper = await dataShare.createDataShareHelper(context ? context : globalThis.context, CONTENT_URI);
+            this.dataShareHelper = await featureAbility.acquireDataAbilityHelper(context ? context : globalThis.context, CONTENT_URI);
         }
         return this.dataShareHelper;
     }
@@ -659,7 +659,7 @@ export default class ConversationListController {
             };
             this.jumpToContract(actionData);
         } else {
-            let threadId = this.messageList[index].threadId;
+            let threadId = this.messageList[index]?.threadId;
             let contactsNum = this.messageList[index]?.contactsNum;
             this.jumpToGroupDetail(threadId, contactsNum);
         }
@@ -870,7 +870,7 @@ export default class ConversationListController {
     }
 
     markAllAsReadByIndex(index) {
-        let threadId = this.messageList[index].threadId;
+        let threadId = this.messageList[index]?.threadId;
         let threadIds = [threadId];
         this.cancelMessageNotify(threadIds, () => {
             // Mark the information corresponding to the contact index as read.

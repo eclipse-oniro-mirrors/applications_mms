@@ -94,127 +94,127 @@ export class DataWorkerTask extends WorkerTask {
         this.mContactsModel.searchContracts(param.actionData, (data) => {
           HiLog.i(TAG, `searchContracts result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryContact]:
         this.mContactsModel.queryContact(param.actionData, (data) => {
           HiLog.i(TAG, `queryContact result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryContactDataByIds]:
         this.mContactsModel.queryContactDataByIds(param.actionData, (data) => {
           HiLog.i(TAG, `queryContactDataByIds result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.countContact]:
         this.mContactsModel.countContact(param.actionData, (data) => {
           HiLog.i(TAG, `countContact result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryContactDataByTelephone]:
         this.mContactsModel.queryContactDataByTelephone(param.actionData, (data) => {
           HiLog.i(TAG, `queryContactDataByTelephone result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryProfile]:
         this.mContactsModel.queryProfile(param.actionData, (data) => {
           HiLog.i(TAG, `queryProfile result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryMessageDetail]:
         this.mConversationModel.queryMessageDetail(param.actionData, (data) => {
           HiLog.i(TAG, `queryMessageDetail result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryMmsPart]:
         this.mConversationModel.queryMmsPart(param.actionData, (data) => {
           HiLog.i(TAG, `queryMmsPart result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryMaxGroupId]:
         this.mConversationModel.queryMaxGroupId(param.actionData, (data) => {
           HiLog.i(TAG, `queryMaxGroupId result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.insertMessageDetail]:
         this.mConversationModel.insertMessageDetail(param.actionData, (data) => {
           HiLog.i(TAG, `insertMessageDetail result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.batchInsertMmsPart]:
         this.mConversationModel.batchInsertMmsPart(param.actionData, (data) => {
           HiLog.i(TAG, `batchInsertMmsPart result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.queryGroupIdBySessionId]:
         this.mConversationModel.queryGroupIdBySessionId(param.actionData, (data) => {
           HiLog.i(TAG, `queryGroupIdBySessionId result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.deleteMessageBySessionIds]:
-        this.mConversationModel.deleteMessageBySessionIds(param.actionData, (data) => {
-          HiLog.i(TAG, `deleteMessageBySessionIds result: ${JSON.stringify(data).length}`);
-          callBack(data);
-        }, param.context);
+//        this.mConversationModel.deleteMessageBySessionIds(param.actionData, (data) => {
+//          HiLog.i(TAG, `deleteMessageBySessionIds result: ${JSON.stringify(data).length}`);
+//          callBack(data);
+//        });
         break;
       case DataWorkerConstant[DataWorkerConstant.deleteMmsPartByGroupIds]:
-        this.mConversationModel.deleteMmsPartByGroupIds(param.actionData, (data) => {
-          HiLog.i(TAG, `deleteMmsPartByGroupIds result: ${JSON.stringify(data).length}`);
-          callBack(data);
-        }, param.context);
+//        this.mConversationModel.deleteMmsPartByGroupIds(param.actionData, (data) => {
+//          HiLog.i(TAG, `deleteMmsPartByGroupIds result: ${JSON.stringify(data).length}`);
+//          callBack(data);
+//        });
         break;
       case DataWorkerConstant[DataWorkerConstant.deleteMessageByGroupIds]:
-        this.mConversationModel.deleteMessageByGroupIds(param.actionData, (data) => {
-          HiLog.i(TAG, `deleteMessageByGroupIds result: ${JSON.stringify(data).length}`);
-          callBack(data);
-        }, param.context);
+//        this.mConversationModel.deleteMessageByGroupIds(param.actionData, (data) => {
+//          HiLog.i(TAG, `deleteMessageByGroupIds result: ${JSON.stringify(data).length}`);
+//          callBack(data);
+//        });
         break;
       case DataWorkerConstant[DataWorkerConstant.deleteMessageBySessionIdsAndLock]:
-        this.mConversationModel.deleteMessageBySessionIdsAndLock(param.actionData, (data) => {
-          HiLog.i(TAG, `deleteMessageBySessionIdsAndLock result: ${JSON.stringify(data).length}`);
-          callBack(data);
-        }, param.context);
+//        this.mConversationModel.deleteMessageBySessionIdsAndLock(param.actionData, (data) => {
+//          HiLog.i(TAG, `deleteMessageBySessionIdsAndLock result: ${JSON.stringify(data).length}`);
+//          callBack(data);
+//        });
         break;
       case DataWorkerConstant[DataWorkerConstant.markAllAsRead]:
-        this.mConversationModel.markAllAsRead(param.actionData, (data) => {
-          HiLog.i(TAG, `markAllAsRead result: ${JSON.stringify(data).length}`);
-          callBack(data);
-        }, param.context);
+//        this.mConversationModel.markAllAsRead(param.actionData, (data) => {
+//          HiLog.i(TAG, `markAllAsRead result: ${JSON.stringify(data).length}`);
+//          callBack(data);
+//        });
         break;
       case DataWorkerConstant[DataWorkerConstant.markAllToRead]:
-        this.mConversationModel.markAllToRead(param.actionData, (data) => {
-          HiLog.i(TAG, `markAllToRead result: ${JSON.stringify(data).length}`);
-          callBack(data);
-        }, param.context);
+//        this.mConversationModel.markAllToRead(param.actionData, (data) => {
+//          HiLog.i(TAG, `markAllToRead result: ${JSON.stringify(data).length}`);
+//          callBack(data);
+//        });
         break;
       case DataWorkerConstant[DataWorkerConstant.updateById]:
         this.mConversationModel.updateById(param.actionData, (data) => {
           HiLog.i(TAG, `updateById result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.updateLock]:
         this.mConversationModel.updateLock(param.actionData, (data) => {
           HiLog.i(TAG, `updateLock result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       case DataWorkerConstant[DataWorkerConstant.updateCollect]:
         this.mConversationModel.updateCollect(param.actionData, (data) => {
           HiLog.i(TAG, `updateCollect result: ${JSON.stringify(data).length}`);
           callBack(data);
-        }, param.context);
+        });
         break;
       default:
         HiLog.w(TAG, `${request} not allow!!!`)

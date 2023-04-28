@@ -25,7 +25,7 @@ import LooseObject from "../data/LooseObject"
 import MmsPreferences from "../utils/MmsPreferences";
 
 const TAG = "ConversationService";
-
+let mContactsModel = new ContactsModel();
 let mConversationModel = new ConversationModel();
 
 export default {
@@ -36,14 +36,12 @@ export default {
      * @param params contact phone number
      * @callback Whether the contact exists
      */
-    judgeContactExists(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryContactDataByTelephone", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, result => {
+    judgeContactExists(params, callback) {
+        mContactsModel.queryContactDataByTelephone(params, function (result) {
             let hasExitContract = false;
             if (result.length >= 1) {
                 // Whether the contact exists
+                HiLog.i(TAG, "judgeContactExists, queryContactDataByTelephone success");
                 hasExitContract = true;
             }
             callback(hasExitContract);
@@ -57,11 +55,9 @@ export default {
      * @callback callback
      */
     queryMessageDetail(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryMessageDetail", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            let result: LooseObject = {};
+        let result: LooseObject = {};
+        mConversationModel.queryMessageDetail(actionData, res => {
+            HiLog.i(TAG, "queryMessageDetail, queryMessageDetail success")
             result.code = res.code;
             if (res.code == common.int.SUCCESS) {
                 this.groupDetailMessage(res.abilityResult, actionData, resultList => {
@@ -69,7 +65,7 @@ export default {
                     callback(result);
                 });
             } else {
-                HiLog.w(TAG, "queryMessageDetail, failed");
+                HiLog.w(TAG, "groupDetailMessage, failed");
                 callback(result);
             }
         });
@@ -268,7 +264,8 @@ export default {
         });
     },
 
-    dealExitingSession(response, param, actionData, callback): void {
+    dealExitingSession(response, param, actionData, callback) {
+        HiLog.i(TAG, "dealExitingSession")
         let sessionId = response.id;
         // Invoke the SMS database to insert SMS messages.
         let threadIds = [sessionId];
@@ -307,8 +304,9 @@ export default {
     },
 
     dealInsertMessageDetail(param, actionData, threadId, callback) {
+        HiLog.i(TAG, "dealInsertMessageDetail")
         this.queryMaxGroupId(actionData, res => {
-            let maxGroupId: number = 0;
+            let maxGroupId = 0;
             if (res.code === common.int.SUCCESS) {
                 HiLog.i(TAG, "dealInsertMessageDetail, queryMaxGroupId maxGroupId=" + res.response.maxGroupId)
                 maxGroupId = res.response.maxGroupId == common.string.EMPTY_STR ? 0 : Number(res.response.maxGroupId);
@@ -468,11 +466,9 @@ export default {
         }
         actionData.stringValue = stringValue;
         actionData.featureAbility = param.featureAbility;
-        globalThis.DataWorker.sendRequest("insertMessageDetail", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, result => {
+        mConversationModel.insertMessageDetail(actionData, result => {
             if (result.code == common.int.SUCCESS) {
+                HiLog.i(TAG, "insertMessageDetail, callback success")
                 this.dealBatchInsertMmsPart(param, result, callback);
             } else {
                 HiLog.w(TAG, "insertMessageDetail, fail");
@@ -509,12 +505,7 @@ export default {
             batchMmsParts.push(stringValue);
         }
         actionData.batchMmsParts = batchMmsParts;
-        globalThis.DataWorker.sendRequest("batchInsertMmsPart", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, result => {
-            callback(result);
-        });
+        mConversationModel.batchInsertMmsPart(actionData, callback);
     },
 
     updateSessionAndDetail(actionData) {
@@ -552,25 +543,12 @@ export default {
      * @param actionData session ids
      */
     deleteMessageBySessionIds(actionData) {
-        globalThis.DataWorker.sendRequest("queryGroupIdBySessionId", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
+        mConversationModel.queryGroupIdBySessionId(actionData, res => {
             if (res.code == common.int.SUCCESS) {
-                globalThis.DataWorker.sendRequest("deleteMessageBySessionIds", {
-                    actionData: actionData,
-                    context: globalThis.mmsContext
-                }, res => {
-                    // do nothing
-                });
+                mConversationModel.deleteMessageBySessionIds(actionData);
                 let groupIds = res.abilityResult;
                 actionData.groupIds = groupIds;
-                globalThis.DataWorker.sendRequest("deleteMmsPartByGroupIds", {
-                    actionData: actionData,
-                    context: globalThis.mmsContext
-                }, res => {
-                    // do nothing
-                });
+                mConversationModel.deleteMmsPartByGroupIds(actionData);
             }
         });
     },
@@ -585,12 +563,7 @@ export default {
     },
 
     deleteMessageBySessionIdsAndLock(actionData) {
-        globalThis.DataWorker.sendRequest("deleteMessageBySessionIdsAndLock", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            // do nothing
-        });
+        mConversationModel.deleteMessageBySessionIdsAndLock(actionData);
     },
 
     /**
@@ -599,19 +572,9 @@ export default {
      * @param actionData session ids
      */
     deleteMessageByGroupIds(actionData) {
-        globalThis.DataWorker.sendRequest("deleteMessageByGroupIds", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            // do nothing
-        });
-        // Deleting mms data
-        globalThis.DataWorker.sendRequest("deleteMmsPartByGroupIds", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            // do nothing
-        });
+        mConversationModel.deleteMessageByGroupIds(actionData);
+        // Deleting MMS Data
+        mConversationModel.deleteMmsPartByGroupIds(actionData);
     },
 
     /**
@@ -620,15 +583,8 @@ export default {
      * @param actionData
      * @callback callback
      */
-    markAllAsRead(actionData, callback?) {
-        globalThis.DataWorker.sendRequest("markAllAsRead", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            if (callback) {
-                callback(res);
-            }
-        });
+    markAllAsRead(actionData) {
+        mConversationModel.markAllAsRead(actionData);
     },
 
     /**
@@ -638,14 +594,7 @@ export default {
      * @callback callback
      */
     markAllToRead(actionData, callback?) {
-        globalThis.DataWorker.sendRequest("markAllToRead", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            if (callback) {
-                callback(res);
-            }
-        });
+        mConversationModel.markAllToRead(actionData);
     },
 
     /**
@@ -655,11 +604,12 @@ export default {
      * @callback callback
      */
     updateById(actionData, callback) {
-        globalThis.DataWorker.sendRequest("updateById", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            callback(res);
+        let result: LooseObject = {};
+        mConversationModel.updateById(actionData, res => {
+            result.code = res.code;
+            callback(result);
+        }).catch(e => {
+            HiLog.e(TAG, "updateById, error: " + JSON.stringify(e.message))
         });
     },
 
@@ -670,11 +620,8 @@ export default {
      * @callBack callBack
      */
     queryMaxGroupId(actionData, callBack) {
-        globalThis.DataWorker.sendRequest("queryMaxGroupId", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            let result: LooseObject = {};
+        let result: LooseObject = {};
+        mConversationModel.queryMaxGroupId(actionData, res => {
             result.code = res.code;
             if (res.code == common.int.SUCCESS) {
                 result.response = res.abilityResult;
@@ -1129,11 +1076,8 @@ export default {
      * @callback callback
      */
     queryMmsPartByIds(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryMmsPart", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
-            let result: LooseObject = {};
+        let result: LooseObject = {};
+        mConversationModel.queryMmsPart(actionData, res => {
             result.code = res.code;
             if (res.code == common.int.SUCCESS) {
                 result.response = res.abilityResult;

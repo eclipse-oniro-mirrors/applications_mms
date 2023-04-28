@@ -716,7 +716,7 @@ export default class InfoMsgController {
             };
             this.jumpToContract(actionData);
         } else {
-            let threadId = this.messageList[index].threadId;
+            let threadId = this.messageList[index]?.threadId;
             let contactsNum = this.messageList[index]?.contactsNum;
             this.jumpToGroupDetail(threadId, contactsNum);
         }
@@ -755,8 +755,8 @@ export default class InfoMsgController {
                 return false;
             }
             if (item.isDelShow) {
-                this.setListItemTransX(0);
                 item.isDelShow = false;
+                this.setListItemTransX(0);
                 return true;
             }
         }
