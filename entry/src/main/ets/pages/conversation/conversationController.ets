@@ -274,7 +274,7 @@ export default class ConversationController {
     }
 
     initData() {
-        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2",
+        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_con_tip2",
             this.selectDeleteMsgCount
         );
         this.tabTextList = [
@@ -427,7 +427,7 @@ export default class ConversationController {
         let hasAttachment = commonService.judgeIsAttachment(source);
         let actionData: LooseObject = {};
         actionData = {
-            slotId: MmsPreferences.getInstance().getSendMessageSlotId(),
+            slotId: this.slotId,
             threadId: this.threadId,
             receiveContactValue: common.string.EMPTY_STR,
             selectContacts: [],
@@ -731,8 +731,9 @@ export default class ConversationController {
         this.isSendStatus = true;
         // Initialize the data to be sent.
         this.initSendSms(content, msgUriPath, isMms, mmsSource);
+        this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
         let actionData: LooseObject = {
-            slotId: MmsPreferences.getInstance().getSendMessageSlotId(),
+            slotId: this.slotId,
             destinationHost: this.strContactsNumber,
             content: content,
             isEditMms: isMms
@@ -862,7 +863,7 @@ export default class ConversationController {
 
     // Delete a dialog box.
     deleteDialogShow() {
-        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
+        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_con_tip1");
         let item = this.mmsList[this.mmsIndex];
         item.isShowMsgLongMenu = false
         HiLog.i(TAG, "deleteDialogShow, isShowMsgLongMenu=" + item.isShowMsgLongMenu);
@@ -986,9 +987,9 @@ export default class ConversationController {
             this.deleteMessageByGroupIds(groupIds);
             // Check whether the length of the deleted list is 0.
             if (this.mmsList.length === 0 && this.textValue === common.string.EMPTY_STR) {
-                router.back();
                 globalThis.needToUpdate = true;
                 this.deleteMessageById(this.threadId);
+                router.back();
             } else {
                 this.updateSessionLock(false);
                 this.updateLastItemContent();
@@ -1051,11 +1052,11 @@ export default class ConversationController {
             return;
         }
         if (this.selectDeleteMsgCount == 1) {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
+            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_con_tip1");
         } else if (this.selectDeleteMsgCount == this.mmsList.length) {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip3");
+            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_con_tip3");
         } else {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.selectDeleteMsgCount);
+            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_con_tip2", this.selectDeleteMsgCount);
         }
         this.hasLockMsg = (this.mmsList.some((element, index) => element.isCbChecked && element.isLock));
     }
@@ -1108,10 +1109,8 @@ export default class ConversationController {
                 this.setDraft();
             }
             this.deleteDraftData();
-        });
-        if (callback) {
             callback();
-        }
+        });
     }
 
     initIsShowMsgLongMenu(result) {
@@ -1749,12 +1748,11 @@ export default class ConversationController {
 
     sendDataRefresh() {
         this.isSendStatus = true;
-        // Send Text
+        this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
         if (this.textValue != common.string.EMPTY_STR || this.mmsEditList.length != 0 ||
         this.textareaDatasource.length != 0) {
             this.initSendItem();
         }
-        this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
         let actionData: LooseObject = {
             slotId: this.slotId,
             destinationHost: this.strContactsNumber,
@@ -2011,7 +2009,10 @@ export default class ConversationController {
                 actionData.hasRead = 1;
                 conversationListService.markAllAsRead(actionData);
             });
-            this.notifySlotIdChange(this.mmsList[this.mmsList.length - 1]);
+            let lastItem: LooseObject = this.mmsList[this.mmsList.length - 1];
+            if (lastItem != null && lastItem.subId != null) {
+                this.notifySlotIdChange(lastItem.subId);
+            }
         }, 500);
     }
 
@@ -2024,15 +2025,10 @@ export default class ConversationController {
         }
     }
 
-    notifySlotIdChange(item: LooseObject): void {
-        if (item == null || item.subId == null) {
-            HiLog.w(TAG, "notifySlotIdChange, get item.subId error!");
-            return;
-        }
-        let slotId: number = item.subId;
-        if (MmsPreferences.getInstance().haveMultiSimCardReady()
-        && MmsPreferences.getInstance().getSelectedSlotId() != slotId) {
+    notifySlotIdChange(slotId: number): void {
+        if (MmsPreferences.getInstance().getSelectedSlotId() != slotId) {
             MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SELECTED_SLOTID, slotId);
+            HiLog.i(TAG, "notifySlotIdChange, emit slotId: " + slotId);
             emitter.emit(simCardService.SLOTID_CHANGE_EVENT, {
                 data: {
                     "slotId": slotId
@@ -2187,8 +2183,8 @@ export default class ConversationController {
 
     saveImage() {
         var actionData: LooseObject = {};
-        actionData.threadId = this.mmsList[this.mmsIndex].threadId;
-        actionData.pduId = this.mmsList[this.mmsIndex].pduId;
+        actionData.threadId = this.mmsList[this.mmsIndex]?.threadId;
+        actionData.pduId = this.mmsList[this.mmsIndex]?.pduId;
         conversationService.saveImage(actionData, result => {
             this.showToast(result);
         });
@@ -2238,7 +2234,7 @@ export default class ConversationController {
     // Delete
     deleteDetail() {
         if (this.mmsList.length == 1) {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip3");
+            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_con_tip3");
         } else {
             this.hasDetailDelete = false;
             this.isSelectStatus = true;

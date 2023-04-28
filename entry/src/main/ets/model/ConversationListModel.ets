@@ -24,6 +24,9 @@ import ohosDataRdb from "@ohos.data.rdb";
 import dataShare from "@ohos.data.dataShare";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
 
+import featureAbility from "@ohos.ability.featureAbility";
+import dataAbility from "@ohos.data.dataAbility";
+
 const TAG = "ConversationListModel";
 
 export default class ConversationListModel extends BaseModel {
@@ -142,10 +145,10 @@ export default class ConversationListModel extends BaseModel {
             "unreadCount",
             "unreadTotalOfInfo"
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new dataAbility.DataAbilityPredicates();
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_UNREAD_COUNT;
-        let dataShareHelper = await dataShare.createDataShareHelper(mmsContext, common.string.URI_MESSAGE_LOG);
-        dataShareHelper.query(managerUri, condition, resultColumns, (err, resultSet) => {
+        let dataShareHelper = await featureAbility.acquireDataAbilityHelper(mmsContext, common.string.URI_MESSAGE_LOG);
+        dataShareHelper.query(managerUri, resultColumns, condition, (err, resultSet) => {
             let result: LooseObject = {};
             if (resultSet != undefined) {
                 if (resultSet.goToLastRow()) {

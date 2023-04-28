@@ -98,6 +98,7 @@ export struct Conversation {
         });
         emitter.on(simCardService.SLOTID_CHANGE_EVENT, () => {
             this.slotId = MmsPreferences.getInstance().getSelectedSlotId();
+            console.log("receive SLOTID_CHANGE_EVENT, this.slotId: " + this.slotId);
         });
     }
 
@@ -243,14 +244,14 @@ export struct Conversation {
                                                     .fontColor($r("sys.color.ohos_id_color_text_primary"))
                                                     .fontWeight(FontWeight.Medium)
                                             } else {
-                                                Text(this.mConversationCtrl.strContactsName)
+                                                Text(this.mConversationCtrl.strContactsName.replace(/\s*/g,""))
                                                     .maxLines(1)
                                                     .textOverflow({ overflow: TextOverflow.Ellipsis })
                                                     .fontSize(20)
                                                     .fontColor($r("sys.color.ohos_id_color_text_primary"))
                                                     .fontWeight(FontWeight.Medium)
                                                     .lineHeight(28)
-                                                if (this.mConversationCtrl.strContactsName !==
+                                                if (this.mConversationCtrl.strContactsName.replace(/\s*/g,"") !==
                                                 this.mConversationCtrl.strContactsNumberFormat) {
                                                     Text(this.mConversationCtrl.strContactsNumberFormat)
                                                         .maxLines(1)
@@ -935,7 +936,6 @@ struct bubbleText {
     build() {
         Row() {
             Text(this.content)
-                .onDragStart(() => {})
                 .fontSize(16)
                 .lineHeight(21)
                 .padding({ left: 12, right: 12, top: 8, bottom: 8 })

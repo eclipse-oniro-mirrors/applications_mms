@@ -157,7 +157,7 @@ export default {
         // MMS message receiving event
         MMS_SUBSCRIBER_EVENT: "usual.event.MMS_RECEIVE_COMPLETED",
         // Contact database
-        URI_ROW_CONTACTS: "datashare:///com.ohos.contactsdataability",
+        URI_ROW_CONTACTS: "dataability:///com.ohos.contactsdataability",
         // Contact Information
         CONTACT_DATA_URI: "/contacts/contact_data",
         // Business Card Contact
@@ -167,7 +167,7 @@ export default {
         // Contact Information
         CONTACT_URI: "/contacts/contact",
         // SMS database
-        URI_MESSAGE_LOG: "datashare:///com.ohos.smsmmsability",
+        URI_MESSAGE_LOG: "dataability:///com.ohos.smsmmsability",
         // Querying SMs
         URI_MESSAGE_INFO_TABLE: "/sms_mms/sms_mms_info",
         // Statistic

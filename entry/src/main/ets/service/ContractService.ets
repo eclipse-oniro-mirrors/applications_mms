@@ -16,8 +16,10 @@
 import HiLog from "../utils/HiLog";
 import common from "../data/commonData";
 import telephoneUtil from "../utils/TelephoneUtil";
-import LooseObject from "../data/LooseObject"
+import LooseObject from "../data/LooseObject";
+import ContactsModel from "../model/ContactsModel";
 
+let mContactsModel = new ContactsModel();
 const TAG = "ContractService";
 
 export default {
@@ -30,16 +32,11 @@ export default {
      */
     queryContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        globalThis.DataWorker.sendRequest("queryContact", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, rawContractIds => {
+        mContactsModel.queryContact(actionData, rawContractIds => {
             let result: LooseObject = {};
             actionData.contractIds = rawContractIds;
-            globalThis.DataWorker.sendRequest("queryContactDataByIds", {
-                actionData: actionData,
-                context: globalThis.mmsContext
-            }, contracts => {
+            // Based on rawContractIds
+            mContactsModel.queryContactDataByIds(actionData, contracts => {
                 result.code = common.int.SUCCESS;
                 this.convertContracts(contracts, messageList => {
                     result.response = messageList;
@@ -57,10 +54,7 @@ export default {
      */
     countContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        globalThis.DataWorker.sendRequest("countContact", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, count => {
+        mContactsModel.countContact(actionData, count => {
             let result: LooseObject = {};
             result.code = common.int.SUCCESS;
             result.response = count;
@@ -93,15 +87,14 @@ export default {
      *
      * @param contactObjects
      */
-    dealContractParams(contactObjects): LooseObject {
-        let contractParams: LooseObject = {};
+    dealContractParams(contactObjects) {
         if (contactObjects && contactObjects != common.string.EMPTY_STR) {
-            let params: Array<LooseObject> = [];
+            let params = [];
             try {
                 params = JSON.parse(contactObjects);
             } catch (Error) {
                 HiLog.i(TAG, `JSON.parse error ${Error}`);
-                return contractParams;
+                return {};
             }
             let contactsNumber: string = common.string.EMPTY_STR;
             let contactsName: string = common.string.EMPTY_STR;
@@ -116,14 +109,16 @@ export default {
                     contactsName += (item.telephone + common.string.COMMA);
                 }
             }
-            let telephone: string = contactsNumber.substring(0, contactsNumber.length - 1);
-            contactsNumber = telephoneUtil.dealTelephoneSort(telephone);
-            contractParams.strContactsNumber = contactsNumber;
-            contractParams.strContactsNumberFormat = contactsNumber;
-            contractParams.strContactsName = contactsName.substring(0, contactsName.length - 1);
-            contractParams.contactsNum = length;
+            let telephnoe = contactsNumber.substring(0, contactsNumber.length - 1);
+            contactsNumber = telephoneUtil.dealTelephoneSort(telephnoe);
+            let contractParams = {
+                strContactsNumber: contactsNumber,
+                strContactsNumberFormat: contactsNumber,
+                strContactsName: contactsName.substring(0, contactsName.length - 1),
+                contactsNum: length,
+            }
+            return contractParams;
         }
-        return contractParams;
     },
 
     /**
@@ -133,10 +128,8 @@ export default {
      * @callback callback
      */
     queryContactDataByTelephone(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryContactDataByTelephone", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, contracts => {
+        mContactsModel.queryContactDataByTelephone(actionData, contracts => {
+            HiLog.i(TAG, "queryContactDataByTelephone, success");
             callback(contracts);
         });
     },
@@ -149,10 +142,7 @@ export default {
      */
     searchContracts(actionData, callback) {
         let result: LooseObject = {};
-        globalThis.DataWorker.sendRequest("searchContracts", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, (res) =>{
+        mContactsModel.searchContracts(actionData, res => {
             result.code = res.code
             if (res.code == common.int.SUCCESS) {
                 result.response = this.dealSearchContracts(res.abilityResult);
@@ -181,10 +171,8 @@ export default {
      * @callback callback
      */
     judgeIsExitProfile(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryProfile", {
-            actionData: actionData,
-            context: globalThis.mmsContext
-        }, res => {
+        HiLog.i(TAG, "judgeIsExitProfile, start");
+        mContactsModel.queryProfile(actionData, res => {
             let result = false;
             if (res > 0) {
                 result = true;

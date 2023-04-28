@@ -22,45 +22,47 @@ import LooseObject from "../data/LooseObject"
 import dataShare from "@ohos.data.dataShare";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
 
+import featureAbility from "@ohos.ability.featureAbility";
+import dataAbility from "@ohos.data.dataAbility";
+
 const TAG = "ContactsModel";
 
 export default class ContactsModel extends BaseModel {
-    async queryContactDataByIds(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
+    async queryContactDataByIds(actionData, callback) {
+        let dataHelper = await featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.detailInfo,
             mmsTable.contactDataColumns.displayName,
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new dataAbility.DataAbilityPredicates();;
         let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         condition.in(mmsTable.contactDataColumns.contactId, actionData.contractIds);
         condition.and();
         condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
         condition.and();
         condition.equalTo(mmsTable.contactDataColumns.hasDelete, "0");
-        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
+        dataHelper.query(contactDataUri, resultColumns, condition).then(resultSet => {
             callback(this.dealResultSet(resultSet));
         }).catch(error => {
             HiLog.e(TAG, "queryContactDataByIds, error: " + JSON.stringify(error.message));
         });
     }
 
-    async queryContactDataByTelephone(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
+    async queryContactDataByTelephone(actionData, callback) {
+        let telephoneDataHelp = await featureAbility.acquireDataAbilityHelper(globalThis.mmsContext,
                                 common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.detailInfo,
             mmsTable.contactDataColumns.displayName,
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new dataAbility.DataAbilityPredicates();;
         let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         condition.in(mmsTable.contactDataColumns.detailInfo, actionData.telephones);
         condition.and();
         condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
         condition.and();
         condition.equalTo(mmsTable.contactDataColumns.hasDelete, "0");
-        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
+        telephoneDataHelp.query(contactDataUri, resultColumns, condition).then(resultSet => {
             callback(this.dealResultSet(resultSet));
         }).catch(error => {
             HiLog.e(TAG, "queryContactDataByTelephone, error: " + JSON.stringify(error.message));
@@ -81,17 +83,18 @@ export default class ContactsModel extends BaseModel {
         return contracts;
     }
 
-    async queryContact(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
+    async queryContact(actionData, callback) {
+        let DAHelper = await featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactColumns.id
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new dataAbility.DataAbilityPredicates();;
         let rawContactUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
         let offset = (actionData.page - 1) * actionData.limit;
-        condition.limit(actionData.limit, offset).orderByDesc(mmsTable.contactColumns.lastestContactedTime);
-        dataHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
+        condition.limitAs(actionData.limit)
+            .orderByDesc(mmsTable.contactColumns.lastestContactedTime)
+            .offsetAs(offset);
+        DAHelper.query(rawContactUri, resultColumns, condition).then(resultSet => {
             let rawContactIds = [];
             if (resultSet != undefined) {
                 while (resultSet.goToNextRow()) {
@@ -104,16 +107,15 @@ export default class ContactsModel extends BaseModel {
         });
     }
 
-    async countContact(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
+    async countContact(actionData, callback) {
+        let DAHelper = await featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactColumns.id
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new dataAbility.DataAbilityPredicates();;
         let rawContactUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
         condition.orderByDesc(mmsTable.contactColumns.lastestContactedTime);
-        dataHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
+        DAHelper.query(rawContactUri, resultColumns, condition).then(resultSet => {
             let count = 0;
             if (resultSet != undefined) {
                 count = resultSet.rowCount;
@@ -124,14 +126,14 @@ export default class ContactsModel extends BaseModel {
         });
     }
 
-    async searchContracts(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
+    async searchContracts(actionData, callback) {
+        let searchDataHelper = await featureAbility.acquireDataAbilityHelper(globalThis.mmsContext,
         common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.searchContactView.detailInfo,
             mmsTable.searchContactView.displayName
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new dataAbility.DataAbilityPredicates();;
         let searchContactsUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_SEARCHE;
         condition.equalTo(mmsTable.searchContactView.contentType, "phone")
             .beginWrap()
@@ -139,7 +141,7 @@ export default class ContactsModel extends BaseModel {
             .or()
             .contains(mmsTable.searchContactView.detailInfo, actionData.telephone)
             .endWrap();
-        dataHelper.query(searchContactsUri, condition, resultColumns).then(resultSet => {
+        searchDataHelper.query(searchContactsUri, resultColumns, condition).then(resultSet => {
             let contracts = this.dealResultSet(resultSet);
             callback(this.encapsulateReturnResult(common.int.SUCCESS, contracts));
         }).catch(error => {
@@ -155,15 +157,15 @@ export default class ContactsModel extends BaseModel {
      * @callback callback
      * @param context
      */
-    async queryProfile(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
+    async queryProfile(actionData, callback) {
+        HiLog.i(TAG, "queryProfile start ");
+        let DAHelper = await featureAbility.acquireDataAbilityHelper(globalThis.mmsContext, common.string.URI_ROW_CONTACTS);
         let resultColumns = [
             mmsTable.contactDataColumns.id,
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new dataAbility.DataAbilityPredicates();;
         let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.PROFILE_DATA_URI;
-        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
+        DAHelper.query(contactDataUri, resultColumns, condition).then(resultSet => {
             let count = 0;
             if (resultSet != undefined) {
                 count = resultSet.rowCount;

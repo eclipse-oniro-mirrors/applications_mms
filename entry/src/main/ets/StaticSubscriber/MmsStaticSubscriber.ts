@@ -30,6 +30,7 @@ import dataShare from "@ohos.data.dataShare";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
 import messageService from "../service/ConversationListService";
 
+
 const TAG = 'MmsStaticSubscriber'
 // database instance object
 var rdbStore = undefined;
@@ -89,7 +90,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         actionData.content = content;
         actionData.isMms = true;
         actionData.mmsSource = result.mmsSource;
-        actionData.slotId = data.slotId;
+        actionData.slotId = data.parameters.slotId;
         this.insertMessageDetailBy(actionData, res => {
             let notificationContent = this.getNotificationContent(result.mmsSource, content);
             this.sendNotification(result.telephone, res.initDatas[0].id, notificationContent);
@@ -521,7 +522,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     async insertMmsPart(stringValue) {
-        let dataAbilityHelper = await dataShare.createDataShareHelper(this.context, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_MESSAGE_LOG);
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
         dataAbilityHelper.insert(managerUri, stringValue).then(data => {
         }).catch(error => {
@@ -533,7 +534,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     async insertMessageDetailRdb(actionData, callback) {
         // Obtains the DataAbilityHelper object.
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        let dataAbilityHelper = await dataShare.createDataShareHelper(this.context, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_MESSAGE_LOG);
         let promise = dataAbilityHelper.insert(managerUri, actionData.stringValue);
         await promise.then(data => {
             callback(data);
@@ -588,13 +589,13 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
 
     // Get the largest groupId
     async queryMaxGroupIdDb(actionData, callback) {
-        let dataAbilityHelper = await dataShare.createDataShareHelper(this.context, common.string.URI_MESSAGE_LOG);
+        let dataAbilityHelper = await particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_MESSAGE_LOG);
         let resultColumns = [
             "maxGroupId"
         ];
-        let condition = new dataSharePredicates.DataSharePredicates();
+        let condition = new ohosDataAbility.DataAbilityPredicates();
         let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MAX_GROUP;
-        dataAbilityHelper.query(managerUri, condition, resultColumns).then( resultSet => {
+        dataAbilityHelper.query(managerUri, resultColumns, condition).then( resultSet => {
             let result: LooseObject = {};
             if (resultSet != undefined) {
                 if (resultSet.goToLastRow()) {
@@ -682,13 +683,13 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             mmsTable.contactDataColumns.displayName,
         ];
         let contactDataAbilityHelper =
-            await dataShare.createDataShareHelper(this.context, common.string.URI_ROW_CONTACTS);
-        let condition = new dataSharePredicates.DataSharePredicates();
+            await particleAbility.acquireDataAbilityHelper(this.context, common.string.URI_ROW_CONTACTS);
+        let condition = new ohosDataAbility.DataAbilityPredicates();
         let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         condition.in(mmsTable.contactDataColumns.detailInfo, telephones);
         condition.and();
         condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
-        contactDataAbilityHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
+        contactDataAbilityHelper.query(contactDataUri, resultColumns, condition).then(resultSet => {
             let contracts = [];
             if (resultSet != undefined) {
                 while (resultSet.goToNextRow()) {
