@@ -35,14 +35,15 @@ export default {
      * @param telephone
      * @return Yes or no
      */
-    judgeIsInfoMsg(telephone) {
-        let result = false;
+    judgeIsInfoMsg(telephone: string): boolean {
+        let result: boolean = false;
         if (telephone == null || telephone == common.string.EMPTY_STR) {
             return result;
         }
         for (let item of infoMegTelephone) {
             if (telephone.indexOf(item) == 0) {
                 result = true;
+                break;
             }
         }
         return result;

@@ -13,201 +13,171 @@
  * limitations under the License.
  */
 
-import BaseModel from "./BaseModel";
-import common from "../data/commonData";
-import mmsTable from "../data/tableData";
-import HiLog from "../utils/HiLog";
-import LooseObject from "../data/LooseObject"
-import MmsDatabaseHelper from "../utils/MmsDatabaseHelper";
-import ohosDataRdb from "@ohos.data.rdb";
+import dataShare from '@ohos.data.dataShare';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-import dataShare from "@ohos.data.dataShare";
-import dataSharePredicates from "@ohos.data.dataSharePredicates";
+import BaseModel from './BaseModel';
+import common from '../data/commonData';
+import mmsTable from '../data/tableData';
+import HiLog from '../utils/HiLog';
+import LooseObject from '../data/LooseObject';
+import StringUtil from '../utils/StringUtil';
 
 const TAG = "ConversationListModel";
 
 export default class ConversationListModel extends BaseModel {
-    async querySessionList(actionData) {
-        let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-        let numberType = actionData.numberType;
-        if (numberType != null) {
-            await predicates.equalTo(mmsTable.sessionField.smsType, numberType);
-        }
-        await predicates.orderByDesc(mmsTable.sessionField.time);
-        await predicates.limitAs(actionData.limit);
-        let offset = actionData.page < 3 ? (actionData.page - 1) * 50 : (actionData.page - 2) * 100 + 50;
-        await predicates.offsetAs(offset);
-        let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
-        let sessionList = [];
-        if (resultSet != undefined) {
-            while (resultSet.goToNextRow()) {
-                let item = await this.buildResultSet(resultSet);
-                sessionList.push(item);
-            }
-        }
-        let result = {
-            response: sessionList,
-        }
-        return result;
+  public async insertSession(valueBucket, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_SESSION_TABLE;
+    dataHelper.insert(managerUri, valueBucket).then(data => {
+      if (callback) {
+        callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
+      }
+    }).catch(error => {
+      HiLog.e(TAG, "insertSession fail, error: " + JSON.stringify(error));
+      if (callback) {
+        callback(this.encapsulateReturnCode(common.int.FAILURE));
+      }
+    });
+  }
+
+  public async deleteSessionByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySessionCondition(actionData);
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_SESSION_TABLE;
+    dataHelper.delete(managerUri, condition).then(data => {
+      if (callback) {
+        callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
+      }
+    }).catch(error => {
+      HiLog.e(TAG, "deleteSessionByCondition, error: " + JSON.stringify(error));
+      if (callback) {
+        callback(this.encapsulateReturnCode(common.int.FAILURE));
+      }
+    });
+  }
+
+  public async updateSessionByCondition(actionData, valueBucket, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySessionCondition(actionData);
+    if (valueBucket == null) {
+      HiLog.e(TAG, "updateSessionByCondition fail, valueBucket is null!");
+      if (callback) {
+        callback(this.encapsulateReturnCode(common.int.FAILURE));
+      }
     }
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_SESSION_TABLE;
+    dataHelper.update(managerUri, condition, valueBucket).then(data => {
+      if (callback) {
+        callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
+      }
+    }).catch(error => {
+      HiLog.e(TAG, "updateSessionByCondition fail, error: " + JSON.stringify(error));
+      if (callback) {
+        callback(this.encapsulateReturnCode(common.int.FAILURE));
+      }
+    });
+  }
 
-    async querySessionByTelephone(telephone) {
-        HiLog.i(TAG, "query session by telephone")
-        let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-        if (telephone) {
-            await predicates.equalTo(mmsTable.sessionField.telephone, telephone);
+  public async querySessionByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySessionCondition(actionData);
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_SESSION_TABLE;
+    dataHelper.query(managerUri, condition, this.buildSessionTableColumns()).then(resultSet => {
+      let resultList: Array<LooseObject> = [];
+      if (resultSet.rowCount > 0) {
+        while (resultSet.goToNextRow()) {
+          resultList.push(this.buildSessionResult(resultSet));
         }
-
-        let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
-        if(resultSet === null) {
-            return null;
-        }
+      } else {
         resultSet.goToFirstRow();
-        let result = await this.buildResultSet(resultSet);
-        return result;
-    }
+        resultList.push(this.buildSessionResult(resultSet));
+      }
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "querySessionByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
 
-    async querySessionById(threadId) {
-        let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-        if (threadId) {
-            await predicates.equalTo(mmsTable.sessionField.id, threadId);
-        }
-        let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
-        resultSet.goToFirstRow();
-        let result = await this.buildResultSet(resultSet);
-        return result;
-    }
+  public async querySessionSizeByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySessionCondition(actionData);
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_SESSION_TABLE;
+    dataHelper.query(managerUri, condition, this.buildSessionTableColumns()).then(resultSet => {
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
+    }).catch(error => {
+      HiLog.e(TAG, "querySessionSizeByCondition, fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
 
-    async searchSessionByTelephone(telephone, numberType) {
-        let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-        if (telephone != common.string.EMPTY_STR) {
-            await predicates.like(mmsTable.sessionField.telephone, "%" + telephone + "%");
-        }
-        if (numberType != null) {
-            await predicates.equalTo(mmsTable.sessionField.smsType, numberType);
-        }
-        let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
-        let sessionList = [];
-        if (resultSet != undefined) {
-            while (resultSet.goToNextRow()) {
-                let item = await this.buildResultSet(resultSet);
-                sessionList.push(item);
-            }
-        }
-        return sessionList;
+  private buildQuerySessionCondition(actionData): dataSharePredicates.DataSharePredicates {
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    condition.isNotNull(mmsTable.sessionField.id);
+    if (actionData.smsType != null) {
+      condition.and().equalTo(mmsTable.sessionField.smsType, actionData.smsType);
     }
+    if (actionData.telephone != null) {
+      condition.and().equalTo(mmsTable.sessionField.telephone, actionData.telephone);
+    }
+    if (actionData.telephone_like != null) {
+      condition.and().like(mmsTable.sessionField.telephone, "%" + actionData.telephone_like + "%");
+    }
+    if (actionData.threadId != null) {
+      condition.and().equalTo(mmsTable.sessionField.id, actionData.threadId);
+    }
+    if (actionData.threadIds != null && actionData.threadIds.length > 0) {
+      condition.and().in(mmsTable.sessionField.id, actionData.threadIds);
+    }
+    if (actionData.unreadCount_greaterThan != null) {
+      condition.and().greaterThan(mmsTable.sessionField.unreadCount, actionData.unreadCount_greaterThan);
+    }
+    if (actionData.orderByTimeDesc) {
+      condition.orderByDesc(mmsTable.sessionField.time);
+    }
+    if (actionData.page != null && actionData.limit != null) {
+      condition.limit(actionData.limit, StringUtil.getOffsetForSession(actionData.page));
+    }
+    return condition;
+  }
 
-    async buildResultSet(resultSet) {
-        let result: LooseObject = {};
-        result.id = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.id)));
-        result.time = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.time)));
-        result.hasDraft = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasDraft)));
-        result.smsType = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.smsType)));
-        result.telephone = await resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.telephone));
-        result.content = await resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.content));
-        result.contactsNum = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.contactsNum)));
-        result.unreadCount = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.unreadCount)));
-        result.messageCount = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.messageCount)));
-        result.hasMms = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasMms)));
-        result.sendStatus = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.sendStatus)));
-        result.hasAttachment = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasAttachment)));
-        result.hasLock = await Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasLock)));
-        result.telephoneFormat = result.telephone;
-        return result;
-    }
+  private buildSessionResult(resultSet): LooseObject {
+    let result: LooseObject = {};
+    result.id = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.id)));
+    result.time = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.time)));
+    result.telephone = resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.telephone));
+    result.content = resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.content));
+    result.contactsNum = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.contactsNum)));
+    result.smsType = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.smsType)));
+    result.unreadCount = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.unreadCount)));
+    result.sendStatus = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.sendStatus)));
+    result.hasDraft = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasDraft)));
+    result.hasLock = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasLock)));
+    result.messageCount = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.messageCount)));
+    result.hasMms = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasMms)));
+    result.hasAttachment = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasAttachment)));
+    result.telephoneFormat = result.telephone;
+    return result;
+  }
 
-    async countSessionList(actionData) {
-        let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-        let numberType = actionData.numberType;
-        if (numberType != null) {
-            await predicates.equalTo(mmsTable.sessionField.smsType, numberType);
-        }
-        let resultSet = await globalThis.MmsDatabaseHelper.query(predicates);
-        let count = resultSet.rowCount;
-        let result = {
-            total: count,
-        }
-        return result;
-    }
-
-    async statisticalData(actionData, callback) {
-        let mmsContext;
-        if (actionData.mmsContext) {
-            mmsContext = actionData.mmsContext;
-        } else {
-            mmsContext = globalThis.mmsContext;
-        }
-        let resultColumns = [
-            "totalListCount",
-            "unreadCount",
-            "unreadTotalOfInfo"
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_UNREAD_COUNT;
-        let dataShareHelper = await dataShare.createDataShareHelper(mmsContext, common.string.URI_MESSAGE_LOG);
-        dataShareHelper.query(managerUri, condition, resultColumns, (err, resultSet) => {
-            let result: LooseObject = {};
-            if (resultSet != undefined) {
-                if (resultSet.goToLastRow()) {
-                    result.totalListCount = resultSet.getString(0);
-                    result.unreadCount = resultSet.getString(1);
-                    result.unreadTotalOfInfo = resultSet.getString(2);
-                }
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, result));
-        });
-    }
-
-    async markAllAsRead(threadIds, valueBucket) {
-        HiLog.i(TAG, "markAllAsRead, threadIds:" + JSON.stringify(threadIds));
-        this.updateById(threadIds, valueBucket);
-    }
-
-    async markAllToRead(smsType) {
-        let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-        predicates.equalTo(mmsTable.sessionField.smsType, smsType);
-        predicates.greaterThan(mmsTable.sessionField.unreadCount, 0);
-        let valueBucket = {
-            "unread_count": 0
-        };
-        globalThis.MmsDatabaseHelper.update(predicates, valueBucket);
-    }
-
-    async updateById(threadIds, valueBucket) {
-        HiLog.i(TAG, ", updateById, threadIds: " + JSON.stringify(threadIds))
-        if (threadIds.length != 0) {
-            for (let threadId of threadIds) {
-                let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-                await predicates.equalTo(mmsTable.sessionField.id, threadId);
-                globalThis.MmsDatabaseHelper.update(predicates, valueBucket);
-                HiLog.d(TAG, ", update session TAB end")
-            }
-        }
-    }
-
-    async deleteMessageById(threadIds) {
-        HiLog.i(TAG, "deleteMessageById, threadIds: " + JSON.stringify(threadIds));
-        if (threadIds.length != 0) {
-            for (let threadId of threadIds) {
-                let predicates = new ohosDataRdb.RdbPredicates(MmsDatabaseHelper.TABLE.SESSION);
-                await predicates.equalTo(mmsTable.sessionField.id, threadId);
-                globalThis.MmsDatabaseHelper.deleteItem(predicates);
-                HiLog.d(TAG, ", delete session TAB end")
-            }
-        }
-    }
-
-    insertSession(valueBucket, callback) {
-        let insertPromise = globalThis.MmsDatabaseHelper.insert(MmsDatabaseHelper.TABLE.SESSION, valueBucket);
-        let result: LooseObject = {};
-        insertPromise.then((ret) => {
-            result.code = common.int.SUCCESS;
-            result.rowId = ret;
-            callback(result);
-        }).catch((err) => {
-            HiLog.e(TAG, "insertSession, error: " + JSON.stringify(err.message));
-            result.code = common.int.FAILURE;
-            callback(result);
-        });
-    }
+  private buildSessionTableColumns(): Array<string> {
+    let sessionTableColumns: Array<string> = [
+    mmsTable.sessionField.id,
+    mmsTable.sessionField.time,
+    mmsTable.sessionField.telephone,
+    mmsTable.sessionField.content,
+    mmsTable.sessionField.contactsNum,
+    mmsTable.sessionField.smsType,
+    mmsTable.sessionField.unreadCount,
+    mmsTable.sessionField.sendStatus,
+    mmsTable.sessionField.hasDraft,
+    mmsTable.sessionField.hasLock,
+    mmsTable.sessionField.messageCount,
+    mmsTable.sessionField.hasMms,
+    mmsTable.sessionField.hasAttachment
+    ];
+    return sessionTableColumns;
+  }
 }

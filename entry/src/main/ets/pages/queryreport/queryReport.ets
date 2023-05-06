@@ -36,60 +36,58 @@ struct queryReport {
     }
 
     build() {
-        GridRow({ columns: this.gridColumns, gutter: this.gridGutter }) {
-            GridCol({ span: this.girdSpan }) {
-                Row() {
-                    Image($rawfile('icon/ic_message_back.svg'))
-                        .width(24)
-                        .height(24)
-                        .onClick(() => {
-                            router.back()
-                        })
-                    Text($r("app.string.send_reports"))
-                        .margin({ left: 16 })
-                        .fontSize(20)
-                        .fontWeight(FontWeight.Bold)
-                        .lineHeight(28)
-                }
-                .alignItems(VerticalAlign.Center)
-                .height(56)
+        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+            Row() {
+                Image($rawfile('icon/ic_message_back.svg'))
+                    .width(24)
+                    .height(24)
+                    .onClick(() => {
+                        router.back()
+                    })
+                Text($r("app.string.send_reports"))
+                    .margin({ left: 16 })
+                    .fontSize(20)
+                    .fontWeight(FontWeight.Bold)
+                    .lineHeight(28)
             }
-            GridCol({ span: this.girdSpan }) {
-                Column() {
+            .alignItems(VerticalAlign.Center)
+            .height(56)
+
+            Column() {
+                Text() {
+                    Span($r("app.string.putAddresser")).fontSize(16)
+                    Span(this.queryReportController.telephone).fontSize(16)
+                }
+                .fontSize(16)
+                .height(48)
+                .fontWeight(FontWeight.Medium)
+                .lineHeight(22)
+
+                Text() {
+                    Span($r("app.string.Status")).fontSize(16)
+                    Span(this.queryReportController.sendStatusDesc).fontSize(16)
+                }
+                .fontSize(16)
+                .height(48)
+                .fontWeight(FontWeight.Medium)
+                .lineHeight(22)
+
+                if (!this.queryReportController.isMsm && this.queryReportController.sendStatus != 2) {
                     Text() {
-                        Span($r("app.string.putAddresser")).fontSize(16)
-                        Span(this.queryReportController.telephone).fontSize(16)
+                        Span($r("app.string.Delivered")).fontSize(16)
+                        Span(this.queryReportController.mmsTime).fontSize(16)
+                        Span(" ")
+                        Span(this.queryReportController.specificTime).fontSize(16)
                     }
                     .fontSize(16)
                     .height(48)
                     .fontWeight(FontWeight.Medium)
                     .lineHeight(22)
-
-                    Text() {
-                        Span($r("app.string.Status")).fontSize(16)
-                        Span(this.queryReportController.sendStatusDesc).fontSize(16)
-                    }
-                    .fontSize(16)
-                    .height(48)
-                    .fontWeight(FontWeight.Medium)
-                    .lineHeight(22)
-
-                    if (!this.queryReportController.isMsm && this.queryReportController.sendStatus != 2) {
-                        Text() {
-                            Span($r("app.string.Delivered")).fontSize(16)
-                            Span(this.queryReportController.mmsTime).fontSize(16)
-                            Span(" ")
-                            Span(this.queryReportController.specificTime).fontSize(16)
-                        }
-                        .fontSize(16)
-                        .height(48)
-                        .fontWeight(FontWeight.Medium)
-                        .lineHeight(22)
-                    }
                 }
-                .alignItems(HorizontalAlign.Start)
-                .padding({ left: 12, right: 12 })
             }
+            .alignItems(HorizontalAlign.Start)
+            .padding({ left: 12, right: 12 })
+
         }
         .width("100%")
         .height("100%")

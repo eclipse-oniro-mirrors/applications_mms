@@ -37,7 +37,7 @@ export default class WorkFactory {
     let data = <WorkerMessage> message.data;
     let type = data.type;
     HiLog.i(TAG, `getTask in ${WorkerType[type]}.`)
-    let task: WorkerTask = undefined;
+    let task: WorkerTask = null;
     if (type == WorkerType.DataWorker) {
       HiLog.w(TAG, "getTask " + type);
       task = DataWorkerTask.getInstance(workerPort);
@@ -54,7 +54,7 @@ export default class WorkFactory {
    */
   static getWorker(type: WorkerType): WorkerWrapper {
     HiLog.i(TAG, `getWorker in ${WorkerType[type]}.`)
-    let worker: WorkerWrapper = undefined
+    let worker: WorkerWrapper = null;
     if (type == WorkerType.DataWorker) {
       HiLog.w(TAG, "getWorker " + type)
       worker = DataWorkerWrapper.getInstance();

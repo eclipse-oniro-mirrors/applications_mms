@@ -3,7 +3,6 @@ import Window from '@ohos.window'
 
 import HiLog from "../utils/HiLog";
 import MmsPreferences from "../utils/MmsPreferences";
-import MmsDatabaseHelper from "../utils/MmsDatabaseHelper";
 import WorkFactory, { WorkerType } from "../workers/WorkFactory";
 import simCardService from "../service/SimCardService";
 
@@ -11,11 +10,9 @@ const TAG = "app";
 
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
-        HiLog.i(TAG, "Ability onCreate com.ohos.mms version: 1.0.0.38");
+        HiLog.i(TAG, "Ability onCreate com.ohos.mms version: 1.0.0.41");
         globalThis.mmsContext = this.context;
         globalThis.abilityWant = want;
-        globalThis.MmsDatabaseHelper = new MmsDatabaseHelper();
-        globalThis.MmsDatabaseHelper.createTable();
         globalThis.needToUpdate = true;
         MmsPreferences.getInstance().initPreferences();
         globalThis.DataWorker = WorkFactory.getWorker(WorkerType.DataWorker);

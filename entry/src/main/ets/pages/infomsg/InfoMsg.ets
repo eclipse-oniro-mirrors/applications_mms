@@ -203,10 +203,10 @@ export default struct InfoMsg {
                             .enabled(!this.mIsMultipleSelectState)
                             .backgroundColor($r("sys.color.ohos_id_color_text_field_bg"))
                             .onChange((value: string) => {
-                                this.mInfoMsgCtrl.clickToSearch(value);
+                                //this.mInfoMsgCtrl.clickToSearch(value);
                             })
                             .onSubmit((value: string) => {
-                                this.mInfoMsgCtrl.clickToSearch(value);
+                                //this.mInfoMsgCtrl.clickToSearch(value);
                             })
                     }
                     .visibility(Visibility.None)
@@ -417,6 +417,6 @@ export default struct InfoMsg {
                 .height("100%")
             }
         }
-        .margin({ left: this.gridMargin })
+        .margin({ left: this.gridMargin, right: this.gridMargin })
     }
 }

@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import dataShare from "@ohos.data.dataShare";
+import dataSharePredicates from "@ohos.data.dataSharePredicates";
 
 import BaseModel from "./BaseModel";
 import common from "../data/commonData";
@@ -19,160 +21,205 @@ import HiLog from "../utils/HiLog";
 import mmsTable from "../data/tableData";
 import LooseObject from "../data/LooseObject"
 
-import dataShare from "@ohos.data.dataShare";
-import dataSharePredicates from "@ohos.data.dataSharePredicates";
-
 const TAG = "ContactsModel";
 
 export default class ContactsModel extends BaseModel {
-    async queryContactDataByIds(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
-        let resultColumns = [
-            mmsTable.contactDataColumns.detailInfo,
-            mmsTable.contactDataColumns.displayName,
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
-        condition.in(mmsTable.contactDataColumns.contactId, actionData.contractIds);
-        condition.and();
-        condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
-        condition.and();
-        condition.equalTo(mmsTable.contactDataColumns.hasDelete, "0");
-        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
-            callback(this.dealResultSet(resultSet));
-        }).catch(error => {
-            HiLog.e(TAG, "queryContactDataByIds, error: " + JSON.stringify(error.message));
-        });
-    }
-
-    async queryContactDataByTelephone(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-                                common.string.URI_ROW_CONTACTS);
-        let resultColumns = [
-            mmsTable.contactDataColumns.detailInfo,
-            mmsTable.contactDataColumns.displayName,
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
-        condition.in(mmsTable.contactDataColumns.detailInfo, actionData.telephones);
-        condition.and();
-        condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
-        condition.and();
-        condition.equalTo(mmsTable.contactDataColumns.hasDelete, "0");
-        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
-            callback(this.dealResultSet(resultSet));
-        }).catch(error => {
-            HiLog.e(TAG, "queryContactDataByTelephone, error: " + JSON.stringify(error.message));
-            callback([]);
-        });
-    }
-
-    dealResultSet(resultSet) {
-        let contracts = [];
-        if (resultSet != undefined) {
-            while (resultSet.goToNextRow()) {
-                let contract: LooseObject = {};
-                contract.detailInfo = resultSet.getString(0);
-                contract.displayName = resultSet.getString(1);
-                contracts.push(contract);
-            }
+  public async queryContactDataByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_ROW_CONTACTS);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQueryContactDataCondition(actionData);
+    let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
+    dataHelper.query(contactDataUri, condition, this.buildContactDataTablePartColumns()).then(resultSet => {
+      let resultList: Array<LooseObject> = [];
+      if (resultSet.rowCount > 0) {
+        while (resultSet.goToNextRow()) {
+          resultList.push(this.buildContactDataResult(resultSet));
         }
-        return contracts;
-    }
+      }
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "queryContactDataByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
 
-    async queryContact(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
-        let resultColumns = [
-            mmsTable.contactColumns.id
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let rawContactUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
-        let offset = (actionData.page - 1) * actionData.limit;
-        condition.limit(actionData.limit, offset).orderByDesc(mmsTable.contactColumns.lastestContactedTime);
-        dataHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
-            let rawContactIds = [];
-            if (resultSet != undefined) {
-                while (resultSet.goToNextRow()) {
-                    rawContactIds.push(resultSet.getString(0));
-                }
-            }
-            callback(rawContactIds);
-        }).catch(error => {
-            HiLog.e(TAG, "queryContact, error: " + JSON.stringify(error.message));
-        });
-    }
+  public async queryContactDataSizeByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_ROW_CONTACTS);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQueryContactDataCondition(actionData);
+    let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
+    dataHelper.query(contactDataUri, condition, this.buildContactDataTablePartColumns()).then(resultSet => {
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "queryContactDataSizeByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
 
-    async countContact(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
-        let resultColumns = [
-            mmsTable.contactColumns.id
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let rawContactUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
-        condition.orderByDesc(mmsTable.contactColumns.lastestContactedTime);
-        dataHelper.query(rawContactUri, condition, resultColumns).then(resultSet => {
-            let count = 0;
-            if (resultSet != undefined) {
-                count = resultSet.rowCount;
-            }
-            callback(count);
-        }).catch(error => {
-            HiLog.e(TAG, "countContact, error: " + JSON.stringify(error.message));
-        });
-    }
+  public async queryContactByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_ROW_CONTACTS);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQueryContactCondition(actionData);
+    let contactUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
+    dataHelper.query(contactUri, condition, this.buildContactTablePartColumns()).then(resultSet => {
+      let resultList: Array<LooseObject> = [];
+      if (resultSet.rowCount > 0) {
+        while (resultSet.goToNextRow()) {
+          resultList.push(this.buildContactResult(resultSet));
+        }
+      }
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "queryContactByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
 
-    async searchContracts(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
-        let resultColumns = [
-            mmsTable.searchContactView.detailInfo,
-            mmsTable.searchContactView.displayName
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let searchContactsUri = common.string.URI_ROW_CONTACTS + common.string.CONTACT_SEARCHE;
-        condition.equalTo(mmsTable.searchContactView.contentType, "phone")
-            .beginWrap()
-            .contains(mmsTable.searchContactView.displayName, actionData.telephone)
-            .or()
-            .contains(mmsTable.searchContactView.detailInfo, actionData.telephone)
-            .endWrap();
-        dataHelper.query(searchContactsUri, condition, resultColumns).then(resultSet => {
-            let contracts = this.dealResultSet(resultSet);
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, contracts));
-        }).catch(error => {
-            HiLog.e(TAG, "searchContracts, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
+  public async queryContactSizeByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_ROW_CONTACTS);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQueryContactCondition(actionData);
+    let contactUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_URI;
+    dataHelper.query(contactUri, condition, this.buildContactTablePartColumns()).then(resultSet => {
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "queryContactSizeByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
 
-    /**
-     * Querying business card data
-     *
-     * @param actionData query parameters
-     * @callback callback
-     * @param context
-     */
-    async queryProfile(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_ROW_CONTACTS);
-        let resultColumns = [
-            mmsTable.contactDataColumns.id,
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let contactDataUri = common.string.URI_ROW_CONTACTS + common.string.PROFILE_DATA_URI;
-        dataHelper.query(contactDataUri, condition, resultColumns).then(resultSet => {
-            let count = 0;
-            if (resultSet != undefined) {
-                count = resultSet.rowCount;
-                HiLog.i(TAG, "queryProfile, goToNextRow: " + count);
-                resultSet.close();
-            }
-            callback(count);
-        }).catch(error => {
-            HiLog.e(TAG, "queryProfile, error: " + JSON.stringify(error.message));
-        });
+  public async queryRawContactSizeByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_ROW_CONTACTS);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQueryRawContactCondition(actionData);
+    let rawContactUri: string = common.string.URI_ROW_CONTACTS + common.string.PROFILE_DATA_URI;
+    dataHelper.query(rawContactUri, condition, this.buildRawContactTablePartColumns()).then(resultSet => {
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "queryRawContactSizeByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
+
+  public async queryContactViewByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_ROW_CONTACTS);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQueryContactViewCondition(actionData);
+    let searchContactViewUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_SEARCHE;
+    dataHelper.query(searchContactViewUri, condition, this.buildRawContactViewPartColumns()).then(resultSet => {
+      let resultList: Array<LooseObject> = [];
+      if (resultSet.rowCount > 0) {
+        while (resultSet.goToNextRow()) {
+          resultList.push(this.buildContactViewResult(resultSet));
+        }
+      }
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "queryContactViewByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
+
+  private buildContactDataTablePartColumns(): Array<string> {
+    // part of contact_data table columns
+    return [
+    mmsTable.contactDataColumns.detailInfo,
+    mmsTable.contactDataColumns.displayName,
+    ];
+  }
+
+  private buildContactTablePartColumns(): Array<string> {
+    // part of contact table columns
+    return [
+    mmsTable.contactColumns.id
+    ];
+  }
+
+  private buildRawContactTablePartColumns(): Array<string> {
+    // part of raw_contact table columns
+    return [
+    mmsTable.contactDataColumns.id
+    ];
+  }
+
+  private buildRawContactViewPartColumns(): Array<string> {
+    // part of contact view table columns
+    return [
+    mmsTable.searchContactView.detailInfo,
+    mmsTable.searchContactView.displayName
+    ];
+  }
+
+  private buildContactDataResult(resultSet): LooseObject {
+    let result: LooseObject = {};
+    result.detailInfo = resultSet.getString(resultSet.getColumnIndex(mmsTable.contactDataColumns.detailInfo));
+    result.displayName = resultSet.getString(resultSet.getColumnIndex(mmsTable.contactDataColumns.displayName));
+    return result;
+  }
+
+  private buildContactResult(resultSet): LooseObject {
+    let result: LooseObject = {};
+    result.id = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.contactColumns.id)));
+    return result;
+  }
+
+  private buildContactViewResult(resultSet): LooseObject {
+    let result: LooseObject = {};
+    result.detailInfo = resultSet.getString(resultSet.getColumnIndex(mmsTable.contactDataColumns.detailInfo));
+    result.displayName = resultSet.getString(resultSet.getColumnIndex(mmsTable.contactDataColumns.displayName));
+    return result;
+  }
+
+  private buildQueryContactDataCondition(actionData): dataSharePredicates.DataSharePredicates {
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
+    if (actionData.hasDelete != null) {
+      condition.and().equalTo(mmsTable.contactDataColumns.hasDelete, actionData.hasDelete);
     }
+    if (actionData.contactIds != null && actionData.contactIds.length > 0) {
+      condition.and().in(mmsTable.contactDataColumns.contactId, actionData.contactIds);
+    }
+    if (actionData.telephones != null && actionData.telephones.length > 0) {
+      condition.and().in(mmsTable.contactDataColumns.detailInfo, actionData.telephones);
+    }
+    return condition;
+  }
+
+  private buildQueryContactCondition(actionData): dataSharePredicates.DataSharePredicates {
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    condition.isNotNull(mmsTable.contactColumns.id);
+    if (actionData.page != null && actionData.limit != null) {
+      let offset: number = (actionData.page - 1) * actionData.limit;
+      condition.and().limit(actionData.limit, offset);
+    }
+    if (actionData.telephone != null) {
+      condition.and()
+        .equalTo(mmsTable.searchContactView.contentType, "phone")
+        .beginWrap()
+        .contains(mmsTable.searchContactView.displayName, actionData.telephone)
+        .or()
+        .contains(mmsTable.searchContactView.detailInfo, actionData.telephone)
+        .endWrap();
+    }
+    if (actionData.orderByTimeDesc != null) {
+      condition.orderByDesc(mmsTable.contactColumns.lastestContactedTime);
+    }
+    return condition;
+  }
+
+  private buildQueryRawContactCondition(actionData): dataSharePredicates.DataSharePredicates {
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    return condition;
+  }
+
+  private buildQueryContactViewCondition(actionData): dataSharePredicates.DataSharePredicates {
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    condition.equalTo(mmsTable.searchContactView.contentType, "phone")
+      .beginWrap()
+      .contains(mmsTable.searchContactView.displayName, actionData.telephone)
+      .or()
+      .contains(mmsTable.searchContactView.detailInfo, actionData.telephone)
+      .endWrap();
+    return condition;
+  }
 }

@@ -105,9 +105,9 @@ export default {
         // abilityName
         ABILITY_NAME: "com.ohos.mms.MainAbility",
         // BundleName of a contact.
-        CONTRACT_BUNDLE_NAME: "com.ohos.contacts",
+        CONTACT_BUNDLE_NAME: "com.ohos.contacts",
         // contact AbilityName
-        CONTRACT_ABILITY_NAME: "com.ohos.contacts.MainAbility",
+        CONTACT_ABILITY_NAME: "com.ohos.contacts.MainAbility",
         // Public entity
         COMMON_ENTITIES: "entity.system.home",
         // Processing succeeded.
@@ -168,8 +168,10 @@ export default {
         CONTACT_URI: "/contacts/contact",
         // SMS database
         URI_MESSAGE_LOG: "datashare:///com.ohos.smsmmsability",
-        // Querying SMs
+        // sms_mms_info table
         URI_MESSAGE_INFO_TABLE: "/sms_mms/sms_mms_info",
+        // session table
+        URI_MESSAGE_SESSION_TABLE: "/sms_mms/session",
         // Statistic
         URI_MESSAGE_UNREAD_COUNT: "/sms_mms/sms_mms_info/unread_total",
         // Get the largest groupID
@@ -206,7 +208,7 @@ export default {
         // UNICOM
         UNICOM: "China Unicom",
     },
-    contractPage: {
+    contactPage: {
         // Go to New Contact
         PAGE_FLAG_SAVE_CONTACT: "page_flag_save_contact",
         // Edit Before Call
@@ -281,5 +283,69 @@ export default {
         PPT_IMAGE_HEIGHT: 220,
         DISTANCE: 20,
         TOTAL_HEIGHT: 650
-    }
+    },
+    RUN_IN_WORKER_METHOD: {
+        // Contacts
+        queryContactDataByCondition: "queryContactDataByCondition",
+        queryContactDataSizeByCondition: "queryContactDataSizeByCondition",
+        queryContactByCondition: "queryContactByCondition",
+        queryContactSizeByCondition: "queryContactSizeByCondition",
+        queryRawContactSizeByCondition: "queryRawContactSizeByCondition",
+        queryContactViewByCondition: "queryContactViewByCondition",
+        // detail
+        insertSmsMmsInfo: "insertSmsMmsInfo",
+        deleteSmsMmsInfoByCondition: "deleteSmsMmsInfoByCondition",
+        updateSmsMmsInfoByCondition: "updateSmsMmsInfoByCondition",
+        querySmsMmsInfoByCondition: "querySmsMmsInfoByCondition",
+        querySmsMmsInfoSizeByCondition: "querySmsMmsInfoSizeByCondition",
+        queryMaxGroupId: "queryMaxGroupId",
+        statisticalData: "statisticalData",
+        // list
+        insertSession: "insertSession",
+        deleteSessionByCondition: "deleteSessionByCondition",
+        updateSessionByCondition: "updateSessionByCondition",
+        querySessionByCondition: "querySessionByCondition",
+        querySessionSizeByCondition: "querySessionSizeByCondition"
+    },
+    sms_type: {
+        COMMON: 0,
+        NOTICE: 1
+    },
+    is_read: {
+        UN_READ: 0,
+        READ: 1
+    },
+    session_type: {
+        COMMON: 0,
+        BROADCAST: 1,
+        GROUP_SEND: 2
+    },
+    is_lock: {
+        NO: 0,
+        YES: 1
+    },
+    is_collect: {
+        NOT_FAVORITE: 0,
+        FAVORITE: 1
+    },
+    is_send_report: {
+        NO: 0,
+        YES: 1
+    },
+    is_sender: {
+        NO: 0,
+        YES: 1
+    },
+    has_draft: {
+        NO: 0,
+        HAVE: 1
+    },
+    has_mms: {
+        NO: 0,
+        HAVE: 1
+    },
+    has_attachment: {
+        NO: 0,
+        HAVE: 1
+    },
 }
