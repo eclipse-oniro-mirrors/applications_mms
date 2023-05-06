@@ -14,15 +14,15 @@
  */
 import WantAgent from "@ohos.app.ability.wantAgent";
 import Notification from "@ohos.notificationManager";
+
 import common from "../data/commonData";
 import HiLog from "../utils/HiLog";
-import conversationService from "./ConversationService";
-import LooseObject from "../data/LooseObject";
-import messageService from "../service/ConversationListService";
+import ConversationService from "./ConversationService";
+import ConversationListService from "../service/ConversationListService";
 
 var notificationManager = globalThis.requireNapi("notificationManager");
 const label = "notification_";
-const TAG = "NotificationService";
+const TAG: string = "NotificationService";
 
 export default class NotificationService {
     private static sInstance: NotificationService;
@@ -52,10 +52,6 @@ export default class NotificationService {
             notificationRequest.wantAgent = data;
             notificationRequest.id = actionData.msgId;
             notificationRequest.label = label + actionData.msgId;
-            if(Number(actionData.unreadTotal) >= 0){
-                HiLog.i(TAG, `unreadTotal is: ${Number(actionData.unreadTotal)}`)
-                notificationManager.setBadgeNumber(Number(actionData.unreadTotal));
-            }
             Notification.publish(notificationRequest);
             HiLog.i(TAG, "sendNotify finished");
         });
@@ -126,21 +122,23 @@ export default class NotificationService {
         return notificationRequest;
     }
 
-    cancelMessageNotify(actionData, callback) {
-        conversationService.queryMessageDetail(actionData, res => {
+    cancelMessageNotify(actionData, callback?) {
+        ConversationService.getInstance().queryMessageDetail(actionData, res => {
             if (res.code == common.int.FAILURE || res.response.length == 0) {
-                callback(common.int.FAILURE);
+                if (callback != null) {
+                    callback(common.int.FAILURE);
+                }
             }
             let count = 0;
             for (let item of res.response) {
-                this.cancelNotify(parseInt(item.id), result => {
+                this.cancelNotify(Number(item.id), result => {
                     count++;
-                    if (count == res.response.length) {
+                    if (count == res.response.length && callback != null) {
                         callback(common.int.SUCCESS);
                     }
                 });
             }
-        });
+        }, null);
     }
 
     cancelNotify(msgId, callback) {
@@ -151,13 +149,6 @@ export default class NotificationService {
             }
             callback(common.int.SUCCESS);
         });
-        let params: LooseObject = {};
-        messageService.statisticalData(params, function (res) {
-            if (res.code == common.int.SUCCESS) {
-                notificationManager.setBadgeNumber(Number(res.response.totalListCount));
-                HiLog.i(TAG, "sendNotification, callback actionData");
-            }
-        });
     }
 
     cancelAllNotify() {
@@ -166,5 +157,17 @@ export default class NotificationService {
         }).catch((err) => {
             HiLog.e(TAG, "cancelAllNotify, error: " + JSON.stringify(err.message));
         });
+    }
+
+    public setBadgeNumber(unreadTotal: number): void {
+        notificationManager.setBadgeNumber(unreadTotal);
+    }
+
+    public updateBadgeNumber(context?): void {
+        ConversationListService.getInstance().statisticalData(res => {
+            if (res.code == common.int.SUCCESS) {
+                this.setBadgeNumber(Number(res.response.totalListCount));
+            }
+        }, context);
     }
 };

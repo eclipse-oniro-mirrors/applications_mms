@@ -33,7 +33,7 @@ export class WorkerMessage {
  * Processes sending tasks to workers and receiving work processing results.
  */
 export abstract class WorkerWrapper {
-    protected mWorker: worker.ThreadWorker = undefined;
+    protected mWorker: worker.ThreadWorker = null;
     private callBacks: Map<string, (result?: any) => void> = new Map();
     private requestIndex: number = 0;
 
@@ -49,7 +49,7 @@ export abstract class WorkerWrapper {
         let that = this;
         initWorker.onexit = function (message) {
             HiLog.w(TAG, "onexit")
-            that.mWorker = undefined;
+            that.mWorker = null;
         }
         initWorker.onerror = function (e) {
             HiLog.w(TAG, "onerror:" + JSON.stringify(e))
@@ -111,7 +111,7 @@ export abstract class WorkerWrapper {
     public close() {
         HiLog.i(TAG, `${this.getWorkerType()} worker close!`);
         this.mWorker.terminate();
-        this.mWorker = undefined;
+        this.mWorker = null;
         this.callBacks.clear();
     }
 

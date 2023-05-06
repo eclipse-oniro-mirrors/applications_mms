@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,26 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import common from "../../data/commonData"
 import router from "@system.router";
 import commonEvent from "@ohos.commonEventManager";
+import dataShare from "@ohos.data.dataShare";
+
+import common from "../../data/commonData"
 import DateUtil from "../../utils/DateUtil";
-import featureAbility from "@ohos.ability.featureAbility";
 import LooseObject from "../../data/LooseObject";
-import messageService from "../../service/ConversationListService";
+import ConversationListService from "../../service/ConversationListService";
+import ConversationService from '../../service/ConversationService';
 import HiLog from "../../utils/HiLog";
 import SettingService from "../../service/SettingService"
 import commonService from "../../service/CommonService";
 import NotificationService from "../../service/NotificationService";
-import ConversationListDataSource from "../../model/ConversationListDataSource"
-import AvatarColor from "../../model/common/AvatarColor"
-import dataShare from "@ohos.data.dataShare";
+import ConversationListDataSource from "../../model/ConversationListDataSource";
+import AvatarColor from "../../model/common/AvatarColor";
+import StringUtil from "../../utils/StringUtil";
 
 let ConversationCtrl;
 
 const TAG = "ConversationListController";
-const CONTACT_URI: string = "datashare:///com.ohos.contactsdataability/contacts/contact_data";
-const CONTENT_URI: String = "datashare:///com.ohos.contactsdataability";
 
 export default class ConversationListController {
     // Determine whether to perform initialization. (To avoid the onShow time sequence problem immediately after the
@@ -80,8 +79,8 @@ export default class ConversationListController {
     messageList: Array<any> = [];
     // List of search results
     searchResultList: LooseObject = {
-        sessionList: [],
-        contentList: []
+        "sessionList": [],
+        "contentList": []
     };
     // Search Results Queue
     searchResultListQueue: Array<any> = [];
@@ -120,7 +119,7 @@ export default class ConversationListController {
     // Check whether a common message (non-notification message) exists.
     hasNoOrdinaryMsg: boolean = false;
     // Check whether notification information exists.
-    hasInfoMsg: boolean = true;
+    hasInfoMsg: boolean = false;
     // Update the UI.
     flushTranslate: boolean = true;
     // Length of the operation button
@@ -157,15 +156,17 @@ export default class ConversationListController {
 
     private async getDataAbilityHelper(context?) {
         if (this.dataShareHelper == undefined) {
-            this.dataShareHelper = await dataShare.createDataShareHelper(context ? context : globalThis.context, CONTENT_URI);
+            this.dataShareHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
+            common.string.URI_ROW_CONTACTS);
         }
         return this.dataShareHelper;
     }
 
     registerDataChangeObserver(callback, context?) {
+        let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
             if (dataAbilityHelper) {
-                dataAbilityHelper.on("dataChange", CONTACT_URI, callback);
+                dataAbilityHelper.on("dataChange", contactDataUri, callback);
             }
         }).catch(error => {
             HiLog.w(TAG, 'error:%s' + JSON.stringify(error.message));
@@ -173,9 +174,10 @@ export default class ConversationListController {
     }
 
     unregisterDataChangeObserver(callback, context?) {
+        let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
             if (dataAbilityHelper) {
-                dataAbilityHelper.off("dataChange", CONTACT_URI, callback);
+                dataAbilityHelper.off("dataChange", contactDataUri, callback);
             }
         }).catch(error => {
             HiLog.w(TAG, 'error:%s' + JSON.stringify(error.message));
@@ -455,58 +457,29 @@ export default class ConversationListController {
 
     deleteDialogConfirm() {
         this.setDelShow();
-        let mmsList = [];
-        let threadIds = [];
-        let lockThreadIds = [];
+        let mmsList: Array<LooseObject> = [];
+        let threadIds: Array<number> = [];
         for (let element of this.messageList) {
             if (element.isCbChecked) {
-                if (element.isLock && !this.isSelectLockMsg) {
-                    lockThreadIds.push(element.threadId);
-                    mmsList.push(element);
-                } else {
-                    threadIds.push(element.threadId);
-                }
+                threadIds.push(element.threadId);
             } else {
                 mmsList.push(element);
             }
         }
-        // Set to non-multi-choice status
         this.isMultipleSelectState = false;
         this.isSelectLockMsg = false;
         this.messageList = mmsList;
         this.conversationListDataSource.refresh(this.messageList);
         this.total = this.messageList.length;
         this.hasNoOrdinaryMsg = this.total == 0 ? true : false;
-        this.deleteNotifyMessage(threadIds, lockThreadIds, () => {
-            this.deleteMessageByThreadIds(threadIds, lockThreadIds);
-        });
-    }
 
-    deleteNotifyMessage(threadIds, lockThreadIds, callback) {
-        let sessionIds = [];
-        if (threadIds.length > 0) {
-            sessionIds.push(threadIds);
-        }
-        if (lockThreadIds.length > 0) {
-            sessionIds.push(lockThreadIds);
-        }
-        this.cancelMessageNotify(sessionIds, callback);
-    }
-
-    deleteMessageByThreadIds(threadIds, lockThreadIds) {
         let actionData: LooseObject = {};
-        if (threadIds.length > 0) {
-            actionData.threadIds = threadIds;
-            messageService.deleteMessageById(actionData);
-        }
-        if (lockThreadIds.length > 0) {
-            actionData.threadIds = lockThreadIds;
-            actionData.isMessageDetail = false;
-            messageService.dealMessageLockContent(actionData, res => {
-                actionData.hasLock = 0;
-                messageService.deleteMessageBySessionIdsAndLock(actionData);
-            });
-        }
+        actionData.threadIds = threadIds;
+        actionData.hasRead = common.is_read.UN_READ;
+        NotificationService.getInstance().cancelMessageNotify(actionData);
+        NotificationService.getInstance().updateBadgeNumber();
+        actionData.hasRead = null;
+        ConversationListService.getInstance().deleteMessageById(actionData, null, null);
     }
 
     deleteDialogCancel() {
@@ -528,25 +501,28 @@ export default class ConversationListController {
     }
 
     clickToMarkAllAsRead() {
-        // Mark unread as read. Here we deal with the values in the information list.
-        let threadIds = [];
+        let threadIds: Array<number> = [];
         for (let mms of this.messageList) {
             if (mms.countOfUnread > common.int.MESSAGE_CODE_ZERO) {
                 threadIds.push(mms.threadId);
             }
         }
-
-        this.cancelMessageNotify(threadIds, () => {
-            // Marks the notification information as read.
-            let actionData = {
-                hasRead: 1,
-                smsType: 1,
+        let actionData: LooseObject = {};
+        ConversationListService.getInstance().markAllToRead(actionData);
+        NotificationService.getInstance().setBadgeNumber(0);
+        actionData.threadIds = threadIds;
+        actionData.hasRead = common.is_read.UN_READ;
+        NotificationService.getInstance().cancelMessageNotify(actionData);
+        this.unreadTotalOfInfo = 0;
+        this.unreadTotal = 0;
+        let tempMsgList: Array<LooseObject> = this.messageList;
+        for (let msg of tempMsgList) {
+            if (threadIds.indexOf(msg.threadId) != -1) {
+                msg.countOfUnread = common.int.MESSAGE_CODE_ZERO;
             }
-            messageService.markAllToRead(actionData);
-            this.unreadTotalOfInfo = 0;
-            this.unreadTotal = 0;
-            this.markAllAsRead(threadIds);
-        });
+        }
+        this.messageList = tempMsgList;
+        this.conversationListDataSource.refresh(this.messageList);
     }
 
     jumpToSettingsPage() {
@@ -593,21 +569,18 @@ export default class ConversationListController {
 
     // statistical data
     statisticalData() {
-        let actionData: LooseObject = {};
         let that = this;
-        messageService.statisticalData(actionData, function (result) {
+        ConversationListService.getInstance().statisticalData(result => {
             if (result.code == common.int.SUCCESS) {
                 // Total number of lists
                 that.unreadTotal = result.response.totalListCount;
                 // Unreading of notification messages
                 that.unreadTotalOfInfo = result.response.unreadTotalOfInfo;
-                let actionData = {};
-                NotificationService.getInstance().cancelMessageNotify(actionData, res => {
-                });
+                NotificationService.getInstance().setBadgeNumber(Number(that.unreadTotal));
             } else {
                 HiLog.w(TAG, "statisticalData, failed");
             }
-        });
+        }, null);
     }
 
     // Obtains the switch value for integrating notification information and displaying contact avatars.
@@ -655,23 +628,23 @@ export default class ConversationListController {
         if (contactsNum == common.int.MESSAGE_CODE_ONE) {
             var actionData = {
                 phoneNumber: telephone,
-                pageFlag: common.contractPage.PAGE_FLAG_CONTACT_DETAILS
+                pageFlag: common.contactPage.PAGE_FLAG_CONTACT_DETAILS
             };
-            this.jumpToContract(actionData);
+            this.jumpToContact(actionData);
         } else {
-            let threadId = this.messageList[index].threadId;
+            let threadId = this.messageList[index]?.threadId;
             let contactsNum = this.messageList[index]?.contactsNum;
             this.jumpToGroupDetail(threadId, contactsNum);
         }
     }
 
     // Switching to the Contacts app
-    jumpToContract(actionData) {
-        let str = commonService.commonContractParam(actionData);
+    jumpToContact(actionData) {
+        let str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
-            HiLog.i(TAG, "jumpToContract, startAbility success");
+            HiLog.i(TAG, "jumpToContact, startAbility success");
         }).catch((error) => {
-            HiLog.e(TAG, "jumpToContract, failed Cause: " + JSON.stringify(error.message));
+            HiLog.e(TAG, "jumpToContact, failed Cause: " + JSON.stringify(error.message));
         })
         this.isJumping = false;
     }
@@ -701,22 +674,15 @@ export default class ConversationListController {
     // Querying All Lists
     queryAllMessages() {
         HiLog.i(TAG, "queryAllMessages, start");
-        let that = this;
-        if (this.page == 1) {
-            this.limit = 50;
-        } else {
-            this.limit = 100;
-        }
         let actionData: LooseObject = {};
-        // Whether notification information needs to be integrated
+        this.limit = StringUtil.getLimitForSession(this.page);
         if (this.hasAggregate) {
-            // Only non-notification information is queried.
-            actionData.numberType = 0;
+            actionData.smsType = common.sms_type.COMMON;
         }
         actionData.page = this.page;
         actionData.limit = this.limit;
-        messageService.querySessionList(actionData, result => {
-            HiLog.i(TAG, "querySessionList code=" + result.code);
+        actionData.orderByTimeDesc = true;
+        ConversationListService.getInstance().querySessionList(actionData, result => {
             if (result.code == common.int.SUCCESS) {
                 let res = this.buildSessionList(result);
                 this.messageList = this.messageList.concat(res);
@@ -734,7 +700,7 @@ export default class ConversationListController {
                     globalThis.needToUpdate = false;
                 }
             }
-        });
+        }, null);
     }
 
     buildSessionList(result) {
@@ -780,55 +746,6 @@ export default class ConversationListController {
         }
     }
 
-    // Mark all unread notifications as read.
-    clickToMarkAllAsReadForInfo() {
-        let actionData = {
-            hasRead: 1,
-            smsType: 1,
-        }
-        let threadIds = [];
-        for (let msg of this.messageList) {
-            msg.countOfUnread = common.int.MESSAGE_CODE_ZERO;
-            threadIds.push(msg.threadId);
-        }
-        this.cancelMessageNotify(threadIds, () => {
-            messageService.markAllToRead(actionData);
-            this.unreadTotalOfInfo = 0;
-        });
-    }
-
-    markAllAsRead(threadIds) {
-        let tempMsgList = this.messageList;
-        // Mark the information corresponding to threadIds as read.
-        let valueBucket = {
-            "unread_count": 0,
-        };
-        let actionData: LooseObject = {};
-        actionData.threadIds = threadIds;
-        actionData.valueBucket = valueBucket;
-        actionData.hasRead = 1;
-        // Update data marked read to 0
-        messageService.markAllAsRead(actionData);
-        for (let msg of tempMsgList) {
-            if (threadIds.indexOf(msg.threadId) > common.int.FAILURE) {
-                // Controls the display of unread icons in the list
-                msg.countOfUnread = common.int.MESSAGE_CODE_ZERO;
-            }
-        }
-        this.messageList = tempMsgList;
-        this.conversationListDataSource.refresh(this.messageList);
-    }
-
-    cancelMessageNotify(threadIds, callback) {
-        let actionData = {
-            threadIds: threadIds,
-            hasRead: 0
-        };
-        NotificationService.getInstance().cancelMessageNotify(actionData, res => {
-            callback();
-        });
-    }
-
     // The SM details page is displayed.
     clickInfoToConversation(index) {
         if (this.resetTouch()) {
@@ -870,14 +787,23 @@ export default class ConversationListController {
     }
 
     markAllAsReadByIndex(index) {
-        let threadId = this.messageList[index].threadId;
-        let threadIds = [threadId];
-        this.cancelMessageNotify(threadIds, () => {
-            // Mark the information corresponding to the contact index as read.
-            this.markAllAsRead(threadIds);
-            this.setListItemTransX(0);
-            this.statisticalData();
-        });
+        let threadId: number = this.messageList[index]?.threadId;
+        let actionData: LooseObject = {};
+        actionData.threadId = threadId;
+        actionData.hasRead = common.is_read.UN_READ;
+        NotificationService.getInstance().cancelMessageNotify(actionData);
+        ConversationListService.getInstance().markAllToRead(actionData);
+        let tempMsgList: Array<LooseObject> = this.messageList;
+        for (let msg of tempMsgList) {
+            if (threadId == msg.threadId) {
+                // Controls the display of unread icons in the list
+                msg.countOfUnread = common.int.MESSAGE_CODE_ZERO;
+            }
+        }
+        this.messageList = tempMsgList;
+        this.conversationListDataSource.refresh(this.messageList);
+        this.setListItemTransX(0);
+        this.statisticalData();
     }
 
     deleteAction(idx) {
@@ -886,78 +812,6 @@ export default class ConversationListController {
         this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
         element.isCbChecked = true;
         this.hasLockMsg = this.judgehasLockMsg();
-    }
-
-    // 搜索
-    clickToSearch(inputContent) {
-        this.inputValueOfSearch = inputContent;
-        this.search(inputContent);
-    }
-
-    search(text) {
-        // 在信息列表页面搜索
-        let actionData: LooseObject = {}
-        actionData.inputValue = text
-        this.searchTextAsync(actionData);
-    }
-
-    searchTextAsync(actionData) {
-        messageService.searchMessageWithLike(actionData, result => {
-            if (result.code == common.int.SUCCESS) {
-                // 获取搜索返回的结果先做判空处理
-                if (this.inputValueOfSearch !== common.string.EMPTY_STR) {
-                    this.dealSearchResult(result);
-                }
-            } else {
-                this.searchResultListEmpty();
-            }
-        });
-    }
-
-    searchResultListEmpty() {
-        this.searchResultList = {
-            contentList: [],
-            sessionList: []
-        }
-        this.isSearchStatus = true;
-        this.hasInfoMsg = true;
-        if (this.isShowSearchBack) {
-            this.isSearchCoverage = true;
-        } else {
-            this.isSearchCoverage = false;
-        }
-    }
-
-    dealSearchResult(result) {
-        this.searchResultList = {
-            contentList: [],
-            sessionList: []
-        }
-        this.hasInfoMsg = false;
-        this.isSearchStatus = false;
-        this.isSearchCoverage = false;
-        this.buildSearchResult(result);
-        if (this.inputValueOfSearch === result.search) {
-            this.searchResultList = result.resultMap;
-        }
-    }
-
-    buildSearchResult(result) {
-        if (result.resultMap.contentList) {
-            result.resultMap.contentList.forEach(content => {
-                content.timeMillisecond = parseInt(content.timeMillisecond);
-                DateUtil.convertDateFormatForItem(content, true);
-                if (content.isFavorite) {
-                    content.name = $r("app.string.message_in_favorites");
-                }
-            });
-        }
-        if (result.resultMap.sessionList) {
-            result.resultMap.sessionList.forEach(session => {
-                session.timeMillisecond = parseInt(session.timeMillisecond);
-                DateUtil.convertDateFormatForItem(session, true);
-            });
-        }
     }
 
     checkHasCommonMessage() {

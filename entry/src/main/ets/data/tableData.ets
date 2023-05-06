@@ -13,33 +13,6 @@
  * limitations under the License.
  */
 export default {
-    DB: {
-        MMSSMS: {
-            config: {
-                name: "mmssms.db"
-            },
-            version: 1
-        }
-    },
-    table: {
-        // Session table
-        session:
-        "CREATE TABLE IF NOT EXISTS session (" +
-        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        "time INTEGER DEFAULT 0, " +
-        "telephone TEXT, " +
-        "content TEXT, " +
-        "contacts_num INTEGER DEFAULT 0, " +
-        "sms_type INTEGER DEFAULT 0, " +
-        "unread_count INTEGER DEFAULT 0, " +
-        "sending_status INTEGER DEFAULT 0, " +
-        "has_draft INTEGER DEFAULT 0," +
-        "has_lock INTEGER DEFAULT 0," +
-        "message_count INTEGER DEFAULT 0," +
-        "has_mms INTEGER DEFAULT 0," +
-        "has_attachment INTEGER DEFAULT 0" +
-        ");",
-    },
     // Name of the field corresponding to the session list
     sessionField: {
         id: "id", //session Table id   integer
@@ -72,7 +45,7 @@ export default {
         operatorServiceNumber: "operator_service_number", //Operator service number  TEXT
         msgCode: "msg_code", //Message Code  integer
         isLock: "is_lock", //Locked  0-No，1-Yes  integer
-        isRead: "is_read", // Read or Not  0-Read，1-Unread  integer
+        isRead: "is_read", // Read or Not
         isCollect: "is_collect", //Favorites  0-Not favorited，1-Favorites  integer
         sessionType: "session_type", //Session Type  0 - Common  1 - broadcast  2 - Group Sending  integer
         retryNumber: "retry_number", //Retry Times  integer

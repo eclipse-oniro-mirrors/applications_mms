@@ -16,10 +16,10 @@
 import common from "../data/commonData";
 
 export default {
-    commonContractParam(actionData) {
+    commonContactParam(actionData) {
         let str = {
-            "bundleName": common.string.CONTRACT_BUNDLE_NAME,
-            "abilityName": common.string.CONTRACT_ABILITY_NAME,
+            "bundleName": common.string.CONTACT_BUNDLE_NAME,
+            "abilityName": common.string.CONTACT_ABILITY_NAME,
             "parameters": actionData,
             "entities": [
                 common.string.COMMON_ENTITIES

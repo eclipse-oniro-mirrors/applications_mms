@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +14,16 @@
  * limitations under the License.
  */
 
-import LooseObject from "../../data/LooseObject"
 import router from '@ohos.router';
-import contactService from '../../service/ContractService';
+
+import LooseObject from "../../data/LooseObject"
+import ContactService from '../../service/ContactsService';
 import common from '../../data/commonData';
 import commonService from '../../service/CommonService'
-import conversationListService from "../../service/ConversationListService";
+import ConversationListService from "../../service/ConversationListService";
 import AvatarColor from "../../model/common/AvatarColor";
 import DateUtil from "../../utils/DateUtil";
 import TransmitMsgDataSource from "../../model/TransmitMsgDataSource";
-// Log tool class
 import HiLog from "../../utils/HiLog";
 
 const TAG = "TransmitMsgController"
@@ -35,7 +34,7 @@ export default class TransmitMsgController {
     // Total
     total: 0;
     // Information List
-    contractsList: Array<any> = [];
+    contactsList: Array<any> = [];
     // List of contents forwarded by multiple messages
     transmitContentList: Array<any> = [];
     // Dual SIM card
@@ -65,7 +64,7 @@ export default class TransmitMsgController {
     // Card 2
     simTwo: number = 1;
     // Sending SMS message ID
-    threadId: string = '';
+    threadId: number = 0;
     // Forwarded Content Title
     transmitContent: string = '';
     // Formatted forwarding content
@@ -73,7 +72,7 @@ export default class TransmitMsgController {
     // Forwarding Content Editing Status Content
     transmitContentEdit: string = '';
     // Display Forwarding Dialog Box
-    contractsPage: boolean = false;
+    contactsPage: boolean = false;
     // The font size of the dialog title is displayed. When the number of characters is small, the large font is
     // displayed. When the number of characters is large, the small font is displayed.
     titleChecked: boolean = false;
@@ -90,7 +89,7 @@ export default class TransmitMsgController {
     transmitItemSources: Array<any> = [];
     reg: RegExp = /^[\u4e00-\u9fa5_a-zA-Z]+$/;
     dialogMsg: LooseObject = {};
-    DialogShow: false;
+    DialogShow: boolean = false;
     transmitMsgDataSource: TransmitMsgDataSource = new TransmitMsgDataSource();
 
     static getInstance() {
@@ -119,8 +118,8 @@ export default class TransmitMsgController {
         if (this.page === 0) {
           this.page++;
           this.queryAllMessages();
-        } else if (count < this.total && this.contractsList.length > (this.page - 1) * this.limit) {
-          // The restriction on contractsList is to prevent multiple update requests during initialization.
+        } else if (count < this.total && this.contactsList.length > (this.page - 1) * this.limit) {
+          // The restriction on contactsList is to prevent multiple update requests during initialization.
           this.page++;
           this.queryAllMessages();
         }
@@ -128,17 +127,15 @@ export default class TransmitMsgController {
 
     // Queries all list information.
     queryAllMessages() {
-        let that = this;
         let actionData: LooseObject = {};
         actionData.page = this.page;
         actionData.limit = this.limit;
-        conversationListService.querySessionList(actionData, result => {
+        actionData.orderByTimeDesc = true;
+        ConversationListService.getInstance().querySessionList(actionData, result => {
             if (result.code == common.int.SUCCESS) {
-                this.contractsList = this.buildSessionList(result);;
-                this.transmitMsgDataSource.refresh(this.contractsList);
+                this.contactsList = this.buildSessionList(result);
+                this.transmitMsgDataSource.refresh(this.contactsList);
                 this.total = result.total;
-                this.hasNoOrdinaryMsg = this.total == 0 ? true : false;
-                this.hasInfoMsg = result.hasInfoMsg;
             }
         });
     }
@@ -147,7 +144,7 @@ export default class TransmitMsgController {
         let res = [];
         result.response.forEach(item => {
             // Inherit selected items
-            this.contractsList.some(oldItem => {
+            this.contactsList.some(oldItem => {
                 if (item.threadId === oldItem.threadId) {
                     item.isCbChecked = oldItem.isCbChecked;
                     return true;
@@ -207,21 +204,21 @@ export default class TransmitMsgController {
         }
     }
 
-    jumpToSelectContracts(callback) {
+    jumpToSelectContacts(callback?) {
         // The page for selecting a contact is displayed.
         let actionData: LooseObject = {};
-        actionData.pageFlag = common.contractPage.PAGE_FLAG_SINGLE_CHOOSE;
-        this.jumpToContractForResult(actionData, callback);
+        actionData.pageFlag = common.contactPage.PAGE_FLAG_SINGLE_CHOOSE;
+        this.jumpToContactForResult(actionData, callback);
     }
 
     // Go to Contacts app
-    async jumpToContractForResult(actionData, callback) {
-        let str = commonService.commonContractParam(actionData);
+    async jumpToContactForResult(actionData, callback) {
+        let str = commonService.commonContactParam(actionData);
         let data = await globalThis.mmsContext.startAbilityForResult(str);
         this.dialogMsg.data = data;
         if (data.resultCode == 0 && JSON.parse(data.want.parameters.contactObjects).length != 0) {
             this.DialogShow = true;
-            let contactsParam = contactService.dealContractParams(data.want.parameters.contactObjects);
+            let contactsParam = ContactService.getInstance().dealContactParams(data.want.parameters.contactObjects);
             let contactsParamMsg: LooseObject = {};
             contactsParamMsg.contactsNum = contactsParam.contactsNum;
             contactsParamMsg.contactName = contactsParam.strContactsName;
@@ -230,7 +227,7 @@ export default class TransmitMsgController {
             contactsParamMsg.contactNameSplit = contactsParam.strContactsName.split(common.string.COMMA)[0];
             contactsParamMsg.telephoneFormatSplit = contactsParam.strContactsNumberFormat.split(common.string.COMMA)[0];
             this.dialogMsg.contactsParam = contactsParamMsg;
-            conversationListService.querySessionByTelephone(this.telephone, res => {
+            ConversationListService.getInstance().querySessionByTelephone(this.telephone, res => {
                 let response = res.response;
                 if (res.code === common.int.SUCCESS && response.id > 0) {
                     this.threadId = response.id;
@@ -238,9 +235,10 @@ export default class TransmitMsgController {
                     this.threadId = 0;
                 }
                 this.checkContactNameLen();
-            });
-            callback();
-
+            }, null);
+            if (callback) {
+                callback();
+            }
         }
     }
 
@@ -249,18 +247,18 @@ export default class TransmitMsgController {
         item.content = e.text;
     }
 
-    transmit() {
-        let params = {
-            threadId: this.threadId,
-            strContactsName: this.dialogMsg.contactsParam.contactName, //Contact Name
-            strContactsNumber: this.dialogMsg.contactsParam.telephone, //Mobile phone number
-            strContactsNumberFormat: this.dialogMsg.contactsParam.telephoneFormat, //Format the mobile number.
-            transmitFlag: true, //Send Flag
-            contractsPage: false, //Display Forwarding Dialog Box
-            mmsSource: this.mmsSource, //MMS list data
-            isSlideDetail: this.isSlideDetail,//Indicates whether the slide page is an MMS message.
-            transmitSource: this.transmitContentList,//List of contents forwarded by multiple messages
-            isContainerOriginSource: this.isChecked //Whether selected
+    transmit(): void {
+        let params: LooseObject = {
+            "threadId": this.threadId,
+            "strContactsName": this.dialogMsg.contactsParam.contactName, //Contact Name
+            "strContactsNumber": this.dialogMsg.contactsParam.telephone, //Mobile phone number
+            "strContactsNumberFormat": this.dialogMsg.contactsParam.telephoneFormat, //Format the mobile number.
+            "transmitFlag": true, //Send Flag
+            "contactsPage": false, //Display Forwarding Dialog Box
+            "mmsSource": this.mmsSource, //MMS list data
+            "isSlideDetail": this.isSlideDetail,//Indicates whether the slide page is an MMS message.
+            "transmitSource": this.transmitContentList,//List of contents forwarded by multiple messages
+            "isContainerOriginSource": this.isChecked //Whether selected
         }
         router.replaceUrl({
             url: 'pages/conversation/conversation',

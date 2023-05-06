@@ -278,28 +278,24 @@ struct DeliveryReportsDialog {
                     .lineHeight(28)
                     .fontWeight(FontWeight.Medium)
                     .fontFamily("HarmonyHeiTi")
-                Flex({
-                    direction: FlexDirection.Row,
-                    justifyContent: FlexAlign.SpaceBetween,
-                    alignItems: ItemAlign.Center
-                }) {
+                Stack() {
                     Text($r("app.string.sms"))
                         .fontSize(16)
                         .fontColor($r("sys.color.ohos_id_color_foreground"))
                         .lineHeight(22)
                         .fontWeight(FontWeight.Medium)
                         .fontFamily("HarmonyHeiTi")
+                        .align(Alignment.Start)
+                        .width('100%')
                     Toggle({ type: ToggleType.Checkbox, isOn: this.isOnOfSms })
-                        .width(20)
+                        .width("100%")
                         .height(20)
-                        .offset({ x: 16, y: 0 })
                         .selectedColor($r("sys.color.ohos_id_color_activated"))
+                        .align(Alignment.End)
                         .onChange((isOn: boolean) => {
                             this.isOnOfSms = isOn
                         })
-                }
-                .width("100%")
-                .height(48)
+                }.margin({ bottom: 5 })
 
                 Divider()
                     .vertical(false)
@@ -307,28 +303,24 @@ struct DeliveryReportsDialog {
                     .width("100%")
                     .color($r("sys.color.ohos_id_color_list_separator"))
 
-                Flex({
-                    direction: FlexDirection.Row,
-                    justifyContent: FlexAlign.SpaceBetween,
-                    alignItems: ItemAlign.Center
-                }) {
+                Stack() {
                     Text($r("app.string.mms"))
                         .fontSize(16)
                         .fontColor($r("sys.color.ohos_id_color_foreground"))
                         .lineHeight(22)
                         .fontWeight(FontWeight.Medium)
                         .fontFamily("HarmonyHeiTi")
+                        .align(Alignment.Start)
+                        .width('100%')
                     Toggle({ type: ToggleType.Checkbox, isOn: this.isOnOfMms })
-                        .width(20)
+                        .width("100%")
                         .height(20)
-                        .offset({ x: 16, y: 0 })
                         .selectedColor($r("sys.color.ohos_id_color_activated"))
+                        .align(Alignment.End)
                         .onChange((isOn: boolean) => {
                             this.isOnOfMms = isOn
                         })
-                }
-                .width("100%")
-                .height(48)
+                }.margin({ top: 5 })
 
             }
             .padding({ left: 24, right: 24, bottom: 9 })

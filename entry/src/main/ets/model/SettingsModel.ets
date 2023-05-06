@@ -41,10 +41,10 @@ export default class SettingModel extends BaseModel {
 
     getAdvancedPageSwitchValue(callback) {
         let result: LooseObject = {
-            deliveryReportSwitch: false,
-            autoRetrieveMmsSwitch: false,
-            recallMessageSwitch: false,
-            autoDeleteInfoSwitch: false
+            "deliveryReportSwitch": false,
+            "autoRetrieveMmsSwitch": false,
+            "recallMessageSwitch": false,
+            "autoDeleteInfoSwitch": false
         };
         result.deliveryReportSwitch = MmsPreferences.getInstance().getValueOfDeliveryReportSwitch();
         result.autoRetrieveMmsSwitch = MmsPreferences.getInstance().getValueOfAutoRetrieveMmsSwitch();

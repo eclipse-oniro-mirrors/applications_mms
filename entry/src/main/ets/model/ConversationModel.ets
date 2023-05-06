@@ -13,594 +13,242 @@
  * limitations under the License.
  */
 
-import BaseModel from "./BaseModel";
-import MorkDataModel from "./MorkDataModel";
-import common from "../data/commonData";
-import mmsTable from "../data/tableData";
-import HiLog from "../utils/HiLog"
-import LooseObject from "../data/LooseObject"
-import dataShare from "@ohos.data.dataShare";
-import dataSharePredicates from "@ohos.data.dataSharePredicates";
+import dataShare from '@ohos.data.dataShare';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+import BaseModel from './BaseModel';
+import common from '../data/commonData';
+import mmsTable from '../data/tableData';
+import HiLog from '../utils/HiLog';
+import LooseObject from '../data/LooseObject';
 
 const TAG = "ConversationModel";
 
-let morkDataModel = new MorkDataModel();
 
 export default class ConversationModel extends BaseModel {
-    async queryMessageDetail(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var resultColumns = this.buildResultColumns();
-        let condition = this.buildQueryCondition(actionData);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
-            let resultList = [];
-            if( !resultSet.goToFirstRow() ) {
-                callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
-                return;
-            }
-            if (resultSet != undefined) {
-                do {
-                    let result: LooseObject = {};
-                    this.dealBaseColumnsData(result, resultSet);
-                    result.operatorServiceNumber = resultSet.getString(resultSet.getColumnIndex("operator_service_number"));
-                    result.msgCode = resultSet.getString(resultSet.getColumnIndex("msg_code"));
-                    result.isLock = resultSet.getString(resultSet.getColumnIndex("is_lock"));
-                    result.isRead = resultSet.getString(resultSet.getColumnIndex("is_read"));
-                    result.isCollect = resultSet.getString(resultSet.getColumnIndex("is_collect"));
-                    result.sessionType = resultSet.getString(resultSet.getColumnIndex("session_type"));
-                    result.retryNumber = resultSet.getString(resultSet.getColumnIndex("retry_number"));
-                    result.isSubsection = resultSet.getString(resultSet.getColumnIndex("is_subsection"));
-                    result.sessionId = resultSet.getString(resultSet.getColumnIndex("session_id"));
-                    result.groupId = resultSet.getString(resultSet.getColumnIndex("group_id"));
-                    result.isSender = resultSet.getString(resultSet.getColumnIndex("is_sender"));
-                    result.isSendReport = resultSet.getString(resultSet.getColumnIndex("is_send_report"));
-                    resultList.push(result);
-                } while (resultSet.goToNextRow())
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
-        }).catch(error => {
-            HiLog.e(TAG, "queryMessageDetail, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
+  public async insertSmsMmsInfo(valueBucket, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
+    dataHelper.insert(managerUri, valueBucket).then(res => {
+      if (callback) {
+        callback(this.encapsulateReturnResult(common.int.SUCCESS, res));
+      }
+    }).catch(error => {
+      HiLog.e(TAG, "insertSmsMmsInfo fail, error: " + JSON.stringify(error));
+      if (callback) {
+        callback(this.encapsulateReturnCode(common.int.FAILURE));
+      }
+    });
+  }
 
-    buildQueryCondition(actionData) {
-        let condition = new dataSharePredicates.DataSharePredicates();
-        if (actionData.isDraft != null && actionData.isDraft) {
-            condition.equalTo(mmsTable.messageInfo.groupId, actionData.groupId);
-            condition.equalTo(mmsTable.messageInfo.msgState, actionData.sendStatus);
+  public async deleteSmsMmsInfoByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
+    dataHelper.delete(managerUri, condition).then(res => {
+      if (callback) {
+        callback(this.encapsulateReturnResult(common.int.SUCCESS, res));
+      }
+    }).catch(error => {
+      HiLog.e(TAG, "deleteSmsMmsInfoByCondition fail, error: " + JSON.stringify(error));
+      if (callback) {
+        callback(this.encapsulateReturnCode(common.int.FAILURE));
+      }
+    });
+  }
+
+  public async updateSmsMmsInfoByCondition(actionData, valueBucket, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
+    dataHelper.update(managerUri, condition, valueBucket).then(res => {
+      if (callback) {
+        callback(this.encapsulateReturnResult(common.int.SUCCESS, res));
+      }
+    }).catch(error => {
+      HiLog.e(TAG, "updateSmsMmsInfoByCondition fail, error: " + JSON.stringify(error));
+      if (callback) {
+        callback(this.encapsulateReturnCode(common.int.FAILURE));
+      }
+    });
+  }
+
+  public async querySmsMmsInfoByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
+    dataHelper.query(managerUri, condition, this.buildSmsMmsInfoTableColumns()).then(resultSet => {
+      let resultList: Array<LooseObject> = [];
+      if (resultSet.rowCount > 0) {
+        while (resultSet.goToNextRow()) {
+          resultList.push(this.buildSmsMmsInfoResult(resultSet));
         }
-        if (actionData.threadId != null) {
-            let sessionId = actionData.threadId + common.string.EMPTY_STR;
-            condition.equalTo(mmsTable.messageInfo.sessionId, sessionId);
+      }
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "querySmsMmsInfoByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
+
+  public async querySmsMmsInfoSizeByCondition(actionData, callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
+    dataHelper.query(managerUri, condition, this.buildSmsMmsInfoTableColumns()).then(resultSet => {
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "querySmsMmsInfoSizeByCondition fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
+
+  public async queryMaxGroupId(callback, context): Promise<void> {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let resultColumns: Array<string> = ["maxGroupId"];
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MAX_GROUP;
+    dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
+      let maxGroupId: number = 0;
+      if (resultSet.rowCount > 0) {
+        if (resultSet.goToLastRow()) {
+          maxGroupId = (resultSet.getString(0) == common.string.EMPTY_STR) ? 0 : Number(resultSet.getString(0));
+          HiLog.i(TAG, "queryMaxGroupId, maxGroupId: " + maxGroupId);
         }
-        if (actionData.threadIds != null && actionData.threadIds.length > 0) {
-            let sessionIds = this.groupIdToString(actionData.threadIds);
-            condition.in(mmsTable.messageInfo.sessionId, sessionIds);
+      }
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, maxGroupId));
+      resultSet.close();
+    }).catch(error => {
+      HiLog.e(TAG, "queryMaxGroupId fail, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
+
+  public async statisticalData(callback, context) {
+    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
+    let resultColumns: Array<string> = [
+      "totalListCount",
+      "unreadCount",
+      "unreadTotalOfInfo"
+    ];
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_UNREAD_COUNT;
+    dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
+      let result: LooseObject = {
+        "totalListCount": 0,
+        "unreadCount": 0,
+        "unreadTotalOfInfo": 0
+      };
+      if (resultSet.rowCount > 0) {
+        if (resultSet.goToLastRow()) {
+          result.totalListCount = Number(resultSet.getString(0));
+          result.unreadCount = Number(resultSet.getString(1));
+          result.unreadTotalOfInfo = Number(resultSet.getString(2));
         }
-        if (actionData.msgIds != null && actionData.msgIds.length != 0) {
-            condition.in(mmsTable.messageInfo.msgId, actionData.msgIds);
-        }
-        if (actionData.hasLock != null) {
-            condition.equalTo(mmsTable.messageInfo.isLock, actionData.hasLock);
-        }
-        if (actionData.hasRead != null) {
-            condition.equalTo(mmsTable.messageInfo.isRead, actionData.hasRead);
-        }
-        return condition;
-    }
+      }
+      callback(this.encapsulateReturnResult(common.int.SUCCESS, result));
+    }).catch(error => {
+      HiLog.e(TAG, "statisticalData, error: " + JSON.stringify(error));
+      callback(this.encapsulateReturnCode(common.int.FAILURE));
+    });
+  }
 
-    buildBaseColumns() {
-        var resultColumns = [
-            mmsTable.messageInfo.msgId,
-            mmsTable.messageInfo.slotId,
-            // Recipient Mobile Number
-            mmsTable.messageInfo.receiverNumber,
-            mmsTable.messageInfo.senderNumber,
-            mmsTable.messageInfo.startTime,
-            mmsTable.messageInfo.endTime,
-            mmsTable.messageInfo.msgType,
-            // sms = 0,mms,
-            mmsTable.messageInfo.smsType,
-            // 0: normal; 1: notification
-            mmsTable.messageInfo.msgTitle,
-            mmsTable.messageInfo.msgContent,
-            mmsTable.messageInfo.msgState
-        ];
-        return resultColumns;
+  private buildQuerySmsMmsInfoCondition(actionData): dataSharePredicates.DataSharePredicates {
+    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    condition.isNotNull(mmsTable.messageInfo.msgId)
+    if (actionData.threadId != null) {
+      let sessionId: string = actionData.threadId + common.string.EMPTY_STR;
+      condition.and().equalTo(mmsTable.messageInfo.sessionId, sessionId);
     }
+    if (actionData.hasLock != null) {
+      condition.and().equalTo(mmsTable.messageInfo.isLock, actionData.hasLock);
+    }
+    if (actionData.hasRead != null) {
+      condition.and().equalTo(mmsTable.messageInfo.isRead, actionData.hasRead);
+    }
+    if (actionData.smsType != null) {
+      condition.and().equalTo(mmsTable.messageInfo.smsType, actionData.smsType);
+    }
+    if (actionData.msgId != null) {
+      condition.and().equalTo(mmsTable.messageInfo.msgId, actionData.msgId);
+    }
+    if (actionData.isDraft != null && actionData.isDraft) {
+      condition.and().equalTo(mmsTable.messageInfo.groupId, actionData.groupId);
+      condition.and().equalTo(mmsTable.messageInfo.msgState, actionData.sendStatus);
+    }
+    if (actionData.threadIds != null && actionData.threadIds.length > 0) {
+      condition.and().in(mmsTable.messageInfo.sessionId, actionData.threadIds);
+    }
+    if (actionData.msgIds != null && actionData.msgIds.length > 0) {
+      condition.and().in(mmsTable.messageInfo.msgId, actionData.msgIds);
+    }
+    if (actionData.groupIds != null && actionData.groupIds.length > 0) {
+      condition.and().in(mmsTable.messageInfo.groupId, actionData.groupIds);
+    }
+    if (actionData.groupId != null) {
+      condition.and().equalTo(mmsTable.messageInfo.groupId, actionData.groupId);
+    }
+    return condition;
+  }
 
-    buildResultColumns() {
-        let basicColumns = this.buildBaseColumns();
-        var resultColumns = [
-            mmsTable.messageInfo.operatorServiceNumber,
-            mmsTable.messageInfo.msgCode,
-            mmsTable.messageInfo.isLock,
-            mmsTable.messageInfo.isRead,
-            mmsTable.messageInfo.isCollect,
-            mmsTable.messageInfo.sessionType,
-            // 0: common; 1: broadcast; 2: group-send
-            mmsTable.messageInfo.retryNumber,
-            // Number of resending times
-            mmsTable.messageInfo.isSubsection,
-            mmsTable.messageInfo.sessionId,
-            mmsTable.messageInfo.groupId,
-            mmsTable.messageInfo.isSender,
-            mmsTable.messageInfo.isSendReport,
-        ];
-        return basicColumns.concat(resultColumns);
-    }
+  private buildSmsMmsInfoTableColumns(): Array<string> {
+    let resultColumns: Array<string> = [
+    mmsTable.messageInfo.msgId,
+    mmsTable.messageInfo.slotId,
+    mmsTable.messageInfo.receiverNumber,
+    mmsTable.messageInfo.senderNumber,
+    mmsTable.messageInfo.startTime,
+    mmsTable.messageInfo.endTime,
+    mmsTable.messageInfo.msgType,
+    mmsTable.messageInfo.smsType,
+    mmsTable.messageInfo.msgTitle,
+    mmsTable.messageInfo.msgContent,
+    mmsTable.messageInfo.msgState,
 
-    async searchSmsMessageByContent(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var resultColumns = this.buildSearchResultColumns();
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.like(mmsTable.messageInfo.msgContent, "%" + actionData.content + "%");
-        condition.equalTo(mmsTable.messageInfo.msgType, 0);
-        if (actionData.numberType != null) {
-            condition.equalTo(mmsTable.messageInfo.smsType, actionData.numberType);
-        }
-        let resultList = [];
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
-            if (resultSet != undefined) {
-                while (resultSet.goToNextRow()) {
-                    let result: LooseObject = {};
-                    this.dealBaseColumnsData(result, resultSet);
-                    result.isCollect = resultSet.getString(resultSet.getColumnIndex("is_collect"));
-                    result.sessionId = resultSet.getString(resultSet.getColumnIndex("session_id"));
-                    result.groupId = resultSet.getString(resultSet.getColumnIndex("group_id"));
-                    result.isSender = resultSet.getString(resultSet.getColumnIndex("is_sender"));
-                    resultList.push(result);
-                }
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
-        }).catch(error => {
-            HiLog.e(TAG, "searchSmsMessageByContent, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
+    mmsTable.messageInfo.operatorServiceNumber,
+    mmsTable.messageInfo.msgCode,
+    mmsTable.messageInfo.isLock,
+    mmsTable.messageInfo.isRead,
+    mmsTable.messageInfo.isCollect,
+    mmsTable.messageInfo.sessionType,
+    mmsTable.messageInfo.retryNumber,
+    mmsTable.messageInfo.isSubsection,
+    mmsTable.messageInfo.sessionId,
+    mmsTable.messageInfo.groupId,
+    mmsTable.messageInfo.isSender,
+    mmsTable.messageInfo.isSendReport
+    ];
+    return resultColumns;
+  }
 
-    buildSearchResultColumns() {
-        let basicColumns = this.buildBaseColumns();
-        var resultColumns = [
-            mmsTable.messageInfo.isCollect,
-            mmsTable.messageInfo.sessionId,
-            mmsTable.messageInfo.groupId,
-            mmsTable.messageInfo.isSender
-        ];
-        return basicColumns.concat(resultColumns);
-    }
+  private buildSmsMmsInfoResult(resultSet): LooseObject {
+    let result: LooseObject = {};
+    result.msgId = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgId)));
+    result.slotId = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.slotId)));
+    result.receiverNumber = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.receiverNumber));
+    result.senderNumber = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.senderNumber));
+    result.startTime = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.startTime));
+    result.endTime = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.endTime));
+    result.msgType = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgType)));
+    result.smsType = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.smsType)));
+    result.msgTitle = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgTitle));
+    result.msgContent = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgContent));
+    result.msgState = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgState)));
 
-    dealBaseColumnsData(result, resultSet) {
-        result.msgId = resultSet.getString(resultSet.getColumnIndex("msg_id"));
-        result.slotId = resultSet.getString(resultSet.getColumnIndex("slot_id"));
-        result.receiverNumber = resultSet.getString(resultSet.getColumnIndex("receiver_number"));
-        result.senderNumber = resultSet.getString(resultSet.getColumnIndex("sender_number"));
-        result.startTime = resultSet.getString(resultSet.getColumnIndex("start_time"));
-        result.endTime = resultSet.getString(resultSet.getColumnIndex("end_time"));
-        result.msgType = resultSet.getString(resultSet.getColumnIndex("msg_type"));
-        result.smsType = resultSet.getString(resultSet.getColumnIndex("sms_type"));
-        result.msgTitle = resultSet.getString(resultSet.getColumnIndex("msg_title"));
-        result.msgContent = resultSet.getString(resultSet.getColumnIndex("msg_content"));
-        result.msgState = resultSet.getString(resultSet.getColumnIndex("msg_state"));
-    }
-
-    async insertMessageDetail(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.insert(managerUri, actionData.stringValue).then(data => {
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
-        }).catch(error => {
-            HiLog.e(TAG, "insertMessageDetail, fail: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async updateLock(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var groupIds = this.groupIdToString(actionData.groupIds);
-        var condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.messageInfo.groupId, groupIds);
-        var stringValue = {
-            "is_lock": actionData.hasLock,
-        };
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.update(managerUri, condition, stringValue).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "updateLock, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    groupIdToString(groupIds) {
-        let ids = [];
-        groupIds.forEach(item => {
-            ids.push(item + '');
-        });
-        return ids;
-    }
-
-    async updateCollect(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var groupIds = this.groupIdToString(actionData.groupIds);
-        var condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.messageInfo.groupId, groupIds);
-        var stringValue = {
-            "is_collect": actionData.hasCollect,
-        };
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.update(managerUri, condition, stringValue).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "updateCollect, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async deleteMessageByIds(actionData, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var msgIds = actionData.msgIds;
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.messageInfo.msgId, msgIds);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.delete(managerUri, condition);
-    }
-
-    async deleteMessageByGroupIds(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var groupIds = this.groupIdToString(actionData.groupIds);
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.messageInfo.groupId, groupIds);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.delete(managerUri, condition).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "deleteMessageByGroupIds, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async deleteMessageBySessionIds(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let threadIds = [];
-        for (let id of actionData.threadIds) {
-            let threadId = id + common.string.EMPTY_STR;
-            threadIds.push(threadId);
-        }
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.messageInfo.sessionId, threadIds);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.delete(managerUri, condition).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "deleteMessageBySessionIds, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async deleteMessageBySessionIdsAndLock(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let threadIds = this.groupIdToString(actionData.threadIds);
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.equalTo(mmsTable.messageInfo.isLock, actionData.hasLock);
-        condition.in(mmsTable.messageInfo.sessionId, threadIds);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.delete(managerUri, condition).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "deleteMessageBySessionIdsAndLock, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async updateById(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var msgId = actionData.msgId;
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.equalTo(mmsTable.messageInfo.msgId, msgId);
-        var stringValue = {
-            "msg_state": actionData.sendStatus,
-        };
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.update(managerUri, condition, stringValue).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "updateById, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async markAllAsRead(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let threadIds = [];
-        for (let id of actionData.threadIds) {
-            let threadId = id + common.string.EMPTY_STR;
-            threadIds.push(threadId);
-        }
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.messageInfo.sessionId, threadIds);
-        var stringValue = {
-            "is_read": actionData.hasRead
-        };
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.update(managerUri, condition, stringValue).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "markAllAsRead, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async markAllToRead(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.equalTo(mmsTable.messageInfo.isRead, 0);
-        condition.equalTo(mmsTable.messageInfo.smsType, actionData.smsType);
-        var stringValue = {
-            "is_read": actionData.hasRead
-        };
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.update(managerUri, condition, stringValue).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "markAllToRead, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async queryMaxGroupId(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let resultColumns = [
-            "maxGroupId"
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MAX_GROUP;
-        dataHelper.query(managerUri, condition, resultColumns, (err, resultSet) => {
-            HiLog.i(TAG, "queryMaxGroupId, query callback");
-            let result: LooseObject = {};
-            if (resultSet != undefined) {
-                if (resultSet.goToLastRow()) {
-                    result.maxGroupId = resultSet.getString(0);
-                    HiLog.d(TAG, "queryMaxGroupId, maxGroupId=" + result.maxGroupId);
-                }
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, result));
-        });
-    }
-
-    saveImage(actionData, callback) {
-        var savedImageInfo = morkDataModel.saveImage();
-        callback(this.encapsulateReturnResult(common.int.SUCCESS, savedImageInfo));
-    }
-
-    gotoShare(actionData, callback) {
-        callback(this.encapsulateReturnCode(common.int.SUCCESS));
-    }
-
-    queryFromGallery(actionData, callback) {
-        var pictureListFromGallery = morkDataModel.queryFromGallery();
-        callback(this.encapsulateReturnResult(common.int.SUCCESS, pictureListFromGallery));
-    }
-
-    dealContractsTransmit(actionData, callback) {
-        callback(this.encapsulateReturnCode(common.int.SUCCESS));
-    }
-
-    async queryMessageThirty(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let timestamp = new Date().getTime();
-        let lastTime = timestamp - 2592000000;
-        let resultColumns = [
-            mmsTable.messageInfo.msgId,
-            mmsTable.messageInfo.sessionId
-        ];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.lessThan(mmsTable.messageInfo.endTime, lastTime);
-        condition.equalTo(mmsTable.messageInfo.smsType, actionData.numberType);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.query(managerUri, condition, resultColumns).then((resultSet) => {
-            let mmsList = [];
-            if (resultSet != undefined) {
-                while (resultSet.goToNextRow()) {
-                    let item: LooseObject = {};
-                    item.msgId = resultSet.getString(0);
-                    item.sessionId = resultSet.getString(1);
-                    mmsList.push(item);
-                }
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, mmsList));
-        }).catch((err) => {
-            HiLog.e(TAG, "queryMessageThirty, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async statisticsUnreadNotify(actionData, callback, context?) {
-        let mmsContext = context ? context : globalThis.mmsContext;
-        if (actionData.mmsContext) {
-            mmsContext = actionData.mmsContext;
-        }
-        let dataHelper = await dataShare.createDataShareHelper(mmsContext, common.string.URI_MESSAGE_LOG);
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.equalTo(mmsTable.messageInfo.isRead, 0);
-        condition.equalTo(mmsTable.messageInfo.smsType, 1);
-        let resultColumns = [
-            mmsTable.messageInfo.msgId
-        ];
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.query(managerUri, condition, resultColumns).then((resultSet) => {
-            let count = 0;
-            if (resultSet != undefined) {
-                count = resultSet.rowCount;
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, count));
-        }).catch((err) => {
-            HiLog.e(TAG, "statisticsUnreadNotify, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async searchMmsPartByContent(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let resultColumns = this.buildMmsPartResultColumns();
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.like(mmsTable.mmsPart.content, "%" + actionData.content + "%");
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
-        dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
-            let resultList = this.dealMmsPartResult(resultSet);
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
-        }).catch(error => {
-            HiLog.e(TAG, "searchMmsPartByContent, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async queryMmsPart(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var resultColumns = this.buildMmsPartResultColumns();
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.mmsPart.msgId, actionData.msgIds);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
-        dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
-            let resultList = this.dealMmsPartResult(resultSet);
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
-        }).catch(error => {
-            HiLog.e(TAG, "queryMmsPart, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    buildMmsPartResultColumns() {
-        let resultColumns = [
-            mmsTable.mmsPart.msgId,
-            mmsTable.mmsPart.groupId,
-            mmsTable.mmsPart.type,
-            mmsTable.mmsPart.locationPath,
-            mmsTable.mmsPart.content,
-            mmsTable.mmsPart.recordingTime,
-            mmsTable.mmsPart.partSize,
-            mmsTable.mmsPart.state
-        ];
-        return resultColumns;
-    }
-
-    dealMmsPartResult(resultSet) {
-        let resultList = [];
-        if (resultSet != undefined) {
-            while (resultSet.goToNextRow()) {
-                let result: LooseObject = {};
-                result.msgId = resultSet.getString(0);
-                result.groupId = resultSet.getString(1);
-                result.type = resultSet.getString(2);
-                result.locationPath = resultSet.getString(3);
-                result.content = resultSet.getString(4);
-                result.recordingTime = resultSet.getString(5);
-                result.fileSize = resultSet.getString(6);
-                result.messageType = resultSet.getString(7);
-                resultList.push(result);
-            }
-        }
-        return resultList;
-    }
-
-    async deleteMmsPartByGroupIds(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let groupIds = this.groupIdToString(actionData.groupIds);
-        let condition = new dataSharePredicates.DataSharePredicates();
-        condition.in(mmsTable.mmsPart.groupId, groupIds);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
-        dataHelper.delete(managerUri, condition).then((data) => {
-            callback(this.encapsulateReturnCode(common.int.SUCCESS));
-        }).catch((err) => {
-            HiLog.e(TAG, "deleteMmsPartByGroupIds, err: " + JSON.stringify(err.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async batchInsertMmsPart(actionData, callback, context?) {
-        for (let stringValue of actionData.batchMmsParts) {
-            this.insertMmsPart(actionData, stringValue, res => {
-            }, context);
-        }
-        callback(this.encapsulateReturnCode(common.int.SUCCESS));
-    }
-
-    async insertMmsPart(actionData, stringValue, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MMS_PART;
-        dataHelper.insert(managerUri, stringValue).then(data => {
-            callback(this.encapsulateReturnResult(data, common.int.SUCCESS));
-        }).catch(error => {
-            HiLog.e(TAG, "insertMmsPart, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async queryMessageLockBySessionId(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var resultColumns = [mmsTable.messageInfo.isLock];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let sessionId = actionData.threadId + common.string.EMPTY_STR;
-        condition.equalTo(mmsTable.messageInfo.sessionId, sessionId);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
-            let lockStatus = [];
-            if (resultSet != undefined) {
-                while (resultSet.goToNextRow()) {
-                    let result: LooseObject = {};
-                    result.isLock = resultSet.getString(0);
-                    lockStatus.push(result);
-                }
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, lockStatus));
-        }).catch(error => {
-            HiLog.e(TAG, "queryMessageLockBySessionId, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
-
-    async queryGroupIdBySessionId(actionData, callback, context?) {
-        let dataHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
-        common.string.URI_MESSAGE_LOG);
-        var resultColumns = [mmsTable.messageInfo.groupId];
-        let condition = new dataSharePredicates.DataSharePredicates();
-        let threadIds = this.groupIdToString(actionData.threadIds);
-        condition.in(mmsTable.messageInfo.sessionId, threadIds);
-        let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
-        dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
-            let groupIds = [];
-            if (resultSet != undefined) {
-                resultSet.goToFirstRow();
-                do {
-                    let groupId = resultSet.getString(0);
-                    groupIds.push(groupId);
-                } while (resultSet.goToNextRow());
-            }
-            callback(this.encapsulateReturnResult(common.int.SUCCESS, groupIds));
-        }).catch(error => {
-            HiLog.e(TAG, "queryGroupIdBySessionId, error: " + JSON.stringify(error.message));
-            callback(this.encapsulateReturnCode(common.int.FAILURE));
-        });
-    }
+    result.operatorServiceNumber = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.operatorServiceNumber));
+    result.msgCode = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgCode)));
+    result.isLock = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isLock)));
+    result.isRead = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isRead)));
+    result.isCollect = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isCollect)));
+    result.sessionType = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.sessionType)));
+    result.retryNumber = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.retryNumber)));
+    result.isSubsection = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isSubsection)));
+    result.sessionId = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.sessionId)));
+    result.groupId = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.groupId)));
+    result.isSender = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isSender)));
+    result.isSendReport = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isSendReport)));
+    return result;
+  }
 }

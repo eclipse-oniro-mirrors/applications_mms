@@ -29,28 +29,33 @@ export default {
      * @callback callback Return the message sending status.
      */
     sendMessage(params, callback) {
-        sms.sendMessage({
-            slotId: params.slotId,
-            destinationHost: params.destinationHost,
-            content: params.content,
-            sendCallback: (err, value) => {
-                let sendStatus;
-                if (err) {
-                    HiLog.w(TAG, "sendMessage, sendCallback failed err: " + JSON.stringify(err.message));
-                    sendStatus = common.int.SEND_MESSAGE_FAILED;
-                } else {
-                    sendStatus = this.dealSendResult(value);
-                    HiLog.i(TAG, `sendMessage, sendCallback success result=${value.result}, sendStatus=${sendStatus}`);
+        try {
+            sms.sendMessage({
+                slotId: Number(params.slotId),
+                destinationHost: params.destinationHost,
+                content: params.content,
+                sendCallback: (err, value) => {
+                    let sendStatus: number = common.int.SEND_MESSAGE_FAILED;
+                    if (err) {
+                        HiLog.w(TAG, "sendMessage, sendCallback failed err: " + JSON.stringify(err.message));
+                        sendStatus = common.int.SEND_MESSAGE_FAILED;
+                    } else {
+                        sendStatus = this.dealSendResult(value);
+                        HiLog.i(TAG, `sendMessage, sendCallback success result=${value.result}, sendStatus=${sendStatus}`);
+                    }
+                    callback(sendStatus);
+                },
+                deliveryCallback: (err, value) => {
+                    if (err) {
+                        HiLog.w(TAG, "sendMessage, deliveryCallback failed err: " + JSON.stringify(err.message));
+                        return;
+                    }
                 }
-                callback(sendStatus);
-            },
-            deliveryCallback: (err, value) => {
-                if (err) {
-                    HiLog.w(TAG, "sendMessage, deliveryCallback failed err: " + JSON.stringify(err.message));
-                    return;
-                }
-            }
-        });
+            });
+        } catch (error) {
+            HiLog.e(TAG, "sendMessage, sendMessage failed error: " + JSON.stringify(error));
+            callback(common.int.SEND_MESSAGE_FAILED);
+        }
     },
 
     dealSendResult(value) {

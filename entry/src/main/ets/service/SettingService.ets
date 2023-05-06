@@ -32,9 +32,9 @@ export default {
      */
     setOnSettingValueListener(callback) {
         let result: LooseObject = {
-            integrationSwitch: false,
-            maliciousWebSwitch: false,
-            showContactSwitch: false,
+            "integrationSwitch": false,
+            "maliciousWebSwitch": false,
+            "showContactSwitch": false,
         };
         mSettingModel.setOnSettingValueListener(settingValue => {
             if (settingValue.integrationSwitch === common.bool.TRUE || settingValue.integrationSwitch === '') {
@@ -154,9 +154,9 @@ export default {
      */
     getSettingFlagForConvListPage() {
         let result: LooseObject = {
-            isShowContactHeadIcon: false,
-            hasAggregate: false,
-            recallMessagesFlag: false,
+            "isShowContactHeadIcon": false,
+            "hasAggregate": false,
+            "recallMessagesFlag": false,
         };
         mSettingModel.getSettingValue(settingValue => {
             if (settingValue.code === common.int.SUCCESS) {

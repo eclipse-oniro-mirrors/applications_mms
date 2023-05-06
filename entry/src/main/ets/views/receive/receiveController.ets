@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HiLog from "../../utils/HiLog";
 import prompt from "@system.prompt";
+
+import HiLog from "../../utils/HiLog";
 import common from "../../data/commonData";
-import contractService from "../../service/ContractService";
+import ContactsService from "../../service/ContactsService";
 import commonService from "../../service/CommonService"
 import commonCtrl from "../../pages/conversation/common"
 import LooseObject from "../../data/LooseObject"
@@ -57,7 +58,7 @@ export default class ReceiveController {
     onInit(call) {
         HiLog.i(TAG, "onInit()")
         //    this.$watch("paramContact", "onPropertyChange");
-        this.selectContacts = this.commonCtrl.paramContact.transmitContracts;
+        this.selectContacts = this.commonCtrl.paramContact.transmitContacts;
         if (this.selectContacts.length > 0) {
             let that = this;
             setTimeout(function () {
@@ -88,7 +89,7 @@ export default class ReceiveController {
             limit: this.limit
         };
         // Querying Contacts
-        contractService.queryContact(actionData, contacts => {
+        ContactsService.getInstance().queryContact(actionData, contacts => {
             if (common.int.SUCCESS == contacts.code) {
                 let response = this.contacts.concat(contacts.response);
                 this.contacts = [];
@@ -97,11 +98,13 @@ export default class ReceiveController {
             } else {
                 HiLog.w(TAG, "queryContacts, fail");
             }
-        });
+        }, null);
         // Number of statistics
-        contractService.countContact(actionData, contacts => {
-            this.totalMessage = contacts.response;
-        });
+        ContactsService.getInstance().queryContactSizeByCondition(actionData, res => {
+            if (res.code == common.int.SUCCESS) {
+                this.totalMessage = res.abilityResult;
+            }
+        }, null);
     }
 
     searchContacts(textValue, callback) {
@@ -109,16 +112,14 @@ export default class ReceiveController {
         let actionData = {
             telephone: textValue,
         };
-        contractService.searchContracts(actionData, res => {
-            let code = res.code;
-            if (common.int.SUCCESS == res.code) {
-                this.contacts = [];
-                this.contacts = res.response;
+        ContactsService.getInstance().queryContactViewByCondition(actionData, res => {
+            if (res.code == common.int.SUCCESS) {
+                this.contacts = res.abilityResult;
             } else {
                 HiLog.w(TAG, "searchContacts fail");
             }
-            callback(code);
-        });
+            callback(res.code);
+        }, null);
     }
 
     // Filter search terms to match contacts
@@ -167,12 +168,12 @@ export default class ReceiveController {
             let selectContact: LooseObject = {};
             let hasSelect = false;
             for (let index in this.contacts) {
-                let contract = this.contacts[index];
-                if (contract.telephone == that.myText) {
+                let contact = this.contacts[index];
+                if (contact.telephone == that.myText) {
                     selectContact.headImage = "icon/user_avatar_full_fill.svg";
-                    selectContact.contactName = contract.contactName;
-                    selectContact.telephone = contract.telephone;
-                    selectContact.telephoneFormat = contract.telephone;
+                    selectContact.contactName = contact.contactName;
+                    selectContact.telephone = contact.telephone;
+                    selectContact.telephoneFormat = contact.telephone;
                     selectContact.select = false;
                     hasSelect = true;
                     break;
@@ -348,36 +349,36 @@ export default class ReceiveController {
         this.refresh = !this.refresh;
     }
 
-    clickToContracts(call) {
+    clickToContacts(call) {
         var actionData: LooseObject = {};
-        actionData.pageFlag = common.contractPage.PAGE_FLAG_SINGLE_CHOOSE;
-        this.jumpToContractForResult(actionData, call);
+        actionData.pageFlag = common.contactPage.PAGE_FLAG_SINGLE_CHOOSE;
+        this.jumpToContactForResult(actionData, call);
     }
     // Tap a contact's avatar to go to the contact details page.
     titleBarAvatar(index) {
         var actionData: LooseObject = {};
         actionData.phoneNumber = this.contacts[index]?.telephone;
-        actionData.pageFlag = common.contractPage.PAGE_FLAG_CONTACT_DETAILS;
-        this.jumpToContract(actionData);
+        actionData.pageFlag = common.contactPage.PAGE_FLAG_CONTACT_DETAILS;
+        this.jumpToContact(actionData);
     }
     // Switching to the Contacts app
-    jumpToContract(actionData) {
-        let str = commonService.commonContractParam(actionData);
+    jumpToContact(actionData) {
+        let str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
         }).catch((error) => {
-            HiLog.i(TAG, "jumpToContract failed");
+            HiLog.i(TAG, "jumpToContact failed");
         });
     }
     // Switching to the Contacts app
-    async jumpToContractForResult(actionData, call) {
-        let str = commonService.commonContractParam(actionData);
+    async jumpToContactForResult(actionData, call) {
+        let str = commonService.commonContactParam(actionData);
         var data = await globalThis.mmsContext.startAbilityForResult(str);
         if (data.resultCode == 0) {
-            this.dealContractParams(data.want.parameters.contactObjects, call);
+            this.dealContactParams(data.want.parameters.contactObjects, call);
         }
     }
 
-    dealContractParams(contactObjects, call) {
+    dealContactParams(contactObjects, call) {
         this.selectContacts = [];
         let params = JSON.parse(contactObjects);
         if (this.checkSingle()) {
@@ -397,7 +398,7 @@ export default class ReceiveController {
             return;
         }
         if (this.selectContacts.length > 0) {
-            this.deleteRepetitionContracts(this.contacts, this.selectContacts);
+            this.deleteRepetitionContacts(this.contacts, this.selectContacts);
             this.setInputStatus(false);
             this.isShowSearch = false;
             this.setContactValue(call);
@@ -406,7 +407,7 @@ export default class ReceiveController {
         this.commonCtrl.paramContact.isNewRecallMessagesFlag = false;
     }
 
-    deleteRepetitionContracts(contacts, selectContacts) {
+    deleteRepetitionContacts(contacts, selectContacts) {
         let indexs = [];
         let count = 0;
         for (let item of contacts) {

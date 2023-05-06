@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,12 +41,6 @@ export default struct TransmitMsg {
         autoCancel: false,
         alignment: this.dialogAlignment,
         offset: this.dialogOffset,
-        changeValue: (item) => {
-            this.mTransmitMsgCtrl.changeValue(item)
-        },
-        clickChecked: (isOn: boolean) => {
-            this.mConListCtrl.clickChecked(isOn)
-        }
     });
 
     aboutToAppear() {
@@ -104,7 +97,7 @@ export default struct TransmitMsg {
                 Flex(){
                     Column(){
                         Row() {
-                            Text($r("app.string.selectContracts"))
+                            Text($r("app.string.selectContacts"))
                                 .fontSize("16fp")
                                 .fontColor($r("sys.color.ohos_id_color_text_primary"))
                             Blank()
@@ -122,7 +115,7 @@ export default struct TransmitMsg {
                 .width("100%")
                 .onClick(() => {
                     //Go to Select Contact
-                    this.mTransmitMsgCtrl.jumpToSelectContracts()
+                    this.mTransmitMsgCtrl.jumpToSelectContacts();
                 })
 
                 //recent

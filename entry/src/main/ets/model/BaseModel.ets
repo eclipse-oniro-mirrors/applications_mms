@@ -15,16 +15,16 @@
 import LooseObject from "../data/LooseObject";
 
 export default class BaseModel {
-    encapsulateReturnResult(code, abilityResult) {
-        var result: LooseObject = {};
-        result.code = code;
-        result.abilityResult = abilityResult;
-        return result;
-    }
+  public encapsulateReturnResult(code, abilityResult): LooseObject {
+    let result: LooseObject = {};
+    result.code = code;
+    result.abilityResult = abilityResult;
+    return result;
+  }
 
-    encapsulateReturnCode(code) {
-        var result: LooseObject = {};
-        result.code = code;
-        return result;
-    }
+  public encapsulateReturnCode(code): LooseObject {
+    let result: LooseObject = {};
+    result.code = code;
+    return result;
+  }
 }

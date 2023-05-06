@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
-import contactService from "../service/ContractService";
-import conversationListService from "../service/ConversationListService";
-import common from "../data/commonData";
-import featureAbility from "@ohos.ability.featureAbility";
-import HiLog from "./HiLog";
 import router from "@system.router";
+
+import ContactService from "../service/ContactsService";
+import ConversationListService from "../service/ConversationListService";
+import common from "../data/commonData";
+import HiLog from "./HiLog";
+import LooseObject from '../data/LooseObject';
 
 const TAG = "WantUtil";
 
@@ -39,15 +40,15 @@ export default {
           pageFlag = parameters.pageFlag;
           HiLog.i(TAG, "pageFlag = " + pageFlag);
         }
-        let contractParams = {}
+        let contactParams = {}
         if (parameters.hasOwnProperty("contactObjects")) {
-          contractParams = contactService.dealContractParams(parameters.contactObjects);
+          contactParams = ContactService.getInstance().dealContactParams(parameters.contactObjects);
         }
-        this.jump(pageFlag, contractParams);
+        this.jump(pageFlag, contactParams);
       }
   },
 
-  jump(pageFlag, contractParams) {
+  jump(pageFlag, contactParams) {
     let result = {
       uri: '',
       params: {}
@@ -56,9 +57,9 @@ export default {
     switch (pageFlag) {
       case "conversation":
         result.uri = "pages/conversation/conversation";
-        if (contractParams) {
-          result.params = contractParams;
-          this.jumpIsNewPage(result, contractParams);
+        if (contactParams) {
+          result.params = contactParams;
+          this.jumpIsNewPage(result, contactParams);
         } else {
           router.push(result);
         }
@@ -68,12 +69,14 @@ export default {
     }
   },
 
-  async jumpIsNewPage(result, contractParams) {
+  async jumpIsNewPage(result, contactParams) {
     // Check whether a session has been created for the current phone number in the SMS message.
-    conversationListService.querySessionByTelephone(contractParams.strContactsNumber, res => {
+    ConversationListService.getInstance().querySessionByTelephone(contactParams.strContactsNumber, res => {
       if (res.code == common.int.SUCCESS && res.response.id > 0) {
         result.params.threadId = res.response.id;
-        this.markAllAsRead(result.params.threadId);
+        let actionData: LooseObject = {};
+        actionData.threadId = result.params.threadId;
+        ConversationListService.getInstance().markAllToRead(actionData);
         if (res.response.hasDraft && res.response.messageCount == 0) {
           result.params.isNewMsg = true;
         } else {
@@ -83,17 +86,6 @@ export default {
         result.params.isNewMsg = true;
       }
       router.push(result);
-    });
+    }, null);
   },
-
-  markAllAsRead(threadId) {
-    let actionData = {
-      threadIds: [threadId],
-      hasRead: 1,
-      valueBucket: {
-        "unread_count": 0
-      }
-    };
-    conversationListService.markAllAsRead(actionData);
-  }
 }

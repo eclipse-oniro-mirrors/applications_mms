@@ -132,7 +132,7 @@ export struct Receive {
                     .height(24)
                     .onClick(() => {
                         // The page for selecting a contact is displayed.
-                        this.mReceiveController.clickToContracts((receiverData) => {
+                        this.mReceiveController.clickToContacts(receiverData => {
                             this.mConversationController.setReceiveContactValue(receiverData);
                         })
                     })

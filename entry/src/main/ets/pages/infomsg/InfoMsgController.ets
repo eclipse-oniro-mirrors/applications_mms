@@ -12,23 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import common from "../../data/commonData";
-import commonEvent from "@ohos.commonEventManager";
-import commonService from "../../service/CommonService";
-import dateUtil from "../../utils/DateUtil";
-import featureAbility from "@ohos.ability.featureAbility";
-import LooseObject from "../../data/LooseObject"
-// Information List Service
-import messageService from "../../service/ConversationListService";
-// Log tool class
-import HiLog from "../../utils/HiLog";
-import MmsPreferences from "../../utils/MmsPreferences";
-import NotificationService from "../../service/NotificationService";
-// Notification Information
-import router from "@system.router";
-// Obtain the setting switch.
-import settingService from "../../service/SettingService";
-import ConversationListDataSource from "../../model/ConversationListDataSource"
+import commonEvent from '@ohos.commonEventManager';
+import router from '@system.router';
+
+import common from '../../data/commonData';
+import commonService from '../../service/CommonService';
+import dateUtil from '../../utils/DateUtil';
+import LooseObject from '../../data/LooseObject'
+import ConversationListService from '../../service/ConversationListService';
+import ConversationService from '../../service/ConversationService';
+import HiLog from '../../utils/HiLog';
+import NotificationService from '../../service/NotificationService';
+import settingService from '../../service/SettingService';
+import ConversationListDataSource from '../../model/ConversationListDataSource'
 
 const TAG = "InfoMsgController"
 
@@ -55,8 +51,8 @@ export default class InfoMsgController {
     isSelectLockMsg: boolean = false;
     // List of search results
     searchResultList: LooseObject = {
-        sessionList: [],
-        contentList: []
+        "sessionList": [],
+        "contentList": []
     };
     // Search Results Queue
     searchResultListQueue: Array<any> = [];
@@ -88,7 +84,6 @@ export default class InfoMsgController {
     // Number of unread notifications.
     unreadTotalOfInfo: number = 0;
     messageList: Array<any> = [];
-    numberType: number = 1;
     // Indicates whether to display the contact profile picture.
     isShowContactHeadIcon: boolean = true;
     // Number of search results
@@ -135,9 +130,7 @@ export default class InfoMsgController {
         this.page = 0;
         this.requestItem();
         this.subscribeInfo();
-        let actionData = {};
-        NotificationService.getInstance().cancelMessageNotify(actionData, res => {
-        });
+        NotificationService.getInstance().updateBadgeNumber();
     }
 
     onHide() {
@@ -146,12 +139,12 @@ export default class InfoMsgController {
     }
     // Querying List Data
     queryAllMessages() {
-        let actionData: LooseObject = {
-            page: this.page,
-            limit: this.limit,
-        }
-        actionData.numberType = this.numberType;
-        messageService.querySessionList(actionData, result => {
+        let actionData: LooseObject = {};
+        actionData.smsType = common.sms_type.NOTICE;
+        actionData.page = this.page;
+        actionData.limit = this.limit;
+        actionData.orderByTimeDesc = true;
+        ConversationListService.getInstance().querySessionList(actionData, result => {
             if (result.code == common.int.SUCCESS) {
                 HiLog.i(TAG, "queryAllMessages, Success");
                 let res = this.buildSessionList(result);
@@ -165,7 +158,7 @@ export default class InfoMsgController {
             } else {
                 HiLog.w(TAG, "queryAllMessages, failed");
             }
-        });
+        }, null);
     }
 
     dealMmsListContent(element) {
@@ -241,100 +234,7 @@ export default class InfoMsgController {
         this.searchStatus = false;
         this.showToolBar = true;
     }
-    // Search
-    clickToSearch(text) {
-        this.inputValueOfSearch = text;
-        this.search(text);
-    }
-    // Search on the notification information page.
-    search(text) {
-        let actionData: LooseObject = {};
-        actionData.inputValue = text
-        this.searchTextAsync(actionData)
-    }
 
-    searchTextAsync(actionData) {
-        actionData.numberType = this.numberType;
-        messageService.searchMessageWithLike(actionData, result => {
-            if (result.code == common.int.SUCCESS) {
-                // Check whether the search result is empty before obtaining the search result.
-                if (this.inputValueOfSearch !== common.string.EMPTY_STR) {
-                    this.dealSearchResult(result);
-                }
-            } else {
-                this.searchResultListEmpty();
-            }
-        });
-    }
-
-    dealSearchResult(result) {
-        this.searchResultList = {
-            contentList: [],
-            sessionList: []
-        }
-        this.isSearchStatus = false;
-        this.isSearchCoverage = false;
-        this.dealSearchResultTimeAndName(result);
-        if (this.inputValueOfSearch === result.search) {
-            this.searchResultList = result.resultMap;
-        }
-    }
-
-    dealSearchResultTimeAndName(result) {
-        if (result.resultMap.sessionList) {
-            result.resultMap.sessionList.forEach(session => {
-                session.timeMillisecond = parseInt(session.timeMillisecond);
-                dateUtil.convertDateFormatForItem(session, true);
-            });
-        }
-        if (result.resultMap.contentList) {
-            result.resultMap.contentList.forEach(content => {
-                content.timeMillisecond = parseInt(content.timeMillisecond);
-                dateUtil.convertDateFormatForItem(content, true);
-                if (content.isFavorite) {
-                    content.name = $r("app.string.message_in_favorites");
-                }
-            });
-        }
-    }
-
-    searchResultListEmpty() {
-        this.searchResultList = {
-            contentList: [],
-            sessionList: []
-        }
-        // Display Information List
-        this.isSearchStatus = true;
-        if (this.isShowSearchBack) {
-            this.isSearchCoverage = true;
-        } else {
-            this.isSearchCoverage = false;
-        }
-    }
-    // Check whether the multi-choice status is selected.
-    searchTouchStart() {
-        if (this.isMultipleSelectState) {
-            return false;
-        }
-        this.searchStatus = true;
-        this.showToolBar = false;
-        // Search area touchStart monitoring
-        // x > 125 && x < 600) && (y < 70 && y > 20
-        //        var x = event.touches[0].x;
-        //        if (isSearchType && x > 80 && x < 560) {
-        // Show New Button
-        this.isShowSearchBack = true;
-        // Mask Display
-        this.isSearchCoverage = true;
-        // Start the input method.
-        setTimeout(() => {
-            this.isSearchFocusable = true;
-        }, common.int.MESSAGE_CODE_THREE_ZERO_ZERO);
-        //        }
-        this.resetTouch();
-        return false;
-    }
-    // Touch and hold a list to display the selection and deletion functions.
     conversationLongPress(index) {
         // Check whether the left slide button exists. If yes, the button cannot be clicked.
         if (this.itemTouchedIdx >= 0 && this.messageList[this.itemTouchedIdx].isDelShow) {
@@ -439,8 +339,8 @@ export default class InfoMsgController {
         if (contactsNum == common.int.MESSAGE_CODE_ONE) {
             var actionData: LooseObject = {};
             actionData.phoneNumber = telephone;
-            actionData.pageFlag = common.contractPage.PAGE_FLAG_CONTACT_DETAILS;
-            this.jumpToContract(actionData);
+            actionData.pageFlag = common.contactPage.PAGE_FLAG_CONTACT_DETAILS;
+            this.jumpToContact(actionData);
         } else {
             let threadId = item.threadId;
             let contactsNum = item.contactsNum;
@@ -490,78 +390,57 @@ export default class InfoMsgController {
     }
     // Counting the number of unread messages
     countUnread() {
-        let actionData: LooseObject = {};
         let that = this;
-        messageService.statisticalData(actionData, function (result) {
+        ConversationListService.getInstance().statisticalData(result => {
             if (result.code == common.int.SUCCESS) {
                 // Unreading of notification messages
                 that.unreadTotalOfInfo = result.response.unreadTotalOfInfo;
                 HiLog.i(TAG, "countUnread = " + that.unreadTotalOfInfo);
+                NotificationService.getInstance().setBadgeNumber(Number(result.response.totalListCount));
             } else {
                 HiLog.w(TAG, "countUnread, statisticalData failed");
             }
-        });
+        }, null);
     }
     // Mark all unread notifications as read.
     clickToMarkAllAsReadForInfo() {
-        let actionData = {
-            hasRead: 1,
-            smsType: 1
-        }
-        let threadIds = [];
+        let threadIds: Array<number> = [];
         for (let msg of this.messageList) {
             msg.countOfUnread = common.int.MESSAGE_CODE_ZERO;
             threadIds.push(msg.threadId);
         }
-        this.cancelMessageInfoNotify(threadIds, () => {
-            messageService.markAllToRead(actionData);
-            this.unreadTotalOfInfo = 0;
-        });
+        let actionData: LooseObject = {};
+        actionData.threadIds = threadIds;
+        actionData.hasRead = common.is_read.UN_READ;
+        actionData.smsType = common.sms_type.NOTICE;
+        NotificationService.getInstance().cancelMessageNotify(actionData);
+        ConversationListService.getInstance().markAllToRead(actionData);
+        NotificationService.getInstance().updateBadgeNumber();
+        this.unreadTotalOfInfo = 0;
     }
 
     markAllAsReadByIndex(index) {
-        let item = this.messageList[index];
-        let threadId = item.threadId;
-        let threadIds = [threadId];
-        this.cancelMessageInfoNotify(threadIds, () => {
-            // Marks all information about a contact (argument type: array) as read.
-            this.markAllAsRead(threadIds);
-            this.setListItemTransX(0);
-            item.isDelShow = false;
-        });
-    }
-
-    cancelMessageInfoNotify(threadIds, callback) {
-        let actionData = {
-            threadIds: threadIds,
-            hasRead: 0
-        };
-        NotificationService.getInstance().cancelMessageNotify(actionData, res => {
-            callback();
-        });
-    }
-
-    markAllAsRead(threadIds) {
-        let tempMsgList = this.messageList;
-        // Marks all information about a contact (argument type: array) as read.
-        let valueBucket = {
-            "unread_count": 0,
-        };
+        let item: LooseObject = this.messageList[index];
+        let threadId: number = item.threadId;
         let actionData: LooseObject = {};
-        actionData.threadIds = threadIds;
-        actionData.valueBucket = valueBucket;
-        actionData.hasRead = 1;
-        // Update data marked read to 0
-        messageService.markAllAsRead(actionData);
+        actionData.threadId = threadId;
+        actionData.hasRead = common.is_read.UN_READ;
+        NotificationService.getInstance().cancelMessageNotify(actionData);
+        NotificationService.getInstance().updateBadgeNumber();
+        ConversationListService.getInstance().markAllToRead(actionData);
+        let tempMsgList: Array<LooseObject> = this.messageList;
         for (let msg of tempMsgList) {
-            if (threadIds.indexOf(msg.threadId) > common.int.FAILURE) {
+            if (threadId == msg.threadId) {
                 // Controls the display of unread icons in the list
                 msg.countOfUnread = common.int.MESSAGE_CODE_ZERO;
             }
         }
         this.messageList = tempMsgList;
         this.conversationListDataSource.refresh(this.messageList);
-        this.unreadTotalOfInfo = this.unreadTotalOfInfo - threadIds.length;
+        this.unreadTotalOfInfo = this.unreadTotalOfInfo - 1;
+
+        this.setListItemTransX(0);
+        item.isDelShow = false;
     }
 
     selectInMoreMenu(menuId: number) {
@@ -609,19 +488,13 @@ export default class InfoMsgController {
 
     deleteDialogConfirm() {
         this.setDelShow();
-        let mmsList = [];
-        let threadIds = [];
-        let lockSessionIds = [];
-        for (let item of this.messageList) {
-            if (item.isCbChecked) {
-                if (item.isLock && !this.isSelectLockMsg) {
-                    lockSessionIds.push(item.threadId);
-                    mmsList.push(item);
-                } else {
-                    threadIds.push(item.threadId);
-                }
+        let mmsList: Array<LooseObject> = [];
+        let threadIds: Array<number> = [];
+        for (let element of this.messageList) {
+            if (element.isCbChecked) {
+                threadIds.push(element.threadId);
             } else {
-                mmsList.push(item);
+                mmsList.push(element);
             }
         }
         this.isMultipleSelectState = false;
@@ -633,9 +506,13 @@ export default class InfoMsgController {
         if (this.total == 0) {
             router.back();
         }
-        this.deleteNotifyMessageInfo(threadIds, lockSessionIds, () => {
-            this.deleteMessageInfoByThreadIds(threadIds, lockSessionIds);
-        });
+        let actionData: LooseObject = {};
+        actionData.threadIds = threadIds;
+        actionData.hasRead = common.is_read.UN_READ;
+        NotificationService.getInstance().cancelMessageNotify(actionData);
+        NotificationService.getInstance().updateBadgeNumber();
+        actionData.hasRead = null;
+        ConversationListService.getInstance().deleteMessageById(actionData, null, null);
     }
 
     setDelShow() {
@@ -646,31 +523,6 @@ export default class InfoMsgController {
         }
     };
 
-    deleteNotifyMessageInfo(threadIds, lockSessionIds, callback) {
-        let sessionIds = [];
-        if (lockSessionIds.length > 0) {
-            sessionIds.push(lockSessionIds);
-        }
-        if (threadIds.length > 0) {
-            sessionIds.push(threadIds);
-        }
-        this.cancelMessageInfoNotify(sessionIds, callback);
-    }
-
-    deleteMessageInfoByThreadIds(threadIds, lockSessionIds) {
-        let actionData: LooseObject = {};
-        if (threadIds.length > 0) {
-            actionData.threadIds = threadIds;
-            messageService.deleteMessageById(actionData);
-        }
-        if (lockSessionIds.length > 0) {
-            actionData.threadIds = lockSessionIds;
-            messageService.dealMessageLockContent(actionData, res => {
-                actionData.hasLock = 0;
-                messageService.deleteMessageBySessionIdsAndLock(actionData);
-            });
-        }
-    }
     // Select All/Deselect All
     clickConversationCheckAll() {
         if (this.isConversationCheckAll) {
@@ -712,11 +564,11 @@ export default class InfoMsgController {
         if (contactsNum == common.int.MESSAGE_CODE_ONE) {
             var actionData = {
                 phoneNumber: telephone,
-                pageFlag: common.contractPage.PAGE_FLAG_CONTACT_DETAILS
+                pageFlag: common.contactPage.PAGE_FLAG_CONTACT_DETAILS
             };
-            this.jumpToContract(actionData);
+            this.jumpToContact(actionData);
         } else {
-            let threadId = this.messageList[index].threadId;
+            let threadId = this.messageList[index]?.threadId;
             let contactsNum = this.messageList[index]?.contactsNum;
             this.jumpToGroupDetail(threadId, contactsNum);
         }
@@ -755,8 +607,8 @@ export default class InfoMsgController {
                 return false;
             }
             if (item.isDelShow) {
-                this.setListItemTransX(0);
                 item.isDelShow = false;
+                this.setListItemTransX(0);
                 return true;
             }
         }
@@ -857,11 +709,11 @@ export default class InfoMsgController {
         }
     }
     // Switching to the Contacts app
-    jumpToContract(actionData) {
-        var str = commonService.commonContractParam(actionData);
+    jumpToContact(actionData) {
+        var str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
         }).catch((error) => {
-            HiLog.e(TAG, "jumpToContract, failed: " + JSON.stringify(error.message));
+            HiLog.e(TAG, "jumpToContact, failed: " + JSON.stringify(error.message));
         })
         this.isJumping = false;
     }
