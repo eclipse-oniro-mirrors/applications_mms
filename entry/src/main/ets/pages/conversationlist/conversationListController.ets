@@ -774,13 +774,13 @@ export default class ConversationListController {
         router.push({
             uri: "pages/conversation/conversation",
             params: {
-                strContactsNumber: item.telephone,
-                strContactsNumberFormat: item.telephoneFormat,
-                strContactsName: item.name,
-                contactsNum: item.contactsNum,
-                threadId: item.threadId,
-                isDraft: item.isDraft,
-                draftContent: item.content,
+                strContactsNumber: item?.telephone,
+                strContactsNumberFormat: item?.telephoneFormat,
+                strContactsName: item?.name,
+                contactsNum: item?.contactsNum,
+                threadId: item?.threadId,
+                isDraft: item?.isDraft,
+                draftContent: item?.content,
                 searchContent: this.inputValueOfSearch
             }
         });
