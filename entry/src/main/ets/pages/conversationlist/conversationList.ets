@@ -30,7 +30,7 @@ export default struct ConversationList {
     private dialogGridCount: number = 4;
     delDialogController: CustomDialogController = null;
     @State mIsMultipleSelectState: boolean = false;
-    @Provide menuItems:any = [];
+    @Provide menuItems: Array<any> = [];
 
     changeSelectState() {
         this.mIsMultipleSelectState = this.mConListCtrl.isMultipleSelectState;
