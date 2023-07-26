@@ -63,7 +63,7 @@ struct Settings {
             enabled: true
         }
     ];
-    @Provide statusTitle: any = '' ;
+    @Provide statusTitle: Array<any> = '' ;
 
     /**
      * The function executes after a new instance of the custom component is created and before its build function
