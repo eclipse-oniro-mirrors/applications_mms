@@ -41,6 +41,14 @@
                 <filteritem type="filepath" name="entry/src/main/ets/MainAbility/workers/.*.js" desc="worker file"/>
                 <filteritem type="filepath" name="entry/src/main/.*.json5" desc="build config file"/>
             </filefilter>
+            <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
+                <filteritem type="filename" name="hvigorw" desc="Build Files"/>
+                <filteritem type="filename" name="hvigorw.bat" desc="Build Files"/>
+            </filefilter>
+            <filefilter name="defaultPolicyFilter" desc="Filters for LICENSE file policies">
+                <filteritem type="filename" name="hvigorw" desc="Build Files"/>
+                <filteritem type="filename" name="hvigorw.bat" desc="Build Files"/>
+            </filefilter>
             <filefilter name="defaultPolicyFilter" desc="Filters for compatibility，license header policies">
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
