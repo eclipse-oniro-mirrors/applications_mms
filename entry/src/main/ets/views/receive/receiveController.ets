@@ -291,7 +291,10 @@ export default class ReceiveController {
         if (this.selectContacts.length == 0) {
             return '';
         }
-        let myName = this.selectContacts[0]?.contactName.trim();
+        let myName = this.selectContacts[0]?.contactName?.trim();
+        if (!myName) {
+            myName = ""
+        }
         let telephone = this.selectContacts[0]?.telephone
         if (telephone === undefined || telephone === null) {
             Hilog.e(TAG, "setShowContactName fail");
