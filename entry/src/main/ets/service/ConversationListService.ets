@@ -413,6 +413,9 @@ export default class ConversationListService {
       "has_attachment": param.hasAttachment,
       "has_mms": param.hasMms,
     }
+    if (response == undefined || response == null) {
+      return
+    }
     let sessionId: number = response.id;
     let condition: LooseObject = {};
     condition.threadId = sessionId;
