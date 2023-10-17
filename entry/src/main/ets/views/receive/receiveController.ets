@@ -297,7 +297,7 @@ export default class ReceiveController {
         }
         let telephone = this.selectContacts[0]?.telephone
         if (telephone === undefined || telephone === null) {
-            Hilog.e(TAG, "setShowContactName fail");
+            HiLog.e(TAG, "setShowContactName fail");
             return '';
         }
         if (!this.isPhoneNumber(telephone)) {
