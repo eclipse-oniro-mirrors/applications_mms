@@ -274,6 +274,7 @@ export default class InfoMsgController {
                 }
             });
         }
+        this.conversationListDataSource.refresh(this.messageList);
         if (!this.isConversationCheckAll) {
             // Non-Select All Status
             this.strCheckBoxSelectTip = $r("app.string.msg_select_all");
