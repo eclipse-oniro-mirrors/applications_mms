@@ -52,10 +52,6 @@ export default class NotificationService {
             notificationRequest.wantAgent = data;
             notificationRequest.id = actionData.msgId;
             notificationRequest.label = label + actionData.msgId;
-            if(Number(actionData.unreadTotal) >= 0){
-                HiLog.i(TAG, `unreadTotal is: ${Number(actionData.unreadTotal)}`)
-                notificationManager.setBadgeNumber(Number(actionData.unreadTotal));
-            }
             Notification.publish(notificationRequest);
             HiLog.i(TAG, "sendNotify finished");
         });
