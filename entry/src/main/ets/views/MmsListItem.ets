@@ -114,7 +114,7 @@ export struct MmsListItem {
                             //Content Abbreviations for Latest News
                             Row() {
                                 //Whether the latest message has not been sent successfully. If yes,
-                                if (this.item.conversation.sendingFailed) {
+                                if (this.item.conversation.sendingFailed && !(this.item.conversation.isDraft)) {
                                     Text($r("app.string.messageSendFailed"))
                                         .fontSize("12fp")
                                         .fontColor($r("sys.color.ohos_id_color_warning"))
