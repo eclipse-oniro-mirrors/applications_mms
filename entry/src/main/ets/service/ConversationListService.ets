@@ -524,6 +524,9 @@ export default {
     updateLastItemContent(actionData) {
         let length = actionData.mmsList.length;
         let item = actionData.mmsList[length - 1];
+        if (!item) {
+            return;
+        };
         let content = item.content || '';
         let threadIds = [actionData.threadId];
         let hasAttachment = false;

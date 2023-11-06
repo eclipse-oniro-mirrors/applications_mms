@@ -491,6 +491,9 @@ export default class ConversationController {
         // Query the last content in the list
         let length = this.mmsList.length;
         let item = this.mmsList[length - 1];
+        if (!item) {
+            return;
+        };
         // Updating list data
         let threadIds = [this.threadId];
         let time = new Date();
