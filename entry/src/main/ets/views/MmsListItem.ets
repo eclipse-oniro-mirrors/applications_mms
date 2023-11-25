@@ -167,7 +167,7 @@ export struct MmsListItem {
                         //              .margin({ right: -14 })
                     }
                 }
-                .alignItems(VerticalAlign.Top)
+                .alignItems(VerticalAlign.Center)
                 .width("100%")
                 .height("100%")
                 .offset({
