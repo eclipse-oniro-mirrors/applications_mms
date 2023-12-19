@@ -107,6 +107,7 @@ export default struct ConversationList {
      */
     aboutToDisappear() {
         this.mConListCtrl.unregisterDataChangeObserver(this.onContactChange, getContext(this))
+        this.delDialogController = null;
     }
 
     build() {

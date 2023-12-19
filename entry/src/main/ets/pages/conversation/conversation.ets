@@ -105,6 +105,9 @@ export struct Conversation {
     aboutToDisappear() {
         emitter.off(common.int.EVENT_SIM_STATE_CHANGE);
         emitter.off(common.int.EVENT_SLOTID_CHANGE);
+
+        this.dialogController = null;
+        this.delConversionController = null;
     }
 
     onPageShow() {
