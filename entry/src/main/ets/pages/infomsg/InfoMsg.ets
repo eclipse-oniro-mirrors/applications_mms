@@ -97,6 +97,7 @@ export default struct InfoMsg {
      * can cause erratic application behavior.
      */
     aboutToDisappear() {
+        this.delDialogController = null;
     }
     /**
      * Triggers once when this page is displayed. In scenarios such as routing and application access to the
