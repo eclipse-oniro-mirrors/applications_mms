@@ -319,6 +319,9 @@ export default class ConversationListController {
         }
         this.itemTouchedIdx = index;
         let item = this.messageList[this.itemTouchedIdx];
+        if (item == null || item == undefined) {
+            return;
+        }
         if (item.countOfUnread > 0) {
             this.operateBtnW = common.int.OPERATE_UNREAD_WIDTH;
         } else {
