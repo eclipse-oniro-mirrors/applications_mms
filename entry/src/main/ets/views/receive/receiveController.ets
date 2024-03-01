@@ -270,6 +270,9 @@ export default class ReceiveController {
         }
         this.selectContacts.push(curItem);
         this.contactsTemp = this.contactsTemp.filter((item) => {
+            if (item.telephone == undefined || curItem.telephone == undefined) {
+                return;
+            }
             return item.telephone != curItem.telephone
         });
         this.contacts.splice(index, 1);
