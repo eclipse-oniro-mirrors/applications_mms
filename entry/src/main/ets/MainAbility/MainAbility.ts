@@ -53,6 +53,9 @@ export default class MainAbility extends Ability {
 
     onDestroy() {
         HiLog.i(TAG, 'Ability onDestroy');
+        if (globalThis.DataWorker == null || globalThis.DataWorker == undefined) {
+            return;
+        }
         globalThis.DataWorker.close();
     }
 }

@@ -754,6 +754,9 @@ export default class ConversationListController {
         }
         // If multiple options are selected, the system responds to CheckBox.
         if (this.isMultipleSelectState) {
+            if (this.messageList[index] == null || this.messageList[index] == undefined) {
+                return;
+            }
             this.messageList[index].isCbChecked = !this.messageList[index].isCbChecked;
             this.setConversationCheckAll(common.int.CHECKBOX_SELECT_UNKNOWN);
             return;
