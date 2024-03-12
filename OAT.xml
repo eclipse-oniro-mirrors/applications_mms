@@ -40,6 +40,7 @@
                 <filteritem type="filepath" name="entry/.*.json5" desc="build config file"/>
                 <filteritem type="filepath" name="entry/src/main/ets/MainAbility/workers/.*.js" desc="worker file"/>
                 <filteritem type="filepath" name="entry/src/main/.*.json5" desc="build config file"/>
+                <filteritem type="filepath" name="hvigorfile.js" desc="Build Files"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="Filters for compatibility，license header policies">
             </filefilter>
