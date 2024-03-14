@@ -1334,8 +1334,14 @@ export default class ConversationController {
     }
 
     getSendMessageId(initDatas, telephone): number {
+        if (initData == undefined || initData == null) {
+            return;
+        }
         for (let initData of initDatas) {
             if (initData.telephone == telephone) {
+                if (initData.id == undefined || initData.id == null) {
+                    return;
+                }
                 return initData.id;
             }
         }
@@ -1359,6 +1365,9 @@ export default class ConversationController {
                 "content": content,
             };
             let id: number = this.getSendMessageId(initDatas, sendNumbers[i]);
+            if (id == undefined || id == null) {
+                return;
+            }
             let sendResult: LooseObject = {
                 "id": id,
                 "telephone": sendNumbers[i],
@@ -1465,7 +1474,19 @@ export default class ConversationController {
     setDateShow(item, list) {
         item.dateShow = true;
         let tempDateId = item.date.id;
+        if (item.date == undefined || item.date == null) {
+            return;
+        }
+        if (item.date.id == undefined || item.date.id == null) {
+            return;
+        }
         let tempWeekId = item.week.id;
+        if (item.week == undefined || item.week == null) {
+            return;
+        }
+        if (item.week.id == undefined || item.week.id == null) {
+            return;
+        }
         if (list.length > 0) {
             item.dateShow =
             (tempDateId != (list[list.length-1]).date.id)
@@ -1700,6 +1721,12 @@ export default class ConversationController {
             this.threadId = result.rowId;
             this.portraitColor = AvatarColor.background.Color[Math.abs(this.threadId) % 6];
             item.groupId = result.groupId;
+            if (result.initDatas[0] == undefined || result.initDatas[0] == null) {
+                return;
+            }
+            if (result.initDatas[0].id == undefined || result.initDatas[0].id == null) {
+                return;
+            }
             item.id = result.initDatas[0].id;
             this.refresh = !this.refresh
             // Sending and processing the sending result
@@ -1827,6 +1854,12 @@ export default class ConversationController {
         }
         let number: string = telephoneUtil.dealTelephoneSort(telephone);
         ConversationListService.getInstance().querySessionByTelephone(number, res => {
+            if (res.response == undefined || res.response == null) {
+                return;
+            }
+            if (res.response.id == undefined || res.response.id == null) {
+                return;
+            }
             HiLog.i(TAG, "queryOldMessageList, querySessionByTelephone res.response.id: " + res.response.id);
             if (res.code == common.int.SUCCESS && res.response.id > 0) {
                 if (this.threadId != res.response.id) {
