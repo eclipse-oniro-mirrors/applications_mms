@@ -1334,6 +1334,9 @@ export default class ConversationController {
     }
 
     getSendMessageId(initDatas, telephone): number {
+        if (initData == undefined || initData == null) {
+            return;
+        }
         for (let initData of initDatas) {
             if (initData.telephone == telephone) {
                 if (initData.id == undefined || initData.id == null) {
@@ -1470,10 +1473,16 @@ export default class ConversationController {
     // Check whether the time on the top of each SMS message is displayed.
     setDateShow(item, list) {
         item.dateShow = true;
+        if (item.date == undefined || item.date == null) {
+            return;
+        }
         if (item.date.id == undefined || item.date.id == null) {
             return;
         }
         let tempDateId = item.date.id;
+        if (item.week == undefined || item.week == null) {
+            return;
+        }
         if (item.week.id == undefined || item.week.id == null) {
             return;
         }
@@ -1712,6 +1721,9 @@ export default class ConversationController {
             this.threadId = result.rowId;
             this.portraitColor = AvatarColor.background.Color[Math.abs(this.threadId) % 6];
             item.groupId = result.groupId;
+            if (result.initDatas[0] == undefined || result.initDatas[0] == null) {
+                return;
+            }
             if (result.initDatas[0].id == undefined || result.initDatas[0].id == null) {
                 return;
             }
@@ -1842,6 +1854,9 @@ export default class ConversationController {
         }
         let number: string = telephoneUtil.dealTelephoneSort(telephone);
         ConversationListService.getInstance().querySessionByTelephone(number, res => {
+            if (res.response == undefined || res.response == null) {
+                return;
+            }
             if (res.response.id == undefined || res.response.id == null) {
                 return;
             }
