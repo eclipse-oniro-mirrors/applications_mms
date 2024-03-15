@@ -1334,10 +1334,10 @@ export default class ConversationController {
     }
 
     getSendMessageId(initDatas, telephone): number {
-        if (initData == undefined || initData == null) {
-            return;
-        }
         for (let initData of initDatas) {
+            if (initData == undefined || initData == null) {
+                return;
+            }
             if (initData.telephone == telephone) {
                 if (initData.id == undefined || initData.id == null) {
                     return;
