@@ -109,6 +109,7 @@ struct AdvancedSettings {
      * variable may cause unstable application behavior.
      */
     aboutToDisappear() {
+        this.deliveryReportsDialogCtrl = null;
     }
     /**
      * Triggered when a user clicks the back button. Only the customized component modified by @Entry takes effect.

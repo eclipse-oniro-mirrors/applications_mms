@@ -49,6 +49,7 @@ export default struct TransmitMsg {
     }
 
     aboutToDisappear() {
+        this.delDialogController = null;
     }
 
     onPageShow() {
