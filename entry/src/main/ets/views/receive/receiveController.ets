@@ -71,6 +71,18 @@ export default class ReceiveController {
         this.refresh = !this.refresh;
     }
 
+    onBackPress() {
+        this.InputTextClear();
+        return true;
+    }
+
+    InputTextClear() {
+        this.myText = "";
+        this.setInputStatus(true);
+        this.commonCtrl.paramContact.transmitContacts = [];
+        HiLog.i(TAG,"InputTextClear")
+    }
+
     requestItem() {
         let count = this.page * this.limit;
         if (this.page === 0) {
