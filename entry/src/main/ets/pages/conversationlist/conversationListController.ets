@@ -410,7 +410,7 @@ export default class ConversationListController {
             }
             this.setConversationCheckAll(common.int.CHECKBOX_SELECT_ALL);
         }
-        this.conversationListDataSource.notifyDataReload()
+        this.conversationListDataSource.notifyDataReload();
     }
 
     clickConversationDelete() {
