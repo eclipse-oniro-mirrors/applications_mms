@@ -40,7 +40,7 @@ export default struct ConversationList {
                 action: () => {
                     this.mConListCtrl.showMultipleSelectView();
                 },
-                enabled: true
+                enabled: this.mConListCtrl.conversationListDataSource.totalCount() == 0 ? false : true
             },
             {
                 value: $r("app.string.markAllAsRead"),

@@ -14,6 +14,9 @@
  */
 import ReceiveController from "./receiveController"
 import ConversationController from "../../pages/conversation/conversationController"
+import HiLog from "../../utils/HiLog";
+
+const TAG = "Receive";
 
 @Component
 export struct Receive {
@@ -24,6 +27,11 @@ export struct Receive {
         this.mReceiveController.onInit((receiverData) => {
             this.mConversationController.setReceiveContactValue(receiverData)
         })
+    }
+
+    aboutToDisappear() {
+        HiLog.i(TAG,"aboutToDisappear")
+        this.mReceiveController.onBackPress();
     }
 
     build() {
