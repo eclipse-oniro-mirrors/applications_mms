@@ -16,6 +16,8 @@ import ReceiveController from "./receiveController"
 import ConversationController from "../../pages/conversation/conversationController"
 import HiLog from "../../utils/HiLog";
 
+const TAG = "Receive";
+
 @Component
 export struct Receive {
     @State mReceiveController: ReceiveController = ReceiveController.getInstance();
