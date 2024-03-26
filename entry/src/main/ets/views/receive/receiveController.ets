@@ -285,6 +285,7 @@ export default class ReceiveController {
             if (item.telephone == undefined || curItem.telephone == undefined) {
                 return;
             }
+            HiLog.w(TAG, "addContact" + JSON.stringify(item.telephone));
             return item.telephone != curItem.telephone
         });
         this.contacts.splice(index, 1);
@@ -351,7 +352,11 @@ export default class ReceiveController {
     }
 
     nameClick(idx, call) {
-        HiLog.i(TAG, "click-->" + idx)
+        HiLog.i(TAG, "click-->" + idx);
+        if (this.selectContacts[idx] == null || this.selectContacts[idx] == undefined) {
+            return;
+        }
+
         if (this.selectContacts[idx].select) {
             let item = this.selectContacts.splice(idx, 1);
             // Deleted items are added to the collection to be searched.
