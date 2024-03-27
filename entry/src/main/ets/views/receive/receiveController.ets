@@ -285,7 +285,7 @@ export default class ReceiveController {
             if (item.telephone == undefined || curItem.telephone == undefined) {
                 return;
             }
-            HiLog.w(TAG, "addContact" + JSON.stringify(item.telephone));
+            HiLog.w(TAG, "addContact");
             return item.telephone != curItem.telephone
         });
         this.contacts.splice(index, 1);
