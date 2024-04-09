@@ -2302,7 +2302,6 @@ export default class ConversationController {
         let receiveContactValue = selectContacts.length > 0 ? common.string.EMPTY_STR : receiverData.contactValue;
         let hasBlur = receiverData.hasBlur;
         let telephone = common.string.EMPTY_STR;
-        this.textValue = common.string.EMPTY_STR;
         this.setCanSendMessage(selectContacts, receiveContactValue)
         if(receiveContactValue != this.strContactsName && router.getParams[0]?.isDraft == null) {
             this.isDraft = false;
