@@ -2028,9 +2028,9 @@ export default class ConversationController {
         HiLog.i(TAG, "subscriberCallBack, start");
         globalThis.needToUpdate = true;
         // Receiving SMS Updates
+        this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
+        });
         setTimeout(() => {
-            this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
-            });
             this.scroller.scrollToIndex(this.mmsList.length - 1);
             let actionData: LooseObject = {};
             actionData.threadId = this.threadId;
