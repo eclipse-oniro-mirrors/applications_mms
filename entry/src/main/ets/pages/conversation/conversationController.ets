@@ -2035,9 +2035,9 @@ export default class ConversationController {
             let actionData: LooseObject = {};
             actionData.threadId = this.threadId;
             actionData.hasRead = common.is_read.UN_READ;
-            ConversationListService.getInstance().markAllToRead(actionData);
             NotificationService.getInstance().cancelMessageNotify(actionData);
             NotificationService.getInstance().updateBadgeNumber();
+            ConversationListService.getInstance().markAllToRead(actionData);
             let lastItem: LooseObject = this.mmsList[this.mmsList.length - 1];
             if (lastItem != null && lastItem.subId != null) {
                 this.notifySlotIdChange(lastItem.subId);

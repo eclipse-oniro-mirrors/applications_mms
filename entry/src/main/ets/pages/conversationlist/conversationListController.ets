@@ -513,11 +513,11 @@ export default class ConversationListController {
             }
         }
         let actionData: LooseObject = {};
-        ConversationListService.getInstance().markAllToRead(actionData);
         NotificationService.getInstance().setBadgeNumber(0);
         actionData.threadIds = threadIds;
         actionData.hasRead = common.is_read.UN_READ;
         NotificationService.getInstance().cancelMessageNotify(actionData);
+        ConversationListService.getInstance().markAllToRead(actionData);
         this.unreadTotalOfInfo = 0;
         this.unreadTotal = 0;
         let tempMsgList: Array<LooseObject> = this.messageList;
