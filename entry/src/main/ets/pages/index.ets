@@ -131,7 +131,6 @@ struct Index {
         }
       }
       .height('100%')
-//      .margin({ left: this.gridMargin, right: this.gridMargin })
     }
     .padding({ left: this.gridMargin, right: this.gridMargin })
     .width("100%")
