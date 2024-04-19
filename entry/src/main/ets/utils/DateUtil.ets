@@ -225,8 +225,6 @@ export default {
         let dayOfSms = sms.getDate();
         let weekOfSms = sms.getDay();
         date = $r("app.string.yearMonthDayDate", yearOfSms, monthOfSms, dayOfSms, '');
-        //        let time = this.convertTimeStampTime(timeStampFromDb, false);
-        //        return date + " " + time;
         return date;
     },
 

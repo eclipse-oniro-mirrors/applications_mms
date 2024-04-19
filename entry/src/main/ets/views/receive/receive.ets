@@ -154,13 +154,6 @@ export struct Receive {
             Column() {
                 // Indicates whether to display the recent contact list.
                 if (this.mReceiveController.isShowSearch && this.mReceiveController.contacts.length > 0) {
-                    //                    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-                    //                        Text("最近联系人")
-                    //                            .fontSize(16)
-                    //                            .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
-                    //                            .fontWeight(FontWeight.Regular)
-                    //                    }
-                    //                    .height(48)
                     // List area
                     List({ space: 0, initialIndex: 0 }) {
                         ForEach(this.mReceiveController.contacts, (item, index) => {

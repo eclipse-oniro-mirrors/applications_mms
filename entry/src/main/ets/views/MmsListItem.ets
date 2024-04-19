@@ -163,8 +163,6 @@ export struct MmsListItem {
                             .height("20vp")
                             .selectedColor($r("sys.color.ohos_id_color_activated"))
                             .hitTestBehavior(HitTestMode.None)
-                        //              .enabled(false)
-                        //              .margin({ right: -14 })
                     }
                 }
                 .alignItems(VerticalAlign.Center)

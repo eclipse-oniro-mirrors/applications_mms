@@ -57,7 +57,6 @@ export default class ReceiveController {
 
     onInit(call) {
         HiLog.i(TAG, "onInit()")
-        //    this.$watch("paramContact", "onPropertyChange");
         this.selectContacts = this.commonCtrl.paramContact.transmitContacts;
         if (this.selectContacts.length > 0) {
             let that = this;
@@ -244,9 +243,6 @@ export default class ReceiveController {
     dealSearchData() {
         if (this.myText.trim() == "") {
             this.contacts = this.contactsTemp.slice(0);
-            //      this.$element("receiveTxt").focus({
-            //        focus: true
-            //      });
         } else {
             let textValue = this.myText.trim().toLowerCase();
             // Filtering logic
