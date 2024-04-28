@@ -110,7 +110,7 @@ export abstract class WorkerWrapper {
      */
     public close() {
         HiLog.i(TAG, `${this.getWorkerType()} worker close!`);
-        if (this.mWorker == null) {
+        if (this.mWorker != null) {
             this.mWorker.terminate();
         }
         this.mWorker = null;
