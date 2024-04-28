@@ -79,7 +79,6 @@ export default class ReceiveController {
     InputTextClear() {
         this.myText = "";
         this.setInputStatus(true);
-        this.commonCtrl.paramContact.transmitContacts = [];
         HiLog.i(TAG,"InputTextClear")
     }
 
@@ -280,6 +279,9 @@ export default class ReceiveController {
             });
             return;
         }
+        if (curItem.telephone == undefined) {
+            HiLog.w(TAG, "curItem.telephone is undefined");
+        }
         this.selectContacts.push(curItem);
         this.contactsTemp = this.contactsTemp.filter((item) => {
             if (item.telephone == undefined || curItem.telephone == undefined) {
@@ -356,7 +358,7 @@ export default class ReceiveController {
         if (this.selectContacts[idx] == null || this.selectContacts[idx] == undefined) {
             return;
         }
-        if (this.selectContacts[idx].select) {
+        if (this.selectContacts[idx].select && this.selectContacts[idx].select != undefined) {
             let item = this.selectContacts.splice(idx, 1);
             // Deleted items are added to the collection to be searched.
             this.contactsTemp.push(item);
