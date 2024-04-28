@@ -79,7 +79,6 @@ export default class ReceiveController {
     InputTextClear() {
         this.myText = "";
         this.setInputStatus(true);
-        this.commonCtrl.paramContact.transmitContacts = [];
         HiLog.i(TAG,"InputTextClear")
     }
 
