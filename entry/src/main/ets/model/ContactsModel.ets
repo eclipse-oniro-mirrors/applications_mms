@@ -1,27 +1,27 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import dataShare from "@ohos.data.dataShare";
-import dataSharePredicates from "@ohos.data.dataSharePredicates";
+import dataShare from '@ohos.data.dataShare';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
-import BaseModel from "./BaseModel";
-import common from "../data/commonData";
-import HiLog from "../utils/HiLog";
-import mmsTable from "../data/tableData";
-import LooseObject from "../data/LooseObject"
+import BaseModel from './BaseModel';
+import common from '../data/commonData';
+import HiLog from '../utils/HiLog';
+import mmsTable from '../data/tableData';
+import LooseObject from '../data/LooseObject'
 
-const TAG = "ContactsModel";
+const TAG = 'ContactsModel';
 
 export default class ContactsModel extends BaseModel {
   public async queryContactDataByCondition(actionData, callback, context): Promise<void> {
@@ -38,7 +38,7 @@ export default class ContactsModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "queryContactDataByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'queryContactDataByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
@@ -51,7 +51,7 @@ export default class ContactsModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "queryContactDataSizeByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'queryContactDataSizeByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
@@ -70,7 +70,7 @@ export default class ContactsModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "queryContactByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'queryContactByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
@@ -83,7 +83,7 @@ export default class ContactsModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "queryContactSizeByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'queryContactSizeByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
@@ -96,7 +96,7 @@ export default class ContactsModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "queryRawContactSizeByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'queryRawContactSizeByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
@@ -115,7 +115,7 @@ export default class ContactsModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "queryContactViewByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'queryContactViewByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
@@ -172,7 +172,7 @@ export default class ContactsModel extends BaseModel {
 
   private buildQueryContactDataCondition(actionData): dataSharePredicates.DataSharePredicates {
     let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    condition.equalTo(mmsTable.contactDataColumns.typeId, "5");
+    condition.equalTo(mmsTable.contactDataColumns.typeId, '5');
     if (actionData.hasDelete != null) {
       condition.and().equalTo(mmsTable.contactDataColumns.hasDelete, actionData.hasDelete);
     }
@@ -194,7 +194,7 @@ export default class ContactsModel extends BaseModel {
     }
     if (actionData.telephone != null) {
       condition.and()
-        .equalTo(mmsTable.searchContactView.contentType, "phone")
+        .equalTo(mmsTable.searchContactView.contentType, 'phone')
         .beginWrap()
         .contains(mmsTable.searchContactView.displayName, actionData.telephone)
         .or()
@@ -214,7 +214,7 @@ export default class ContactsModel extends BaseModel {
 
   private buildQueryContactViewCondition(actionData): dataSharePredicates.DataSharePredicates {
     let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    condition.equalTo(mmsTable.searchContactView.contentType, "phone")
+    condition.equalTo(mmsTable.searchContactView.contentType, 'phone')
       .beginWrap()
       .contains(mmsTable.searchContactView.displayName, actionData.telephone)
       .or()

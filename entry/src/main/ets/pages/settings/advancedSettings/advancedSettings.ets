@@ -1,49 +1,49 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AdvancedSettingsController from "./advancedSettingsController";
-import DeviceUtil from "../../../utils/DeviceUtil";
-import { MmsSimpleDialog } from "../../../views/MmsDialogs";
-import { MoreMenu } from "../../../views/MmsMenu";
-import router from "@system.router";
-import { SettingItemJump } from "../../../views/SettingItem";
-import WantUtil from "../../../utils/WantUtil";
-import SettingsController from  "../settingsController"
+import AdvancedSettingsController from './advancedSettingsController';
+import DeviceUtil from '../../../utils/DeviceUtil';
+import { MmsSimpleDialog } from '../../../views/MmsDialogs';
+import { MoreMenu } from '../../../views/MmsMenu';
+import router from '@system.router';
+import { SettingItemJump } from '../../../views/SettingItem';
+import WantUtil from '../../../utils/WantUtil';
+import SettingsController from  '../settingsController'
 
 @Entry
 @Component
 struct AdvancedSettings {
-    @StorageLink("AdvancedSettingsController") @Watch("changeSelectState") mAdvancedSettingsCtrl:
+    @StorageLink('AdvancedSettingsController') @Watch('changeSelectState') mAdvancedSettingsCtrl:
         AdvancedSettingsController = AdvancedSettingsController.getInstance();
-    @StorageLink("SettingsController") @Watch("changeSelectState") mSettingsCtrl:
+    @StorageLink('SettingsController') @Watch('changeSelectState') mSettingsCtrl:
         SettingsController = SettingsController.getInstance()
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 6, lg: 8 };
     private gridColOffset: GridColColumnOption = { md: 1, lg: 2 };
-    private gridGutter: string = "12vp";
+    private gridGutter: string = '12vp';
     private dialogGridCount: number = 4;
     dialogAlignment: DialogAlignment = DeviceUtil.isTablet() ? DialogAlignment.Center : DialogAlignment.Bottom;
     dialogOffset: Offset = DeviceUtil.isTablet() ? { dx: 0, dy: 0 } : { dx: 0, dy: -16 };
     private restoreDialog = new MmsSimpleDialog({
-        message: $r("app.string.restore_all_default_settings"),
+        message: $r('app.string.restore_all_default_settings'),
         primaryButton: {
-            value: $r("app.string.cancel"),
+            value: $r('app.string.cancel'),
             action: () => {
             }
         },
         secondaryButton: {
-            value: $r("app.string.restore"),
+            value: $r('app.string.restore'),
             action: () => {
                 this.mAdvancedSettingsCtrl.restoreSettingPageSwitchValue();
                 this.mSettingsCtrl.restoreSettingsPageSwitchValue();
@@ -52,7 +52,7 @@ struct AdvancedSettings {
     });
     @Provide menuItems: Array<any> = [
         {
-            value: $r("app.string.restore_default_settings"),
+            value: $r('app.string.restore_default_settings'),
             action: () => {
                 this.restoreDialog.show();
             },
@@ -124,32 +124,32 @@ struct AdvancedSettings {
         Column() {
             // Top Device Title
             Row() {
-                Image($rawfile("icon/ic_message_back.svg"))
-                    .width($r("app.float.icon_side_length_medium"))
-                    .height($r("app.float.icon_side_length_medium"))
+                Image($rawfile('icon/ic_message_back.svg'))
+                    .width($r('app.float.icon_side_length_medium'))
+                    .height($r('app.float.icon_side_length_medium'))
                     .margin({
-                        left: $r("app.float.action_bar_margin_left")
+                        left: $r('app.float.action_bar_margin_left')
                     })
                     .onClick(() => {
                         router.back()
                     })
 
-                Row().width($r("app.float.space_16"))
+                Row().width($r('app.float.space_16'))
 
-                Text($r("app.string.advanced"))
-                    .fontSize($r("app.float.action_bar_text_size"))
+                Text($r('app.string.advanced'))
+                    .fontSize($r('app.float.action_bar_text_size'))
                     .fontColor(Color.Black)
                     .fontWeight(FontWeight.Bold)
 
-                Row().width("100%").flexShrink(1)
+                Row().width('100%').flexShrink(1)
 
                 Column() {
                     MoreMenu()
                 }
-                .margin({ right: $r("app.float.action_bar_margin_right") })
+                .margin({ right: $r('app.float.action_bar_margin_right') })
             }
-            .width("100%")
-            .height($r("app.float.action_bar_height"))
+            .width('100%')
+            .height($r('app.float.action_bar_height'))
 
             Scroll() {
                 GridRow({ columns: this.gridColumns, gutter: this.gridGutter }) {
@@ -160,8 +160,8 @@ struct AdvancedSettings {
                             Column() {
                                 // Delivery Report
                                 SettingItemJump({
-                                    primaryTitle: $r("app.string.delivery_reports"),
-                                    secondaryTitle: $r("app.string.delivery_reports_hint"),
+                                    primaryTitle: $r('app.string.delivery_reports'),
+                                    secondaryTitle: $r('app.string.delivery_reports_hint'),
                                     showBottomDivider: false,
                                     OnClick: (event?: ClickEvent) => {
                                         this.deliveryReportsDialogCtrl.open();
@@ -169,7 +169,7 @@ struct AdvancedSettings {
                                 })
                                 // Automatically downloading MMs
                                 SettingItemJump({
-                                    primaryTitle: $r("app.string.auto_retrieve_mms"),
+                                    primaryTitle: $r('app.string.auto_retrieve_mms'),
 //                                    statusTitle: this.mAdvancedSettingsCtrl.autoRetrieveMmsSwitchInText,
                                     visibilityShow: Visibility.None,
                                     OnClick: (event?: ClickEvent) => {
@@ -177,41 +177,41 @@ struct AdvancedSettings {
                                     }
                                 })
                             }
-                            .width("100%")
+                            .width('100%')
                             .padding({
-                                top: $r("app.float.settings_item_padding_top"),
-                                bottom: $r("app.float.settings_item_padding_bottom"),
-                                left: $r("app.float.settings_item_padding_left"),
-                                right: $r("app.float.settings_item_padding_right")
+                                top: $r('app.float.settings_item_padding_top'),
+                                bottom: $r('app.float.settings_item_padding_bottom'),
+                                left: $r('app.float.settings_item_padding_left'),
+                                right: $r('app.float.settings_item_padding_right')
                             })
                             .border({
-                                radius: $r("app.float.settings_items_radius"),
-                                color: $r("sys.color.ohos_id_color_text_field_bg")
+                                radius: $r('app.float.settings_items_radius'),
+                                color: $r('sys.color.ohos_id_color_text_field_bg')
                             })
-                            .backgroundColor($r("sys.color.ohos_id_color_text_field_bg"))
+                            .backgroundColor($r('sys.color.ohos_id_color_text_field_bg'))
 
                             // Setting items of the second group
                             Column() {
                             }
-                            .width("100%")
+                            .width('100%')
                             .padding({
-                                top: $r("app.float.settings_item_padding_top"),
-                                bottom: $r("app.float.settings_item_padding_bottom"),
-                                left: $r("app.float.settings_item_padding_left"),
-                                right: $r("app.float.settings_item_padding_right")
+                                top: $r('app.float.settings_item_padding_top'),
+                                bottom: $r('app.float.settings_item_padding_bottom'),
+                                left: $r('app.float.settings_item_padding_left'),
+                                right: $r('app.float.settings_item_padding_right')
                             })
                             .border({
-                                radius: $r("app.float.settings_items_radius"),
-                                color: $r("sys.color.ohos_id_color_text_field_bg")
+                                radius: $r('app.float.settings_items_radius'),
+                                color: $r('sys.color.ohos_id_color_text_field_bg')
                             })
-                            .backgroundColor($r("sys.color.ohos_id_color_text_field_bg"))
+                            .backgroundColor($r('sys.color.ohos_id_color_text_field_bg'))
                             .visibility(Visibility.None)
 
                             // Setting items of the third group
                             Column() {
                                 // SMSC
                                 SettingItemJump({
-                                    primaryTitle: $r("app.string.sms_center"),
+                                    primaryTitle: $r('app.string.sms_center'),
                                     showBottomDivider: true,
                                     OnClick: (event?: ClickEvent) => {
                                         this.mAdvancedSettingsCtrl.jumpToSmsCenterPage(1);
@@ -219,29 +219,29 @@ struct AdvancedSettings {
                                 })
                                 // Managing SIM Card Information
                                 SettingItemJump({
-                                    primaryTitle: $r("app.string.manage_sim_card_messages"),
+                                    primaryTitle: $r('app.string.manage_sim_card_messages'),
                                     OnClick: (event?: ClickEvent) => {
                                         this.mAdvancedSettingsCtrl.jumpToManageSimPage(1);
                                     }
                                 })
                             }
-                            .width("100%")
+                            .width('100%')
                             .padding({
-                                top: $r("app.float.settings_item_padding_top"),
-                                bottom: $r("app.float.settings_item_padding_bottom"),
-                                left: $r("app.float.settings_item_padding_left"),
-                                right: $r("app.float.settings_item_padding_right")
+                                top: $r('app.float.settings_item_padding_top'),
+                                bottom: $r('app.float.settings_item_padding_bottom'),
+                                left: $r('app.float.settings_item_padding_left'),
+                                right: $r('app.float.settings_item_padding_right')
                             })
                             .border({
-                                radius: $r("app.float.settings_items_radius"),
-                                color: $r("sys.color.ohos_id_color_text_field_bg")
+                                radius: $r('app.float.settings_items_radius'),
+                                color: $r('sys.color.ohos_id_color_text_field_bg')
                             })
-                            .backgroundColor($r("sys.color.ohos_id_color_text_field_bg"))
+                            .backgroundColor($r('sys.color.ohos_id_color_text_field_bg'))
                             .visibility(Visibility.None)
                         }
                         .margin({
-                            top: $r("app.float.settings_items_margin_top"),
-                            bottom: $r("app.float.settings_items_margin_bottom")
+                            top: $r('app.float.settings_items_margin_top'),
+                            bottom: $r('app.float.settings_items_margin_bottom')
                         })
                     }
                 }
@@ -249,10 +249,10 @@ struct AdvancedSettings {
             .layoutWeight(1)
             .align(Alignment.Top)
         }
-        .width("100%")
-        .height("100%")
-        .padding({ left: $r("app.float.page_padding_left"), right: $r("app.float.page_padding_right") })
-        .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+        .width('100%')
+        .height('100%')
+        .padding({ left: $r('app.float.page_padding_left'), right: $r('app.float.page_padding_right') })
+        .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
     }
 }
 
@@ -270,28 +270,28 @@ struct DeliveryReportsDialog {
     build() {
         Column() {
             Column() {
-                Text($r("app.string.delivery_reports"))
-                    .width("100%")
+                Text($r('app.string.delivery_reports'))
+                    .width('100%')
                     .height(56)
                     .textAlign(TextAlign.Start)
                     .fontSize(20)
-                    .fontColor($r("sys.color.ohos_id_color_foreground"))
+                    .fontColor($r('sys.color.ohos_id_color_foreground'))
                     .lineHeight(28)
                     .fontWeight(FontWeight.Medium)
-                    .fontFamily("HarmonyHeiTi")
+                    .fontFamily('HarmonyHeiTi')
                 Stack() {
-                    Text($r("app.string.sms"))
+                    Text($r('app.string.sms'))
                         .fontSize(16)
-                        .fontColor($r("sys.color.ohos_id_color_foreground"))
+                        .fontColor($r('sys.color.ohos_id_color_foreground'))
                         .lineHeight(22)
                         .fontWeight(FontWeight.Medium)
-                        .fontFamily("HarmonyHeiTi")
+                        .fontFamily('HarmonyHeiTi')
                         .align(Alignment.Start)
                         .width('100%')
                     Toggle({ type: ToggleType.Checkbox, isOn: this.isOnOfSms })
-                        .width("100%")
+                        .width('100%')
                         .height(20)
-                        .selectedColor($r("sys.color.ohos_id_color_activated"))
+                        .selectedColor($r('sys.color.ohos_id_color_activated'))
                         .align(Alignment.End)
                         .onChange((isOn: boolean) => {
                             this.isOnOfSms = isOn
@@ -301,22 +301,22 @@ struct DeliveryReportsDialog {
                 Divider()
                     .vertical(false)
                     .strokeWidth(0.5)
-                    .width("100%")
-                    .color($r("sys.color.ohos_id_color_list_separator"))
+                    .width('100%')
+                    .color($r('sys.color.ohos_id_color_list_separator'))
 
                 Stack() {
-                    Text($r("app.string.mms"))
+                    Text($r('app.string.mms'))
                         .fontSize(16)
-                        .fontColor($r("sys.color.ohos_id_color_foreground"))
+                        .fontColor($r('sys.color.ohos_id_color_foreground'))
                         .lineHeight(22)
                         .fontWeight(FontWeight.Medium)
-                        .fontFamily("HarmonyHeiTi")
+                        .fontFamily('HarmonyHeiTi')
                         .align(Alignment.Start)
                         .width('100%')
                     Toggle({ type: ToggleType.Checkbox, isOn: this.isOnOfMms })
-                        .width("100%")
+                        .width('100%')
                         .height(20)
-                        .selectedColor($r("sys.color.ohos_id_color_activated"))
+                        .selectedColor($r('sys.color.ohos_id_color_activated'))
                         .align(Alignment.End)
                         .onChange((isOn: boolean) => {
                             this.isOnOfMms = isOn
@@ -332,15 +332,15 @@ struct DeliveryReportsDialog {
                 alignItems: ItemAlign.Center
             }) {
                 Button() {
-                    Text($r("app.string.cancel"))
+                    Text($r('app.string.cancel'))
                         .textAlign(TextAlign.Center)
                         .fontSize(16)
-                        .fontColor($r("sys.color.ohos_id_color_activated"))
+                        .fontColor($r('sys.color.ohos_id_color_activated'))
                         .fontWeight(FontWeight.Medium)
-                        .fontFamily("HarmonyHeiTi")
+                        .fontFamily('HarmonyHeiTi')
                         .lineHeight(22)
                 }
-                .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+                .backgroundColor($r('sys.color.ohos_id_color_background_transparent'))
                 .layoutWeight(1)
                 .height(40)
                 .onClick(() => {
@@ -348,17 +348,17 @@ struct DeliveryReportsDialog {
                     this.cancel();
                 })
 
-                Divider().vertical(true).strokeWidth(0.5).height(24).color($r("sys.color.ohos_id_color_list_separator"))
+                Divider().vertical(true).strokeWidth(0.5).height(24).color($r('sys.color.ohos_id_color_list_separator'))
                 Button() {
-                    Text($r("app.string.ok"))
+                    Text($r('app.string.ok'))
                         .textAlign(TextAlign.Center)
                         .fontSize(16)
-                        .fontColor($r("sys.color.ohos_id_color_activated"))
+                        .fontColor($r('sys.color.ohos_id_color_activated'))
                         .fontWeight(FontWeight.Medium)
-                        .fontFamily("HarmonyHeiTi")
+                        .fontFamily('HarmonyHeiTi')
                         .lineHeight(22)
                 }
-                .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+                .backgroundColor($r('sys.color.ohos_id_color_background_transparent'))
                 .layoutWeight(1)
                 .height(40)
                 .onClick(() => {
@@ -366,12 +366,12 @@ struct DeliveryReportsDialog {
                     this.confirm(this.isOnOfSms, this.isOnOfMms);
                 })
             }
-            .width("100%")
+            .width('100%')
             .height(56)
             .padding({ left: 16, right: 16, bottom: 16 })
         }
-        .width("100%")
+        .width('100%')
         .borderRadius(16)  // Customdialog need to set borderRadius
-        .backgroundColor($r("sys.color.ohos_id_color_dialog_bg"))
+        .backgroundColor($r('sys.color.ohos_id_color_dialog_bg'))
     }
 }

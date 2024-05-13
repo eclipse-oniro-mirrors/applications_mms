@@ -1,26 +1,26 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LooseObject from "../../data/LooseObject"
-import MmsBoolean from "../../data/MmsBoolean"
-import HiLog from "../../utils/HiLog";
-import router from "@system.router";
+import LooseObject from '../../data/LooseObject'
+import MmsBoolean from '../../data/MmsBoolean'
+import HiLog from '../../utils/HiLog';
+import router from '@system.router';
 // JS Common constants
-import common from "../../data/commonData";
-import settingService from "../../service/SettingService"
+import common from '../../data/commonData';
+import settingService from '../../service/SettingService'
 
-const TAG = "SettingsController";
+const TAG = 'SettingsController';
 
 export default class SettingsController {
     private static sInstance: SettingsController;
@@ -41,21 +41,21 @@ export default class SettingsController {
     }
 
     constructor() {
-        HiLog.i(TAG, "constructor, start");
+        HiLog.i(TAG, 'constructor, start');
         this.getSettingPageSwitchValue();
     }
 
     onInit() {
-        HiLog.i(TAG, "onInit, start");
+        HiLog.i(TAG, 'onInit, start');
     };
 
     onShow() {
-        HiLog.i(TAG, "onShow, start");
+        HiLog.i(TAG, 'onShow, start');
     };
 
     // Indicates whether to initialize the setting page.
     getSettingPageSwitchValue() {
-        HiLog.i(TAG, "getSettingPageSwitchValue, start");
+        HiLog.i(TAG, 'getSettingPageSwitchValue, start');
         let that = this;
         settingService.setOnSettingValueListener(function (result) {
             that.integrationSwitch.value = result.integrationSwitch;
@@ -82,7 +82,7 @@ export default class SettingsController {
 
     // Malicious website selection
     maliciousWeb(e) {
-        HiLog.i(TAG, "maliciousWeb, checked = " + e.checked);
+        HiLog.i(TAG, 'maliciousWeb, checked = ' + e.checked);
         let messageCode = common.route.MESSAGE_CODE_UPDATE_MALICIOUS_WEBSITE_IDENTIFICATION_VALUE;
         let actionData: LooseObject = {};
         this.maliciousWebSwitch = e.checked;
@@ -96,12 +96,12 @@ export default class SettingsController {
 
     // Go to the Message Ring page. Choose Settings > Sound and Vibration > Message Ring.
     jumpToMessageTonePage() {
-        HiLog.i(TAG, "jumpToMessageTonePage")
+        HiLog.i(TAG, 'jumpToMessageTonePage')
     };
 
     // Display a contact's avatar
     showContact(e) {
-        HiLog.i(TAG, "showContact, checked = " + e.checked);
+        HiLog.i(TAG, 'showContact, checked = ' + e.checked);
         let messageCode = common.route.MESSAGE_CODE_UPDATE_SHOW_CONTACT_PROFILE_PICS_VALUE;
         let actionData: LooseObject = {};
         this.showContactSwitch = e.checked;
@@ -122,9 +122,9 @@ export default class SettingsController {
                 that.maliciousWebSwitch = false;
                 that.showContactSwitch = true;
                 globalThis.needToUpdate = true;
-                HiLog.i(TAG, "restoreSettingsPageSwitchValue, success");
+                HiLog.i(TAG, 'restoreSettingsPageSwitchValue, success');
             } else {
-                HiLog.w(TAG, "restoreSettingsPageSwitchValue, failed");
+                HiLog.w(TAG, 'restoreSettingsPageSwitchValue, failed');
             }
         });
     };
@@ -136,20 +136,20 @@ export default class SettingsController {
 
     // Advanced page redirection
     advancedSetting() {
-        HiLog.i(TAG, "advancedSetting")
+        HiLog.i(TAG, 'advancedSetting')
         router.push({
-            uri: "pages/settings/advancedSettings/advancedSettings"
+            uri: 'pages/settings/advancedSettings/advancedSettings'
         });
     };
 
     // Update Switch Value
     updateSettingPageSwitchValue(messageCode, actionData) {
-        HiLog.i(TAG, "updateSettingPageSwitchValue,  messageCode = " + messageCode);
+        HiLog.i(TAG, 'updateSettingPageSwitchValue,  messageCode = ' + messageCode);
         settingService.updateSettingValue(messageCode, actionData, function (result) {
             if (result.code == common.int.SUCCESS) {
-                HiLog.i(TAG, "updateSettingPageSwitchValue, success");
+                HiLog.i(TAG, 'updateSettingPageSwitchValue, success');
             } else {
-                HiLog.w(TAG, "updateSettingPageSwitchValue, failed");
+                HiLog.w(TAG, 'updateSettingPageSwitchValue, failed');
             }
         });
     };

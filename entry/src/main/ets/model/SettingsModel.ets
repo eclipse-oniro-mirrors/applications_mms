@@ -1,26 +1,26 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import BaseModel from "./BaseModel";
-import common from "../data/commonData"
-import HiLog from "../utils/HiLog";
-import MmsPreferences from "../utils/MmsPreferences";
-import telephonySMS from "@ohos.telephony.sms";
-import LooseObject from "../data/LooseObject"
+import BaseModel from './BaseModel';
+import common from '../data/commonData'
+import HiLog from '../utils/HiLog';
+import MmsPreferences from '../utils/MmsPreferences';
+import telephonySMS from '@ohos.telephony.sms';
+import LooseObject from '../data/LooseObject'
 
-const TAG = "SettingModel";
+const TAG = 'SettingModel';
 
 export default class SettingModel extends BaseModel {
     setOnSettingValueListener(callback) {
@@ -41,10 +41,10 @@ export default class SettingModel extends BaseModel {
 
     getAdvancedPageSwitchValue(callback) {
         let result: LooseObject = {
-            "deliveryReportSwitch": false,
-            "autoRetrieveMmsSwitch": false,
-            "recallMessageSwitch": false,
-            "autoDeleteInfoSwitch": false
+            'deliveryReportSwitch': false,
+            'autoRetrieveMmsSwitch': false,
+            'recallMessageSwitch': false,
+            'autoDeleteInfoSwitch': false
         };
         result.deliveryReportSwitch = MmsPreferences.getInstance().getValueOfDeliveryReportSwitch();
         result.autoRetrieveMmsSwitch = MmsPreferences.getInstance().getValueOfAutoRetrieveMmsSwitch();
@@ -69,7 +69,7 @@ export default class SettingModel extends BaseModel {
             }
             return this.encapsulateReturnResult(common.int.SUCCESS, common.string.SUCCESS)
         }).catch((error) => {
-            HiLog.e(TAG, "updateSmscNumber, setSmscAddr, error: " + JSON.stringify(error.message));
+            HiLog.e(TAG, 'updateSmscNumber, setSmscAddr, error: ' + JSON.stringify(error.message));
             return this.encapsulateReturnCode(common.int.FAILURE);
         });
     }

@@ -1,24 +1,24 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import HiLog from "../utils/HiLog";
-import common from "../data/commonData";
-import telephoneUtil from "../utils/TelephoneUtil";
-import LooseObject from "../data/LooseObject"
+import HiLog from '../utils/HiLog';
+import common from '../data/commonData';
+import telephoneUtil from '../utils/TelephoneUtil';
+import LooseObject from '../data/LooseObject'
 
-const TAG = "ContractService";
+const TAG = 'ContractService';
 
 export default {
 
@@ -30,13 +30,13 @@ export default {
      */
     queryContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        globalThis.DataWorker.sendRequest("queryContact", {
+        globalThis.DataWorker.sendRequest('queryContact', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, rawContractIds => {
             let result: LooseObject = {};
             actionData.contractIds = rawContractIds;
-            globalThis.DataWorker.sendRequest("queryContactDataByIds", {
+            globalThis.DataWorker.sendRequest('queryContactDataByIds', {
                 actionData: actionData,
                 context: globalThis.mmsContext
             }, contracts => {
@@ -57,7 +57,7 @@ export default {
      */
     countContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        globalThis.DataWorker.sendRequest("countContact", {
+        globalThis.DataWorker.sendRequest('countContact', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, count => {
@@ -79,7 +79,7 @@ export default {
         for (let contract of contracts) {
             let item: LooseObject = {};
             item.contactName = contract.displayName;
-            item.headImage = "icon/user_avatar_full_fill.svg";
+            item.headImage = 'icon/user_avatar_full_fill.svg';
             item.telephone = contract.detailInfo;
             item.telephoneFormat = contract.detailInfo;
             item.select = false;
@@ -133,7 +133,7 @@ export default {
      * @callback callback
      */
     queryContactDataByTelephone(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryContactDataByTelephone", {
+        globalThis.DataWorker.sendRequest('queryContactDataByTelephone', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, contracts => {
@@ -149,7 +149,7 @@ export default {
      */
     searchContracts(actionData, callback) {
         let result: LooseObject = {};
-        globalThis.DataWorker.sendRequest("searchContracts", {
+        globalThis.DataWorker.sendRequest('searchContracts', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, (res) =>{
@@ -165,7 +165,7 @@ export default {
         let searchContracts = []
         for (let item of contracts) {
             let searchContract: LooseObject = {};
-            searchContract.headImage = "icon/user_avatar_full_fill.svg";
+            searchContract.headImage = 'icon/user_avatar_full_fill.svg';
             searchContract.contactName = item.displayName;
             searchContract.telephone = item.detailInfo;
             searchContract.telephoneFormat = item.detailInfo;
@@ -181,7 +181,7 @@ export default {
      * @callback callback
      */
     judgeIsExitProfile(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryProfile", {
+        globalThis.DataWorker.sendRequest('queryProfile', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, res => {

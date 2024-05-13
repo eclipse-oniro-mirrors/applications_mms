@@ -1,27 +1,27 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import common from "../data/commonData";
+import common from '../data/commonData';
 
 export default {
     commonContactParam(actionData) {
         let str = {
-            "bundleName": common.string.CONTACT_BUNDLE_NAME,
-            "abilityName": common.string.CONTACT_ABILITY_NAME,
-            "parameters": actionData,
-            "entities": [
+            'bundleName': common.string.CONTACT_BUNDLE_NAME,
+            'abilityName': common.string.CONTACT_ABILITY_NAME,
+            'parameters': actionData,
+            'entities': [
                 common.string.COMMON_ENTITIES
             ]
         };
@@ -76,7 +76,7 @@ export default {
                 if (content == common.string.EMPTY_STR) {
                     item.content = secondContent;
                 } else {
-                    item.content = content + "\n" + secondContent;
+                    item.content = content + '\n' + secondContent;
                 }
             } else if (second.msgType == common.MSG_ITEM_TYPE.THEME && mmsParts.length === 3) {
                 item.msgUriPath = first.msgUriPath;
@@ -86,7 +86,7 @@ export default {
                 if (secondContent == common.string.EMPTY_STR) {
                     item.content = thirdContent;
                 } else {
-                    item.content = secondContent + "\n" + thirdContent;
+                    item.content = secondContent + '\n' + thirdContent;
                 }
             } else {
                 item.content = content;
@@ -145,8 +145,8 @@ export default {
             if (common.MSG_ITEM_TYPE.TEXT == msgType && item.content != common.string.EMPTY_STR) {
                 flage = true;
             }
-            if ((common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.AUDIO == msgType
-            || common.MSG_ITEM_TYPE.VIDEO == msgType) && item.content != common.string.EMPTY_STR) {
+            if ((common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.AUDIO == msgType ||
+                common.MSG_ITEM_TYPE.VIDEO == msgType) && item.content != common.string.EMPTY_STR) {
                 flage = true;
             }
         }
@@ -192,8 +192,8 @@ export default {
         }
         for (let item of mmsSource) {
             let msgType = item.msgType;
-            if (common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.VIDEO == msgType
-            || common.MSG_ITEM_TYPE.AUDIO == msgType) {
+            if (common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.VIDEO == msgType ||
+                common.MSG_ITEM_TYPE.AUDIO == msgType) {
                 flage = true;
             }
         }

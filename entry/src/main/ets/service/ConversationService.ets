@@ -1,27 +1,27 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import ConversationModel from "../model/ConversationModel";
-import common from "../data/commonData";
-import HiLog from "../utils//HiLog";
-import ConversationListService from "./ConversationListService";
-import telephoneUtils from "../utils/TelephoneUtil";
-import ContactsService from "./ContactsService";
-import LooseObject from "../data/LooseObject";
+import ConversationModel from '../model/ConversationModel';
+import common from '../data/commonData';
+import HiLog from '../utils//HiLog';
+import ConversationListService from './ConversationListService';
+import telephoneUtils from '../utils/TelephoneUtil';
+import ContactsService from './ContactsService';
+import LooseObject from '../data/LooseObject';
 
-const TAG: string = "ConversationService";
+const TAG: string = 'ConversationService';
 
 export default class ConversationService {
   private static instance: ConversationService;
@@ -150,7 +150,7 @@ export default class ConversationService {
           callback(result);
         });
       } else {
-        HiLog.w(TAG, "queryMessageDetail, failed");
+        HiLog.w(TAG, 'queryMessageDetail, failed');
         callback(result);
       }
     }, context);
@@ -167,7 +167,7 @@ export default class ConversationService {
       // Fields related to MMS messages
       result.msgType = 0;
       result.isFullScreenImg = true;
-      result.read = item.isRead == 0 ? "0" : "1";
+      result.read = item.isRead == 0 ? '0' : '1';
       if (item.msgState == 0) {
         result.sendStatus = common.int.SEND_MESSAGE_SUCCESS;
       } else if (item.msgState == 2) {
@@ -250,7 +250,7 @@ export default class ConversationService {
     let sendResults: Array<LooseObject> = actionData.sendResults;
     let isReceive: boolean = actionData.isReceive;
     if (sendResults.length == 0) {
-      HiLog.w(TAG, "insertSessionAndDetail, sendResults.length == 0");
+      HiLog.w(TAG, 'insertSessionAndDetail, sendResults.length == 0');
       return;
     }
     let param: LooseObject = this.dealSendResults(sendResults);
@@ -271,31 +271,31 @@ export default class ConversationService {
       unreadCount = 1;
     }
     let valueBucket: LooseObject = {
-      "telephone": param.telephone,
-      "content": param.content,
-      "contacts_num": param.contactsNum,
-      "sms_type": param.smsType,
-      "unread_count": unreadCount,
-      "sending_status": param.sendStatus,
-      "has_draft": common.has_draft.NO,
-      "time": param.timestamp,
-      "message_count": 1,
-      "has_mms": actionData.isMms ? common.has_mms.HAVE : common.has_mms.NO,
-      "has_attachment": actionData.hasAttachment ? common.has_attachment.HAVE : common.has_attachment.NO
+      'telephone': param.telephone,
+      'content': param.content,
+      'contacts_num': param.contactsNum,
+      'sms_type': param.smsType,
+      'unread_count': unreadCount,
+      'sending_status': param.sendStatus,
+      'has_draft': common.has_draft.NO,
+      'time': param.timestamp,
+      'message_count': 1,
+      'has_mms': actionData.isMms ? common.has_mms.HAVE : common.has_mms.NO,
+      'has_attachment': actionData.hasAttachment ? common.has_attachment.HAVE : common.has_attachment.NO
     }
     ConversationListService.getInstance().insertSession(valueBucket, sessionResult => {
-      HiLog.i(TAG, "dealNoExistSession, insertSession callback");
+      HiLog.i(TAG, 'dealNoExistSession, insertSession callback');
       if (sessionResult.code == common.int.FAILURE) {
-        HiLog.e(TAG, "dealNoExistSession, insertSession fail!");
+        HiLog.e(TAG, 'dealNoExistSession, insertSession fail!');
         callback(sessionResult);
         return;
       }
       // Invoke the SMS database to insert SMS messages.
       this.dealInsertMessageDetail(param, actionData, sessionResult.abilityResult, res => {
         let result: LooseObject = {
-          "rowId": sessionResult.abilityResult,
-          "initDatas": res.initDatas,
-          "groupId": res.groupId
+          'rowId': sessionResult.abilityResult,
+          'initDatas': res.initDatas,
+          'groupId': res.groupId
         }
         callback(result);
       }, context);
@@ -312,14 +312,14 @@ export default class ConversationService {
       hasDraft = 0;
     }
     let valueBucket: LooseObject = {
-      "content": param.content,
-      "unread_count": unreadCount,
-      "time": new Date().getTime(),
-      "sending_status": param.sendStatus,
-      "has_draft": hasDraft,
-      "message_count": (response.messageCount + 1),
-      "has_attachment": actionData.hasAttachment ? 1 : 0,
-      "has_mms": actionData.isMms ? 1 : 0,
+      'content': param.content,
+      'unread_count': unreadCount,
+      'time': new Date().getTime(),
+      'sending_status': param.sendStatus,
+      'has_draft': hasDraft,
+      'message_count': (response.messageCount + 1),
+      'has_attachment': actionData.hasAttachment ? 1 : 0,
+      'has_mms': actionData.isMms ? 1 : 0,
     }
     let sessionId: number = response.id;
     let condition: LooseObject = {};
@@ -328,9 +328,9 @@ export default class ConversationService {
       // Invoke the SMS database to insert SMS messages.
       this.dealInsertMessageDetail(param, actionData, sessionId, res => {
         let result: LooseObject = {
-          "rowId": sessionId,
-          "initDatas": res.initDatas,
-          "groupId": res.groupId
+          'rowId': sessionId,
+          'initDatas': res.initDatas,
+          'groupId': res.groupId
         }
         callback(result);
       }, context);
@@ -343,7 +343,7 @@ export default class ConversationService {
       if (res.code == common.int.SUCCESS) {
         maxGroupId = Number(res.abilityResult) + 1;
       } else {
-        HiLog.w(TAG, "dealInsertMessageDetail, queryMaxGroupId failed");
+        HiLog.w(TAG, 'dealInsertMessageDetail, queryMaxGroupId failed');
         callback(res);
       }
       this.insertMessageDetailByMaxGroupId(param, actionData, threadId, maxGroupId, result => {
@@ -363,8 +363,8 @@ export default class ConversationService {
       this.insertSmsMmsInfo(valueBucket, res => {
         count++;
         let initData: LooseObject = {
-          "id": res.abilityResult,
-          "telephone": sendResult.telephone
+          'id': res.abilityResult,
+          'telephone': sendResult.telephone
         };
         initDatas.push(initData);
         if (count == actionData.sendResults.length) {
@@ -377,26 +377,26 @@ export default class ConversationService {
 
   private buildInsertSmsMmsRow(param, actionData, sendResult, threadId, maxGroupId): LooseObject {
     let valueBucket: LooseObject = {
-      "slot_id": common.int.SIM_ONE,
-      "receiver_number": common.string.EMPTY_STR,
-      "sender_number": common.string.EMPTY_STR,
-      "start_time": common.string.EMPTY_STR,
-      "end_time": common.string.EMPTY_STR,
-      "msg_type": common.MESSAGE_TYPE.NORMAL,
-      "sms_type": common.sms_type.COMMON,
-      "msg_title": common.string.EMPTY_STR,
-      "msg_content": common.string.EMPTY_STR,
-      "msg_state": common.int.SEND_MESSAGE_SENDING,
-      "operator_service_number": common.string.EMPTY_STR,
-      "msg_code": common.string.EMPTY_STR,
-      "session_id": threadId,
-      "is_lock": common.is_lock.NO,
-      "is_read": common.is_read.UN_READ,
-      "is_collect": common.is_collect.NOT_FAVORITE,
-      "session_type": common.session_type.COMMON,
-      "is_sender": common.is_sender.NO,
-      "group_id": maxGroupId,
-      "is_send_report": common.is_send_report.NO
+      'slot_id': common.int.SIM_ONE,
+      'receiver_number': common.string.EMPTY_STR,
+      'sender_number': common.string.EMPTY_STR,
+      'start_time': common.string.EMPTY_STR,
+      'end_time': common.string.EMPTY_STR,
+      'msg_type': common.MESSAGE_TYPE.NORMAL,
+      'sms_type': common.sms_type.COMMON,
+      'msg_title': common.string.EMPTY_STR,
+      'msg_content': common.string.EMPTY_STR,
+      'msg_state': common.int.SEND_MESSAGE_SENDING,
+      'operator_service_number': common.string.EMPTY_STR,
+      'msg_code': common.string.EMPTY_STR,
+      'session_id': threadId,
+      'is_lock': common.is_lock.NO,
+      'is_read': common.is_read.UN_READ,
+      'is_collect': common.is_collect.NOT_FAVORITE,
+      'session_type': common.session_type.COMMON,
+      'is_sender': common.is_sender.NO,
+      'group_id': maxGroupId,
+      'is_send_report': common.is_send_report.NO
     };
     if (sendResult.slotId != null) {
       valueBucket.slot_id = sendResult.slotId;
@@ -488,8 +488,8 @@ export default class ConversationService {
     let param: LooseObject = this.dealSendResults(sendResults);
     // Update the status of the session list.
     let valueBucket: LooseObject = {
-      "sending_status": param.sendStatus,
-      "content": param.content
+      'sending_status': param.sendStatus,
+      'content': param.content
     }
     ConversationListService.getInstance().updateSessionByCondition(actionData, valueBucket, null, null);
     // Update the status of the information list.
@@ -504,23 +504,23 @@ export default class ConversationService {
       }
       actionData.msgId = sendResult.id;
       let valueBucket: LooseObject = {
-        "msg_state": actionData.sendStatus,
+        'msg_state': actionData.sendStatus,
       };
       this.updateSmsMmsInfoByCondition(actionData, valueBucket, null, null);
     }
   }
 
   public saveImage(actionData, callback, context): void {
-    callback("saveImage function to be developed!");
+    callback('saveImage function to be developed!');
   }
 
   public gotoShare(actionData, callback, context): void {
-    callback("gotoShare function to be developed!");
+    callback('gotoShare function to be developed!');
   }
 
   public dealContactsName(telephones, actionData, resultList, callback, context): void {
     actionData.telephones = telephones;
-    actionData.hasDelete = "0";
+    actionData.hasDelete = '0';
     if (telephones.length == 0) {
       callback(resultList);
     }
@@ -550,7 +550,7 @@ export default class ConversationService {
         value.contactsNum = contactsNums.length;
         if (value.isFavorite) {
           let temp = JSON.parse(JSON.stringify(value));
-          temp.icon = "/common/icon/icon_favorite.svg";
+          temp.icon = '/common/icon/icon_favorite.svg';
           favoriteList.push(temp);
           value.isFavorite = false;
         }
@@ -570,7 +570,7 @@ export default class ConversationService {
       // Indicates the combination of multiple names. The names need to be displayed in combination.
       if (telephoneMap.has(map.telephone)) {
         map.name = telephoneMap.get(map.telephone);
-        map.nameFormatter = map.name + "<" + map.telephoneFormat + ">";
+        map.nameFormatter = map.name + '<' + map.telephoneFormat + '>';
       } else {
         map.nameFormatter = map.telephoneFormat;
       }
@@ -605,7 +605,7 @@ export default class ConversationService {
       if (res.code == common.int.SUCCESS) {
         callback(res.abilityResult);
       } else {
-        HiLog.w(TAG, "statisticsUnreadNotify fail!");
+        HiLog.w(TAG, 'statisticsUnreadNotify fail!');
         callback(0);
       }
     }, context);

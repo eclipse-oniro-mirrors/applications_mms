@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -19,7 +19,7 @@ import telephoneUtil from '../utils/TelephoneUtil';
 import LooseObject from '../data/LooseObject';
 import ContactsModel from '../model/ContactsModel';
 
-const TAG = "ContactsService";
+const TAG = 'ContactsService';
 
 export default class ContactsService {
     private static instance: ContactsService;
@@ -178,7 +178,7 @@ export default class ContactsService {
         this.queryContactDataSizeByCondition(actionData, res => {
             let isContactExist: boolean = false;
             if (res.code == common.int.FAILURE) {
-                HiLog.e(TAG, "judgeProfileExit fail!");
+                HiLog.e(TAG, 'judgeProfileExit fail!');
                 callback(isContactExist);
             } else {
                 if (res.abilityResult > 0) {
@@ -194,7 +194,7 @@ export default class ContactsService {
         for (let contact of contacts) {
             let item: LooseObject = {};
             item.contactName = contact.displayName;
-            item.headImage = "icon/user_avatar_full_fill.svg";
+            item.headImage = 'icon/user_avatar_full_fill.svg';
             item.telephone = contact.detailInfo;
             item.telephoneFormat = contact.detailInfo;
             item.select = false;

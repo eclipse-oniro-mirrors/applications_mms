@@ -1,51 +1,50 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import router from "@system.router";
+import router from '@system.router';
 
-import ContactService from "../service/ContactsService";
-import ConversationListService from "../service/ConversationListService";
-import common from "../data/commonData";
-import HiLog from "./HiLog";
+import ContactService from '../service/ContactsService';
+import ConversationListService from '../service/ConversationListService';
+import common from '../data/commonData';
+import HiLog from './HiLog';
 import LooseObject from '../data/LooseObject';
 
-const TAG = "WantUtil";
+const TAG = 'WantUtil';
 
 export default {
-
   getWant() {
-    HiLog.i(TAG, "getWant start");
-    if(globalThis.abilityWant == null) {
+    HiLog.i(TAG, 'getWant start');
+    if (globalThis.abilityWant == null) {
       return;
     }
     let abilityWant = globalThis.abilityWant;
     globalThis.abilityWant = null;
 
-    if (abilityWant.hasOwnProperty("parameters")) {
-        let parameters = abilityWant.parameters;
-        let pageFlag = '';
-        if (parameters.hasOwnProperty("pageFlag")) {
-          pageFlag = parameters.pageFlag;
-          HiLog.i(TAG, "pageFlag = " + pageFlag);
-        }
-        let contactParams = {}
-        if (parameters.hasOwnProperty("contactObjects")) {
-          contactParams = ContactService.getInstance().dealContactParams(parameters.contactObjects);
-        }
-        this.jump(pageFlag, contactParams);
+    if (abilityWant.hasOwnProperty('parameters')) {
+      let parameters = abilityWant.parameters;
+      let pageFlag = '';
+      if (parameters.hasOwnProperty('pageFlag')) {
+        pageFlag = parameters.pageFlag;
+        HiLog.i(TAG, 'pageFlag = ' + pageFlag);
       }
+      let contactParams = {}
+      if (parameters.hasOwnProperty('contactObjects')) {
+        contactParams = ContactService.getInstance().dealContactParams(parameters.contactObjects);
+      }
+      this.jump(pageFlag, contactParams);
+    }
   },
 
   jump(pageFlag, contactParams) {
@@ -53,10 +52,10 @@ export default {
       uri: '',
       params: {}
     };
-    HiLog.i(TAG, "want.pageFlag: " + pageFlag);
+    HiLog.i(TAG, 'want.pageFlag: ' + pageFlag);
     switch (pageFlag) {
-      case "conversation":
-        result.uri = "pages/conversation/conversation";
+      case 'conversation':
+        result.uri = 'pages/conversation/conversation';
         if (contactParams) {
           result.params = contactParams;
           this.jumpIsNewPage(result, contactParams);

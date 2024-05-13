@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -15,10 +15,10 @@
 
 import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
 import HiLog from '../../utils/HiLog';
-import WorkFactory from "../WorkFactory"
+import WorkFactory from '../WorkFactory'
 
 var workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-const TAG = "Worker";
+const TAG = 'Worker';
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
  * The event handler is executed in the worker thread.
@@ -26,13 +26,13 @@ const TAG = "Worker";
  * @param e message data
  */
 workerPort.onmessage = function (e: MessageEvents) {
-    HiLog.w(TAG, "onmessage");
-    if (e.data) {
-        let task = WorkFactory.getTask(workerPort, e)
-        task?.onmessage(e);
-    } else {
-        HiLog.w(TAG, `onmessage ${JSON.stringify(e)} not allow`)
-    }
+  HiLog.w(TAG, 'onmessage');
+  if (e.data) {
+    let task = WorkFactory.getTask(workerPort, e)
+    task?.onmessage(e);
+  } else {
+    HiLog.w(TAG, `onmessage ${JSON.stringify(e)} not allow`)
+  }
 }
 
 
@@ -43,7 +43,7 @@ workerPort.onmessage = function (e: MessageEvents) {
  * @param e message data
  */
 workerPort.onmessageerror = function (e: MessageEvents) {
-    HiLog.w(TAG, "onmessageerror" + JSON.stringify(e));
+  HiLog.w(TAG, 'onmessageerror' + JSON.stringify(e));
 }
 
 /**
@@ -53,5 +53,5 @@ workerPort.onmessageerror = function (e: MessageEvents) {
  * @param e error message
  */
 workerPort.onerror = function (e: ErrorEvent) {
-    HiLog.w(TAG, "onerror" + JSON.stringify(e));
+  HiLog.w(TAG, 'onerror' + JSON.stringify(e));
 }

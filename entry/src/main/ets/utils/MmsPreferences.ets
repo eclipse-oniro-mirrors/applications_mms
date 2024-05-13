@@ -1,26 +1,26 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
-import common from "../data/commonData";
-import LooseObject from "../data/LooseObject";
-import HiLog from "./HiLog";
+import common from '../data/commonData';
+import LooseObject from '../data/LooseObject';
+import HiLog from './HiLog';
 
-import createOrGet from "./SingleInstanceUtils";
-import preferences from "@ohos.data.preferences";
+import createOrGet from './SingleInstanceUtils';
+import preferences from '@ohos.data.preferences';
 
-const TAG = "MmsPreferences";
+const TAG = 'MmsPreferences';
 
 /**
  * Obtaining a Lightweight Preference Database Instance
@@ -78,7 +78,7 @@ class MmsPreferences {
       this.setValueToMap(key, value.toString());
       return value;
     } catch (err) {
-      HiLog.i(TAG, "getValueFromPreferences(" + key + ") failed with err: " + JSON.stringify(err))
+      HiLog.i(TAG, 'getValueFromPreferences(' + key + ') failed with err: ' + JSON.stringify(err))
       return common.string.EMPTY_STR;
     }
   }
@@ -96,7 +96,7 @@ class MmsPreferences {
       this.setValueToMap(key, value.toString());
       return value;
     }).catch((err) => {
-      HiLog.i(TAG, "asyncGetValueFromPreferences(" + key + ") failed with err: " + JSON.stringify(err))
+      HiLog.i(TAG, 'asyncGetValueFromPreferences(' + key + ') failed with err: ' + JSON.stringify(err))
       return common.string.EMPTY_STR;
     });
   }

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -23,7 +23,7 @@ import HiLog from '../utils/HiLog';
 import LooseObject from '../data/LooseObject';
 import StringUtil from '../utils/StringUtil';
 
-const TAG = "ConversationListModel";
+const TAG = 'ConversationListModel';
 
 export default class ConversationListModel extends BaseModel {
   public async insertSession(valueBucket, callback, context): Promise<void> {
@@ -34,7 +34,7 @@ export default class ConversationListModel extends BaseModel {
         callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
       }
     }).catch(error => {
-      HiLog.e(TAG, "insertSession fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'insertSession fail, error: ' + JSON.stringify(error));
       if (callback) {
         callback(this.encapsulateReturnCode(common.int.FAILURE));
       }
@@ -50,7 +50,7 @@ export default class ConversationListModel extends BaseModel {
         callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
       }
     }).catch(error => {
-      HiLog.e(TAG, "deleteSessionByCondition, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'deleteSessionByCondition, error: ' + JSON.stringify(error));
       if (callback) {
         callback(this.encapsulateReturnCode(common.int.FAILURE));
       }
@@ -59,9 +59,10 @@ export default class ConversationListModel extends BaseModel {
 
   public async updateSessionByCondition(actionData, valueBucket, callback, context): Promise<void> {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySessionCondition(actionData);
+    let condition: dataSharePredicates.DataSharePredicates =
+    this.buildQuerySessionCondition(actionData);
     if (valueBucket == null) {
-      HiLog.e(TAG, "updateSessionByCondition fail, valueBucket is null!");
+      HiLog.e(TAG, 'updateSessionByCondition fail, valueBucket is null!');
       if (callback) {
         callback(this.encapsulateReturnCode(common.int.FAILURE));
       }
@@ -72,7 +73,7 @@ export default class ConversationListModel extends BaseModel {
         callback(this.encapsulateReturnResult(common.int.SUCCESS, data));
       }
     }).catch(error => {
-      HiLog.e(TAG, "updateSessionByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'updateSessionByCondition fail, error: ' + JSON.stringify(error));
       if (callback) {
         callback(this.encapsulateReturnCode(common.int.FAILURE));
       }
@@ -81,7 +82,8 @@ export default class ConversationListModel extends BaseModel {
 
   public async querySessionByCondition(actionData, callback, context): Promise<void> {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySessionCondition(actionData);
+    let condition: dataSharePredicates.DataSharePredicates =
+    this.buildQuerySessionCondition(actionData);
     let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_SESSION_TABLE;
     dataHelper.query(managerUri, condition, this.buildSessionTableColumns()).then(resultSet => {
       let resultList: Array<LooseObject> = [];
@@ -96,25 +98,29 @@ export default class ConversationListModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "querySessionByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'querySessionByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
 
   public async querySessionSizeByCondition(actionData, callback, context): Promise<void> {
-    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySessionCondition(actionData);
-    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_SESSION_TABLE;
+    let dataHelper = await dataShare.createDataShareHelper(
+      context, common.string.URI_MESSAGE_LOG);
+    let condition: dataSharePredicates.DataSharePredicates =
+    this.buildQuerySessionCondition(actionData);
+    let managerUri: string = common.string.URI_MESSAGE_LOG +
+    common.string.URI_MESSAGE_SESSION_TABLE;
     dataHelper.query(managerUri, condition, this.buildSessionTableColumns()).then(resultSet => {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
     }).catch(error => {
-      HiLog.e(TAG, "querySessionSizeByCondition, fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'querySessionSizeByCondition, fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
 
   private buildQuerySessionCondition(actionData): dataSharePredicates.DataSharePredicates {
-    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let condition: dataSharePredicates.DataSharePredicates =
+      new dataSharePredicates.DataSharePredicates();
     condition.isNotNull(mmsTable.sessionField.id);
     if (actionData.smsType != null) {
       condition.and().equalTo(mmsTable.sessionField.smsType, actionData.smsType);
@@ -123,7 +129,7 @@ export default class ConversationListModel extends BaseModel {
       condition.and().equalTo(mmsTable.sessionField.telephone, actionData.telephone);
     }
     if (actionData.telephone_like != null) {
-      condition.and().like(mmsTable.sessionField.telephone, "%" + actionData.telephone_like + "%");
+      condition.and().like(mmsTable.sessionField.telephone, '%' + actionData.telephone_like + '%');
     }
     if (actionData.threadId != null) {
       condition.and().equalTo(mmsTable.sessionField.id, actionData.threadId);
@@ -149,15 +155,18 @@ export default class ConversationListModel extends BaseModel {
     result.time = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.time)));
     result.telephone = resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.telephone));
     result.content = resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.content));
-    result.contactsNum = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.contactsNum)));
+    result.contactsNum = Number(resultSet.getString(
+      resultSet.getColumnIndex(mmsTable.sessionField.contactsNum)));
     result.smsType = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.smsType)));
     result.unreadCount = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.unreadCount)));
     result.sendStatus = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.sendStatus)));
     result.hasDraft = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasDraft)));
     result.hasLock = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasLock)));
-    result.messageCount = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.messageCount)));
+    result.messageCount = Number(resultSet.getString(
+      resultSet.getColumnIndex(mmsTable.sessionField.messageCount)));
     result.hasMms = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasMms)));
-    result.hasAttachment = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.sessionField.hasAttachment)));
+    result.hasAttachment = Number(resultSet.getString(
+      resultSet.getColumnIndex(mmsTable.sessionField.hasAttachment)));
     result.telephoneFormat = result.telephone;
     return result;
   }
