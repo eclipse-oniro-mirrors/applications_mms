@@ -24,7 +24,7 @@ import ConversationModel from '../model/ConversationModel';
 import ConversationListModel from '../model/ConversationListModel';
 import HiLog from '../utils/HiLog';
 
-const TAG = "DataWorkerWrapper"
+const TAG = 'DataWorkerWrapper'
 
 export default class DataWorkerWrapper extends WorkerWrapper {
   private static sInstance: DataWorkerWrapper = null;
@@ -34,9 +34,9 @@ export default class DataWorkerWrapper extends WorkerWrapper {
   }
 
   static getInstance() {
-    HiLog.i(TAG, "getInstance in.");
+    HiLog.i(TAG, 'getInstance in.');
     if (DataWorkerWrapper.sInstance == null || DataWorkerWrapper.sInstance.mWorker == null) {
-      HiLog.i(TAG, "make DataWorkerWrapper.");
+      HiLog.i(TAG, 'make DataWorkerWrapper.');
       DataWorkerWrapper.sInstance = new DataWorkerWrapper();
     }
     return DataWorkerWrapper.sInstance;
@@ -49,11 +49,8 @@ export default class DataWorkerWrapper extends WorkerWrapper {
 
 export class DataWorkerTask extends WorkerTask {
   private static sInstance: DataWorkerTask = null;
-
   private mContactsModel: ContactsModel = new ContactsModel();
-
   private mConversationModel: ConversationModel = new ConversationModel();
-
   private mConversationListModel: ConversationListModel = new ConversationListModel();
 
   private constructor(workerPort: ThreadWorkerGlobalScope) {
@@ -61,7 +58,7 @@ export class DataWorkerTask extends WorkerTask {
   }
 
   static getInstance(workerPort: ThreadWorkerGlobalScope) {
-    HiLog.i(TAG, "getInstance in.");
+    HiLog.i(TAG, 'getInstance in.');
     if (DataWorkerTask.sInstance == null || DataWorkerTask.sInstance.workerPort == null) {
       DataWorkerTask.sInstance = new DataWorkerTask(workerPort);
     }

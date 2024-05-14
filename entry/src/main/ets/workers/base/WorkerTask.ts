@@ -13,48 +13,49 @@
  * limitations under the License.
  */
 
-import { WorkerMessage } from "./WorkerWrapper"
+import { WorkerMessage } from './WorkerWrapper'
 import { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
 import HiLog from '../../utils/HiLog';
-import buffer from "@ohos.buffer"
+import buffer from '@ohos.buffer'
 
-const TAG = "WorkerTask"
+const TAG = 'WorkerTask'
+
 /*
  * WorkerTask
  *
  * Work sub thread task
  */
 export abstract class WorkerTask {
-    workerPort: ThreadWorkerGlobalScope
+  workerPort: ThreadWorkerGlobalScope
 
-    constructor(workerPort: ThreadWorkerGlobalScope) {
-        HiLog.i(TAG, `WorkerTask constructor`)
-        this.workerPort = workerPort;
+  constructor(workerPort: ThreadWorkerGlobalScope) {
+    HiLog.i(TAG, `WorkerTask constructor`)
+    this.workerPort = workerPort;
+  }
+
+  /**
+   * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
+   * The event handler is executed in the worker thread.
+   *
+   * @param e message data
+   */
+  public onmessage(message: MessageEvents) {
+    let data = <WorkerMessage> message.data
+    HiLog.i(TAG, `onmessage ${data.request}`)
+    try {
+      this.runInWorker(data.request, (v) => {
+        HiLog.i(TAG, 'runInWorker callback in')
+        data.param = v;
+        const str = JSON.stringify(data)
+        let buf = buffer.from(str).buffer;
+        this.workerPort.postMessage(buf, [buf]);
+      }, data.param);
+    } catch (err) {
+      HiLog.e(TAG, 'runInWorker err = ' + JSON.stringify(err));
     }
+  }
 
-    /**
-     * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
-     * The event handler is executed in the worker thread.
-     *
-     * @param e message data
-     */
-    public onmessage(message: MessageEvents) {
-        let data = <WorkerMessage> message.data
-        HiLog.i(TAG, `onmessage ${data.request}`)
-        try {
-            this.runInWorker(data.request, (v) => {
-                HiLog.i(TAG, "runInWorker callback in")
-                data.param = v;
-                const str = JSON.stringify(data)
-                let buf = buffer.from(str).buffer;
-                this.workerPort.postMessage(buf, [buf]);
-            }, data.param);
-        } catch (err) {
-            HiLog.e(TAG, 'runInWorker err = ' + JSON.stringify(err));
-        }
-    }
-
-    public abstract runInWorker(request: string, callBack: (v?: any) => void, param?: any);
+  public abstract runInWorker(request: string, callBack: (v?: any) => void, param?: any);
 }
 
 export default WorkerTask;

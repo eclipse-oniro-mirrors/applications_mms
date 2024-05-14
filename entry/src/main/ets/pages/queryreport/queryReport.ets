@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import DeviceUtil from "../../utils/DeviceUtil";
-import router from "@system.router";
-import QueryReportController from "./queryReportController";
-import WantUtil from "../../utils/WantUtil";
+import DeviceUtil from '../../utils/DeviceUtil';
+import router from '@system.router';
+import QueryReportController from './queryReportController';
+import WantUtil from '../../utils/WantUtil';
 
 @Entry
 @Component
 struct queryReport {
-    @StorageLink("QueryReportController") queryReportController: QueryReportController = QueryReportController.getInstance();
+    @StorageLink('QueryReportController') queryReportController: QueryReportController = QueryReportController.getInstance();
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
-    private gridGutter: string = "24vp";
-    private gridMargin: string = "24vp";
+    private gridGutter: string = '24vp';
+    private gridMargin: string = '24vp';
 
     onPageShow(): void  {
         this.queryReportController.onShow();
@@ -44,7 +44,7 @@ struct queryReport {
                     .onClick(() => {
                         router.back()
                     })
-                Text($r("app.string.send_reports"))
+                Text($r('app.string.send_reports'))
                     .margin({ left: 16 })
                     .fontSize(20)
                     .fontWeight(FontWeight.Bold)
@@ -55,7 +55,7 @@ struct queryReport {
 
             Column() {
                 Text() {
-                    Span($r("app.string.putAddresser")).fontSize(16)
+                    Span($r('app.string.putAddresser')).fontSize(16)
                     Span(this.queryReportController.telephone).fontSize(16)
                 }
                 .fontSize(16)
@@ -64,7 +64,7 @@ struct queryReport {
                 .lineHeight(22)
 
                 Text() {
-                    Span($r("app.string.Status")).fontSize(16)
+                    Span($r('app.string.Status')).fontSize(16)
                     Span(this.queryReportController.sendStatusDesc).fontSize(16)
                 }
                 .fontSize(16)
@@ -74,9 +74,9 @@ struct queryReport {
 
                 if (!this.queryReportController.isMsm && this.queryReportController.sendStatus != 2) {
                     Text() {
-                        Span($r("app.string.Delivered")).fontSize(16)
+                        Span($r('app.string.Delivered')).fontSize(16)
                         Span(this.queryReportController.mmsTime).fontSize(16)
-                        Span(" ")
+                        Span(' ')
                         Span(this.queryReportController.specificTime).fontSize(16)
                     }
                     .fontSize(16)
@@ -89,8 +89,8 @@ struct queryReport {
             .padding({ left: 12, right: 12 })
 
         }
-        .width("100%")
-        .height("100%")
+        .width('100%')
+        .height('100%')
         .margin({ left: this.gridMargin, right: this.gridMargin })
     }
 }

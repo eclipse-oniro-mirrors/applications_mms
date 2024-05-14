@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import HiLog from "../utils/HiLog";
-import common from "../data/commonData";
-import telephoneUtil from "../utils/TelephoneUtil";
-import LooseObject from "../data/LooseObject"
+import HiLog from '../utils/HiLog';
+import common from '../data/commonData';
+import telephoneUtil from '../utils/TelephoneUtil';
+import LooseObject from '../data/LooseObject'
 
-const TAG = "ContractService";
+const TAG = 'ContractService';
 
 export default {
 
@@ -30,13 +30,13 @@ export default {
      */
     queryContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        globalThis.DataWorker.sendRequest("queryContact", {
+        globalThis.DataWorker.sendRequest('queryContact', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, rawContractIds => {
             let result: LooseObject = {};
             actionData.contractIds = rawContractIds;
-            globalThis.DataWorker.sendRequest("queryContactDataByIds", {
+            globalThis.DataWorker.sendRequest('queryContactDataByIds', {
                 actionData: actionData,
                 context: globalThis.mmsContext
             }, contracts => {
@@ -57,7 +57,7 @@ export default {
      */
     countContact(actionData, callback) {
         // Obtain rawContractIds and query contacts.
-        globalThis.DataWorker.sendRequest("countContact", {
+        globalThis.DataWorker.sendRequest('countContact', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, count => {
@@ -79,7 +79,7 @@ export default {
         for (let contract of contracts) {
             let item: LooseObject = {};
             item.contactName = contract.displayName;
-            item.headImage = "icon/user_avatar_full_fill.svg";
+            item.headImage = 'icon/user_avatar_full_fill.svg';
             item.telephone = contract.detailInfo;
             item.telephoneFormat = contract.detailInfo;
             item.select = false;
@@ -133,7 +133,7 @@ export default {
      * @callback callback
      */
     queryContactDataByTelephone(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryContactDataByTelephone", {
+        globalThis.DataWorker.sendRequest('queryContactDataByTelephone', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, contracts => {
@@ -149,7 +149,7 @@ export default {
      */
     searchContracts(actionData, callback) {
         let result: LooseObject = {};
-        globalThis.DataWorker.sendRequest("searchContracts", {
+        globalThis.DataWorker.sendRequest('searchContracts', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, (res) =>{
@@ -165,7 +165,7 @@ export default {
         let searchContracts = []
         for (let item of contracts) {
             let searchContract: LooseObject = {};
-            searchContract.headImage = "icon/user_avatar_full_fill.svg";
+            searchContract.headImage = 'icon/user_avatar_full_fill.svg';
             searchContract.contactName = item.displayName;
             searchContract.telephone = item.detailInfo;
             searchContract.telephoneFormat = item.detailInfo;
@@ -181,7 +181,7 @@ export default {
      * @callback callback
      */
     judgeIsExitProfile(actionData, callback) {
-        globalThis.DataWorker.sendRequest("queryProfile", {
+        globalThis.DataWorker.sendRequest('queryProfile', {
             actionData: actionData,
             context: globalThis.mmsContext
         }, res => {

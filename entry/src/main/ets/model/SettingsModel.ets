@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import BaseModel from "./BaseModel";
-import common from "../data/commonData"
-import HiLog from "../utils/HiLog";
-import MmsPreferences from "../utils/MmsPreferences";
-import telephonySMS from "@ohos.telephony.sms";
-import LooseObject from "../data/LooseObject"
+import BaseModel from './BaseModel';
+import common from '../data/commonData'
+import HiLog from '../utils/HiLog';
+import MmsPreferences from '../utils/MmsPreferences';
+import telephonySMS from '@ohos.telephony.sms';
+import LooseObject from '../data/LooseObject'
 
-const TAG = "SettingModel";
+const TAG = 'SettingModel';
 
 export default class SettingModel extends BaseModel {
     setOnSettingValueListener(callback) {
@@ -41,10 +41,10 @@ export default class SettingModel extends BaseModel {
 
     getAdvancedPageSwitchValue(callback) {
         let result: LooseObject = {
-            "deliveryReportSwitch": false,
-            "autoRetrieveMmsSwitch": false,
-            "recallMessageSwitch": false,
-            "autoDeleteInfoSwitch": false
+            'deliveryReportSwitch': false,
+            'autoRetrieveMmsSwitch': false,
+            'recallMessageSwitch': false,
+            'autoDeleteInfoSwitch': false
         };
         result.deliveryReportSwitch = MmsPreferences.getInstance().getValueOfDeliveryReportSwitch();
         result.autoRetrieveMmsSwitch = MmsPreferences.getInstance().getValueOfAutoRetrieveMmsSwitch();
@@ -69,7 +69,7 @@ export default class SettingModel extends BaseModel {
             }
             return this.encapsulateReturnResult(common.int.SUCCESS, common.string.SUCCESS)
         }).catch((error) => {
-            HiLog.e(TAG, "updateSmscNumber, setSmscAddr, error: " + JSON.stringify(error.message));
+            HiLog.e(TAG, 'updateSmscNumber, setSmscAddr, error: ' + JSON.stringify(error.message));
             return this.encapsulateReturnCode(common.int.FAILURE);
         });
     }

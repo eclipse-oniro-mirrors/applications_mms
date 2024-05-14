@@ -26,14 +26,14 @@
  *
  * @since 2022-02-18
  */
-import Log from "@ohos.hilog";
+import Log from '@ohos.hilog';
 
-const TAG = "MmsLog";
+const TAG = 'MmsLog';
 const DOMAIN = 0x0800;
 
 export default class HiLog {
 
-    private static readonly COLON: string = ": ";
+    private static readonly COLON: string = ': ';
 
     constructor() {
     }

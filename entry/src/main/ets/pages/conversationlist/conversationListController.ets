@@ -12,26 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from "@system.router";
-import commonEvent from "@ohos.commonEventManager";
-import dataShare from "@ohos.data.dataShare";
+import router from '@system.router';
+import commonEvent from '@ohos.commonEventManager';
+import dataShare from '@ohos.data.dataShare';
 
-import common from "../../data/commonData"
-import DateUtil from "../../utils/DateUtil";
-import LooseObject from "../../data/LooseObject";
-import ConversationListService from "../../service/ConversationListService";
+import common from '../../data/commonData'
+import DateUtil from '../../utils/DateUtil';
+import LooseObject from '../../data/LooseObject';
+import ConversationListService from '../../service/ConversationListService';
 import ConversationService from '../../service/ConversationService';
-import HiLog from "../../utils/HiLog";
-import SettingService from "../../service/SettingService"
-import commonService from "../../service/CommonService";
-import NotificationService from "../../service/NotificationService";
-import ConversationListDataSource from "../../model/ConversationListDataSource";
-import AvatarColor from "../../model/common/AvatarColor";
-import StringUtil from "../../utils/StringUtil";
+import HiLog from '../../utils/HiLog';
+import SettingService from '../../service/SettingService'
+import commonService from '../../service/CommonService';
+import NotificationService from '../../service/NotificationService';
+import ConversationListDataSource from '../../model/ConversationListDataSource';
+import AvatarColor from '../../model/common/AvatarColor';
+import StringUtil from '../../utils/StringUtil';
 
 let ConversationCtrl;
 
-const TAG = "ConversationListController";
+const TAG = 'ConversationListController';
 
 export default class ConversationListController {
     // Determine whether to perform initialization. (To avoid the onShow time sequence problem immediately after the
@@ -79,8 +79,8 @@ export default class ConversationListController {
     messageList: Array<any> = [];
     // List of search results
     searchResultList: LooseObject = {
-        "sessionList": [],
-        "contentList": []
+        'sessionList': [],
+        'contentList': []
     };
     // Search Results Queue
     searchResultListQueue: Array<any> = [];
@@ -146,12 +146,12 @@ export default class ConversationListController {
 
 
     onInit() {
-        HiLog.i(TAG, "onInit");
+        HiLog.i(TAG, 'onInit');
         this.isInited = true;
-        this.svgDelete = "icon/ic_public_delete.svg";
-        this.strCheckBoxSelectTip = $r("app.string.msg_select_all");
-        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.conversationSelectedNumber);
-        this.showSearchStatus = $r("app.string.noMessages");
+        this.svgDelete = 'icon/ic_public_delete.svg';
+        this.strCheckBoxSelectTip = $r('app.string.msg_select_all');
+        this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip2', this.conversationSelectedNumber);
+        this.showSearchStatus = $r('app.string.noMessages');
     }
 
     private async getDataAbilityHelper(context?) {
@@ -166,7 +166,7 @@ export default class ConversationListController {
         let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
             if (dataAbilityHelper) {
-                dataAbilityHelper.on("dataChange", contactDataUri, callback);
+                dataAbilityHelper.on('dataChange', contactDataUri, callback);
             }
         }).catch(error => {
             HiLog.w(TAG, 'error:%s' + JSON.stringify(error.message));
@@ -177,7 +177,7 @@ export default class ConversationListController {
         let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
             if (dataAbilityHelper) {
-                dataAbilityHelper.off("dataChange", contactDataUri, callback);
+                dataAbilityHelper.off('dataChange', contactDataUri, callback);
             }
         }).catch(error => {
             HiLog.w(TAG, 'error:%s' + JSON.stringify(error.message));
@@ -185,9 +185,9 @@ export default class ConversationListController {
     }
 
     onShow() {
-        HiLog.i(TAG, "onShow");
+        HiLog.i(TAG, 'onShow');
         if (!this.isInited) {
-            HiLog.w(TAG, "is not init");
+            HiLog.w(TAG, 'is not init');
             return;
         }
         this.subscribe();
@@ -201,12 +201,12 @@ export default class ConversationListController {
     }
 
     onDestroy() {
-        HiLog.i(TAG, "onDestroy");
+        HiLog.i(TAG, 'onDestroy');
         this.isInited = false;
     }
 
     onHide() {
-        HiLog.i(TAG, "onHide");
+        HiLog.i(TAG, 'onHide');
         this.unSubscribe();
     }
 
@@ -217,7 +217,7 @@ export default class ConversationListController {
             return;
         }
         // Touch and hold a list to display the selection and deletion functions.
-        HiLog.i(TAG, "conversationLongPress, index: " + index);
+        HiLog.i(TAG, 'conversationLongPress, index: ' + index);
         if (this.isMultipleSelectState) {
             this.messageList[index].isCbChecked = !this.messageList[index].isCbChecked;
         } else {
@@ -253,17 +253,17 @@ export default class ConversationListController {
         }
         if (this.isConversationCheckAll) {
             // Select All Status
-            this.strCheckBoxSelectTip = $r("app.string.msg_deselect_all");
+            this.strCheckBoxSelectTip = $r('app.string.msg_deselect_all');
         } else {
             // Non-Select All Status
-            this.strCheckBoxSelectTip = $r("app.string.msg_select_all");
+            this.strCheckBoxSelectTip = $r('app.string.msg_select_all');
         }
     }
 
     backSearch() {
         this.isShowSearchBack = false;
         this.isSearchCoverage = false;
-        //  this.$element("searchBox").focus({
+        //  this.$element('searchBox').focus({
         //    focus: false
         //  });
         this.isSearchFocusable = false
@@ -420,13 +420,13 @@ export default class ConversationListController {
         }
         // Delete a record.
         if (this.conversationSelectedNumber == common.int.MESSAGE_CODE_ONE) {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
+            this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip1');
         } else if (this.conversationSelectedNumber == this.messageList.length) {
             // Delete All
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip3");
+            this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip3');
         } else {
             // Delete multiple records.
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.conversationSelectedNumber);
+            this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip2', this.conversationSelectedNumber);
         }
         // Locked or not
         this.hasLockMsg = this.judgehasLockMsg()
@@ -444,7 +444,7 @@ export default class ConversationListController {
     }
 
     onBackPress() {
-        HiLog.i(TAG, "onBackPress");
+        HiLog.i(TAG, 'onBackPress');
         // Key returned by the system. The value true indicates interception.
         if (this.isMultipleSelectState) {
             for (let element of this.messageList) {
@@ -532,9 +532,9 @@ export default class ConversationListController {
 
     jumpToSettingsPage() {
         router.push({
-            uri: "pages/settings/settings",
+            uri: 'pages/settings/settings',
             params: {
-                pageFlag: "settingsDetail",
+                pageFlag: 'settingsDetail',
             }
         });
     }
@@ -558,10 +558,10 @@ export default class ConversationListController {
 
     // Unsubscribe
     unSubscribe() {
-        HiLog.i(TAG, "unSubscribe");
+        HiLog.i(TAG, 'unSubscribe');
         if (this.commonEventData != null) {
             commonEvent.unsubscribe(this.commonEventData, () => {
-                HiLog.i(TAG, "unSubscribe, success");
+                HiLog.i(TAG, 'unSubscribe, success');
             });
         }
     }
@@ -583,7 +583,7 @@ export default class ConversationListController {
                 that.unreadTotalOfInfo = result.response.unreadTotalOfInfo;
                 NotificationService.getInstance().setBadgeNumber(Number(that.unreadTotal));
             } else {
-                HiLog.w(TAG, "statisticalData, failed");
+                HiLog.w(TAG, 'statisticalData, failed');
             }
         }, null);
     }
@@ -604,7 +604,7 @@ export default class ConversationListController {
             this.page++;
             this.queryAllMessages();
         } else {
-            HiLog.i(TAG, "isLoading");
+            HiLog.i(TAG, 'isLoading');
         }
     }
 
@@ -617,7 +617,7 @@ export default class ConversationListController {
             return;
         }
         router.push({
-            uri: "pages/infomsg/InfoMsg"
+            uri: 'pages/infomsg/InfoMsg'
         })
     }
 
@@ -647,9 +647,9 @@ export default class ConversationListController {
     jumpToContact(actionData) {
         let str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
-            HiLog.i(TAG, "jumpToContact, startAbility success");
+            HiLog.i(TAG, 'jumpToContact, startAbility success');
         }).catch((error) => {
-            HiLog.e(TAG, "jumpToContact, failed Cause: " + JSON.stringify(error.message));
+            HiLog.e(TAG, 'jumpToContact, failed Cause: ' + JSON.stringify(error.message));
         })
         this.isJumping = false;
     }
@@ -657,7 +657,7 @@ export default class ConversationListController {
     // Go to the multi-faceted portrait list page.
     jumpToGroupDetail(threadId, contactsNum) {
         let actionData = {
-            uri: "pages/group_detail/group_detail",
+            uri: 'pages/group_detail/group_detail',
             params: {
                 threadId: threadId,
                 contactsNum: contactsNum
@@ -678,7 +678,7 @@ export default class ConversationListController {
 
     // Querying All Lists
     queryAllMessages() {
-        HiLog.i(TAG, "queryAllMessages, start");
+        HiLog.i(TAG, 'queryAllMessages, start');
         let actionData: LooseObject = {};
         this.limit = StringUtil.getLimitForSession(this.page);
         if (this.hasAggregate) {
@@ -741,13 +741,13 @@ export default class ConversationListController {
     dealMmsListContent(item) {
         if (item.hasMms && item.hasAttachment) {
             if (item.content == common.string.EMPTY_STR) {
-                item.content = $r("app.string.attachment_no_subject");
+                item.content = $r('app.string.attachment_no_subject');
             } else {
-                item.content = $r("app.string.attachment", item.content);
+                item.content = $r('app.string.attachment', item.content);
             }
         }
         if (item.hasMms && !item.hasAttachment && item.content == common.string.EMPTY_STR) {
-            item.content = $r("app.string.no_subject");
+            item.content = $r('app.string.no_subject');
         }
     }
 
@@ -780,7 +780,7 @@ export default class ConversationListController {
     // The session details page is displayed.
     jumpToConversationPage(item) {
         router.push({
-            uri: "pages/conversation/conversation",
+            uri: 'pages/conversation/conversation',
             params: {
                 strContactsNumber: item?.telephone,
                 strContactsNumberFormat: item?.telephoneFormat,
@@ -817,7 +817,7 @@ export default class ConversationListController {
     deleteAction(idx) {
         this.delItem = idx;
         let element = this.messageList[idx];
-        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
+        this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip1');
         element.isCbChecked = true;
         this.hasLockMsg = this.judgehasLockMsg();
     }

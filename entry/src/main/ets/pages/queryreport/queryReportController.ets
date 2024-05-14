@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import common from "../../data/commonData";
-import dateUtil from "../../utils/DateUtil";
-import router from "@system.router";
-import HiLog from "../../utils/HiLog"
+import common from '../../data/commonData';
+import dateUtil from '../../utils/DateUtil';
+import router from '@system.router';
+import HiLog from '../../utils/HiLog'
 
-const TAG = "QueryReportController";
+const TAG = 'QueryReportController';
 
 let queryReportCtrl;
 
@@ -33,29 +33,29 @@ export default class QueryReportController {
     // Specific morning and afternoon time
     specificTime: Resource;
     // Timestamp
-    timeMillisecond: string = "0";
+    timeMillisecond: string = '0';
     // telephoneNo
     telephone: string = '';
 
     static getInstance() {
         if (queryReportCtrl == null) {
             queryReportCtrl = new QueryReportController();
-            AppStorage.SetAndLink("QueryReportController", queryReportCtrl);
+            AppStorage.SetAndLink('QueryReportController', queryReportCtrl);
         }
         return queryReportCtrl;
     };
 
     onInit() {
-        HiLog.i(TAG, "onInit")
+        HiLog.i(TAG, 'onInit')
         this.isMsm = router.getParams().isMsm == undefined ? true : Boolean(router.getParams().isMsm);
         this.sendStatus = router.getParams().sendStatus == undefined ? 0 : Number(router.getParams().sendStatus);
         this.timeMillisecond =
-            router.getParams().timeMillisecond == undefined ? "0" : String(router.getParams().timeMillisecond);
+            router.getParams().timeMillisecond == undefined ? '0' : String(router.getParams().timeMillisecond);
         this.telephone = router.getParams().telephone == undefined ? '' : String(router.getParams().telephone)
     };
 
     onShow() {
-        HiLog.i(TAG, "onShow")
+        HiLog.i(TAG, 'onShow')
         // The status is changed to Chinese description.
         this.dealSendStatus();
         // Time Conversion
@@ -63,13 +63,13 @@ export default class QueryReportController {
     };
 
     dealSendStatus() {
-        HiLog.i(TAG, "dealSendStatus sendStatus=" + this.sendStatus)
+        HiLog.i(TAG, 'dealSendStatus sendStatus=' + this.sendStatus)
         if (this.sendStatus == common.int.SEND_MESSAGE_SUCCESS) {
-            this.sendStatusDesc = $r("app.string.received");
+            this.sendStatusDesc = $r('app.string.received');
         } else if (this.sendStatus == common.int.SEND_MESSAGE_FAILED) {
-            this.sendStatusDesc = this.isMsm ? $r("app.string.refused") : $r("app.string.failed");
+            this.sendStatusDesc = this.isMsm ? $r('app.string.refused') : $r('app.string.failed');
         } else {
-            this.sendStatusDesc = $r("app.string.rending");
+            this.sendStatusDesc = $r('app.string.rending');
         }
     };
 

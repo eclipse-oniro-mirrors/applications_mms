@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import common from "../data/commonData";
-import LooseObject from "../data/LooseObject";
-import HiLog from "./HiLog";
+import common from '../data/commonData';
+import LooseObject from '../data/LooseObject';
+import HiLog from './HiLog';
 
-import createOrGet from "./SingleInstanceUtils";
-import preferences from "@ohos.data.preferences";
+import createOrGet from './SingleInstanceUtils';
+import preferences from '@ohos.data.preferences';
 
-const TAG = "MmsPreferences";
+const TAG = 'MmsPreferences';
 
 /**
  * Obtaining a Lightweight Preference Database Instance
@@ -78,7 +78,7 @@ class MmsPreferences {
       this.setValueToMap(key, value.toString());
       return value;
     } catch (err) {
-      HiLog.i(TAG, "getValueFromPreferences(" + key + ") failed with err: " + JSON.stringify(err))
+      HiLog.i(TAG, 'getValueFromPreferences(' + key + ') failed with err: ' + JSON.stringify(err))
       return common.string.EMPTY_STR;
     }
   }
@@ -96,7 +96,7 @@ class MmsPreferences {
       this.setValueToMap(key, value.toString());
       return value;
     }).catch((err) => {
-      HiLog.i(TAG, "asyncGetValueFromPreferences(" + key + ") failed with err: " + JSON.stringify(err))
+      HiLog.i(TAG, 'asyncGetValueFromPreferences(' + key + ') failed with err: ' + JSON.stringify(err))
       return common.string.EMPTY_STR;
     });
   }

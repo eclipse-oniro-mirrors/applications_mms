@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import prompt from "@system.prompt";
+import prompt from '@system.prompt';
 
-import HiLog from "../../utils/HiLog";
-import common from "../../data/commonData";
-import ContactsService from "../../service/ContactsService";
-import commonService from "../../service/CommonService"
-import commonCtrl from "../../pages/conversation/common"
-import LooseObject from "../../data/LooseObject"
+import HiLog from '../../utils/HiLog';
+import common from '../../data/commonData';
+import ContactsService from '../../service/ContactsService';
+import commonService from '../../service/CommonService'
+import commonCtrl from '../../pages/conversation/common'
+import LooseObject from '../../data/LooseObject'
 
-const TAG = "ReceiveController";
+const TAG = 'ReceiveController';
 
 export default class ReceiveController {
     private static sInstance: ReceiveController;
@@ -39,7 +39,7 @@ export default class ReceiveController {
     // true Show Search List
     isShowSearch: boolean = true;
     strSelectContact: string = '';
-    styleTextarea: string = "select-contact-textarea";
+    styleTextarea: string = 'select-contact-textarea';
     hasBlur: boolean = false;
     // List pagination, number of pages
     page: number = 0;
@@ -56,7 +56,7 @@ export default class ReceiveController {
     }
 
     onInit(call) {
-        HiLog.i(TAG, "onInit()")
+        HiLog.i(TAG, 'onInit()')
         this.selectContacts = this.commonCtrl.paramContact.transmitContacts;
         if (this.selectContacts.length > 0) {
             let that = this;
@@ -76,10 +76,10 @@ export default class ReceiveController {
     }
 
     InputTextClear() {
-        this.myText = "";
+        this.myText = '';
         this.setInputStatus(true);
         this.commonCtrl.paramContact.transmitContacts = [];
-        HiLog.i(TAG,"InputTextClear")
+        HiLog.i(TAG,'InputTextClear')
     }
 
     requestItem() {
@@ -107,7 +107,7 @@ export default class ReceiveController {
                 this.contacts = response;
                 this.contactsTemp = this.contacts.slice(0);
             } else {
-                HiLog.w(TAG, "queryContacts, fail");
+                HiLog.w(TAG, 'queryContacts, fail');
             }
         }, null);
         // Number of statistics
@@ -119,7 +119,7 @@ export default class ReceiveController {
     }
 
     searchContacts(textValue, callback) {
-        HiLog.i(TAG, "searchContacts start");
+        HiLog.i(TAG, 'searchContacts start');
         let actionData = {
             telephone: textValue,
         };
@@ -127,7 +127,7 @@ export default class ReceiveController {
             if (res.code == common.int.SUCCESS) {
                 this.contacts = res.abilityResult;
             } else {
-                HiLog.w(TAG, "searchContacts fail");
+                HiLog.w(TAG, 'searchContacts fail');
             }
             callback(res.code);
         }, null);
@@ -138,10 +138,10 @@ export default class ReceiveController {
         try {
             this.contacts = this.contactsTemp.filter((contact) => {
                 if (contact.contactName && contact.contactName.toLowerCase().search(textValue) != -1) {
-                    HiLog.i(TAG, "filterContacts, contactName");
+                    HiLog.i(TAG, 'filterContacts, contactName');
                     return true;
                 } else if (contact.telephone && contact.telephone.toLowerCase().search(textValue) != -1) {
-                    HiLog.i(TAG, "filterContacts, telephone");
+                    HiLog.i(TAG, 'filterContacts, telephone');
                     return true;
                 }
                 return false;
@@ -166,7 +166,7 @@ export default class ReceiveController {
     }
 
     checkReceive(call) {
-        HiLog.i(TAG, "checkReceive, isInputStatus: " + this.isInputStatus);
+        HiLog.i(TAG, 'checkReceive, isInputStatus: ' + this.isInputStatus);
         if (this.myText.trim() == common.string.EMPTY_STR) {
             this.strSelectContact = this.setShowContactName();
             this.isShowSearch = false;
@@ -181,7 +181,7 @@ export default class ReceiveController {
             for (let index in this.contacts) {
                 let contact = this.contacts[index];
                 if (contact.telephone == that.myText) {
-                    selectContact.headImage = "icon/user_avatar_full_fill.svg";
+                    selectContact.headImage = 'icon/user_avatar_full_fill.svg';
                     selectContact.contactName = contact.contactName;
                     selectContact.telephone = contact.telephone;
                     selectContact.telephoneFormat = contact.telephone;
@@ -197,28 +197,28 @@ export default class ReceiveController {
                 selectContact.telephoneFormat = that.myText;
                 selectContact.select = false;
             }
-            HiLog.i(TAG, "checkReceive, isPhoneNumber yes");
+            HiLog.i(TAG, 'checkReceive, isPhoneNumber yes');
             this.selectContacts.push(selectContact);
             this.refresh = !this.refresh;
             this.setInputStatus(false);
             this.isShowSearch = false;
             this.setContactValue(call);
         } else {
-            HiLog.i(TAG, "checkReceive, isPhoneNumber no");
+            HiLog.i(TAG, 'checkReceive, isPhoneNumber no');
             prompt.showToast({
                 // Invalid Recipient
                 // @ts-ignore
-                message: $r("app.string.invalid_receive", this.myText),
+                message: $r('app.string.invalid_receive', this.myText),
                 duration: 1000,
             });
-            this.myText = "";
+            this.myText = '';
             this.isShowSearch = true;
             this.setContactValue(call);
         }
     }
 
     searchChange(text, call) {
-        HiLog.d(TAG, "searchChange, start");
+        HiLog.d(TAG, 'searchChange, start');
         if (this.checkSingle()) {
             this.setInputStatus(false);
             this.isShowSearch = false;
@@ -226,11 +226,11 @@ export default class ReceiveController {
         }
         this.myText = text;
         if (!this.isInputStatus) {
-            HiLog.w(TAG, "searchChange, isInputStatus false");
+            HiLog.w(TAG, 'searchChange, isInputStatus false');
             return;
         }
         this.searchContacts(this.myText, code => {
-            if (code == common.int.SUCCESS && this.myText.trim() != "") {
+            if (code == common.int.SUCCESS && this.myText.trim() != '') {
                 this.setContactValue(call);
                 this.dealSearchData();
                 this.setContactValue(call);
@@ -241,7 +241,7 @@ export default class ReceiveController {
     }
 
     dealSearchData() {
-        if (this.myText.trim() == "") {
+        if (this.myText.trim() == '') {
             this.contacts = this.contactsTemp.slice(0);
         } else {
             let textValue = this.myText.trim().toLowerCase();
@@ -267,11 +267,11 @@ export default class ReceiveController {
         if (this.checkSingle()) {
             return;
         }
-        if (curItem != undefined && curItem.telephone != undefined && curItem.telephone.toString().trim() == "") {
+        if (curItem != undefined && curItem.telephone != undefined && curItem.telephone.toString().trim() == '') {
             prompt.showToast({
                 // Invalid Recipient
                 // @ts-ignore
-                message: $r("app.string.invalid_receive", this.myText),
+                message: $r('app.string.invalid_receive', this.myText),
                 duration: 1000,
             });
             return;
@@ -281,11 +281,11 @@ export default class ReceiveController {
             if (item.telephone == undefined || curItem.telephone == undefined) {
                 return;
             }
-            HiLog.w(TAG, "addContact");
+            HiLog.w(TAG, 'addContact');
             return item.telephone != curItem.telephone
         });
         this.contacts.splice(index, 1);
-        HiLog.i(TAG, "addContact, length: " + this.selectContacts.length);
+        HiLog.i(TAG, 'addContact, length: ' + this.selectContacts.length);
         this.myText = '';
         if (this.selectContacts.length == 1) {
             this.setInputStatus(false);
@@ -296,7 +296,7 @@ export default class ReceiveController {
             this.isShowSearch = true;
             this.setContactValue(call);
         }
-        HiLog.i(TAG, "addContact, isInputStatus: " + this.isInputStatus);
+        HiLog.i(TAG, 'addContact, isInputStatus: ' + this.isInputStatus);
     }
 
     setShowContactName() {
@@ -305,50 +305,50 @@ export default class ReceiveController {
         }
         let myName = this.selectContacts[0]?.contactName?.trim();
         if (!myName) {
-            myName = ""
+            myName = ''
         }
         let telephone = this.selectContacts[0]?.telephone
         if (telephone === undefined || telephone === null) {
-            HiLog.e(TAG, "setShowContactName fail");
+            HiLog.e(TAG, 'setShowContactName fail');
             return '';
         }
         if (!this.isPhoneNumber(telephone)) {
-            myName = telephone.replace(new RegExp(/e|-|#|\*|\./, "g"), common.string.EMPTY_STR);
+            myName = telephone.replace(new RegExp(/e|-|#|\*|\./, 'g'), common.string.EMPTY_STR);
         } else {
-            if (myName == "") {
+            if (myName == '') {
                 myName = telephone;
             }
         }
         if (this.selectContacts.length >= 2) {
             // name and other numbers
-            return $r("app.string.and_others", myName, this.selectContacts.length - 1)
+            return $r('app.string.and_others', myName, this.selectContacts.length - 1)
         } else {
             return myName
         }
     }
 
     myContactFocus() {
-        HiLog.i(TAG, "myContactFocus, start");
+        HiLog.i(TAG, 'myContactFocus, start');
         this.myText = common.string.EMPTY_STR;
         this.setInputStatus(true);
         this.isShowSearch = true;
     }
 
     myContactClick() {
-        HiLog.i(TAG, "myContactClick, start");
+        HiLog.i(TAG, 'myContactClick, start');
         if (!this.isInputStatus) {
             this.myText = common.string.EMPTY_STR;
             this.setInputStatus(true);
             this.isShowSearch = true;
             // The TextArea control does not support focus.
-            //      this.$element("receiveTxt").focus({
+            //      this.$element('receiveTxt').focus({
             //        focus: true
             //      });
         }
     }
 
     nameClick(idx, call) {
-        HiLog.i(TAG, "click-->" + idx);
+        HiLog.i(TAG, 'click-->' + idx);
         if (this.selectContacts[idx] == null || this.selectContacts[idx] == undefined) {
             return;
         }
@@ -357,7 +357,7 @@ export default class ReceiveController {
             // Deleted items are added to the collection to be searched.
             this.contactsTemp.push(item);
             if (item[0] != undefined && item[0].telephoneFormat != undefined &&
-            item[0].telephoneFormat.toString().trim() != "") {
+            item[0].telephoneFormat.toString().trim() != '') {
                 this.contacts.push(item[0]);
             }
             this.refresh = !this.refresh;
@@ -388,7 +388,7 @@ export default class ReceiveController {
         let str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
         }).catch((error) => {
-            HiLog.i(TAG, "jumpToContact failed");
+            HiLog.i(TAG, 'jumpToContact failed');
         });
     }
     // Switching to the Contacts app
@@ -408,7 +408,7 @@ export default class ReceiveController {
         }
         for (let element of params) {
             let selectContact: LooseObject = {};
-            selectContact.headImage = "icon/user_avatar_full_fill.svg";
+            selectContact.headImage = 'icon/user_avatar_full_fill.svg';
             selectContact.contactName = element.contactName;
             selectContact.telephone = element.telephone;
             selectContact.telephoneFormat = element.telephone;
@@ -470,7 +470,7 @@ export default class ReceiveController {
             prompt.showToast({
                 // Invalid Recipient
                 // @ts-ignore
-                message: "只支持单个收件人",
+                message: '只支持单个收件人',
                 duration: 1000,
             });
             return true;

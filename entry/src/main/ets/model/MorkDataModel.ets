@@ -20,37 +20,37 @@ var savedImageInfo = {
 
 var pictureListFromGallery = [
     {
-        path: "/common/icon/add.png",
+        path: '/common/icon/add.png',
         checkedValue: false,
         fileSize: 55.6, // Unit:KB
         type: 1 // 1 image, 3 video
     },
     {
-        path: "/common/icon/up.png",
+        path: '/common/icon/up.png',
         checkedValue: false,
         fileSize: 95.6,
         type: 1
     },
     {
-        path: "/common/icon/vmall.png",
+        path: '/common/icon/vmall.png',
         checkedValue: false,
         fileSize: 75.6,
         type: 1
     },
     {
-        path: "/common/icon/pin.png",
+        path: '/common/icon/pin.png',
         checkedValue: false,
         fileSize: 55.6,
         type: 1
     },
     {
-        path: "/common/icon/delete.png",
+        path: '/common/icon/delete.png',
         checkedValue: false,
         fileSize: 55.6,
         type: 1
     },
     {
-        path: "/common/icon/ikea.png",
+        path: '/common/icon/ikea.png',
         checkedValue: false,
         fileSize: 55.6,
         type: 1

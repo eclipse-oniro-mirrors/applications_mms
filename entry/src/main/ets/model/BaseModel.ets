@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LooseObject from "../data/LooseObject";
+import LooseObject from '../data/LooseObject';
 
 export default class BaseModel {
   public encapsulateReturnResult(code, abilityResult): LooseObject {

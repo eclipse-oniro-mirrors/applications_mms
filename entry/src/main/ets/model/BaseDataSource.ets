@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HiLog from "../utils/HiLog";
+import HiLog from '../utils/HiLog';
 
-const TAG = "BasicDataSource"
+const TAG = 'BasicDataSource'
 
 export default class BasicDataSource implements IDataSource {
     private listeners: DataChangeListener[] = []
@@ -29,7 +29,7 @@ export default class BasicDataSource implements IDataSource {
 
     registerDataChangeListener(listener: DataChangeListener): void {
         if (this.listeners.indexOf(listener) < 0) {
-            HiLog.i(TAG, "add listener")
+            HiLog.i(TAG, 'add listener')
             this.listeners.push(listener)
         }
     }
@@ -37,7 +37,7 @@ export default class BasicDataSource implements IDataSource {
     unregisterDataChangeListener(listener: DataChangeListener): void {
         const pos = this.listeners.indexOf(listener);
         if (pos >= 0) {
-            HiLog.i(TAG, "remove listener")
+            HiLog.i(TAG, 'remove listener')
             this.listeners.splice(pos, 1)
         }
     }

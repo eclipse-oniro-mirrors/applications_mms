@@ -19,7 +19,7 @@ import telephoneUtil from '../utils/TelephoneUtil';
 import LooseObject from '../data/LooseObject';
 import ContactsModel from '../model/ContactsModel';
 
-const TAG = "ContactsService";
+const TAG = 'ContactsService';
 
 export default class ContactsService {
     private static instance: ContactsService;
@@ -178,7 +178,7 @@ export default class ContactsService {
         this.queryContactDataSizeByCondition(actionData, res => {
             let isContactExist: boolean = false;
             if (res.code == common.int.FAILURE) {
-                HiLog.e(TAG, "judgeProfileExit fail!");
+                HiLog.e(TAG, 'judgeProfileExit fail!');
                 callback(isContactExist);
             } else {
                 if (res.abilityResult > 0) {
@@ -194,7 +194,7 @@ export default class ContactsService {
         for (let contact of contacts) {
             let item: LooseObject = {};
             item.contactName = contact.displayName;
-            item.headImage = "icon/user_avatar_full_fill.svg";
+            item.headImage = 'icon/user_avatar_full_fill.svg';
             item.telephone = contact.detailInfo;
             item.telephoneFormat = contact.detailInfo;
             item.select = false;

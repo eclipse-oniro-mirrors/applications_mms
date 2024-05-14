@@ -15,8 +15,8 @@
 
 export default {
     bool: {
-        TRUE: "1",
-        FALSE: "0",
+        TRUE: '1',
+        FALSE: '0',
     },
     route: {
         // Update the value of the delivery report switch.
@@ -95,136 +95,136 @@ export default {
         EVENT_SLOTID_CHANGE: 2,
     },
     string: {
-        SMS_TYPE: "0",
+        SMS_TYPE: '0',
         // Empty String
         EMPTY_STR: '',
         // comma
-        COMMA: ",",
+        COMMA: ',',
         // bundleName
-        BUNDLE_NAME: "com.ohos.mms",
+        BUNDLE_NAME: 'com.ohos.mms',
         // abilityName
-        ABILITY_NAME: "com.ohos.mms.MainAbility",
+        ABILITY_NAME: 'com.ohos.mms.MainAbility',
         // BundleName of a contact.
-        CONTACT_BUNDLE_NAME: "com.ohos.contacts",
+        CONTACT_BUNDLE_NAME: 'com.ohos.contacts',
         // contact AbilityName
-        CONTACT_ABILITY_NAME: "com.ohos.contacts.MainAbility",
+        CONTACT_ABILITY_NAME: 'com.ohos.contacts.MainAbility',
         // Public entity
-        COMMON_ENTITIES: "entity.system.home",
+        COMMON_ENTITIES: 'entity.system.home',
         // Processing succeeded.
-        SUCCESS: "success",
+        SUCCESS: 'success',
         // Storage path of the lightweight preference database
-        PATH_OF_PREFERENCES: "/PREFERENCES_FOR_MMS",
+        PATH_OF_PREFERENCES: '/PREFERENCES_FOR_MMS',
         // Notification information integration
-        KEY_OF_INTEGRATION_SWITCH: "integrationSwitch",
+        KEY_OF_INTEGRATION_SWITCH: 'integrationSwitch',
         // Malicious Website Identification
-        KEY_OF_MALICIOUS_WEB_SWITCH: "maliciousWebSwitch",
+        KEY_OF_MALICIOUS_WEB_SWITCH: 'maliciousWebSwitch',
         // Display contact avatar
-        KEY_OF_SHOW_CONTACT_SWITCH: "showContactSwitch",
+        KEY_OF_SHOW_CONTACT_SWITCH: 'showContactSwitch',
         // Delivery Report
-        KEY_OF_DELIVERY_REPORT_SWITCH: "deliveryReportSwitch",
+        KEY_OF_DELIVERY_REPORT_SWITCH: 'deliveryReportSwitch',
         // Automatically downloading MMs
-        KEY_OF_AUTO_RETRIEVE_SWITCH: "autoRetrieveMmsSwitch",
+        KEY_OF_AUTO_RETRIEVE_SWITCH: 'autoRetrieveMmsSwitch',
         // Cancel Sending
-        KEY_OF_RECALL_MESSAGE_SWITCH: "recallMessageSwitch",
+        KEY_OF_RECALL_MESSAGE_SWITCH: 'recallMessageSwitch',
         // Automatically delete notification information
-        KEY_OF_AUTO_DELETE_INFO_SWITCH: "autoDeleteInfoSwitch",
+        KEY_OF_AUTO_DELETE_INFO_SWITCH: 'autoDeleteInfoSwitch',
         // Number of SIM cards
-        KEY_OF_SIM_COUNT: "simCount",
+        KEY_OF_SIM_COUNT: 'simCount',
         // Carrier name of SIM card 1
-        KEY_OF_SIM_0_SPN: "simSpn0",
+        KEY_OF_SIM_0_SPN: 'simSpn0',
         // Carrier name of SIM card 2
-        KEY_OF_SIM_1_SPN: "simSpn1",
+        KEY_OF_SIM_1_SPN: 'simSpn1',
         // Whether SIM card 1 exists
-        KEY_OF_SIM_0_EXIST_FLAG: "simExistFlag0",
+        KEY_OF_SIM_0_EXIST_FLAG: 'simExistFlag0',
         // Whether SIM card 2 exists
-        KEY_OF_SIM_1_EXIST_FLAG: "simExistFlag1",
+        KEY_OF_SIM_1_EXIST_FLAG: 'simExistFlag1',
         // If the SMSC number of SIM card 1 is changed, the new SMSC number is changed.
-        KEY_OF_NEW_SIM_0_SMSC: "newSimSmsc0",
+        KEY_OF_NEW_SIM_0_SMSC: 'newSimSmsc0',
         // If the SMSC number of SIM card 2 is changed, the new SMSC number is changed.
-        KEY_OF_NEW_SIM_1_SMSC: "newSimSmsc1",
+        KEY_OF_NEW_SIM_1_SMSC: 'newSimSmsc1',
         // Mobile number of the SIM card
-        KEY_OF_SIM_0_NUMBER: "sim_0_number",
-        KEY_OF_SIM_1_NUMBER: "sim_1_number",
-        KEY_OF_SELECTED_SLOTID: "selected_slotId",
-        KEY_OF_MAX_SIM_COUNT: "maxSimCount",
-        KEY_OF_HAVE_MULTI_SIM_CARD_READY: "haveMultiSimCardReady",
-        KEY_OF_HAVE_SIM_CARD_READY: "haveSimCardReady",
-        KEY_OF_DEFAULT_SLOT: "defaultSlot",
+        KEY_OF_SIM_0_NUMBER: 'sim_0_number',
+        KEY_OF_SIM_1_NUMBER: 'sim_1_number',
+        KEY_OF_SELECTED_SLOTID: 'selected_slotId',
+        KEY_OF_MAX_SIM_COUNT: 'maxSimCount',
+        KEY_OF_HAVE_MULTI_SIM_CARD_READY: 'haveMultiSimCardReady',
+        KEY_OF_HAVE_SIM_CARD_READY: 'haveSimCardReady',
+        KEY_OF_DEFAULT_SLOT: 'defaultSlot',
         // Events for Subscribing to Notifications     usual.event.SMS_RECEIVE_COMPLETED
-        SUBSCRIBER_EVENT: "usual.event.SMS_RECEIVE_COMPLETED",
+        SUBSCRIBER_EVENT: 'usual.event.SMS_RECEIVE_COMPLETED',
         // Receiving and forwarding
-        RECEIVE_TRANSMIT_EVENT: "usual.event.RECEIVE_COMPLETED_TRANSMIT",
+        RECEIVE_TRANSMIT_EVENT: 'usual.event.RECEIVE_COMPLETED_TRANSMIT',
         // MMS message receiving event
-        MMS_SUBSCRIBER_EVENT: "usual.event.MMS_RECEIVE_COMPLETED",
+        MMS_SUBSCRIBER_EVENT: 'usual.event.MMS_RECEIVE_COMPLETED',
         // Contact database
-        URI_ROW_CONTACTS: "datashare:///com.ohos.contactsdataability",
+        URI_ROW_CONTACTS: 'datashare:///com.ohos.contactsdataability',
         // Contact Information
-        CONTACT_DATA_URI: "/contacts/contact_data",
+        CONTACT_DATA_URI: '/contacts/contact_data',
         // Business Card Contact
-        PROFILE_DATA_URI: "/profile/raw_contact",
+        PROFILE_DATA_URI: '/profile/raw_contact',
         // Querying Contacts
-        CONTACT_SEARCHE: "/contacts/search_contact",
+        CONTACT_SEARCHE: '/contacts/search_contact',
         // Contact Information
-        CONTACT_URI: "/contacts/contact",
+        CONTACT_URI: '/contacts/contact',
         // SMS database
-        URI_MESSAGE_LOG: "datashare:///com.ohos.smsmmsability",
+        URI_MESSAGE_LOG: 'datashare:///com.ohos.smsmmsability',
         // sms_mms_info table
-        URI_MESSAGE_INFO_TABLE: "/sms_mms/sms_mms_info",
+        URI_MESSAGE_INFO_TABLE: '/sms_mms/sms_mms_info',
         // session table
-        URI_MESSAGE_SESSION_TABLE: "/sms_mms/session",
+        URI_MESSAGE_SESSION_TABLE: '/sms_mms/session',
         // Statistic
-        URI_MESSAGE_UNREAD_COUNT: "/sms_mms/sms_mms_info/unread_total",
+        URI_MESSAGE_UNREAD_COUNT: '/sms_mms/sms_mms_info/unread_total',
         // Get the largest groupID
-        URI_MESSAGE_MAX_GROUP: "/sms_mms/sms_mms_info/max_group",
+        URI_MESSAGE_MAX_GROUP: '/sms_mms/sms_mms_info/max_group',
         // Querying MMS Messages
-        URI_MESSAGE_MMS_PART: "/sms_mms/mms_part",
-        AUDIO_NAME: "recording2021111512454545.amr",
+        URI_MESSAGE_MMS_PART: '/sms_mms/mms_part',
+        AUDIO_NAME: 'recording2021111512454545.amr',
         // MMSC
-        MMS_URL: "http://mmsc.monternet.com"
+        MMS_URL: 'http://mmsc.monternet.com'
     },
     DELIVERY_REPORTS: {
         // Closed
-        DISABLED: "0",
+        DISABLED: '0',
         // SMS
-        SMS: "1",
+        SMS: '1',
         // MMS
-        MMS: "2",
+        MMS: '2',
         // SMS and MMS
-        SMS_AND_MMS: "3"
+        SMS_AND_MMS: '3'
     },
     AUTO_RETRIEVE_MMS: {
         // OFF
-        OFF: "0",
+        OFF: '0',
         // Non-roaming
-        NOT_WHEN_ROAMING: "1",
+        NOT_WHEN_ROAMING: '1',
         // All networks
-        ALWAYS: "2"
+        ALWAYS: '2'
     },
     SPN_CHINA: {
         // TELECOM
-        TELECOM: "中国电信",
+        TELECOM: '中国电信',
         // MOBILE
-        MOBILE: "CMCC",
+        MOBILE: 'CMCC',
         // UNICOM
-        UNICOM: "China Unicom",
+        UNICOM: 'China Unicom',
     },
     contactPage: {
         // Go to New Contact
-        PAGE_FLAG_SAVE_CONTACT: "page_flag_save_contact",
+        PAGE_FLAG_SAVE_CONTACT: 'page_flag_save_contact',
         // Edit Before Call
-        PAGE_FLAG_EDIT_BEFORE_CALLING: "page_flag_edit_before_calling",
+        PAGE_FLAG_EDIT_BEFORE_CALLING: 'page_flag_edit_before_calling',
         // Save to Existing Contacts
-        PAGE_FLAG_SAVE_EXIST_CONTACT: "page_flag_save_exist_contact",
+        PAGE_FLAG_SAVE_EXIST_CONTACT: 'page_flag_save_exist_contact',
         // The page for selecting a contact is displayed after an SMS message is sent.
-        PAGE_FLAG_SINGLE_CHOOSE: "page_flag_single_choose",
+        PAGE_FLAG_SINGLE_CHOOSE: 'page_flag_single_choose',
         // Select Contact List Page
-        PAGE_FLAG_CHOOSE_CONTACTS: "page_flag_choose_contacts",
+        PAGE_FLAG_CHOOSE_CONTACTS: 'page_flag_choose_contacts',
         // Contact details page
-        PAGE_FLAG_CONTACT_DETAILS: "page_flag_contact_details",
+        PAGE_FLAG_CONTACT_DETAILS: 'page_flag_contact_details',
         // The My Business Card page is displayed.
-        PAGE_FLAG_CALLING_CARD: "page_flag_card_details",
+        PAGE_FLAG_CALLING_CARD: 'page_flag_card_details',
         // Querying MMS Data
-        URI_MESSAGE_MMS_PART: "/sms_mms/mms_part"
+        URI_MESSAGE_MMS_PART: '/sms_mms/mms_part'
     },
     MESSAGE_TAB_INDEX: {
         TAB_CAMERA: 0,
@@ -286,26 +286,26 @@ export default {
     },
     RUN_IN_WORKER_METHOD: {
         // Contacts
-        queryContactDataByCondition: "queryContactDataByCondition",
-        queryContactDataSizeByCondition: "queryContactDataSizeByCondition",
-        queryContactByCondition: "queryContactByCondition",
-        queryContactSizeByCondition: "queryContactSizeByCondition",
-        queryRawContactSizeByCondition: "queryRawContactSizeByCondition",
-        queryContactViewByCondition: "queryContactViewByCondition",
+        queryContactDataByCondition: 'queryContactDataByCondition',
+        queryContactDataSizeByCondition: 'queryContactDataSizeByCondition',
+        queryContactByCondition: 'queryContactByCondition',
+        queryContactSizeByCondition: 'queryContactSizeByCondition',
+        queryRawContactSizeByCondition: 'queryRawContactSizeByCondition',
+        queryContactViewByCondition: 'queryContactViewByCondition',
         // detail
-        insertSmsMmsInfo: "insertSmsMmsInfo",
-        deleteSmsMmsInfoByCondition: "deleteSmsMmsInfoByCondition",
-        updateSmsMmsInfoByCondition: "updateSmsMmsInfoByCondition",
-        querySmsMmsInfoByCondition: "querySmsMmsInfoByCondition",
-        querySmsMmsInfoSizeByCondition: "querySmsMmsInfoSizeByCondition",
-        queryMaxGroupId: "queryMaxGroupId",
-        statisticalData: "statisticalData",
+        insertSmsMmsInfo: 'insertSmsMmsInfo',
+        deleteSmsMmsInfoByCondition: 'deleteSmsMmsInfoByCondition',
+        updateSmsMmsInfoByCondition: 'updateSmsMmsInfoByCondition',
+        querySmsMmsInfoByCondition: 'querySmsMmsInfoByCondition',
+        querySmsMmsInfoSizeByCondition: 'querySmsMmsInfoSizeByCondition',
+        queryMaxGroupId: 'queryMaxGroupId',
+        statisticalData: 'statisticalData',
         // list
-        insertSession: "insertSession",
-        deleteSessionByCondition: "deleteSessionByCondition",
-        updateSessionByCondition: "updateSessionByCondition",
-        querySessionByCondition: "querySessionByCondition",
-        querySessionSizeByCondition: "querySessionSizeByCondition"
+        insertSession: 'insertSession',
+        deleteSessionByCondition: 'deleteSessionByCondition',
+        updateSessionByCondition: 'updateSessionByCondition',
+        querySessionByCondition: 'querySessionByCondition',
+        querySessionSizeByCondition: 'querySessionSizeByCondition'
     },
     sms_type: {
         COMMON: 0,

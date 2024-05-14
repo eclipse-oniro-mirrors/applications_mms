@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import HiLog from "../utils/HiLog";
+import HiLog from '../utils/HiLog';
 
-const TAG = "IndexController";
+const TAG = 'IndexController';
 
 let sIndexController;
 
@@ -30,18 +30,18 @@ export default class IndexController {
     }
 
     onInit() {
-        HiLog.i(TAG, "onInit");
+        HiLog.i(TAG, 'onInit');
     }
 
     onShow() {
-        HiLog.i(TAG, "onShow");
+        HiLog.i(TAG, 'onShow');
     }
 
     onHide() {
-        HiLog.i(TAG, "onHide");
+        HiLog.i(TAG, 'onHide');
     }
 
     onDestroy() {
-        HiLog.i(TAG, "onDestroy");
+        HiLog.i(TAG, 'onDestroy');
     }
 }

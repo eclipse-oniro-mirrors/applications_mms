@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import sms from "@ohos.telephony.sms";
-import HiLog from "../utils/HiLog";
-import common from "../data/commonData";
-import http from "@ohos.net.http";
+import sms from '@ohos.telephony.sms';
+import HiLog from '../utils/HiLog';
+import common from '../data/commonData';
+import http from '@ohos.net.http';
 
-const TAG = "SendMsgService"
+const TAG = 'SendMsgService'
 
 export default {
 
@@ -37,7 +37,7 @@ export default {
                 sendCallback: (err, value) => {
                     let sendStatus: number = common.int.SEND_MESSAGE_FAILED;
                     if (err) {
-                        HiLog.w(TAG, "sendMessage, sendCallback failed err: " + JSON.stringify(err.message));
+                        HiLog.w(TAG, 'sendMessage, sendCallback failed err: ' + JSON.stringify(err.message));
                         sendStatus = common.int.SEND_MESSAGE_FAILED;
                     } else {
                         sendStatus = this.dealSendResult(value);
@@ -47,13 +47,13 @@ export default {
                 },
                 deliveryCallback: (err, value) => {
                     if (err) {
-                        HiLog.w(TAG, "sendMessage, deliveryCallback failed err: " + JSON.stringify(err.message));
+                        HiLog.w(TAG, 'sendMessage, deliveryCallback failed err: ' + JSON.stringify(err.message));
                         return;
                     }
                 }
             });
         } catch (error) {
-            HiLog.e(TAG, "sendMessage, sendMessage failed error: " + JSON.stringify(error));
+            HiLog.e(TAG, 'sendMessage, sendMessage failed error: ' + JSON.stringify(error));
             callback(common.int.SEND_MESSAGE_FAILED);
         }
     },
@@ -74,9 +74,9 @@ export default {
             {
                 method: http.RequestMethod.POST,
                 header: {
-                    "Content-Type": "application/vnd.wap.mms-message",
-                    "Accept": "Accept",
-                    "Accept-Language": "Accept-Language"
+                    'Content-Type': 'application/vnd.wap.mms-message',
+                    'Accept': 'Accept',
+                    'Accept-Language': 'Accept-Language'
                 },
                 extraData: JSON.stringify(params),
                 readTimeout: 60000,
@@ -84,7 +84,7 @@ export default {
             }, (err, data) => {
                 let sendStatus;
                 if (err) {
-                    HiLog.i(TAG, "sendMmsMessage, error: " + JSON.stringify(err.message));
+                    HiLog.i(TAG, 'sendMmsMessage, error: ' + JSON.stringify(err.message));
                     sendStatus = common.int.SEND_MESSAGE_FAILED;
                 } else {
                     sendStatus = common.int.SEND_MESSAGE_SUCCESS;

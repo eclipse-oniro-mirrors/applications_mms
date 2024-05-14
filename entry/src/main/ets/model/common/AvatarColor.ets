@@ -15,7 +15,7 @@
 
 export default {
   background: {
-    Color: ["#98D4EF", "#9CC998", "#E8889C", "#C891F1", "#F9C273", "#92D6CC"],
+    Color: ['#98D4EF', '#9CC998', '#E8889C', '#C891F1', '#F9C273', '#92D6CC'],
   }
 }
 

@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 import mediaquery from '@ohos.mediaquery';
-import IndexController from "./indexController"
-import ConversationList from "./conversationlist/conversationList"
-import ConListController from "./conversationlist/conversationListController";
-import DeviceUtil from "../utils/DeviceUtil";
-import MmsPreferences from "../utils/MmsPreferences";
-import HiLog from "../utils/HiLog"
-import WantUtil from "../utils/WantUtil";
+import IndexController from './indexController'
+import ConversationList from './conversationlist/conversationList'
+import ConListController from './conversationlist/conversationListController';
+import DeviceUtil from '../utils/DeviceUtil';
+import MmsPreferences from '../utils/MmsPreferences';
+import HiLog from '../utils/HiLog'
+import WantUtil from '../utils/WantUtil';
 
-const TAG = "Index";
+const TAG = 'Index';
 
 @Entry
 @Component
@@ -30,8 +30,8 @@ struct Index {
   @State mConListCtrl: ConListController = ConListController.getInstance();
   private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
   private girdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
-  private gridGutter: string = "24vp";
-  private gridMargin: string = "24vp";
+  private gridGutter: string = '24vp';
+  private gridMargin: string = '24vp';
   private smListener: mediaquery.MediaQueryListener;
   private mdListener: mediaquery.MediaQueryListener;
   private lgListener: mediaquery.MediaQueryListener;
@@ -62,11 +62,11 @@ struct Index {
     this.mIndexCtrl.onInit();
     this.mConListCtrl.onInit();
     this.smListener = mediaquery.matchMediaSync('(320vp<width<=520vp)');
-    this.smListener.on("change", this.isBreakpointSM);
+    this.smListener.on('change', this.isBreakpointSM);
     this.mdListener = mediaquery.matchMediaSync('(520vp<width<=840vp)');
-    this.mdListener.on("change", this.isBreakpointMD);
+    this.mdListener.on('change', this.isBreakpointMD);
     this.lgListener = mediaquery.matchMediaSync('(840vp<width)');
-    this.lgListener.on("change", this.isBreakpointLG);
+    this.lgListener.on('change', this.isBreakpointLG);
   }
 
   /**
@@ -77,9 +77,9 @@ struct Index {
   aboutToDisappear() {
     this.mConListCtrl.onDestroy();
     this.mIndexCtrl.onDestroy();
-    this.smListener.off("change", this.isBreakpointSM);
-    this.mdListener.off("change", this.isBreakpointMD);
-    this.lgListener.off("change", this.isBreakpointLG);
+    this.smListener.off('change', this.isBreakpointSM);
+    this.mdListener.off('change', this.isBreakpointMD);
+    this.lgListener.off('change', this.isBreakpointLG);
   }
 
   /**
@@ -125,15 +125,15 @@ struct Index {
                 mConListCtrl: $mConListCtrl
               })
             }
-            .width("100%")
-            .height("100%")
+            .width('100%')
+            .height('100%')
           }
         }
       }
       .height('100%')
     }
     .padding({ left: this.gridMargin, right: this.gridMargin })
-    .width("100%")
-    .height("100%")
+    .width('100%')
+    .height('100%')
   }
 }

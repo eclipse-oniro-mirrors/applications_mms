@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import call from "@ohos.telephony.call";
-import HiLog from "../utils/HiLog";
-import common from "../data/commonData";
-import LooseObject from "../data/LooseObject"
+import call from '@ohos.telephony.call';
+import HiLog from '../utils/HiLog';
+import common from '../data/commonData';
+import LooseObject from '../data/LooseObject'
 
-const TAG = "CallService";
+const TAG = 'CallService';
 
 export default {
 
@@ -30,7 +30,7 @@ export default {
      */
     call(telephone, callback) {
         if (telephone == null || telephone == common.string.EMPTY_STR) {
-            HiLog.i(TAG, "telephone is null");
+            HiLog.i(TAG, 'telephone is null');
             return;
         }
         let result: LooseObject = {};
@@ -39,7 +39,7 @@ export default {
             result.value = value;
             callback(result);
         }).catch((err) => {
-            HiLog.e(TAG, "dial error: " + err.message);
+            HiLog.e(TAG, 'dial error: ' + err.message);
             result.code = common.int.FAILURE;
             callback(result);
         });

@@ -22,19 +22,21 @@ import mmsTable from '../data/tableData';
 import HiLog from '../utils/HiLog';
 import LooseObject from '../data/LooseObject';
 
-const TAG = "ConversationModel";
+const TAG = 'ConversationModel';
 
 
 export default class ConversationModel extends BaseModel {
   public async insertSmsMmsInfo(valueBucket, callback, context): Promise<void> {
-    let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
+    let dataHelper = await dataShare.createDataShareHelper(context,
+      common.string.URI_MESSAGE_LOG);
+    let managerUri: string = common.string.URI_MESSAGE_LOG +
+    common.string.URI_MESSAGE_INFO_TABLE;
     dataHelper.insert(managerUri, valueBucket).then(res => {
       if (callback) {
         callback(this.encapsulateReturnResult(common.int.SUCCESS, res));
       }
     }).catch(error => {
-      HiLog.e(TAG, "insertSmsMmsInfo fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'insertSmsMmsInfo fail, error: ' + JSON.stringify(error));
       if (callback) {
         callback(this.encapsulateReturnCode(common.int.FAILURE));
       }
@@ -43,14 +45,15 @@ export default class ConversationModel extends BaseModel {
 
   public async deleteSmsMmsInfoByCondition(actionData, callback, context): Promise<void> {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let condition: dataSharePredicates.DataSharePredicates =
+    this.buildQuerySmsMmsInfoCondition(actionData);
     let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
     dataHelper.delete(managerUri, condition).then(res => {
       if (callback) {
         callback(this.encapsulateReturnResult(common.int.SUCCESS, res));
       }
     }).catch(error => {
-      HiLog.e(TAG, "deleteSmsMmsInfoByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'deleteSmsMmsInfoByCondition fail, error: ' + JSON.stringify(error));
       if (callback) {
         callback(this.encapsulateReturnCode(common.int.FAILURE));
       }
@@ -59,14 +62,15 @@ export default class ConversationModel extends BaseModel {
 
   public async updateSmsMmsInfoByCondition(actionData, valueBucket, callback, context): Promise<void> {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let condition: dataSharePredicates.DataSharePredicates =
+    this.buildQuerySmsMmsInfoCondition(actionData);
     let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
     dataHelper.update(managerUri, condition, valueBucket).then(res => {
       if (callback) {
         callback(this.encapsulateReturnResult(common.int.SUCCESS, res));
       }
     }).catch(error => {
-      HiLog.e(TAG, "updateSmsMmsInfoByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'updateSmsMmsInfoByCondition fail, error: ' + JSON.stringify(error));
       if (callback) {
         callback(this.encapsulateReturnCode(common.int.FAILURE));
       }
@@ -75,7 +79,8 @@ export default class ConversationModel extends BaseModel {
 
   public async querySmsMmsInfoByCondition(actionData, callback, context): Promise<void> {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let condition: dataSharePredicates.DataSharePredicates =
+    this.buildQuerySmsMmsInfoCondition(actionData);
     let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
     dataHelper.query(managerUri, condition, this.buildSmsMmsInfoTableColumns()).then(resultSet => {
       let resultList: Array<LooseObject> = [];
@@ -87,41 +92,44 @@ export default class ConversationModel extends BaseModel {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultList));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "querySmsMmsInfoByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'querySmsMmsInfoByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
 
   public async querySmsMmsInfoSizeByCondition(actionData, callback, context): Promise<void> {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let condition: dataSharePredicates.DataSharePredicates = this.buildQuerySmsMmsInfoCondition(actionData);
+    let condition: dataSharePredicates.DataSharePredicates =
+    this.buildQuerySmsMmsInfoCondition(actionData);
     let managerUri = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_INFO_TABLE;
     dataHelper.query(managerUri, condition, this.buildSmsMmsInfoTableColumns()).then(resultSet => {
       callback(this.encapsulateReturnResult(common.int.SUCCESS, resultSet.rowCount));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "querySmsMmsInfoSizeByCondition fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'querySmsMmsInfoSizeByCondition fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
 
   public async queryMaxGroupId(callback, context): Promise<void> {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
-    let resultColumns: Array<string> = ["maxGroupId"];
-    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let resultColumns: Array<string> = ['maxGroupId'];
+    let condition: dataSharePredicates.DataSharePredicates =
+      new dataSharePredicates.DataSharePredicates();
     let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_MAX_GROUP;
     dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
       let maxGroupId: number = 0;
       if (resultSet.rowCount > 0) {
         if (resultSet.goToLastRow()) {
-          maxGroupId = (resultSet.getString(0) == common.string.EMPTY_STR) ? 0 : Number(resultSet.getString(0));
-          HiLog.i(TAG, "queryMaxGroupId, maxGroupId: " + maxGroupId);
+          maxGroupId = (resultSet.getString(0) ==
+          common.string.EMPTY_STR) ? 0 : Number(resultSet.getString(0));
+          HiLog.i(TAG, 'queryMaxGroupId, maxGroupId: ' + maxGroupId);
         }
       }
       callback(this.encapsulateReturnResult(common.int.SUCCESS, maxGroupId));
       resultSet.close();
     }).catch(error => {
-      HiLog.e(TAG, "queryMaxGroupId fail, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'queryMaxGroupId fail, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
@@ -129,17 +137,18 @@ export default class ConversationModel extends BaseModel {
   public async statisticalData(callback, context) {
     let dataHelper = await dataShare.createDataShareHelper(context, common.string.URI_MESSAGE_LOG);
     let resultColumns: Array<string> = [
-      "totalListCount",
-      "unreadCount",
-      "unreadTotalOfInfo"
+      'totalListCount',
+      'unreadCount',
+      'unreadTotalOfInfo'
     ];
-    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let condition: dataSharePredicates.DataSharePredicates =
+      new dataSharePredicates.DataSharePredicates();
     let managerUri: string = common.string.URI_MESSAGE_LOG + common.string.URI_MESSAGE_UNREAD_COUNT;
     dataHelper.query(managerUri, condition, resultColumns).then(resultSet => {
       let result: LooseObject = {
-        "totalListCount": 0,
-        "unreadCount": 0,
-        "unreadTotalOfInfo": 0
+        'totalListCount': 0,
+        'unreadCount': 0,
+        'unreadTotalOfInfo': 0
       };
       if (resultSet.rowCount > 0) {
         if (resultSet.goToLastRow()) {
@@ -150,13 +159,14 @@ export default class ConversationModel extends BaseModel {
       }
       callback(this.encapsulateReturnResult(common.int.SUCCESS, result));
     }).catch(error => {
-      HiLog.e(TAG, "statisticalData, error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'statisticalData, error: ' + JSON.stringify(error));
       callback(this.encapsulateReturnCode(common.int.FAILURE));
     });
   }
 
   private buildQuerySmsMmsInfoCondition(actionData): dataSharePredicates.DataSharePredicates {
-    let condition: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let condition: dataSharePredicates.DataSharePredicates =
+      new dataSharePredicates.DataSharePredicates();
     condition.isNotNull(mmsTable.messageInfo.msgId)
     if (actionData.threadId != null) {
       let sessionId: string = actionData.threadId + common.string.EMPTY_STR;
@@ -227,7 +237,8 @@ export default class ConversationModel extends BaseModel {
     let result: LooseObject = {};
     result.msgId = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgId)));
     result.slotId = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.slotId)));
-    result.receiverNumber = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.receiverNumber));
+    result.receiverNumber = resultSet.getString(
+      resultSet.getColumnIndex(mmsTable.messageInfo.receiverNumber));
     result.senderNumber = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.senderNumber));
     result.startTime = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.startTime));
     result.endTime = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.endTime));
@@ -237,7 +248,8 @@ export default class ConversationModel extends BaseModel {
     result.msgContent = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgContent));
     result.msgState = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgState)));
 
-    result.operatorServiceNumber = resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.operatorServiceNumber));
+    result.operatorServiceNumber = resultSet.getString(
+      resultSet.getColumnIndex(mmsTable.messageInfo.operatorServiceNumber));
     result.msgCode = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.msgCode)));
     result.isLock = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isLock)));
     result.isRead = Number(resultSet.getString(resultSet.getColumnIndex(mmsTable.messageInfo.isRead)));

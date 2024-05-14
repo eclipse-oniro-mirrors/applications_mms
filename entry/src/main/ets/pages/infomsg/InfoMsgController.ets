@@ -26,14 +26,14 @@ import NotificationService from '../../service/NotificationService';
 import settingService from '../../service/SettingService';
 import ConversationListDataSource from '../../model/ConversationListDataSource'
 
-const TAG = "InfoMsgController"
+const TAG = 'InfoMsgController'
 
 let sInfoMsgCtrl;
 
 export default class InfoMsgController {
     delDialogShow: boolean = false;
     commonEventData: any = null;
-    svgDelete: string = "icon/ic_public_delete.svg"
+    svgDelete: string = 'icon/ic_public_delete.svg'
     total: number = 0;
     strCheckBoxSelectTip: Resource;
     strMsgDeleteDialogTip: Resource;
@@ -51,8 +51,8 @@ export default class InfoMsgController {
     isSelectLockMsg: boolean = false;
     // List of search results
     searchResultList: LooseObject = {
-        "sessionList": [],
-        "contentList": []
+        'sessionList': [],
+        'contentList': []
     };
     // Search Results Queue
     searchResultListQueue: Array<any> = [];
@@ -112,19 +112,19 @@ export default class InfoMsgController {
     static getInstance() {
         if (sInfoMsgCtrl == null) {
             sInfoMsgCtrl = new InfoMsgController();
-            AppStorage.SetAndLink("InfoMsgController", sInfoMsgCtrl);
+            AppStorage.SetAndLink('InfoMsgController', sInfoMsgCtrl);
         }
         return sInfoMsgCtrl;
     }
 
     onInit() {
-        HiLog.i(TAG, "onInit");
-        this.strCheckBoxSelectTip = $r("app.string.msg_select_all");
-        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.conversationSelectedNumber);
+        HiLog.i(TAG, 'onInit');
+        this.strCheckBoxSelectTip = $r('app.string.msg_select_all');
+        this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip2', this.conversationSelectedNumber);
     }
 
     onShow() {
-        HiLog.i(TAG, "onShow");
+        HiLog.i(TAG, 'onShow');
         this.isJumping = false;
         this.getSettingFlagForConvListPage();
         this.page = 0;
@@ -134,7 +134,7 @@ export default class InfoMsgController {
     }
 
     onHide() {
-        HiLog.i(TAG, "onHide");
+        HiLog.i(TAG, 'onHide');
         this.unsubscribeInfo();
     }
     // Querying List Data
@@ -146,7 +146,7 @@ export default class InfoMsgController {
         actionData.orderByTimeDesc = true;
         ConversationListService.getInstance().querySessionList(actionData, result => {
             if (result.code == common.int.SUCCESS) {
-                HiLog.i(TAG, "queryAllMessages, Success");
+                HiLog.i(TAG, 'queryAllMessages, Success');
                 let res = this.buildSessionList(result);
                 this.messageList = res;
                 this.conversationListDataSource.refresh(this.messageList);
@@ -156,7 +156,7 @@ export default class InfoMsgController {
                     this.countUnread();
                 }
             } else {
-                HiLog.w(TAG, "queryAllMessages, failed");
+                HiLog.w(TAG, 'queryAllMessages, failed');
             }
         }, null);
     }
@@ -164,13 +164,13 @@ export default class InfoMsgController {
     dealMmsListContent(element) {
         if (element.hasMms && element.hasAttachment) {
             if (element.content == common.string.EMPTY_STR) {
-                element.content = $r("app.string.attachment_no_subject");
+                element.content = $r('app.string.attachment_no_subject');
             } else {
-                element.content = $r("app.string.attachment", element.content);
+                element.content = $r('app.string.attachment', element.content);
             }
         }
         if (element.hasMms && !element.hasAttachment && element.content == common.string.EMPTY_STR) {
-            element.content = $r("app.string.no_subject");
+            element.content = $r('app.string.no_subject');
         }
     }
 
@@ -212,7 +212,7 @@ export default class InfoMsgController {
     }
     // Tap More at the bottom of the screen
     clickMore() {
-        //        this.$element("moreDialog").show();
+        //        this.$element('moreDialog').show();
     }
     // Delete a single piece of information from a notification.
     clickToDelete() {
@@ -242,7 +242,7 @@ export default class InfoMsgController {
         }
         // Touch and hold a list to display the selection and deletion functions.
         this.showToolBar = false;
-        HiLog.i(TAG, "conversationLongPress, index: " + index);
+        HiLog.i(TAG, 'conversationLongPress, index: ' + index);
         if (this.isMultipleSelectState) {
             this.messageList[index].isCbChecked = !this.messageList[index].isCbChecked;
         } else {
@@ -277,10 +277,10 @@ export default class InfoMsgController {
         this.conversationListDataSource.refresh(this.messageList);
         if (!this.isConversationCheckAll) {
             // Non-Select All Status
-            this.strCheckBoxSelectTip = $r("app.string.msg_select_all");
+            this.strCheckBoxSelectTip = $r('app.string.msg_select_all');
         } else {
             // Select All Status
-            this.strCheckBoxSelectTip = $r("app.string.msg_deselect_all");
+            this.strCheckBoxSelectTip = $r('app.string.msg_deselect_all');
         }
     }
     // The SM details page is displayed.
@@ -308,7 +308,7 @@ export default class InfoMsgController {
     // The session details page is displayed.
     jumpToConversationPage(item) {
         router.push({
-            uri: "pages/conversation/conversation",
+            uri: 'pages/conversation/conversation',
             params: {
                 strContactsNumber: item?.telephone,
                 strContactsNumberFormat: item?.telephoneFormat,
@@ -351,7 +351,7 @@ export default class InfoMsgController {
     // Go to the multi-faceted portrait list page.
     jumpToGroupDetail(threadId, contactsNum) {
         let actionData = {
-            uri: "pages/group_detail/group_detail",
+            uri: 'pages/group_detail/group_detail',
             params: {
                 threadId: threadId,
                 contactsNum: contactsNum
@@ -368,7 +368,7 @@ export default class InfoMsgController {
     searchMmsClicked(item) {
         if (item.isFavorite) {
             router.push({
-                uri: "pages/my_star/my_star",
+                uri: 'pages/my_star/my_star',
                 params: {
                     searchContent: this.inputValueOfSearch
                 }
@@ -396,10 +396,10 @@ export default class InfoMsgController {
             if (result.code == common.int.SUCCESS) {
                 // Unreading of notification messages
                 that.unreadTotalOfInfo = result.response.unreadTotalOfInfo;
-                HiLog.i(TAG, "countUnread = " + that.unreadTotalOfInfo);
+                HiLog.i(TAG, 'countUnread = ' + that.unreadTotalOfInfo);
                 NotificationService.getInstance().setBadgeNumber(Number(result.response.totalListCount));
             } else {
-                HiLog.w(TAG, "countUnread, statisticalData failed");
+                HiLog.w(TAG, 'countUnread, statisticalData failed');
             }
         }, null);
     }
@@ -460,11 +460,11 @@ export default class InfoMsgController {
             return;
         }
         if (this.conversationSelectedNumber == common.int.MESSAGE_CODE_ONE) {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
+            this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip1');
         } else if (this.conversationSelectedNumber == this.messageList.length) {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip3");
+            this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip3');
         } else {
-            this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip2", this.conversationSelectedNumber);
+            this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip2', this.conversationSelectedNumber);
         }
         this.hasLockMsg = (this.messageList.some((element, index) => element.isCbChecked && element.isLock));
     }
@@ -648,7 +648,7 @@ export default class InfoMsgController {
 
     deleteAction(idx) {
         let element = this.messageList[idx];
-        this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");
+        this.strMsgDeleteDialogTip = $r('app.string.msg_delete_dialog_tip1');
         element.isCbChecked = true;
         this.hasLockMsg = (this.messageList.some((element, index) => element.isCbChecked && element.isLock));
     }
@@ -670,7 +670,7 @@ export default class InfoMsgController {
     }
     // Subscribe to New Messages Received
     subscribeInfo() {
-        HiLog.i(TAG, "subscribeInfo, start");
+        HiLog.i(TAG, 'subscribeInfo, start');
         let events = [common.string.RECEIVE_TRANSMIT_EVENT]
         let commonEventSubscribeInfo = {
             events: events
@@ -705,7 +705,7 @@ export default class InfoMsgController {
     unsubscribeInfo() {
         if (this.commonEventData != null) {
             commonEvent.unsubscribe(this.commonEventData, () => {
-                HiLog.i(TAG, "unsubscribeInfo, success");
+                HiLog.i(TAG, 'unsubscribeInfo, success');
             });
         }
     }
@@ -714,7 +714,7 @@ export default class InfoMsgController {
         var str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
         }).catch((error) => {
-            HiLog.e(TAG, "jumpToContact, failed: " + JSON.stringify(error.message));
+            HiLog.e(TAG, 'jumpToContact, failed: ' + JSON.stringify(error.message));
         })
         this.isJumping = false;
     }

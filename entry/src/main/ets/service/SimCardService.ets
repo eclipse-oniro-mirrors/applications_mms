@@ -14,10 +14,10 @@
  */
 
 import emitter from '@ohos.events.emitter';
-import cardModel from "../model/CardModel"
-import HiLog from "../utils/HiLog";
+import cardModel from '../model/CardModel'
+import HiLog from '../utils/HiLog';
 
-const TAG: string = "SimCardService";
+const TAG: string = 'SimCardService';
 
 class SimCardService {
   public SIM_STATE_CHANGE_EVENT: emitter.InnerEvent = cardModel.SIM_STATE_CHANGE_EVENT;

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import DeviceUtil from "../utils/DeviceUtil";
+import DeviceUtil from '../utils/DeviceUtil';
 
 /**
  * Custom pop-up menu buttons
@@ -20,14 +20,15 @@ import DeviceUtil from "../utils/DeviceUtil";
 @Component
 export struct MoreMenu {
     @StorageLink('curBp') curBp: string = 'sm'
-    @Consume menuItems:Array<any>;
-    private menuImage: Resource = $rawfile("icon/ic_public_more.svg");
+    @Consume menuItems: Array<any>;
+    private menuImage: Resource = $rawfile('icon/ic_public_more.svg');
     private placement: Placement = Placement.Bottom;
-    private defaultColor: Resource = $r("sys.color.ohos_id_color_dialog_bg");
+    private defaultColor: Resource = $r('sys.color.ohos_id_color_dialog_bg');
     private menuText: Resource = null;
-    private menuTextColor: Resource = $r("sys.color.ohos_id_color_text_primary");
+    private menuTextColor: Resource = $r('sys.color.ohos_id_color_text_primary');
 
-    @Builder PopupBuilder() {
+    @Builder
+    PopupBuilder() {
         Column() {
             List() {
                 ForEach(this.menuItems, (item, index) => {
@@ -36,17 +37,17 @@ export struct MoreMenu {
                             Text(item.value)
                                 .fontSize(16)
                                 .lineHeight(21)
-                                .width("100%")
+                                .width('100%')
                                 .height(48)
                                 .padding({ left: 12, right: 12 })
                                 .fontWeight(FontWeight.Regular)
-                                .fontColor(item.enabled ? $r("sys.color.ohos_id_color_text_primary") :
-                                $r("sys.color.ohos_id_color_text_tertiary"))
+                                .fontColor(item.enabled ? $r('sys.color.ohos_id_color_text_primary') :
+                                $r('sys.color.ohos_id_color_text_tertiary'))
                         }
-                        .width("100%")
+                        .width('100%')
                         .height(48)
                         .borderRadius(16)
-                        .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+                        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
                         .onClick(() => {
                             if (item.enabled) {
                                 item.action();
@@ -58,7 +59,7 @@ export struct MoreMenu {
             .listDirection(Axis.Vertical) // Arrange Direction
             .divider({
                 strokeWidth: 0.5,
-                color: $r("sys.color.ohos_id_color_list_separator"),
+                color: $r('sys.color.ohos_id_color_list_separator'),
                 startMargin: 12,
                 endMargin: 12
             }) // Demarcation line between each row
@@ -82,9 +83,9 @@ export struct MoreMenu {
                     .lineHeight(14)
                     .fontColor(this.menuTextColor)
                     .margin({ top: 3 })
-                    .fontSize($r("sys.float.ohos_id_text_size_caption"))
+                    .fontSize($r('sys.float.ohos_id_text_size_caption'))
                     .fontWeight(FontWeight.Medium)
-                    .fontColor($r("sys.color.ohos_id_color_toolbar_text"))
+                    .fontColor($r('sys.color.ohos_id_color_toolbar_text'))
             }
         }
         .bindMenu(this.PopupBuilder)

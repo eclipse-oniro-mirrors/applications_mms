@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import commonEvent from "@ohos.commonEventManager";
-import telSim from "@ohos.telephony.sms";
-import http from "@ohos.net.http";
+import commonEvent from '@ohos.commonEventManager';
+import telSim from '@ohos.telephony.sms';
+import http from '@ohos.net.http';
 
 import common from '../data/commonData';
 import telephoneUtils from '../utils/TelephoneUtil';
@@ -42,7 +42,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public async dealSmsReceiveData(data, context): Promise<void> {
-        let netType: string = data.parameters.isCdma ? "3gpp2" : "3gpp";
+        let netType: string = data.parameters.isCdma ? '3gpp2' : '3gpp';
         // Synchronize wait operation
         let promisesAll = [];
         data.parameters.pdus.forEach(pdu => {
@@ -59,7 +59,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
                 result.content += shortMessage.visibleMessageBody;
             });
         }).catch(error => {
-            HiLog.e(TAG, "dealSmsReceiveData, error: " + JSON.stringify(error));
+            HiLog.e(TAG, 'dealSmsReceiveData, error: ' + JSON.stringify(error));
             result.code = common.int.FAILURE;
         });
         await createMessagePromise;
@@ -100,13 +100,13 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
                 {
                     method: http.RequestMethod.GET,
                     header: {
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
                     },
                     extraData: baseUrl,
                     readTimeout: 50000,
                     connectTimeout: 50000
                 }, (err, data) => {
-                    HiLog.i(TAG, "saveAttachment, err: " + JSON.stringify(err.message));
+                    HiLog.i(TAG, 'saveAttachment, err: ' + JSON.stringify(err.message));
                 }
             );
         }
@@ -123,19 +123,19 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
                     break;
                 // Pictures
                 case 1:
-                    content = "(picture)" + themeContent;
+                    content = '(picture)' + themeContent;
                     break;
                 // Video
                 case 2:
-                    content = "(video)" + themeContent;
+                    content = '(video)' + themeContent;
                     break;
                 // Audio
                 case 3:
-                    content = "(audio)" + themeContent;
+                    content = '(audio)' + themeContent;
                     break;
             }
         } else {
-            content = "(slide)" + mmsSource[0].content;
+            content = '(slide)' + mmsSource[0].content;
         }
         return content;
     }
@@ -167,11 +167,11 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         let length: number = wby.length;
         let isDouble: boolean = (length % 2) == 0;
         let halfSize: number = parseInt('' + length / 2);
-        HiLog.i(TAG, "convertStrArray, length=" + length + ", isDouble=" + isDouble);
+        HiLog.i(TAG, 'convertStrArray, length=' + length + ', isDouble=' + isDouble);
         if (isDouble) {
             let number0xArray = new Array(halfSize);
             for (let i = 0;i < halfSize; i++) {
-                number0xArray[i] = "0x" + wby.substr(i * 2, 2);
+                number0xArray[i] = '0x' + wby.substr(i * 2, 2);
             }
             let numberArray = new Array(halfSize);
             for (let i = 0;i < halfSize; i++) {
@@ -181,21 +181,21 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         } else {
             let number0xArray = new Array(halfSize + 1);
             for (let i = 0;i < halfSize; i++) {
-                number0xArray[i] = "0x" + wby.substr(i * 2, 2);
+                number0xArray[i] = '0x' + wby.substr(i * 2, 2);
             }
-            number0xArray[halfSize] = "0x" + wby.substr((halfSize * 2) + 1, 1);
+            number0xArray[halfSize] = '0x' + wby.substr((halfSize * 2) + 1, 1);
             let numberArray = new Array(halfSize + 1);
             for (let i = 0;i < halfSize; i++) {
                 numberArray[i] = parseInt(number0xArray[i], 16);
             }
-            let last0x = "0x" + wby.substr(wby.length - 1, 1);
+            let last0x = '0x' + wby.substr(wby.length - 1, 1);
             numberArray[halfSize] = parseInt(last0x);
             return numberArray;
         }
     }
 
     public publishData(telephone, content): void {
-        HiLog.i(TAG, "publishData, start");
+        HiLog.i(TAG, 'publishData, start');
         let actionData = {
             telephone: telephone,
             content: content
@@ -213,22 +213,22 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
         let condition: LooseObject = {};
         condition.telephones = [telephone];
         ContactService.getInstance().queryContactDataByCondition(condition, res => {
-            HiLog.i(TAG, "sendNotification, callback");
+            HiLog.i(TAG, 'sendNotification, callback');
             if (res.code == common.int.FAILURE) {
                 return;
             }
             let contacts: Array<LooseObject> = res.abilityResult;
             let actionData: LooseObject = this.dealContactParams(contacts, telephone);
             if (content.length > 15) {
-                content = content.substring(0, 15) + "...";
+                content = content.substring(0, 15) + '...';
             }
             let title: string = telephone;
             if(contacts.length > 0) {
                 title = contacts[0].displayName
             }
             let message: LooseObject = {
-                "title": title,
-                "text": content,
+                'title': title,
+                'text': content,
             };
             actionData.message = message;
             actionData.msgId = msgId;

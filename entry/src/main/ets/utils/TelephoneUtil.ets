@@ -12,20 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import common from "../data/commonData";
-import HiLog from "./HiLog";
-import call from "@ohos.telephony.call";
+import common from '../data/commonData';
+import HiLog from './HiLog';
+import call from '@ohos.telephony.call';
 
-const TAG = "TelephoneUtil";
+const TAG = 'TelephoneUtil';
 /**
  *  log package tool class
  */
 const infoMegTelephone = [
-    "1065796709202", "1065502043202", "1065902090202", "1069055999202",
-    "106579670915", "106550204315", "106590209015", "106905599915",
-    "106", "400", "111", "100", "118", "116", "12306", "12329", "12345",
-    "12122", "12321", "12580", "12520", "12583", "02512329", "053287003810",
-    "1258319559899", "1019", "12583110086", "000000", "95", "96",
+    '1065796709202', '1065502043202', '1065902090202', '1069055999202',
+    '106579670915', '106550204315', '106590209015', '106905599915',
+    '106', '400', '111', '100', '118', '116', '12306', '12329', '12345',
+    '12122', '12321', '12580', '12520', '12583', '02512329', '053287003810',
+    '1258319559899', '1019', '12583110086', '000000', '95', '96',
 ];
 
 export default {
@@ -54,9 +54,9 @@ export default {
         if (telephone == null || telephone == common.string.EMPTY_STR) {
             formatTelephone = common.string.EMPTY_STR;
         }
-        if (formatTelephone.startsWith("+86")) {
+        if (formatTelephone.startsWith('+86')) {
             formatTelephone = formatTelephone.substring(3);
-        } else if(formatTelephone.startsWith("86")) {
+        } else if(formatTelephone.startsWith('86')) {
             formatTelephone = formatTelephone.substring(2);
         }
         return formatTelephone;
@@ -152,7 +152,7 @@ export default {
     },
     async formatPhoneNumber(phoneNumber) {
         if (phoneNumber == null || phoneNumber === common.string.EMPTY_STR) {
-            HiLog.w(TAG, "formatPhoneNumber, param is null");
+            HiLog.w(TAG, 'formatPhoneNumber, param is null');
             return common.string.EMPTY_STR;
         }
         let promise = call.formatPhoneNumber(phoneNumber);
@@ -160,7 +160,7 @@ export default {
         promise.then((value) => {
             formatPhoneNumber = value;
         }).catch((err) => {
-            HiLog.e(TAG, "formatPhoneNumber, error: " + JSON.stringify(err.message));
+            HiLog.e(TAG, 'formatPhoneNumber, error: ' + JSON.stringify(err.message));
         });
         await promise;
         return formatPhoneNumber;

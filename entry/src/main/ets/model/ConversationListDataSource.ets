@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import BaseDataSource from "./BaseDataSource";
-import HiLog from "../utils/HiLog";
+import BaseDataSource from './BaseDataSource';
+import HiLog from '../utils/HiLog';
 
-const TAG = "ConversationListDataSource";
+const TAG = 'ConversationListDataSource';
 
 export default class ConversationListDataSource extends BaseDataSource {
     private mmsList: Array = [];
@@ -27,7 +27,7 @@ export default class ConversationListDataSource extends BaseDataSource {
 
     public getData(index: number): any {
         if (this.mmsList == null || index >= this.mmsList.length) {
-            HiLog.i(TAG, "getData Conversationlist is empty");
+            HiLog.i(TAG, 'getData Conversationlist is empty');
             return null;
         } else {
             let conversation = this.mmsList[index];
@@ -39,7 +39,7 @@ export default class ConversationListDataSource extends BaseDataSource {
     }
 
     public refresh(conversationList) {
-        HiLog.i(TAG, " refresh!");
+        HiLog.i(TAG, ' refresh!');
         this.mmsList = conversationList;
         this.notifyDataReload();
     }

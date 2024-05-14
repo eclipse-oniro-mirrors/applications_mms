@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import WantAgent from "@ohos.app.ability.wantAgent";
-import Notification from "@ohos.notificationManager";
+import WantAgent from '@ohos.app.ability.wantAgent';
+import Notification from '@ohos.notificationManager';
 
-import common from "../data/commonData";
-import HiLog from "../utils/HiLog";
-import ConversationService from "./ConversationService";
-import ConversationListService from "../service/ConversationListService";
+import common from '../data/commonData';
+import HiLog from '../utils/HiLog';
+import ConversationService from './ConversationService';
+import ConversationListService from '../service/ConversationListService';
 
-var notificationManager = globalThis.requireNapi("notificationManager");
-const label = "notification_";
-const TAG: string = "NotificationService";
+var notificationManager = globalThis.requireNapi('notificationManager');
+const label = 'notification_';
+const TAG: string = 'NotificationService';
 
 export default class NotificationService {
     private static sInstance: NotificationService;
@@ -35,7 +35,7 @@ export default class NotificationService {
     }
 
     constructor() {
-        HiLog.i(TAG, "new start");
+        HiLog.i(TAG, 'new start');
     }
 
     /**
@@ -53,7 +53,7 @@ export default class NotificationService {
             notificationRequest.id = actionData.msgId;
             notificationRequest.label = label + actionData.msgId;
             Notification.publish(notificationRequest);
-            HiLog.i(TAG, "sendNotify finished");
+            HiLog.i(TAG, 'sendNotify finished');
         });
     }
 
@@ -76,19 +76,19 @@ export default class NotificationService {
      */
     buildWantAgentInfo(actionData): any {
         let parameters = {
-            pageFlag: "conversation",
+            pageFlag: 'conversation',
             contactObjects: actionData.contactObjects
         };
         let wantAgentInfo = {
             wants: [
                 {
-                    deviceId: "",
+                    deviceId: '',
                     bundleName: common.string.BUNDLE_NAME,
                     abilityName: common.string.ABILITY_NAME,
-                    action: "mms.event.notification",
+                    action: 'mms.event.notification',
                     entities: [],
-                    type: "MIMETYPE",
-                    uri: "",
+                    type: 'MIMETYPE',
+                    uri: '',
                 }
             ],
             operationType: WantAgent.OperationType.START_ABILITY,
@@ -117,7 +117,7 @@ export default class NotificationService {
             wantAgent: '',
             slotType: Notification.SlotType.OTHER_TYPES,
             deliveryTime: new Date().getTime(),
-            groupName: "MMS"
+            groupName: 'MMS'
         };
         return notificationRequest;
     }
@@ -144,7 +144,7 @@ export default class NotificationService {
     cancelNotify(msgId, callback) {
         Notification.cancel(msgId, label + msgId, (err, data) => {
             if (err) {
-                HiLog.w(TAG, "cancelNotify, error: " + JSON.stringify(err.message));
+                HiLog.w(TAG, 'cancelNotify, error: ' + JSON.stringify(err.message));
                 callback(common.int.FAILURE);
             }
             callback(common.int.SUCCESS);
@@ -155,7 +155,7 @@ export default class NotificationService {
         let promise = Notification.cancelAll();
         promise.then((ret) => {
         }).catch((err) => {
-            HiLog.e(TAG, "cancelAllNotify, error: " + JSON.stringify(err.message));
+            HiLog.e(TAG, 'cancelAllNotify, error: ' + JSON.stringify(err.message));
         });
     }
 

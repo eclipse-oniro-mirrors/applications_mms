@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import LooseObject from "../../data/LooseObject"
+import LooseObject from '../../data/LooseObject'
 
 export default class Common {
     private static sInstance: Common;

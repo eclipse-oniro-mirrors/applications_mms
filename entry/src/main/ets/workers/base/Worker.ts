@@ -15,10 +15,10 @@
 
 import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
 import HiLog from '../../utils/HiLog';
-import WorkFactory from "../WorkFactory"
+import WorkFactory from '../WorkFactory'
 
 var workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-const TAG = "Worker";
+const TAG = 'Worker';
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
  * The event handler is executed in the worker thread.
@@ -26,13 +26,13 @@ const TAG = "Worker";
  * @param e message data
  */
 workerPort.onmessage = function (e: MessageEvents) {
-    HiLog.w(TAG, "onmessage");
-    if (e.data) {
-        let task = WorkFactory.getTask(workerPort, e)
-        task?.onmessage(e);
-    } else {
-        HiLog.w(TAG, `onmessage ${JSON.stringify(e)} not allow`)
-    }
+  HiLog.w(TAG, 'onmessage');
+  if (e.data) {
+    let task = WorkFactory.getTask(workerPort, e)
+    task?.onmessage(e);
+  } else {
+    HiLog.w(TAG, `onmessage ${JSON.stringify(e)} not allow`)
+  }
 }
 
 
@@ -43,7 +43,7 @@ workerPort.onmessage = function (e: MessageEvents) {
  * @param e message data
  */
 workerPort.onmessageerror = function (e: MessageEvents) {
-    HiLog.w(TAG, "onmessageerror" + JSON.stringify(e));
+  HiLog.w(TAG, 'onmessageerror' + JSON.stringify(e));
 }
 
 /**
@@ -53,5 +53,5 @@ workerPort.onmessageerror = function (e: MessageEvents) {
  * @param e error message
  */
 workerPort.onerror = function (e: ErrorEvent) {
-    HiLog.w(TAG, "onerror" + JSON.stringify(e));
+  HiLog.w(TAG, 'onerror' + JSON.stringify(e));
 }

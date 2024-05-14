@@ -12,23 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import DeviceUtil from "../../utils/DeviceUtil";
-import InfoMsgController from "./InfoMsgController";
-import { DeleteDialog } from "../../views/MmsDialogs";
-import { MmsListItem } from "../../views/MmsListItem";
-import { MoreMenu } from "../../views/MmsMenu";
-import WantUtil from "../../utils/WantUtil";
+import DeviceUtil from '../../utils/DeviceUtil';
+import InfoMsgController from './InfoMsgController';
+import { DeleteDialog } from '../../views/MmsDialogs';
+import { MmsListItem } from '../../views/MmsListItem';
+import { MoreMenu } from '../../views/MmsMenu';
+import WantUtil from '../../utils/WantUtil';
 
 @Entry
 @Component
 export default struct InfoMsg {
-    @StorageLink("InfoMsgController") @Watch("changeSelectState") mInfoMsgCtrl: InfoMsgController = InfoMsgController.getInstance();
+    @StorageLink('InfoMsgController') @Watch('changeSelectState') mInfoMsgCtrl: InfoMsgController = InfoMsgController.getInstance();
     @State mIsMultipleSelectState : boolean = false;
     @State misShowContactHeadIcon : boolean = true;
     private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
     private girdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
-    private gridGutter: string = "24vp";
-    private gridMargin: string = "24vp";
+    private gridGutter: string = '24vp';
+    private gridMargin: string = '24vp';
     private dialogGridCount: number = 4;
     private dialogAlignment: DialogAlignment = DeviceUtil.isTablet() ? DialogAlignment.Center : DialogAlignment.Bottom;
     private dialogOffset: Offset = DeviceUtil.isTablet() ? { dx: 0, dy: 0 } : { dx: 0, dy: -12 };
@@ -59,7 +59,7 @@ export default struct InfoMsg {
     })
     @Provide menuItems: Array<any> = [
         {
-            value: $r("app.string.delete"),
+            value: $r('app.string.delete'),
             action: () => {
                 this.mInfoMsgCtrl.selectInMoreMenu(1);
             },
@@ -67,7 +67,7 @@ export default struct InfoMsg {
         }
 //        ,
 //        {
-//            value: $r("app.string.blocked"),
+//            value: $r('app.string.blocked'),
 //            action: () => {
 //                this.mInfoMsgCtrl.selectInMoreMenu(2);
 //            },
@@ -147,48 +147,48 @@ export default struct InfoMsg {
                         //Multi-Select Status Title
                         Flex({ direction: FlexDirection.Column }) {
                             Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-                                Image($rawfile("icon/ic_public_cancel.svg"))
-                                    .width("24vp")
-                                    .height("24vp")
+                                Image($rawfile('icon/ic_public_cancel.svg'))
+                                    .width('24vp')
+                                    .height('24vp')
                                     .onClick(() => {
                                         this.onBackPress()
                                     })
                                 Text(this.mInfoMsgCtrl.conversationSelectedNumber == 0 ?
-                                $r("app.string.msg_unselected_tip") :
-                                $r("app.string.msg_selected_tip", this.mInfoMsgCtrl.conversationSelectedNumber))
-                                    .padding({ left: "16vp" })
-                                    .fontSize("20fp")
+                                $r('app.string.msg_unselected_tip') :
+                                $r('app.string.msg_selected_tip', this.mInfoMsgCtrl.conversationSelectedNumber))
+                                    .padding({ left: '16vp' })
+                                    .fontSize('20fp')
                                     .fontWeight(FontWeight.Bold)
                             }
-                            .height("56vp")
+                            .height('56vp')
                         }
-                        .width("100%")
-                        .height("56vp")
+                        .width('100%')
+                        .height('56vp')
                     } else if (!this.mInfoMsgCtrl.searchStatus) {
                         //Header Row
                         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
                             Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-                                Image($rawfile("icon/ic_message_back.svg"))
-                                    .width("24vp")
-                                    .height("24vp")
+                                Image($rawfile('icon/ic_message_back.svg'))
+                                    .width('24vp')
+                                    .height('24vp')
                                     .onClick(() => {
                                         this.mInfoMsgCtrl.back()
                                     })
-                                Text($r("app.string.infoMessages"))
-                                    .padding({ left: "16vp" })
-                                    .fontSize("20fp")
+                                Text($r('app.string.infoMessages'))
+                                    .padding({ left: '16vp' })
+                                    .fontSize('20fp')
                                     .fontWeight(FontWeight.Bold)
                             }
-                            .height("56vp")
+                            .height('56vp')
                         }
-                        .width("100%")
-                        .height("56vp")
+                        .width('100%')
+                        .height('56vp')
                     }
 
                     Row() {
                         //Back button
                         if (this.mInfoMsgCtrl.isShowSearchBack) {
-                            Image($rawfile("icon/ic_message_back.svg"))
+                            Image($rawfile('icon/ic_message_back.svg'))
                                 .width(24)
                                 .height(24)
                                 .onClick((event: ClickEvent) => {
@@ -197,12 +197,12 @@ export default struct InfoMsg {
                         }
                         //Search box
                         // @ts-ignore
-                        Search({ value: this.mInfoMsgCtrl.inputValueOfSearch, placeholder: "搜索通知信息" })
+                        Search({ value: this.mInfoMsgCtrl.inputValueOfSearch, placeholder: '搜索通知信息' })
                             .layoutWeight(1)
-                            .height("40vp")
-                            .border({ radius: "20vp" })
+                            .height('40vp')
+                            .border({ radius: '20vp' })
                             .enabled(!this.mIsMultipleSelectState)
-                            .backgroundColor($r("sys.color.ohos_id_color_text_field_bg"))
+                            .backgroundColor($r('sys.color.ohos_id_color_text_field_bg'))
                             .onChange((value: string) => {
                                 //this.mInfoMsgCtrl.clickToSearch(value);
                             })
@@ -211,8 +211,8 @@ export default struct InfoMsg {
                             })
                     }
                     .visibility(Visibility.None)
-                    .width("100%")
-                    .height("56vp")
+                    .width('100%')
+                    .height('56vp')
                     .padding({ left: 24, right: 24 })
                     .alignItems(VerticalAlign.Center)
 
@@ -258,8 +258,8 @@ export default struct InfoMsg {
                                                 }
                                             })
                                         }
-                                        .width("100%")
-                                        .height("64vp")
+                                        .width('100%')
+                                        .height('64vp')
                                         .alignSelf(ItemAlign.Start)
                                     }, item => JSON.stringify(item))
                                 }
@@ -267,13 +267,13 @@ export default struct InfoMsg {
                             .align(Alignment.Top)
                             .cachedCount(this.mInfoMsgCtrl.limit)
                             .edgeEffect(EdgeEffect.Spring)
-                            .width("100%")
+                            .width('100%')
                             .divider({
                                 strokeWidth: 1,
                                 startMargin: this.mInfoMsgCtrl.isShowContactHeadIcon ? 52 : 12,
                                 endMargin: 0
                             })
-                        }.width("100%")
+                        }.width('100%')
                         //Search Above
                         //SMS Search Session Item
                         //Left avatar
@@ -292,8 +292,8 @@ export default struct InfoMsg {
                         if (this.mInfoMsgCtrl.isSearchCoverage) {
                             //Display of layers for search
                             Flex()
-                                .width("100%")
-                                .height("100%")
+                                .width('100%')
+                                .height('100%')
                                 .opacity(0.2)
                                 .backgroundColor(Color.Gray)
                                 .onTouch((event: TouchEvent) => {
@@ -317,16 +317,16 @@ export default struct InfoMsg {
                                 alignItems: ItemAlign.Center
                             }) {
                                 Image($rawfile(this.mInfoMsgCtrl.svgDelete))
-                                    .width("24vp")
-                                    .height("24vp")
-                                    .margin({ top: "3vp" })
-                                Text($r("app.string.delete"))
-                                    .fontSize("10fp")
+                                    .width('24vp')
+                                    .height('24vp')
+                                    .margin({ top: '3vp' })
+                                Text($r('app.string.delete'))
+                                    .fontSize('10fp')
                                     .fontWeight(FontWeight.Medium)
-                                    .fontFamily("HarmonyHeiTi")
+                                    .fontFamily('HarmonyHeiTi')
                                     .margin({ top: 3 })
                             }
-                            .width("50%")
+                            .width('50%')
                             .opacity(this.mInfoMsgCtrl.checkSelectedNumberIsEmpty() ? 0.4 : 1)
                             .onClick(() => {
                                 if (!this.mInfoMsgCtrl.checkSelectedNumberIsEmpty()) {
@@ -342,29 +342,29 @@ export default struct InfoMsg {
                                 alignItems: ItemAlign.Center
                             }) {
                                 Image($rawfile(this.mInfoMsgCtrl.isConversationCheckAll ?
-                                    "icon/ic_select_all_filled.svg" :
-                                    "icon/ic_select_all.svg"))
-                                    .width("24vp")
-                                    .height("24vp")
-                                    .margin({ top: "3vp" })
+                                    'icon/ic_select_all_filled.svg' :
+                                    'icon/ic_select_all.svg'))
+                                    .width('24vp')
+                                    .height('24vp')
+                                    .margin({ top: '3vp' })
                                 Text(this.mInfoMsgCtrl.strCheckBoxSelectTip)
-                                    .fontSize("10fp")
+                                    .fontSize('10fp')
                                     .fontColor(this.mInfoMsgCtrl.isConversationCheckAll ?
-                                    $r("sys.color.ohos_id_color_bottom_tab_text_on") :
-                                    $r("sys.color.ohos_id_color_bottom_tab_text_off"))
+                                    $r('sys.color.ohos_id_color_bottom_tab_text_on') :
+                                    $r('sys.color.ohos_id_color_bottom_tab_text_off'))
                                     .fontWeight(FontWeight.Medium)
-                                    .fontFamily("HarmonyHeiTi")
+                                    .fontFamily('HarmonyHeiTi')
                                     .margin({ top: 3 })
                             }
-                            .width("50%")
+                            .width('50%')
                             .onClick(() => {
                                 this.mInfoMsgCtrl.clickConversationCheckAll()
                             })
                         }
-                        .width("100%")
+                        .width('100%')
                         .height(56)
-                        .padding({ left: $r("app.float.menu_layout_padding_left"),
-                            right: $r("app.float.menu_layout_padding_right") })
+                        .padding({ left: $r('app.float.menu_layout_padding_left'),
+                            right: $r('app.float.menu_layout_padding_right') })
                         .flexBasis(56)
                         .flexShrink(0)
                     }
@@ -378,16 +378,16 @@ export default struct InfoMsg {
                                 justifyContent: FlexAlign.Center,
                                 alignItems: ItemAlign.Center
                             }) {
-                                Image($rawfile("icon/ic_allread.svg"))
-                                    .width("24vp")
-                                    .height("24vp")
-                                    .margin({ top: "3vp" })
-                                Text($r("app.string.markAllAsRead"))
-                                    .fontSize($r("sys.float.ohos_id_text_size_caption"))
+                                Image($rawfile('icon/ic_allread.svg'))
+                                    .width('24vp')
+                                    .height('24vp')
+                                    .margin({ top: '3vp' })
+                                Text($r('app.string.markAllAsRead'))
+                                    .fontSize($r('sys.float.ohos_id_text_size_caption'))
                                     .fontWeight(FontWeight.Medium)
-                                    .fontColor($r("sys.color.ohos_id_color_toolbar_text"))
+                                    .fontColor($r('sys.color.ohos_id_color_toolbar_text'))
                             }
-                            .width("50%")
+                            .width('50%')
                             .opacity(this.mInfoMsgCtrl.unreadTotalOfInfo == 0 ? 0.4 : 1)
                             .onClick(() => {
                                 this.mInfoMsgCtrl.clickToMarkAllAsReadForInfo()
@@ -399,23 +399,23 @@ export default struct InfoMsg {
                                 alignItems: ItemAlign.Center
                             }) {
                                 MoreMenu({
-                                    menuText: $r("app.string.more")
+                                    menuText: $r('app.string.more')
                                 })
                             }
-                            .width("50%")
+                            .width('50%')
                         }
-                        .width("100%")
+                        .width('100%')
                         .height(56)
-                        .padding({ left: $r("app.float.menu_layout_padding_left"),
-                            right: $r("app.float.menu_layout_padding_right") })
+                        .padding({ left: $r('app.float.menu_layout_padding_left'),
+                            right: $r('app.float.menu_layout_padding_right') })
                         .flexBasis(56)
                         .flexShrink(0)
                     }
                     //Setting the background of the navigation bar
                     //Delete pop-up dialog box
                 }
-                .width("100%")
-                .height("100%")
+                .width('100%')
+                .height('100%')
             }
         }
         .margin({ left: this.gridMargin, right: this.gridMargin })

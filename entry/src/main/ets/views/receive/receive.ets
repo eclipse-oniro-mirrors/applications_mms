@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ReceiveController from "./receiveController"
-import ConversationController from "../../pages/conversation/conversationController"
-import HiLog from "../../utils/HiLog";
+import ReceiveController from './receiveController'
+import ConversationController from '../../pages/conversation/conversationController'
+import HiLog from '../../utils/HiLog';
 
-const TAG = "Receive";
+const TAG = 'Receive';
 
 @Component
 export struct Receive {
@@ -30,7 +30,7 @@ export struct Receive {
     }
 
     aboutToDisappear() {
-        HiLog.i(TAG,"aboutToDisappear")
+        HiLog.i(TAG,'aboutToDisappear')
         this.mReceiveController.onBackPress();
     }
 
@@ -38,13 +38,13 @@ export struct Receive {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
             Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
                 Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-                    Text($r("app.string.putAddresser"))
+                    Text($r('app.string.putAddresser'))
                         .maxLines(1)
-                        .lineHeight($r("app.float.addressee_line_height"))
-                        .fontSize($r("app.float.addressee_font_size"))
-                        .fontColor($r("sys.color.ohos_id_color_text_secondary"))
+                        .lineHeight($r('app.float.addressee_line_height'))
+                        .fontSize($r('app.float.addressee_font_size'))
+                        .fontColor($r('sys.color.ohos_id_color_text_secondary'))
                         .fontWeight(FontWeight.Regular)
-                        .fontFamily("HarmonyHeiTi")
+                        .fontFamily('HarmonyHeiTi')
                         .flexShrink(0)
                     Flex({ wrap: FlexWrap.NoWrap, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
                         // If a contact is selected
@@ -52,7 +52,7 @@ export struct Receive {
                             if (this.mReceiveController.selectContacts.length > 0) {
                                 ForEach(this.mReceiveController.selectContacts, (item, index) => {
                                     Row() {
-                                        if (item.contactName == "" || item.contactName == null) {
+                                        if (item.contactName == '' || item.contactName == null) {
                                             Text(item.telephoneFormat)
                                                 .textAlign(TextAlign.Center)
                                                 .maxLines(1)
@@ -60,7 +60,7 @@ export struct Receive {
                                                 .fontSize(12)
                                                 .flexShrink(1)
                                         }
-                                        if (item.contactName != "" && item.contactName != null) {
+                                        if (item.contactName != '' && item.contactName != null) {
                                             Text(item.contactName)
                                                 .textAlign(TextAlign.Center)
                                                 .maxLines(1)
@@ -69,7 +69,7 @@ export struct Receive {
                                                 .flexShrink(1)
                                         }
                                         if (item.select) {
-                                            Image($rawfile("icon/ic_public_cancel.svg"))
+                                            Image($rawfile('icon/ic_public_cancel.svg'))
                                                 .width(16)
                                                 .height(16)
                                                 .flexShrink(1)
@@ -77,7 +77,7 @@ export struct Receive {
                                     }
                                     .padding({ left: 8, right: 8 })
                                     .margin(8)
-                                    .backgroundColor($r("sys.color.ohos_id_color_component_normal"))
+                                    .backgroundColor($r('sys.color.ohos_id_color_component_normal'))
                                     .borderRadius(24)
                                     .height(28)
                                     .alignItems(VerticalAlign.Center)
@@ -91,9 +91,9 @@ export struct Receive {
                             }
                             Flex() {
                                 TextArea({ text: this.mReceiveController.myText })
-                                    .caretColor($r("sys.color.ohos_id_color_focused_outline"))
-                                    .placeholderColor($r("sys.color.ohos_id_color_text_hint"))
-                                    .backgroundColor($r("sys.color.ohos_id_color_background_transparent"))
+                                    .caretColor($r('sys.color.ohos_id_color_focused_outline'))
+                                    .placeholderColor($r('sys.color.ohos_id_color_text_hint'))
+                                    .backgroundColor($r('sys.color.ohos_id_color_background_transparent'))
                                     .focusable(true)
                                     .flexShrink(1)
                                     .onChange((value) => {
@@ -115,14 +115,14 @@ export struct Receive {
                         }
                         else {
                             Text(this.mReceiveController.strSelectContact)
-                                .fontColor($r("sys.color.ohos_id_color_text_primary_activated"))
+                                .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
                                 .textAlign(TextAlign.Center)
                                 .fontSize(16)
                                 .lineHeight(22)
                                 .maxLines(1)
                                 .textAlign(TextAlign.Start)
                                 .textOverflow({ overflow: TextOverflow.Ellipsis })
-                                .width("100%")
+                                .width('100%')
                                 .padding({ top: 12, bottom: 12 })
                                 .onClick(() => {
                                     this.mReceiveController.myContactClick();
@@ -131,11 +131,11 @@ export struct Receive {
                     }
                     .flexShrink(1)
                 }
-                .flexBasis("auto")
+                .flexBasis('auto')
                 .flexShrink(1)
 
                 // Contact icon on the right
-                Image($rawfile("icon/ic_about.svg"))
+                Image($rawfile('icon/ic_about.svg'))
                     .width(24)
                     .height(24)
                     .onClick(() => {
@@ -147,8 +147,8 @@ export struct Receive {
 
             }
             .constraintSize({ minHeight: 56, maxHeight:200 })
-            .backgroundColor($r("sys.color.ohos_id_color_background"))
-            .borderRadius($r("app.float.settings_items_radius"))
+            .backgroundColor($r('sys.color.ohos_id_color_background'))
+            .borderRadius($r('app.float.settings_items_radius'))
             .padding({ left: 12, right: 12 })
 
             Column() {
@@ -159,12 +159,12 @@ export struct Receive {
                         ForEach(this.mReceiveController.contacts, (item, index) => {
                             ListItem() {
                                 Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-                                    Image($rawfile("icon/ic_user_portrait.svg"))
+                                    Image($rawfile('icon/ic_user_portrait.svg'))
                                         .objectFit(ImageFit.Fill)
-                                        .width("40vp")
-                                        .height("40vp")
-                                        .clip(new Circle({ width: "40vp", height: "40vp" }))
-                                        .backgroundColor($r("app.color.ic_user_head_color"))
+                                        .width('40vp')
+                                        .height('40vp')
+                                        .clip(new Circle({ width: '40vp', height: '40vp' }))
+                                        .backgroundColor($r('app.color.ic_user_head_color'))
                                         .onClick(() => {
                                             this.mReceiveController.titleBarAvatar(index)
                                         })
@@ -177,13 +177,13 @@ export struct Receive {
                                         if (item.contactName != '' || item.contactName != null) {
                                             Text(item.contactName)
                                                 .fontSize(16)
-                                                .fontColor($r("sys.color.ohos_id_color_text_primary"))
+                                                .fontColor($r('sys.color.ohos_id_color_text_primary'))
                                                 .maxLines(1)
                                                 .fontWeight(FontWeight.Medium)
                                                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                                         }
                                         Text(item.telephoneFormat)
-                                            .fontColor($r("sys.color.ohos_id_color_text_tertiary"))
+                                            .fontColor($r('sys.color.ohos_id_color_text_tertiary'))
                                             .fontSize(14)
                                             .maxLines(1)
                                             .margin({ top: 4 })
@@ -206,14 +206,14 @@ export struct Receive {
                     .edgeEffect(EdgeEffect.Spring) // Sliding to the edge has no effect
                     .divider({
                         strokeWidth: 1,
-                        color: $r("sys.color.ohos_id_color_list_separator"),
+                        color: $r('sys.color.ohos_id_color_list_separator'),
                         startMargin: 52,
                         endMargin: 0
                     }) // Demarcation line between each row
                 }
             }.padding({ left: 12, right: 12, bottom: 56 })
         }
-        .width("100%")
+        .width('100%')
         .padding({ left: 12, right: 12 })
     }
 }

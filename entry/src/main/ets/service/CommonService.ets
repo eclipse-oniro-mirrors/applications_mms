@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import common from "../data/commonData";
+import common from '../data/commonData';
 
 export default {
     commonContactParam(actionData) {
         let str = {
-            "bundleName": common.string.CONTACT_BUNDLE_NAME,
-            "abilityName": common.string.CONTACT_ABILITY_NAME,
-            "parameters": actionData,
-            "entities": [
+            'bundleName': common.string.CONTACT_BUNDLE_NAME,
+            'abilityName': common.string.CONTACT_ABILITY_NAME,
+            'parameters': actionData,
+            'entities': [
                 common.string.COMMON_ENTITIES
             ]
         };
@@ -76,7 +76,7 @@ export default {
                 if (content == common.string.EMPTY_STR) {
                     item.content = secondContent;
                 } else {
-                    item.content = content + "\n" + secondContent;
+                    item.content = content + '\n' + secondContent;
                 }
             } else if (second.msgType == common.MSG_ITEM_TYPE.THEME && mmsParts.length === 3) {
                 item.msgUriPath = first.msgUriPath;
@@ -86,7 +86,7 @@ export default {
                 if (secondContent == common.string.EMPTY_STR) {
                     item.content = thirdContent;
                 } else {
-                    item.content = secondContent + "\n" + thirdContent;
+                    item.content = secondContent + '\n' + thirdContent;
                 }
             } else {
                 item.content = content;
@@ -145,8 +145,8 @@ export default {
             if (common.MSG_ITEM_TYPE.TEXT == msgType && item.content != common.string.EMPTY_STR) {
                 flage = true;
             }
-            if ((common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.AUDIO == msgType
-            || common.MSG_ITEM_TYPE.VIDEO == msgType) && item.content != common.string.EMPTY_STR) {
+            if ((common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.AUDIO == msgType ||
+                common.MSG_ITEM_TYPE.VIDEO == msgType) && item.content != common.string.EMPTY_STR) {
                 flage = true;
             }
         }
@@ -192,8 +192,8 @@ export default {
         }
         for (let item of mmsSource) {
             let msgType = item.msgType;
-            if (common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.VIDEO == msgType
-            || common.MSG_ITEM_TYPE.AUDIO == msgType) {
+            if (common.MSG_ITEM_TYPE.IMAGE == msgType || common.MSG_ITEM_TYPE.VIDEO == msgType ||
+                common.MSG_ITEM_TYPE.AUDIO == msgType) {
                 flage = true;
             }
         }

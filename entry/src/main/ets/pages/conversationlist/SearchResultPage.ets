@@ -17,7 +17,7 @@ export struct SearchResultPage {
     build() {
         List() {
             ListItem() { //Number of Searched Sessions
-                Text("找到2个会话").fontSize(10).fontColor(Color.Black).margin({ left: 24, top: 24 })
+                Text('找到2个会话').fontSize(10).fontColor(Color.Black).margin({ left: 24, top: 24 })
 
             }
 
@@ -30,7 +30,7 @@ export struct SearchResultPage {
             }
 
             ListItem() { //Number of Searched Information
-                Text("找到2条信息").fontSize(10).fontColor(Color.Black).margin({ left: 24, top: 24 })
+                Text('找到2条信息').fontSize(10).fontColor(Color.Black).margin({ left: 24, top: 24 })
             }
 
             ListItem() { //Information item
@@ -50,22 +50,22 @@ struct SearchItem {
     build() {
         Column() {
             Row() {
-                Image($rawfile("icon/user_avatar_full_fill.svg"))
+                Image($rawfile('icon/user_avatar_full_fill.svg'))
                     .height(40)
                     .width(40)
                 Column() {
                     Row() {
-                        Text("电话").fontSize(16).fontColor(Color.Black)
+                        Text('电话').fontSize(16).fontColor(Color.Black)
                         Blank()
-                        Text("时间").fontSize(12).fontColor(Color.Gray)
-                    }.width("100%")
+                        Text('时间').fontSize(12).fontColor(Color.Gray)
+                    }.width('100%')
 
                     Row() {
-                        Text("内容").fontSize(14).fontColor(Color.Gray)
+                        Text('内容').fontSize(14).fontColor(Color.Gray)
 
-                    }.width("100%")
+                    }.width('100%')
                 }.layoutWeight(1).margin({ left: 12 })
-            }.height(64).width("100%").padding({ left: 24, right: 24 })
+            }.height(64).width('100%').padding({ left: 24, right: 24 })
         }
     }
 }

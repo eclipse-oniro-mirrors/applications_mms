@@ -16,17 +16,17 @@
 
 import router from '@ohos.router';
 
-import LooseObject from "../../data/LooseObject"
+import LooseObject from '../../data/LooseObject'
 import ContactService from '../../service/ContactsService';
 import common from '../../data/commonData';
 import commonService from '../../service/CommonService'
-import ConversationListService from "../../service/ConversationListService";
-import AvatarColor from "../../model/common/AvatarColor";
-import DateUtil from "../../utils/DateUtil";
-import TransmitMsgDataSource from "../../model/TransmitMsgDataSource";
-import HiLog from "../../utils/HiLog";
+import ConversationListService from '../../service/ConversationListService';
+import AvatarColor from '../../model/common/AvatarColor';
+import DateUtil from '../../utils/DateUtil';
+import TransmitMsgDataSource from '../../model/TransmitMsgDataSource';
+import HiLog from '../../utils/HiLog';
 
-const TAG = "TransmitMsgController"
+const TAG = 'TransmitMsgController'
 
 export default class TransmitMsgController {
     private static sInstance: TransmitMsgController;
@@ -116,12 +116,12 @@ export default class TransmitMsgController {
     requestItem() {
         let count = this.page * this.limit;
         if (this.page === 0) {
-          this.page++;
-          this.queryAllMessages();
+            this.page++;
+            this.queryAllMessages();
         } else if (count < this.total && this.contactsList.length > (this.page - 1) * this.limit) {
-          // The restriction on contactsList is to prevent multiple update requests during initialization.
-          this.page++;
-          this.queryAllMessages();
+            // The restriction on contactsList is to prevent multiple update requests during initialization.
+            this.page++;
+            this.queryAllMessages();
         }
     }
 
@@ -155,7 +155,7 @@ export default class TransmitMsgController {
             obj.isDelShow = false;
             obj.itemLeft = 0;
             obj.photoFirstName = common.string.EMPTY_STR;
-            if( obj.name !== common.string.EMPTY_STR && this.reg.test(obj.name.substring(0, 1))) {
+            if (obj.name !== common.string.EMPTY_STR && this.reg.test(obj.name.substring(0, 1))) {
                 obj.photoFirstName = obj.name.substring(0, 1).toUpperCase();
             }
             obj.portraitColor = AvatarColor.background.Color[Math.abs(parseInt(obj.threadId, 10)) % 6];
@@ -171,15 +171,16 @@ export default class TransmitMsgController {
     dealMmsListContent(item) {
         if (item.hasMms && item.hasAttachment) {
             if (item.content == common.string.EMPTY_STR) {
-                item.content = $r("app.string.attachment_no_subject");
+                item.content = $r('app.string.attachment_no_subject');
             } else {
-                item.content = $r("app.string.attachment", item.content);
+                item.content = $r('app.string.attachment', item.content);
             }
         }
         if (item.hasMms && !item.hasAttachment && item.content == common.string.EMPTY_STR) {
-            item.content = $r("app.string.no_subject");
+            item.content = $r('app.string.no_subject');
         }
     }
+
     // A dialog box is displayed when you touch a recent contact.
     clickSendMessage(item) {
         this.contactName = item.conversation.name;
@@ -249,16 +250,16 @@ export default class TransmitMsgController {
 
     transmit(): void {
         let params: LooseObject = {
-            "threadId": this.threadId,
-            "strContactsName": this.dialogMsg.contactsParam.contactName, //Contact Name
-            "strContactsNumber": this.dialogMsg.contactsParam.telephone, //Mobile phone number
-            "strContactsNumberFormat": this.dialogMsg.contactsParam.telephoneFormat, //Format the mobile number.
-            "transmitFlag": true, //Send Flag
-            "contactsPage": false, //Display Forwarding Dialog Box
-            "mmsSource": this.mmsSource, //MMS list data
-            "isSlideDetail": this.isSlideDetail,//Indicates whether the slide page is an MMS message.
-            "transmitSource": this.transmitContentList,//List of contents forwarded by multiple messages
-            "isContainerOriginSource": this.isChecked //Whether selected
+            'threadId': this.threadId,
+            'strContactsName': this.dialogMsg.contactsParam.contactName, //Contact Name
+            'strContactsNumber': this.dialogMsg.contactsParam.telephone, //Mobile phone number
+            'strContactsNumberFormat': this.dialogMsg.contactsParam.telephoneFormat, //Format the mobile number.
+            'transmitFlag': true, //Send Flag
+            'contactsPage': false, //Display Forwarding Dialog Box
+            'mmsSource': this.mmsSource, //MMS list data
+            'isSlideDetail': this.isSlideDetail, //Indicates whether the slide page is an MMS message.
+            'transmitSource': this.transmitContentList, //List of contents forwarded by multiple messages
+            'isContainerOriginSource': this.isChecked //Whether selected
         }
         router.replaceUrl({
             url: 'pages/conversation/conversation',

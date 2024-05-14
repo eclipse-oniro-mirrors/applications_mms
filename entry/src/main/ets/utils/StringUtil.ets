@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HiLog from "../utils/HiLog";
+import HiLog from '../utils/HiLog';
 
-const TAG: string = "StringUtil";
+const TAG: string = 'StringUtil';
 const NON_ALPHABET_REG: RegExp = /[^\x00-\x80]/g;
 
 class StringUtil {

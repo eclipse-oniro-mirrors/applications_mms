@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import BaseModel from "./BaseModel";
-import common from "../data/commonData";
-import HiLog from "../utils/HiLog";
-import MmsPreferences from "../utils/MmsPreferences";
-import telephonySMS from "@ohos.telephony.sms";
-import telephonySim from "@ohos.telephony.sim";
+import BaseModel from './BaseModel';
+import common from '../data/commonData';
+import HiLog from '../utils/HiLog';
+import MmsPreferences from '../utils/MmsPreferences';
+import telephonySMS from '@ohos.telephony.sms';
+import telephonySim from '@ohos.telephony.sim';
 import observer from '@ohos.telephony.observer';
 import CommonEvent from '@ohos.commonEventManager';
 import emitter from '@ohos.events.emitter'
 import radio from '@ohos.telephony.radio';
 
-const TAG = "CardModel";
+const TAG = 'CardModel';
 
 class CardModel extends BaseModel {
   public SIM_STATE_CHANGE_EVENT: emitter.InnerEvent = {
@@ -44,24 +44,24 @@ class CardModel extends BaseModel {
 
   public init(): void {
     try {
-      HiLog.i(TAG, "init start.");
+      HiLog.i(TAG, 'init start.');
       this.setMaxSimCountToMap();
       this.getSimState();
       this.addSimStateChangeListener();
       this.subscribeSpnObserver();
     } catch (error) {
-      HiLog.e(TAG, "init error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'init error: ' + JSON.stringify(error));
     }
   }
 
   public deInit(): void {
     try {
-      HiLog.i(TAG, "deInit start.");
+      HiLog.i(TAG, 'deInit start.');
       this.mSimStateArray = [telephonySim.SimState.SIM_STATE_UNKNOWN, telephonySim.SimState.SIM_STATE_UNKNOWN];
       this.removeSimStateChangeListener();
       this.unsubscribeSpnObserver();
     } catch (error) {
-      HiLog.e(TAG, "deInit error: " + JSON.stringify(error));
+      HiLog.e(TAG, 'deInit error: ' + JSON.stringify(error));
     }
   }
 
@@ -78,7 +78,7 @@ class CardModel extends BaseModel {
     for (let i = 0; i < telephonySim.getMaxSimCount(); i++) {
       telephonySim.getSimState(i, (err, value) => {
         if (err) {
-          HiLog.e(TAG, "getSimState, slotId: " + i + ", error: " + JSON.stringify(err));
+          HiLog.e(TAG, 'getSimState, slotId: ' + i + ', error: ' + JSON.stringify(err));
         } else {
           this.notifySimStateChange(i, value);
         }
@@ -96,7 +96,7 @@ class CardModel extends BaseModel {
         slotId: i
       }, value => {
         let simState = value?.state;
-        HiLog.i(TAG, "simStateChange slotId: " + i + ", simState: " + simState);
+        HiLog.i(TAG, 'simStateChange slotId: ' + i + ', simState: ' + simState);
         this.notifySimStateChange(i, simState);
       });
     }
@@ -117,8 +117,8 @@ class CardModel extends BaseModel {
     this.setDefaultSlotToMap();
     emitter.emit(this.SIM_STATE_CHANGE_EVENT, {
       data: {
-        "simState": simState,
-        "slotId": slotId
+        'simState': simState,
+        'slotId': slotId
       }
     });
   }
@@ -126,8 +126,8 @@ class CardModel extends BaseModel {
   private setSimCardReadyFlagToMap(slotId: number, simState): void {
     this.haveSimCardReady = this.isSimReady(common.int.SIM_ONE) || this.isSimReady(common.int.SIM_TWO);
     this.haveMultiSimCardReady = this.isSimReady(common.int.SIM_ONE) && this.isSimReady(common.int.SIM_TWO);
-    HiLog.i(TAG, "updateSimCardReadyFlag slotId: " + slotId + ", simState: " + simState + ", haveSimCardReady: "
-    + this.haveSimCardReady + ", haveMultiSimCardReady: " + this.haveMultiSimCardReady);
+    HiLog.i(TAG, 'updateSimCardReadyFlag slotId: ' + slotId + ', simState: ' + simState + ', haveSimCardReady: '
+    + this.haveSimCardReady + ', haveMultiSimCardReady: ' + this.haveMultiSimCardReady);
     MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_HAVE_MULTI_SIM_CARD_READY,
     this.haveMultiSimCardReady);
     MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_HAVE_SIM_CARD_READY, this.haveSimCardReady);
@@ -144,7 +144,7 @@ class CardModel extends BaseModel {
       } else {
         telephonySim.getDefaultVoiceSlotId((error, slotId: number) => {
           if (error) {
-            HiLog.e(TAG, "getDefaultVoiceSlotId error, slotId: " + slotId + ", error: " + JSON.stringify(error));
+            HiLog.e(TAG, 'getDefaultVoiceSlotId error, slotId: ' + slotId + ', error: ' + JSON.stringify(error));
           } else {
             MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_DEFAULT_SLOT, slotId);
           }
@@ -157,7 +157,7 @@ class CardModel extends BaseModel {
     // get spn from sim card
     telephonySim.getSimSpn(slotId, (error, data) => {
       if (error || !data) {
-        HiLog.w(TAG, "getSpnFromSim fail, slotId: " + slotId + ", data: " + data + ", error: "
+        HiLog.w(TAG, 'getSpnFromSim fail, slotId: ' + slotId + ', data: ' + data + ', error: '
         + JSON.stringify(error));
       } else {
         this.notifySetSimSpnToMap(slotId, data);
@@ -167,7 +167,7 @@ class CardModel extends BaseModel {
     // get spn from network
     radio.getOperatorName(slotId, (error, data) => {
       if (error || !data) {
-        HiLog.w(TAG, "getSpnFromSim fail, slotId: " + slotId + ", data: " + data + ", error: "
+        HiLog.w(TAG, 'getSpnFromSim fail, slotId: ' + slotId + ', data: ' + data + ', error: '
         + JSON.stringify(error));
       } else {
         this.notifySetSimSpnToMap(slotId, data);
@@ -177,7 +177,7 @@ class CardModel extends BaseModel {
     // get plmn to replace spn
     telephonySim.getSimOperatorNumeric(slotId, (error, data) => {
       if (error || !data) {
-        HiLog.w(TAG, "getSimOperatorNumeric fail, slotId: " + slotId + ", data: " + data + ", error: "
+        HiLog.w(TAG, 'getSimOperatorNumeric fail, slotId: ' + slotId + ', data: ' + data + ', error: '
         + JSON.stringify(error));
       } else {
         if (common.int.SIM_ONE === slotId) {
@@ -191,7 +191,7 @@ class CardModel extends BaseModel {
   }
 
   private notifySetSimSpnToMap(slotId: number, spn: string): void {
-    HiLog.d(TAG, "notifyUpdateSimSpn slotId: " + slotId + ", spn: " + spn);
+    HiLog.d(TAG, 'notifyUpdateSimSpn slotId: ' + slotId + ', spn: ' + spn);
     this.spn = spn;
     if (common.SPN_CHINA.MOBILE == spn) {
       this.spn = globalThis.mmsContext.resourceManager.getStringSync($r('app.string.china_mobile').id);
@@ -210,7 +210,7 @@ class CardModel extends BaseModel {
   private setSimTelephoneNumberToMap(slotId: number): void {
     telephonySim.getSimTelephoneNumber(slotId, (error, value) => {
       if (error) {
-        HiLog.e(TAG, "get slotId: " + slotId + " telephone number error: " + JSON.stringify(error));
+        HiLog.e(TAG, 'get slotId: ' + slotId + ' telephone number error: ' + JSON.stringify(error));
       } else {
         if (common.int.SIM_ONE === slotId) {
           MmsPreferences.getInstance().setValueToMap(common.string.KEY_OF_SIM_0_NUMBER, value);
@@ -233,7 +233,7 @@ class CardModel extends BaseModel {
     };
     CommonEvent.createSubscriber(subscribeInfo, (err, data) => {
       if (err) {
-        HiLog.e(TAG, "subscribeSpnObserver error: " + JSON.stringify(err))
+        HiLog.e(TAG, 'subscribeSpnObserver error: ' + JSON.stringify(err))
         return
       }
       this.spnEventSubscriber = data;
@@ -241,7 +241,7 @@ class CardModel extends BaseModel {
         if (data && data.parameters) {
           let spn = data.parameters.CUR_SPN ? data.parameters.CUR_SPN : data.parameters.CUR_PLMN;
           if (spn) {
-            HiLog.i(TAG, "SPN_INFO_CHANGED notify slotId: " + data.parameters.CUR_SLOT_ID + ", spn: " + spn);
+            HiLog.i(TAG, 'SPN_INFO_CHANGED notify slotId: ' + data.parameters.CUR_SLOT_ID + ', spn: ' + spn);
             this.notifySetSimSpnToMap(data.parameters.CUR_SLOT_ID, spn);
           }
         }
@@ -257,7 +257,7 @@ class CardModel extends BaseModel {
         MmsPreferences.getInstance().setValueForSwitch(common.string.KEY_OF_NEW_SIM_1_SMSC, simPhoneNumber);
       }
     }).catch((error) => {
-      HiLog.e(TAG, "setSmscNumberToPref error: " + JSON.stringify(error.message));
+      HiLog.e(TAG, 'setSmscNumberToPref error: ' + JSON.stringify(error.message));
     });
   }
 }

@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LooseObject from "../../../data/LooseObject"
-import HiLog from "../../../utils/HiLog";
-import router from "@system.router";
-import prompt from "@system.prompt";
-import settingService from "../../../service/SettingService"
-import common from "../../../data/commonData";
+import LooseObject from '../../../data/LooseObject'
+import HiLog from '../../../utils/HiLog';
+import router from '@system.router';
+import prompt from '@system.prompt';
+import settingService from '../../../service/SettingService'
+import common from '../../../data/commonData';
 
-const TAG = "AdvancedSettingsController";
+const TAG = 'AdvancedSettingsController';
 
 export default class AdvancedSettingsController {
     private static sInstance: AdvancedSettingsController;
@@ -30,11 +30,11 @@ export default class AdvancedSettingsController {
     // Value of Delivery Report Switch
     deliveryReportSwitch: string = common.DELIVERY_REPORTS.DISABLED;
     // Delivery Report Text
-    deliveryReportSwitchInText: Resource = $r("app.string.disabled");
+    deliveryReportSwitchInText: Resource = $r('app.string.disabled');
     // Automatic MM Download Switch
     autoRetrieveMmsSwitch: string = common.AUTO_RETRIEVE_MMS.OFF;
     // Text for automatically downloading MMS messages
-    autoRetrieveMmsSwitchInText: Resource | string = $r("app.string.off");
+    autoRetrieveMmsSwitchInText: Resource | string = $r('app.string.off');
     // Cancel Sending Switch
     recallMessageSwitch: string = common.bool.FALSE;
     // Automatic Notification Deletion Switch
@@ -61,20 +61,20 @@ export default class AdvancedSettingsController {
     }
 
     constructor() {
-        HiLog.i(TAG, "constructor, start");
+        HiLog.i(TAG, 'constructor, start');
         this.getAdvancedPageSwitchValue();
     }
 
     onInit() {
-        HiLog.i(TAG, "onInit, start");
+        HiLog.i(TAG, 'onInit, start');
     }
 
     onShow() {
-        HiLog.i(TAG, "onShow, start");
+        HiLog.i(TAG, 'onShow, start');
     }
 
     getAdvancedPageSwitchValue() {
-        HiLog.i(TAG, "getAdvancedPageSwitchValue, start");
+        HiLog.i(TAG, 'getAdvancedPageSwitchValue, start');
         let that = this;
         settingService.getAdvancedPageSwitchValue(function (result) {
             if (result.code === common.int.SUCCESS) {
@@ -95,7 +95,7 @@ export default class AdvancedSettingsController {
                     that.spnNameOfOneSimCard = switchValue.spnNameOfOneSimCard;
                 }
             } else {
-                HiLog.w(TAG, "getAdvancedPageSwitchValue, failed");
+                HiLog.w(TAG, 'getAdvancedPageSwitchValue, failed');
             }
         });
     }
@@ -103,19 +103,19 @@ export default class AdvancedSettingsController {
     returnDeliveryReportResultInText(intValue) {
         let tempValue;
         if (intValue == common.DELIVERY_REPORTS.DISABLED || intValue == '') {
-            tempValue = $r("app.string.disabled");
+            tempValue = $r('app.string.disabled');
             this.checkedValueOfSms = false;
             this.checkedValueOfMms = false;
         } else if (intValue == common.DELIVERY_REPORTS.SMS) {
-            tempValue = $r("app.string.sms");
+            tempValue = $r('app.string.sms');
             this.checkedValueOfSms = true;
             this.checkedValueOfMms = false;
         } else if (intValue == common.DELIVERY_REPORTS.MMS) {
-            tempValue = $r("app.string.mms");
+            tempValue = $r('app.string.mms');
             this.checkedValueOfSms = false;
             this.checkedValueOfMms = true;
         } else {
-            tempValue = $r("app.string.sms_and_mms");
+            tempValue = $r('app.string.sms_and_mms');
             this.checkedValueOfSms = true;
             this.checkedValueOfMms = true;
         }
@@ -126,11 +126,11 @@ export default class AdvancedSettingsController {
     returnAutoRetrieveMmsResultInText(intValue) {
         let tempValue;
         if (intValue == common.AUTO_RETRIEVE_MMS.OFF) {
-            tempValue = $r("app.string.off");
+            tempValue = $r('app.string.off');
         } else if (intValue == common.AUTO_RETRIEVE_MMS.NOT_WHEN_ROAMING) {
-            tempValue = $r("app.string.not_when_roaming");
+            tempValue = $r('app.string.not_when_roaming');
         } else {
-            tempValue = $r("app.string.always");
+            tempValue = $r('app.string.always');
         }
         this.autoRetrieveMmsSwitchInText = tempValue;
     }
@@ -140,7 +140,7 @@ export default class AdvancedSettingsController {
     }
     // Restore the default values on the settings page.
     restoreSettingPageSwitchValue() {
-        HiLog.i(TAG, "restoreSettingPageSwitchValue");
+        HiLog.i(TAG, 'restoreSettingPageSwitchValue');
         let that = this;
         settingService.restoreSwitchValue(function (result) {
             if (result.code === common.int.SUCCESS) {
@@ -151,9 +151,9 @@ export default class AdvancedSettingsController {
                 that.recallMessageSwitch = common.bool.FALSE;
                 that.autoDeleteInfoSwitch = common.bool.FALSE;
                 that.tempAutoDeleteInfoSwitch = common.bool.FALSE;
-                HiLog.i(TAG, "restoreSettingPageSwitchValue, success");
+                HiLog.i(TAG, 'restoreSettingPageSwitchValue, success');
             } else {
-                HiLog.w(TAG, "restoreSettingPageSwitchValue, failed");
+                HiLog.w(TAG, 'restoreSettingPageSwitchValue, failed');
             }
         });
     }
@@ -196,30 +196,30 @@ export default class AdvancedSettingsController {
     }
     // When the value of deliveryReportSwitch changes, this method is used to process the change.
     autoHandleDeliveryReportValueChange(newValue) {
-        HiLog.i(TAG, "autoHandleDeliveryReportValueChange, newValue = " + newValue);
+        HiLog.i(TAG, 'autoHandleDeliveryReportValueChange, newValue = ' + newValue);
         let messageCode = common.route.MESSAGE_CODE_UPDATE_DELIVERY_REPORTS_VALUE;
         let actionData: LooseObject = {};
         actionData.intValue = newValue;
         this.updateAdvancedPageSwitchValue(messageCode, actionData);
     }
-    // Displaying the "Automatic Download MMS" dialog
+    // Displaying the 'Automatic Download MMS' dialog
     showAutoRetrieveMmsDialog() {
-        //    this.$element("auto-retrieve-mms-dialog").show();
+        //    this.$element('auto-retrieve-mms-dialog').show();
     }
     // Click the corresponding option in the dialog box for automatically downloading MMs.
     clickDiv(idx) {
         this.autoRetrieveMmsSwitch = idx + common.string.EMPTY_STR;
         this.returnAutoRetrieveMmsResultInText(idx);
-        //    this.$element("auto-retrieve-mms-dialog").close();
+        //    this.$element('auto-retrieve-mms-dialog').close();
         this.autoHandleAutoRetrieveMmsValueChange(this.autoRetrieveMmsSwitch);
     }
     // Disable the automatic MM download dialog box.
     closeAutoRetrieveMmsDialog() {
-        //    this.$element("auto-retrieve-mms-dialog").close();
+        //    this.$element('auto-retrieve-mms-dialog').close();
     }
     // This method is used when the value of autoRetrieveMmsSwitch changes.
     autoHandleAutoRetrieveMmsValueChange(newValue) {
-        HiLog.i(TAG, "autoHandleAutoRetrieveMmsValueChange, newValue = " + newValue);
+        HiLog.i(TAG, 'autoHandleAutoRetrieveMmsValueChange, newValue = ' + newValue);
         let messageCode = common.route.MESSAGE_CODE_UPDATE_AUTO_RETRIEVE_MMS_VALUE;
         let actionData: LooseObject = {};
         actionData.intValue = newValue;
@@ -243,21 +243,21 @@ export default class AdvancedSettingsController {
         that.tempAutoDeleteInfoSwitch = e.checked;
         if (e.checked) {
             prompt.showDialog({
-                title: $r("app.string.enable_auto_delete") + '',
-                message: $r("app.string.enable_auto_delete_hint") + '',
+                title: $r('app.string.enable_auto_delete') + '',
+                message: $r('app.string.enable_auto_delete_hint') + '',
                 buttons: [
                     {
-                        text: $r("app.string.cancel") + '', color: "#007DFF"
+                        text: $r('app.string.cancel') + '', color: '#007DFF'
                     },
                     {
-                        text: $r("app.string.enable") + '', color: "#007DFF"
+                        text: $r('app.string.enable') + '', color: '#007DFF'
                     }
                 ],
                 success: function (data) {
                     that.autoDeleteSuccess(data);
                 },
                 cancel: function () {
-                    HiLog.i(TAG, "autoDeleteInfo, cancel");
+                    HiLog.i(TAG, 'autoDeleteInfo, cancel');
                     that.tempAutoDeleteInfoSwitch = common.bool.FALSE;
                     that.autoDeleteInfoSwitch = common.bool.FALSE;
                 }
@@ -278,7 +278,7 @@ export default class AdvancedSettingsController {
     }
     // This method is used when the value of autoDeleteInfoSwitch changes.
     autoHandleAutoDeleteInfoValueChange(newValue) {
-        HiLog.i(TAG, "autoHandleAutoDeleteInfoValueChange, newValue = " + newValue);
+        HiLog.i(TAG, 'autoHandleAutoDeleteInfoValueChange, newValue = ' + newValue);
         let messageCode = common.route.MESSAGE_CODE_UPDATE_AUTO_DELETE_INFO_MESSAGES_VALUE;
         let actionData: LooseObject = {};
         actionData.booleanValue = newValue;
@@ -290,7 +290,7 @@ export default class AdvancedSettingsController {
             return;
         }
         router.push({
-            uri: "pages/sms_center/sms_center",
+            uri: 'pages/sms_center/sms_center',
             params: {
                 idx: index,
                 countOfSim: this.simCount
@@ -303,7 +303,7 @@ export default class AdvancedSettingsController {
             return;
         }
         router.push({
-            uri: "pages/manage_sim/manage_sim",
+            uri: 'pages/manage_sim/manage_sim',
             params: {
                 idx: index,
                 countOfSim: this.simCount
@@ -314,9 +314,9 @@ export default class AdvancedSettingsController {
     updateAdvancedPageSwitchValue(messageCode, actionData) {
         settingService.updateSettingValue(messageCode, actionData, function (result) {
             if (result.code == common.int.SUCCESS) {
-                HiLog.i(TAG, "updateAdvancedPageSwitchValue, success");
+                HiLog.i(TAG, 'updateAdvancedPageSwitchValue, success');
             } else {
-                HiLog.w(TAG, "updateAdvancedPageSwitchValue, failed");
+                HiLog.w(TAG, 'updateAdvancedPageSwitchValue, failed');
             }
         });
     }

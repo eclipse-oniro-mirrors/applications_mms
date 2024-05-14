@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import deviceInfo from "@ohos.deviceInfo";
-import HiLog from "./HiLog";
+import deviceInfo from '@ohos.deviceInfo';
+import HiLog from './HiLog';
 
-const TAG = "DeviceUtil";
+const TAG = 'DeviceUtil';
 
 export default class DeviceUtil {
     private static readonly DEVICE_TYPE = deviceInfo.deviceType;
@@ -33,12 +33,12 @@ export default class DeviceUtil {
      * smartVision：Smart Vision Devices
     */
     static getDeviceType(): string {
-        HiLog.i(TAG, "deviceType is " + this.DEVICE_TYPE)
+        HiLog.i(TAG, 'deviceType is ' + this.DEVICE_TYPE)
         return this.DEVICE_TYPE;
     }
 
     static isTablet(): boolean{
         let deviceType = DeviceUtil.getDeviceType()
-        return deviceType === "tablet";
+        return deviceType === 'tablet';
     }
 }

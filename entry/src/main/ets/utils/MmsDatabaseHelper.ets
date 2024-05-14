@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HiLog from "./HiLog";
-import mmsTable from "../data/tableData";
-import ohosDataRdb from "@ohos.data.rdb";
+import HiLog from './HiLog';
+import mmsTable from '../data/tableData';
+import ohosDataRdb from '@ohos.data.rdb';
 
-const TAG = "MmsDatabaseHelper";
+const TAG = 'MmsDatabaseHelper';
 
 export default class MmsDatabaseHelper {
     public static TABLE = {
-        SESSION: "session"
+        SESSION: 'session'
     };
     private static sInstance: MmsDatabaseHelper;
     private mRdbStore = null;
@@ -42,9 +42,9 @@ export default class MmsDatabaseHelper {
                 { name: mmsTable.DB.MMSSMS.config.name }, mmsTable.DB.MMSSMS.version);
 
             await this.mRdbStore.executeSql(mmsTable.table.session, null);
-            HiLog.i(TAG, "create session table finish");
+            HiLog.i(TAG, 'create session table finish');
         } else {
-            HiLog.i(TAG, " this.mRdbStore !== null ");
+            HiLog.i(TAG, ' this.mRdbStore !== null ');
         }
     }
 
@@ -57,7 +57,7 @@ export default class MmsDatabaseHelper {
         if (this.mRdbStore !== null) {
             return await this.mRdbStore.query(predicates);
         } else {
-            HiLog.w(TAG, "mRdbStore is null, query fail.");
+            HiLog.w(TAG, 'mRdbStore is null, query fail.');
             return null;
         }
     }
@@ -70,14 +70,14 @@ export default class MmsDatabaseHelper {
         if (this.mRdbStore !== null) {
             let insertPromise = this.mRdbStore.insert(tableName, valueBucket);
             insertPromise.then((ret) => {
-                HiLog.i(TAG, "insert, first done: " + rowId);
+                HiLog.i(TAG, 'insert, first done: ' + rowId);
                 rowId = ret;
             }).catch((err) => {
-                HiLog.e(TAG, "insert, first fail: " + JSON.stringify(err.message));
+                HiLog.e(TAG, 'insert, first fail: ' + JSON.stringify(err.message));
             })
             await insertPromise;
         } else {
-            HiLog.w(TAG, "mRdbStore is null, insert fail.");
+            HiLog.w(TAG, 'mRdbStore is null, insert fail.');
         }
         return rowId;
     }
@@ -91,9 +91,9 @@ export default class MmsDatabaseHelper {
     async update(predicates, valueBucket) {
         if (this.mRdbStore !== null) {
             let changedRows = await this.mRdbStore.update(valueBucket, predicates);
-            HiLog.i(TAG, "update, changedRows=" + changedRows);
+            HiLog.i(TAG, 'update, changedRows=' + changedRows);
         } else {
-            HiLog.w(TAG, "mRdbStore is null, update fail.");
+            HiLog.w(TAG, 'mRdbStore is null, update fail.');
         }
     }
 
@@ -105,9 +105,9 @@ export default class MmsDatabaseHelper {
     async deleteItem(predicates) {
         if (this.mRdbStore !== null) {
             let deletedRows = await this.mRdbStore.delete(predicates);
-            HiLog.i(TAG, "deleteItem, deletedRows=" + deletedRows);
+            HiLog.i(TAG, 'deleteItem, deletedRows=' + deletedRows);
         } else {
-            HiLog.w(TAG, "mRdbStore is null, delete item fail.");
+            HiLog.w(TAG, 'mRdbStore is null, delete item fail.');
         }
     }
 }

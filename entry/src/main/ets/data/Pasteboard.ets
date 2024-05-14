@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import pasteboard from "@ohos.pasteboard";
-import HiLog from "../utils/HiLog";
+import pasteboard from '@ohos.pasteboard';
+import HiLog from '../utils/HiLog';
 
-const TAG = "Pasteboard";
+const TAG = 'Pasteboard';
 let commonPasteboard = {
     getPasteboard() {
         let sysPasteboard = pasteboard.getSystemPasteboard();
@@ -26,7 +26,7 @@ let commonPasteboard = {
         let sysPasteboard = pasteboard.getSystemPasteboard();
         let textData = pasteboard.createPlainTextData(text);
         sysPasteboard.setPasteData(textData, () => {
-            HiLog.i(TAG, "setPasteboard done");
+            HiLog.i(TAG, 'setPasteboard done');
         });
     }
 };
