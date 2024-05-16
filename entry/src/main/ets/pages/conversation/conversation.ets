@@ -150,6 +150,9 @@ export struct Conversation {
                     .flexShrink(0)
                     .padding({ left: "24vp", right: "24vp" })
                     .zIndex(2)
+                    .expandSafeArea([SafeAreaType.KEYBOARD])
+                    .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+
                 }
                 // Page for viewing SMS details
                 else {
@@ -295,6 +298,8 @@ export struct Conversation {
                     .constraintSize({ minHeight: 56 })
                     .padding({ left: 24, right: 24 })
                     .zIndex(2)
+                    .expandSafeArea([SafeAreaType.KEYBOARD])
+                    .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
                 }
                 // <!--Middle Content Area-->
                 Row() {
@@ -302,7 +307,10 @@ export struct Conversation {
                     if (this.mConversationCtrl.isNewMsg) {
                         Row() {
                             Receive({ mConversationController: $mConversationCtrl })
-                        }.margin({ top: $r("app.float.new_message_margin_top") })
+                        }
+                        .margin({ top: $r("app.float.new_message_margin_top") })
+                        .expandSafeArea([SafeAreaType.KEYBOARD])
+                        .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
                     }
                     // SMS message content
                     // <!--Information List-->
