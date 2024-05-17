@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
+import Ability from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
 
 import HiLog from '../utils/HiLog';
 import MmsPreferences from '../utils/MmsPreferences';
@@ -59,13 +59,13 @@ export default class MainAbility extends Ability {
     simCardService.init();
   }
 
-  onBackground() {
+  onBackground(): void {
     // Ability has back to background
     HiLog.i(TAG, 'Ability onBackground');
     simCardService.deInit();
   }
 
-  onDestroy() {
+  onDestroy(): void {
     HiLog.i(TAG, 'Ability onDestroy');
     if (globalThis.DataWorker == null || globalThis.DataWorker == undefined) {
       return;
