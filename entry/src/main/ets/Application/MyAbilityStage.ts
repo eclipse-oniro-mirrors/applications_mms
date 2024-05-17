@@ -20,7 +20,7 @@ import HiLog from '../utils/HiLog';
 const TAG = 'MyAbilityStage';
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
+    onCreate(): void {
         HiLog.i(TAG, 'AbilityStage onCreate');
         notification.setNotificationEnable({
             bundle: 'com.ohos.mms'
@@ -28,6 +28,6 @@ export default class MyAbilityStage extends AbilityStage {
             if (err) {
                 HiLog.i(TAG, 'enableNotification err: ' + JSON.stringify(err));
             }
-        })
+        });
     }
 }

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import MmsBoolean from '../data/MmsBoolean'
+import MmsBoolean from '../data/MmsBoolean';
 
 /**
  * Options: dual title, 1 switch
