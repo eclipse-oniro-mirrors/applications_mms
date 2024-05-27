@@ -114,7 +114,7 @@ export default class NotificationService {
                     text: message.text
                 },
             },
-            wantAgent: '',
+            wantAgent: undefined,
             slotType: Notification.SlotType.OTHER_TYPES,
             deliveryTime: new Date().getTime(),
             groupName: "MMS"
