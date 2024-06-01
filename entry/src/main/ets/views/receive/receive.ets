@@ -25,12 +25,12 @@ export struct Receive {
 
     aboutToAppear() {
         this.mReceiveController.onInit((receiverData) => {
-            this.mConversationController.setReceiveContactValue(receiverData)
+            this.mConversationController.setReceiveContactValue(receiverData);
         })
     }
 
     aboutToDisappear() {
-        HiLog.i(TAG,'aboutToDisappear')
+        HiLog.i(TAG,'aboutToDisappear');
         this.mReceiveController.onBackPress();
     }
 
