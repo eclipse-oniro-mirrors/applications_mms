@@ -56,7 +56,7 @@ export default class ReceiveController {
     }
 
     onInit(call) {
-        HiLog.i(TAG, 'onInit()')
+        HiLog.i(TAG, 'onInit()');
         this.selectContacts = this.commonCtrl.paramContact.transmitContacts;
         if (this.selectContacts.length > 0) {
             let that = this;
@@ -66,7 +66,7 @@ export default class ReceiveController {
             this.isShowSearch = false;
             this.setInputStatus(false);
         }
-        this.requestItem()
+        this.requestItem();
         this.refresh = !this.refresh;
     }
 
@@ -79,7 +79,7 @@ export default class ReceiveController {
         this.myText = '';
         this.setInputStatus(true);
         this.commonCtrl.paramContact.transmitContacts = [];
-        HiLog.i(TAG,'InputTextClear')
+        HiLog.i(TAG,'InputTextClear');
     }
 
     requestItem() {
