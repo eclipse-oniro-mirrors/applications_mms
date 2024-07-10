@@ -18,7 +18,6 @@ import HiLog from './HiLog';
 const TAG = 'DeviceUtil';
 
 export default class DeviceUtil {
-    private static readonly DEVICE_TYPE = deviceInfo.deviceType;
     constructor() {
     }
 
@@ -32,13 +31,9 @@ export default class DeviceUtil {
     * liteWearable：Lightweight intelligent wearable
      * smartVision：Smart Vision Devices
     */
-    static getDeviceType(): string {
-        HiLog.i(TAG, 'deviceType is ' + this.DEVICE_TYPE)
-        return this.DEVICE_TYPE;
-    }
 
     static isTablet(): boolean{
-        let deviceType = DeviceUtil.getDeviceType()
-        return deviceType === 'tablet';
+        let curBp = AppStorage.get('curBp');
+        return curBp === 'tablet';
     }
 }
