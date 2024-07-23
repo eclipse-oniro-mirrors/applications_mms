@@ -153,7 +153,7 @@ export struct Receive {
 
             Column() {
                 // Indicates whether to display the recent contact list.
-                if (this.mReceiveController.isShowSearch && this.mReceiveController.contacts.length > 0) {
+                if (this.mReceiveController.isShowSearch && this.mReceiveController.contacts.length > 0 && false) {
                     // List area
                     List({ space: 0, initialIndex: 0 }) {
                         ForEach(this.mReceiveController.contacts, (item, index) => {
