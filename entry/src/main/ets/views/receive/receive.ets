@@ -153,7 +153,7 @@ export struct Receive {
 
             Column() {
                 // Indicates whether to display the recent contact list.
-                if (this.mReceiveController.isShowSearch && this.mReceiveController.contacts.length > 0) {
+                if (this.mReceiveController.isShowSearch && this.mReceiveController.contacts.length > 0 && false) {
                     //                    Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
                     //                        Text("最近联系人")
                     //                            .fontSize(16)
