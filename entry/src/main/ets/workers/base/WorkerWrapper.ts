@@ -111,6 +111,7 @@ export abstract class WorkerWrapper {
   public close() {
     HiLog.i(TAG, `${this.getWorkerType()} worker close!`);
     if (this.mWorker != null) {
+      HiLog.i(TAG, 'this mWorker is right');
       this.mWorker.terminate();
     }
     this.mWorker = null;
