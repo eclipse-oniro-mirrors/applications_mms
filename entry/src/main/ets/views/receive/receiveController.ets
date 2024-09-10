@@ -267,6 +267,10 @@ export default class ReceiveController {
         if (this.checkSingle()) {
             return;
         }
+        if (curItem == undefined) {
+            HiLog.e(TAG, 'addContact contact is null');
+            return;
+        }
         if (curItem != undefined && curItem.telephone != undefined && curItem.telephone.toString().trim() == '') {
             prompt.showToast({
                 // Invalid Recipient
@@ -352,7 +356,7 @@ export default class ReceiveController {
         if (this.selectContacts[idx] == null || this.selectContacts[idx] == undefined) {
             return;
         }
-        if (this.selectContacts[idx].select) {
+        if (this.selectContacts[idx].select && this.selectContacts[idx].select != undefined) {
             let item = this.selectContacts.splice(idx, 1);
             // Deleted items are added to the collection to be searched.
             this.contactsTemp.push(item);
