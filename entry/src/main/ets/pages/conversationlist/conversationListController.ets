@@ -341,7 +341,7 @@ export default class ConversationListController {
         }
         let item = this.messageList[this.itemTouchedIdx];
         let transX = offsetX;
-        if (item.isDelShow) {
+        if (item && item.isDelShow) {
             if (event.offsetX - this.operateBtnW <= 0) {
                 transX = event.offsetX - this.operateBtnW
             } else {
