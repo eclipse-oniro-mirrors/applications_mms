@@ -1344,7 +1344,7 @@ export default class ConversationController {
           if (initData.id == undefined || initData.id == null) {
             return;
           }
-        } catch(err) {
+        } catch (err) {
           HiLog.e(TAG, 'this initData.id is undefined ' + JSON.stringify(err));
         }
         return initData.id;
