@@ -136,6 +136,7 @@ export default class ConversationListController {
     delItem: number;
     // conversation list adapters
     conversationListDataSource: ConversationListDataSource = new ConversationListDataSource();
+    private checkedStatus: Set<number> = new Set<number>();
 
     static getInstance() {
         if (ConversationCtrl == null) {
@@ -211,20 +212,29 @@ export default class ConversationListController {
     }
 
     // Touch and hold a list to display the selection and deletion functions.
-    conversationLongPress(index) {
-        // Check whether the left slide button exists. If yes, the button cannot be clicked.
-        if (this.messageList[index].isDelShow) {
-            return;
+    conversationLongPress(index : number) {
+        if (this.messageList[index]) {
+            // Check whether the left slide button exists. If yes, the button cannot be clicked.
+            if (this.messageList[index]?.isDelShow != null && this.messageList[index].isDelShow) {
+                return;
+            }
+            // Touch and hold a list to display the selection and deletion functions.
+            HiLog.i(TAG, 'conversationLongPress, index: ' + index);
+            let oldStates = this.messageList[index].isCbChecked;
+            if (this.isMultipleSelectState) {
+                this.messageList[index].isCbChecked = !this.messageList[index].isCbChecked;
+            } else {
+                this.messageList[index].isCbChecked = true;
+                this.isMultipleSelectState = true;
+            }
+            if (this.messageList[index].isCbChecked != oldStates && this.messageList[index].isCbChecked == true) {
+                this.conversationSelectedNumber = 1;
+                this.checkedStatus.clear();
+                this.checkedStatus.add(index);
+            }
+            this.conversationListDataSource.notifyDataChange(index);
+            this.setConversationCheckAll(common.int.CHECKBOX_SELECT_UNKNOWN);
         }
-        // Touch and hold a list to display the selection and deletion functions.
-        HiLog.i(TAG, 'conversationLongPress, index: ' + index);
-        if (this.isMultipleSelectState) {
-            this.messageList[index].isCbChecked = !this.messageList[index].isCbChecked;
-        } else {
-            this.isMultipleSelectState = true;
-            this.messageList[index].isCbChecked = true;
-        }
-        this.setConversationCheckAll(common.int.CHECKBOX_SELECT_UNKNOWN);
     }
 
     setConversationCheckAll(selectType) {
