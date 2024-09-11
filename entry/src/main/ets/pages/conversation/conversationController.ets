@@ -1340,8 +1340,12 @@ export default class ConversationController {
         return;
       }
       if (initData.telephone == telephone) {
-        if (initData.id == undefined || initData.id == null) {
-          return;
+        try {
+          if (initData.id == undefined || initData.id == null) {
+            return;
+          }
+        } catch (err) {
+          HiLog.e(TAG, 'this initData.id is undefined ' + JSON.stringify(err));
         }
         return initData.id;
       }
@@ -1365,7 +1369,12 @@ export default class ConversationController {
         'destinationHost': sendNumbers[i],
         'content': content,
       };
-      let id: number = this.getSendMessageId(initDatas, sendNumbers[i]);
+      let id: number;
+      try {
+        id = this.getSendMessageId(initDatas, sendNumbers[i]);
+      } catch (err) {
+        HiLog.e(TAG, 'this initData.id is undefined ' + JSON.stringify(err));
+      }
       if (id == undefined || id == null) {
         return;
       }
