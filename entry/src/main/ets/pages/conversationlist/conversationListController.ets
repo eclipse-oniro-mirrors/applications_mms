@@ -136,7 +136,6 @@ export default class ConversationListController {
     delItem: number;
     // conversation list adapters
     conversationListDataSource: ConversationListDataSource = new ConversationListDataSource();
-    private checkedStatus: Set<number> = new Set<number>();
 
     static getInstance() {
         if (ConversationCtrl == null) {
@@ -228,9 +227,7 @@ export default class ConversationListController {
                 this.isMultipleSelectState = true;
             }
             if (this.messageList[index].isCbChecked != oldStates && this.messageList[index].isCbChecked == true) {
-                this.conversationSelectedNumber = 1;
-                this.checkedStatus.clear();
-                this.checkedStatus.add(index);
+                this.conversationSelectedNumber ++;
             }
             this.conversationListDataSource.notifyDataChange(index);
             this.setConversationCheckAll(common.int.CHECKBOX_SELECT_UNKNOWN);
