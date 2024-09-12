@@ -1340,8 +1340,12 @@ export default class ConversationController {
         return;
       }
       if (initData.telephone == telephone) {
-        if (initData.id == undefined || initData.id == null) {
-          return;
+        try {
+          if (initData.id == undefined || initData.id == null) {
+            return;
+          }
+        } catch (err) {
+          HiLog.e(TAG, 'this initData.id is undefined ' + JSON.stringify(err));
         }
         return initData.id;
       }
