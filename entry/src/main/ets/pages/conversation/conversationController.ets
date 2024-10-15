@@ -1485,14 +1485,14 @@ export default class ConversationController {
     if (item.date.id == undefined || item.date.id == null) {
       return;
     }
-    let tempDateId = item.date.id;
+    let tempDateId = item.date?.id;
     if (item.week == undefined || item.week == null) {
       return;
     }
     if (item.week.id == undefined || item.week.id == null) {
       return;
     }
-    let tempWeekId = item.week.id;
+    let tempWeekId = item.week?.id;
     if (list.length > 0) {
       item.dateShow =
         (tempDateId != (list[list.length-1]).date.id)
