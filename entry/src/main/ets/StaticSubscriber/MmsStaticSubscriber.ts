@@ -206,22 +206,23 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             isOrdered: false,
             data: JSON.stringify(actionData)
         }, (res) => {
+            HiLog.i(TAG, `RECEIVE_TRANSMIT_EVENT ${res}`);
         });
     }
 
     public sendNotification(telephone, msgId, content, context): void {
         let condition: LooseObject = {};
         condition.telephones = [telephone];
+        HiLog.i(TAG, `telephone ${telephone}`);
         ContactService.getInstance().queryContactDataByCondition(condition, res => {
-            HiLog.i(TAG, "sendNotification, callback");
+            HiLog.i(TAG, `sendNotification, callback ${res}`);
             if (res.code == common.int.FAILURE) {
                 return;
             }
             let contacts: Array<LooseObject> = res.abilityResult;
             let actionData: LooseObject = this.dealContactParams(contacts, telephone);
-            if (content.length > 15) {
-                content = content.substring(0, 15) + "...";
-            }
+            HiLog.i(TAG, `actionData ${actionData}`);
+
             let title: string = telephone;
             if(contacts.length > 0) {
                 title = contacts[0].displayName
@@ -235,6 +236,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             actionData.unreadTotal = 0;
             NotificationService.getInstance().sendNotify(actionData);
             ConversationListService.getInstance().statisticalData(res => {
+                HiLog.i(TAG, `statisticalData res  ${res}`);
+
                 if (res.code == common.int.SUCCESS) {
                     NotificationService.getInstance().setBadgeNumber(Number(res.response.totalListCount));
                 }

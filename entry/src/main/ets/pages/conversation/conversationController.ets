@@ -246,7 +246,10 @@ export default class ConversationController {
         if (!this.isNewMsg) {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             });
-            this.scroller.scrollToIndex(this.mmsList.length - 1)
+            // After the page rendering is completed, execute it again
+            setTimeout(()=>{
+                this.scroller.scrollToIndex(this.mmsList.length - 1)
+            },100)
         }
         let actionData: LooseObject = {};
         actionData.threadId = this.threadId;
@@ -905,17 +908,13 @@ export default class ConversationController {
 
     // Event of pressing and holding an SMS message
     mmsListLongPress(index) {
-        for (let i = 0; i < this.mmsList.length; i++) {
-            if (index == i) {
-                this.mmsList[index].isShowMsgLongMenu = true;
-            } else {
-                this.mmsList[i].isShowMsgLongMenu = false;
-            }
-        }
+        HiLog.i(TAG, `mmsListLongPress index: ${index}`)
         this.refresh = !this.refresh
         this.mmsIndex = index;
         if (this.isSelectStatus) {
             this.mmsList[index].isCbChecked = !this.mmsList[index].isCbChecked;
+            HiLog.i(TAG, `mmsList  isCbChecked: ${ this.mmsList[index].isCbChecked }`)
+
             this.setMessageCheckAll(common.int.CHECKBOX_SELECT_UNKNOWN);
             return;
         }
@@ -938,6 +937,8 @@ export default class ConversationController {
     }
 
     touchStart(e) {
+        HiLog.i(TAG, `rawX  rawY: ${ this.rawX } ${ this.rawY }`)
+
         this.rawX = e.globalX;
         this.rawY = e.globalY;
 
@@ -1272,6 +1273,8 @@ export default class ConversationController {
             let msg: string = this.strContactsNumber + " 已收到消息！"
             this.showToast(msg)
         }
+        // Automatically slide to the latest message after successful sending
+        this.scroller.scrollToIndex(this.mmsList.length - 1)
     }
 
     showToast(msg) {
@@ -1386,6 +1389,10 @@ export default class ConversationController {
     }
 
     insertInitData(actionData, item, callback): void {
+        if (!actionData || !item) {
+            HiLog.d(TAG, `insertInitData, actionData is => ${JSON.stringify(actionData)}, item is => ${JSON.stringify(item)}}`);
+            return;
+        }
         let sendNumbers: Array<string> = actionData.hosts;
         let insertSendResults: Array<LooseObject> = [];
         for (let i = 0; i < sendNumbers.length; i++) {
@@ -1782,6 +1789,7 @@ export default class ConversationController {
         this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
         if (this.textValue != common.string.EMPTY_STR || this.mmsEditList.length != 0 ||
         this.textareaDatasource.length != 0) {
+            HiLog.i(TAG, "initSendItem, start")
             this.initSendItem();
         }
         let actionData: LooseObject = {};

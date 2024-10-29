@@ -256,8 +256,9 @@ export default class ConversationListController {
                     this.isConversationCheckAll = false;
                 }
             })
-            this.conversationListDataSource.refresh(this.messageList);
         }
+        this.conversationListDataSource.refresh(this.messageList);
+
         if (this.isConversationCheckAll) {
             // Select All Status
             this.strCheckBoxSelectTip = $r("app.string.msg_deselect_all");

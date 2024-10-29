@@ -58,18 +58,23 @@ export abstract class WorkerWrapper {
             HiLog.w(TAG, "onmessageerror:" + JSON.stringify(e))
         }
         initWorker.onmessage = function (message) {
-            const buff = <ArrayBuffer> message.data;
-            const str = buffer.from(buff).toString();
-            let data = <WorkerMessage> JSON.parse(str)
-            HiLog.i(TAG, `onmessage ${data.request}`)
-            const key = that.getCallBackKey(data);
-            if (that.callBacks.has(key)) {
-                HiLog.i(TAG, `onmessage notify result.`)
-                const callback = that.callBacks.get(key);
-                if (callback) {
-                    callback(data.param);
+            try {
+                const buff = <ArrayBuffer> message.data;
+                const str = buffer.from(buff).toString();
+                let data = <WorkerMessage> JSON.parse(str)
+                HiLog.i(TAG, `onmessage ${data.request}`)
+                const key = that.getCallBackKey(data);
+                if (that.callBacks.has(key)) {
+                    HiLog.i(TAG, `onmessage notify result.`)
+                    const callback = that.callBacks.get(key);
+                    if (callback) {
+                        HiLog.i(TAG, `onmessage callback ${data.param}`)
+                        callback(data.param);
+                    }
+                    that.callBacks.delete(key);
                 }
-                that.callBacks.delete(key);
+            } catch (error) {
+                HiLog.e(TAG, `onmessage fail, err: ${JSON.stringify(error)}`);
             }
         }
         this.mWorker = initWorker;
@@ -95,6 +100,7 @@ export abstract class WorkerWrapper {
                 param: requestData
             }
             if (callBack) {
+                HiLog.i(TAG, `getCallBackKey callback ${message}`)
                 this.callBacks.set(this.getCallBackKey(message), callBack);
             }
             this.mWorker?.postMessage(message);
