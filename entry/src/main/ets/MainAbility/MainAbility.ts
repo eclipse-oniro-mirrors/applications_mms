@@ -20,7 +20,7 @@ import MmsPreferences from "../utils/MmsPreferences";
 import WorkFactory, { WorkerType } from "../workers/WorkFactory";
 import simCardService from "../service/SimCardService";
 
-const TAG = "陈锐  app";
+const TAG = "app";
 
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
