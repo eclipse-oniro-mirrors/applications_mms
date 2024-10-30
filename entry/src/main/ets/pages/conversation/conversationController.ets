@@ -238,10 +238,8 @@ export default class ConversationController {
         HiLog.i(TAG, "onInit");
         this.initRouterData();
         this.initData();
-        if (this.hasDouble) {
-            this.initNewPageContacts();
-            this.hasDouble = false;
-        }
+        this.initNewPageContacts();
+
         // Obtains the actual data. You do not need to query the data when creating new data.
         if (!this.isNewMsg) {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
@@ -263,8 +261,6 @@ export default class ConversationController {
         this.subscribeDetail();
         // Check whether a contact exists.
         this.judgeContactExists();
-        // Initialize the forwarded data
-        this.initTransmitMeg();
         // Forwarding and sending
         this.transmitSend();
     }
@@ -670,15 +666,14 @@ export default class ConversationController {
     }
 
     // Initializing Forwarding Data
-    initTransmitMeg() {
-        let routerParams: LooseObject = router.getParams();
-        if (routerParams.transmitFlag) {
-            this.threadId = routerParams.threadId;
+    initTransmitMeg(params) {
+        if (params.transmitFlag) {
+            this.threadId = params.threadId;
             this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
             this.contactsNum = this.contactsNum;
-            this.strContactsName = routerParams.strContactsName;
-            this.strContactsNumber = routerParams.strContactsNumber;
-            this.strContactsNumberFormat = routerParams.strContactsNumberFormat;
+            this.strContactsName = params.strContactsName;
+            this.strContactsNumber = params.strContactsNumber;
+            this.strContactsNumberFormat = params.strContactsNumberFormat;
             this.initNewPageContacts();
         }
     }
@@ -695,18 +690,18 @@ export default class ConversationController {
                 this.isEditMms = true;
                 //this.mmsTransmitSend();
             } else {
-                this.generalTransmitSend();
-            }
+                let transmitSource: Array<LooseObject> = <Array<LooseObject>>router.getParams().transmitSource;
+                let isSource = router.getParams().isContainerOriginSource;
+                this.generalTransmitSend(transmitSource,isSource,this.strContactsNumber);            }
         }
     }
 
-    generalTransmitSend() {
-        let transmitSource: Array<LooseObject> = <Array<LooseObject>>router.getParams().transmitSource;
-        let isSource = router.getParams().isContainerOriginSource;
+    generalTransmitSend(mTransmitSource: Array<LooseObject>,mIsSource,mContactsNumber) {
+
         this.canSendMessage = false;
-        for (let element of transmitSource) {
+        for (let element of mTransmitSource) {
             let content = common.string.EMPTY_STR;
-            if (isSource && !element.isMsm) {
+            if (mIsSource && !element.isMsm) {
                 content = element.contentInfo + element.content;
             } else {
                 content = element.content;
@@ -714,7 +709,8 @@ export default class ConversationController {
             let actionData = {
                 content: content,
                 mmsSource: element.mms,
-                msgUriPath: element.msgUriPath
+                msgUriPath: element.msgUriPath,
+                mContactsNumber:mContactsNumber
             };
             this.delayTransmitSend(actionData, element.isMsm);
         }
@@ -722,11 +718,11 @@ export default class ConversationController {
 
     delayTransmitSend(element, isMms) {
         this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
-            this.sendSms(element.content, element.msgUriPath, isMms, element.mmsSource);
+            this.sendSms(element.content, element.msgUriPath, isMms, element.mmsSource, element.mContactsNumber);
         });
     }
 
-    sendSms(content, msgUriPath, isMms, mmsSource): void {
+    sendSms(content, msgUriPath, isMms, mmsSource, mContactsNumber): void {
         // Sending an SMS Message on a Full-Screen Page
         this.isSendStatus = true;
         // Initialize the data to be sent.
@@ -734,7 +730,7 @@ export default class ConversationController {
         this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
         let actionData: LooseObject = {};
         actionData.slotId = this.slotId;
-        actionData.destinationHost = this.strContactsNumber;
+        actionData.destinationHost = mContactsNumber;
         actionData.content = content;
         actionData.isEditMms = isMms;
         this.dealNewRecallMessagesFlag(this.mmsList);
@@ -1792,6 +1788,8 @@ export default class ConversationController {
         // Real SMS Sending
         this.sendInterval(actionData, this.mmsList);
         this.textValue = common.string.EMPTY_STR;
+        // After the message is successfully sent, it is not considered a draft
+        this.isDraft = false;
         this.canSendMessage = false;
         this.isShowFullScreen = false;
         this.clearMsm();
@@ -2356,10 +2354,7 @@ export default class ConversationController {
         if (telephone != common.string.EMPTY_STR) {
             telephone = telephone.substring(0, telephone.length - 1);
         }
-        if (!hasBlur && telephone != "") {
-            this.queryOldMessageList(telephone, () => {
-            });
-        }
+
     }
 
     setCanSendMessage(selectContacts, receiveContactValue) {
