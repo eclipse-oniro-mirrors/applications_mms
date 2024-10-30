@@ -1786,7 +1786,7 @@ export default class ConversationController {
         this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
         if (this.textValue != common.string.EMPTY_STR || this.mmsEditList.length != 0 ||
         this.textareaDatasource.length != 0) {
-            HiLog.i(TAG, "initSendItem, start")
+            HiLog.i(TAG, 'initSendItem, start')
             this.initSendItem();
         }
         let actionData: LooseObject = {};
