@@ -246,10 +246,7 @@ export default class ConversationController {
         if (!this.isNewMsg) {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             });
-            // After the page rendering is completed, execute it again
-            setTimeout(()=>{
-                this.scroller.scrollToIndex(this.mmsList.length - 1)
-            },100)
+            this.scroller.scrollToIndex(this.mmsList.length - 1)
         }
         let actionData: LooseObject = {};
         actionData.threadId = this.threadId;

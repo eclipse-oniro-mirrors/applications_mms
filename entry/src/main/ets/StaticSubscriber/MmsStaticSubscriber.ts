@@ -200,6 +200,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             telephone: telephone,
             content: content
         };
+        HiLog.i(TAG, `publishData, actionData ${actionData}`);
         commonEvent.publish(common.string.RECEIVE_TRANSMIT_EVENT, {
             bundleName: common.string.BUNDLE_NAME,
             subscriberPermissions: ['ohos.permission.RECEIVE_SMS'],
@@ -222,6 +223,9 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             let contacts: Array<LooseObject> = res.abilityResult;
             let actionData: LooseObject = this.dealContactParams(contacts, telephone);
             HiLog.i(TAG, `actionData ${actionData}`);
+            if (content.length > 15) {
+                content = content.substring(0, 15) + "...";
+            }
 
             let title: string = telephone;
             if(contacts.length > 0) {
