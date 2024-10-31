@@ -124,6 +124,8 @@ export abstract class WorkerWrapper {
     }
 
     private getCallBackKey(message: WorkerMessage): string {
+        HiLog.i(TAG, "getCallBackKey in " + message)
+
         return message.request + message.callBackId;
     }
 }

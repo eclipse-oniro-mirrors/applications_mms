@@ -33,7 +33,7 @@ var StaticSubscriberExtensionAbility = globalThis.requireNapi('application.Stati
 export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbility {
 
     public onReceiveEvent(data): void {
-        HiLog.i(TAG, 'onReceiveEvent, event:' );
+        HiLog.i(TAG, `onReceiveEvent, event: ${data}` );
         if (data.event === common.string.SUBSCRIBER_EVENT) {
             this.dealSmsReceiveData(data, this.context);
         } else {
@@ -42,6 +42,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public async dealSmsReceiveData(data, context): Promise<void> {
+        HiLog.i(TAG, `dealSmsReceiveData ${data} ${context}`);
+
         let netType: string = data.parameters.isCdma ? "3gpp2" : "3gpp";
         // Synchronize wait operation
         let promisesAll = [];
@@ -76,6 +78,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public dealMmsReceiveData(data, context): void {
+        HiLog.i(TAG, `dealMmsReceiveData ${data} ${context}`);
+
         let result = JSON.parse(data.data);
         this.saveAttachment(result.mmsSource);
         let content: string = commonService.getMmsContent(result.mmsSource);
@@ -93,6 +97,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public saveAttachment(mmsSource): void {
+        HiLog.i(TAG, `saveAttachment ${mmsSource}`);
+
         for (let item of mmsSource) {
             let baseUrl = item.msgUriPath;
             let httpRequest = http.createHttp();
@@ -113,6 +119,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public getNotificationContent(mmsSource, themeContent): string {
+        HiLog.i(TAG, `getNotificationContent ${mmsSource} ${themeContent}`);
+
         let content: string = common.string.EMPTY_STR;
         if (mmsSource.length === 1) {
             let item = mmsSource[0];
@@ -141,6 +149,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public insertMessageDetailBy(param, callback, context): void {
+        HiLog.i(TAG, `insertMessageDetailBy ${param} ${context}`);
+
         let sendResults: Array<LooseObject> = [];
         let sendResult: LooseObject = {};
         sendResult.slotId = param.slotId;
@@ -163,6 +173,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public convertStrArray(sourceStr): Array<number> {
+        HiLog.i(TAG, `convertStrArray ${sourceStr}`);
+
         let wby: string = sourceStr;
         let length: number = wby.length;
         let isDouble: boolean = (length % 2) == 0;
@@ -212,6 +224,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public sendNotification(telephone, msgId, content, context): void {
+        HiLog.i(TAG, `sendNotification ${telephone} ${msgId} ${content}`);
+
         let condition: LooseObject = {};
         condition.telephones = [telephone];
         HiLog.i(TAG, `telephone ${telephone}`);
@@ -250,6 +264,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public dealContactParams(contacts, telephone): LooseObject {
+        HiLog.i(TAG, `dealContactParams ${contacts} ${telephone} `);
+
         let actionData: LooseObject = {};
         let params: Array<LooseObject> = [];
         if (contacts.length == 0) {
