@@ -235,6 +235,8 @@ export default class ConversationListController {
     }
 
     setConversationCheckAll(selectType) {
+        HiLog.i(TAG, `setConversationCheckAll ${selectType}`);
+
         // Check whether all items are selected.
         if (!this.isMultipleSelectState) {
             return;
@@ -256,8 +258,9 @@ export default class ConversationListController {
                     this.isConversationCheckAll = false;
                 }
             })
-            this.conversationListDataSource.refresh(this.messageList);
         }
+        this.conversationListDataSource.refresh(this.messageList);
+
         if (this.isConversationCheckAll) {
             // Select All Status
             this.strCheckBoxSelectTip = $r("app.string.msg_deselect_all");
