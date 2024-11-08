@@ -42,7 +42,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public async dealSmsReceiveData(data, context): Promise<void> {
-        HiLog.i(TAG, `dealSmsReceiveData ${data} ${context}`);
 
         let netType: string = data.parameters.isCdma ? "3gpp2" : "3gpp";
         // Synchronize wait operation
@@ -78,7 +77,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public dealMmsReceiveData(data, context): void {
-        HiLog.i(TAG, `dealMmsReceiveData ${data} ${context}`);
 
         let result = JSON.parse(data.data);
         this.saveAttachment(result.mmsSource);
@@ -119,7 +117,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public getNotificationContent(mmsSource, themeContent): string {
-        HiLog.i(TAG, `getNotificationContent ${mmsSource} ${themeContent}`);
 
         let content: string = common.string.EMPTY_STR;
         if (mmsSource.length === 1) {
@@ -149,7 +146,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public insertMessageDetailBy(param, callback, context): void {
-        HiLog.i(TAG, `insertMessageDetailBy ${param} ${context}`);
 
         let sendResults: Array<LooseObject> = [];
         let sendResult: LooseObject = {};
@@ -212,7 +208,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             telephone: telephone,
             content: content
         };
-        HiLog.i(TAG, `publishData, actionData ${actionData}`);
         commonEvent.publish(common.string.RECEIVE_TRANSMIT_EVENT, {
             bundleName: common.string.BUNDLE_NAME,
             subscriberPermissions: ['ohos.permission.RECEIVE_SMS'],
@@ -224,19 +219,15 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public sendNotification(telephone, msgId, content, context): void {
-        HiLog.i(TAG, `sendNotification ${telephone} ${msgId} ${content}`);
 
         let condition: LooseObject = {};
         condition.telephones = [telephone];
-        HiLog.i(TAG, `telephone ${telephone}`);
         ContactService.getInstance().queryContactDataByCondition(condition, res => {
-            HiLog.i(TAG, `sendNotification, callback ${res}`);
             if (res.code == common.int.FAILURE) {
                 return;
             }
             let contacts: Array<LooseObject> = res.abilityResult;
             let actionData: LooseObject = this.dealContactParams(contacts, telephone);
-            HiLog.i(TAG, `actionData ${actionData}`);
             if (content.length > 15) {
                 content = content.substring(0, 15) + "...";
             }
@@ -254,7 +245,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             actionData.unreadTotal = 0;
             NotificationService.getInstance().sendNotify(actionData);
             ConversationListService.getInstance().statisticalData(res => {
-                HiLog.i(TAG, `statisticalData res  ${res}`);
 
                 if (res.code == common.int.SUCCESS) {
                     NotificationService.getInstance().setBadgeNumber(Number(res.response.totalListCount));
@@ -264,7 +254,6 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public dealContactParams(contacts, telephone): LooseObject {
-        HiLog.i(TAG, `dealContactParams ${contacts} ${telephone} `);
 
         let actionData: LooseObject = {};
         let params: Array<LooseObject> = [];
