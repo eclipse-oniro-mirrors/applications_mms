@@ -62,7 +62,6 @@ export abstract class WorkerWrapper {
                 const buff = <ArrayBuffer> message.data;
                 const str = buffer.from(buff).toString();
                 let data = <WorkerMessage> JSON.parse(str)
-                HiLog.i(TAG, `onmessage ${data.request}`)
                 const key = that.getCallBackKey(data);
                 if (that.callBacks.has(key)) {
                     HiLog.i(TAG, `onmessage notify result.`)
@@ -91,7 +90,6 @@ export abstract class WorkerWrapper {
      * @param {Object} callBack Call back from worker
      */
     public async sendRequest(request: string, requestData?: any, callBack?: (result?: any) => void) {
-        HiLog.i(TAG, "sendRequest in " + request)
         if (this.mWorker) {
             const message = {
                 request: request,
@@ -100,11 +98,9 @@ export abstract class WorkerWrapper {
                 param: requestData
             }
             if (callBack) {
-                HiLog.i(TAG, `getCallBackKey callback ${message}`)
                 this.callBacks.set(this.getCallBackKey(message), callBack);
             }
             this.mWorker?.postMessage(message);
-            HiLog.d(TAG, `${this.getWorkerType()} ${request} send succ!`);
             this.requestIndex++;
         } else {
             HiLog.w(TAG, `${this.getWorkerType()} ${request} send fail, worker has been closed!`);
