@@ -33,7 +33,7 @@ var StaticSubscriberExtensionAbility = globalThis.requireNapi('application.Stati
 export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbility {
 
     public onReceiveEvent(data): void {
-        HiLog.i(TAG, `onReceiveEvent, event: ${data}` );
+        HiLog.i(TAG, `onReceiveEvent, event` );
         if (data.event === common.string.SUBSCRIBER_EVENT) {
             this.dealSmsReceiveData(data, this.context);
         } else {
