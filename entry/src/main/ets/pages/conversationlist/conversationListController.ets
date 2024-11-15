@@ -155,6 +155,8 @@ export default class ConversationListController {
     }
 
     private async getDataAbilityHelper(context?) {
+        HiLog.i(TAG, `getDataAbilityHelper ${context}`);
+
         if (this.dataShareHelper == undefined) {
             this.dataShareHelper = await dataShare.createDataShareHelper(context ? context : globalThis.mmsContext,
             common.string.URI_ROW_CONTACTS);
@@ -163,6 +165,8 @@ export default class ConversationListController {
     }
 
     registerDataChangeObserver(callback, context?) {
+        HiLog.i(TAG, `registerDataChangeObserver ${context}`);
+
         let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
             if (dataAbilityHelper) {
@@ -174,6 +178,8 @@ export default class ConversationListController {
     }
 
     unregisterDataChangeObserver(callback, context?) {
+        HiLog.i(TAG, `unregisterDataChangeObserver ${context}`);
+
         let contactDataUri: string = common.string.URI_ROW_CONTACTS + common.string.CONTACT_DATA_URI;
         this.getDataAbilityHelper(context).then((dataAbilityHelper) => {
             if (dataAbilityHelper) {
@@ -185,7 +191,7 @@ export default class ConversationListController {
     }
 
     onShow() {
-        HiLog.i(TAG, "onShow");
+        HiLog.i(TAG, 'onShow');
         if (!this.isInited) {
             HiLog.w(TAG, "is not init");
             return;
@@ -201,17 +207,19 @@ export default class ConversationListController {
     }
 
     onDestroy() {
-        HiLog.i(TAG, "onDestroy");
+        HiLog.i(TAG, 'onDestroy');
         this.isInited = false;
     }
 
     onHide() {
-        HiLog.i(TAG, "onHide");
+        HiLog.i(TAG, 'onHide');
         this.unSubscribe();
     }
 
     // Touch and hold a list to display the selection and deletion functions.
     conversationLongPress(index : number) {
+        HiLog.i(TAG, `conversationLongPress ${index}`);
+
         if (this.messageList[index]) {
             // Check whether the left slide button exists. If yes, the button cannot be clicked.
             if (this.messageList[index]?.isDelShow != null && this.messageList[index].isDelShow) {
@@ -235,6 +243,8 @@ export default class ConversationListController {
     }
 
     setConversationCheckAll(selectType) {
+        HiLog.i(TAG, `setConversationCheckAll ${selectType}`);
+
         // Check whether all items are selected.
         if (!this.isMultipleSelectState) {
             return;
@@ -258,6 +268,7 @@ export default class ConversationListController {
             })
             this.conversationListDataSource.refresh(this.messageList);
         }
+
         if (this.isConversationCheckAll) {
             // Select All Status
             this.strCheckBoxSelectTip = $r("app.string.msg_deselect_all");
@@ -304,6 +315,8 @@ export default class ConversationListController {
 
     // Touch event for information list
     touchStart(event: GestureEvent, index: number) {
+        HiLog.i(TAG, `touchStart ${index}`);
+
         if (this.isMultipleSelectState) {
             return;
         }
@@ -337,6 +350,8 @@ export default class ConversationListController {
     }
 
     touchMove(event: GestureEvent, index: number) {
+        HiLog.i(TAG, `touchMove  ${event} ${index}`);
+
         if (this.isMultipleSelectState) {
             return;
         }
@@ -367,6 +382,8 @@ export default class ConversationListController {
     }
 
     touchEnd(event: GestureEvent, index: number) {
+        HiLog.i(TAG, `touchEnd  ${event} ${index}`);
+
         if (this.isMultipleSelectState) {
             return;
         }
@@ -383,6 +400,8 @@ export default class ConversationListController {
     }
 
     setListItemTransX(transX) {
+        HiLog.i(TAG, `setListItemTransX  ${transX} `);
+
         let item = this.messageList[this.itemTouchedIdx];
         if (item) {
             if (transX <= 0) {
@@ -396,6 +415,8 @@ export default class ConversationListController {
     }
 
     setInfoItemTransX(disX) {
+        HiLog.i(TAG, `setInfoItemTransX  ${disX} `);
+
         if (disX >= 0) {
             this.infoLeft = -disX;
         } else {
@@ -451,7 +472,7 @@ export default class ConversationListController {
     }
 
     onBackPress() {
-        HiLog.i(TAG, "onBackPress");
+        HiLog.i(TAG, 'onBackPress');
         // Key returned by the system. The value true indicates interception.
         if (this.isMultipleSelectState) {
             for (let element of this.messageList) {
@@ -556,6 +577,7 @@ export default class ConversationListController {
     }
 
     subscriberCallBack(err, data) {
+        HiLog.i(TAG, `subscriberCallBack ${data}`);
         this.page = 0;
         this.messageList = [];
         this.requestItem();
@@ -565,7 +587,7 @@ export default class ConversationListController {
 
     // Unsubscribe
     unSubscribe() {
-        HiLog.i(TAG, "unSubscribe");
+        HiLog.i(TAG, 'unSubscribe');
         if (this.commonEventData != null) {
             commonEvent.unsubscribe(this.commonEventData, () => {
                 HiLog.i(TAG, "unSubscribe, success");
@@ -574,6 +596,7 @@ export default class ConversationListController {
     }
 
     createSubscriberCallBack(err, data) {
+        HiLog.i(TAG, `createSubscriberCallBack ${data}`);
         this.commonEventData = data;
         // Received subscription
         commonEvent.subscribe(this.commonEventData, this.subscriberCallBack.bind(this));
@@ -630,6 +653,8 @@ export default class ConversationListController {
 
     // Tap the avatar to go to the contact details page or recipient list page.
     clickToGroupDetail(index) {
+        HiLog.i(TAG, `clickToGroupDetail ${index}`);
+
         if (this.isJumping) {
             return;
         }
@@ -652,6 +677,8 @@ export default class ConversationListController {
 
     // Switching to the Contacts app
     jumpToContact(actionData) {
+        HiLog.i(TAG, `jumpToContact ${actionData}`);
+
         let str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
             HiLog.i(TAG, "jumpToContact, startAbility success");
@@ -663,6 +690,8 @@ export default class ConversationListController {
 
     // Go to the multi-faceted portrait list page.
     jumpToGroupDetail(threadId, contactsNum) {
+        HiLog.i(TAG, `jumpToGroupDetail ${threadId}`);
+
         let actionData = {
             uri: "pages/group_detail/group_detail",
             params: {
@@ -685,7 +714,7 @@ export default class ConversationListController {
 
     // Querying All Lists
     queryAllMessages() {
-        HiLog.i(TAG, "queryAllMessages, start");
+        HiLog.i(TAG, 'queryAllMessages, start');
         let actionData: LooseObject = {};
         this.limit = StringUtil.getLimitForSession(this.page);
         if (this.hasAggregate) {
@@ -716,6 +745,8 @@ export default class ConversationListController {
     }
 
     buildSessionList(result) {
+        HiLog.i(TAG, `buildSessionList ${result}`);
+
         let res = [];
         result.response.forEach(item => {
             // Inherit selected items
@@ -746,6 +777,8 @@ export default class ConversationListController {
     }
 
     dealMmsListContent(item) {
+        HiLog.i(TAG, `dealMmsListContent ${item}`);
+
         if (item.hasMms && item.hasAttachment) {
             if (item.content == common.string.EMPTY_STR) {
                 item.content = $r("app.string.attachment_no_subject");
@@ -760,6 +793,8 @@ export default class ConversationListController {
 
     // The SM details page is displayed.
     clickInfoToConversation(index) {
+        HiLog.i(TAG, `clickInfoToConversation ${index}`);
+
         if (this.resetTouch()) {
             return;
         }
@@ -786,6 +821,8 @@ export default class ConversationListController {
 
     // The session details page is displayed.
     jumpToConversationPage(item) {
+        HiLog.i(TAG, `jumpToConversationPage ${item}`);
+
         router.push({
             uri: "pages/conversation/conversation",
             params: {
@@ -802,6 +839,8 @@ export default class ConversationListController {
     }
 
     markAllAsReadByIndex(index) {
+        HiLog.i(TAG, `markAllAsReadByIndex ${index}`);
+
         let threadId: number = this.messageList[index]?.threadId;
         let actionData: LooseObject = {};
         actionData.threadId = threadId;
@@ -822,6 +861,8 @@ export default class ConversationListController {
     }
 
     deleteAction(idx) {
+        HiLog.i(TAG, `deleteAction ${idx}`);
+
         this.delItem = idx;
         let element = this.messageList[idx];
         this.strMsgDeleteDialogTip = $r("app.string.msg_delete_dialog_tip1");

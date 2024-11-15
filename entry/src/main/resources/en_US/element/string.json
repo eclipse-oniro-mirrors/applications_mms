@@ -251,7 +251,7 @@
     {"name": "manage_sim_card_messages", "value": "Manage SIM card messages"},
     {"name": "sim", "value": "SIM"},
     {"name": "manage", "value": "Manage Sim"},
-    {"name": "messages", "value": "messages"},
+    {"name": "messages", "value": "Messages"},
     {"name": "sms_center_hint", "value": "Warning: You may not be able to send text messages if this number is not set correctly. For the SMS center number, contact your service provider."},
     {"name": "change_sms_center_number", "value": "Change SMS Center Number"},
     {"name": "no_messages", "value": "No messages"},

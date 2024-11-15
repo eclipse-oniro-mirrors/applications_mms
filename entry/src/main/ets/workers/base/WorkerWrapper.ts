@@ -58,18 +58,22 @@ export abstract class WorkerWrapper {
             HiLog.w(TAG, "onmessageerror:" + JSON.stringify(e))
         }
         initWorker.onmessage = function (message) {
-            const buff = <ArrayBuffer> message.data;
-            const str = buffer.from(buff).toString();
-            let data = <WorkerMessage> JSON.parse(str)
-            HiLog.i(TAG, `onmessage ${data.request}`)
-            const key = that.getCallBackKey(data);
-            if (that.callBacks.has(key)) {
-                HiLog.i(TAG, `onmessage notify result.`)
-                const callback = that.callBacks.get(key);
-                if (callback) {
-                    callback(data.param);
+            try {
+                const buff = <ArrayBuffer> message.data;
+                const str = buffer.from(buff).toString();
+                let data = <WorkerMessage> JSON.parse(str)
+                const key = that.getCallBackKey(data);
+                if (that.callBacks.has(key)) {
+                    HiLog.i(TAG, `onmessage notify result.`)
+                    const callback = that.callBacks.get(key);
+                    if (callback) {
+                        HiLog.i(TAG, `onmessage callback ${data.param}`)
+                        callback(data.param);
+                    }
+                    that.callBacks.delete(key);
                 }
-                that.callBacks.delete(key);
+            } catch (error) {
+                HiLog.e(TAG, `onmessage fail, err: ${JSON.stringify(error)}`);
             }
         }
         this.mWorker = initWorker;
@@ -86,7 +90,6 @@ export abstract class WorkerWrapper {
      * @param {Object} callBack Call back from worker
      */
     public async sendRequest(request: string, requestData?: any, callBack?: (result?: any) => void) {
-        HiLog.i(TAG, "sendRequest in " + request)
         if (this.mWorker) {
             const message = {
                 request: request,
@@ -98,7 +101,6 @@ export abstract class WorkerWrapper {
                 this.callBacks.set(this.getCallBackKey(message), callBack);
             }
             this.mWorker?.postMessage(message);
-            HiLog.d(TAG, `${this.getWorkerType()} ${request} send succ!`);
             this.requestIndex++;
         } else {
             HiLog.w(TAG, `${this.getWorkerType()} ${request} send fail, worker has been closed!`);
@@ -118,6 +120,8 @@ export abstract class WorkerWrapper {
     }
 
     private getCallBackKey(message: WorkerMessage): string {
+        HiLog.i(TAG, "getCallBackKey in " + message)
+
         return message.request + message.callBackId;
     }
 }

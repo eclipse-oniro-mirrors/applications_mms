@@ -33,7 +33,7 @@ var StaticSubscriberExtensionAbility = globalThis.requireNapi('application.Stati
 export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbility {
 
     public onReceiveEvent(data): void {
-        HiLog.i(TAG, 'onReceiveEvent, event:' );
+        HiLog.i(TAG, `onReceiveEvent, event` );
         if (data.event === common.string.SUBSCRIBER_EVENT) {
             this.dealSmsReceiveData(data, this.context);
         } else {
@@ -42,6 +42,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public async dealSmsReceiveData(data, context): Promise<void> {
+
         let netType: string = data.parameters.isCdma ? "3gpp2" : "3gpp";
         // Synchronize wait operation
         let promisesAll = [];
@@ -76,6 +77,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public dealMmsReceiveData(data, context): void {
+
         let result = JSON.parse(data.data);
         this.saveAttachment(result.mmsSource);
         let content: string = commonService.getMmsContent(result.mmsSource);
@@ -93,6 +95,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public saveAttachment(mmsSource): void {
+        HiLog.i(TAG, `saveAttachment ${mmsSource}`);
+
         for (let item of mmsSource) {
             let baseUrl = item.msgUriPath;
             let httpRequest = http.createHttp();
@@ -113,6 +117,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public getNotificationContent(mmsSource, themeContent): string {
+
         let content: string = common.string.EMPTY_STR;
         if (mmsSource.length === 1) {
             let item = mmsSource[0];
@@ -141,6 +146,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public insertMessageDetailBy(param, callback, context): void {
+
         let sendResults: Array<LooseObject> = [];
         let sendResult: LooseObject = {};
         sendResult.slotId = param.slotId;
@@ -163,6 +169,8 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public convertStrArray(sourceStr): Array<number> {
+        HiLog.i(TAG, `convertStrArray ${sourceStr}`);
+
         let wby: string = sourceStr;
         let length: number = wby.length;
         let isDouble: boolean = (length % 2) == 0;
@@ -206,14 +214,15 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             isOrdered: false,
             data: JSON.stringify(actionData)
         }, (res) => {
+            HiLog.i(TAG, `RECEIVE_TRANSMIT_EVENT ${res}`);
         });
     }
 
     public sendNotification(telephone, msgId, content, context): void {
+
         let condition: LooseObject = {};
         condition.telephones = [telephone];
         ContactService.getInstance().queryContactDataByCondition(condition, res => {
-            HiLog.i(TAG, "sendNotification, callback");
             if (res.code == common.int.FAILURE) {
                 return;
             }
@@ -222,6 +231,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             if (content.length > 15) {
                 content = content.substring(0, 15) + "...";
             }
+
             let title: string = telephone;
             if(contacts.length > 0) {
                 title = contacts[0].displayName
@@ -235,6 +245,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
             actionData.unreadTotal = 0;
             NotificationService.getInstance().sendNotify(actionData);
             ConversationListService.getInstance().statisticalData(res => {
+
                 if (res.code == common.int.SUCCESS) {
                     NotificationService.getInstance().setBadgeNumber(Number(res.response.totalListCount));
                 }
@@ -243,6 +254,7 @@ export default class MmsStaticSubscriber extends StaticSubscriberExtensionAbilit
     }
 
     public dealContactParams(contacts, telephone): LooseObject {
+
         let actionData: LooseObject = {};
         let params: Array<LooseObject> = [];
         if (contacts.length == 0) {
