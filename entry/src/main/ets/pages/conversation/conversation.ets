@@ -27,6 +27,12 @@ import { DelConversionDialog } from "../../views/MmsDialogs";
 import MmsPreferences from "../../utils/MmsPreferences";
 import common from "../../data/commonData";
 import simCardService from "../../service/SimCardService"
+import window from '@ohos.window';
+import inputMethod from '@ohos.inputMethod';
+import HiLog from "../../utils/HiLog";
+
+const TAG = "Conversation";
+
 
 @Entry
 @Component
@@ -41,6 +47,8 @@ export struct Conversation {
     private gridColOffset: GridColColumnOption = { sm: 0, md: 2, lg: 4 };
     private gridGutter: string = "24vp";
     private dialogGridCount: number = 4;
+    @State screenHeight: number = 0;
+
     @Provide menuItems: Array<any> = [
         {
             value: $r("app.string.delete"),
@@ -91,15 +99,42 @@ export struct Conversation {
     });
 
     aboutToAppear() {
+
         this.mConversationCtrl.onInit();
         this.mConversationCtrl.onShow();
         emitter.on(simCardService.SIM_STATE_CHANGE_EVENT, () => {
             this.cardImage = MmsPreferences.getInstance().haveMultiSimCardReady();
+            HiLog.i(TAG, `receive SIM_STATE_CHANGE_EVENT, this.cardImage: ${this.cardImage}`)
         });
         emitter.on(simCardService.SLOTID_CHANGE_EVENT, () => {
             this.slotId = MmsPreferences.getInstance().getSelectedSlotId();
-            console.log("receive SLOTID_CHANGE_EVENT, this.slotId: " + this.slotId);
+            HiLog.i(TAG, `receive SLOTID_CHANGE_EVENT, this.slotId: ${this.slotId}`)
         });
+
+        window.getLastWindow(getContext(this)).then(currentWindow =>{
+            let property = currentWindow.getWindowProperties();
+            let avoidArea = currentWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_KEYBOARD);
+            // Initialize display area height
+            this.screenHeight = px2vp(property.windowRect.height - avoidArea.bottomRect.height);
+            HiLog.i(TAG, `screenHeight ${this.screenHeight}`)
+            // Monitor the pop-up and collapse of the soft keyboard
+            currentWindow.on('avoidAreaChange', async data => {
+                HiLog.i(TAG, `avoidAreaChange data ${data}`)
+                if (data.type !== window.AvoidAreaType.TYPE_KEYBOARD) {
+                    return
+                }
+                // Obtain the current input method, changing the layout height is only effective for hmos input method
+                let currentIme = inputMethod.getCurrentInputMethod();
+                HiLog.i(TAG, `getCurrentInputMethod currentIme ${currentIme}`)
+
+                if(currentIme.name === "com.kika.hmos.inputmethod"){
+                    this.screenHeight = px2vp(property.windowRect.height - data.area.bottomRect.height);
+                }else {
+                    this.screenHeight = px2vp(property.windowRect.height);
+                }
+                HiLog.i(TAG, `px2vp screenHeight ${this.screenHeight}`)
+            })
+        })
     }
 
     aboutToDisappear() {
@@ -746,12 +781,7 @@ export struct Conversation {
                             .borderRadius(20)
                             .width('100%')
                             .layoutWeight(1)
-                            Image($rawfile("icon/ic_message_emoji.svg"))
-                                .width(24)
-                                .height(24)
-                                .margin({left:16})
-                                .visibility(Visibility.Visible)
-                                .opacity(0.3)
+
                             // <!--send-->
                             Image(this.mConversationCtrl.canSendMessage ? $rawfile("icon/ic_message_send_filled.svg")
                                                                         : $rawfile("icon/ic_message_send.svg"))
@@ -785,7 +815,7 @@ export struct Conversation {
         }
         .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
         .width("100%")
-        .height("100%")
+        .height(this.screenHeight)
     }
 
     @Builder MenuBuilder() {
