@@ -106,7 +106,7 @@ export default class TransmitMsgController {
         // List of contents forwarded by multiple messages
         this.transmitContentList = router.getParams().transmitContentList;
         this.dialogMsg.transmitContentList = this.transmitContentList;
-        HiLog.i(TAG, `dialogMsg transmitContentList ${this.dialogMsg.transmitContentList}` );
+        HiLog.i(TAG, `dialogMsg transmitContentList ` );
         this.dialogMsg.transmitContent = router.getParams().transmitContent;
         this.threadId = router.getParams().threadId;
         HiLog.i(TAG, `threadId ${this.threadId}` );
@@ -139,7 +139,7 @@ export default class TransmitMsgController {
         actionData.limit = this.limit;
         actionData.orderByTimeDesc = true;
         ConversationListService.getInstance().querySessionList(actionData, result => {
-            HiLog.i(TAG, `querySessionList result ${result}` );
+            HiLog.i(TAG, `querySessionList result` );
             if (result.code == common.int.SUCCESS) {
                 this.contactsList = this.buildSessionList(result);
                 this.transmitMsgDataSource.refresh(this.contactsList);
@@ -173,7 +173,7 @@ export default class TransmitMsgController {
             this.dealMmsListContent(item);
             res.push(obj);
         });
-        HiLog.i(TAG, `buildSessionList result ${res}` );
+        HiLog.i(TAG, `buildSessionList result` );
         return res;
     }
 
@@ -191,7 +191,7 @@ export default class TransmitMsgController {
     }
     // A dialog box is displayed when you touch a recent contact.
     clickSendMessage(item){
-        HiLog.i(TAG, `clickSendMessage ${item}` );
+        HiLog.i(TAG, `clickSendMessage ` );
         this.contactName = item.conversation.name;
         let contactsParamMsg: LooseObject = {};
         contactsParamMsg.contactsNum = item.conversation.contactsNum;

@@ -1859,7 +1859,7 @@ export default class ConversationController {
     }
 
     queryOldMessageList(telephone, callback) {
-        HiLog.i(TAG, `queryOldMessageList, start ${telephone}`);
+        HiLog.i(TAG, `queryOldMessageList, start `);
         if (telephone == common.string.EMPTY_STR) {
             return;
         }
@@ -1892,7 +1892,7 @@ export default class ConversationController {
     }
 
     initNewSelectContacts(selectContacts) {
-        HiLog.i(TAG, `initNewSelectContacts, start ${selectContacts}`);
+        HiLog.i(TAG, `initNewSelectContacts, start `);
         let contactsNumber = common.string.EMPTY_STR;
         let contactsName = common.string.EMPTY_STR;
         let contactsNumberFormat = common.string.EMPTY_STR;
@@ -1914,7 +1914,7 @@ export default class ConversationController {
     }
 
     handleWithSend(actionData, item) {
-        HiLog.i(TAG, `handleWithSend ${actionData} ${item}`);
+        HiLog.i(TAG, `handleWithSend`);
 
         // Sending request processing
         let hosts: Array<string> = [];
@@ -1932,7 +1932,7 @@ export default class ConversationController {
     }
 
     sendInterval(actionData, mmsList) {
-        HiLog.i(TAG, `sendInterval ${actionData}`);
+        HiLog.i(TAG, `sendInterval`);
 
         // Send Timer
         let item = mmsList[mmsList.length - 1];
@@ -2036,7 +2036,7 @@ export default class ConversationController {
     }
 
     createSubscriberCallBack(err, data) {
-        HiLog.i(TAG, `createSubscriberCallBack ${data}`);
+        HiLog.i(TAG, `createSubscriberCallBack `);
 
         this.commonEventData = data;
         // Received subscription
@@ -2044,7 +2044,7 @@ export default class ConversationController {
     }
 
     subscriberCallBack(err, data) {
-        HiLog.i(TAG, `subscriberCallBack, start ${data}`);
+        HiLog.i(TAG, `subscriberCallBack, start `);
         globalThis.needToUpdate = true;
         // Receiving SMS Updates
         this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
@@ -2287,11 +2287,11 @@ export default class ConversationController {
 
     // Switching to the Contacts app
     jumpToContact(actionData) {
-        HiLog.i(TAG, `jumpToContact, actionData ${actionData}`);
+        HiLog.i(TAG, `jumpToContact, actionData `);
 
         let str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
-            HiLog.i(TAG, `jumpToContact, startAbility Success ${data}`);
+            HiLog.i(TAG, `jumpToContact, startAbility Success `);
         }).catch((error) => {
             HiLog.e(TAG, "jumpToContact, failed. Cause: " + JSON.stringify(error.message));
         })
@@ -2311,7 +2311,7 @@ export default class ConversationController {
     }
 
     call(telephone) {
-        HiLog.i(TAG, `call ${telephone}`);
+        HiLog.i(TAG, `call `);
 
         // Calling
         callService.call(telephone, result => {
@@ -2335,7 +2335,7 @@ export default class ConversationController {
 
     // Contact data returned on the new page
     setReceiveContactValue(receiverData) {
-        HiLog.i(TAG, `setReceiveContactValue ${receiverData}`);
+        HiLog.i(TAG, `setReceiveContactValue `);
 
         let selectContacts = receiverData.selectContacts;
         let receiveContactValue = selectContacts.length > 0 ? common.string.EMPTY_STR : receiverData.contactValue;
@@ -2398,7 +2398,7 @@ export default class ConversationController {
     }
 
     setCanSendMessage(selectContacts, receiveContactValue) {
-        HiLog.i(TAG, `setCanSendMessage ${selectContacts} ${receiveContactValue}`);
+        HiLog.i(TAG, `setCanSendMessage `);
 
         if (this.textValue != common.string.EMPTY_STR || this.isEditMms) {
             if (this.canSendMessage) {
