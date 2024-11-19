@@ -367,18 +367,23 @@ export default class ConversationListController {
     }
 
     touchEnd(event: GestureEvent, index: number) {
+        HiLog.i(TAG, 'touchEnd, index: ' + index);
         if (this.isMultipleSelectState) {
             return;
         }
         // offsetX indicates the offset. The value range is [-operateBtnW, 0].
-        let offsetX = event.offsetX;
-        let item = this.messageList[this.itemTouchedIdx];
-        if (offsetX + (this.operateBtnW / 2) >= 0) {
-            this.setListItemTransX(0);
-            item.isDelShow = false;
-        } else {
-            this.setListItemTransX(0 - this.operateBtnW);
-            item.isDelShow = true;
+        try {
+            let offsetX = event.offsetX;
+            let item = this.messageList[this.itemTouchedIdx];
+            if (offsetX + (this.operateBtnW / 2) >= 0) {
+                this.setListItemTransX(0);
+                item.isDelShow = false;
+            } else {
+                this.setListItemTransX(0 - this.operateBtnW);
+                item.isDelShow = true;
+            }
+        } catch (error) {
+            HiLog.e(TAG, 'touchEnd: ' + JSON.stringify(error));
         }
     }
 
