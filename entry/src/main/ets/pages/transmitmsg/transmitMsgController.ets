@@ -102,7 +102,7 @@ export default class TransmitMsgController {
     }
 
     onInit() {
-        HiLog.i(TAG, "onInit" );
+        HiLog.i(TAG, 'onInit' );
         // List of contents forwarded by multiple messages
         this.transmitContentList = router.getParams().transmitContentList;
         this.dialogMsg.transmitContentList = this.transmitContentList;
@@ -272,7 +272,10 @@ export default class TransmitMsgController {
             "isContainerOriginSource": this.isChecked //Whether selected
         }
         router.back();
-        this.mConversationCtrl.generalTransmitSend(params.transmitSource, params.isContainerOriginSource, params.strContactsNumber)
+        this.mConversationCtrl.generalTransmitSend(
+            params.transmitSource,
+            params.isContainerOriginSource,
+            params.strContactsNumber)
         this.mConversationCtrl.initTransmitMeg(params)
     }
 }

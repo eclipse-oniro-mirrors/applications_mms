@@ -92,7 +92,8 @@ struct Index {
     this.mIndexCtrl.onShow();
     setTimeout(()=>{
       this.mConListCtrl.onShow();
-    },200)  }
+    },200)
+  }
 
   /**
    * Triggers once when this page disappears. In scenarios such as routing and application access to the foreground

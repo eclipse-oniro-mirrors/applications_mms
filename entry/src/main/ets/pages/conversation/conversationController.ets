@@ -693,9 +693,11 @@ export default class ConversationController {
                 this.isEditMms = true;
                 //this.mmsTransmitSend();
             } else {
-                let transmitSource: Array<LooseObject> = <Array<LooseObject>>router.getParams().transmitSource;
+                let transmitSource: LooseObject[] = <Array<LooseObject>>router.getParams().transmitSource;
+
                 let isSource = router.getParams().isContainerOriginSource;
-                this.generalTransmitSend(transmitSource,isSource,this.strContactsNumber);            }
+                this.generalTransmitSend(transmitSource,isSource,this.strContactsNumber);
+            }
         }
     }
 
