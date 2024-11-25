@@ -90,7 +90,9 @@ struct Index {
     WantUtil.getWant();
     await MmsPreferences.getInstance().initPreferences();
     this.mIndexCtrl.onShow();
-    this.mConListCtrl.onShow();
+    setTimeout(()=>{
+      this.mConListCtrl.onShow();
+    },200)
   }
 
   /**

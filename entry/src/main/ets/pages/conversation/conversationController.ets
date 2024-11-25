@@ -238,15 +238,16 @@ export default class ConversationController {
         HiLog.i(TAG, "onInit");
         this.initRouterData();
         this.initData();
-        if (this.hasDouble) {
-            this.initNewPageContacts();
-            this.hasDouble = false;
-        }
+        this.initNewPageContacts();
+
         // Obtains the actual data. You do not need to query the data when creating new data.
         if (!this.isNewMsg) {
             this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
             });
-            this.scroller.scrollToIndex(this.mmsList.length - 1)
+            // After the page rendering is completed, execute it again
+            setTimeout(()=>{
+                this.scroller.scrollToIndex(this.mmsList.length - 1)
+            },100)
         }
         let actionData: LooseObject = {};
         actionData.threadId = this.threadId;
@@ -263,8 +264,6 @@ export default class ConversationController {
         this.subscribeDetail();
         // Check whether a contact exists.
         this.judgeContactExists();
-        // Initialize the forwarded data
-        this.initTransmitMeg();
         // Forwarding and sending
         this.transmitSend();
     }
@@ -670,15 +669,14 @@ export default class ConversationController {
     }
 
     // Initializing Forwarding Data
-    initTransmitMeg() {
-        let routerParams: LooseObject = router.getParams();
-        if (routerParams.transmitFlag) {
-            this.threadId = routerParams.threadId;
+    initTransmitMeg(params) {
+        if (params.transmitFlag) {
+            this.threadId = params.threadId;
             this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
             this.contactsNum = this.contactsNum;
-            this.strContactsName = routerParams.strContactsName;
-            this.strContactsNumber = routerParams.strContactsNumber;
-            this.strContactsNumberFormat = routerParams.strContactsNumberFormat;
+            this.strContactsName = params.strContactsName;
+            this.strContactsNumber = params.strContactsNumber;
+            this.strContactsNumberFormat = params.strContactsNumberFormat;
             this.initNewPageContacts();
         }
     }
@@ -695,18 +693,20 @@ export default class ConversationController {
                 this.isEditMms = true;
                 //this.mmsTransmitSend();
             } else {
-                this.generalTransmitSend();
+                let transmitSource: LooseObject[] = <Array<LooseObject>>router.getParams().transmitSource;
+
+                let isSource = router.getParams().isContainerOriginSource;
+                this.generalTransmitSend(transmitSource,isSource,this.strContactsNumber);
             }
         }
     }
 
-    generalTransmitSend() {
-        let transmitSource: Array<LooseObject> = <Array<LooseObject>>router.getParams().transmitSource;
-        let isSource = router.getParams().isContainerOriginSource;
+    generalTransmitSend(mTransmitSource: Array<LooseObject>,mIsSource,mContactsNumber) {
+
         this.canSendMessage = false;
-        for (let element of transmitSource) {
+        for (let element of mTransmitSource) {
             let content = common.string.EMPTY_STR;
-            if (isSource && !element.isMsm) {
+            if (mIsSource && !element.isMsm) {
                 content = element.contentInfo + element.content;
             } else {
                 content = element.content;
@@ -714,7 +714,8 @@ export default class ConversationController {
             let actionData = {
                 content: content,
                 mmsSource: element.mms,
-                msgUriPath: element.msgUriPath
+                msgUriPath: element.msgUriPath,
+                mContactsNumber:mContactsNumber
             };
             this.delayTransmitSend(actionData, element.isMsm);
         }
@@ -722,11 +723,11 @@ export default class ConversationController {
 
     delayTransmitSend(element, isMms) {
         this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
-            this.sendSms(element.content, element.msgUriPath, isMms, element.mmsSource);
+            this.sendSms(element.content, element.msgUriPath, isMms, element.mmsSource, element.mContactsNumber);
         });
     }
 
-    sendSms(content, msgUriPath, isMms, mmsSource): void {
+    sendSms(content, msgUriPath, isMms, mmsSource, mContactsNumber): void {
         // Sending an SMS Message on a Full-Screen Page
         this.isSendStatus = true;
         // Initialize the data to be sent.
@@ -734,7 +735,7 @@ export default class ConversationController {
         this.slotId = MmsPreferences.getInstance().getSendMessageSlotId();
         let actionData: LooseObject = {};
         actionData.slotId = this.slotId;
-        actionData.destinationHost = this.strContactsNumber;
+        actionData.destinationHost = mContactsNumber;
         actionData.content = content;
         actionData.isEditMms = isMms;
         this.dealNewRecallMessagesFlag(this.mmsList);
@@ -1093,6 +1094,7 @@ export default class ConversationController {
         }
         actionData.contactsNum = this.contactsNum;
         ConversationService.getInstance().queryMessageDetail(actionData, result => {
+
             if (result.code == common.int.SUCCESS) {
                 this.initIsShowMsgLongMenu(result);
                 this.dealMessageDetailTime(result);
@@ -1797,6 +1799,8 @@ export default class ConversationController {
         // Real SMS Sending
         this.sendInterval(actionData, this.mmsList);
         this.textValue = common.string.EMPTY_STR;
+        // After the message is successfully sent, it is not considered a draft
+        this.isDraft = false;
         this.canSendMessage = false;
         this.isShowFullScreen = false;
         this.clearMsm();
@@ -1857,7 +1861,7 @@ export default class ConversationController {
     }
 
     queryOldMessageList(telephone, callback) {
-        HiLog.i(TAG, "queryOldMessageList, start");
+        HiLog.i(TAG, `queryOldMessageList, start `);
         if (telephone == common.string.EMPTY_STR) {
             return;
         }
@@ -1890,7 +1894,7 @@ export default class ConversationController {
     }
 
     initNewSelectContacts(selectContacts) {
-        HiLog.i(TAG, "initNewSelectContacts, start");
+        HiLog.i(TAG, `initNewSelectContacts, start `);
         let contactsNumber = common.string.EMPTY_STR;
         let contactsName = common.string.EMPTY_STR;
         let contactsNumberFormat = common.string.EMPTY_STR;
@@ -1912,6 +1916,8 @@ export default class ConversationController {
     }
 
     handleWithSend(actionData, item) {
+        HiLog.i(TAG, `handleWithSend`);
+
         // Sending request processing
         let hosts: Array<string> = [];
         if (actionData.destinationHost.indexOf(",") == -1) {
@@ -1928,6 +1934,8 @@ export default class ConversationController {
     }
 
     sendInterval(actionData, mmsList) {
+        HiLog.i(TAG, `sendInterval`);
+
         // Send Timer
         let item = mmsList[mmsList.length - 1];
         if (this.recallMessagesFlag) {
@@ -1950,6 +1958,8 @@ export default class ConversationController {
     }
 
     changeValue(e) {
+        HiLog.i(TAG, `changeValue ${e}`);
+
         this.textValue = e;
         if (e == null || e == common.string.EMPTY_STR) {
             if (this.mmsEditList.length != 0) {
@@ -2028,13 +2038,15 @@ export default class ConversationController {
     }
 
     createSubscriberCallBack(err, data) {
+        HiLog.i(TAG, `createSubscriberCallBack `);
+
         this.commonEventData = data;
         // Received subscription
         commonEvent.subscribe(this.commonEventData, this.subscriberCallBack.bind(this));
     }
 
     subscriberCallBack(err, data) {
-        HiLog.i(TAG, "subscriberCallBack, start");
+        HiLog.i(TAG, `subscriberCallBack, start `);
         globalThis.needToUpdate = true;
         // Receiving SMS Updates
         this.queryMessageDetail(this.strContactsNumber, this.threadId, () => {
@@ -2137,6 +2149,8 @@ export default class ConversationController {
     }
 
     gotoTextSelect(idx) {
+        HiLog.i(TAG, `gotoTextSelect ${idx}`);
+
         router.push({
             uri: "pages/text_select/text_select",
             params: this.mmsList[idx]
@@ -2166,6 +2180,8 @@ export default class ConversationController {
     }
 
     showReport(mmsIndex) {
+        HiLog.i(TAG, `showReport ${mmsIndex}`);
+
         // View Reports
         let item = this.mmsList[mmsIndex];
         router.push({
@@ -2199,6 +2215,8 @@ export default class ConversationController {
     }
 
     longPressMore(e) {
+        HiLog.i(TAG, `longPressMore ${e}`);
+
         switch (e) {
             case 0:
             // delete
@@ -2241,6 +2259,8 @@ export default class ConversationController {
 
     // New Contact
     createNewContact(number) {
+        HiLog.i(TAG, `createNewContact ${number}`);
+
         var actionData: LooseObject = {};
         actionData.phoneNumber = number;
         actionData.pageFlag = common.contactPage.PAGE_FLAG_SAVE_CONTACT;
@@ -2249,6 +2269,8 @@ export default class ConversationController {
 
     // Edit Before Call
     callEditor(number) {
+        HiLog.i(TAG, `callEditor ${number}`);
+
         var actionData: LooseObject = {};
         actionData.phoneNumber = number;
         actionData.pageFlag = common.contactPage.PAGE_FLAG_EDIT_BEFORE_CALLING;
@@ -2257,6 +2279,8 @@ export default class ConversationController {
 
     // Save to Existing Contacts
     existingContact(number) {
+        HiLog.i(TAG, `existingContact ${number}`);
+
         var actionData: LooseObject = {};
         actionData.phoneNumber = number;
         actionData.pageFlag = common.contactPage.PAGE_FLAG_SAVE_EXIST_CONTACT;
@@ -2265,9 +2289,11 @@ export default class ConversationController {
 
     // Switching to the Contacts app
     jumpToContact(actionData) {
+        HiLog.i(TAG, `jumpToContact, actionData `);
+
         let str = commonService.commonContactParam(actionData);
         globalThis.mmsContext.startAbility(str).then((data) => {
-            HiLog.i(TAG, "jumpToContact, startAbility Success");
+            HiLog.i(TAG, `jumpToContact, startAbility Success `);
         }).catch((error) => {
             HiLog.e(TAG, "jumpToContact, failed. Cause: " + JSON.stringify(error.message));
         })
@@ -2287,6 +2313,8 @@ export default class ConversationController {
     }
 
     call(telephone) {
+        HiLog.i(TAG, `call `);
+
         // Calling
         callService.call(telephone, result => {
             if (result.code == common.int.SUCCESS) {
@@ -2298,6 +2326,8 @@ export default class ConversationController {
     }
 
     getTime(nS) {
+        HiLog.i(TAG, `getTime ${nS}`);
+
         var date = new Date(parseInt(nS));
         var year = date.getFullYear();
         var mon = date.getMonth() + 1;
@@ -2307,6 +2337,8 @@ export default class ConversationController {
 
     // Contact data returned on the new page
     setReceiveContactValue(receiverData) {
+        HiLog.i(TAG, `setReceiveContactValue `);
+
         let selectContacts = receiverData.selectContacts;
         let receiveContactValue = selectContacts.length > 0 ? common.string.EMPTY_STR : receiverData.contactValue;
         let hasBlur = receiverData.hasBlur;
@@ -2368,6 +2400,8 @@ export default class ConversationController {
     }
 
     setCanSendMessage(selectContacts, receiveContactValue) {
+        HiLog.i(TAG, `setCanSendMessage `);
+
         if (this.textValue != common.string.EMPTY_STR || this.isEditMms) {
             if (this.canSendMessage) {
                 if (selectContacts.length == 0 && receiveContactValue == common.string.EMPTY_STR) {

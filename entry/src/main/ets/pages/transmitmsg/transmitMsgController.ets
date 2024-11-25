@@ -25,6 +25,7 @@ import AvatarColor from "../../model/common/AvatarColor";
 import DateUtil from "../../utils/DateUtil";
 import TransmitMsgDataSource from "../../model/TransmitMsgDataSource";
 import HiLog from "../../utils/HiLog";
+import ConversationController from "../conversation/conversationController";
 
 const TAG = "TransmitMsgController"
 
@@ -91,6 +92,7 @@ export default class TransmitMsgController {
     dialogMsg: LooseObject = {};
     DialogShow: boolean = false;
     transmitMsgDataSource: TransmitMsgDataSource = new TransmitMsgDataSource();
+    mConversationCtrl: ConversationController = ConversationController.getInstance();
 
     static getInstance() {
         if (TransmitMsgController.sInstance == null) {
@@ -100,14 +102,19 @@ export default class TransmitMsgController {
     }
 
     onInit() {
+        HiLog.i(TAG, 'onInit' );
         // List of contents forwarded by multiple messages
         this.transmitContentList = router.getParams().transmitContentList;
         this.dialogMsg.transmitContentList = this.transmitContentList;
+        HiLog.i(TAG, `dialogMsg transmitContentList ` );
         this.dialogMsg.transmitContent = router.getParams().transmitContent;
         this.threadId = router.getParams().threadId;
+        HiLog.i(TAG, `threadId ${this.threadId}` );
+
     }
 
     onShow() {
+        HiLog.i(TAG, `onShow` );
         this.page = 0;
         this.requestItem();
     }
@@ -132,6 +139,7 @@ export default class TransmitMsgController {
         actionData.limit = this.limit;
         actionData.orderByTimeDesc = true;
         ConversationListService.getInstance().querySessionList(actionData, result => {
+            HiLog.i(TAG, `querySessionList result` );
             if (result.code == common.int.SUCCESS) {
                 this.contactsList = this.buildSessionList(result);
                 this.transmitMsgDataSource.refresh(this.contactsList);
@@ -165,6 +173,7 @@ export default class TransmitMsgController {
             this.dealMmsListContent(item);
             res.push(obj);
         });
+        HiLog.i(TAG, `buildSessionList result` );
         return res;
     }
 
@@ -181,7 +190,8 @@ export default class TransmitMsgController {
         }
     }
     // A dialog box is displayed when you touch a recent contact.
-    clickSendMessage(item) {
+    clickSendMessage(item){
+        HiLog.i(TAG, `clickSendMessage ` );
         this.contactName = item.conversation.name;
         let contactsParamMsg: LooseObject = {};
         contactsParamMsg.contactsNum = item.conversation.contactsNum;
@@ -205,6 +215,7 @@ export default class TransmitMsgController {
     }
 
     jumpToSelectContacts(callback?) {
+        HiLog.i(TAG, `jumpToSelectContacts` );
         // The page for selecting a contact is displayed.
         let actionData: LooseObject = {};
         actionData.pageFlag = common.contactPage.PAGE_FLAG_SINGLE_CHOOSE;
@@ -260,9 +271,11 @@ export default class TransmitMsgController {
             "transmitSource": this.transmitContentList,//List of contents forwarded by multiple messages
             "isContainerOriginSource": this.isChecked //Whether selected
         }
-        router.replaceUrl({
-            url: 'pages/conversation/conversation',
-            params: params
-        });
+        router.back();
+        this.mConversationCtrl.generalTransmitSend(
+            params.transmitSource,
+            params.isContainerOriginSource,
+            params.strContactsNumber)
+        this.mConversationCtrl.initTransmitMeg(params)
     }
 }
