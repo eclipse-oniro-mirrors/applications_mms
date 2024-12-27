@@ -2,13 +2,11 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:entry_description",
     "mainElement": "com.ohos.mms.MainAbility",
     "deviceTypes": [
-      "default",
-      "tablet",
-      "car"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -22,7 +20,7 @@
     "abilities": [
       {
         "name": "com.ohos.mms.MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:mainability_description",
         "icon": "$media:smsmms",
         "label": "$string:messages",
@@ -60,15 +58,18 @@
       },
       {
         "name": "ohos.permission.READ_CONTACTS",
-        "reason": "$string:permission_read_write_contacts"
+        "reason": "$string:permission_read_write_contacts",
+        "usedScene": {}
       },
       {
         "name": "ohos.permission.READ_MESSAGES",
-        "reason": "$string:permission_read_write_messages"
+        "reason": "$string:permission_read_write_messages",
+        "usedScene": {}
       },
       {
         "name": "ohos.permission.SEND_MESSAGES",
-        "reason": "$string:permission_send_messages"
+        "reason": "$string:permission_send_messages",
+        "usedScene": {}
       },
       {
         "name": "ohos.permission.SET_TELEPHONY_STATE",
@@ -80,7 +81,8 @@
       },
       {
         "name": "ohos.permission.RECEIVE_SMS",
-        "reason": "$string:permission_receive_message_service"
+        "reason": "$string:permission_receive_message_service",
+        "usedScene": {}
       },
       {
         "name": "ohos.permission.PLACE_CALL",
