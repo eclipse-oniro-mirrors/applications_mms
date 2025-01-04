@@ -20,6 +20,7 @@ import ContactsService from '../../service/ContactsService';
 import commonService from '../../service/CommonService'
 import commonCtrl from '../../pages/conversation/common'
 import LooseObject from '../../data/LooseObject'
+import promptAction from '@ohos.promptAction';
 
 const TAG = 'ReceiveController';
 
@@ -205,7 +206,7 @@ export default class ReceiveController {
             this.setContactValue(call);
         } else {
             HiLog.i(TAG, 'checkReceive, isPhoneNumber no');
-            prompt.showToast({
+            promptAction.showToast({
                 // Invalid Recipient
                 // @ts-ignore
                 message: $r('app.string.invalid_receive', this.myText),
