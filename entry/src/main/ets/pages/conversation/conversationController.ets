@@ -1478,6 +1478,9 @@ export default class ConversationController {
 
   // Check whether the time on the top of each SMS message is displayed.
   setDateShow(item, list) {
+    if (item == undefined || list == undefined) {
+      returen;
+    }
     item.dateShow = true;
     if (item.date == undefined || item.date == null) {
       return;
