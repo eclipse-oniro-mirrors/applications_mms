@@ -128,6 +128,7 @@ export default class NotificationService {
                 if (callback != null) {
                     callback(common.int.FAILURE);
                 }
+                return;
             }
             let count = 0;
             for (let item of res.response) {
