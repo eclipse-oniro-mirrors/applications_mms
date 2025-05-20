@@ -1500,8 +1500,8 @@ export default class ConversationController {
     let tempWeekId = item.week?.id;
     if (list.length > 0) {
       item.dateShow =
-        (tempDateId != (list[list.length-1]).date.id)
-          && (tempWeekId != (list[list.length-1]).week.id)
+        (tempDateId != (list[list.length-1]).date.?id)
+          && (tempWeekId != (list[list.length-1]).week.?id)
     }
   }
 
