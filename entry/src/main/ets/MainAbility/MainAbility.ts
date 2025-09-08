@@ -15,6 +15,7 @@
 import Ability from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 
+import { errorManager } from '@kit.AbilityKit';
 import HiLog from '../utils/HiLog';
 import MmsPreferences from '../utils/MmsPreferences';
 import WorkFactory, { WorkerType } from '../workers/WorkFactory';
@@ -22,8 +23,17 @@ import simCardService from '../service/SimCardService';
 
 const TAG = 'app';
 
+function errorFunc(observer: errorManager.GlobalError) {
+    HiLog.i(TAG, "result name : " + observer.name);
+    HiLog.i(TAG, "result message : " + observer.message);
+    HiLog.i(TAG, "result stack : " + observer.stack);
+    HiLog.i(TAG, "result instanceName : " + observer.instanceName);
+    HiLog.i(TAG, "result instanceType : " + observer.instanceType);
+}
+
 export default class MainAbility extends Ability {
   onCreate(want, launchParam): void {
+    errorManager.on("globalErrorOccurred", errorFunc);
     HiLog.i(TAG, 'Ability onCreate com.ohos.mms version: 1.0.0.41');
     globalThis.mmsContext = this.context;
     globalThis.abilityWant = want;
