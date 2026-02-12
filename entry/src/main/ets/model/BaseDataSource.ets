@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,62 +13,81 @@
  * limitations under the License.
  */
 import HiLog from '../utils/HiLog';
+import { listDataType } from '../model/TransmitMsgDataSource';
+import { searchType } from '../model/TransmitSearchListDataSource'
+import { PictureListData, Mms } from '../utils/TypesUtils';
+import { cardMmsListType, mmsListType } from '../pages/conversation/conversationController'
+import { messageType } from '../pages/conversationlist/conversationListController';
+
 
 const TAG = 'BasicDataSource'
 
 export default class BasicDataSource implements IDataSource {
-    private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = []
 
-    public totalCount(): number {
-        return 0
-    }
+  public totalCount(): number {
+    return 0
+  }
 
-    public getData(index: number): any {
-        return undefined
-    }
+  public getData(index: number): messageType | listDataType | searchType | null | PictureListData |
+  cardMmsListType | mmsListType | Mms {
+    return null
+  }
 
-    registerDataChangeListener(listener: DataChangeListener): void {
-        if (this.listeners.indexOf(listener) < 0) {
-            HiLog.i(TAG, 'add listener')
-            this.listeners.push(listener)
-        }
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      HiLog.i(TAG, 'add listener')
+      this.listeners.push(listener)
     }
+  }
 
-    unregisterDataChangeListener(listener: DataChangeListener): void {
-        const pos = this.listeners.indexOf(listener);
-        if (pos >= 0) {
-            HiLog.i(TAG, 'remove listener')
-            this.listeners.splice(pos, 1)
-        }
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      HiLog.i(TAG, 'remove listener')
+      this.listeners.splice(pos, 1)
     }
+  }
 
-    notifyDataReload(): void {
-        this.listeners.forEach(listener => {
-            listener.onDataReloaded()
-        })
-    }
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
 
-    notifyDataAdd(index: number): void {
-        this.listeners.forEach(listener => {
-            listener.onDataAdd(index)
-        })
-    }
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
 
-    notifyDataChange(index: number): void {
-        this.listeners.forEach(listener => {
-            listener.onDataChange(index)
-        })
+  onDataChange(from: number, to: number): void {
+    HiLog.i(TAG, 'onDataChange from ' + from + ' ,to' + to);
+    if (from < 0 || to < 0) {
+      return;
     }
+    for (let index = from; index <= to; index++) {
+      this.listeners.forEach(listener => {
+        listener.onDataChange(index);
+      })
+    }
+  }
 
-    notifyDataDelete(index: number): void {
-        this.listeners.forEach(listener => {
-            listener.onDataDelete(index)
-        })
-    }
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
 
-    notifyDataMove(from: number, to: number): void {
-        this.listeners.forEach(listener => {
-            listener.onDataMove(from, to)
-        })
-    }
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
 }

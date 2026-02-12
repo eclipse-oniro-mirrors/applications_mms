@@ -15,14 +15,24 @@
 
 import pasteboard from '@ohos.pasteboard';
 import HiLog from '../utils/HiLog';
+import StringUtil from '../utils/StringUtil';
 
 const TAG = 'Pasteboard';
-let commonPasteboard = {
+interface  PasteboardMethods {
+    getPasteboard: () => Promise<pasteboard.PasteData>
+    setPasteboard: (text: string) => void
+}
+let commonPasteboard: PasteboardMethods = {
     getPasteboard() {
         let sysPasteboard = pasteboard.getSystemPasteboard();
         return sysPasteboard.getPasteData();
     },
-    setPasteboard(text) {
+    setPasteboard(text: string) {
+        if (StringUtil.isEmpty(text)) {
+            HiLog.e(TAG, 'setPasteboard text is empty');
+            return;
+        }
+        HiLog.iw(TAG, 'setPasteboard text length: ' + text.length);
         let sysPasteboard = pasteboard.getSystemPasteboard();
         let textData = pasteboard.createPlainTextData(text);
         sysPasteboard.setPasteData(textData, () => {

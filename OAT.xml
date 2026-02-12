@@ -25,6 +25,7 @@
                 <!--policyitem type="compatibility" name="GPL-2.0+" path="abc/.*" desc="Process that runs independently, invoked by the X process."/-->
                 <!--policyitem type="license" name="LGPL" path="abc/.*" desc="Dynamically linked by module X"/-->
                 <!--policyitem type="copyright" name="xxx" path="abc/.*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="Developed by X Company"/-->
+                <policyitem type="copyright" name="Huawei Technologies Co., Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>
             </policy>
         </policylist>
         <filefilterlist>
@@ -40,7 +41,12 @@
                 <filteritem type="filepath" name="entry/.*.json5" desc="build config file"/>
                 <filteritem type="filepath" name="entry/src/main/ets/MainAbility/workers/.*.js" desc="worker file"/>
                 <filteritem type="filepath" name="entry/src/main/.*.json5" desc="build config file"/>
-                <filteritem type="filename" name="hvigorfile.js" desc="Build Files"/>
+                <filteritem type="filepath" name="entry/.*.ap" desc="build config file"/>
+                <filteritem type="filename" name="*.png|*.PNG|*.jpg|*.jpeg|*.webp|*.gif|*.mp3" desc="self developed image"/>
+                <filteritem type="filepath" name="entry/build/*" desc="Temp files"/>
+                <filteritem type="filepath" name="entry/oh_modules/*" desc="Temp files"/>
+                <filteritem type="filepath" name="oh_modules/*" desc="Temp files"/>
+                <filteritem type="filepath" name="sign/material/*" desc="Licence files"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="Filters for compatibility，license header policies">
             </filefilter>
@@ -64,20 +70,10 @@
                             desc="self developed image"/>
                 <filteritem type="filepath" name="entry/src/ohosTest/resources/base/media/.*.png"
                             desc="self developed image"/>
-                <filteritem type="filepath" name="AppScope/resources/base/media/smsmms.png"
-                            desc="self developed image"/>
-                <filteritem type="filepath" name="AppScope/resources/base/media/app_icon.png"
-                            desc="self developed image"/>
+                <filteritem type="filename" name="*.ets|*.hpp"
+                            desc="file is recognized as a binary file."/>
             </filefilter>
 
-            <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
-                <filteritem type="filename" name="hvigorw" desc="Build Files"/>
-                <filteritem type="filename" name="hvigorw.bat" desc="Build Files"/>
-            </filefilter>
-            <filefilter name="defaultPolicyFilter" desc="Filters for LICENSE file policies">
-                <filteritem type="filename" name="hvigorw" desc="Build Files"/>
-                <filteritem type="filename" name="hvigorw.bat" desc="Build Files"/>
-            </filefilter>
         </filefilterlist>
         <licensematcherlist>
             <licensematcher name="uvwxyz License"

@@ -2,7 +2,11 @@
   "color": [
     {
       "name": "sender_bubble",
-      "value": "#3300CB87"
+      "value": "#2664bb5c"
+    },
+    {
+      "name": "sender_bubble_rcs",
+      "value": "#D8E9F2"
     },
     {
       "name": "detail_main_background",
@@ -15,6 +19,79 @@
     {
       "name": "light_background_color",
       "value": "#19000000"
+    },
+    {
+      "name": "start_window_background",
+      "value": "#00000000"
+    },
+    {
+      "name": "mms_recorder_bg",
+      "value": "#145291FF"
+    },
+    {
+      "name": "mms_recorder_border",
+      "value": "#335291FF"
+    },
+    {
+      "name": "mms_avatar_bg",
+      "value": "#26000000"
+    },
+    {
+      "name": "mms_recorder_area_display_bg",
+      "value": "#260A59F7"
+    },
+    {
+      "name": "mms_recordering_bg",
+      "value": "#0c0A59F7"
+    },
+    {
+      "name": "mms_msg_fold_select_bg",
+      "value": "#1A0A59F7"
+    }
+  ,
+    {
+      "name": "brand",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "native_card_backgroud_color_1",
+      "value": "#FFE3F5FF"
+    },
+    {
+      "name": "native_card_backgroud_color_2",
+      "value": "#FFEDF7FF"
+    },
+    {
+      "name": "native_card_backgroud_color_3",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "divider_color",
+      "value": "#FFF3f4f5"
+    },
+    {
+      "name": "text_blue",
+      "value": "#ff4682B4"
+    },
+    {
+      "name": "color_bind_sheet_background",
+      "value": "#FFF1F3F5"
+    },
+    {
+      "name": "color_bind_sheet_background_pc",
+      "value": "#F1f3f5"
+    },
+    {
+      "name": "color_bind_sheet_background_phone",
+      "value": "#F1f3f5"
+    },
+    {
+      "name": "skin_icon_primary",
+      "value": "$ohos:color:icon_primary"
+    },
+    {
+      "name": "skin_ohos_id_color_button_normal",
+      "value": "$ohos:color:ohos_id_color_button_normal"
     }
   ]
 }

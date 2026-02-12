@@ -1,0 +1,4274 @@
+{
+    "string":[
+        {
+            "name":"calling_Alert",
+            "value":"L'appel ne peut pas être initié. Un appel est déjà en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"my_avatar_button",
+            "value":"Ma photo de profil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go_setting",
+            "value":"Accéder aux Paramètres",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_permission",
+            "value":"liste des applications installées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_microphone_permission_title",
+            "value":"L'application Messagerie doit être autorisée à accéder au micro depuis Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_error",
+            "value":"Le scan du code a échoué.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"realease_send_prompt_text",
+            "value":"Relâcher pour envoyer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network",
+            "value":"Autoriser l'application Messagerie à accéder à Internet ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReported",
+            "value":"Signalé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_card_file",
+            "value":"Carte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"list_summary_vcard",
+            "value":"Vous avez partagé un contact (%1$s)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_message",
+            "value":"Ces autorisations sont utilisées pour lire et écrire des fichiers, ainsi que pour accéder aux images et aux vidéos.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_scan",
+            "value":"Scanner",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query",
+            "value":"Quota de messagerie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"choose_sub_recommend_recently",
+            "value":"(récent)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"downloading",
+            "value":"Téléchargement en cours",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_verification_code",
+            "value":"Copier le code",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_status_sent",
+            "value":"Envoyé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_send",
+            "value":"Vous avez recommandé %1$s à %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip1",
+            "value":"Supprimer cette conversation ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip4",
+            "value":"Supprimer la conversation ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS",
+            "value":"Cette application souhaite utiliser la caméra.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_to_message",
+            "value":"Restaurer dans les messages",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageRead",
+            "value":"Lu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"interception_rule_blockall_title",
+            "value":"Interception totale",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip3",
+            "value":"Supprimer toutes les conversations ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_one_attachment",
+            "value":"Une seule pièce jointe peut être envoyée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enhanced_information",
+            "value":"Messagerie avancée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information_details",
+            "value":"Celles-ci incluent les informations sur l'appareil, dont le fabricant, le modèle, la version logicielle et le niveau de batterie.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"removed_from_the_blocklist",
+            "value":"Retiré de la liste de blocage.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_copy",
+            "value":"Copier",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_picture",
+            "value":"Galerie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_loggedin_RCS",
+            "value":"L'envoi du message a échoué. Non connecté à RCS.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cactus_map_no_location",
+            "value":"Aucune information de localisation supplémentaire",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReceiveFailed",
+            "value":"Le téléchargement a échoué",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msgAcceptFailure",
+            "value":"L'espace de stockage disponible est insuffisant pour recevoir ce message.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_network",
+            "value":"Affichage des détails lorsque le réseau est restauré",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_object",
+            "value":"Compte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type",
+            "value":"Type : ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"subject",
+            "value":"Objet : %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_page_btn_continue_text",
+            "value":"Continuer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_file_permission",
+            "value":"Autoriser Messagerie à accéder aux fichiers de votre appareil ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_no_sim",
+            "value":"Aucune carte SIM disponible",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"added_to_the_blocklist",
+            "value":"Ajouté à la liste de blocage.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_location_service_not_enabled",
+            "value":"Les Services de localisation sont désactivés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"me",
+            "value":"Moi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contentSentTo",
+            "value":"Transférer à %1$s, ce qui inclut %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_title",
+            "value":"Autoriser l'application Messagerie à accéder aux fichiers ainsi qu'aux images et vidéos dans Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_is_occupied",
+            "value":"Le service n'est pas disponible lorsque MeeTime utilise BeiDou.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all",
+            "value":"Sélectionner tout",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record",
+            "value":"Enregistrement",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_has_been_stared",
+            "value":"Message déjà ajouté aux favoris.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title3",
+            "value":"Envoi/réception de messages",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title2",
+            "value":"Modification de messages",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_title4",
+            "value":"Réception de messages",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_south_east",
+            "value":"%1$s S %2$s E",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_retract",
+            "value":"Montrer moins",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title1",
+            "value":"Nouveau message",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"archive_info_messages",
+            "value":"Archivage des messages de notification",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_cb_tip",
+            "value":"Supprimer également les messages verrouillés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_file",
+            "value":"[Fichier]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_conversation_no_sim",
+            "value":"Aucune carte SIM insérée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"national_fraud_mms",
+            "value":"Risque de fraude",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recently",
+            "value":"Récents",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blockedMms",
+            "value":"[MMS]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_konw",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_smc",
+            "value":"Message BeiDou",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_rcv_notice",
+            "value":"[Réponse reçue]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail",
+            "value":"Détails",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"too_many_recipients",
+            "value":"Trop de destinataires (%1$s). Le nombre maximum de destinataires est de %2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_blockreason_strangenumber",
+            "value":"Numéro inconnu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Camera_permission_prompt",
+            "value":"Autoriser Messagerie à accéder à la caméra de votre appareil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"justNow",
+            "value":"À l'instant",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot",
+            "value":"Agents conversationnels",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_select_text",
+            "value":"Sélectionner le texte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_folders",
+            "value":"Pièce-jointe enregistrée dans %s. Veuillez bien la conserver.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_theme",
+            "value":"Sujet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"haveread_reports",
+            "value":"Demander des confirmations de lecture",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_notice",
+            "value":"[Message envoyé]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recorder_failed",
+            "value":"L'enregistrement a échoué. Le microphone peut être en cours d'utilisation.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content2",
+            "value":"Partage d'informations immédiat et pratique via chat vocal.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint",
+            "value":"Ce service a besoin d'une connexion %1$s, de l'autorisation %2$s, et doit lire et transférer les informations de localisation. Ceci permet de fournir des services de localisation. En touchant Accepter, vous acceptez les présentes conditions. Pour plus de détails sur la façon dont vos informations/données personnelles sont traitées, veuillez vous référer à la %3$s et à l'%4$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delivery_reports_hint",
+            "value":"Un accusé de réception est demandé pour chaque message envoyé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Plus",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_recent",
+            "value":"%s (par défaut)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content1",
+            "value":"Envoyer des fichiers, des images et d'autres contenus multimédias.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_not_support_emoji",
+            "value":"BeiDou Satellite Messaging ne prend pas en charge les emojis.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_default_settings",
+            "value":"Restaurer aux paramètres par défaut",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_view_contacts_mms",
+            "value":"Voir le contact",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"share",
+            "value":"Partager",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_when_roaming",
+            "value":"Désactivé en itinérance",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_read_imageVideoMedia_write_media",
+            "value":"Cela inclut les photos, les contenus multimédias et les autres fichiers présents sur votre appareil. Permet l'envoi et la réception de messages multimédias.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"intelligent_information",
+            "value":"Notifications intelligentes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_video",
+            "value":"Vidéo envoyée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_vcard",
+            "value":"Contact envoyé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore",
+            "value":"Restaurer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_SMS_MMS",
+            "value":"Basculer vers SMS/MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recent",
+            "value":"Récents",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_remove_favourite_chatbot",
+            "value":"Retirer %1$s de vos favoris ? Votre historique de messagerie ne sera pas supprimé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_failed",
+            "value":"Pièce jointe trop volumineuse pour être ajoutée (limite : %s).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera_permission_info",
+            "value":"Ceci est utilisé pour envoyer des images et vidéos.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_location_info",
+            "value":"Partage de la localisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_network",
+            "value":"Autoriser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_shortcut_menu",
+            "value":"Revenir au menu des raccourcis",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_add",
+            "value":"Ajouter depuis l'application Messagerie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_button",
+            "value":"Retirer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_messages",
+            "value":"Aucun message",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"carrying_position",
+            "value":"Inclure la localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_submit",
+            "value":"Envoyer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_slide",
+            "value":"Diapositives",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"query_report",
+            "value":"Afficher le rapport",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_permissions",
+            "value":"Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_max_number_tips",
+            "value":"Message trop long.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disabled",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reminder_network",
+            "value":"Veuillez vous connecter à Internet pour utiliser Messagerie avancée et réduire les frais facturés par votre opérateur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReportFailed",
+            "value":"Le signalement a échoué.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_unsupport_toast_image",
+            "value":"L'ajout de la pièce jointe a échoué. Format d'image non pris en charge.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_location_attachment",
+            "value":"[Localisation]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_send",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no",
+            "value":"Annuler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"china_telecom",
+            "value":"China Telecom",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"one_week_ago",
+            "value":"Il y a une semaine",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_call",
+            "value":"Appeler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star",
+            "value":"Favoris",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copied_to_clipboard",
+            "value":"Copié dans le presse-papiers.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_cancle",
+            "value":"Toucher deux fois pour annuler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advertisement_mms",
+            "value":"Publicité",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Not_allowed",
+            "value":"Refuser",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_no",
+            "value":"Annuler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Delivered",
+            "value":"Distribué : %1$s, %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete_this_message",
+            "value":"Supprimer les messages sélectionnés ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip3",
+            "value":"Supprimer tous les messages ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_frequent_questions",
+            "value":"Astuces",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip1",
+            "value":"Supprimer ce message ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages_hint",
+            "value":"Les messages de notification seront supprimés %d jours après réception.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_content_location_to_smc",
+            "value":"Ceci est requis pour envoyer des messages satellite.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_personal_information_list",
+            "value":"Informations/données personnelles recueillies",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"always",
+            "value":"Tous les réseaux",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"creat_new_conversation_receive_deleted",
+            "value":"Contact nommé %s retiré",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sending_failed_button",
+            "value":"Échec de l'envoi, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_number_center_new",
+            "value":"Centre SMS carte SIM %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vcard",
+            "value":"Afficher vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_info_button",
+            "value":"Nouveau message, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_message_new_4g",
+            "value":"Messagerie avancée vous permet d'envoyer et de recevoir des messages ainsi que du contenu multimédia (comme des images, des messages vocaux et des données de localisation) via un réseau WLAN ou les données mobiles. Lors de l'utilisation, la version de votre appareil ainsi que ses identifiants (y compris l'IMEI, l'IMSI, le MSISDN et l'adresse MAC WLAN) seront transmis à votre opérateur, qui fournit ce service. Vous pouvez modifier vos paramètres à tout moment en accédant à Messagerie > Plus > Paramètres > Messagerie avancée. Pour toute information concernant les frais d'utilisation, veuillez contacter votre opérateur. Ce service lira la liste des applications installées sur votre appareil et vérifiera les statuts de connexion des applications de Messagerie avancée tierces, afin de garantir son bon fonctionnement. En activant ce bouton, vous acceptez que nous vous fournissions ce service.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms",
+            "value":"MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_split_tips",
+            "value":"Les communications par satellite ne sont disponibles qu'en mode Affichage en plein écran.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"putTime",
+            "value":"Reçu : %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbotNoLocal",
+            "value":"Aucun contenu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"priority",
+            "value":"Priorité : normale",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_beidou_message",
+            "value":"Commencer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_mobile",
+            "value":"Portable",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_smc_item_from",
+            "value":"De %1$s : %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"net_no_connection",
+            "value":"Aucune connexion Internet n'est établie.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_in_favorites",
+            "value":"Favoris",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_sim_card_content",
+            "value":"L'envoi des messages avec la SIM %2$d a échoué lorsque la SIM %1$d est utilisée pour un appel.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"infoMessages",
+            "value":"Messages de notification",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"manage_sim_card_messages",
+            "value":"Gestion des messages carte SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmit_send",
+            "value":"Envoyer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_send_greet",
+            "value":"Bonjour !",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"report",
+            "value":"Signaler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_all_emoji",
+            "value":"Tout",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url",
+            "value":"Attention : ce lien pourrait être malveillant.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_from_who",
+            "value":"De : %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unavailable_tips_unregistered",
+            "value":"BeiDou Satellite Messaging non activé (veuillez contacter votre opérateur)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"converting_sms",
+            "value":"Conversion en SMS en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_prop",
+            "value":"Cette position a été obtenue lors de votre connexion au satellite. Pour la transférer, veuillez vous reconnecter.\n\nRemarque : la position géographique est comptabilisée dans la limite de caractères du message.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_permission",
+            "value":"Toucher pour autoriser l'accès aux informations de localisation et afficher les détails de la localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages",
+            "value":"Suppression automatique des messages de notification",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_play_error",
+            "value":"Format de fichier non pris en charge.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"Retirer de la liste de blocage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attach_contacts",
+            "value":"Contact",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_location",
+            "value":"L'application Messagerie a besoin de l'autorisation Localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"today",
+            "value":"Aujourd'hui",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked",
+            "value":"Messages bloqués",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_download_image_dialog_message",
+            "value":"Veuillez vérifier que Messagerie avancée soit activée et que votre carte SIM prenne en charge cette fonctionnalité.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_no_valid_sim_card",
+            "value":"Veuillez insérer une carte SIM China Mobile",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"privacy_statements",
+            "value":"Déclarations relatives à la vie privée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked_guide_title",
+            "value":"Bloquer les messages indésirables",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_recent_used",
+            "value":"Récent",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_contact_profile_pics",
+            "value":"Afficher les photos de profil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report",
+            "value":"Signaler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_no_subject",
+            "value":"[Pièce jointe](sans objet)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_not_support_function",
+            "value":"Cette fonctionnalité n'est pas prise en charge par cette version.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_trafficprompttitle",
+            "value":"Rappel de consommation de données",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_loading",
+            "value":"Chargement en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSending",
+            "value":"Envoi en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_access",
+            "value":"Ajouter à la liste de confiance",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Photographing",
+            "value":"Prise de photo en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_nearby_chatbot",
+            "value":"Agents conversationnels à proximité",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_enable_mobile_data",
+            "value":"Pour activer Messagerie avancée, désactivez le WLAN et assurez-vous que les données mobiles soient activées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received",
+            "value":"%s a bien reçu votre message.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_info",
+            "value":"Ceci est utilisé pour enregistrer des messages vocaux.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_rcs_register_error",
+            "value":"Une erreur avec le serveur de l'opérateur est survenue. Veuillez réessayer ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_insufficient_balance",
+            "value":"Solde insuffisant.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"spam_mms",
+            "value":"Message spam",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"on",
+            "value":"Activer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_gallery",
+            "value":"Galerie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"press_speak",
+            "value":"Toucher/maintenir et parler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"invalid_receive",
+            "value":"Destinataire non valide : %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_file_size_zero_error",
+            "value":"La taille du fichier ne peut pas être de %d octet.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_transmit",
+            "value":"Transférer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_floating_tips",
+            "value":"Les communications par satellite ne sont disponibles qu'en mode Affichage en plein écran.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"refreshing",
+            "value":"Actualisation en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_south_west",
+            "value":"%1$s S %2$s O",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_prompt",
+            "value":"Votre message n'a pas pu être envoyé. Renvoyer ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"showSource",
+            "value":"Afficher la source",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_favourite_chatbot",
+            "value":"Aucun favori",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_not_exist",
+            "value":"L'agent conversationnel n'est pas disponible.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_same_time",
+            "value":"Restaurer les messages",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients_upper_limit",
+            "value":"Nombre maximum de destinataires (%s) atteint.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"yesterday",
+            "value":"Hier",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide_aid_text",
+            "value":"Envoi de messages d'urgence via satellite lorsqu'aucune couverture WLAN ni cellulaire n'est disponible.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcsFileSize",
+            "value":"Taille : %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Supprimer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitHeadText",
+            "value":"Sélectionner une conversation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageDeliver",
+            "value":"Reçu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContent",
+            "value":"Transféré de Moi :",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_vCard_import_success",
+            "value":"%s sera importé ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_start",
+            "value":"Activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start",
+            "value":"Activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_requires_access_to_camear",
+            "value":"L'application Messagerie a besoin de l'autorisation Appareil photo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"markAllAsRead",
+            "value":"Marquer comme lus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"expired",
+            "value":"Expiré",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_star_info",
+            "value":"Pas encore de favoris",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_tone",
+            "value":"Tonalité de message",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_single_recv",
+            "value":"%2$s vous a recommandé %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_retrieve_mms",
+            "value":"Récupération automatique des MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satelliteWaiting",
+            "value":"En attente",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description_head",
+            "value":"L'activation de la Messagerie avancée activera par défaut les Agents conversationnels et ajoutera le portail Agents conversationnels à l'écran d'accueil de l'application Messagerie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deeplink_obtain_geographical_location",
+            "value":"Autoriser %1$s à accéder à la localisation de votre appareil ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rending",
+            "value":"En attente",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"noMessages",
+            "value":"Aucune conversation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mark_as_read",
+            "value":"Marquer comme lu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete_hint",
+            "value":"Lorsque cette option est activée, les messages de notification seront automatiquement supprimés %d jours après réception, y compris ceux qui peuvent être importants. Activer ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description",
+            "value":"Lorsque cette option est activée, le portail Agents conversationnels sera ajouté à l'écran d'accueil de l'application Messagerie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reply",
+            "value":"Répondre",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_is_stared",
+            "value":"Message ajouté aux favoris.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_album",
+            "value":"Enregistré dans Galerie.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_authentication_invalidation",
+            "value":"Le délai d'authentification a expiré. Veuillez réactiver le bouton sous Paramètres > Réseau satellite > BeiDou Satellite Messaging.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msgDetails",
+            "value":"Détails du message",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_map_no_more_location",
+            "value":"Aucune information relative à l'adresse",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_website",
+            "value":"Site Internet",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_more_show",
+            "value":"Plus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_new_msg",
+            "value":"Nouveau message",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages_hint",
+            "value":"Le message peut être rappelé en le touchant deux fois dans un délai de %d secondes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_my_position",
+            "value":"Ma localisation :\u0020",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showCard",
+            "value":"Afficher la carte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_vcard",
+            "value":"[vCard]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content7",
+            "value":"Toucher \"↓\" en bas de l'écran permet de recevoir les réponses.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_up_text",
+            "value":"Faire glisser vers le haut pour annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"just",
+            "value":"À l'instant",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_APPROXIMATELY_LOCATION",
+            "value":"Ceci est utilisé pour obtenir votre localisation approximative.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search",
+            "value":"Rechercher",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_video",
+            "value":"[Vidéo]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_not_open_rcs",
+            "value":"Messagerie avancée n'a pas été encore activée.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verification_authority",
+            "value":"Conditions d'utilisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_groupchat_notify_silent",
+            "value":"Mise en silence des notifications de message",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content1",
+            "value":"Vous pouvez utiliser ce service pour envoyer des messages d'urgence via satellite lorsqu'aucune couverture WLAN ni cellulaire n'est disponible.\n",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search2",
+            "value":"Rechercher",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_rcv_msg",
+            "value":"Recevoir un message",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content5",
+            "value":"Chaque message peut être envoyé à un maximum de %s contacts. Vous pouvez ajouter votre position actuelle si vous souhaitez la partager.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts_button",
+            "value":"Sélectionner un contact",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content6",
+            "value":"Il suffit de diriger votre téléphone vers le satellite BeiDou ainsi qu'indiqué. Ceci fonctionne mieux dans les endroits extérieurs ouverts.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content3",
+            "value":"%s. Ce service n'est actuellement disponible qu'avec China Mobile.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content4",
+            "value":"Toucher \"%s\" permet de créer un nouveau message.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verified_explain",
+            "value":"Cet agent conversationnel est certifié par %1$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_picture",
+            "value":"Photo envoyée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReceivingFailed",
+            "value":"La réception a échoué",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"informationSize",
+            "value":"Taille du message : %s Ko",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"translate_other",
+            "value":"Transférer uniquement les messages pris en charge ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"malicious_web_url_check_desc",
+            "value":"Vérifier la présence de liens malveillants dans les messages.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_character_prompt",
+            "value":"Les noms des contacts sont aussi inclus dans le compte des caractères. Ainsi, plus vous sélectionnez de contacts, moins vous pouvez saisir de caractères dans le message.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received_2",
+            "value":"%s a bien reçu votre message.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_1",
+            "value":"Internet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_open",
+            "value":"Montrer plus",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_card_in_conversation_list",
+            "value":"Carte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delivery_reports",
+            "value":"Accusés de réception",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_microphone",
+            "value":"Messagerie a besoin d'accéder au micro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_4",
+            "value":"Avis relatif aux autorisations",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_3",
+            "value":"Déclaration relative à la vie privée Services de localisation de la messagerie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_2",
+            "value":"Localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageSize",
+            "value":"Taille du message : %s Ko",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_upper_limit",
+            "value":"Limite de %1$d pièces jointes maximum. Seules les %2$d premières seront ajoutées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_item_is_sent_insufficient",
+            "value":"- Message envoyé mais non délivré (quota insuffisant)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tryAgain",
+            "value":"Réessayer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start_failed",
+            "value":"Messagerie avancée n'a pas pu être activée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center",
+            "value":"Numéro du centre SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_network",
+            "value":"Service de données non disponible. Veuillez vérifier les paramètres réseau.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title_content",
+            "value":"Cette fonctionnalité se connecte à Internet pour vérifier la présence de liens malveillants dans vos messages.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_face_change_detect_content",
+            "value":"L'image peut être générée par l'IA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_release_to_cancel",
+            "value":"Relâcher pour annuler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment",
+            "value":"[Pièce jointe] %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"selectContacts",
+            "value":"Sélectionner un contact",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"refused",
+            "value":"Rejeté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_session",
+            "value":"Suspicion d'escroquerie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_audio",
+            "value":"[Audio]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"expiresTime",
+            "value":"Expiration : %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_subject",
+            "value":"(Aucun sujet)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_auto_delete",
+            "value":"Activer la suppression automatique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast",
+            "value":"Lecture des messages à voix haute",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_location_permissions",
+            "value":"Veuillez toucher pour afficher l'adresse",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_mms",
+            "value":"Risque d'escroquerie élevé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_audio",
+            "value":"Audio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_sms",
+            "value":"Message satellite",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_list",
+            "value":"Liste de blocage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vCard_import_success",
+            "value":"%s importé avec succès.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmitContentReceive",
+            "value":"Transféré de %s :",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_net_error",
+            "value":"L'agent conversationnel n'est pas disponible car aucune connexion Internet n'est établie.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recorder_error",
+            "value":"L'enregistrement a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_note_mms",
+            "value":"Message texte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages",
+            "value":"Annulation d'envoi des messages",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_status",
+            "value":"Statut : %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title",
+            "value":"BeiDou Satellite Messaging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_interception",
+            "value":"Identification des appels et des messages",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save",
+            "value":"Enregistrer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"in_maintenance_mode",
+            "value":"Les messages ne peuvent pas être consultés en mode Maintenance.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSendFailed",
+            "value":"Échec de l'envoi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_north_west",
+            "value":"%1$s N %2$s O",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_reports",
+            "value":"Accusé de réception",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_detail_resend_all",
+            "value":"Renvoyer tout",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_mms2",
+            "value":"Ajouter une description",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url_check",
+            "value":"Vérification de sécurité des URL",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_sim",
+            "value":"Envoyer (carte SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"share_device_info",
+            "value":"Les informations sur l'appareil ont été partagées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_send",
+            "value":"Messagerie avancée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmit_expenses_info",
+            "value":"Ce contenu sera envoyé à %s en de multiples messages SMS/MMS. Envoyer malgré tout ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_to_contacts",
+            "value":"Enregistrer vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record_short",
+            "value":"L'enregistrement est trop court.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_favrite",
+            "value":"Favoris",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_no_reply",
+            "value":"Le message a été envoyé, mais aucune confirmation n'a été reçue du satellite.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_take_photos",
+            "value":"Appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_down_text",
+            "value":"Faire glisser vers le bas pour continuer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_rcv_succ",
+            "value":"Le message a été envoyé et une confirmation a été reçue du satellite.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_rcs",
+            "value":"Renvoyer via",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_file_not_exist",
+            "value":"Le fichier n'existe pas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocked_guide_text",
+            "value":"Vous avez récemment reçu beaucoup de spams. Veuillez ajuster vos filtres de messages pour bloquer les publicités et autres spams indésirables.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attach_anyfile",
+            "value":"Fichier",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_add_button",
+            "value":"Ajouter",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enhanced_information_is_not_supported_rcs",
+            "value":"Messagerie avancée n'est pas disponible lorsque Secure Shield est activé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_recommand_chatbot",
+            "value":"Aucune recommandation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_provider",
+            "value":"Prestataire de service",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_notice",
+            "value":"Aucune connexion WLAN. Continuer avec les données mobiles ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_title",
+            "value":"Inclure la localisation dans les messages",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_network",
+            "value":"Paramètres réseau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sendTime",
+            "value":"Envoyé :\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_content",
+            "value":"Description (requise)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_satellite_card_content",
+            "value":"Aucun message ne peut être envoyé pendant les appels satellite.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"favorites",
+            "value":"Favoris",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_dialog_send_sim",
+            "value":"Envoyer (SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contacts_call_number",
+            "value":"Appeler le %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_advanced_mode",
+            "value":"Ce type de message ne peut pas être affiché lorsque le mode Secure Shield est activé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_center_hint",
+            "value":"Avertissement : vous ne pourrez pas envoyer de messages texte si le numéro du centre SMS est incorrectement configuré. Vous pouvez obtenir ce numéro auprès de votre opérateur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_sms_tips",
+            "value":"Remarques",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_input_limit",
+            "value":"Trop de caractères ont été saisis.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_limit_one",
+            "value":"Une pièce jointe maximum par message.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_button",
+            "value":"Supprimer, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_device_info",
+            "value":"Partage des informations sur l'appareil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients",
+            "value":"Destinataires",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_mic_permission_title",
+            "value":"Veuillez accorder l'accès au microphone dans Paramètres.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_file_exceed_max_size",
+            "value":"Limite de taille : %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_who",
+            "value":"À : %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":"Ce numéro ne sera plus bloqué.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_content",
+            "value":"Si vous sélectionnez \"Inclure la position\" lors de la rédaction d'un message, l'application Messagerie ajoutera votre position géographique précise au message. Cela peut aider les services de secours à vous localiser en cas d'urgence.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_blocked_message",
+            "value":"Aucun message bloqué",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"size",
+            "value":"Taille : %s Ko",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_title",
+            "value":"Services de localisation de la messagerie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"emoticon_button",
+            "value":"Émojis",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query_error",
+            "value":"Aucune connexion réseau n'est établie. Le quota n'a pas pu être consulté. Veuillez réessayer la prochaine fois quand une connexion Internet sera établie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_import_contacts_from_vCard",
+            "value":"Importer des contacts depuis une vCard ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unselected_tip",
+            "value":"Aucune sélection",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_title",
+            "value":"Messagerie avancée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"Inconnu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_button",
+            "value":"Envoyer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advanced",
+            "value":"Avancés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"failed",
+            "value":"échec",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"agree",
+            "value":"Accepter",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_seeking_timeout",
+            "value":"La localisation a échoué. Veuillez aller à un endroit extérieur et non obstrué, puis réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_keypad_button",
+            "value":"Passer à la saisie de texte",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messages",
+            "value":"Messagerie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_report_dialog_con_tip1",
+            "value":"Signaler ce message ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"china_mobile",
+            "value":"China Mobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title",
+            "value":"Messagerie avancée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"leave_setting_advanced_mode",
+            "value":"Ce message ne peut pas être consulté, car il a été reçu lorsque Secure Shield était activé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saveAll",
+            "value":"Enregistrer tout",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable",
+            "value":"Désactiver",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enabled",
+            "value":"Activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_Camera",
+            "value":"Autoriser",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_exit_star_search_tips",
+            "value":"Veuillez toucher à nouveau pour quitter.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS_NAME",
+            "value":"Nécessaire pour scanner les codes QR et transférer des images sur certaines pages web.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_sms_number",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_activation_failed_message",
+            "value":"Veuillez vous assurer que le WLAN soit désactivé et que les données mobiles soient activées. L'activation peut prendre environ %d minutes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_north_east",
+            "value":"%1$s N %2$s E",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim",
+            "value":"Carte",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_send_to",
+            "value":"Envoyer à",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_picture",
+            "value":"[Image]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network_description",
+            "value":"Ceci est utilisé pour consulter le contenu web, comme la Déclaration relative à la vie privée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera_permission_title",
+            "value":"L'application Messagerie doit être autorisée à accéder à Appareil photo depuis Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"query_details",
+            "value":"Voir détails",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information",
+            "value":"Autoriser %1$s à accéder aux informations sur votre appareil ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_Image_video_permission_title",
+            "value":"Veuillez accorder l'accès aux fichiers, images et vidéos dans Paramètres.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_audio",
+            "value":"Extrait audio envoyé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_message",
+            "value":"Ceci permet d'enregistrer des messages vocaux.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_network",
+            "value":"Aucune connexion Internet. Veuillez vérifier vos paramètres réseau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"there_is_no_match",
+            "value":"Aucune correspondance",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"address_details",
+            "value":"Adresse : %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"status_canceled",
+            "value":"Annulé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"putAddresser",
+            "value":"À : \u0020",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search_content_cannot_be_empty",
+            "value":"Ce champ doit être renseigné.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocklist_number",
+            "value":"Numéro sur liste de blocage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"Ajouter à la liste de blocage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_reason_keywords",
+            "value":"Contient des mots-clés de la liste de blocage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"archive_info_messages_hint",
+            "value":"Afficher les messages de notification dans une seule liste.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide",
+            "value":"Guide rapide",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_sms_center_number",
+            "value":"Changer le numéro du centre SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_introduced",
+            "value":"Présentation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"TipsForBlockedMms",
+            "value":"Le MMS doit être restauré avant de pouvoir en voir le contenu.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_and_mms",
+            "value":"SMS et MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_title",
+            "value":"Lorsque cette option est activée, le contenu des messages entrants ainsi que le nom de l'expéditeur seront lus à voix haute.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"prohibited",
+            "value":"Refuser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_microphone_permission",
+            "value":"Autoriser Messagerie à utiliser le micro ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tap_content_to_edit",
+            "value":"Toucher le contenu pour le modifier",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_all_content_wlan",
+            "value":"Ce service vous permet d'envoyer et de recevoir des messages, des images, des lieux et plus encore via votre connexion Internet. Pour plus d'informations sur les tarifs, contactez votre opérateur. Ce service a besoin d'accéder à Internet et de lire vos numéros de téléphone, vos contacts et votre journal d'appels. Il doit également lire et transférer le contenu des messages, les évènements, les images, les vidéos, les fichiers audio, ainsi que votre IMEI et votre adresse MAC WLAN. En activant cette option, vous acceptez les conditions ci-dessus. Pour plus de détails sur la façon dont vos informations/données personnelles sont traitées, veuillez vous référer à la <a link=\"privacyStatement\">Déclaration relative à la vie privée Messagerie</a>.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rejectRecord",
+            "value":"L'enregistrement audio a échoué pendant un appel.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"air_plane_mode_message",
+            "value":"Ne peut pas envoyer de messages pour le moment. Il sera envoyé au rétablissement du service.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_type",
+            "value":"Type de service",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"in_advanced_mode",
+            "value":"Échec de l'ouverture du message",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_more",
+            "value":"Sélectionner plusieurs",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContentMulti",
+            "value":"Source : conversation avec %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail_mms",
+            "value":"Détails",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_fail",
+            "value":"L'envoi a échoué",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_tips_again",
+            "value":"Ne plus afficher",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"air_plane_mode_receive_message",
+            "value":"La réception des messages ne peut pas se faire tant que le service n'est pas rétabli.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title_content",
+            "value":"Des images, des messages vocaux, des localisations, et plus encore peuvent être envoyés et reçus via votre connexion Internet. Pour connaître les tarifs, veuillez contacter votre opérateur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_recent_chatbot",
+            "value":"Aucun agent conversationnel récent",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION_NAME",
+            "value":"Ceci est utilisé pour accéder à votre localisation précise.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_local_black",
+            "value":"Vous ne recevrez pas de réponse de cet agent conversationnel car vous l'avez bloqué",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_file",
+            "value":"Fichier envoyé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content2_new",
+            "value":"%s. Dans la plupart des cas, ce service ne fonctionnera correctement que dans les zones où il n'y a pas de couverture WLAN ni cellulaire.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"postalLabelsGroup",
+            "value":"Adresse",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_resend",
+            "value":"Renvoyer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"roaming_fees_may_apply",
+            "value":"Des frais d'itinérance pourraient s'appliquer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_message",
+            "value":"Nouveau message",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_content1",
+            "value":"Internet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exist_contact",
+            "value":"Enregistrer dans un contact existant",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_start_conversation",
+            "value":"Discuter",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_location",
+            "value":"Localisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms",
+            "value":"BeiDou Satellite Messaging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_button",
+            "value":"Annuler, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_mobileemail",
+            "value":"E-mail",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_name",
+            "value":"Nom",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_map_no_network",
+            "value":"L'adresse s'affichera une fois la connexion Internet rétablie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_callback_number",
+            "value":"Numéro de téléphone",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"translate_audio",
+            "value":"Les messages vocaux et certains messages multimédias ne peuvent pas être transférés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Status",
+            "value":"État : ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_all_default_settings",
+            "value":"Restaurer tous les paramètres aux valeurs par défaut ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"explain",
+            "value":"Remarque :",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_quota_exhausted",
+            "value":"Vous ne pouvez plus envoyer de messages satellite BeiDou gratuits ce mois-ci car vous n'en avez plus. La limite d'envois sera réinitialisée au début du mois prochain.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sender",
+            "value":"De : ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"searchHit",
+            "value":"Rechercher numéro ou autre élément",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_unicom",
+            "value":"China Unicom",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contentSentContentToSingle",
+            "value":"Envoyer ce contenu à %s ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_contact",
+            "value":"Créer un nouveau contact",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_deselect_all",
+            "value":"Désélectionner tout",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title",
+            "value":"Activer les vérifications de sécurité des URL ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"handover_to_enhanced_message",
+            "value":"Passer à Messagerie avancée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_audio_size_maximum",
+            "value":"Longueur maximale du message atteinte.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_all_content",
+            "value":"Messagerie avancée vous permet d'envoyer et de recevoir des messages, des images, des messages vocaux, des données de localisation et plus encore via votre connexion Internet. Pour plus d'informations sur les tarifs, contactez votre opérateur. Ce service a besoin d'une connexion %1$s et doit lire vos numéros de téléphone, vos contacts et votre journal d'appels. Il doit également lire et transférer le contenu des messages, les évènements, les images, les vidéos, les fichiers audio, ainsi que votre IMEI et votre adresse MAC WLAN. En activant cette option, vous acceptez les conditions ci-dessus. Pour plus de détails sur la façon dont vos informations/données personnelles sont traitées, veuillez vous référer à la %2$d.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_select",
+            "value":"Toucher deux fois pour sélectionner",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_network_prompt",
+            "value":"Pour activer cette fonction, désactivez le WLAN et activez les données mobiles.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"converting_mms",
+            "value":"Conversion en MMS en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"position",
+            "value":"Localisation : %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_pre_call_editor",
+            "value":"Modifier avant appel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reportDetail",
+            "value":"Signalement de contenu inapproprié",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_current_size_new",
+            "value":"%1$s/%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recommand",
+            "value":"Recommandations",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_search",
+            "value":"Rechercher des agents conversationnels",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION",
+            "value":"Cette application pourra accéder à votre localisation précise.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable",
+            "value":"Activer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ask_before_deleting",
+            "value":"Ne plus me demander",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_privacy_state",
+            "value":"Déclaration relative à la vie privée Messagerie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_send_failed",
+            "value":"Non délivré",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"post_allowed_return_havereadreport",
+            "value":"Une confirmation de lecture est demandée pour chaque message.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite",
+            "value":"Messagerie satellite Tiantong",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_failed",
+            "value":"La copie a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showText",
+            "value":"Afficher l'original",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_subtitle",
+            "value":"Ce service vous permet d'envoyer et d'afficher des informations de localisation dans les SMS.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"draft",
+            "value":"[Brouillon]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_rcs",
+            "value":"Message de chat",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_file_name_extra_long",
+            "value":"Le nom du fichier dépasse la limite de longueur. Veuillez le renommer.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_duplicate_numbers",
+            "value":"Numéros dupliqués supprimés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_send_failed_number_new",
+            "value":"Échecs : %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_sms_forward_dialog_single",
+            "value":"Envoyer à %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"received",
+            "value":"reçu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_prompt",
+            "value":"Veuillez autoriser Messagerie à accéder au microphone de votre appareil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_report_result_success",
+            "value":"Le signalement a été envoyé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_broadnet",
+            "value":"China Broadnet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"download",
+            "value":"Télécharger",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Paramètres",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_pin",
+            "value":"Épingler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpin_button",
+            "value":"Annuler l'épinglage, boutonner",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pin_button",
+            "value":"Épingler, boutonner",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unpin",
+            "value":"Annuler l'épinglage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"un_read_button",
+            "value":"Marquer comme non lu, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"un_read",
+            "value":"Marquer comme non lu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_read_button",
+            "value":"Marquer comme lu, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read",
+            "value":"Marquer comme lu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_read_msg_unpin",
+            "value":"Épinglage annulé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_msg_pin",
+            "value":"Épinglé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_exit_tip_content",
+            "value":"Le nombre de messages entrants contenant des codes de vérification semble être revenu à la normale. Les notifications ne seront plus désactivées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_exit",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit",
+            "value":"Restaurer les notifications",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card",
+            "value":"Le nombre de messages entrants contenant des codes de vérification sur la SIM %d semble être revenu à la normale. Les notifications ne seront plus désactivées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_title",
+            "value":"Restaurer les notifications de code de vérification ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card_esim",
+            "value":"Vous avez reçu un grand nombre de codes de vérification par SMS en très peu de temps sur l'eSIM %d. C'est peut-être une forme de harcèlement. Pour votre sécurité, les notifications pour ce type de message ont été temporairement désactivées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card_esim",
+            "value":"Le nombre de messages entrants contenant des codes de vérification sur l'eSIM %d semble être revenu à la normale. Les notifications seront réactivées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card",
+            "value":"Vous avez reçu un grand nombre de codes de vérification par SMS en très peu de temps sur la SIM %d. C'est peut-être une forme de harcèlement. Pour votre sécurité, les notifications pour ce type de message ont été temporairement désactivées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_exit_title",
+            "value":"Notifications de code de vérification restaurées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_content_two_card",
+            "value":"Vous avez reçu un grand nombre de codes de vérification par SMS en très peu de temps sur la SIM %1$d/SIM %2$d. C'est peut-être une forme de harcèlement. Pour votre sécurité, les notifications pour ce type de message ont été temporairement désactivées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_title",
+            "value":"Notifications de code de vérification désactivées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_content_new",
+            "value":"Vous avez reçu un grand nombre de codes de vérification par SMS en très peu de temps. C'est peut-être une forme de harcèlement. Pour votre sécurité, les notifications pour ce type de message ont été temporairement mises en silence.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_content",
+            "value":"Une fois la restauration effectuée, vous serez notifié comme d'habitude lorsque vous recevrez des messages contenant des codes de vérification. Les notifications ne seront plus désactivées pendant les %s prochaines minutes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_switch_to_message",
+            "value":"Basculer vers l'envoi de messages",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_validated",
+            "value":"Authentification réussie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_switch_to_menu",
+            "value":"Afficher le menu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_access",
+            "value":"Veuillez toucher deux fois et gardez le doigt sur le bouton pour activer la saisie vocale. Veuillez balayer vers le haut pour annuler ou vers le bas pour continuer.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_star_saved",
+            "value":"Ajouter aux favoris",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_dialog_tip",
+            "value":"Remplacer le contenu ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text",
+            "value":"Texte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_vCard",
+            "value":"vCard par MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star_remove",
+            "value":"Retirer des favoris",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_action",
+            "value":"Ceci ne peut pas être effectué en mode Penglai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_limit_function",
+            "value":"Certaines options ne sont pas disponibles en mode Expédition.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_message",
+            "value":"Ce type de message ne peut pas être affiché en mode Penglai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"split_screen_prompt",
+            "value":"Veuillez agrandir la fenêtre de l'application et réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_entrence",
+            "value":"Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_body",
+            "value":"Sur l'écran d'accueil de l'application Messagerie, veuillez toucher l'icône Plus en haut à droite, puis accédez aux Paramètres > Messagerie avancée et activez ou désactivez \"Agents conversationnels\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_title",
+            "value":"Comment activer/désactiver les agents conversationnels ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_go_setting",
+            "value":"Accéder aux Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_hometel",
+            "value":"Téléphone domicile",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othertel",
+            "value":"Autre téléphone",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_worktel",
+            "value":"Téléphone professionnel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_tip",
+            "value":"Remarque",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vCard_details",
+            "value":"Afficher les détails de la vCard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments",
+            "value":"Pièce jointe",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments_deleted",
+            "value":"Supprimé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_nickname",
+            "value":"Pseudonyme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_input_box",
+            "value":"Passer à la saisie de texte",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"avatar_button",
+            "value":"Photo de profil, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workemail",
+            "value":"E-mail professionnel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_tips",
+            "value":"Vous avez reçu un message",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read_button",
+            "value":"Marquer comme lu, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_preview_picture",
+            "value":"Aperçu image",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_attachment_button",
+            "value":"Ajouter une pièce jointe",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workaddress",
+            "value":"Adresse professionnelle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"group_avatar_button",
+            "value":"Photo de profil du groupe, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel_button_double_click_operation",
+            "value":"Bouton Annuler, toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_homeaddress",
+            "value":"Adresse du domicile",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_to_record",
+            "value":"Passer au message vocal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othermail",
+            "value":"Autre e-mail",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_sim",
+            "value":"Sélectionner la carte SIM, SIM %s, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_video",
+            "value":"vidéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_clickable",
+            "value":"Non disponible",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contact_avatar_button",
+            "value":"Photo de profil du contact, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options_button",
+            "value":"Plus d'options",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_button",
+            "value":"Maintenir et parler, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_title",
+            "value":"Profession",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guide_action_text_previous",
+            "value":"Retour",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"websiteLabelsGroup",
+            "value":"Site Internet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"label_notes",
+            "value":"Notes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_personalemail",
+            "value":"E-mail personnel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_otheraddress",
+            "value":"Autre adresse",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_organisation",
+            "value":"Organisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_birthday",
+            "value":"Anniversaire",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Dual_card_switchover",
+            "value":"Changer de carte SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_add_failed",
+            "value":"La résolution d'image maximum prise en charge est de %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unsupported_hyacinth_card_content",
+            "value":"Aucun message ne peut être envoyé pendant les appels satellite Jacinthe.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_message",
+            "value":"Message satellite Jacinthe",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_prop",
+            "value":"Cette localisation a été obtenue quand vous vous êtes connecté au satellite Jacinthe. Pour la mettre à jour, veuillez vous reconnecter.\n\nRemarque : les informations de localisation sont prises en compte dans la limite de caractères du message.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_operation",
+            "value":"Toucher deux fois pour activer.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center_with_prefix",
+            "value":"Centre SMS %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_deselect_all_done",
+            "value":"Tous les éléments sont désélectionnés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_press_speak",
+            "value":"Veuillez toucher deux fois et maintenir pour activer la saisie vocale",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all_done",
+            "value":"Tous les éléments sont sélectionnés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_new_message",
+            "value":"Il y a de nouveaux messages",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_content",
+            "value":"Ouvrir l'application Messagerie pour voir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_title",
+            "value":"Vous avez un nouveau message",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_read",
+            "value":"Marqué comme lu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_unread",
+            "value":"Marqué comme non lu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enabled_notification",
+            "value":"Notifications activées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_not_allowed",
+            "value":"Refuser",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_title",
+            "value":"Autoriser Messagerie à vous envoyer des notifications ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_allowed",
+            "value":"Autoriser",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_content",
+            "value":"Pour éviter de manquer des messages importants, veuillez autoriser Messagerie à vous envoyer des notifications.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_esim",
+            "value":"Sélectionner SIM, eSIM %d, bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_esim",
+            "value":"Envoyer (eSIM %d)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_input_box",
+            "value":"Saisie de texte activée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_to_shortcut_menu",
+            "value":"Menu des raccourcis activé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_support_toast",
+            "value":"Cette opération n'est pas prise en charge dans ce mode.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"help_and_feedback",
+            "value":"Aide et avis/retour",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_rich_media_card_in_conversation_list",
+            "value":"Vous a envoyé un message sous forme de carte enrichie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_long_clickable",
+            "value":"Tapoter deux fois et maintenir pour afficher plus d'options",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_inline_links",
+            "value":"Cet écran contient du texte pouvant être sélectionné. Vous pouvez utiliser la fonctionnalité d'extraction des liens dans le menu rapide pour y accéder.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_empty_content",
+            "value":"Le MMS est vide",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

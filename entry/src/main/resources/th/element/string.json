@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"not_support_toast",
+            "value":"ไม่รองรับการดำเนินการนี้ในโหมดนี้",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

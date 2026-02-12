@@ -1,0 +1,25 @@
+{
+    "string":[
+        {
+            "name":"calling_Alert",
+            "value":"Tidak dapat memulakan panggilan. Panggilan sudah mula dijalankan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_avatar_button",
+            "value":"Gambar profil saya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_support_toast",
+            "value":"Operasi ini tidak disokong dalam mod ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

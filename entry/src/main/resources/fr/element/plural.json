@@ -1,0 +1,498 @@
+{
+    "plural":[
+        {
+            "name":"smc_sim_card_quota_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Quota restant : %1$s messages",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Quota restant : %1$s message",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"search_session_content",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d message",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d messages",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"blocked_count_text_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Messages bloqués : %s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Messages bloqués : %s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"msg_selected_tip_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%s élément sélectionné",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%s éléments sélectionnés",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_audio_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"mms_count",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[%d message]",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"[%d messages]",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"smc_enter_words",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Maximum %d caractère",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Maximum %d caractères",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"search_message_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d messages trouvés",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d message trouvé",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"msg_delete_dialog_con_tip2",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Supprimer %d message ?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Supprimer %d messages ?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"and_others",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%1$s et %2$d autres.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%1$s et %2$d autre.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"blocked_notify_text",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Blocages récents : %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Blocages récents : %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"members",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d membres",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d membre",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"share_description",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d caractères",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d caractère",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"plural_people",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d personne",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d personnes",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"msg_delete_dialog_tip2",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Supprimer %d conversation ?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Supprimer %d conversations ?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"every_satellite_worried",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Un message peut être envoyé à %d contact maximum.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Un message peut être envoyé à %d contacts maximum.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"multiUnread",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[%d messages]",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"[%d message]",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"unread_messages",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d messages non lus",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d message non lu",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_audio_time_second",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d seconde",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d secondes",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"smc_also_enter_words",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d caractère restant",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d caractères restants",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minAgo_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Il y a %s minutes",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Il y a %s minute",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"contacts_found",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%1$d contacts trouvés",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%1$d contact trouvé",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"rcs_vcard_number",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d personnes",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d personne",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"blocked_notify_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d message indésirable bloqué",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d messages indésirables bloqués",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"search_session_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d conversations trouvées",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d conversation trouvée",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Ce numéro ne sera plus bloqué.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Ces numéros ne seront plus bloqués.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"double_click_cancle",
+            "value":"Double click to cancel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_select",
+            "value":"Double click to select",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name":"message_received",
+      "value":"%s received your message."
+    },
+    {
+      "name":"new_message",
+      "value":"New message"
+    }
+  ]
+}

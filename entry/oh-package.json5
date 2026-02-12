@@ -1,9 +1,9 @@
 {
+  "license": "ISC",
   "name": "entry",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
-  "license": "",
+  "description": "example description",
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+//    "@bdmsg/bdmsgsdk": "1.0.2",
+  }
 }

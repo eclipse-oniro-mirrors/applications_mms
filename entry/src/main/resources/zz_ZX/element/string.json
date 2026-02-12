@@ -1,0 +1,2584 @@
+{
+    "string":[
+        {
+            "name":"just",
+            "value":"[TS_852713]_Just now"
+        },
+        {
+            "name":"search",
+            "value":"[TS_852552]_Search"
+        },
+        {
+            "name":"msg_delete_dialog_tip1",
+            "value":"[TS_852766]_Delete this conversation?"
+        },
+        {
+            "name":"unsupport_sim_card_content",
+            "value":"[TS_924719]_Can't send messages with SIM %2$d when SIM %1$d is on a call."
+        },
+        {
+            "name":"msg_delete_dialog_tip4",
+            "value":"[TS_871268]_Delete the selected conversation?"
+        },
+        {
+            "name":"msg_delete_dialog_tip3",
+            "value":"[TS_852792]_Delete all conversations?"
+        },
+        {
+            "name":"search2",
+            "value":"[TS_852751]_Search"
+        },
+        {
+            "name":"contacts_open",
+            "value":"[TS_852804]_Show more"
+        },
+        {
+            "name":"type",
+            "value":"[TS_852706]_Type:\u0020"
+        },
+        {
+            "name":"msg_select_all",
+            "value":"[TS_852523]_Select all"
+        },
+        {
+            "name":"contacts_retract",
+            "value":"[TS_852521]_Show less"
+        },
+        {
+            "name":"transmitContentReceive",
+            "value":"[TS_852590]_Forwarded from %s:"
+        },
+        {
+            "name":"msg_note_mms",
+            "value":"[TS_852573]_Text message"
+        },
+        {
+            "name":"recently",
+            "value":"[TS_852762]_Recents"
+        },
+        {
+            "name":"messageSendFailed",
+            "value":"[TS_852666]_Failed to send"
+        },
+        {
+            "name":"send_reports",
+            "value":"[TS_852502]_Delivery report"
+        },
+        {
+            "name":"msg_select_text",
+            "value":"[TS_852732]_Select text"
+        },
+        {
+            "name":"more",
+            "value":"[TS_852809]_More"
+        },
+        {
+            "name":"sendTime",
+            "value":"[TS_852806]_Sent:\u0020"
+        },
+        {
+            "name":"restore",
+            "value":"[TS_852702]_Restore"
+        },
+        {
+            "name":"contacts_call_number",
+            "value":"[TS_852484]_Call %s"
+        },
+        {
+            "name":"query_report",
+            "value":"[TS_852570]_View report"
+        },
+        {
+            "name":"cancel",
+            "value":"[TS_852694]_Cancel"
+        },
+        {
+            "name":"disabled",
+            "value":"[TS_852638]_Off"
+        },
+        {
+            "name":"msg_unselected_tip",
+            "value":"[TS_852540]_None selected"
+        },
+        {
+            "name":"advanced",
+            "value":"[TS_852492]_Advanced"
+        },
+        {
+            "name":"failed",
+            "value":"[TS_852787]_Unsuccessful"
+        },
+        {
+            "name":"messages",
+            "value":"[TS_852639]_Messaging"
+        },
+        {
+            "name":"msg_delete_dialog_con_tip3",
+            "value":"[TS_852553]_Delete all messages?"
+        },
+        {
+            "name":"msg_delete_dialog_con_tip1",
+            "value":"[TS_852546]_Delete this message?"
+        },
+        {
+            "name":"msg_send_to",
+            "value":"[TS_852731]_Send to"
+        },
+        {
+            "name":"query_details",
+            "value":"[TS_852675]_View details"
+        },
+        {
+            "name":"there_is_no_match",
+            "value":"[TS_852621]_No matches"
+        },
+        {
+            "name":"putAddresser",
+            "value":"[TS_852720]_To:\u0020"
+        },
+        {
+            "name":"archive_info_messages_hint",
+            "value":"[TS_852775]_Show notification messages in a single list."
+        },
+        {
+            "name":"msg_know",
+            "value":"[TS_852728]_OK"
+        },
+        {
+            "name":"infoMessages",
+            "value":"[TS_852741]_Notification messages"
+        },
+        {
+            "name":"sms_and_mms",
+            "value":"[TS_852488]_SMS & MMS"
+        },
+        {
+            "name":"tap_content_to_edit",
+            "value":"[TS_852781]_Tap content to edit"
+        },
+        {
+            "name":"transmitContentMulti",
+            "value":"[TS_852690]_Source: conversation with %s"
+        },
+        {
+            "name":"msg_detail_mms",
+            "value":"[TS_852664]_Details"
+        },
+        {
+            "name":"msg_resend",
+            "value":"[TS_852544]_Resend"
+        },
+        {
+            "name":"messageSending",
+            "value":"[TS_852734]_Sending…"
+        },
+        {
+            "name":"new_message",
+            "value":"[TS_852565]_New message"
+        },
+        {
+            "name":"Status",
+            "value":"[TS_852752]_Status:\u0020"
+        },
+        {
+            "name":"restore_all_default_settings",
+            "value":"[TS_852584]_Restore all default settings?"
+        },
+        {
+            "name":"sms",
+            "value":"[TS_852522]_SMS"
+        },
+        {
+            "name":"msg_transmit",
+            "value":"[TS_852583]_Forward"
+        },
+        {
+            "name":"sender",
+            "value":"[TS_852786]_From:\u0020"
+        },
+        {
+            "name":"msg_resend_prompt",
+            "value":"[TS_852535]_Your message could not be sent. Resend?"
+        },
+        {
+            "name":"yesterday",
+            "value":"[TS_852693]_Yesterday"
+        },
+        {
+            "name":"msg_pre_call_editor",
+            "value":"[TS_852662]_Edit before call"
+        },
+        {
+            "name":"delete",
+            "value":"[TS_852566]_Delete"
+        },
+        {
+            "name":"message_send_failed",
+            "value":"[TS_852594]_Not delivered"
+        },
+        {
+            "name":"rending",
+            "value":"[TS_852525]_Pending"
+        },
+        {
+            "name":"noMessages",
+            "value":"[TS_852541]_No conversations"
+        },
+        {
+            "name":"remove_duplicate_numbers",
+            "value":"[TS_852520]_Duplicate numbers removed."
+        },
+        {
+            "name":"msg_send_failed_number_new",
+            "value":"[TS_1114415]_Failed: %1$s"
+        },
+        {
+            "name":"received",
+            "value":"[TS_852512]_Received"
+        },
+        {
+            "name":"msgDetails",
+            "value":"[TS_852491]_Message details"
+        },
+        {
+            "name":"recall_messages_hint",
+            "value":"[TS_852747]_Double-tap a message within %d seconds to recall it."
+        },
+        {
+            "name":"bundle_info_privileged",
+            "value":"[TS_852743]_Bundle Information Privileged"
+        },
+        {
+            "name":"enhanced_information",
+            "value":"[TS_852508]_Advanced Messaging"
+        },
+        {
+            "name":"msg_copy",
+            "value":"[TS_852758]_Copy"
+        },
+        {
+            "name":"msg_picture",
+            "value":"[TS_852650]_Gallery"
+        },
+        {
+            "name":"mainability_description",
+            "value":"[TS_852619]_ETS_Empty Ability"
+        },
+        {
+            "name":"calling",
+            "value":"[TS_852591]_呼叫中"
+        },
+        {
+            "name":"confirm",
+            "value":"[TS_852686]_OK"
+        },
+        {
+            "name":"delivery_reports",
+            "value":"[TS_852790]_Delivery reports"
+        },
+        {
+            "name":"rcs_start_failed",
+            "value":"[TS_866892]_Advanced Messaging could not be enabled."
+        },
+        {
+            "name":"sms_center",
+            "value":"[TS_852564]_SMS center number"
+        },
+        {
+            "name":"permission_call_place",
+            "value":"[TS_852599]_Used to manage home location"
+        },
+        {
+            "name":"attachment",
+            "value":"[TS_852673]_[Attachment] %s"
+        },
+        {
+            "name":"selectContacts",
+            "value":"[TS_852567]_Select contact"
+        },
+        {
+            "name":"refused",
+            "value":"[TS_852700]_Rejected"
+        },
+        {
+            "name":"me",
+            "value":"[TS_852501]_Me"
+        },
+        {
+            "name":"contentSentTo",
+            "value":"[TS_852543]_Forward to %1$s, which includes %2$s"
+        },
+        {
+            "name":"no_subject",
+            "value":"[TS_852562]_(No subject)"
+        },
+        {
+            "name":"enable_auto_delete",
+            "value":"[TS_852644]_Enable auto-delete"
+        },
+        {
+            "name":"permission_send_messages",
+            "value":"[TS_852655]_Used to send messages"
+        },
+        {
+            "name":"msg_record",
+            "value":"[TS_852710]_Recording"
+        },
+        {
+            "name":"archive_info_messages",
+            "value":"[TS_852514]_Archive notification messages"
+        },
+        {
+            "name":"msg_delete_dialog_cb_tip",
+            "value":"[TS_852531]_Delete locked messages as well"
+        },
+        {
+            "name":"recall_messages",
+            "value":"[TS_852795]_Recall messages"
+        },
+        {
+            "name":"msg_detail_resend_all",
+            "value":"[TS_852699]_Resend all"
+        },
+        {
+            "name":"msg_note_mms2",
+            "value":"[TS_852778]_Add description"
+        },
+        {
+            "name":"too_many_recipients",
+            "value":"[TS_852622]_Too many recipients (%1$s). Max number of recipients is %2$s."
+        },
+        {
+            "name":"forward_dialog_forward_sim",
+            "value":"[TS_866886]_Send (SIM %d)"
+        },
+        {
+            "name":"justNow",
+            "value":"[TS_852509]_Just now"
+        },
+        {
+            "name":"msg_theme",
+            "value":"[TS_852738]_Subject"
+        },
+        {
+            "name":"haveread_reports",
+            "value":"[TS_866907]_Request read receipts"
+        },
+        {
+            "name":"permission_read_write_messages",
+            "value":"[TS_852587]_Used to manage messages"
+        },
+        {
+            "name":"swiper_content2",
+            "value":"[TS_866893]_Send voice messages on the fly."
+        },
+        {
+            "name":"msg_record_short",
+            "value":"[TS_852560]_Recording too short."
+        },
+        {
+            "name":"delivery_reports_hint",
+            "value":"[TS_852536]_Request a delivery report for each message you send."
+        },
+        {
+            "name":"default_recent",
+            "value":"[TS_865511]_%s (Default)"
+        },
+        {
+            "name":"swiper_content1",
+            "value":"[TS_866902]_Send files, images, and other media in your messages."
+        },
+        {
+            "name":"permission_notification_controller",
+            "value":"[TS_852735]_Used to notification management"
+        },
+        {
+            "name":"msg_take_photos",
+            "value":"[TS_852513]_Camera"
+        },
+        {
+            "name":"september",
+            "value":"[TS_852653]_9月"
+        },
+        {
+            "name":"permission_receive_message_service",
+            "value":"[TS_852506]_SMS message receiving service"
+        },
+        {
+            "name":"restore_default_settings",
+            "value":"[TS_852724]_Restore default settings"
+        },
+        {
+            "name":"share",
+            "value":"[TS_852712]_Share"
+        },
+        {
+            "name":"not_when_roaming",
+            "value":"[TS_852637]_Not when roaming"
+        },
+        {
+            "name":"intelligent_information",
+            "value":"[TS_852718]_Smart notification"
+        },
+        {
+            "name":"favorites",
+            "value":"[TS_852788]_Favorites"
+        },
+        {
+            "name":"entry_description",
+            "value":"[TS_852711]_ETS_Empty MainAbility"
+        },
+        {
+            "name":"attachment_failed",
+            "value":"[TS_852674]_Attachment too large to add (Limit: %s)."
+        },
+        {
+            "name":"sms_center_hint",
+            "value":"[TS_852618]_Warning: You won't be able to send text messages if the SMS center number is set incorrectly. You can get this number from your carrier."
+        },
+        {
+            "name":"no_messages",
+            "value":"[TS_852733]_No messages"
+        },
+        {
+            "name":"recipients",
+            "value":"[TS_852652]_Recipients"
+        },
+        {
+            "name":"msg_slide",
+            "value":"[TS_852495]_Slides"
+        },
+        {
+            "name":"reminder_network",
+            "value":"[TS_866908]_Connect to the Internet to use Advanced Messaging and save on carrier fees."
+        },
+        {
+            "name":"china_telecom",
+            "value":"[TS_852739]_China Telecom"
+        },
+        {
+            "name":"msg_star",
+            "value":"[TS_852684]_Favorite"
+        },
+        {
+            "name":"Delivered",
+            "value":"[TS_852604]_Delivered: %1$s, %2$s"
+        },
+        {
+            "name":"china_mobile",
+            "value":"[TS_852642]_China Mobile"
+        },
+        {
+            "name":"rcs_title",
+            "value":"[TS_866887]_Advanced Messaging"
+        },
+        {
+            "name":"disable",
+            "value":"[TS_852612]_Disable"
+        },
+        {
+            "name":"enabled",
+            "value":"[TS_852772]_On"
+        },
+        {
+            "name":"auto_delete_info_messages_hint",
+            "value":"[TS_852679]_Notification messages will be deleted %d days after receipt."
+        },
+        {
+            "name":"always",
+            "value":"[TS_852659]_All networks"
+        },
+        {
+            "name":"mms",
+            "value":"[TS_852691]_MMS"
+        },
+        {
+            "name":"putTime",
+            "value":"[TS_852595]_Received: %s"
+        },
+        {
+            "name":"change_sms_center_number",
+            "value":"[TS_852717]_Change SMS center number"
+        },
+        {
+            "name":"manage_sim_card_messages",
+            "value":"[TS_852750]_Manage SIM card messages"
+        },
+        {
+            "name":"converting_sms",
+            "value":"[TS_852789]_Converting to SMS…"
+        },
+        {
+            "name":"auto_delete_info_messages",
+            "value":"[TS_852548]_Auto-delete notification messages"
+        },
+        {
+            "name":"air_plane_mode_message",
+            "value":"[TS_852636]_Unable to send messages right now. It will be sent when the service recovers."
+        },
+        {
+            "name":"today",
+            "value":"[TS_852749]_Today"
+        },
+        {
+            "name":"blocked",
+            "value":"[TS_852701]_Blocked messages"
+        },
+        {
+            "name":"rcs_title_content",
+            "value":"[TS_866878]_Send and receive images, voice messages, locations, and more using your Internet connection. Contact your carrier for pricing."
+        },
+        {
+            "name":"show_contact_profile_pics",
+            "value":"[TS_852489]_Show profile pictures"
+        },
+        {
+            "name":"attachment_no_subject",
+            "value":"[TS_852721]_[Attachment](No subject)"
+        },
+        {
+            "name":"roaming_fees_may_apply",
+            "value":"[TS_852774]_Roaming fees may apply."
+        },
+        {
+            "name":"off",
+            "value":"[TS_852648]_Off"
+        },
+        {
+            "name":"rcs_content1",
+            "value":"[TS_866890]_Internet"
+        },
+        {
+            "name":"message_received",
+            "value":"[TS_852610]_%s received your message."
+        },
+        {
+            "name":"on",
+            "value":"[TS_852682]_Enable"
+        },
+        {
+            "name":"forenoon",
+            "value":"[TS_852797]_%s:%s AM"
+        },
+        {
+            "name":"msg_gallery",
+            "value":"[TS_852719]_Gallery"
+        },
+        {
+            "name":"ok",
+            "value":"[TS_852490]_OK"
+        },
+        {
+            "name":"press_speak",
+            "value":"[TS_852714]_Hold & speak"
+        },
+        {
+            "name":"invalid_receive",
+            "value":"[TS_852597]_Invalid recipient: %s."
+        },
+        {
+            "name":"searchHit",
+            "value":"[TS_852623]_Enter number or search"
+        },
+        {
+            "name":"refreshing",
+            "value":"[TS_852763]_Refreshing…"
+        },
+        {
+            "name":"china_unicom",
+            "value":"[TS_852805]_China Unicom"
+        },
+        {
+            "name":"showSource",
+            "value":"[TS_852769]_Show source"
+        },
+        {
+            "name":"msg_deselect_all",
+            "value":"[TS_852676]_Deselect all"
+        },
+        {
+            "name":"recipients_upper_limit",
+            "value":"[TS_852643]_Max number of recipients (%s) reached."
+        },
+        {
+            "name":"permission_read_write_contacts",
+            "value":"[TS_852600]_Used to manage contacts"
+        },
+        {
+            "name":"converting_mms",
+            "value":"[TS_852628]_Converting to MMS…"
+        },
+        {
+            "name":"transmitHeadText",
+            "value":"[TS_852498]_Select conversation"
+        },
+        {
+            "name":"messageDeliver",
+            "value":"[TS_852649]_Delivered"
+        },
+        {
+            "name":"rcs_start",
+            "value":"[TS_866883]_Enable"
+        },
+        {
+            "name":"enable",
+            "value":"[TS_852704]_Enable"
+        },
+        {
+            "name":"markAllAsRead",
+            "value":"[TS_852726]_Mark all as read"
+        },
+        {
+            "name":"message_tone",
+            "value":"[TS_852585]_Message tone"
+        },
+        {
+            "name":"post_allowed_return_havereadreport",
+            "value":"[TS_866903]_Request/Send read receipt for each message."
+        },
+        {
+            "name":"auto_retrieve_mms",
+            "value":"[TS_852757]_Auto-retrieve MMS"
+        },
+        {
+            "name":"permission_set_telephone_status",
+            "value":"[TS_852601]_Used to set telephone status"
+        },
+        {
+            "name":"permission_get_telephone_status",
+            "value":"[TS_852668]_Used to get telephone status"
+        },
+        {
+            "name":"mark_as_read",
+            "value":"[TS_852611]_Mark as read"
+        },
+        {
+            "name":"draft",
+            "value":"[TS_852504]_[Draft]"
+        },
+        {
+            "name":"enable_auto_delete_hint",
+            "value":"[TS_852658]_When this is enabled, notification messages will be automatically deleted %d days after receipt, including those that may be important. Enable?"
+        },
+        {
+            "name":"smart_sms_forward_dialog_single",
+            "value":"[TS_866897]_Send to %s"
+        },
+        {
+            "name":"reply",
+            "value":"[TS_852542]_Reply"
+        },
+        {
+            "name":"info_is_stared",
+            "value":"[TS_852755]_Message added to favorites."
+        },
+        {
+            "name":"settings",
+            "value":"[TS_852746]_Settings"
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_message_new_4g",
+            "value":"[TS_870541]_Advanced Messaging lets you send and receive messages and multimedia content (such as images, voice messages, and locations) using WLAN or mobile data. During use, your device version and identifiers (including IMEI, IMSI, MSISDN, and WLAN MAC address) will be sent to your carrier, who provides this service. You can change your settings at any time in Messaging > More > Settings > Advanced Messaging. For information about usage fees, please contact your carrier. This service will read the list of installed apps on your device and check the login statuses of third-party Advanced Messaging apps in order to ensure that this service works properly. By turning on the switch, you agree to let us provide you with this service."
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_title",
+            "value":"[TS_870556]_Advanced Messaging"
+        },
+        {
+            "name":"in_maintenance_mode",
+            "value":"[TS_875280]_Messages can't be viewed in Maintenance mode."
+        },
+        {
+            "name":"know",
+            "value":"[TS_875283]_OK"
+        },
+        {
+            "name":"open_microphone_permission_title",
+            "value":"[TS_870547]_Grant Messaging the Microphone permission in Settings"
+        },
+        {
+            "name":"downloading",
+            "value":"[TS_872736]_Downloading"
+        },
+        {
+            "name":"Camera_permission_prompt",
+            "value":"[TS_870548]_Allow Messaging to access your device's camera"
+        },
+        {
+            "name":"setting_permissions",
+            "value":"[TS_870546]_Settings"
+        },
+        {
+            "name":"open_microphone_permission_info",
+            "value":"[TS_870561]_This is used to record voice messages."
+        },
+        {
+            "name":"no_network",
+            "value":"[TS_872744]_Data service unavailable. Check your network settings."
+        },
+        {
+            "name":"transmit_expenses_info",
+            "value":"[TS_872745]_This content will be sent to %s as multiple SMS/MMS messages. Send anyway?"
+        },
+        {
+            "name":"text_input_limit",
+            "value":"[TS_872737]_You have entered too many characters."
+        },
+        {
+            "name":"allow_Camera",
+            "value":"[TS_870559]_Allow"
+        },
+        {
+            "name":"open_camera_permission_title",
+            "value":"[TS_870534]_Grant Messaging the Camera permission in Settings"
+        },
+        {
+            "name":"handover_to_enhanced_message",
+            "value":"[TS_915524]_Switch to Advanced Messaging"
+        },
+        {
+            "name":"translate_audio",
+            "value":"[TS_872740]_Voice messages and some media messages can't be forwarded."
+        },
+        {
+            "name":"msg_note_rcs",
+            "value":"[TS_870553]_Chat message"
+        },
+        {
+            "name":"microphone_permission_prompt",
+            "value":"[TS_870535]_Please allow Messaging to access your device's microphone."
+        },
+        {
+            "name":"download",
+            "value":"[TS_872743]_Download"
+        },
+        {
+            "name":"only_one_attachment",
+            "value":"[TS_870544]_Only one attachment can be sent."
+        },
+        {
+            "name":"messageReceiveFailed",
+            "value":"[TS_872726]_Download failed"
+        },
+        {
+            "name":"permission_read_media",
+            "value":"[TS_870536]_Used to read the media file information in the external storage of the user."
+        },
+        {
+            "name":"switch_to_SMS_MMS",
+            "value":"[TS_870539]_Switch to SMS/MMS"
+        },
+        {
+            "name":"open_camera_permission_info",
+            "value":"[TS_870557]_This is used to send images and videos."
+        },
+        {
+            "name":"permission_write_media",
+            "value":"[TS_870542]_Used by applications to read and write media file information in external storage."
+        },
+        {
+            "name":"Photographing",
+            "value":"[TS_870532]_Taking photo…"
+        },
+        {
+            "name":"permission_read_imagevideo",
+            "value":"[TS_868143]_Used to read image and video"
+        },
+        {
+            "name":"expired",
+            "value":"[TS_872735]_Expired"
+        },
+        {
+            "name":"expiresTime",
+            "value":"[TS_873294]_Expires: %s"
+        },
+        {
+            "name":"messageSize",
+            "value":"[TS_872741]_Message size: %s KB"
+        },
+        {
+            "name":"air_plane_mode_receive_message",
+            "value":"[TS_872746]_Unable to receive messages until service is restored."
+        },
+        {
+            "name":"install_permission",
+            "value":"[TS_871329]_list of installed apps"
+        },
+        {
+            "name":"mms_need_network",
+            "value":"[TS_876460]_Allow Messaging to access the Internet?"
+        },
+        {
+            "name":"not_loggedin_RCS",
+            "value":"[TS_876472]_Unable to send. Not logged in to RCS."
+        },
+        {
+            "name":"msgAcceptFailure",
+            "value":"[TS_880360]_There is not enough available storage to receive this message."
+        },
+        {
+            "name":"setting_konw",
+            "value":"[TS_879495]_OK"
+        },
+        {
+            "name":"permission_read_call_log",
+            "value":"[TS_868146]_Contact number used to read recent call records when sending messages"
+        },
+        {
+            "name":"permission_read_imageVideoMedia_write_media",
+            "value":"[TS_878813]_Includes photos, media, and other files on your device. Used for sending and receiving media messages."
+        },
+        {
+            "name":"allow_network",
+            "value":"[TS_876461]_Allow"
+        },
+        {
+            "name":"mms_send",
+            "value":"[TS_876470]_SMS"
+        },
+        {
+            "name":"backup_restore",
+            "value":"[TS_869785]_backup_restore"
+        },
+        {
+            "name":"mms_personal_information_list",
+            "value":"[TS_876464]_Personal information collected"
+        },
+        {
+            "name":"sms_number_center_new",
+            "value":"[TS_1114407]_SIM %s SMS center"
+        },
+        {
+            "name":"transmit_send",
+            "value":"[TS_872733]_Send"
+        },
+        {
+            "name":"version_not_support_function",
+            "value":"[TS_879978]_Feature not supported in this version."
+        },
+        {
+            "name":"manage_sim_card_number_messages",
+            "value":"[TS_876466]_Manage SIM %d messages"
+        },
+        {
+            "name":"Saved_to_album",
+            "value":"[TS_875284]_Saved to Gallery."
+        },
+        {
+            "name":"messageReceivingFailed",
+            "value":"[TS_880359]_Can't receive"
+        },
+        {
+            "name":"informationSize",
+            "value":"[TS_880358]_Message size: %s KB"
+        },
+        {
+            "name":"attachment_upper_limit",
+            "value":"[TS_870924]_Limit of %1$d attachments. Only the first %2$d will be added."
+        },
+        {
+            "name":"rcs_send",
+            "value":"[TS_876469]_Advanced Messaging"
+        },
+        {
+            "name":"msg_resend_rcs",
+            "value":"[TS_876467]_Resend using"
+        },
+        {
+            "name":"setting_network",
+            "value":"[TS_876463]_Network settings"
+        },
+        {
+            "name":"send_dialog_send_sim",
+            "value":"[TS_878812]_Send (SIM %d)"
+        },
+        {
+            "name":"setting_advanced_mode",
+            "value":"[TS_879497]_This type of message can't be viewed when Secure Shield mode is enabled."
+        },
+        {
+            "name":"open_File_mic_permission_title",
+            "value":"[TS_878817]_Grant microphone access in Settings."
+        },
+        {
+            "name":"mms_count",
+            "value":"[TS_878815]_[%d messages]"
+        },
+        {
+            "name":"mms_need_network_description",
+            "value":"[TS_876468]_This is used to view web content, like the Privacy Statement."
+        },
+        {
+            "name":"open_File_Image_video_permission_title",
+            "value":"[TS_878814]_Grant access to files, images, and videos in Settings."
+        },
+        {
+            "name":"not_network",
+            "value":"[TS_876465]_No Internet connection. Check your network settings."
+        },
+        {
+            "name":"permission_receive_mms",
+            "value":"[TS_868144]_Used to receive mms"
+        },
+        {
+            "name":"prohibited",
+            "value":"[TS_876473]_Deny"
+        },
+        {
+            "name":"rejectRecord",
+            "value":"[TS_875282]_Can't record audio while you're on a call."
+        },
+        {
+            "name":"in_advanced_mode",
+            "value":"[TS_879496]_Unable to open message"
+        },
+        {
+            "name":"contentSentContentToSingle",
+            "value":"[TS_877042]_Send this content to %s?"
+        },
+        {
+            "name":"mms_audio_size_maximum",
+            "value":"[TS_870545]_Maximum message size reached."
+        },
+        {
+            "name":"ask_before_deleting",
+            "value":"[TS_868145]_Don't ask me again"
+        },
+        {
+            "name":"mms_privacy_state",
+            "value":"[TS_876471]_Statement About Messaging and Privacy"
+        },
+        {
+            "name":"china_broadnet",
+            "value":"[TS_878816]_China Broadnet"
+        },
+        {
+            "name":"message_received_2",
+            "value":"[TS_882044]_%s received your message."
+        },
+        {
+            "name":"recorder_error",
+            "value":"[TS_881703]_Unable to record."
+        },
+        {
+            "name":"recorder_failed",
+            "value":"[TS_881702]_Unable to record. Microphone may be in use."
+        },
+        {
+            "name":"audio_play_error",
+            "value":"[TS_882043]_File format not supported."
+        },
+        {
+            "name":"rcs_enable_mobile_data",
+            "value":"[TS_882042]_To enable Advanced Messaging, disable WLAN and make sure mobile data is enabled."
+        },
+        {
+            "name":"transmitContent",
+            "value":"[TS_852563]_Forwarded from Me:"
+        },
+        {
+            "name":"no_star_info",
+            "value":"[TS_852634]_No favorites yet"
+        },
+        {
+            "name":"size",
+            "value":"[TS_883752]_Size: %s KB"
+        },
+        {
+            "name":"priority",
+            "value":"[TS_883753]_Priority: Normal"
+        },
+        {
+            "name":"messageRead",
+            "value":"[TS_899856]_Read"
+        },
+        {
+            "name":"privacy_state_url",
+            "value":"[TS_902803]_"
+        },
+        {
+            "name":"msg_in_favorites",
+            "value":"[TS_905124]_Favorites"
+        },
+        {
+            "name":"rcs_all_content",
+            "value":"[TS_907264]_Advanced Messaging lets you send and receive messages, images, voice messages, locations, and more using your Internet connection. For details about fees, contact your carrier. This service requires an %1$s connection, and needs to read your phone numbers, contacts, and call logs. It also needs to read and upload/transfer message content, events, images, videos, audio, as well as your IMEI and WLAN MAC address. By turning this on, you agree to the above. For more details about how your personal information is processed, refer to the %2$d."
+        },
+        {
+            "name":"restore_to_message",
+            "value":"[TS_911954]_Restore to messages"
+        },
+        {
+            "name":"no_blocked_message",
+            "value":"[TS_911952]_No blocked messages"
+        },
+        {
+            "name":"one_week_ago",
+            "value":"[TS_911955]_One week ago"
+        },
+        {
+            "name":"delete_this_message",
+            "value":"[TS_911953]_Delete selected messages?"
+        },
+        {
+            "name":"add_to_access",
+            "value":"[TS_911951]_Add to trustlist"
+        },
+        {
+            "name":"interception_rule_blockall_title",
+            "value":"[TS_922238]_Intercept all"
+        },
+        {
+            "name":"removed_from_the_blocklist",
+            "value":"[TS_917705]_Removed from the blocklist."
+        },
+        {
+            "name":"added_to_the_blocklist",
+            "value":"[TS_917704]_Added to the blocklist."
+        },
+        {
+            "name":"harassment_blockreason_strangenumber",
+            "value":"[TS_922239]_Stranger"
+        },
+        {
+            "name":"super_white_mms",
+            "value":"[TS_922768]_Super white mms"
+        },
+        {
+            "name":"unknown",
+            "value":"[TS_922766]_Unknown"
+        },
+        {
+            "name":"blocklist_number",
+            "value":"[TS_922241]_Blocklist number"
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"[TS_917701]_Add to blocklist"
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"[TS_917702]_Remove from blocklist"
+        },
+        {
+            "name":"select_more",
+            "value":"[TS_922769]_Select multiple"
+        },
+        {
+            "name":"spam_mms",
+            "value":"[TS_922765]_Spam message"
+        },
+        {
+            "name":"super_black_mms",
+            "value":"[TS_922767]_Super black mms"
+        },
+        {
+            "name":"msg_call",
+            "value":"[TS_920737]_Call"
+        },
+        {
+            "name":"open_Image_video_permission_message",
+            "value":"[TS_930567]_These permissions are used to read/write files, and access images and videos."
+        },
+        {
+            "name":"choose_sub_recommend_recently",
+            "value":"[TS_920717]_(Recent)"
+        },
+        {
+            "name":"contact_avatar_button",
+            "value":"[TS_920719]_Contact profile picture, button"
+        },
+        {
+            "name":"open_Image_video_permission_title",
+            "value":"[TS_930569]_Allow Messaging to access Files and Images & videos in Settings"
+        },
+        {
+            "name":"more_options_button",
+            "value":"[TS_920722]_More options"
+        },
+        {
+            "name":"rcs_no",
+            "value":"[TS_917703]_No thanks"
+        },
+        {
+            "name":"sending_failed_button",
+            "value":"[TS_920730]_Send failed, button"
+        },
+        {
+            "name":"new_info_button",
+            "value":"[TS_920739]_New message, button"
+        },
+        {
+            "name":"group_avatar_button",
+            "value":"[TS_920723]_Group profile picture, button"
+        },
+        {
+            "name":"open_microphone_permission_message",
+            "value":"[TS_930568]_This is used to record voice messages."
+        },
+        {
+            "name":"msg_all_emoji",
+            "value":"[TS_920728]_All"
+        },
+        {
+            "name":"msg_recent_used",
+            "value":"[TS_920724]_Recent"
+        },
+        {
+            "name":"attachment_current_size_new",
+            "value":"[TS_1114427]_%1$s/%2$s"
+        },
+        {
+            "name":"Dual_card_switchover",
+            "value":"[TS_927768]_Switch between SIMs"
+        },
+        {
+            "name":"satellite",
+            "value":"[TS_921316]_Tiantong satellite messaging"
+        },
+        {
+            "name":"copied_to_clipboard",
+            "value":"[TS_927148]_Copied to clipboard."
+        },
+        {
+            "name":"copy_verification_code",
+            "value":"[TS_927149]_Copy code"
+        },
+        {
+            "name":"copy_failed",
+            "value":"[TS_927150]_Unable to copy."
+        },
+        {
+            "name":"location_privacy_dialog_hint_1",
+            "value":"[TS_921331]_Internet"
+        },
+        {
+            "name":"location_privacy_dialog_hint_4",
+            "value":"[TS_931159]_Permissions Notice"
+        },
+        {
+            "name":"location_privacy_dialog_hint_3",
+            "value":"[TS_921320]_Statement About Messaging Location Services and Privacy"
+        },
+        {
+            "name":"location_privacy_dialog_hint_2",
+            "value":"[TS_921328]_Location"
+        },
+        {
+            "name":"CactusAbility_desc",
+            "value":"[TS_924521]_description"
+        },
+        {
+            "name":"cactus_sms",
+            "value":"[TS_924519]_Satellite message"
+        },
+        {
+            "name":"location_south_east",
+            "value":"[TS_931158]_%1$s S %2$s E"
+        },
+        {
+            "name":"location_north_west",
+            "value":"[TS_931160]_%1$s N %2$s W"
+        },
+        {
+            "name":"location_privacy_dialog_hint",
+            "value":"[TS_921319]_This service requires an %1$s connection, the %2$s permission, and needs to read and upload/transfer location information. This is to provide location services. By tapping Agree, you agree to these terms. For more details about how your personal information is processed, refer to the %3$s and %4$s."
+        },
+        {
+            "name":"satellite_title",
+            "value":"[TS_921321]_Include location in messages"
+        },
+        {
+            "name":"carrying_position",
+            "value":"[TS_921338]_Include location"
+        },
+        {
+            "name":"satellite_content",
+            "value":"[TS_921322]_If you select \"Include location\" while composing a message, the Messaging app will include your precise location in the message. This can help first responders reach you in an emergency."
+        },
+        {
+            "name":"location_privacy_dialog_title",
+            "value":"[TS_921323]_Messaging Location Services"
+        },
+        {
+            "name":"agree",
+            "value":"[TS_921314]_Agree"
+        },
+        {
+            "name":"location_north_east",
+            "value":"[TS_931161]_%1$s N %2$s E"
+        },
+        {
+            "name":"address_details",
+            "value":"[TS_921326]_Address: %s"
+        },
+        {
+            "name":"CactusAbility_label",
+            "value":"[TS_924520]_label"
+        },
+        {
+            "name":"new_smc_item_from",
+            "value":"[TS_924518]_From %1$s: %2$s"
+        },
+        {
+            "name":"satellite_prop",
+            "value":"[TS_921336]_This location was obtained when you connected to the satellite. To update it, please reconnect.\n\nNote: Location counts toward the message character limit."
+        },
+        {
+            "name":"location_south_west",
+            "value":"[TS_931157]_%1$s S %2$s W"
+        },
+        {
+            "name":"permission_get_location",
+            "value":"[TS_921334]_obtain device fuzzy location information"
+        },
+        {
+            "name":"position",
+            "value":"[TS_921329]_Location: %s"
+        },
+        {
+            "name":"satelliteWaiting",
+            "value":"[TS_921339]_Pending"
+        },
+        {
+            "name":"location_privacy_dialog_subtitle",
+            "value":"[TS_921333]_This service allows you to send and view locations in text messages."
+        },
+        {
+            "name":"realease_send_prompt_text",
+            "value":"[TS_929339]_Release to send"
+        },
+        {
+            "name":"attachment_vcard",
+            "value":"[TS_929338]_[vCard]"
+        },
+        {
+            "name":"slide_up_text",
+            "value":"[TS_929358]_Slide up to cancel"
+        },
+        {
+            "name":"attachment_send_picture",
+            "value":"[TS_931302]_Sent a photo"
+        },
+        {
+            "name":"allow_file_permission",
+            "value":"[TS_931303]_Allow Messaging to access files on your device?"
+        },
+        {
+            "name":"rcs_release_to_cancel",
+            "value":"[TS_929340]_Release to cancel"
+        },
+        {
+            "name":"attachment_audio",
+            "value":"[TS_929351]_[Audio]"
+        },
+        {
+            "name":"vCard_import_success",
+            "value":"[TS_929352]_%s successfully imported."
+        },
+        {
+            "name":"save",
+            "value":"[TS_929345]_Save"
+        },
+        {
+            "name":"attachment_file",
+            "value":"[TS_929334]_[File]"
+        },
+        {
+            "name":"save_to_contacts",
+            "value":"[TS_929336]_Save vCard"
+        },
+        {
+            "name":"slide_down_text",
+            "value":"[TS_929344]_Slide down to continue"
+        },
+        {
+            "name":"text_file_not_exist",
+            "value":"[TS_932581]_File does not exist"
+        },
+        {
+            "name":"attach_anyfile",
+            "value":"[TS_929343]_File"
+        },
+        {
+            "name":"permission_search_control",
+            "value":"[TS_934575]_Search permission control"
+        },
+        {
+            "name":"attachment_send_vcard",
+            "value":"[TS_931305]_Sent a contact"
+        },
+        {
+            "name":"send_file_exceed_max_size",
+            "value":"[TS_929332]_Size limit: %s."
+        },
+        {
+            "name":"attachment_unsupport_toast_image",
+            "value":"[TS_929356]_Unable to add attachment. Image format not supported."
+        },
+        {
+            "name":"msg_import_contacts_from_vCard",
+            "value":"[TS_929346]_Import contacts from vCard?"
+        },
+        {
+            "name":"attachment_picture",
+            "value":"[TS_929360]_[Image]"
+        },
+        {
+            "name":"view_vcard",
+            "value":"[TS_929337]_View vCard"
+        },
+        {
+            "name":"attachment_send_audio",
+            "value":"[TS_931306]_Sent an audio clip"
+        },
+        {
+            "name":"status_canceled",
+            "value":"[TS_929347]_Canceled"
+        },
+        {
+            "name":"vcard_mobile",
+            "value":"[TS_929348]_Mobile"
+        },
+        {
+            "name":"allow_microphone_permission",
+            "value":"[TS_929361]_Allow Messaging to use the microphone?"
+        },
+        {
+            "name":"attach_contacts",
+            "value":"[TS_929333]_Contact"
+        },
+        {
+            "name":"attachment_send_file",
+            "value":"[TS_931304]_Sent a file"
+        },
+        {
+            "name":"vcard_name",
+            "value":"[TS_929349]_Name"
+        },
+        {
+            "name":"rcsFileSize",
+            "value":"[TS_929335]_Size: %s"
+        },
+        {
+            "name":"msg_vCard_import_success",
+            "value":"[TS_929353]_%s will be imported later."
+        },
+        {
+            "name":"rcs_file_name_extra_long",
+            "value":"[TS_929355]_File name exceeds length limit. Please rename."
+        },
+        {
+            "name":"permission_settings",
+            "value":"[TS_937447]_Used to manage settings"
+        },
+        {
+            "name":"oobe_rcs_all_content_wlan",
+            "value":"[TS_939352]_This service lets you send and receive messages, images, locations, and more using your Internet connection. For details about fees, contact your carrier. This service requires an Internet connection, and needs to read your phone numbers, contacts, and call logs. It also needs to read and upload/transfer message content, events, images, videos, audio, as well as your IMEI and WLAN MAC address. By turning this on, you agree to the above. For more details about how your personal information is processed, refer to the <a link=\"privacyStatement\">Statement About Messaging and Privacy</a>."
+        },
+        {
+            "name":"rcs_ft_type_vcard_send",
+            "value":"[TS_939066]_You recommended %1$s to %2$s"
+        },
+        {
+            "name":"rcs_ft_type_vcard_single_recv",
+            "value":"[TS_939068]_%2$s recommended %1$s to you"
+        },
+        {
+            "name":"send_button",
+            "value":"[TS_920727]_Send"
+        },
+        {
+            "name":"add_attachment_button",
+            "value":"[TS_920729]_Add attachment"
+        },
+        {
+            "name":"select_contacts_button",
+            "value":"[TS_920734]_Select contact"
+        },
+        {
+            "name":"emoticon_button",
+            "value":"[TS_920720]_Emojis"
+        },
+        {
+            "name":"avatar_button",
+            "value":"[TS_943684]_Profile picture, button"
+        },
+        {
+            "name":"read_button",
+            "value":"[TS_943683]_Mark as read, button"
+        },
+        {
+            "name":"blockedMms",
+            "value":"[TS_943233]_[MMS]"
+        },
+        {
+            "name":"unsupport_satellite_card_content",
+            "value":"[TS_938061]_Unable to send messages during satellite calls."
+        },
+        {
+            "name":"delete_button",
+            "value":"[TS_943685]_Delete, button"
+        },
+        {
+            "name":"open_keypad_button",
+            "value":"[TS_943682]_Switch to text input"
+        },
+        {
+            "name":"sim",
+            "value":"[TS_852526]_Card"
+        },
+        {
+            "name":"TipsForBlockedMms",
+            "value":"[TS_943234]_Multimedia message must be restored before you can view its content."
+        },
+        {
+            "name":"cancel_button",
+            "value":"[TS_938591]_Cancel, button"
+        },
+        {
+            "name":"my_avatar_button",
+            "value":"[TS_943686]_My profile picture"
+        },
+        {
+            "name":"message_status_sent",
+            "value":"[TS_942258]_Sent"
+        },
+        {
+            "name":"malicious_web_url",
+            "value":"[TS_940671]_Caution: This link may be malicious."
+        },
+        {
+            "name":"malicious_web_url_check_desc",
+            "value":"[TS_940673]_Check for malicious links in messages."
+        },
+        {
+            "name":"malicious_web_url_check",
+            "value":"[TS_940672]_URL security check"
+        },
+        {
+            "name":"messageReported",
+            "value":"[TS_944008]_Reported"
+        },
+        {
+            "name":"switch_input_box",
+            "value":"[TS_944296]_Switch to text input"
+        },
+        {
+            "name":"messageReportFailed",
+            "value":"[TS_944007]_Unable to report."
+        },
+        {
+            "name":"report",
+            "value":"[TS_944005]_Report"
+        },
+        {
+            "name":"switch_to_record",
+            "value":"[TS_944295]_Switch to voice message"
+        },
+        {
+            "name":"select_sim",
+            "value":"[TS_944298]_Select SIM, SIM %s, button"
+        },
+        {
+            "name":"msg_report_dialog_con_tip1",
+            "value":"[TS_944006]_Report this message?"
+        },
+        {
+            "name":"map_url",
+            "value":"[TS_946444]_"
+        },
+        {
+            "name":"not_clickable",
+            "value":"[TS_944769]_Unavailable"
+        },
+        {
+            "name":"list_summary_vcard",
+            "value":"[TS_949736]_You shared a contact (%1$s)"
+        },
+        {
+            "name":"welcome_page_btn_continue_text",
+            "value":"[TS_946882]_Continue"
+        },
+        {
+            "name":"filing_no_url",
+            "value":"[TS_949926]_"
+        },
+        {
+            "name":"showCard",
+            "value":"[TS_947895]_Show card"
+        },
+        {
+            "name":"showText",
+            "value":"[TS_947894]_Show original"
+        },
+        {
+            "name":"msg_location_attachment",
+            "value":"[TS_944270]_[Location]"
+        },
+        {
+            "name":"Malicious_no",
+            "value":"[TS_947897]_No thanks"
+        },
+        {
+            "name":"FilingNo",
+            "value":"[TS_949927]_苏ICP备17040376号-143A"
+        },
+        {
+            "name":"text_trafficprompttitle",
+            "value":"[TS_944619]_Data reminder"
+        },
+        {
+            "name":"Malicious_start",
+            "value":"[TS_947896]_Enable"
+        },
+        {
+            "name":"Malicious_title_content",
+            "value":"[TS_947898]_This feature connects to the Internet to check for malicious links in your messages."
+        },
+        {
+            "name":"wifi_notice",
+            "value":"[TS_944617]_No WLAN connection. Continue with mobile data?"
+        },
+        {
+            "name":"msg_location",
+            "value":"[TS_852773]_Location"
+        },
+        {
+            "name":"Malicious_title",
+            "value":"[TS_947893]_Enable URL security checks?"
+        },
+        {
+            "name":"tryAgain",
+            "value":"[TS_952333]_Retry"
+        },
+        {
+            "name":"rcs_activation_failed_message",
+            "value":"[TS_952334]_Make sure WLAN is disabled and mobile data is enabled. Activation can take around %d minutes."
+        },
+        {
+            "name":"rcs_no_network_prompt",
+            "value":"[TS_952332]_To enable this, disable WLAN and enable mobile data."
+        },
+        {
+            "name":"rcs_activation_failed",
+            "value":"[TS_952336]_Advanced Messaging could not be enabled"
+        },
+        {
+            "name":"accessibility_video",
+            "value":"[TS_954092]_video"
+        },
+        {
+            "name":"accessibility_audio",
+            "value":"[TS_954084]_Audio"
+        },
+        {
+            "name":"attachment_limit_one",
+            "value":"[TS_954330]_Maximum of one attachment per message."
+        },
+        {
+            "name":"exist_contact",
+            "value":"[TS_955070]_Save to existing contact"
+        },
+        {
+            "name":"new_contact",
+            "value":"[TS_852799]_Create new contact"
+        },
+        {
+            "name":"press_speak_button",
+            "value":"[TS_953185]_Hold and talk, button"
+        },
+        {
+            "name":"advertisement_mms",
+            "value":"[TS_959837]_Advertisement"
+        },
+        {
+            "name":"rcs_ft_file_size_zero_error",
+            "value":"[TS_967194]_The file size cannot be %d bytes."
+        },
+        {
+            "name":"satellite_map_no_more_location",
+            "value":"[TS_966454]_No address information"
+        },
+        {
+            "name":"satellite_location_permissions",
+            "value":"[TS_966455]_Tap to view address"
+        },
+        {
+            "name":"satellite_map_no_network",
+            "value":"[TS_966456]_Address will show when Internet is restored"
+        },
+        {
+            "name":"Not_allowed",
+            "value":"[TS_969251]_Deny"
+        },
+        {
+            "name":"translate_other",
+            "value":"[TS_969250]_Forward supported messages only?"
+        },
+        {
+            "name":"uaprof_url",
+            "value":"[TS_972347]_"
+        },
+        {
+            "name":"message_status",
+            "value":"[TS_972819]_Status: %s"
+        },
+        {
+            "name":"harassment_interception",
+            "value":"[TS_974379]_Call & message identification"
+        },
+        {
+            "name":"go_setting",
+            "value":"[TS_974742]_Go to Settings"
+        },
+        {
+            "name":"message_requires_access_to_microphone",
+            "value":"[TS_974743]_Messaging requires the Microphone permission"
+        },
+        {
+            "name":"leave_setting_advanced_mode",
+            "value":"[TS_976434]_This message can't be viewed because it was received when Secure Shield was active."
+        },
+        {
+            "name":"privacy_statements",
+            "value":"[TS_975436]_Privacy statements"
+        },
+        {
+            "name":"block_reason_keywords",
+            "value":"[TS_1000712]_Contains keywords on the blocklist"
+        },
+        {
+            "name":"enhanced_information_is_not_supported_rcs",
+            "value":"[TS_1002737]_Advanced Messaging is not available when Secure Shield is enabled."
+        },
+        {
+            "name":"info_has_been_stared",
+            "value":"[TS_980466]_Message already favorited."
+        },
+        {
+            "name":"subject",
+            "value":"[TS_998907]_Subject: %s"
+        },
+        {
+            "name":"saveAll",
+            "value":"[TS_998906]_Save all"
+        },
+        {
+            "name":"guide_action_text_previous",
+            "value":"[TS_1003667]_Back"
+        },
+        {
+            "name":"rcs_chatbot_scan_code_error",
+            "value":"[TS_1011337]_Failed to scan code."
+        },
+        {
+            "name":"rcs_card_file",
+            "value":"[TS_1008620]_Card"
+        },
+        {
+            "name":"mms_scan",
+            "value":"[TS_1005863]_Scan"
+        },
+        {
+            "name":"rcs_chatbot_report_object",
+            "value":"[TS_1005864]_Account"
+        },
+        {
+            "name":"msg_detail",
+            "value":"[TS_1008619]_Details"
+        },
+        {
+            "name":"rcs_chatbot",
+            "value":"[TS_1005861]_Chatbots"
+        },
+        {
+            "name":"rcs_chatbot_recent",
+            "value":"[TS_1005851]_Recent"
+        },
+        {
+            "name":"rcs_remove_favourite_chatbot",
+            "value":"[TS_1005869]_Remove %1$s from your favorites? Your message history won't be deleted."
+        },
+        {
+            "name":"rcs_share_location_info",
+            "value":"[TS_1005868]_Share location"
+        },
+        {
+            "name":"rcs_chatbot_report_submit",
+            "value":"[TS_1005841]_Submit"
+        },
+        {
+            "name":"net_no_connection",
+            "value":"[TS_1005856]_No Internet connection"
+        },
+        {
+            "name":"chatbot_send_greet",
+            "value":"[TS_1008308]_Hey"
+        },
+        {
+            "name":"cannot_download_image_dialog_message",
+            "value":"[TS_1011252]_Confirm that Advanced Messaging is enabled and your SIM card supports this feature."
+        },
+        {
+            "name":"rcs_chatbot_report",
+            "value":"[TS_1005872]_Report"
+        },
+        {
+            "name":"chatbot_loading",
+            "value":"[TS_1005844]_Loading…"
+        },
+        {
+            "name":"rcs_nearby_chatbot",
+            "value":"[TS_1005857]_Nearby chatbots"
+        },
+        {
+            "name":"rcs_no_favourite_chatbot",
+            "value":"[TS_1005845]_No favorites"
+        },
+        {
+            "name":"rcs_chatbot_not_exist",
+            "value":"[TS_1010784]_Chatbot is unavailable."
+        },
+        {
+            "name":"chatbot_website",
+            "value":"[TS_1005839]_Website"
+        },
+        {
+            "name":"rcs_chatbot_more_show",
+            "value":"[TS_1008309]_More"
+        },
+        {
+            "name":"GET_APPROXIMATELY_LOCATION",
+            "value":"[TS_1008319]_This is used to obtain your approximate location."
+        },
+        {
+            "name":"text_not_open_rcs",
+            "value":"[TS_1011251]_You haven't enabled Advanced Messaging yet."
+        },
+        {
+            "name":"rcs_chatbot_verification_authority",
+            "value":"[TS_1007725]_Terms and conditions"
+        },
+        {
+            "name":"rcs_groupchat_notify_silent",
+            "value":"[TS_1005866]_Mute message notifications"
+        },
+        {
+            "name":"rcs_chatbot_verified_explain",
+            "value":"[TS_1005847]_This chatbot is verified by %1$s."
+        },
+        {
+            "name":"rcs_chatbot_scan_code_net_error",
+            "value":"[TS_1011336]_No Internet connection. Chatbot is unavailable."
+        },
+        {
+            "name":"rcs_chatbot_favrite",
+            "value":"[TS_1005838]_Favorites"
+        },
+        {
+            "name":"rcs_no_recommand_chatbot",
+            "value":"[TS_1005853]_No recommendations"
+        },
+        {
+            "name":"rcs_chatbot_provider",
+            "value":"[TS_1005862]_Service provider"
+        },
+        {
+            "name":"rcs_chatbot_report_content",
+            "value":"[TS_1005848]_Description (required)"
+        },
+        {
+            "name":"rcs_share_device_info",
+            "value":"[TS_1005843]_Share device information"
+        },
+        {
+            "name":"rcs_chatbot_sms_number",
+            "value":"[TS_1005867]_SMS"
+        },
+        {
+            "name":"rcs_chatbot_service_introduced",
+            "value":"[TS_1005850]_Introduction"
+        },
+        {
+            "name":"rcs_chatbot_service_type",
+            "value":"[TS_1005842]_Service type"
+        },
+        {
+            "name":"rcs_no_recent_chatbot",
+            "value":"[TS_1005865]_No recent chatbots"
+        },
+        {
+            "name":"postalLabelsGroup",
+            "value":"[TS_1005854]_Address"
+        },
+        {
+            "name":"rcs_chatbot_start_conversation",
+            "value":"[TS_1005858]_Chat"
+        },
+        {
+            "name":"vcard_mobileemail",
+            "value":"[TS_1005875]_Email"
+        },
+        {
+            "name":"rcs_chatbot_callback_number",
+            "value":"[TS_1005871]_Phone"
+        },
+        {
+            "name":"rcs_chatbot_recommand",
+            "value":"[TS_1005849]_Recommended"
+        },
+        {
+            "name":"rcs_chatbot_search",
+            "value":"[TS_1005860]_Search chatbots"
+        },
+        {
+            "name":"chatbot_report_result_success",
+            "value":"[TS_1005840]_Report submitted."
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS",
+            "value":"[TS_1008745]_This app would like to use the camera."
+        },
+        {
+            "name":"chatbot_no_sim",
+            "value":"[TS_1004587]_No SIM available"
+        },
+        {
+            "name":"chatbot_conversation_no_sim",
+            "value":"[TS_1008621]_No SIM inserted"
+        },
+        {
+            "name":"chatbotNoLocal",
+            "value":"[TS_1004595]_No content"
+        },
+        {
+            "name":"chatbot_card_in_conversation_list",
+            "value":"[TS_1010432]_Card"
+        },
+        {
+            "name":"rcs_chatbot_local_black",
+            "value":"[TS_1005855]_You won't receive replies from this chatbot because you've blocked it"
+        },
+        {
+            "name":"reportDetail",
+            "value":"[TS_1004598]_Report inappropriate content"
+        },
+        {
+            "name":"GET_LOCATION",
+            "value":"[TS_1008320]_This app will be able to access your precise location."
+        },
+        {
+            "name":"chatbot_rcs_register_error",
+            "value":"[TS_1014260]_Carrier server error. Try again later."
+        },
+        {
+            "name":"smc_quota_query",
+            "value":"[TS_1014006]_Messaging quota"
+        },
+        {
+            "name":"unavailable_tips_location_service_not_enabled",
+            "value":"[TS_1013996]_Location Services is disabled"
+        },
+        {
+            "name":"welcome_beidou_title2",
+            "value":"[TS_1015585]_Edit your message"
+        },
+        {
+            "name":"welcome_beidou_title1",
+            "value":"[TS_1015587]_New message"
+        },
+        {
+            "name":"edit_text_max_number_tips",
+            "value":"[TS_1015500]_Message too long."
+        },
+        {
+            "name":"smc_frequent_questions",
+            "value":"[TS_1013997]_Tips"
+        },
+        {
+            "name":"start_beidou_message",
+            "value":"[TS_1015586]_Get started"
+        },
+        {
+            "name":"unavailable_tips_unregistered",
+            "value":"[TS_1013998]_BeiDou Satellite Messaging not activated (contact your carrier)"
+        },
+        {
+            "name":"unavailable_tips_no_valid_sim_card",
+            "value":"[TS_1013999]_Insert a China Mobile SIM"
+        },
+        {
+            "name":"smc_usage_guide_aid_text",
+            "value":"[TS_1014004]_Send SOS messages even when you don't have a cellular or WLAN connection."
+        },
+        {
+            "name":"unavailable_tips_authentication_invalidation",
+            "value":"[TS_1014002]_Authentication expired. Go to Settings > Satellite network > BeiDou Satellite Messaging, and turn the switch on again."
+        },
+        {
+            "name":"welcome_beidou_content1",
+            "value":"[TS_1015578]_You can use this service to send SOS messages via satellite if you're outside of WLAN and cellular coverage.\n"
+        },
+        {
+            "name":"welcome_beidou_content2_new",
+            "value":"[TS_1042173]_%s. In most cases, this service will only work properly in areas with no WLAN or cellular coverage."
+        },
+        {
+            "name":"welcome_beidou_content5",
+            "value":"[TS_1015581]_Each message can be sent to up to %s contacts. You can add your current location if you'd like to share it."
+        },
+        {
+            "name":"welcome_beidou_content6",
+            "value":"[TS_1015579]_Simply point your phone toward the BeiDou satellite as prompted. This works best in open outdoor areas."
+        },
+        {
+            "name":"welcome_beidou_content3",
+            "value":"[TS_1015580]_%s. This service is currently only available with China Mobile."
+        },
+        {
+            "name":"welcome_beidou_content4",
+            "value":"[TS_1015582]_Tap \"%s\" to create a new message."
+        },
+        {
+            "name":"send_character_prompt",
+            "value":"[TS_1015501]_Contacts' names count towards the character limit – so the more contacts you select, the fewer characters you can type in your message."
+        },
+        {
+            "name":"welcome_beidou_title",
+            "value":"[TS_1015588]_BeiDou Satellite Messaging"
+        },
+        {
+            "name":"share_device_info",
+            "value":"[TS_1016293]_Device information shared."
+        },
+        {
+            "name":"beidou_is_occupied",
+            "value":"[TS_1017303]_Service unavailable while MeeTime is using BeiDou."
+        },
+        {
+            "name":"welcome_beidou_title3",
+            "value":"[TS_1020338]_Sending/Receiving messages"
+        },
+        {
+            "name":"welcome_beidou_title4",
+            "value":"[TS_1020339]_Receive messages"
+        },
+        {
+            "name":"msg_note_smc",
+            "value":"[TS_1020919]_BeiDou message"
+        },
+        {
+            "name":"smc_rcv_notice",
+            "value":"[TS_1020915]_[Reply received]"
+        },
+        {
+            "name":"smc_send_notice",
+            "value":"[TS_1020917]_[Message sent]"
+        },
+        {
+            "name":"edit_text_not_support_emoji",
+            "value":"[TS_1020912]_BeiDou Satellite Messaging doesn't support emojis."
+        },
+        {
+            "name":"attachment_send_video",
+            "value":"[TS_1022279]_Sent a video"
+        },
+        {
+            "name":"chatbots_black_add",
+            "value":"[TS_1017881]_Add from Messaging"
+        },
+        {
+            "name":"chatbots_black_remove_button",
+            "value":"[TS_1017879]_Remove"
+        },
+        {
+            "name":"message_content_location_to_smc",
+            "value":"[TS_1019385]_This is required to send satellite messages."
+        },
+        {
+            "name":"smc_from_who",
+            "value":"[TS_1020914]_From: %1$s %2$s"
+        },
+        {
+            "name":"message_requires_access_to_location",
+            "value":"[TS_1017098]_Messaging requires the Location permission"
+        },
+        {
+            "name":"blocked_guide_title",
+            "value":"[TS_1021912]_Block unwanted messages"
+        },
+        {
+            "name":"beidou_insufficient_balance",
+            "value":"[TS_1020444]_Insufficient balance."
+        },
+        {
+            "name":"chatbots_black_remove_same_time",
+            "value":"[TS_1017875]_Restore messages"
+        },
+        {
+            "name":"message_requires_access_to_camear",
+            "value":"[TS_1017096]_Messaging requires the Camera permission"
+        },
+        {
+            "name":"smc_new_msg",
+            "value":"[TS_1020911]_New message"
+        },
+        {
+            "name":"smc_my_position",
+            "value":"[TS_1020921]_My location:\u0020"
+        },
+        {
+            "name":"welcome_beidou_content7",
+            "value":"[TS_1020337]_Tap on \"↓\" at the bottom to fetch replies."
+        },
+        {
+            "name":"attachment_video",
+            "value":"[TS_1022277]_[Video]"
+        },
+        {
+            "name":"smc_rcv_msg",
+            "value":"[TS_1020918]_Receive messages"
+        },
+        {
+            "name":"chatbots_black_list",
+            "value":"[TS_1017883]_Blocklist"
+        },
+        {
+            "name":"smc_send_no_reply",
+            "value":"[TS_1020922]_Message was sent, but no confirmation was received from the satellite."
+        },
+        {
+            "name":"smc_send_rcv_succ",
+            "value":"[TS_1020916]_Message was sent and confirmation was received from the satellite."
+        },
+        {
+            "name":"blocked_guide_text",
+            "value":"[TS_1021913]_You've received lots of spam messages recently. Adjust your message filters to block ads and other unwanted spam."
+        },
+        {
+            "name":"chatbots_black_add_button",
+            "value":"[TS_1017876]_Add"
+        },
+        {
+            "name":"smc_send_who",
+            "value":"[TS_1020913]_To: %1$s %2$s"
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":"[TS_1017877]_This number will no longer be blocked."
+        },
+        {
+            "name":"smc_quota_query_error",
+            "value":"[TS_1014007]_No network connection. Unable to check quota. Try again the next time you have an Internet connection."
+        },
+        {
+            "name":"beidou_seeking_timeout",
+            "value":"[TS_1017304]_Unable to get location. Move to an unobstructed outdoor area and try again."
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS_NAME",
+            "value":"[TS_1017097]_This is required to scan QR codes and upload images on certain webpages."
+        },
+        {
+            "name":"smc_usage_guide",
+            "value":"[TS_1014001]_Quick guide"
+        },
+        {
+            "name":"smc_send_fail",
+            "value":"[TS_1020920]_Send failed"
+        },
+        {
+            "name":"GET_LOCATION_NAME",
+            "value":"[TS_1017099]_This is used to access your precise location."
+        },
+        {
+            "name":"beidou_sms",
+            "value":"[TS_1014005]_BeiDou Satellite Messaging"
+        },
+        {
+            "name":"explain",
+            "value":"[TS_1015584]_Note:"
+        },
+        {
+            "name":"smc_quota_exhausted",
+            "value":"[TS_1014003]_Unable to send BeiDou satellite messages. You have no more free messages left this month. The limit will be reset at the start of next month."
+        },
+        {
+            "name":"smc_item_is_sent_insufficient",
+            "value":"[TS_1025108]_- Message sent but not delivered (Insufficient quota)"
+        },
+        {
+            "name":"deeplink_obtain_device_information_details",
+            "value":"[TS_1023723]_This includes device manufacturer, model, software version, and battery level."
+        },
+        {
+            "name":"deeplink_obtain_geographical_location",
+            "value":"[TS_1023725]_Allow %1$s to access your device's location?"
+        },
+        {
+            "name":"deeplink_obtain_device_information",
+            "value":"[TS_1023717]_Allow %1$s to access information about your device?"
+        },
+        {
+            "name":"no_tips_again",
+            "value":"[TS_1023721]_Don't show again"
+        },
+        {
+            "name":"national_fraud_mms",
+            "value":"[TS_1024841]_Fraud risk"
+        },
+        {
+            "name":"fraud_session",
+            "value":"[TS_1024840]_Suspected scam"
+        },
+        {
+            "name":"fraud_mms",
+            "value":"[TS_1024842]_High scam risk"
+        },
+        {
+            "name":"cactus_map_no_location",
+            "value":"[TS_1020955]_No additional location information"
+        },
+        {
+            "name":"cactus_map_no_network",
+            "value":"[TS_1020956]_Details shown when network is restored"
+        },
+        {
+            "name":"smc_not_supported_split_tips",
+            "value":"[TS_1033360]_Satellite communications are only available in full screen view."
+        },
+        {
+            "name":"cactus_map_no_permission",
+            "value":"[TS_1020954]_To view location details, touch to grant location access"
+        },
+        {
+            "name":"smc_not_supported_floating_tips",
+            "value":"[TS_1025647]_Satellite communications are only available in full screen view."
+        },
+        {
+            "name":"smc_exit_star_search_tips",
+            "value":"[TS_1036958]_Tap again to exit."
+        },
+        {
+            "name":"beidou_sms_tips",
+            "value":"[TS_1038643]_Tips"
+        },
+        {
+            "name":"message_speech_broadcast",
+            "value":"[TS_1045095]_Read messages aloud"
+        },
+        {
+            "name":"message_speech_broadcast_tips",
+            "value":"[TS_1045093]_You've received a message"
+        },
+        {
+            "name":"cancel_button_double_click_operation",
+            "value":"[TS_1044182]_Cancel button, double tap to activate"
+        },
+        {
+            "name":"Saved_to_folders",
+            "value":"[TS_1050133]_Attachment saved to %s. Please keep it secure."
+        },
+        {
+            "name":"msg_preview_picture",
+            "value":"[TS_1048063]_Preview image"
+        },
+        {
+            "name":"search_content_cannot_be_empty",
+            "value":"[TS_1052990]_Cannot be left blank."
+        },
+        {
+            "name":"ai_face_change_detect_content",
+            "value":"[TS_1043217]_Image may be AI-generated"
+        },
+        {
+            "name":"msg_view_contacts_mms",
+            "value":"[TS_1054609]_View contact"
+        },
+        {
+            "name":"switch_to_shortcut_menu",
+            "value":"[TS_1042279]_Back to shortcut menu"
+        },
+        {
+            "name":"calling_Alert",
+            "value":"[TS_1061671]_Unable to start call. A call is already in progress."
+        },
+        {
+            "name":"message_speech_broadcast_title",
+            "value":"[TS_1057065]_When this is on, the contents of incoming messages and the name of the sender will be read aloud."
+        },
+        {
+            "name":"double_click_cancle",
+            "value":"[TS_1063337]_Double tap to cancel"
+        },
+        {
+            "name":"double_click_select",
+            "value":"[TS_1063338]_Double tap to select"
+        },
+        {
+            "name":"rcs_chatbot_setting_description_head",
+            "value":"[TS_1065125]_Turning on Advanced Messaging automatically enables chatbots. You can access chatbots from the Messaging home screen."
+        },
+        {
+            "name":"rcs_chatbot_setting_description",
+            "value":"[TS_1065124]_Show the Chatbots option on the Messaging home screen."
+        },
+        {
+            "name":"creat_new_conversation_receive_deleted",
+            "value":"[TS_1063726]_Removed the contact named %s"
+        },
+        {
+            "name":"msg_pin",
+            "value":"[TS_1073191]_Pin"
+        },
+        {
+            "name":"unpin_button",
+            "value":"[TS_1073192]_Unpin, button"
+        },
+        {
+            "name":"pin_button",
+            "value":"[TS_1073193]_Pin, button"
+        },
+        {
+            "name":"msg_unpin",
+            "value":"[TS_1073190]_Unpin"
+        },
+        {
+            "name":"un_read_button",
+            "value":"[TS_1075327]_Mark as unread, button"
+        },
+        {
+            "name":"un_read",
+            "value":"[TS_1075326]_Mark as unread"
+        },
+        {
+            "name":"set_read_button",
+            "value":"[TS_1075325]_Mark as read, button"
+        },
+        {
+            "name":"read",
+            "value":"[TS_1075324]_Mark as read"
+        },
+        {
+            "name":"screen_read_msg_unpin",
+            "value":"[TS_1083672]_Unpinned"
+        },
+        {
+            "name":"screen_read_msg_pin",
+            "value":"[TS_1083671]_Pinned"
+        },
+        {
+            "name":"notification_mute_exit_tip_content",
+            "value":"[TS_1085850]_The number of incoming messages containing verification codes seems to have returned to normal. Notifications will no longer be silenced."
+        },
+        {
+            "name":"notification_mute_dialog_exit",
+            "value":"[TS_1085844]_OK"
+        },
+        {
+            "name":"notification_mute_exit",
+            "value":"[TS_1085845]_Restore notifications"
+        },
+        {
+            "name":"notification_mute_exit_content_one_card",
+            "value":"[TS_1086013]_The number of incoming messages containing verification codes on SIM %d seems to have returned to normal. Notifications will no longer be silenced."
+        },
+        {
+            "name":"notification_mute_dialog_title",
+            "value":"[TS_1085841]_Restore verification code notifications?"
+        },
+        {
+            "name":"msg_switch_to_message",
+            "value":"[TS_1086228]_Switch to message sending"
+        },
+        {
+            "name":"notification_mute_content_one_card_esim",
+            "value":"[TS_1123924]_You've received a large number of SMS verification codes in a very short space of time on eSIM %d. This could be a form of harassment. For your safety, notifications for this kind of message have been temporarily silenced."
+        },
+        {
+            "name":"notification_mute_exit_content_one_card_esim",
+            "value":"[TS_1123923]_The number of incoming messages containing verification codes on eSIM %d seems to have returned to normal. Notifications will no longer be silenced."
+        },
+        {
+            "name":"notification_mute_content_one_card",
+            "value":"[TS_1086015]_You've received a large number of SMS verification codes in a very short space of time on SIM %d. This could be a form of harassment. For your safety, notifications for this kind of message have been temporarily silenced."
+        },
+        {
+            "name":"notification_mute_exit_title",
+            "value":"[TS_1085839]_Verification code notifications restored"
+        },
+        {
+            "name":"notification_mute_content_two_card",
+            "value":"[TS_1086014]_You've received a large number of SMS verification codes in a very short space of time on SIM %1$d/SIM %2$d. This could be a form of harassment. For your safety, notifications for this kind of message have been temporarily silenced."
+        },
+        {
+            "name":"msg_validated",
+            "value":"[TS_1086230]_Authenticated"
+        },
+        {
+            "name":"notification_mute_title",
+            "value":"[TS_1085849]_Verification code notifications silenced"
+        },
+        {
+            "name":"msg_switch_to_menu",
+            "value":"[TS_1086229]_Show menu"
+        },
+        {
+            "name":"notification_mute_content_new",
+            "value":"[TS_1085840]_You've received a large number of SMS verification codes in a very short space of time. This could be a form of harassment. For your safety, notifications for this kind of message have been temporarily silenced."
+        },
+        {
+            "name":"notification_mute_dialog_content",
+            "value":"[TS_1085848]_Once restored, you'll be notified as usual when receiving messages that contain verification codes. Notifications won't be silenced again for the next %s minutes."
+        },
+        {
+            "name":"msg_star_saved",
+            "value":"[TS_1090704]_Add to favorites"
+        },
+        {
+            "name":"chatbot_setting_entrence",
+            "value":"[TS_1084913]_Settings"
+        },
+        {
+            "name":"chatbot_setting_notice_body",
+            "value":"[TS_1084914]_From the Messaging app's home screen, tap the More icon in the top right, then go to Settings > Advanced Messaging, and turn \"Chatbots\" on or off."
+        },
+        {
+            "name":"chatbot_setting_notice_title",
+            "value":"[TS_1084912]_How do I turn chatbots on/off?"
+        },
+        {
+            "name":"msg_star_remove",
+            "value":"[TS_1090705]_Remove from favorites"
+        },
+        {
+            "name":"chatbot_setting_notice_go_setting",
+            "value":"[TS_1084911]_Go to Settings"
+        },
+        {
+            "name":"press_speak_access",
+            "value":"[TS_1090161]_Double tap and hold to enable voice input. Swipe up to cancel, or swipe down to continue."
+        },
+        {
+            "name":"attachment_replace_dialog_tip",
+            "value":"[TS_1081317]_Replace content?"
+        },
+        {
+            "name":"attachment_replace_tip",
+            "value":"[TS_1088227]_Note"
+        },
+        {
+            "name":"text",
+            "value":"[TS_852802]_Text"
+        },
+        {
+            "name":"mms_vCard",
+            "value":"[TS_1081318]_MMS vCard"
+        },
+        {
+            "name":"penglai_not_support_action",
+            "value":"[TS_1084006]_Unable to do this in Penglai mode."
+        },
+        {
+            "name":"split_screen_prompt",
+            "value":"[TS_1093828]_Expand the app window and try again."
+        },
+        {
+            "name":"view_vCard_details",
+            "value":"[TS_1095142]_View vCard details"
+        },
+        {
+            "name":"penglai_limit_function",
+            "value":"[TS_1084005]_Some options are not available in Expedition mode."
+        },
+        {
+            "name":"penglai_not_support_message",
+            "value":"[TS_1084007]_This type of message can't be viewed in Penglai mode."
+        },
+        {
+            "name":"vcard_hometel",
+            "value":"[TS_1099453]_Home phone"
+        },
+        {
+            "name":"vcard_othertel",
+            "value":"[TS_1099452]_Other phone"
+        },
+        {
+            "name":"vcard_worktel",
+            "value":"[TS_1099454]_Work phone"
+        },
+        {
+            "name":"msg_attachments",
+            "value":"[TS_1098005]_Attachment"
+        },
+        {
+            "name":"msg_attachments_deleted",
+            "value":"[TS_1098004]_Deleted"
+        },
+        {
+            "name":"vcard_nickname",
+            "value":"[TS_1108759]_Nickname"
+        },
+        {
+            "name":"vcard_workemail",
+            "value":"[TS_1108760]_Work email"
+        },
+        {
+            "name":"vcard_workaddress",
+            "value":"[TS_1108757]_Work address"
+        },
+        {
+            "name":"vcard_homeaddress",
+            "value":"[TS_1108762]_Home address"
+        },
+        {
+            "name":"vcard_othermail",
+            "value":"[TS_1108764]_Other email"
+        },
+        {
+            "name":"vcard_title",
+            "value":"[TS_1108766]_Title"
+        },
+        {
+            "name":"double_click_operation",
+            "value":"[TS_1104700]_Double tap to activate."
+        },
+        {
+            "name":"websiteLabelsGroup",
+            "value":"[TS_1108763]_Website"
+        },
+        {
+            "name":"label_notes",
+            "value":"[TS_1108758]_Notes"
+        },
+        {
+            "name":"vcard_personalemail",
+            "value":"[TS_1108761]_Personal email"
+        },
+        {
+            "name":"vcard_otheraddress",
+            "value":"[TS_1108767]_Other address"
+        },
+        {
+            "name":"vcard_organisation",
+            "value":"[TS_1108768]_Organization"
+        },
+        {
+            "name":"vcard_birthday",
+            "value":"[TS_1108765]_Birthday"
+        },
+        {
+            "name":"attachment_add_failed",
+            "value":"[TS_1101142]_Max supported image resolution is %s."
+        },
+        {
+            "name":"unsupported_hyacinth_card_content",
+            "value":"[TS_1101043]_Unable to send messages during Hyacinth satellite calls."
+        },
+        {
+            "name":"hyacinth_message",
+            "value":"[TS_1101042]_Hyacinth satellite message"
+        },
+        {
+            "name":"hyacinth_prop",
+            "value":"[TS_1101041]_This location was obtained when you connected to the Hyacinth satellite. To update it, please reconnect.\n\nNote: Location info counts toward the message's character limit."
+        },
+        {
+            "name":"sms_center_with_prefix",
+            "value":"[TS_1105217]_%s SMS center"
+        },
+        {
+            "name":"long_press_speak",
+            "value":"[TS_1108954]_Double tap and hold to enable voice input"
+        },
+        {
+            "name":"msg_select_all_done",
+            "value":"[TS_1108952]_All items selected"
+        },
+        {
+            "name":"msg_deselect_all_done",
+            "value":"[TS_1108953]_All items deselected"
+        },
+        {
+            "name":"has_new_message",
+            "value":"[TS_1114431]_There are new messages"
+        },
+        {
+            "name":"user_lock_message_title",
+            "value":"[TS_1119068]_You have a new message"
+        },
+        {
+            "name":"user_lock_message_content",
+            "value":"[TS_1119067]_Open messaging app to view"
+        },
+        {
+            "name":"screen_read_read",
+            "value":"[TS_1119889]_Marked as read"
+        },
+        {
+            "name":"screen_read_unread",
+            "value":"[TS_1119888]_Marked as unread"
+        },
+        {
+            "name":"enabled_notification",
+            "value":"[TS_1125499]_Notifications enabled."
+        },
+        {
+            "name":"enable_notification_dialog_not_allowed",
+            "value":"[TS_1125496]_Deny"
+        },
+        {
+            "name":"enable_notification_dialog_title",
+            "value":"[TS_1125500]_Allow Messaging to send you notifications?"
+        },
+        {
+            "name":"enable_notification_dialog_allowed",
+            "value":"[TS_1125498]_Allow"
+        },
+        {
+            "name":"enable_notification_dialog_content",
+            "value":"[TS_1125497]_To avoid missing important messages, allow Messaging to send you notifications."
+        },
+        {
+            "name":"select_esim",
+            "value":"[TS_1126176]_Select SIM, eSIM %d, button"
+        },
+        {
+            "name":"forward_dialog_forward_esim",
+            "value":"[TS_1126024]_Send (eSIM %d)"
+        },
+        {
+            "name":"switched_input_box",
+            "value":"[TS_1126984]_Switched to text input"
+        },
+        {
+            "name":"switched_to_shortcut_menu",
+            "value":"[TS_1126983]_Switched to shortcut menu"
+        },
+        {
+            "name":"not_support_toast",
+            "value":"[TS_1137894]_This operation is not supported in this mode."
+        },
+        {
+            "name":"help_and_feedback",
+            "value":"[TS_1133114]_Help and feedback."
+        },
+        {
+            "name":"chatbot_rich_media_card_in_conversation_list",
+            "value":"[TS_1120775]_Sent you a rich card message."
+        },
+        {
+            "name":"hint_long_clickable",
+            "value":"[TS_1138830]_Double-tap and hold to bring up more options"
+        },
+        {
+            "name":"hint_inline_links",
+            "value":"[TS_1138831]_This screen contains selectable text. Use the extract links feature in the quick menu to access."
+        },
+        {
+            "name":"mms_empty_content",
+            "value":"[TS_1137648]_mms content is empty"
+        }
+    ]
+}

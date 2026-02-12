@@ -1,0 +1,17 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"
+    ]
+  },
+  "development": {
+    "addedSysCaps": [
+      "SystemCapability.Security.AntifraudDetect"
+    ]
+  },
+  "production": {
+    "addedSysCaps": [],
+    "removedSysCaps": []
+  }
+}

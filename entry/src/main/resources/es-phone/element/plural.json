@@ -1,0 +1,16 @@
+{
+    "plural":[
+        {
+            "name":"chatbots_black_remove",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Estos números ya no estarán filtrados.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

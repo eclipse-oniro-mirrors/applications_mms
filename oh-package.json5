@@ -1,12 +1,19 @@
 {
-  "modelVersion": "5.0.1",
+  "modelVersion": "6.0.0",
+  "name": "mms",
+  "version": "1.0.0",
+  "description": "mms describe.",
+  "main": "",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@ohos/hypium": "1.0.6"
+    "@ohos/hypium": "1.0.19"
   },
-  "name": "mms",
-  "description": "example description",
-  "repository": {},
-  "version": "1.0.0",
-  "dependencies": {}
+  "dynamicDependencies": {},
+  "overrides": {
+    "long": "5.2.3"
+  },
+  "dependencies": {
+    "class-transformer": "0.5.1"
+  }
 }
