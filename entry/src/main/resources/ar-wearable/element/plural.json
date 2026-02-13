@@ -1,0 +1,51 @@
+{
+    "plural":[
+        {
+            "name":"msg_delete_dialog_tip2",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"حذف محادثة واحدة؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"حذف %d محادثة؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"حذف %d محادثات؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"حذف %d محادثات؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"حذف %d محادثة؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"حذف محادثتين؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

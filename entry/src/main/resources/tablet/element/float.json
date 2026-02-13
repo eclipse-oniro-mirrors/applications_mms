@@ -47,6 +47,18 @@
     {
       "name": "menu_layout_padding_right",
       "value": "90vp"
+    },
+    {
+      "name": "privacy_state_setting_network",
+      "value": "40vp"
+    },
+    {
+      "name": "permissions_ic_message_width",
+      "value": "32vp"
+    },
+    {
+      "name": "permissions_ic_message_height",
+      "value": "32vp"
     }
   ]
 }

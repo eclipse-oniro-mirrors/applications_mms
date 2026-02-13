@@ -1,12 +1,11 @@
 {
   "src": [
     "pages/index",
-    "pages/conversation/conversation",
+    "pages/privacy/privacyStateMiddle",
     "pages/infomsg/InfoMsg",
-    "pages/settings/settings",
-    "pages/settings/advancedSettings/advancedSettings",
-    "pages/settings/ringtoneSettings/ringtoneSettings",
-    "pages/queryreport/queryReport",
-    "pages/transmitmsg/transmitMsg"
+    "pages/privacy/privacyIndex",
+    "pages/DeskDialog",
+    "pages/lowMemoryCamera/LowMemoryCamera",
+    "pages/lowMemoryCamera/LowMemoryPhotoPreview"
   ]
 }

@@ -1,0 +1,70 @@
+{
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "700000",
+    "bundle-name": "com.ohos.mms",
+    "module-name": "entry_test",
+    "shell-timeout": "3600000",
+    "testcase-timeout": 300000,
+    "compile-mode": "esmodule",
+    "coverage": true,
+    "package-tool-path": "D:\\Local\\coverage2.0\\node_modules\\@ohos\\coverage"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "Mms.hap",
+        "MmsTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "param set persist.usb.setting.gadget_conn_prompt false",
+        "reboot",
+        "wait 5",
+        "power-shell wakeup",
+        "uinput -T -m 540 1752 540 751 500",
+        "power-shell timeout -o 1800000",
+        "power-shell setmode 602",
+        "uinput -T -g 853 20 853 665",
+        "uinput -T -c 798 1564",
+        "uinput -T -c 1246 1730"
+      ],
+      "teardown-command": [
+        "power-shell setmode 600"
+      ]
+    },
+    {
+      "type": "CommandKit",
+      "shell": [
+        {
+          "name": "shell",
+          "value": "mount -o remount,rw /"
+        },
+        {
+          "name": "push",
+          "value": "Mms.hap->/system/app/Mms/"
+        },
+        {
+          "name": "shell",
+          "value": "bm install -p /system/app/Mms/Mms.hap"
+        },
+        {
+          "name": "reboot",
+          "value": ""
+        },
+        {
+          "name": "push",
+          "value": "MmsTest.hap-> /data/local/tmp/"
+        },
+        {
+          "name": "shell",
+          "value": "bm install -p /data/local/tmp/MmsTest.hap"
+        }
+      ]
+    }
+  ]
+}

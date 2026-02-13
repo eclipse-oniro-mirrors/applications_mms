@@ -13,12 +13,22 @@
  * limitations under the License.
  */
 
+class savedImageInfoType {
+    filePath: string = '';
+}
 
-var savedImageInfo = {
+let savedImageInfo: savedImageInfoType = {
     filePath: ''
 };
 
-var pictureListFromGallery = [
+class pictureListFromGalleryType {
+    path: string = '';
+    checkedValue: boolean = false;
+    fileSize: number = 0;
+    type: number = 0;
+}
+
+let pictureListFromGallery: Array<pictureListFromGalleryType> = [
     {
         path: '/common/icon/add.png',
         checkedValue: false,

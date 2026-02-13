@@ -2,56 +2,460 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntry": "./ets/Application/MyAbilityStage.ts",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ets",
     "description": "$string:entry_description",
     "mainElement": "com.ohos.mms.MainAbility",
     "deviceTypes": [
-      "default"
+      "default",
+      "tablet"
     ],
+    "querySchemes": [
+      "wallet",
+      "theme",
+      'hicloud',
+      "himovie",
+      "intelligent",
+      "music",
+      "read",
+      "browser",
+      "gamecenter",
+      "appmarket",
+      "hiskytone",
+      "vassistant",
+      "scheme",
+      "health",
+      "petallitegames"
+    ],
+    "compressNativeLibs": true, //标识libs库以压缩存储方式打包
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    "routerMap": "$profile:route_map",
     "metadata": [
       {
+        "name": "license_file_path",
+        "value": "/system/etc/noticeFile/Mms_OpenSource.html"
+      },
+      {
+        "name": "rcs_enhance_statement",
+        "value": "rawfile:rcs_enhance_statement.json"
+      },
+      {
         "name": "ArkTSPartialUpdate",
+        "value": "true"
+      },
+      {
+        "name": "client_id",
+        "value": "109683193"
+      },
+      {
+        "name": "action.settings.app.can_not_disable",
         "value": "true"
       }
     ],
     "abilities": [
       {
         "name": "com.ohos.mms.MainAbility",
-        "srcEntry": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ets",
+        "minWindowWidth": 794,
+        "minWindowHeight": 595,
         "description": "$string:mainability_description",
-        "icon": "$media:smsmms",
+        "icon": "$media:messages",
         "label": "$string:messages",
-        "startWindowIcon": "$media:smsmms",
+        "startWindowIcon": "$media:starting_window",
         "startWindowBackground": "$color:detail_main_background",
         "visible": true,
+        "orientation": "follow_desktop",
+        "supportWindowMode": [
+          "fullscreen",
+          "split",
+          "floating"
+        ],
         "skills": [
           {
             "entities": [
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home"
+              "action.system.home",
+              "ohos.want.action.sendData"
+            ],
+            "uris": [
+              {
+                "utd": "general.plain-text",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              //image
+              {
+                "utd": "general.jpeg",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "com.microsoft.bmp",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.gif",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.png",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.heic",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.heif",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              //audio
+              {
+                "utd": "general.mp3",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.m4a",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.mp2",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.flac",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.aac",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "com.microsoft.waveform-audio",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.mpeg-4-audio",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              //video
+              {
+                "utd": "general.mpeg-4",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "org.matroska.mkv",
+                "scheme": "file",
+                "maxFileSupported": 1
+              },
+              {
+                "utd": "general.vcard",
+                "scheme": "file",
+                "maxFileSupported": 1
+              }
+            ]
+          },
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                "scheme": "sms"
+              },
+              {
+                "scheme": "smsto"
+              }
+            ]
+          }
+        ],
+        "metadata": [
+          {
+            "name": "ohos.ability.shortcuts",
+            "resource": "$profile:shortcuts_config"
+          }
+        ]
+      },
+      {
+        "name": "PushMessageAbility",
+        "srcEntry": "./ets/PushAbility/PushMessageAbility.ets",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": false,
+        "skills": [
+          {
+            "actions": [
+              "action.ohos.push.listener"
             ]
           }
         ]
       }
     ],
-    "extensionAbilities": [{
-      "description": "subscriber",
-      "icon": "$media:smsmms",
-      "metadata": [{
-        "name": "ohos.extension.staticSubscriber",
-        "resource": "$profile:static_subscriber_config"
-      }],
-      "name": "Subscriber",
-      "srcEntrance": "./ets/StaticSubscriber/MmsStaticSubscriber.ts",
-      "type": "staticSubscriber",
-      "visible": true
-    }],
+    "extensionAbilities": [
+      {
+        "description": "subscriber",
+        "icon": "$media:smsmms",
+        "metadata": [
+          {
+            "name": "ohos.extension.staticSubscriber",
+            "resource": "$profile:static_subscriber_config"
+          }
+        ],
+        "name": "Subscriber",
+        "srcEntrance": "./ets/StaticSubscriber/MmsStaticSubscriber.ets",
+        "type": "staticSubscriber",
+        "visible": true,
+        "permissions": [
+          "ohos.permission.RECEIVE_SMS",
+          "ohos.permission.START_SYSTEM_DIALOG",
+        ]
+      },
+      {
+        "description": "SmsRdbStoreChangedSubscriber",
+        "icon": "$media:smsmms",
+        "metadata": [
+          {
+            "name": "ohos.extension.staticSubscriber",
+            "resource": "$profile:static_subscriber_config"
+          }
+        ],
+        "name": "SmsRdbStoreChangedSubscriber",
+        "srcEntrance": "./ets/StaticSubscriber/SmsRdbStoreChangedSubscriber.ets",
+        "type": "staticSubscriber",
+        "visible": true,
+        "permissions": [
+          "ohos.permission.READ_MESSAGES",
+        ]
+      },
+      {
+        "name": "BackupExtensionAbility",
+        "srcEntrance": "./ets/backup/BackupExtension.ets",
+        "description": "$string:backup_restore",
+        "label": "$string:backup_restore",
+        "type": "backup",
+        "visible": true,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+        "permissions": [
+          "ohos.permission.READ_MESSAGES"
+        ]
+      },
+      {
+        "name": "BlockedListExtAbility",
+        "description": "blocked msg list",
+        "srcEntry": "./ets/uiExtensionAbility/BlockedListExtAbility.ets",
+        "type": 'sys/commonUI',
+        "exported": true,
+        "permissions": [
+          "ohos.permission.READ_MESSAGES"
+        ]
+      },
+      {
+        "name": "MmsUriGrantServiceExtAbility",//影响应用运行
+        "srcEntry": "./ets/ServiceExtension/servers/MmsUriGrantServiceExtAbility.ets",
+        "type": "service",
+        "exported": true,
+        "description": "service",
+        "permissions": [
+          "ohos.permission.PROXY_MESSAGE_AUTH"
+        ]
+      },
+      {
+        "name": "MmsContactServiceExtAbility",//影响应用运行
+        "srcEntry": "./ets/ServiceExtension/servers/MmsContactServiceExtAbility.ets",
+        "type": 'service',
+        "exported": true,
+        "description": "service",
+        "permissions": [
+          "ohos.permission.GET_TELEPHONY_STATE"
+        ]
+      },
+      {
+        "name": "ServiceExtAbility",//影响应用运行
+        "srcEntry": "./ets/StaticSubscriber/ServiceExtAbility.ets",
+        "type": "service",
+        "exported": false,
+        "description": "service",
+        "permissions": [
+          "ohos.permission.READ_MESSAGES"
+        ]
+      },
+      {
+        "name": "DeskDialogAbility",//影响应用运行
+        "srcEntry": "./ets/flashMessage/DeskDialogAbility.ets",
+        "type": "service",
+        "exported": false,
+        "description": "service",
+        "permissions": [
+          "ohos.permission.START_SYSTEM_DIALOG"
+        ]
+      },
+      {
+        "name": "DeskDialogExtensionAbility",
+        "srcEntry": "./ets/flashMessage/DeskDialogExtensionAbility.ets",
+        "description": "UIExtensionProvider",
+        "exported": true,
+        "type": "sysDialog/common",
+        "icon": "$media:icon",
+        "permissions": [
+          "ohos.permission.READ_MESSAGES"
+        ]
+      },
+      {
+        "name": "OobeStatementAbilityPrivacy",//222
+        "srcEntry": "./ets/oobe/OobeStatementAbilityPrivacy.ets",
+        "description": "OobeStatementAbility",
+        "exported": true,
+        "type": "sys/commonUI",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.access.business_and_privacy_statement"
+            ]
+          }
+        ],
+        "metadata": [
+          {
+            "name": "metadata.access.number_identity.privacy_statement",
+            "value": "privacy_statement.json"
+          },
+          {
+            "name": "metadata.access.business_and_privacy_statement",
+            "value": "satellite_privacy_statement.json"
+          }
+        ],
+        "permissions": [
+          "ohos.permission.SET_TELEPHONY_STATE"
+        ]
+      },
+      {
+        "name": "PrivacyAbility",
+        "srcEntry": "./ets/PrivacyAbility/PrivacyAbility.ets",
+        "description": "privacyAbility",
+        "icon": "$media:smsmms",
+        "label": "$string:app_name",
+        "type": "sys/commonUI",
+        "exported": true,
+        "permissions": [
+          "ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER"
+        ],
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.access.business_and_privacy_statement",
+            ],
+          }
+        ],
+        "metadata": [
+          {
+            "name": "metadata.access.business_and_privacy_statement",
+            "value": 'data_privacy_center.json'
+          },
+        ]
+      },
+      {
+        "name": "MmsReporterWorkSchedulerAbility",
+        "srcEntry": "./ets/utils/MmsDot/workScheduler.ets",
+        "description": "MmsWorkSchedulerExtension",
+        "type": "workScheduler",
+        "exported": false
+      },
+      {
+        "name": "VerCardUsedServiceExtAbility",//影响应用运行
+        "srcEntry": "./ets/ServiceExtension/servers/VerCardUsedServiceExtAbility.ets",
+        "type": "service",
+        "exported": true,
+        "description": "service",
+        "permissions": [
+          "ohos.permission.INPUT_KEYBOARD_CONTROLLER"
+        ]
+      }
+    ],
     "requestPermissions": [
+      {
+        "name": "ohos.permission.PRELOAD_UI_EXTENSION_ABILITY",
+        "reason": "$string:permission_settings",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.MANAGE_SETTINGS",
+        "reason": "$string:permission_settings",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.ACCESS_SEARCH_SERVICE",
+        "reason": "$string:permission_search_control",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_CONTACTS",
+        "reason": "$string:permission_read_write_contacts",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.hsdr.REQUEST_HSDR",
+      },
+      {
+        "name": "ohos.permission.PERMISSION_USED_STATS",
+      },
+      {
+        "name": "ohos.permission.LAUNCH_SPAMSHIELD_PAGE"
+      },
+      {
+        "name": "ohos.permission.ACCESS_SPAMSHIELD_SERVICE"
+      },
+      {
+        "name": "ohos.permission.MANAGE_SECURE_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.VIBRATE"
+      },
       {
         "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
         "reason": "$string:bundle_info_privileged"
@@ -59,17 +463,29 @@
       {
         "name": "ohos.permission.READ_CONTACTS",
         "reason": "$string:permission_read_write_contacts",
-        "usedScene": {}
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.READ_MESSAGES",
         "reason": "$string:permission_read_write_messages",
-        "usedScene": {}
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.SEND_MESSAGES",
         "reason": "$string:permission_send_messages",
-        "usedScene": {}
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.SET_TELEPHONY_STATE",
@@ -82,7 +498,11 @@
       {
         "name": "ohos.permission.RECEIVE_SMS",
         "reason": "$string:permission_receive_message_service",
-        "usedScene": {}
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.PLACE_CALL",
@@ -93,7 +513,77 @@
         "reason": "$string:permission_notification_controller"
       },
       {
-        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_INFO"
+      },
+      {
+        "name": "ohos.permission.START_SYSTEM_DIALOG"
+      },
+      {
+        "name": "ohos.permission.RECEIVE_MMS",
+        "reason": "$string:permission_receive_mms",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.READ_CALL_LOG",
+        "reason": "$string:permission_read_call_log",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:open_microphone_permission_info",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ]
+        }
+      },
+      {
+        "name" : "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.LAUNCH_DATA_PRIVACY_CENTER"
+      },
+      {
+        "name": "ohos.permission.securityguard.REPORT_SECURITY_INFO"
+      },
+      {
+        "name": "ohos.permission.ANTIFRAUD_DETECT"
+      },
+      {
+        "name": "ohos.permission.ANTIFRAUD_PICTURE_DETECT"
+      },
+      {
+        "name": "ohos.permission.CALLED_BELOW_LOCK_SCREEN"
+      },
+      {
+        "name": "ohos.permission.PROTECT_SCREEN_LOCK_DATA"
+      },
+      {
+        "name": "ohos.permission.READ_APP_LOCK"
+      },
+      {
+        "name": "ohos.permission.ACCESS_HIVIEWCARE"
+      }
+    ],
+    "dependencies": [
+      {
+        "bundleName": "com.ohos.photobrowser",
+        "moduleName": "browserlibrary",
+        "versionCode": 100024
       }
     ]
   }

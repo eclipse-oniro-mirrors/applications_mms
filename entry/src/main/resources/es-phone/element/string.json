@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"notification_mute_exit_content_one_card",
+            "value":"La cantidad de mensajes entrantes con \u200bcódigos de verificación en la SIM %d parece haber vuelto a la normalidad. Las notificaciones ya no se silenciarán.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbotNoLocal",
+            "value":"No hay contenido",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_rcv_msg",
+            "value":"Recibir mensajes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fraud_mms",
+            "value":"Riesgo alto de estafa",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

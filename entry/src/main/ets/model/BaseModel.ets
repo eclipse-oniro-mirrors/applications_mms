@@ -13,18 +13,28 @@
  * limitations under the License.
  */
 import LooseObject from '../data/LooseObject';
+import { ConversationListInfo } from './conversationlist/ConversationListInfo';
+import ConversationListResponse from './conversationlist/ConversationListResponse';
 
 export default class BaseModel {
-  public encapsulateReturnResult(code, abilityResult): LooseObject {
+  public encapsulateReturnResult(code: number, abilityResult: string | number | LooseObject): LooseObject {
     let result: LooseObject = {};
     result.code = code;
     result.abilityResult = abilityResult;
     return result;
   }
 
-  public encapsulateReturnCode(code): LooseObject {
+  public encapsulateReturnCode(code: number): LooseObject {
     let result: LooseObject = {};
     result.code = code;
     return result;
   }
+  public buildSessionReturnResult(code: number, resultList: Array<ConversationListInfo>): ConversationListResponse{
+    return  new ConversationListResponse(code, resultList);
+  }
+}
+
+export interface ReturnResult<T> {
+  code: number;
+  abilityResult?: T;
 }

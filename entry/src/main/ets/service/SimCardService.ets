@@ -14,24 +14,45 @@
  */
 
 import emitter from '@ohos.events.emitter';
+import LooseObject from '../data/LooseObject';
 import cardModel from '../model/CardModel'
 import HiLog from '../utils/HiLog';
+import commonEventManager from '@ohos.commonEventManager';
+import EmitterConstant from '../data/EmitterConstant';
 
 const TAG: string = 'SimCardService';
 
 class SimCardService {
-  public SIM_STATE_CHANGE_EVENT: emitter.InnerEvent = cardModel.SIM_STATE_CHANGE_EVENT;
-  public SLOTID_CHANGE_EVENT: emitter.InnerEvent = cardModel.SLOTID_CHANGE_EVENT;
+  public SIM_STATE_CHANGE_EVENT: emitter.InnerEvent = {
+    eventId: EmitterConstant.EVENT_SIM_STATE_CHANGE,
+    priority: emitter.EventPriority.HIGH
+  }
+  public SLOTID_CHANGE_EVENT: emitter.InnerEvent = {
+    eventId: EmitterConstant.EVENT_SLOTID_CHANGE,
+    priority: emitter.EventPriority.HIGH
+  }
 
-  public init(): void {
-    cardModel.init();
+  public init(ctx: Context): void {
+    if (!cardModel) {
+      HiLog.e(TAG, 'cardModel is null');
+      return;
+    }
+    cardModel.init(ctx);
   }
 
   public deInit(): void {
+    if (!cardModel) {
+      HiLog.e(TAG, 'cardModel is null');
+      return;
+    }
     cardModel.deInit();
   }
 
   public isSimReady(slotId: number): boolean {
+    if (!cardModel) {
+      HiLog.e(TAG, 'cardModel is null');
+      return false;
+    }
     return cardModel.isSimReady(slotId);
   }
 }

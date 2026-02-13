@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"not_support_toast",
+            "value":"Bu işlem, bu modda desteklenmiyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

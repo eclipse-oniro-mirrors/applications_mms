@@ -1,0 +1,6 @@
+{
+  "mainTitleResource": "$string:messages",
+  "dstBundleName": "com.ohos.mms",
+  "dstAbilityName": "PrivacyAbility",
+  "displayOOBE": false
+}

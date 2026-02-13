@@ -1,0 +1,4274 @@
+{
+    "string":[
+        {
+            "name":"calling_Alert",
+            "value":"통화를 시작할 수 없습니다. 이미 통화가 진행 중입니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"my_avatar_button",
+            "value":"내 프로필 사진",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go_setting",
+            "value":"설정으로 이동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_permission",
+            "value":"설치된 앱 목록",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_microphone_permission_title",
+            "value":"설정에서 메시징의 마이크 권한 허용하기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_error",
+            "value":"코드 스캔에 실패했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"realease_send_prompt_text",
+            "value":"전송 시 손 놓기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network",
+            "value":"메시징의 인터넷 액세스를 허용하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReported",
+            "value":"신고됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_card_file",
+            "value":"카드",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"list_summary_vcard",
+            "value":"연락처를 공유함(%1$s)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_message",
+            "value":"해당 권한은 파일 읽기/쓰기, 이미지 및 비디오 액세스에 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_scan",
+            "value":"스캔",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query",
+            "value":"메시징 할당량",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"choose_sub_recommend_recently",
+            "value":"(최근)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"downloading",
+            "value":"다운로드 중",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_verification_code",
+            "value":"코드 복사",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_status_sent",
+            "value":"전송됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_send",
+            "value":"%2$s에게 %1$s을(를) 추천",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip1",
+            "value":"이 대화를 삭제하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip4",
+            "value":"선택한 대화 내용을 삭제하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS",
+            "value":"이 앱에서 카메라를 사용하려고 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_to_message",
+            "value":"메시지로 복구",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageRead",
+            "value":"읽음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"interception_rule_blockall_title",
+            "value":"모두 차단",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip3",
+            "value":"모든 대화를 삭제하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_one_attachment",
+            "value":"하나의 첨부 파일만 전송할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enhanced_information",
+            "value":"고급 메시징",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information_details",
+            "value":"여기에는 장치 제조업체, 모델, 소프트웨어 버전 및 배터리 잔량이 포함됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"removed_from_the_blocklist",
+            "value":"차단 목록에서 제거되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_copy",
+            "value":"복사",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_picture",
+            "value":"갤러리",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_loggedin_RCS",
+            "value":"전송할 수 없습니다. RCS에 로그인하지 않았습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cactus_map_no_location",
+            "value":"추가 위치 정보 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReceiveFailed",
+            "value":"다운로드 실패",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msgAcceptFailure",
+            "value":"이 메시지를 수신할 수 있는 저장 공간이 충분하지 않습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_network",
+            "value":"상세정보는 네트워크가 복원되면 표시됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_object",
+            "value":"계정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type",
+            "value":"유형: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subject",
+            "value":"제목: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_page_btn_continue_text",
+            "value":"계속",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_file_permission",
+            "value":"메시징의 장치 파일 액세스를 허용하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_no_sim",
+            "value":"사용 가능한 SIM 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"added_to_the_blocklist",
+            "value":"차단 목록에 추가되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_location_service_not_enabled",
+            "value":"위치 서비스 종료됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"me",
+            "value":"나",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contentSentTo",
+            "value":"%1$s에 전달, %2$s 포함",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_title",
+            "value":"설정에서 메시징의 파일과 비디오 및 비디오 액세스 허용하기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_is_occupied",
+            "value":"MeeTime에서 BeiDou를 사용하는 중에는 서비스를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all",
+            "value":"모두 선택",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record",
+            "value":"녹화",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_has_been_stared",
+            "value":"메시지를 이미 즐겨찾기했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title3",
+            "value":"메시지 전송/수신",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title2",
+            "value":"메시지 편집",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_title4",
+            "value":"메시지 수신",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_south_east",
+            "value":"%1$s 남 %2$s 동",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_retract",
+            "value":"적게 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title1",
+            "value":"새 메시지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"archive_info_messages",
+            "value":"알림 메시지 보관",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_cb_tip",
+            "value":"잠긴 메시지도 삭제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_file",
+            "value":"[파일]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_conversation_no_sim",
+            "value":"SIM이 삽입되지 않음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"national_fraud_mms",
+            "value":"사기 위험",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recently",
+            "value":"최근",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blockedMms",
+            "value":"[MMS]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_konw",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_smc",
+            "value":"BeiDou 메시지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_rcv_notice",
+            "value":"[답장 수신됨]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail",
+            "value":"상세정보",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"too_many_recipients",
+            "value":"수신자가 너무 많습니다(%1$s). 수신자 최대 수는 %2$s입니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_blockreason_strangenumber",
+            "value":"모르는 사람",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Camera_permission_prompt",
+            "value":"메시징의 장치 카메라 액세스 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"justNow",
+            "value":"방금",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot",
+            "value":"챗봇",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_select_text",
+            "value":"텍스트 선택",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_folders",
+            "value":"첨부 파일이 %s에 저장되었습니다. 안전하게 보관하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_theme",
+            "value":"제목",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"haveread_reports",
+            "value":"읽음 확인 요청",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_notice",
+            "value":"[메시지 전송됨]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recorder_failed",
+            "value":"녹음할 수 없습니다. 마이크가 사용 중일 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content2",
+            "value":"음성 채팅을 사용하여 빠르고 편리하게 정보를 공유할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint",
+            "value":"이 서비스는 %1$s 연결과 %2$s 권한이 필요하며, 위치 정보를 읽고 업로드/전송해야 합니다. 이는 위치 서비스를 제공하기 위한 목적입니다. 동의를 탭하면 해당 약관에 동의함을 의미합니다. 개인정보 처리 방법에 대한 추가 상세정보는 %3$s, %4$s의 내용을 참조하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delivery_reports_hint",
+            "value":"전송하는 각 메시지에 대한 전달 보고서를 요청합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"더 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_recent",
+            "value":"%s(기본)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content1",
+            "value":"파일, 이미지 및 기타 미디어를 전송합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_not_support_emoji",
+            "value":"BeiDou 위성 메시징은 이모지를 지원하지 않습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_default_settings",
+            "value":"기본 설정 복원",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_view_contacts_mms",
+            "value":"연락처 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"share",
+            "value":"공유",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_when_roaming",
+            "value":"로밍 시에는 이용하지 않음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_read_imageVideoMedia_write_media",
+            "value":"장치의 사진, 미디어 및 기타 파일이 포함됩니다. 미디어 메시지의 전송 및 수신에 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"intelligent_information",
+            "value":"스마트 알림",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_video",
+            "value":"비디오 전송됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_vcard",
+            "value":"연락처 전송됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore",
+            "value":"복원",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_SMS_MMS",
+            "value":"SMS/MMS로 전환",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recent",
+            "value":"최근",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_remove_favourite_chatbot",
+            "value":"즐겨찾기에서 %1$s을(를) 제거하시겠습니까? 메시지 내역은 삭제되지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_failed",
+            "value":"첨부 파일이 너무 커서 추가할 수 없습니다(제한: %s).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera_permission_info",
+            "value":"이는 이미지 및 비디오를 전송하는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_location_info",
+            "value":"위치 공유",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_network",
+            "value":"허용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_shortcut_menu",
+            "value":"바로 가기 메뉴로 돌아가기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_add",
+            "value":"메시징에서 추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_button",
+            "value":"제거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_messages",
+            "value":"메시지 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"carrying_position",
+            "value":"위치 포함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_submit",
+            "value":"제출",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_slide",
+            "value":"프레젠테이션",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"query_report",
+            "value":"보고서 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_permissions",
+            "value":"설정",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_max_number_tips",
+            "value":"메시지가 너무 깁니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disabled",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reminder_network",
+            "value":"고급 메시징을 사용하고 이동통신사 수수료를 절약하려면 인터넷에 연결하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReportFailed",
+            "value":"신고할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_unsupport_toast_image",
+            "value":"첨부 파일을 추가할 수 없습니다. 지원되지 않는 이미지 형식입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_location_attachment",
+            "value":"[위치]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_send",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no",
+            "value":"관심 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"china_telecom",
+            "value":"China Telecom",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"one_week_ago",
+            "value":"1주일 전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_call",
+            "value":"통화",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star",
+            "value":"즐겨찾기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copied_to_clipboard",
+            "value":"클립보드에 복사되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_cancle",
+            "value":"두 번 탭하여 취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advertisement_mms",
+            "value":"광고",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Not_allowed",
+            "value":"거부",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_no",
+            "value":"관심 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Delivered",
+            "value":"전달 일시: %1$s, %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete_this_message",
+            "value":"선택한 메시지를 삭제하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip3",
+            "value":"모든 메시지를 삭제하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_frequent_questions",
+            "value":"Tips",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip1",
+            "value":"이 메시지를 삭제하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages_hint",
+            "value":"알림 메시지는 수신하고 %d일 후에 삭제됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_content_location_to_smc",
+            "value":"위성 메시지를 전송하는 데 필요합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_personal_information_list",
+            "value":"수집되는 개인정보",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"always",
+            "value":"모든 네트워크",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"creat_new_conversation_receive_deleted",
+            "value":"이름이 %s인 연락처 제거됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sending_failed_button",
+            "value":"전송 실패, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_number_center_new",
+            "value":"SIM %s SMS 센터",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vcard",
+            "value":"vCard 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_info_button",
+            "value":"새 메시지, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_message_new_4g",
+            "value":"고급 메시징을 사용하면 WLAN 또는 모바일 데이터를 사용하여 메시지 및 멀티미디어 콘텐츠(예: 이미지, 음성 메시지 및 위치)를 전송하고 수신할 수 있습니다. 사용 중에는 장치 버전 및 식별자(IMEI, IMSI, MSISDN 및 WLAN MAC 주소 등)가 이 서비스를 제공하는 나의 이동통신사로 전송됩니다. 언제든지 메시징 > 더 보기 > 설정 > 고급 메시징에서 설정을 변경할 수 있습니다. 사용료에 대한 자세한 정보는 해당 이동통신사에 문의하십시오. 이 서비스는 서비스가 제대로 작동하는지 확인하기 위해 장치에 설치된 앱 목록을 읽고 타사 고급 메시징 앱의 로그인 상태를 확인합니다. 스위치를 켜면 당사에서 이 서비스를 제공하는 데 동의함을 의미합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms",
+            "value":"MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_split_tips",
+            "value":"위성 통신은 전체 화면 보기에서만 사용할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"putTime",
+            "value":"수신 날짜: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbotNoLocal",
+            "value":"콘텐츠 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"priority",
+            "value":"우선순위: 보통",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_beidou_message",
+            "value":"시작하기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_mobile",
+            "value":"휴대폰",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_smc_item_from",
+            "value":"발신 %1$s: %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"net_no_connection",
+            "value":"인터넷 연결 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_in_favorites",
+            "value":"즐겨찾기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_sim_card_content",
+            "value":"SIM %1$d이(가) 통화 중이면 SIM %2$d(으)로 메시지를 전송할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_know",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"infoMessages",
+            "value":"알림 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"manage_sim_card_messages",
+            "value":"SIM 카드 메시지 관리",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmit_send",
+            "value":"전송",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_send_greet",
+            "value":"안녕하세요",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"report",
+            "value":"신고",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_all_emoji",
+            "value":"전체",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url",
+            "value":"주의: 이 링크는 악성 링크일 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_from_who",
+            "value":"보낸 사람: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unavailable_tips_unregistered",
+            "value":"BeiDou 위성 메시징이 활성화되지 않음(이동통신사에 문의)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"converting_sms",
+            "value":"SMS로 변환 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_prop",
+            "value":"이 위치는 위성에 연결되어 있을 때 받은 위치입니다. 업데이트하려면 다시 연결하십시오.\n\n참고: 위치는 메시지 문자 제한에 포함됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_permission",
+            "value":"위치 상세정보를 보려면 터치하여 위치 액세스를 허용합니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages",
+            "value":"알림 메시지 자동 삭제",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_play_error",
+            "value":"지원되지 않는 파일 형식입니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"차단 목록에서 제거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attach_contacts",
+            "value":"연락처",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_location",
+            "value":"메시징에 위치 권한 필요",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"today",
+            "value":"오늘",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked",
+            "value":"차단된 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cannot_download_image_dialog_message",
+            "value":"고급 메시징의 실행 및 이 기능의 SIM 카드 지원 여부를 확인하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_no_valid_sim_card",
+            "value":"China Mobile SIM을 삽입하십시오",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"privacy_statements",
+            "value":"개인 정보 보호 방침",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked_guide_title",
+            "value":"원치 않는 메시지 차단",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_recent_used",
+            "value":"최근",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_contact_profile_pics",
+            "value":"프로필 사진 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report",
+            "value":"신고",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_no_subject",
+            "value":"[첨부 파일](제목 없음)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version_not_support_function",
+            "value":"이 버전에서 지원되지 않는 기능입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_trafficprompttitle",
+            "value":"데이터 알리미",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_loading",
+            "value":"로드 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSending",
+            "value":"전송 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_access",
+            "value":"신뢰 목록에 추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Photographing",
+            "value":"사진 촬영 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_nearby_chatbot",
+            "value":"주변 챗봇",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_enable_mobile_data",
+            "value":"고급 메시징을 실행하려면 WLAN을 종료하고 모바일 데이터가 실행되어 있어야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received",
+            "value":"%s님이 내 메시지를 수신했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_info",
+            "value":"음성 메시지를 녹음하는 데 사용됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_rcs_register_error",
+            "value":"이동통신사 서버 오류입니다. 나중에 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_insufficient_balance",
+            "value":"잔액이 부족합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"spam_mms",
+            "value":"스팸 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"on",
+            "value":"실행",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_gallery",
+            "value":"갤러리",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"press_speak",
+            "value":"길게 누르고 말하기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"invalid_receive",
+            "value":"올바르지 않은 받는 사람: %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_file_size_zero_error",
+            "value":"파일 크기는 %d바이트일 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_transmit",
+            "value":"전달",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_floating_tips",
+            "value":"위성 통신은 전체 화면 보기에서만 사용할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"refreshing",
+            "value":"새로 고침 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_south_west",
+            "value":"%1$s 남 %2$s 서",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_prompt",
+            "value":"메시지를 전송하지 못했습니다. 재전송할까요?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"showSource",
+            "value":"출처 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_favourite_chatbot",
+            "value":"즐겨찾기 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_not_exist",
+            "value":"챗봇을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_same_time",
+            "value":"메시지 복원",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients_upper_limit",
+            "value":"수신자 최대 수(%s명)에 도달했습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"yesterday",
+            "value":"어제",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide_aid_text",
+            "value":"셀룰러 또는 WLAN에 연결되어 있지 않아도 SOS 메시지를 전송할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcsFileSize",
+            "value":"크기: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"삭제",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitHeadText",
+            "value":"대화 선택",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageDeliver",
+            "value":"전달됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContent",
+            "value":"나에서 전달됨:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_vCard_import_success",
+            "value":"%s 파일은 나중에 가져옵니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_start",
+            "value":"실행",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start",
+            "value":"실행",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_requires_access_to_camear",
+            "value":"메시징에 카메라 권한 필요",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"markAllAsRead",
+            "value":"모두 읽은 상태로 표시",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"expired",
+            "value":"만료됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_star_info",
+            "value":"아직 즐겨찾기 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_tone",
+            "value":"메시지 톤",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_single_recv",
+            "value":"%2$s이(가) %1$s을(를) 추천",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_retrieve_mms",
+            "value":"MMS 자동 검색",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satelliteWaiting",
+            "value":"대기 중",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description_head",
+            "value":"고급 메시징을 켜면 기본 설정으로 챗봇이 실행되고 메시징 홈 화면에 챗봇 포털이 추가됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deeplink_obtain_geographical_location",
+            "value":"%1$s의 장치 위치 액세스를 허용하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rending",
+            "value":"대기 중",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"noMessages",
+            "value":"대화 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mark_as_read",
+            "value":"읽음으로 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"know",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete_hint",
+            "value":"실행하면 알림 메시지는 수신하고 %d일 후에 자동으로 삭제되며, 중요할 수 있는 메시지도 삭제됩니다. 실행하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description",
+            "value":"켜는 경우, 메시징 홈 화면에 챗봇 포털이 추가됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reply",
+            "value":"답장",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_is_stared",
+            "value":"메시지를 즐겨찾기에 추가했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_album",
+            "value":"갤러리에 저장되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_authentication_invalidation",
+            "value":"인증이 만료되었습니다. 설정 > 위성 네트워크 > BeiDou 위성 메시징으로 이동하고 스위치를 다시 켜십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msgDetails",
+            "value":"메시지 세부정보",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_map_no_more_location",
+            "value":"주소 정보 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_website",
+            "value":"웹사이트",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_more_show",
+            "value":"더 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_new_msg",
+            "value":"새 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages_hint",
+            "value":"%d초 이내에 메시지를 두 번 탭하여 전송 취소합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_my_position",
+            "value":"내 위치:\u0020",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showCard",
+            "value":"카드 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_vcard",
+            "value":"[vCard]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content7",
+            "value":"답장을 가져오려면 하단의 \"↓\"를 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_up_text",
+            "value":"위로 밀어서 취소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"just",
+            "value":"방금",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_APPROXIMATELY_LOCATION",
+            "value":"이는 귀하의 대략적인 위치를 가져오는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search",
+            "value":"검색",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_video",
+            "value":"[비디오]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_not_open_rcs",
+            "value":"아직 고급 메시징을 실행하지 않았습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verification_authority",
+            "value":"이용 약관",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_groupchat_notify_silent",
+            "value":"메시지 알림 음소거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content1",
+            "value":"WLAN 및 셀룰러 서비스 적용 범위 외부에 있는 경우 이 서비스를 사용하여 위성을 통해 SOS 메시지를 전송할 수 있습니다.\n",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search2",
+            "value":"검색",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_rcv_msg",
+            "value":"메시지 수신",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content5",
+            "value":"각 메시지는 최대 %s명의 연락처에게 전송할 수 있습니다. 공유하고 싶으면 현재 위치를 추가할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts_button",
+            "value":"연락처 선택",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content6",
+            "value":"메시지에 따라 휴대폰을 BeiDou 위성 쪽으로 가리키면 됩니다. 개방된 실외 공간에서 가장 잘 작동합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content3",
+            "value":"%s. 이 서비스는 현재 China Mobile로만 사용할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content4",
+            "value":"\"%s\"를 탭하여 새 메시지를 생성합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verified_explain",
+            "value":"이 챗봇은 %1$s에서 확인되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_picture",
+            "value":"사진 전송됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReceivingFailed",
+            "value":"수신 불가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"informationSize",
+            "value":"메시지 크기: %sKB",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"translate_other",
+            "value":"지원되는 메시지만 전달하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url_check_desc",
+            "value":"메시지에서 악성 링크를 검사합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_character_prompt",
+            "value":"연락처 이름에는 글자 수 제한이 적용됩니다. 따라서 더 많은 연락처를 선택할수록 메시지에 입력할 수 있는 글자 수는 줄어듭니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received_2",
+            "value":"%s님이 내 메시지를 수신했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_1",
+            "value":"인터넷",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_open",
+            "value":"더 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_card_in_conversation_list",
+            "value":"카드",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delivery_reports",
+            "value":"전달 보고서",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_microphone",
+            "value":"메시징에 마이크 권한 필요",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_4",
+            "value":"권한 공지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_3",
+            "value":"메시징 위치 서비스 및 개인 정보 보호에 대한 방침",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_2",
+            "value":"위치",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageSize",
+            "value":"메시지 크기: %sKB",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_upper_limit",
+            "value":"첨부 파일 한도는 %1$d개 입니다. 첫 %2$d개만 추가됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_item_is_sent_insufficient",
+            "value":"- 메시지가 전송되었지만 전달되지 않음(할당량 부족)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tryAgain",
+            "value":"재시도",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start_failed",
+            "value":"고급 메시징을 실행하지 못했습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center",
+            "value":"SMS 센터 번호",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_network",
+            "value":"데이터 서비스를 사용할 수 없습니다. 네트워크 설정을 확인하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title_content",
+            "value":"이 기능은 메시지에 악성 링크가 있는지 확인하기 위해 인터넷에 연결합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_face_change_detect_content",
+            "value":"AI에서 생성된 이미지일 수 있습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_release_to_cancel",
+            "value":"취소 시 손을 떼기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment",
+            "value":"[첨부 파일] %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"selectContacts",
+            "value":"연락처 선택",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"refused",
+            "value":"거부됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_session",
+            "value":"사기 의심",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_audio",
+            "value":"[오디오]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"expiresTime",
+            "value":"만료 일시: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_subject",
+            "value":"(제목 없음)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete",
+            "value":"자동 삭제 사용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast",
+            "value":"메시지 크게 읽기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_location_permissions",
+            "value":"탭하여 주소 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_mms",
+            "value":"높은 사기 위험",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_audio",
+            "value":"오디오",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_sms",
+            "value":"위성 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_list",
+            "value":"차단 목록",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vCard_import_success",
+            "value":"%s 파일을 성공적으로 가져왔습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmitContentReceive",
+            "value":"%s에서 전달됨:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_net_error",
+            "value":"인터넷 연결이 없습니다. 챗봇을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recorder_error",
+            "value":"녹음할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_note_mms",
+            "value":"문자 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages",
+            "value":"메시지 전송 취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_status",
+            "value":"상태: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title",
+            "value":"BeiDou 위성 메시징",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_interception",
+            "value":"통화 및 메시지 식별",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save",
+            "value":"저장",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"in_maintenance_mode",
+            "value":"유지관리 모드에서는 메시지를 볼 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSendFailed",
+            "value":"전송 실패",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_north_west",
+            "value":"%1$s 북 %2$s 서",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_reports",
+            "value":"발신 알림",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_detail_resend_all",
+            "value":"모두 재전송",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_mms2",
+            "value":"설명 추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url_check",
+            "value":"URL 보안 검사",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_sim",
+            "value":"전송(SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"share_device_info",
+            "value":"장치 정보를 공유했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_send",
+            "value":"고급 메시징",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmit_expenses_info",
+            "value":"이 콘텐츠는 다수의 SMS/MMS 메시지로 %s에게 전송됩니다. 계속 전송하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_to_contacts",
+            "value":"vCard 저장",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record_short",
+            "value":"녹음 파일이 너무 짧습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_favrite",
+            "value":"즐겨찾기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_no_reply",
+            "value":"메시지가 전송되었지만 위성 확인이 수신되지 않았습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_take_photos",
+            "value":"카메라",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_down_text",
+            "value":"아래로 밀어서 이동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_rcv_succ",
+            "value":"메시지가 전송되었고 위성 확인이 수신되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_rcs",
+            "value":"재전송 방법",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_file_not_exist",
+            "value":"존재하지 않는 파일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocked_guide_text",
+            "value":"최근에 스팸 메시지를 많이 받았습니다. 메시지 필터를 조정하여 광고 및 기타 원치 않는 스팸을 차단합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attach_anyfile",
+            "value":"파일",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_add_button",
+            "value":"추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enhanced_information_is_not_supported_rcs",
+            "value":"보안 실드가 실행되어 있으면 고급 메시징을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_recommand_chatbot",
+            "value":"추천 항목 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_provider",
+            "value":"서비스 제공업체",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_notice",
+            "value":"WLAN 연결이 없습니다. 모바일 데이터로 계속하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_title",
+            "value":"메시지에 위치 포함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_network",
+            "value":"네트워크 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sendTime",
+            "value":"보낸 시간: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_content",
+            "value":"설명(필수)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_satellite_card_content",
+            "value":"위성 통화 중에는 메시지를 전송할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"favorites",
+            "value":"즐겨찾기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_dialog_send_sim",
+            "value":"전송(SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contacts_call_number",
+            "value":"%s 발신",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_advanced_mode",
+            "value":"보안 실드가 실행되어 있으면 이 유형의 메시지를 볼 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_center_hint",
+            "value":"경고: SMS 센터 번호가 잘못 설정되면 문자 메시지를 보낼 수 없습니다. 이동통신사에서 이 번호를 받을 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms_tips",
+            "value":"팁",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_input_limit",
+            "value":"너무 많은 문자를 입력했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_limit_one",
+            "value":"메시지당 첨부 파일은 최대 1개입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_button",
+            "value":"삭제, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_device_info",
+            "value":"장치 정보 공유",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients",
+            "value":"수신자",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_mic_permission_title",
+            "value":"설정에서 마이크 액세스를 허용하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_file_exceed_max_size",
+            "value":"크기 제한: %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_who",
+            "value":"받는 사람: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":"이 번호는 더 이상 차단되지 않습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_content",
+            "value":"메시지를 작성할 때 \"위치 포함\"을 선택하면 메시징 앱에서 메시지에 나의 정확한 위치를 포함합니다. 이는 긴급 상황에서 초기 대응자가 연락하는 데 도움이 될 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_blocked_message",
+            "value":"차단된 메시지 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"size",
+            "value":"크기: %sKB",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_title",
+            "value":"메시징 위치 서비스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"emoticon_button",
+            "value":"이모지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query_error",
+            "value":"네트워크 연결이 없습니다. 할당량을 확인할 수 없습니다. 다음 번 인터넷 연결이 있을 때 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_import_contacts_from_vCard",
+            "value":"vCard에서 연락처를 가져오시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unselected_tip",
+            "value":"선택 항목 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_title",
+            "value":"고급 메시징",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"알 수 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_button",
+            "value":"전송",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advanced",
+            "value":"고급",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"failed",
+            "value":"실패",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"agree",
+            "value":"동의",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_seeking_timeout",
+            "value":"위치를 가져올 수 없습니다. 장애물이 없는 실외 공간으로 이동하고 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_keypad_button",
+            "value":"문자 입력으로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messages",
+            "value":"메시징",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_report_dialog_con_tip1",
+            "value":"이 메시지를 신고하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_mobile",
+            "value":"China Mobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title",
+            "value":"고급 메시징",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"leave_setting_advanced_mode",
+            "value":"보안 실드가 활성화되었을 때 수신되었으므로 이 메시지를 볼 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saveAll",
+            "value":"모두 저장",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable",
+            "value":"종료",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enabled",
+            "value":"켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_Camera",
+            "value":"허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_exit_star_search_tips",
+            "value":"끝내려면 다시 탭합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS_NAME",
+            "value":"이는 특정 웹페이지에서 QR 코드를 스캔하고 이미지를 업로드하는 데 필요합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_sms_number",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_activation_failed_message",
+            "value":"WLAN이 종료하고 모바일 데이터가 실행되어 있어야 합니다. 활성화에는 약 %d분이 걸릴 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_north_east",
+            "value":"%1$s 북 %2$s 동",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim",
+            "value":"카드",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_send_to",
+            "value":"전송 대상",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_picture",
+            "value":"[이미지]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network_description",
+            "value":"이는 개인 정보 보호 방침과 같은 웹 콘텐츠를 보는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera_permission_title",
+            "value":"설정에서 메시징의 카메라 권한 허용하기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"query_details",
+            "value":"상세정보 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information",
+            "value":"%1$s의 장치 관련 정보 액세스를 허용하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_Image_video_permission_title",
+            "value":"설정에서 파일, 이미지, 비디오에 대한 액세스를 허용하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_audio",
+            "value":"오디오 클립 전송됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_message",
+            "value":"음성 메시지를 녹음하는 데 사용됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_network",
+            "value":"인터넷 연결이 없습니다. 네트워크 설정을 확인하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"there_is_no_match",
+            "value":"일치 항목 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"address_details",
+            "value":"주소: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"status_canceled",
+            "value":"취소됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"putAddresser",
+            "value":"받는사람:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search_content_cannot_be_empty",
+            "value":"비워둘 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocklist_number",
+            "value":"차단 목록 번호",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"차단 목록에 추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_reason_keywords",
+            "value":"차단 목록의 키워드 포함",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"archive_info_messages_hint",
+            "value":"단일 목록으로 알림 메시지를 표시합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide",
+            "value":"빠른 가이드",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_sms_center_number",
+            "value":"SMS 센터 번호 변경",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_introduced",
+            "value":"소개",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"TipsForBlockedMms",
+            "value":"컨텐츠를 보기 전에 멀티미디어 메시지를 복원해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_and_mms",
+            "value":"SMS 및 MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_title",
+            "value":"켜는 경우, 수신 메시지의 내용 및 발신자 이름을 크게 읽습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"prohibited",
+            "value":"거부",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_microphone_permission",
+            "value":"메시징의 마이크 사용을 허용하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tap_content_to_edit",
+            "value":"콘텐츠 탭하여 편집",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_all_content_wlan",
+            "value":"이 서비스를 사용하면 메시지, 이미지, 위치를 전송하고 수신하며, 인터넷 연결을 더 활용할 수 있습니다. 수수료에 대한 상세정보는 이동통신사에 문의하십시오. 이 서비스는 인터넷 연결이 필요하고 전화번호, 연락처 및 통화기록을 읽어야 합니다. 또한, 메시지 내용, 이벤트, 이미지, 비디오, 오디오, IMEI 및 WLAN MAC 주소를 읽고 업로드/전송해야 합니다. 켜는 경우, 위 내용에 동의함을 의미합니다. 개인정보 처리 방법에 대한 추가 상세정보는 <a link=\"privacyStatement\">메시징 및 개인 정보 보호에 대한 방침</a>을 참조하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rejectRecord",
+            "value":"통화 중에는 오디오를 녹음할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"air_plane_mode_message",
+            "value":"지금은 메시지를 전송할 수 없습니다. 서비스가 복구되면 전송됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_type",
+            "value":"서비스 유형",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"in_advanced_mode",
+            "value":"메시지 열기 불가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_more",
+            "value":"다중 선택",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContentMulti",
+            "value":"출처: %s님과의 대화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail_mms",
+            "value":"상세정보",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_fail",
+            "value":"전송 실패",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_tips_again",
+            "value":"다시 표시하지 않음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"air_plane_mode_receive_message",
+            "value":"서비스가 복원될 때까지 메시지를 수신할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title_content",
+            "value":"인터넷 연결을 사용하여 이미지, 음성 메시지, 위치 등을 전송하고 수신할 수 있습니다. 가격 정책은 이동통신사에 문의하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_recent_chatbot",
+            "value":"최근 챗봇 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION_NAME",
+            "value":"이는 나의 정확한 위치에 액세스하는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_local_black",
+            "value":"이 챗봇을 차단했으므로 답변을 수신할 수 없습니다",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_file",
+            "value":"파일 전송됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content2_new",
+            "value":"%s. 대부분의 경우, 이 서비스는 WLAN 또는 셀룰러 서비스 적용 범위가 없는 지역에서만 제대로 작동합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"postalLabelsGroup",
+            "value":"주소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_resend",
+            "value":"다시 전송",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"roaming_fees_may_apply",
+            "value":"로밍 요금이 발생할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_message",
+            "value":"새 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_content1",
+            "value":"인터넷",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exist_contact",
+            "value":"기존 연락처에 저장",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_start_conversation",
+            "value":"채팅",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_location",
+            "value":"위치",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms",
+            "value":"BeiDou 위성 메시징",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_button",
+            "value":"취소, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_mobileemail",
+            "value":"이메일",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_name",
+            "value":"이름",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_map_no_network",
+            "value":"인터넷이 복원되면 주소가 표시됩니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_callback_number",
+            "value":"전화",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"translate_audio",
+            "value":"음성 메시지 및 일부 미디어 메시지는 전달할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Status",
+            "value":"상태: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_all_default_settings",
+            "value":"모두 기본 설정값으로 복원하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms",
+            "value":"문자 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"explain",
+            "value":"참고:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_quota_exhausted",
+            "value":"BeiDou 위성 메시지를 전송할 수 없습니다. 이번 달의 무료 메시지가 남아 있지 않습니다. 제한은 다음 달 초에 재설정됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sender",
+            "value":"보낸사람: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"searchHit",
+            "value":"번호 또는 검색어 입력",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_unicom",
+            "value":"China Unicom",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contentSentContentToSingle",
+            "value":"이 콘텐츠를 %s에 전송하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_contact",
+            "value":"새 연락처 생성",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_deselect_all",
+            "value":"모두 선택 취소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title",
+            "value":"URL 보안 검사를 실행하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"handover_to_enhanced_message",
+            "value":"고급 메시징으로 전환",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_audio_size_maximum",
+            "value":"최대 메시지 크기에 도달했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_all_content",
+            "value":"고급 메시징을 사용하면 메시지, 이미지, 음성 메시지, 위치를 전송하고 수신하며, 인터넷 연결을 더 활용할 수 있습니다. 수수료에 대한 상세정보는 이동통신사에 문의하십시오. 이 서비스는 %1$s 연결이 필요하며, 전화번호, 연락처 및 통화기록을 읽어야 합니다. 또한, 메시지 내용, 이벤트, 이미지, 비디오, 오디오, IMEI 및 WLAN MAC 주소를 읽고 업로드/전송해야 합니다. 켜는 경우, 위 내용에 동의함을 의미합니다. 개인정보 처리 방법에 대한 추가 상세정보는 %2$d의 내용을 참조하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_select",
+            "value":"두 번 탭하여 선택",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_network_prompt",
+            "value":"실행하려면 WLAN을 종료하고 모바일 데이터를 실행해야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"converting_mms",
+            "value":"MMS로 변환 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"position",
+            "value":"위치: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_pre_call_editor",
+            "value":"통화 전 편집",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reportDetail",
+            "value":"부적절한 콘텐츠 신고",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_current_size_new",
+            "value":"%1$s/%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recommand",
+            "value":"추천 항목",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_search",
+            "value":"챗봇 검색",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION",
+            "value":"이 앱이 나의 정확한 위치에 액세스할 수 있게 됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable",
+            "value":"실행",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ask_before_deleting",
+            "value":"다시 묻지 않기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_privacy_state",
+            "value":"메시징 및 개인 정보 보호에 대한 방침",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_send_failed",
+            "value":"전송되지 않음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"post_allowed_return_havereadreport",
+            "value":"각 메시지에 대한 읽음 확인 요청/전송.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite",
+            "value":"Tiantong 위성 메시징",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_failed",
+            "value":"복사할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showText",
+            "value":"원본 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_subtitle",
+            "value":"이 서비스를 사용하면 문자 메시지에서 위치를 전송하고 볼 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"draft",
+            "value":"[임시보관함]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_rcs",
+            "value":"채팅 메시지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_file_name_extra_long",
+            "value":"파일 이름이 길이 제한을 초과합니다. 이름을 변경하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_duplicate_numbers",
+            "value":"중복 번호가 제거되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_send_failed_number_new",
+            "value":"실패: %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_sms_forward_dialog_single",
+            "value":"%s님에게 전송",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"received",
+            "value":"수신됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_prompt",
+            "value":"메시징의 장치 마이크 액세스를 허용하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_report_result_success",
+            "value":"신고를 제출했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_broadnet",
+            "value":"China Broadnet",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"download",
+            "value":"다운로드",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_pin",
+            "value":"상단 고정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpin_button",
+            "value":"핀 해제, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pin_button",
+            "value":"핀, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unpin",
+            "value":"핀 해제",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"un_read_button",
+            "value":"읽지 않음으로 표시, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"un_read",
+            "value":"읽지 않음으로 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_read_button",
+            "value":"읽음으로 표시, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read",
+            "value":"읽음으로 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_read_msg_unpin",
+            "value":"핀 해제되었습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_msg_pin",
+            "value":"고정됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_exit_tip_content",
+            "value":"확인 코드가 포함된 수신 메시지 수가 정상으로 돌아온 것으로 보입니다. 알림이 더 이상 무음으로 처리되지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_exit",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit",
+            "value":"알림 복원",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card",
+            "value":"SIM %d에서 확인 코드가 포함된 수신 메시지 수가 정상으로 돌아온 것으로 보입니다. 알림이 더 이상 무음으로 처리되지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_title",
+            "value":"확인 코드 알림을 복원하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card_esim",
+            "value":"아주 짧은 시간 내에 eSIM %d에서 많은 수의 SMS 확인 코드가 수신되었습니다. 일종의 괴롭힘일 수 있습니다. 안전을 위해 해당 유형의 메시지에 대한 알림이 일시적으로 무음 처리되었습니다.",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card_esim",
+            "value":"eSIM %d에 확인 코드가 포함된 수신 메시지 수가 정상으로 돌아온 것으로 보입니다. 더 이상 알림이 무음 처리되지 않습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card",
+            "value":"아주 짧은 시간 내에 SIM %d에서 많은 수의 SMS 확인 코드가 수신되었습니다. 일종의 괴롭힘일 수 있습니다. 안전을 위해 해당 유형의 메시지에 대한 알림이 일시적으로 무음 처리되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_title",
+            "value":"확인 코드 알림 복원됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_two_card",
+            "value":"아주 짧은 시간 내에 SIM %1$d/SIM %2$d에서 많은 수의 SMS 확인 코드를 수신했습니다. 일종의 괴롭힘일 수 있습니다. 안전을 위해 해당 유형의 메시지에 대한 알림이 일시적으로 무음 처리되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_title",
+            "value":"확인 코드 알림 무음 처리됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_new",
+            "value":"매우 짧은 시간 내에 많은 수의 SMS 확인 코드가 수신되었습니다. 일종의 괴롭힘일 수 있습니다. 안전을 위해 해당 유형의 메시지에 대한 알림이 일시적으로 무음 처리되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_content",
+            "value":"복원되면 확인 코드가 포함된 메시지를 수신할 때 알림이 평소와 같이 전송됩니다. 알림이 다음 %s분간 무음으로 처리되지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_switch_to_message",
+            "value":"메시지 전송으로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_validated",
+            "value":"인증됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_switch_to_menu",
+            "value":"메뉴 표시",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_access",
+            "value":"두 번 탭하고 길게 누르면 음성 입력이 실행됩니다. 취소하려면 위로 스와이프하고, 계속하려면 아래로 스와이프합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_star_saved",
+            "value":"즐겨찾기에 추가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_dialog_tip",
+            "value":"콘텐츠를 바꾸시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text",
+            "value":"문자",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_vCard",
+            "value":"MMS vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star_remove",
+            "value":"즐겨찾기에서 제거",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_action",
+            "value":"펭라이 모드에서는 수행할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_limit_function",
+            "value":"원정 모드에서는 일부 옵션을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_message",
+            "value":"펭라이 모드에서는 이 유형의 메시지를 볼 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"split_screen_prompt",
+            "value":"앱 창을 확장하고 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_entrence",
+            "value":"설정",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_body",
+            "value":"메시징 앱의 홈 화면에서 오른쪽 상단에 있는 더 보기 아이콘을 탭한 다음 설정 > 고급 메시징으로 이동하여 \"챗봇\"을 켜거나 끕니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_title",
+            "value":"챗봇을 켜거나 끄려면 어떻게 해야 합니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_go_setting",
+            "value":"설정으로 이동",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_hometel",
+            "value":"전화번호(자택)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othertel",
+            "value":"기타 전화번호",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_worktel",
+            "value":"전화번호(직장)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_tip",
+            "value":"참고",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vCard_details",
+            "value":"vCard 상세정보 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments",
+            "value":"첨부 파일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments_deleted",
+            "value":"삭제됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_nickname",
+            "value":"별명",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_input_box",
+            "value":"문자 입력으로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"avatar_button",
+            "value":"프로필 사진, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workemail",
+            "value":"이메일(직장)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_tips",
+            "value":"메시지가 수신되었습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read_button",
+            "value":"읽음으로 표시, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_preview_picture",
+            "value":"이미지 미리보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_attachment_button",
+            "value":"첨부 파일 추가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workaddress",
+            "value":"주소(직장)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"group_avatar_button",
+            "value":"그룹 프로필 사진, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel_button_double_click_operation",
+            "value":"취소 버튼, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_homeaddress",
+            "value":"주소(자택)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_to_record",
+            "value":"음성 메시지로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othermail",
+            "value":"기타 이메일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_sim",
+            "value":"SIM 선택, SIM %s, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_video",
+            "value":"비디오",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_clickable",
+            "value":"사용 불가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contact_avatar_button",
+            "value":"연락처 프로필 사진, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options_button",
+            "value":"옵션 더 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_button",
+            "value":"길게 눌러 대화, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_title",
+            "value":"직위",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guide_action_text_previous",
+            "value":"뒤로",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"websiteLabelsGroup",
+            "value":"웹사이트",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"label_notes",
+            "value":"메모",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_personalemail",
+            "value":"개인 이메일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_otheraddress",
+            "value":"기타 주소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_organisation",
+            "value":"회사",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_birthday",
+            "value":"생일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Dual_card_switchover",
+            "value":"SIM 간 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_add_failed",
+            "value":"지원되는 최대 이미지 해상도는 %s입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unsupported_hyacinth_card_content",
+            "value":"히아신스 위성 통화 중에는 메시지를 전송할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_message",
+            "value":"히아신스 위성 메시지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_prop",
+            "value":"이 위치는 히아신스 위성에 연결했을 때 얻었습니다. 업데이트하려면 다시 연결하십시오.\n\n참고: 위치 정보는 메시지의 문자 제한에 집계됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_operation",
+            "value":"활성화하려면 두 번 탭합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center_with_prefix",
+            "value":"%s SMS 센터",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_deselect_all_done",
+            "value":"모든 항목이 선택 취소됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_press_speak",
+            "value":"두 번 탭하고 길게 누르면 음성 입력이 실행됩니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all_done",
+            "value":"모든 항목이 선택됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_new_message",
+            "value":"새로운 메시지가 있습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_content",
+            "value":"메시징 앱을 열어서 확인",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_title",
+            "value":"새 메시지가 있습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_read",
+            "value":"읽음으로 표시됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_unread",
+            "value":"읽지 않음으로 표시됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enabled_notification",
+            "value":"알림이 실행되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_not_allowed",
+            "value":"거부",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_title",
+            "value":"메시징의 알림 전송을 허용하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_allowed",
+            "value":"허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_content",
+            "value":"중요한 메시지를 놓치지 않으려면 메시징의 알림 전송을 허용하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_esim",
+            "value":"SIM 선택, eSIM %d, 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_esim",
+            "value":"전송(eSIM %d)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_input_box",
+            "value":"텍스트 입력으로 전환됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_to_shortcut_menu",
+            "value":"바로가기 메뉴로 전환됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_support_toast",
+            "value":"이 작업은 이 모드에서 지원되지 않습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"help_and_feedback",
+            "value":"도움말 및 피드백",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_rich_media_card_in_conversation_list",
+            "value":"리치 카드 메시지를 보냈습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_long_clickable",
+            "value":"두 번 탭하고 길게 눌러서 더 많은 옵션 불러오기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_inline_links",
+            "value":"이 화면에는 선택 가능한 텍스트가 포함되어 있습니다. 액세스하려면 빠른 메뉴에서 링크 추출 기능을 사용하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_empty_content",
+            "value":"MMS 콘텐츠 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

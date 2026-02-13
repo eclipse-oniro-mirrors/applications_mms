@@ -1,0 +1,498 @@
+{
+    "plural":[
+        {
+            "name":"unread_messages",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ئوقۇلمىغان",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ئوقۇلمىغان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"msg_selected_tip_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"تاللاندى (%s)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"تاللاندى (%s)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minAgo_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%s مىنۇت بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%s مىنۇت بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"contacts_found",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%1$dئالاقىداش تېپىلدى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%1$dئالاقىداش تېپىلدى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"msg_delete_dialog_con_tip2",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d ئۇچۇرنى ئۆچۈرەمسىز؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d ئۇچۇرنى ئۆچۈرەمسىز؟",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"and_others",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"\u200f%1$s ۋە باشقا %2$d",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"\u200f%1$s ۋە باشقا %2$d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"members",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d كىشى",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d كىشى",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"msg_delete_dialog_tip2",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d سۆھبەتنى ئۆچۈرەمسىز؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d سۆھبەتنى ئۆچۈرەمسىز؟",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"multiUnread",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%dپارچە:",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%dپارچە:",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"search_session_content",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d ئۇچۇر",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d ئۇچۇر",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"search_message_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ئۇچۇر تېپىلدى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ئۇچۇر تېپىلدى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"search_session_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d سۆھبەت تېپىلدى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d سۆھبەت تېپىلدى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"mms_count",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[%d ئۇچۇر]",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"[%d ئۇچۇر]",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"plural_people",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d كىشى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d كىشى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"share_description",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ھەرپ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ھەرپ",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"rcs_vcard_number",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d كىشى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d كىشى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_audio_time_second",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_audio_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"blocked_notify_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d دەخلى ئۇچۇر توسقان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d دەخلى ئۇچۇر توسقان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"blocked_notify_text",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"يېقىندا توسقان: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"يېقىندا توسقان: %d",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"قارا تىزىملىكتىن چىقىرىۋەتكەن نومۇر توسۇلمايدۇ.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"قارا تىزىملىكتىن چىقىرىۋەتكەن نومۇر توسۇلمايدۇ.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"blocked_count_text_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"توسقان ئۇچۇر: %s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"توسقان ئۇچۇر: %s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"smc_also_enter_words",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"يەنە %d خەت قالدى",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"يەنە %d خەت قالدى",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"smc_enter_words",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"كۆپىدە %d خەت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"كۆپىدە %d خەت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"every_satellite_worried",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"بىر سۈنئىي ھەمراھ ئۇچۇرى بىرلا ۋاقىتتا كۆپىدە %d ئالاقىداشقا يوللىنىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"بىر سۈنئىي ھەمراھ ئۇچۇرى بىرلا ۋاقىتتا كۆپىدە %d ئالاقىداشقا يوللىنىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"smc_sim_card_quota_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"قالدۇق: %1$s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"قالدۇق: %1$s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}
