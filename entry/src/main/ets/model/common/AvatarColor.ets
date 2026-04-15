@@ -13,11 +13,18 @@
  * limitations under the License.
  */
 
-export default {
-  background: {
-    Color: ['#98D4EF', '#9CC998', '#E8889C', '#C891F1', '#F9C273', '#92D6CC'],
+class AvatarColor {
+  background: Record<string, Resource[]> = {
+    'Color': [$r('sys.color.ohos_id_color_special1'),
+      $r('sys.color.ohos_id_color_special2'),
+      $r('sys.color.ohos_id_color_special4'),
+      $r('sys.color.ohos_id_color_special11'),
+      $r('sys.color.ohos_id_color_special9'),
+      $r('sys.color.ohos_id_color_special7')],
   }
 }
+
+export default new AvatarColor()
 
 
 

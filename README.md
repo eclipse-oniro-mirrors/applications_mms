@@ -1,46 +1,59 @@
-# 信息应用
+# Messages<a name="EN-US_TOPIC_0000001103554544"></a>
+-   [Introduction](#introductiona-nameintroductiona)
+    -   [Content Introduction](#content-introductiona-namecontent-introductiona)
+    -   [Architecture](#architecturea-namearchitecturea)
+-   [Directory Structure](#directory-structurea-namedirectory-structurea)
+-   [Repositories Involved](#repositories-involveda-namerepositories-involveda)
 
-## 简介
+## Introduction<a name="Introduction"></a>
+### Content Introduction<a name="Content-Introduction"></a>
 
-### 内容介绍
-Mms应用是OpenHarmony中预置的系统应用，主要的功能包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能。
+The Messages App is a pre-installed system application in the OpenHarmony standard system, providing users with basic messaging capabilities. These include support for SMS notifications, message favorites, and Cell Broadcast Service (CBS), SMS conversation details and related operations, message reception, MMS, SMS, as well as open-source materials for the SMS application.
 
-### 架构图
+**Key Functions:**
 
-![MMS_architectural_diagram](./doc/image/MMS_architectural_diagram.png)
+1. **SMS/MMS Core Functions**: Supporting sending (including long SMS), receiving, forwarding, resending (for failed messages), and deleting (individual or batch) of SMS and MMS. It also enables group messaging for both SMS and MMS, with MMS supporting attachments such as photos, recordings, locations, contacts, slideshows, and more.
+2. **Message Notification & Collection**: Displaying message notifications with options to mark as read, reply directly, or copy verification codes. Users can also collect important messages for easy access later.
+3. **Conversation Management**: Providing a user-friendly message list with operations like left-swipe deletion, long-press multi-selection, and slide-to-select. Both the message list and detail pages display contact names and avatars for intuitive identification.
+4. **Message Detail Operations**: Supporting multiple actions on message content, including copying text, selecting partial content, forwarding, saving (for MMS attachments), and deleting. Verification code messages feature a one-click copy button for convenience.
+5. **Notification Message Handling**: Integrating notification messages into a dedicated list with functions such as marking all as read, deleting individually or in batches via long-press or slide selection.
+6. **Supplementary Capabilities**: Including Cell Broadcast Service (CBS) support, delivery reports for messages, and dual-SIM card compatibility (switching between SIM 1 and SIM 2 for sending messages).
 
-## 目录
+### Architecture<a name="Architecture"></a>
+![](./figures/img.png)
 
-~~~
+## Directory Structure<a name="Directory-Structure"></a>
+
+```
 /Mms/
-├── doc                                        # 资料
+├── doc                                        # Documentation
 ├── entry
 │   └── src
 │       └── main
-│           └── ets                            # ets代码目录
-│               └── default                    # 业务代码目录
-│                   ├── data                   # 自定义数据类型
-│                   ├── model                  # 对接数据库
-│                   ├── pages                  # 所有页面
-│                       ├── conversation       # 会话详情页面
-│                       ├── conversationlist   # 信息列表页面
-│                       ├── index              # 初始页面
-│                       ├── infomsg            # 通知信息列表页面
-│                       ├── queryreport        # 报告详情页面
-│                       └── settings           # 设置页面
-│                   ├── service                # 业务逻辑
-│                   ├── utils                  # 工具类
-│                   ├── views                  # 自定义组件
-│                   └── app.ets                # 应用生命周期
-│               └── StaticSubscriber           # 静态事件监听
-│           ├── resources                      # 资源配置文件存放目录
-│           └── config.json                    # 全局配置文件
-├── signs                                      # 签名
+│           └── ets                            # ETS code directory
+│               └── default                    # Business code directory
+│                   ├── data                   # Custom data types
+│                   ├── model                  # Database integration
+│                   ├── pages                  # All pages
+│                       ├── conversation       # Conversation detail page
+│                       ├── conversationlist   # Message list page
+│                       ├── index              # Initial page
+│                       ├── infomsg            # Notification message list page
+│                       ├── queryreport        # Report detail page
+│                       └── settings           # Settings page
+│                   ├── service                # Business logic
+│                   ├── utils                  # Utility classes
+│                   ├── views                  # Custom components
+│                   └── app.ets                # Application lifecycle
+│               └── StaticSubscriber           # Static event listener
+│           ├── resources                      # Resource configuration file directory
+│           └── config.json                    # Global configuration file
+├── signs                                      # Signatures
 └── LICENSE
-~~~
+```
 
-## 相关仓
+## Repositories Involved<a name="Repositories-Involved"></a>
 
-[**applications_contacts**](https://gitee.com/openharmony/applications_contacts)
+[**applications_contacts**]
 
-[**telephony_sms_mms**](https://gitee.com/openharmony/telephony_sms_mms)
+[**telephony_sms_mms**]

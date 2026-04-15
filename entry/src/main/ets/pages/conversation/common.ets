@@ -14,6 +14,7 @@
  */
 
 import LooseObject from '../../data/LooseObject'
+import { mmsListType } from './conversationController';
 
 export default class Common {
     private static sInstance: Common;
@@ -26,4 +27,9 @@ export default class Common {
         }
         return Common.sInstance;
     }
+}
+
+export interface IQueryNoReceiverDraftResult {
+    code: number
+    response: mmsListType[]
 }

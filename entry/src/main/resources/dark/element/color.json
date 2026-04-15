@@ -1,0 +1,69 @@
+{
+  "color": [
+    {
+      "name": "mms_recorder_bg",
+      "value": "#476164"
+    },
+    {
+      "name": "mms_recorder_border",
+      "value": "#579699"
+    },
+    {
+      "name": "mms_recorder_area_display_bg",
+      "value": "#265291FF"
+    },
+    {
+      "name": "mms_recordering_bg",
+      "value": "#0c0A59F7"
+    },
+    {
+      "name": "mms_avatar_bg",
+      "value": "#26FFFFFF"
+    },
+    {
+      "name": "detail_main_background",
+      "value": "#ff000000"
+    },
+    {
+      "name": "sender_bubble_rcs",
+      "value": "#0D1E27"
+    }
+  ,
+    {
+      "name": "brand",
+      "value": "#5291FF"
+    },
+    {
+      "name": "native_card_backgroud_color_1",
+      "value": "#2E3033"
+    },
+    {
+      "name": "native_card_backgroud_color_2",
+      "value": "#2E3033"
+    },
+    {
+      "name": "native_card_backgroud_color_3",
+      "value": "#2E3033"
+    },
+    {
+      "name": "divider_color",
+      "value": "#FFF7F8F9"
+    },
+    {
+      "name": "text_blue",
+      "value": "#ff4682B4"
+    },
+    {
+      "name": "color_bind_sheet_background",
+      "value": "#FF202224"
+    },
+    {
+      "name": "color_bind_sheet_background_pc",
+      "value": "#343434"
+    },
+    {
+      "name": "color_bind_sheet_background_phone",
+      "value": "#202224"
+    }
+  ]
+}

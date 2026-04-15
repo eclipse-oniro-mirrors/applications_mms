@@ -1,0 +1,4274 @@
+{
+    "string":[
+        {
+            "name":"calling_Alert",
+            "value":"Сбой установления вызова. Вызов уже выполняется.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"my_avatar_button",
+            "value":"Мое фото профиля",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go_setting",
+            "value":"Настройки",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_permission",
+            "value":"список установленных приложений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_microphone_permission_title",
+            "value":"В разделе Настройки предоставьте приложению Сообщения право доступа к микрофону",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_error",
+            "value":"Сбой сканирования кода.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"realease_send_prompt_text",
+            "value":"Отпустите, чтобы отправить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network",
+            "value":"Разрешить приложению Сообщения доступ в Интернет?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReported",
+            "value":"Жалоба отправлена",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_card_file",
+            "value":"Карта",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"list_summary_vcard",
+            "value":"Вы отправили контакт (%1$s)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_message",
+            "value":"Эти права используются для чтения или записи файлов и доступа к изображениям и видео.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_scan",
+            "value":"Сканировать",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query",
+            "value":"Квота на сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"choose_sub_recommend_recently",
+            "value":"(недавно)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"downloading",
+            "value":"Загрузка...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_verification_code",
+            "value":"Копировать код",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_status_sent",
+            "value":"Отправлено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_send",
+            "value":"Вы рекомендовали %1$s пользователю %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip1",
+            "value":"Удалить эту беседу?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip4",
+            "value":"Удалить выбранную беседу?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS",
+            "value":"Это приложение запрашивает использование камеры.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_to_message",
+            "value":"Восстановить в сообщениях",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageRead",
+            "value":"Прочитано",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"interception_rule_blockall_title",
+            "value":"Блокировка всех номеров",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip3",
+            "value":"Удалить все беседы?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_one_attachment",
+            "value":"Можно отправить только одно вложение.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enhanced_information",
+            "value":"Сообщения+",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information_details",
+            "value":"Эти данные включают производителя и модель устройства, версию ПО и уровень заряда батареи.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"removed_from_the_blocklist",
+            "value":"Удалено из черного списка.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_copy",
+            "value":"Копировать",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_picture",
+            "value":"Галерея",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_loggedin_RCS",
+            "value":"Сбой отправки. Вход в RCS не выполнен.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cactus_map_no_location",
+            "value":"Нет других данных о местоположении",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReceiveFailed",
+            "value":"Сбой загрузки",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msgAcceptFailure",
+            "value":"Недостаточно места в памяти для получения этого сообщения.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_network",
+            "value":"Подробности будут доступны после возобновления подключения к сети",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_object",
+            "value":"Аккаунт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type",
+            "value":"Тип:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subject",
+            "value":"Тема: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_page_btn_continue_text",
+            "value":"Продолжить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_file_permission",
+            "value":"Разрешить приложению Сообщения доступ к файлам на вашем устройстве?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_no_sim",
+            "value":"Нет SIM-карты",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"added_to_the_blocklist",
+            "value":"Добавлено в черный список.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_location_service_not_enabled",
+            "value":"Службы геолокации выключены",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"me",
+            "value":"Я",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contentSentTo",
+            "value":"Переслать группе %1$s, в которую входит %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_title",
+            "value":"В разделе Настройки предоставьте приложению Сообщения доступ к приложению Файлы, а также изображениям и видео",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_is_occupied",
+            "value":"Служба недоступна, когда MeeTime использует BeiDou.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all",
+            "value":"Выбрать все",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record",
+            "value":"Запись",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_has_been_stared",
+            "value":"Сообщение уже добавлено в Избранное.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title3",
+            "value":"Отправка и получение сообщений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title2",
+            "value":"Редактирование сообщений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_title4",
+            "value":"Получить сообщение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_south_east",
+            "value":"%1$s ю.ш. %2$s в.д.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_retract",
+            "value":"Скрыть",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title1",
+            "value":"Новое сообщение",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"archive_info_messages",
+            "value":"Архивация уведомлений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_cb_tip",
+            "value":"Удалить заблокированные сообщения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_file",
+            "value":"[Файл]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_conversation_no_sim",
+            "value":"SIM-карта не установлена",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"national_fraud_mms",
+            "value":"Угроза мошенничества",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recently",
+            "value":"Недавние",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blockedMms",
+            "value":"[MMS]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_konw",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_smc",
+            "value":"Сообщение BeiDou",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_rcv_notice",
+            "value":"[Ответ получен]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail",
+            "value":"Сведения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"too_many_recipients",
+            "value":"Слишком много получателей (%1$s). Максимальное количество получателей – %2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_blockreason_strangenumber",
+            "value":"Незнакомый номер",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Camera_permission_prompt",
+            "value":"Разрешите приложению Сообщения доступ к камере вашего устройства",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"justNow",
+            "value":"Сейчас",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot",
+            "value":"Чат-боты",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_select_text",
+            "value":"Выбрать текст",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_folders",
+            "value":"Вложение сохранено в: %s. Обеспечьте его надежное хранение.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_theme",
+            "value":"Тема",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"haveread_reports",
+            "value":"Запрос отчетов о прочтении",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_notice",
+            "value":"[Сообщение отправлено]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recorder_failed",
+            "value":"Сбой записи. Возможно, микрофон используется.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content2",
+            "value":"Простой и удобный голосовой чат.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint",
+            "value":"Этой службе требуется доступ в %1$s и следующее право доступа: %2$s. Также требуется читать и выгружать или передавать геоданные. Это необходимо для предоставления служб геолокации. Нажимая Принимаю, вы принимаете данные положения. Подробную информацию об обработке ваших персональных данных см. в документах %3$s и %4$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delivery_reports_hint",
+            "value":"Запрос отчета о доставке каждого отправленного сообщения.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Еще",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_recent",
+            "value":"%s (по умолчанию)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content1",
+            "value":"Отправка файлов, изображений и других медиаданных.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_not_support_emoji",
+            "value":"Передача сообщений по BeiDou не поддерживает эмодзи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_default_settings",
+            "value":"Сброс настроек",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_view_contacts_mms",
+            "value":"Посмотреть контакт",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"share",
+            "value":"Отправить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_when_roaming",
+            "value":"Не в роуминге",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_read_imageVideoMedia_write_media",
+            "value":"Включая фото, мультимедиа и другие файлы на вашем устройстве. Используется для отправки и получения MMS-сообщений.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"intelligent_information",
+            "value":"Умные уведомления",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_video",
+            "value":"Отправлено видео",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_vcard",
+            "value":"Отправлен контакт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore",
+            "value":"Восстановить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_SMS_MMS",
+            "value":"Переключиться на SMS/MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recent",
+            "value":"Недавнее",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_remove_favourite_chatbot",
+            "value":"Удалить %1$s из Избранного? История обмена сообщениями не будет удалена.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_failed",
+            "value":"Невозможно добавить слишком большое вложение (лимит: %s).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera_permission_info",
+            "value":"Это необходимо для отправки изображений и видео.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_location_info",
+            "value":"Отправка геоданных",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_network",
+            "value":"Разрешить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_shortcut_menu",
+            "value":"К меню быстрого доступа",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_add",
+            "value":"Добавить из приложения Сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_button",
+            "value":"Удалить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_messages",
+            "value":"Нет сообщений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"carrying_position",
+            "value":"Прикрепить геоданные",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_submit",
+            "value":"Отправить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_slide",
+            "value":"Слайды",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"query_report",
+            "value":"Посмотреть отчет",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_permissions",
+            "value":"Настройки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_max_number_tips",
+            "value":"Слишком длинное сообщение.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disabled",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reminder_network",
+            "value":"Подключитесь к Интернету, чтобы использовать Сообщения+ и сэкономить свои средства.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReportFailed",
+            "value":"Сбой отправки жалобы.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_unsupport_toast_image",
+            "value":"Сбой добавления вложения. Этот формат изображений не поддерживается.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_location_attachment",
+            "value":"[Геоданные]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_send",
+            "value":"SMS-сообщение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no",
+            "value":"Нет",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"china_telecom",
+            "value":"China Telecom",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"one_week_ago",
+            "value":"Одну неделю назад",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_call",
+            "value":"Позвонить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star",
+            "value":"В Избранное",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copied_to_clipboard",
+            "value":"Скопировано в буфер обмена.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_cancle",
+            "value":"Дважды нажмите, чтобы отменить выбор",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advertisement_mms",
+            "value":"Реклама",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Not_allowed",
+            "value":"Запретить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_no",
+            "value":"Нет",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Delivered",
+            "value":"Доставлено: %1$s, %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete_this_message",
+            "value":"Удалить выбранные сообщения?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip3",
+            "value":"Удалить все сообщения?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_frequent_questions",
+            "value":"Советы",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip1",
+            "value":"Удалить это сообщение?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages_hint",
+            "value":"Сообщения с уведомлениями удаляются через %d дней после получения.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_content_location_to_smc",
+            "value":"Это необходимо для отправки сообщений по спутниковой системе.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_personal_information_list",
+            "value":"Собираемые персональные данные",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"always",
+            "value":"Все сети",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"creat_new_conversation_receive_deleted",
+            "value":"Удален контакт %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sending_failed_button",
+            "value":"Кнопка повторной отправки после сбоя отправки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_number_center_new",
+            "value":"Центр SMS-сообщений SIM-карты %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vcard",
+            "value":"Посмотреть vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_info_button",
+            "value":"Кнопка создания нового сообщения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_message_new_4g",
+            "value":"Функция Сообщения+ позволяет отправлять и получать сообщения и мультимедийный контент (например, изображения, голосовые сообщения и геоданные) по сети WLAN или мобильной сети. Во время использования версия и идентификаторы вашего устройства (включая IMEI, IMSI, MSISDN и MAC-адрес WLAN) будут отправлены оператору, предоставляющему эту услугу. Вы можете в любой момент изменить ваши настройки в разделе Сообщения > Еще > Настройки >Сообщения+. Более подробную информацию о стоимости услуг спрашивайте у вашего оператора. Эта служба будет читать список установленных на вашем устройстве приложений и проверять статус входа в систему сторонних приложений, работающих в рамках функции Сообщения+, с целью корректной работы этой службы. Включая данную функцию, вы соглашаетесь на предоставление этой службы.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms",
+            "value":"MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_split_tips",
+            "value":"Спутниковая связь доступна только в полноэкранном режиме.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"putTime",
+            "value":"Получено: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbotNoLocal",
+            "value":"Нет данных",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"priority",
+            "value":"Приоритет: обычный",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_beidou_message",
+            "value":"Начать",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_mobile",
+            "value":"Мобильный",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_smc_item_from",
+            "value":"%1$s: %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"net_no_connection",
+            "value":"Нет доступа в Интернет",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_in_favorites",
+            "value":"Избранное",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_sim_card_content",
+            "value":"Невозможно отправить сообщения через SIM-карту %2$d, когда SIM-карта %1$d используется для выполнения вызова.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"infoMessages",
+            "value":"Уведомления",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"manage_sim_card_messages",
+            "value":"Сообщения на SIM-карте",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmit_send",
+            "value":"Отправить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_send_greet",
+            "value":"Привет!",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"report",
+            "value":"Жалоба",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_all_emoji",
+            "value":"Все",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url",
+            "value":"Внимание! Эта ссылка может оказаться вредоносной.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_from_who",
+            "value":"От: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unavailable_tips_unregistered",
+            "value":"Служба Передача сообщений по BeiDou не активирована (обратитесь к оператору)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"converting_sms",
+            "value":"Конвертирование в SMS…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_prop",
+            "value":"Эти геоданные получены при подключении к спутнику. Чтобы обновить их, подключитесь повторно.\n\nВнимание! Геоданные учитываются в общей длине сообщения.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_permission",
+            "value":"Чтобы просмотреть подробные геоданные, нажмите и предоставьте доступ к службам определения местоположения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages",
+            "value":"Автоудаление уведомлений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_play_error",
+            "value":"Такой формат файла не поддерживается.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"Удалить из черного списка",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attach_contacts",
+            "value":"Контакт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_location",
+            "value":"Приложению Сообщения требуется доступ к службам геолокации",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"today",
+            "value":"Сегодня",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked",
+            "value":"Заблокированные сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cannot_download_image_dialog_message",
+            "value":"Убедитесь, что функция Сообщения+ включена и что SIM-карта поддерживает эту функцию.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_no_valid_sim_card",
+            "value":"Установите SIM-карту China Mobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"privacy_statements",
+            "value":"Уведомления о конфиденциальности",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked_guide_title",
+            "value":"Блокировка нежелательных сообщений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_recent_used",
+            "value":"Недавнее",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_contact_profile_pics",
+            "value":"Отображение фото профиля",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report",
+            "value":"Жалоба",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_no_subject",
+            "value":"[Вложение] (Без темы)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version_not_support_function",
+            "value":"Функция не поддерживается этой версией.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_trafficprompttitle",
+            "value":"Уведомление трафика",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_loading",
+            "value":"Загрузка…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSending",
+            "value":"Отправка...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_access",
+            "value":"Добавить в белый список",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Photographing",
+            "value":"Съемка фото…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_nearby_chatbot",
+            "value":"Чат-боты поблизости",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_enable_mobile_data",
+            "value":"Чтобы включить Сообщения+, выключите WLAN и убедитесь, что включен мобильный Интернет.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received",
+            "value":"%s: ваше сообщение получено.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_info",
+            "value":"Это необходимо для записи голосовых сообщений.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_rcs_register_error",
+            "value":"Ошибка сервера оператора. Повторите попытку позже.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_insufficient_balance",
+            "value":"Недостаточно средств.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"spam_mms",
+            "value":"Спам",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"on",
+            "value":"Включить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_gallery",
+            "value":"Галерея",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"press_speak",
+            "value":"Удерживайте и говорите",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"invalid_receive",
+            "value":"Недействительный получатель: %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_file_size_zero_error",
+            "value":"Размер файла не может быть %d Б.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_transmit",
+            "value":"Переслать",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_floating_tips",
+            "value":"Спутниковая связь доступна только в полноэкранном режиме.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"refreshing",
+            "value":"Обновление…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_south_west",
+            "value":"%1$s ю.ш. %2$s з.д.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_prompt",
+            "value":"Сбой отправки вашего сообщения. Отправить повторно?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"showSource",
+            "value":"Показать источник",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_favourite_chatbot",
+            "value":"Нет Избранного",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_not_exist",
+            "value":"Чат-бот недоступен.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_same_time",
+            "value":"Восстановить сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients_upper_limit",
+            "value":"Достигнуто максимальное количество получателей (%s).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"yesterday",
+            "value":"Вчера",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide_aid_text",
+            "value":"Отправка сообщений SOS, даже если у вас не работает сотовая сеть или сеть WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcsFileSize",
+            "value":"Размер: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Удалить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitHeadText",
+            "value":"Выбор беседы",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageDeliver",
+            "value":"Доставлено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContent",
+            "value":"Переслано от меня:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_vCard_import_success",
+            "value":"Файл %s будет импортирован позже.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_start",
+            "value":"Включить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start",
+            "value":"Включить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_requires_access_to_camear",
+            "value":"Приложению Сообщения требуется доступ к приложению Камера",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"markAllAsRead",
+            "value":"Отметить все как прочитанные",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"expired",
+            "value":"Истек срок",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_star_info",
+            "value":"Еще нет Избранного",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_tone",
+            "value":"Сигнал сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_single_recv",
+            "value":"%2$s рекомендовал вам пользователя %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_retrieve_mms",
+            "value":"Автополучение MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satelliteWaiting",
+            "value":"Ожидание",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description_head",
+            "value":"При включении функции Сообщения+ по умолчанию будет включен раздел Чат-боты. Он будет добавлен на главный экран приложения Сообщения.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deeplink_obtain_geographical_location",
+            "value":"Разрешить приложению %1$s доступ к геоданным вашего устройства?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rending",
+            "value":"Ожидает",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"noMessages",
+            "value":"Нет бесед",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mark_as_read",
+            "value":"Отметить как прочитанное",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete_hint",
+            "value":"Когда эта функция включена, сообщения с уведомлениями будут автоматически удаляться через %d дней после получения, включая те, которые могут быть важными. Включить?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description",
+            "value":"Когда включено, на главный экран приложения Сообщения будет добавлен раздел Чат-боты.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reply",
+            "value":"Ответить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_is_stared",
+            "value":"Сообщение добавлено в Избранное.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_album",
+            "value":"Сохранено в Галерее.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_authentication_invalidation",
+            "value":"Срок действия аутентификации истек. Выберите Настройки > Спутниковая сеть > Передача сообщений по BeiDou и снова включите переключатель.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msgDetails",
+            "value":"Сведения о сообщении",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_map_no_more_location",
+            "value":"Нет данных адреса",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_website",
+            "value":"Веб-сайт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_more_show",
+            "value":"Еще",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_new_msg",
+            "value":"Новое сообщение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages_hint",
+            "value":"Дважды нажмите на сообщение в течение %d секунд, чтобы отменить его отправку.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_my_position",
+            "value":"Мои геоданные:\u0020",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showCard",
+            "value":"Показать карточку",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_vcard",
+            "value":"[vCard]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content7",
+            "value":"Нажмите ↓ внизу экрана, чтобы получить ответы.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_up_text",
+            "value":"Проведите вверх, чтобы отменить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"just",
+            "value":"Сейчас",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_APPROXIMATELY_LOCATION",
+            "value":"Используется для получения ваших приблизительных геоданных.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search",
+            "value":"Поиск",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_video",
+            "value":"[Видео]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_not_open_rcs",
+            "value":"Функция Сообщения+ не включена.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verification_authority",
+            "value":"Условия использования",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_groupchat_notify_silent",
+            "value":"Отключение сигнала сообщений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content1",
+            "value":"Вы можете использовать эту службу для отправки сообщений SOS через спутник, если вы находитесь вне зоны покрытия сети WLAN и сотовой сети.\n",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search2",
+            "value":"Поиск",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_rcv_msg",
+            "value":"Получить сообщение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content5",
+            "value":"Каждое сообщение можно отправить максимум %s контактам. Вы можете добавить ваше текущее местоположение, если хотите поделиться им.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts_button",
+            "value":"Выберите контакт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content6",
+            "value":"Просто наведите телефон на спутник BeiDou, следуя подсказкам. Вне помещений достигается наилучший результат.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content3",
+            "value":"%s. Эта служба на данный момент поддерживается только оператором China Mobile.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content4",
+            "value":"Нажмите %s, чтобы создать новое сообщение.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verified_explain",
+            "value":"Этот чат-бот подтвержден %1$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_picture",
+            "value":"Отправлено фото",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReceivingFailed",
+            "value":"Сбой получения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"informationSize",
+            "value":"Размер сообщения: %s КБ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"translate_other",
+            "value":"Переслать только поддерживаемые сообщения?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url_check_desc",
+            "value":"Проверка вредоносных ссылок в сообщениях.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_character_prompt",
+            "value":"Имена контактов учитываются в лимите символов. Чем больше контактов вы выберете, тем меньше символов сможете ввести в сообщении.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received_2",
+            "value":"%s: ваше сообщение получено.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_1",
+            "value":"Интернет",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_open",
+            "value":"Еще",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_card_in_conversation_list",
+            "value":"Карта",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delivery_reports",
+            "value":"Отчеты о доставке",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_microphone",
+            "value":"Приложению Сообщения требуется доступ к микрофону",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_4",
+            "value":"Уведомление о правах",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_3",
+            "value":"Уведомление о Службах геолокации в приложении Сообщения и конфиденциальности",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_2",
+            "value":"Геолокация",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageSize",
+            "value":"Размер сообщения: %s КБ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_upper_limit",
+            "value":"Максимум вложений – %1$d. Только первые %2$d будут добавлены.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_item_is_sent_insufficient",
+            "value":"– Сообщение отправлено, но не доставлено (недостаточно квоты)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tryAgain",
+            "value":"Повторить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start_failed",
+            "value":"Не удается включить функцию Сообщения+.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center",
+            "value":"Номер SMS-центра",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_network",
+            "value":"Передача данных отключена. Проверьте настройки сети.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title_content",
+            "value":"Эта функция подключается к Интернету для проверки вредоносных ссылок в сообщениях.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_face_change_detect_content",
+            "value":"Возможно, изображение сгенерировано ИИ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_release_to_cancel",
+            "value":"Отпустите, чтобы отменить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment",
+            "value":"[Вложение] %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"selectContacts",
+            "value":"Выбор контакта",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"refused",
+            "value":"Отклонено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_session",
+            "value":"Предполагаемое мошенничество",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_audio",
+            "value":"[Аудио]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"expiresTime",
+            "value":"Срок действия: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_subject",
+            "value":"(Без темы)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete",
+            "value":"Включить автоудаление",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast",
+            "value":"Озвучивание сообщений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_location_permissions",
+            "value":"Нажмите, чтобы посмотреть адрес",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_mms",
+            "value":"Высокий риск мошенничества",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_audio",
+            "value":"Аудио",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_sms",
+            "value":"Сообщение по спутниковой связи",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_list",
+            "value":"Черный список",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vCard_import_success",
+            "value":"Файл %s импортирован.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmitContentReceive",
+            "value":"Переслано от %s:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_net_error",
+            "value":"Нет интернет-соединения. Чат-бот недоступен.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recorder_error",
+            "value":"Сбой записи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_note_mms",
+            "value":"Текстовое сообщение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages",
+            "value":"Отмена отправки сообщений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_status",
+            "value":"Статус: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title",
+            "value":"Передача сообщений по BeiDou",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_interception",
+            "value":"Идентификация вызовов и сообщений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save",
+            "value":"Сохранить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"in_maintenance_mode",
+            "value":"Сообщения невозможно просматривать в режиме обслуживания.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSendFailed",
+            "value":"Сбой отправки",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_north_west",
+            "value":"%1$s с.ш. %2$s з.д.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_reports",
+            "value":"Отчет о доставке",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_detail_resend_all",
+            "value":"Отправить все",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_mms2",
+            "value":"Добавить описание",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url_check",
+            "value":"Проверка безопасности URL-адресов",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_sim",
+            "value":"Отправить (SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"share_device_info",
+            "value":"Данные устройства отправлены.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_send",
+            "value":"Сообщения+",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmit_expenses_info",
+            "value":"Этот контент будет отправлен пользователю %s как несколько SMS/MMS-сообщений. Отправить?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_to_contacts",
+            "value":"Сохранить vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record_short",
+            "value":"Слишком короткая запись.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_favrite",
+            "value":"Избранное",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_no_reply",
+            "value":"Сообщение отправлено, но подтверждение от спутника не получено.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_take_photos",
+            "value":"Камера",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_down_text",
+            "value":"Проведите вниз, чтобы продолжить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_rcv_succ",
+            "value":"Сообщение отправлено, подтверждение от спутника получено.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_rcs",
+            "value":"Повторная отправка",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_file_not_exist",
+            "value":"Файл не существует",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocked_guide_text",
+            "value":"Вам недавно поступило много спам-сообщений. Отрегулируйте фильтр блокировки рекламы и другого нежелательного спама в сообщениях.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attach_anyfile",
+            "value":"Файл",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_add_button",
+            "value":"Добавить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enhanced_information_is_not_supported_rcs",
+            "value":"Когда включена Надежная защита, Сообщения+ недоступны.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_recommand_chatbot",
+            "value":"Нет рекомендаций",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_provider",
+            "value":"Поставщик услуг",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_notice",
+            "value":"Нет WLAN-соединения. Продолжить по мобильной сети передачи данных?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_title",
+            "value":"Прикрепить геоданные к сообщениям",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_network",
+            "value":"Настройки сети",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sendTime",
+            "value":"Отправлено:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_content",
+            "value":"Описание (обязательно)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_satellite_card_content",
+            "value":"Невозможно отправить сообщения во время выполнения вызовов по спутниковой связи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"favorites",
+            "value":"Избранное",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_dialog_send_sim",
+            "value":"Отправить (SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contacts_call_number",
+            "value":"Позвонить %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_advanced_mode",
+            "value":"Сообщения этого типа невозможно посмотреть, когда включена Надежная защита.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_center_hint",
+            "value":"Внимание! Вы не сможете отправлять SMS-сообщения, если номер центра SMS-сообщений задан некорректно. Вы можете запросить этот номер у вашего оператора.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms_tips",
+            "value":"Советы",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_input_limit",
+            "value":"Слишком много символов.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_limit_one",
+            "value":"Максимум одно вложение в сообщении.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_button",
+            "value":"Кнопка удаления",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_device_info",
+            "value":"Отправка данных устройства",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients",
+            "value":"Получатели",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_mic_permission_title",
+            "value":"В разделе Настройки предоставьте доступ к микрофону.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_file_exceed_max_size",
+            "value":"Макс. размер: %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_who",
+            "value":"Кому: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":"Этот номер больше не будет заблокирован.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_content",
+            "value":"Если вы выберете опцию Прикрепить геоданные при создании сообщения, приложение Сообщения отправит получателю точные геоданные. Это поможет первым откликнувшимся связаться с вами в экстренной ситуации.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_blocked_message",
+            "value":"Нет заблокированных сообщений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"size",
+            "value":"Размер: %s КБ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_title",
+            "value":"Службы геолокации в приложении Сообщения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"emoticon_button",
+            "value":"Эмодзи",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query_error",
+            "value":"Нет сетевого соединения. Сбой проверки квоты. Повторите попытку при следующем подключении к Интернету.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_import_contacts_from_vCard",
+            "value":"Импортировать контакты из файла vCard?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unselected_tip",
+            "value":"Не выбрано",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_title",
+            "value":"Сообщения+",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"Неизвестный",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_button",
+            "value":"Отправить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advanced",
+            "value":"Дополнительно",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"failed",
+            "value":"Сбой",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"agree",
+            "value":"Принимаю",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_seeking_timeout",
+            "value":"Сбой определения местоположения. Выйдите на открытое место и повторите попытку.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_keypad_button",
+            "value":"Переключиться на ввод текста",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messages",
+            "value":"Сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_report_dialog_con_tip1",
+            "value":"Пожаловаться на это сообщение?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_mobile",
+            "value":"China Mobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title",
+            "value":"Сообщения+",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"leave_setting_advanced_mode",
+            "value":"Это сообщение невозможно посмотреть, так как оно получено, когда была включена Надежная защита.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saveAll",
+            "value":"Сохранить все",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable",
+            "value":"Отключить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enabled",
+            "value":"Включено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_Camera",
+            "value":"Разрешить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_exit_star_search_tips",
+            "value":"Нажмите еще раз, чтобы выйти.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS_NAME",
+            "value":"Используется для сканирования QR-кодов и выгрузки изображений на определенных веб-страницах.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_sms_number",
+            "value":"SMS-сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_activation_failed_message",
+            "value":"Убедитесь, что сеть WLAN выключена и включен мобильный Интернет. Активация может занять около %d минут.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_north_east",
+            "value":"%1$s с.ш. %2$s в.д.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim",
+            "value":"Карта",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_send_to",
+            "value":"Получатель",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_picture",
+            "value":"[Изображение]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network_description",
+            "value":"Это необходимо для просмотра веб-контента, например Уведомления о конфиденциальности.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera_permission_title",
+            "value":"В разделе Настройки предоставьте приложению Сообщения право доступа к камере",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"query_details",
+            "value":"Сведения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information",
+            "value":"Разрешить приложению %1$s доступ к данным вашего устройства?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_Image_video_permission_title",
+            "value":"В разделе Настройки предоставьте доступ к файлам, изображениям и видео.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_audio",
+            "value":"Отправлено аудио",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_message",
+            "value":"Это необходимо для записи голосовых сообщений.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_network",
+            "value":"Нет доступа в Интернет. Проверьте сетевые настройки.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"there_is_no_match",
+            "value":"Нет совпадений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"address_details",
+            "value":"Адрес: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"status_canceled",
+            "value":"Отменено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"putAddresser",
+            "value":"Получатель:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search_content_cannot_be_empty",
+            "value":"Введите значение.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocklist_number",
+            "value":"Номер из черного списка",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"В черный список",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_reason_keywords",
+            "value":"Содержит слова из черного списка",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"archive_info_messages_hint",
+            "value":"Отображение сообщений с уведомлениями в одном списке.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide",
+            "value":"Краткое руководство",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_sms_center_number",
+            "value":"Изменить номер SMS-центра",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_introduced",
+            "value":"Описание",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"TipsForBlockedMms",
+            "value":"Восстановите MMS-сообщение для просмотра его содержимого.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_and_mms",
+            "value":"SMS- и MMS-сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_title",
+            "value":"Когда включено, содержание входящих сообщений и имя отправителя будут озвучиваться.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"prohibited",
+            "value":"Запретить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_microphone_permission",
+            "value":"Разрешить приложению Сообщения использовать микрофон?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tap_content_to_edit",
+            "value":"Нажмите на контент, чтобы изменить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_all_content_wlan",
+            "value":"Эта служба позволяет отправлять и получать текстовые сообщения, изображения, геоданные и прочие данные по сети Интернет. Подробную информацию о стоимости услуг спрашивайте у вашего оператора. Этой службе требуется доступ в Интернет, а также право чтения номеров телефонов, контактов и списков вызовов. Ей также требуется читать и выгружать или передавать сообщения, события, изображения, видео, аудио, IMEI и MAC-адрес WLAN. Включая эту функцию, вы принимаете вышеизложенные положения. Подробную информацию об обработке ваших персональных данных см. в документе <a link=\"privacyStatement\">Уведомление о приложении Сообщения и конфиденциальности</a>.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rejectRecord",
+            "value":"Невозможно записать аудио во время выполнения вызова.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"air_plane_mode_message",
+            "value":"В данный момент невозможно отправить сообщение. Сообщение будет отправлено при возобновлении обслуживания.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_type",
+            "value":"Тип сервиса",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"in_advanced_mode",
+            "value":"Сбой открытия сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_more",
+            "value":"Выбрать несколько",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContentMulti",
+            "value":"Источник: разговор с пользователем %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail_mms",
+            "value":"Сведения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_fail",
+            "value":"Ошибка отправки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_tips_again",
+            "value":"Больше не показывать",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"air_plane_mode_receive_message",
+            "value":"Невозможно получать сообщения, пока служба не восстановлена.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title_content",
+            "value":"Отправка и получение изображений, голосовых сообщений, геоданных и прочих данных по сети Интернет. Свяжитесь с оператором для уточнения цен.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_recent_chatbot",
+            "value":"Нет недавних чат-ботов",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION_NAME",
+            "value":"Используется для доступа к вашим точным геоданным.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_local_black",
+            "value":"Вы не будете получать ответы от этого чат-бота, так как заблокировали его",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_file",
+            "value":"Отправлен файл",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content2_new",
+            "value":"%s. В большинстве случаев эта служба будет работать корректно только в зоне, где отсутствует покрытие сети WLAN или сотовой сети.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"postalLabelsGroup",
+            "value":"Адрес",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_resend",
+            "value":"Отправить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"roaming_fees_may_apply",
+            "value":"Может взиматься плата в роуминге",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_message",
+            "value":"Новое сообщение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_content1",
+            "value":"Интернет",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exist_contact",
+            "value":"Обновить контакт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_start_conversation",
+            "value":"Чат",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_location",
+            "value":"Геоданные",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms",
+            "value":"Передача сообщений по BeiDou",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_button",
+            "value":"Кнопка отмены",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_mobileemail",
+            "value":"Эл. почта",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_name",
+            "value":"Имя",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_map_no_network",
+            "value":"Адрес отобразится, когда доступ в Интернет будет восстановлен",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_callback_number",
+            "value":"Телефон",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"translate_audio",
+            "value":"Голосовые сообщения и некоторые MMS-сообщения невозможно переслать.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Status",
+            "value":"Статус:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_all_default_settings",
+            "value":"Восстановить настройки по умолчанию?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"explain",
+            "value":"Примечание",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_quota_exhausted",
+            "value":"Невозможно отправить сообщения через спутниковую систему BeiDou. У Вас больше не осталось бесплатных сообщений в этом месяце. В начале следующего месяца лимит будет сброшен.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sender",
+            "value":"От:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"searchHit",
+            "value":"Введите номер или выполните поиск",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_unicom",
+            "value":"China Unicom",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contentSentContentToSingle",
+            "value":"Отправить этот контент пользователю %s?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_contact",
+            "value":"Создать контакт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_deselect_all",
+            "value":"Отмен. выбор",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title",
+            "value":"Включить проверку безопасности URL-адресов?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"handover_to_enhanced_message",
+            "value":"Переключить на Сообщения+",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_audio_size_maximum",
+            "value":"Достигнут максимальный размер сообщения.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_all_content",
+            "value":"Функция Сообщения+ поддерживает отправку и получение текстовых и голосовых сообщений, изображений, геоданных и прочих данных по сети Интернет. Подробную информацию о стоимости услуг спрашивайте у вашего оператора. Этой службе требуется доступ в %1$s, а также право чтения номеров телефонов, контактов и списков вызовов. Ей также требуется читать и выгружать или передавать сообщения, события, изображения, видео, аудио, IMEI и MAC-адрес WLAN. Включая эту функцию, вы принимаете вышеизложенные положения. Дополнительную информацию об обработке ваших персональных данных см. в документе %2$d.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_select",
+            "value":"Дважды нажмите, чтобы выбрать",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_network_prompt",
+            "value":"Чтобы включить эту функцию, выключите сеть WLAN и включите мобильный Интернет.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"converting_mms",
+            "value":"Конвертирование в MMS…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"position",
+            "value":"Геоданные: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_pre_call_editor",
+            "value":"Изменить и вызвать",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reportDetail",
+            "value":"Жалоба на неприемлемый контент",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_current_size_new",
+            "value":"%1$s/%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recommand",
+            "value":"Рекомендовано",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_search",
+            "value":"Поиск чат-ботов",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION",
+            "value":"Это приложение сможет получать ваши точные геоданные.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable",
+            "value":"Включить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ask_before_deleting",
+            "value":"Больше не спрашивать",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_privacy_state",
+            "value":"Уведомление о функции Сообщения и конфиденциальности",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_send_failed",
+            "value":"Не доставлено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"post_allowed_return_havereadreport",
+            "value":"Запрос/отправка отчета о прочтении сообщения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite",
+            "value":"Сообщения по спутниковой системе Tiantong",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_failed",
+            "value":"Сбой копирования.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showText",
+            "value":"Показать оригинал",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_subtitle",
+            "value":"Эта служба позволяет вам отправлять и просматривать геоданные в SMS-сообщениях.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"draft",
+            "value":"[Черновик]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_rcs",
+            "value":"Сообщение чата",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_file_name_extra_long",
+            "value":"Слишком длинное имя файла. Измените его.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_duplicate_numbers",
+            "value":"Дублирующие номера удалены.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_send_failed_number_new",
+            "value":"Сбой: %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_sms_forward_dialog_single",
+            "value":"Отправка пользователю %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"received",
+            "value":"Получено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_prompt",
+            "value":"Разрешите приложению Сообщения доступ к микрофону вашего устройства.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_report_result_success",
+            "value":"Жалоба отправлена.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_broadnet",
+            "value":"China Broadnet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"download",
+            "value":"Загрузить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Настройки",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_pin",
+            "value":"Закрепить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpin_button",
+            "value":"Кнопка открепления",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pin_button",
+            "value":"Кнопка закрепления",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unpin",
+            "value":"Открепить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"un_read_button",
+            "value":"Кнопка Отметить как непрочитанное",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"un_read",
+            "value":"Отметить как непрочитанное",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_read_button",
+            "value":"Кнопка Отметить как прочитанное",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read",
+            "value":"Отметить как прочитанное",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_read_msg_unpin",
+            "value":"Откреплено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_msg_pin",
+            "value":"Закреплено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_exit_tip_content",
+            "value":"Поток входящих сообщений с кодами подтверждения прекратился. Устройство снова будет издавать сигнал при их поступлении.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_exit",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit",
+            "value":"Включить сигнал уведомлений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card",
+            "value":"Поток входящих сообщений с кодами подтверждения, поступающих на SIM-карту %d, прекратился. Устройство снова будет издавать сигнал при их поступлении.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_title",
+            "value":"Включить сигнал сообщений с кодами подтверждения?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card_esim",
+            "value":"В течение короткого промежутка времени на eSIM-карту %d поступило очень много SMS-сообщений с кодами подтверждения. Это могло произойти в результате действий мошенников. Для обеспечения вашей безопасности сигнал уведомлений для сообщений этого типа был временно выключен.",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card_esim",
+            "value":"Поток входящих сообщений с кодами подтверждения, поступающих на eSIM-карту %d, прекратился. Устройство снова будет издавать сигнал при их поступлении.",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card",
+            "value":"В течение короткого промежутка времени на SIM-карту %d поступило очень много SMS-сообщений с кодами подтверждения. Это могло произойти в результате действий мошенников. Для обеспечения вашей безопасности сигнал уведомлений для сообщений этого типа был временно выключен.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_title",
+            "value":"Сигнал уведомлений для сообщений с кодами подтверждения включен",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_two_card",
+            "value":"В течение короткого промежутка времени на SIM-карту %1$d/SIM-карту %2$d поступило очень много SMS-сообщений с кодами подтверждения. Это могло произойти в результате действий мошенников. Для обеспечения вашей безопасности сигнал уведомлений для сообщений этого типа был временно выключен.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_title",
+            "value":"Сигнал уведомлений для сообщений с кодами подтверждения выключен",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_new",
+            "value":"В течение короткого промежутка времени на ваше устройство поступило очень много SMS-сообщений с кодами подтверждения. Это могло произойти в результате действий мошенников. Для обеспечения вашей безопасности сигнал уведомлений для сообщений этого типа был временно выключен.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_content",
+            "value":"После включения устройство будет издавать сигнал при поступлении уведомлений о сообщениях с кодами подтверждения. Сигнал не будет выключен в течение следующих %s минут.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_switch_to_message",
+            "value":"Переключиться на отправку сообщений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_validated",
+            "value":"Аутентификация выполнена",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_switch_to_menu",
+            "value":"Показать меню",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_access",
+            "value":"Коснитесь дважды и удерживайте, чтобы включить голосовой ввод. Проведите вверх, чтобы отменить. Проведите вниз, чтобы продолжить.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_star_saved",
+            "value":"Добавить в Избранное",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_dialog_tip",
+            "value":"Заменить контент?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text",
+            "value":"Текст",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_vCard",
+            "value":"vCard в MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star_remove",
+            "value":"Удалить из Избранного",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_action",
+            "value":"Это действие невозможно выполнить в режиме Пэнлай.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_limit_function",
+            "value":"Некоторые опции недоступны в режиме Экспедиция.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_message",
+            "value":"Сообщения этого типа невозможно посмотреть в режиме Пэнлай.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"split_screen_prompt",
+            "value":"Разверните окно приложения и повторите попытку.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_entrence",
+            "value":"Настройки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_body",
+            "value":"На главном экране приложения Сообщения нажмите на значок Еще в правом верхнем углу, затем выберите Настройки > Сообщения+ и включите или выключите переключатель функции Чат-боты.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_title",
+            "value":"Как включить или выключить чат-боты?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_go_setting",
+            "value":"Перейти в Настройки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_hometel",
+            "value":"Домашний",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othertel",
+            "value":"Другой",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_worktel",
+            "value":"Рабочий",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_tip",
+            "value":"Внимание",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vCard_details",
+            "value":"Посмотреть сведения vCard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments",
+            "value":"Вложение",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments_deleted",
+            "value":"Удалено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_nickname",
+            "value":"Никнейм",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_input_box",
+            "value":"Переключиться на ввод текста",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"avatar_button",
+            "value":"Фото профиля, кнопка",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workemail",
+            "value":"Рабочая эл. почта",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_tips",
+            "value":"Вы получили сообщение",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read_button",
+            "value":"Кнопка Отметить как прочитанное",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_preview_picture",
+            "value":"Изображение для предпросмотра",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_attachment_button",
+            "value":"Добавить вложение",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workaddress",
+            "value":"Рабочий адрес",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"group_avatar_button",
+            "value":"Фото профиля группы, кнопка",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel_button_double_click_operation",
+            "value":"Кнопка отмены, нажмите дважды, чтобы активировать",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_homeaddress",
+            "value":"Домашний адрес",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_to_record",
+            "value":"Переключиться на голосовые сообщения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othermail",
+            "value":"Другая эл. почта",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_sim",
+            "value":"Выбор SIM-карты, SIM-карта %s, кнопка",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_video",
+            "value":"Видео",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_clickable",
+            "value":"Недоступно",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contact_avatar_button",
+            "value":"Фото профиля контакта, кнопка",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options_button",
+            "value":"Другие опции",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_button",
+            "value":"Удерживайте и говорите, кнопка",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_title",
+            "value":"Должность",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guide_action_text_previous",
+            "value":"Назад",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"websiteLabelsGroup",
+            "value":"Веб-сайт",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"label_notes",
+            "value":"Заметки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_personalemail",
+            "value":"Личная эл. почта",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_otheraddress",
+            "value":"Другой адрес",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_organisation",
+            "value":"Организация",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_birthday",
+            "value":"День рождения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Dual_card_switchover",
+            "value":"Переключение между SIM-картами",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_add_failed",
+            "value":"Максимальное поддерживаемое разрешение изображений – %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unsupported_hyacinth_card_content",
+            "value":"Невозможно отправить сообщения во время выполнения вызовов по спутниковой связи Гиацинт.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_message",
+            "value":"Сообщения по спутниковой связи Гиацинт",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_prop",
+            "value":"Эти геоданные получены при подключении к спутнику Гиацинт. Чтобы обновить их, подключитесь повторно.\n\nВнимание! Геоданные учитываются в общей длине сообщения.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_operation",
+            "value":"Нажмите дважды, чтобы активировать.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center_with_prefix",
+            "value":"Центр SMS-сообщений %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_deselect_all_done",
+            "value":"Выбор всех элементов отменен",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_press_speak",
+            "value":"Коснитесь дважды и удерживайте, чтобы включить голосовой ввод",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all_done",
+            "value":"Выбраны все элементы",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_new_message",
+            "value":"Есть новые сообщения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_content",
+            "value":"Откройте приложение обмена сообщениями, чтобы посмотреть",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_title",
+            "value":"У вас есть новое сообщение",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_read",
+            "value":"Отмечено как прочитанное",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_unread",
+            "value":"Отмечено как непрочитанное",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enabled_notification",
+            "value":"Уведомления включены.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_not_allowed",
+            "value":"Запретить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_title",
+            "value":"Разрешить приложению Сообщения отправлять вам уведомления?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_allowed",
+            "value":"Разрешить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_content",
+            "value":"Разрешите приложению Сообщения отправлять вам уведомления, чтобы не пропустить важные сообщения.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_esim",
+            "value":"Выбор SIM-карты, eSIM %d, кнопка",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_esim",
+            "value":"Отправить (eSIM %d)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_input_box",
+            "value":"Переключено на ввод текста",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_to_shortcut_menu",
+            "value":"Переключено на меню",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_support_toast",
+            "value":"Эта операция не поддерживается в этом режиме.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"help_and_feedback",
+            "value":"Справка и обратная связь",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_rich_media_card_in_conversation_list",
+            "value":"Вам пришло мультимедийное сообщение в формате карточки.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_long_clickable",
+            "value":"Нажмите дважды и удерживайте для отображения других опций",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_inline_links",
+            "value":"На этом экране есть текст, который можно выбрать. Используйте функцию извлечения ссылок в меню быстрого доступа.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_empty_content",
+            "value":"В MMS-сообщении нет контента",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

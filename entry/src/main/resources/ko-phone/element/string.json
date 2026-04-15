@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"messageSending",
+            "value":"전송 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

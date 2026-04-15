@@ -13,244 +13,428 @@
  * limitations under the License.
  */
 import DeviceUtil from '../../utils/DeviceUtil';
-import { MmsSimpleDialog } from '../../views/MmsDialogs';
 import { MoreMenu } from '../../views/MmsMenu';
-import router from '@system.router';
-import { SettingItemSwitch, SettingItemJump } from '../../views/SettingItem';
+import { SettingItemJump, SettingItemRcsJump, SettingItemSmartJump, SettingItemSwitch, SettingItemFilingNo, SettingItemBlockedJump } from '../../views/SettingItem';
 import SettingsController from './settingsController';
 import HiLog from '../../utils/HiLog';
 import WantUtil from '../../utils/WantUtil';
-import AdvancedSettingsController from './advancedSettings/advancedSettingsController'
+import AdvancedSettingsController from './advancedSettings/advancedSettingsController';
+import { AgreeNetworkDialog } from '../../views/dialogs/AgreeNetworkDialog';
+import DotUtil from '../../utils/MmsDot/DotUtils';
+import dotCommon, { dotNoNeedParmas, stateParam } from '../../utils/MmsDot/DotCommon';
+import LooseObject from '../../data/LooseObject';
+import { AlertDialog, CustomContentDialog } from '@ohos.arkui.advanced.Dialog';
+import ResourceUtils from '../../utils/ResourceUtils';
+import SharedPreferencesUtils from '../../utils/SharedPreferencesUtils';
+import MmsBoolean from '../../data/MmsBoolean';
+import { FilingNo } from '../privacy/FilingNo';
+import { Configuration, LengthMetrics, SymbolGlyphModifier } from '@kit.ArkUI';
+import settings from '@ohos.settings';
+import { GlobalContext } from '../../MainAbility/GlobalHelper';
+import myCommon from '@ohos.app.ability.common';
+import common from '../../data/commonData';
+import { emitter } from '@kit.BasicServicesKit';
+import EmitterConstant from '../../data/EmitterConstant';
+import StringUtil from '../../utils/StringUtil';
+import prompt from '@ohos.promptAction';
+import { SystemMode } from '../../utils/SystemMode';
+import Prompt from '@ohos.promptAction';
+import Constant from '../../data/Constant';
+import { CustomSettingsNavBar } from './settingsNavBar';
+import { AnimationViewModel } from './NavBarAnimationViewModel';
+import { ApplicationStateChange } from './ApplicationStateChange';
 
 const TAG = 'Settings';
-@Entry
+
+class menuItemsObj{
+    public value?: ResourceStr
+    public action: () => void = () => {}
+    public enabled: boolean = false
+    public visible: boolean = true;
+}
+
+@Builder
+export function SettingsLoader(param: LooseObject): void {
+    Settings();
+}
+
 @Component
-struct Settings {
-    @StorageLink('SettingsController') @Watch('changeSelectState') mSettingsCtrl:
-        SettingsController = SettingsController.getInstance()
-    @StorageLink('AdvancedSettingsController') @Watch('changeSelectState') mAdvancedSettingsCtrl:
+export struct Settings {
+    // 设置页模态展示状态
+    @StorageLink('isSettingShow') isSettingShow: boolean = false;
+    @Provide('pageInfosSetting') pageInfosSetting : NavPathStack = new NavPathStack()
+    @LocalStorageProp('fullScreenPadding') fullScreenPadding:Padding | null = null;
+    private context = getContext(this) as myCommon.UIAbilityContext;
+    @StorageLink('SettingsController') mSettingsCtrl:
+        SettingsController = SettingsController.getInstance();
+    @StorageLink('AdvancedSettingsController') mAdvancedSettingsCtrl:
         AdvancedSettingsController = AdvancedSettingsController.getInstance();
-    private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
-    private girdSpan: GridColColumnOption = { sm: 4, md: 6, lg: 8 };
-    private gridColOffset: GridColColumnOption = { md: 1, lg: 2 };
-    private gridGutter: string = '12vp';
+
+    @Provide stateTitle: Resource = $r('app.string.enabled') ;
     isEnhanceShow: Visibility = DeviceUtil.isTablet() ? Visibility.None : Visibility.Visible;
-    private restoreDialog = new MmsSimpleDialog({
-        message: $r('app.string.restore_all_default_settings'),
-        primaryButton: {
-            value: $r('app.string.cancel'),
-            action: () => {
-            }
-        },
-        secondaryButton: {
-            value: $r('app.string.restore'),
-            action: () => {
-                this.mSettingsCtrl.restoreSettingsPageSwitchValue();
-                this.mAdvancedSettingsCtrl.restoreSettingPageSwitchValue();
-            }
-        }
-    });
+    private isAdvancedMode: boolean = SharedPreferencesUtils.getFromPreferences('isAdvancedMode', false) as boolean;
+    /* 是否启用rcs能力 */
+    private isEnableRcsAbility: boolean = SystemMode.getInstance().isEnableRcsAbility;
+    /* 设备是否为pad,并判断是否具有蜂窝能力 */
+    @State isPad: boolean = DeviceUtil.isTablet();
+    @State isPC: boolean = DeviceUtil.isPC();
+    @StorageLink('mmsPadMargin') padMargin: number = DeviceUtil.padMargin();
+    @State isCellularTablet: boolean = DeviceUtil.isCellularTablet();
+    @State isWifiOnlyTablet: boolean = DeviceUtil.isWifiOnlyTablet();
+    @State isSubDeviceWithConnected: boolean = DeviceUtil.isSubDeviceWithConnected(this.context);
+    @State animationViewModel: AnimationViewModel = new AnimationViewModel('50%', 0, 0);
+    @StorageProp('fontSizeScale') fontSizeScale: number = 1;
+    onClose?: () => void;
 
-    changeSelectState(){
+    @Styles
+    normalStyles(){
+        .backgroundColor(Color.Transparent)
     }
 
-    @Provide menuItems: Array<any> = [
-        {
-            value: $r('app.string.restore_default_settings'),
-            action: () => {
-                this.restoreDialog.show();
+    @Styles
+    pressedStyles(){
+        .backgroundColor($r('sys.color.interactive_click'))
+        .borderRadius($r('sys.float.corner_radius_level4'))
+    }
+
+    restoreDiaLogController: CustomDialogController = new CustomDialogController({
+        builder: AlertDialog({
+            content: $r('app.string.restore_all_default_settings'),
+            primaryButton: {
+                value: $r('app.string.cancel'),
+                action: () => {
+                    HiLog.i(TAG, 'Cancel Settings')
+                    // 还原默认设置-取消打点
+                    stateParam.STATE = 1;
+                    DotUtil.getInstance().reportEvent(stateParam, dotCommon.eventName.MORE_RESTORE_DEFAULT);
+                }
             },
-            enabled: true
-        }
-    ];
-    @Provide statusTitle: Resource = null;
+            secondaryButton: {
+                value: $r('app.string.restore'),
+                action: () => {
+                    HiLog.i(TAG, 'Restore Settings')
+                    this.mAdvancedSettingsCtrl.restoreSettingPageSwitchValue();
+                    this.mSettingsCtrl.restoreSettingsPageSwitchValue();
+                    this.mSettingsCtrl.reStoreSmartMmsInfo()
+                    this.mSettingsCtrl.reStoreDeleteDialog();
+                    this.mSettingsCtrl.restoreMmsRingtone();
+                    // 还原默认设置-还原打点
+                    stateParam.STATE = 2;
+                    DotUtil.getInstance().reportEvent(stateParam, dotCommon.eventName.MORE_RESTORE_DEFAULT);
+                }
+            }
+        }),
+        autoCancel: false,
+    })
 
-    /**
-     * The function executes after a new instance of the custom component is created and before its build function
-     * is executed.
-     * Allows state variables to be changed in the aboutToAppear function, and these changes will take effect in
-     * subsequent executions of the build function.
-     */
+    @Provide statusTitle: Resource | null = null;
+    @Provide deliverStatusTitle: Resource | null = null;
+    @Provide newPrivacyStatement: boolean = false;
+    @Provide harassmentInterceptionStatus: Resource | null = $r('app.string.disabled');
+    @State isVisibleSmart: boolean = false;
+    applicationStateChangeCallback: ApplicationStateChange = new ApplicationStateChange()
+
     aboutToAppear() {
-        this.mSettingsCtrl.onInit()
+        this.destinationShow();
+        this.mSettingsCtrl.onInit(this.pageInfosSetting);
+
+        try {
+            let context = getContext(this) as myCommon.UIAbilityContext;
+            let self = this
+            this.applicationStateChangeCallback.callback = () => {
+                self.destinationShow();
+            }
+            context.getApplicationContext().on('applicationStateChange', this.applicationStateChangeCallback)
+        } catch (exception) {
+            HiLog.e(TAG, 'Failed code');
+        }
+        // 在页面显示和消失时使用标记位标记
+        AppStorage.setOrCreate('isSettingsAppear', true);
     }
 
-    /**
-     * Function executes before custom component destructor consumption.
-     * Changing state variables in the aboutToDisappear function is not allowed, especially changes to the @Link
-     * variable may cause unstable application behavior.
-     */
-    aboutToDisappear() {
+    aboutToDisappear(): void {
+        this.destinationHide();
+        AppStorage.setOrCreate('tipsJumpToRcsSetting', false);
+        let context = getContext(this) as myCommon.UIAbilityContext;
+        // //回调为空会导致crash
+        this.applicationStateChangeCallback.callback = () => {
+        }
+        context.getApplicationContext().off('applicationStateChange', this.applicationStateChangeCallback);
+        AppStorage.setOrCreate('isSettingsAppear', false);
+    }
+
+    @Builder
+    agreeNetworkDialogBuildContent(): void {
+        AgreeNetworkDialog({
+            msg: $r('app.string.mms_need_network'),
+            msgDescription: $r('app.string.mms_need_network_description')
+        })
     }
 
     /**
      * Triggers once when this page is displayed. In scenarios such as routing and application access to the foreground
      * and background, only customized components modified by @Entry take effect.
      */
-    onPageShow() {
+    destinationShow() {
         this.mSettingsCtrl.onShow();
-        WantUtil.getWant();
+        this.newPrivacyStatement =
+         SharedPreferencesUtils.getFromPreferences(common.STR.KEY_OF_NEW_PRIVACY_STATEMENT, true) as boolean;
+        WantUtil.getWant(this.context,this.pageInfosSetting);
+        this.getHarassmentInterceptionStatus();
+        HiLog.i(TAG, `destinationShow = ${JSON.stringify(this.stateTitle)}`);
     }
 
-    /**
-     * Triggers once when this page disappears. In scenarios such as routing and application access to the foreground
-     * and background, only customized components modified by @Entry take effect.
-     */
-    onPageHide() {
+    destinationHide() {
+      HiLog.i(TAG, `destinationHide start`);
     }
 
-    /**
-     * Triggered when a user clicks the back button. Only the customized component modified by @Entry takes effect.
-     * If true is returned, the page processes the return logic and does not route the page.
-     * If false is returned, the default return logic is used.
-     * If no value is returned, the value is treated as false.
-     */
-    onBackPress() {
+    // 查询 [陌生号码识别与骚扰拦截] 的开关状态
+    private getHarassmentInterceptionStatus() {
+        if (!this.context) {
+            HiLog.e(TAG, 'setting: getHarassmentInterceptionStatus context is null!');
+            return;
+        }
+        let status: string = settings.getValueSync(this.context, common.STR.NUMBER_IDENTITY_SEITCH, common.bool.FALSE);
+        if (status == common.bool.FALSE) {
+            this.harassmentInterceptionStatus = $r('app.string.disabled')
+        } else {
+            this.harassmentInterceptionStatus = $r('app.string.enabled');
+        }
+        HiLog.i(TAG, 'HarassmentInterceptionStatus: ' + status)
+    }
+
+    @Builder
+    NavMenu() {
+        Column() {
+            MoreMenu()
+        }
+        .padding({right: this.isPad ? this.padMargin : 16, top: 8 })
     }
 
     build() {
-        Column() {
+        Navigation(this.pageInfosSetting) {
             // Top Device Title
-            Row() {
-                Image($rawfile('icon/ic_message_back.svg'))
-                    .width($r('app.float.icon_side_length_medium'))
-                    .height($r('app.float.icon_side_length_medium'))
-                    .margin({
-                        left: $r('app.float.action_bar_margin_left')
-                    })
-                    .onClick(() => {
-                        router.back()
-                    })
-
-                Row().width($r('app.float.space_16'))
-
-                Text($r('app.string.settings'))
-                    .fontSize($r('app.float.action_bar_text_size'))
-                    .fontColor(Color.Black)
-                    .fontWeight(FontWeight.Bold)
-
-                Row().width('100%').flexShrink(1)
-
-                Column() {
-                    MoreMenu()
-                }
-                .margin({ right: $r('app.float.action_bar_margin_right') })
-            }
-            .width('100%')
-            .height($r('app.float.action_bar_height'))
+            CustomSettingsNavBar({
+                animationViewModel: this.animationViewModel,
+                isShowBackBtn: false,
+                title: $r('app.string.settings'),
+                isNeedAnimation: false,
+                onClose: this.onClose
+            });
 
             Scroll() {
-                GridRow({ columns: this.gridColumns, gutter: this.gridGutter }) {
-                    GridCol({ span: this.girdSpan, offset: this.gridColOffset }) {
-                        // All settings
-                        Column() {
-                            // Setting items of the first group
-                            Column() {
-                                // Enhanced Information
-                                SettingItemJump({
-                                    primaryTitle: $r('app.string.enhanced_information'),
-                                    visibilityShow: this.isEnhanceShow,
-                                    OnClick: (event?: ClickEvent) => {
-                                        // The page for setting enhanced information is displayed.
-                                    }
-                                })
-
-                                // Intelligent information
-                                SettingItemJump({
-                                    primaryTitle: $r('app.string.intelligent_information'),
-                                    OnClick: (event?: ClickEvent) => {
-                                        // The ringtone setting page is displayed.
-                                    }
-                                })
+              // All settings
+              Column() {
+                    // Setting items of the second group
+                    Column() {
+                        // Notification information integration
+                        SettingItemSwitch({
+                            primaryTitle: $r('app.string.archive_info_messages'),
+                            secondaryTitle: $r('app.string.archive_info_messages_hint'),
+                            isEnable: this.mSettingsCtrl.integrationSwitch,
+                            showBottomDivider: false,
+                            onChange: (isOn: boolean) => {
+                                this.mSettingsCtrl.integration(isOn)
                             }
-                            .width('100%')
-                            .padding({
-                                top: $r('app.float.settings_item_padding_top'),
-                                bottom: $r('app.float.settings_item_padding_bottom'),
-                                left: $r('app.float.settings_item_padding_left'),
-                                right: $r('app.float.settings_item_padding_right')
-                            })
-                            .border({
-                                radius: $r('app.float.settings_items_radius'),
-                                color: $r('sys.color.ohos_id_color_text_field_bg')
-                            })
-                            .backgroundColor($r('sys.color.ohos_id_color_text_field_bg'))
-                            .visibility(Visibility.None)
-
-                            // Setting items of the second group
-                            Column() {
-                                // Notification information integration
-                                SettingItemSwitch({
-                                    primaryTitle: $r('app.string.archive_info_messages'),
-                                    secondaryTitle: $r('app.string.archive_info_messages_hint'),
-                                    isEnable: this.mSettingsCtrl.integrationSwitch,
-                                    showBottomDivider: false,
-                                    onChange: (isOn: boolean) => {
-                                        this.mSettingsCtrl.integration(isOn)
-                                    }
-                                })
-                            }
-                            .width('100%')
-                            .padding({
-                                top: $r('app.float.settings_item_padding_top'),
-                                bottom: $r('app.float.settings_item_padding_bottom'),
-                                left: $r('app.float.settings_item_padding_left'),
-                                right: $r('app.float.settings_item_padding_right')
-                            })
-                            .border({
-                                radius: $r('app.float.settings_items_radius'),
-                                color: $r('sys.color.ohos_id_color_text_field_bg')
-                            })
-                            .backgroundColor($r('sys.color.ohos_id_color_text_field_bg'))
-
-                            // Setting items of the third group
-                            Column() {
-                                // Message ringtone
-                                SettingItemJump({
-                                    primaryTitle: $r('app.string.message_tone'),
-                                    showBottomDivider: true,
-                                    visibilityShow: Visibility.None,
-                                    OnClick: (event?: ClickEvent) => {
-                                        // The ringtone setting page is displayed.
-                                        this.mSettingsCtrl.jumpToMessageTonePage()
-                                    }
-                                })
-                                // Advanced
-                                SettingItemJump({
-                                    primaryTitle: $r('app.string.advanced'),
-                                    OnClick: (event?: ClickEvent) => {
-                                        // Go to the advanced settings screen.
-                                        this.mSettingsCtrl.advancedSetting()
-                                    }
-                                })
-                            }
-                            .width('100%')
-                            .padding({
-                                top: $r('app.float.settings_item_padding_top'),
-                                bottom: $r('app.float.settings_item_padding_bottom'),
-                                left: $r('app.float.settings_item_padding_left'),
-                                right: $r('app.float.settings_item_padding_right')
-                            })
-                            .margin({ top: 12 })
-                            .border({
-                                radius: $r('app.float.settings_items_radius'),
-                                color: $r('sys.color.ohos_id_color_text_field_bg')
-                            })
-                            .backgroundColor($r('sys.color.ohos_id_color_text_field_bg'))
-                        }
-                        .margin({
-                            top: $r('app.float.settings_items_margin_top'),
-                            bottom: $r('app.float.settings_items_margin_bottom')
                         })
+                            .height(this.fontSizeScale < 1 ? '64' : 'auto')
                     }
+                    .width('100%')
+                    .margin({ top: DeviceUtil.isPC() ? '' : 12 })
+                    .padding({
+                        top: $r('app.float.settings_item_padding_top'),
+                        bottom: $r('app.float.settings_item_padding_bottom'),
+                        left: 4,
+                        right: 4
+                    })
+                    .border({
+                        radius: $r('sys.float.corner_radius_level10'),
+                        color: $r('sys.color.comp_background_list_card')
+                    })
+                    .backgroundColor($r('sys.color.comp_background_list_card'))
+
+                    // Setting items of the third group
+                  Column() {
+                      // Message ringtone
+                      SettingItemJump({
+                          primaryTitle: $r('app.string.message_tone'),
+                          showBottomDivider: true,
+                          OnClick: (event?: ClickEvent) => {
+                              // The ringtone setting page is displayed.
+                              this.mSettingsCtrl.jumpToMessageTonePage();
+                              DotUtil.getInstance().reportEvent(dotNoNeedParmas,
+                                  dotCommon.eventName.NOTIFICATION_RING_AND_SONG);
+                          }
+                      })
+                          .height(this.fontSizeScale < 1 ? '48' : 'auto')
+                          .visibility(DeviceUtil.isPC() ? Visibility.None : Visibility.Visible)
+                      SettingItemSwitch({
+                          primaryTitle: $r('app.string.show_contact_profile_pics'),
+                          isEnable: this.mSettingsCtrl.showContactSwitch,
+                          showBottomDivider: false,
+                          onChange: (isOn: boolean) => {
+                              this.mSettingsCtrl.showContact(isOn)
+                          }
+                      })
+                          .height(this.fontSizeScale < 1 ? '48' : 'auto')
+                  }
+                  .width('100%')
+                  .margin({ top: 12 })
+                  .padding({
+                      top: $r('app.float.settings_item_padding_top'),
+                      bottom: $r('app.float.settings_item_padding_bottom'),
+                      left: 4,
+                      right: 4
+                  })
+                  .border({
+                      radius: $r('sys.float.corner_radius_level10'),
+                      color: $r('sys.color.comp_background_list_card')
+                  })
+                  .backgroundColor($r('sys.color.comp_background_list_card'))
+
+                    // privacy state
+                  // Column() {
+                  //     // mms privacy state
+                  //     SettingItemJump({
+                  //         primaryTitle: $r('app.string.privacy_statements'),
+                  //         showCircle: true,
+                  //         OnClick: (event?: ClickEvent) => {
+                  //             HiLog.i(TAG, 'privacyStateRedirection')
+                  //             this.mSettingsCtrl.privacyStateRedirection();
+                  //             SharedPreferencesUtils.saveToPreferences(
+                  //                 common.STR.KEY_OF_NEW_PRIVACY_STATEMENT, false
+                  //                 );
+                  //             this.newPrivacyStatement = false
+                  //             DotUtil.getInstance().reportEvent(dotNoNeedParmas,
+                  //                 dotCommon.eventName.SETTING_MMS_PRIVACY_STATE);
+                  //         },
+                  //         showBottomDivider: true
+                  //     })
+                  //         .height(this.fontSizeScale < 1 ? '48' : 'auto')
+                  //     // mms personal information list
+                  //     SettingItemJump({
+                  //         primaryTitle: $r('app.string.mms_personal_information_list'),
+                  //         OnClick: (event?: ClickEvent) => {
+                  //             HiLog.i(TAG, 'personalInformationListRedirection')
+                  //             this.mSettingsCtrl.personalInformationListRedirection();
+                  //             DotUtil.getInstance().reportEvent(dotNoNeedParmas,
+                  //                 dotCommon.eventName.SETTING_MMS_PERSONAL_LIST);
+                  //         }
+                  //     })
+                  //         .height(this.fontSizeScale < 1 ? '48' : 'auto')
+                  // }
+                  // .width('100%')
+                  // .margin({ top: 12 })
+                  // .padding({
+                  //     top: $r('app.float.settings_item_padding_top'),
+                  //     bottom: $r('app.float.settings_item_padding_bottom'),
+                  //     left: 4,
+                  //     right: 4
+                  // })
+                  // .border({
+                  //     radius: $r('sys.float.corner_radius_level10'),
+                  //     color: $r('sys.color.comp_background_list_card')
+                  // })
+                  // .backgroundColor($r('sys.color.comp_background_list_card'))
+
+                    Column() {
+                        // Advanced
+                        SettingItemJump({
+                            primaryTitle: $r('app.string.advanced'),
+                            OnClick: (event?: ClickEvent) => {
+                                // Go to the advanced settings screen.
+                                this.mSettingsCtrl.advancedSetting()
+                                // 更多-设置-高级打点
+                                DotUtil.getInstance()
+                                    .reportEvent(dotNoNeedParmas, dotCommon.eventName.SETTING_ADVANCED_BUTTON);
+                            }
+                        })
+                            .height(this.fontSizeScale < 1 ? '48' : 'auto')
+                    }
+                    .width('100%')
+                    .margin({ top: 12 })
+                    .padding({
+                        top: $r('app.float.settings_item_padding_top'),
+                        bottom: $r('app.float.settings_item_padding_bottom'),
+                        left: 4,
+                        right: 4
+                    })
+                    .border({
+                        radius: $r('sys.float.corner_radius_level10'),
+                        color: $r('sys.color.comp_background_list_card')
+                    })
+                    .backgroundColor($r('sys.color.comp_background_list_card'))
+                    .visibility(DeviceUtil.isPC() ? Visibility.None : Visibility.Visible)
+
+                  Column() {
+                      //restore_default_settings
+                      SettingItemJump({
+                          primaryTitle: $r('app.string.restore_default_settings'),
+                          isHideChevronRight: true,
+                          OnClick: () => {
+                              this.restoreDiaLogController.open();
+                              // 更多-设置-更多-还原默认设置打点
+                              DotUtil.getInstance()
+                                  .reportEvent(dotNoNeedParmas, dotCommon.eventName.MORE_RESTORE_DEFAULT_DIALOG);
+                          }
+                      })
+                          .height(this.fontSizeScale < 1 ? '48' : 'auto')
+                  }
+                  .width('100%')
+                  .margin({ top: 12 })
+                  .padding({
+                      top: $r('app.float.settings_item_padding_top'),
+                      bottom: $r('app.float.settings_item_padding_bottom'),
+                      left: 4,
+                      right: 4
+                  })
+                  .border({
+                      radius: $r('sys.float.corner_radius_level10'),
+                      color: $r('sys.color.comp_background_list_card')
+                  })
+                  .backgroundColor($r('sys.color.comp_background_list_card'))
+
+                    Blank().layoutWeight(1)
+
+                    // FilingNo
+                    // Column() {
+                    //     SettingItemFilingNo({
+                    //         primaryTitle: $r('app.string.FilingNo'),
+                    //         OnClick: (event?: ClickEvent) => {
+                    //             HiLog.i(TAG, 'filingNoRedirection')
+                    //             FilingNo.getInstance().implicitStartBrowserAbility();
+                    //         }
+                    //     })
+                    //         .height(this.fontSizeScale < 1 ? '48' : 'auto')
+                    // }
+                    // .width('100%')
+                    // .alignItems(HorizontalAlign.Center)
+                    // .justifyContent(FlexAlign.End)
                 }
+                .margin({
+                    top: $r('app.float.settings_items_margin_top'),
+                    bottom: $r('app.float.settings_items_margin_bottom')
+                })
             }
-            .layoutWeight(1)
             .align(Alignment.Top)
+            .scrollBar(BarState.Off)
+            .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
+            .width('100%')
+            .height('calc(100% - 64vp)')
+            .padding({
+                left: DeviceUtil.isPC() ? 16 : this.isPad ? this.padMargin : $r('sys.float.margin_left'),
+                right: DeviceUtil.isPC() ? 16 : this.isPad ? this.padMargin : $r('sys.float.margin_left')
+            })
         }
-        .width('100%')
-        .height('100%')
-        .padding({ left: $r('app.float.page_padding_left'), right: $r('app.float.page_padding_right') })
-        .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+        .hideBackButton(true)
+        .hideTitleBar(true)
+        .backgroundColor(DeviceUtil.isPC() ? $r('app.color.color_bind_sheet_background_pc') :
+        $r('app.color.color_bind_sheet_background_phone'))
+        .onAppear(() => {
+            this.animationViewModel.enterAnimation();
+        })
+        .onDisAppear(() => {
+            this.animationViewModel.backAnimation();
+        })
     }
 }

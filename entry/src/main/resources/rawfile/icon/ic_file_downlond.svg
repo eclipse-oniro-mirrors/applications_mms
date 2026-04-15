@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic76_Download备份</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#57C24E" offset="0%"></stop>
+            <stop stop-color="#8AE082" offset="100%"></stop>
+        </linearGradient>
+        <path d="M4,0 L37.9831399,0 C38.7383137,-5.82812391e-16 39.462616,0.299718056 39.9969792,0.833331643 L56.1638393,16.9775123 C56.6991835,17.5121055 57,18.2376204 57,18.9941807 L57,72 C57,74.209139 55.209139,76 53,76 L4,76 C1.790861,76 2.705415e-16,74.209139 0,72 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="path-2"></path>
+        <filter x="-17.5%" y="-10.5%" width="135.1%" height="126.3%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.100751543 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter id="filter-4">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.380392 0 0 0 0 0.811765 0 0 0 0 0.745098 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+        <path d="M4.06734106,10.5850177 L8.79338025,10.5850177 L8.79338025,10.5850177 L8.79338025,0.545454545 C8.79338025,0.244208318 9.03758857,6.10449546e-16 9.3388348,0 L14.5001686,0 C14.8014149,-1.12557963e-15 15.0456232,0.244208318 15.0456232,0.545454545 L15.0456232,10.5850177 L15.0456232,10.5850177 L19.9326589,10.5850177 C20.2339052,10.5850177 20.4781135,10.829226 20.4781135,11.1304722 C20.4781135,11.2774594 20.4187906,11.4182253 20.313586,11.5208762 L12.380927,19.2609729 C12.1690497,19.467707 11.8309503,19.467707 11.619073,19.2609729 L3.68641401,11.5208762 C3.47079986,11.310496 3.46655691,10.9651593 3.67693711,10.7495452 C3.77958796,10.6443405 3.92035393,10.5850177 4.06734106,10.5850177 Z" id="path-5"></path>
+        <filter x="-36.2%" y="-38.2%" width="172.3%" height="175.3%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-7" x="0" y="21.755102" width="24" height="4.24489796" rx="2.12244898"></rect>
+        <filter x="-31.2%" y="-176.7%" width="162.5%" height="453.4%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="ic76_Download备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic76_下载文件备份" transform="translate(2.000000, 2.000000)">
+            <g id="doc备份-36" transform="translate(0.000000, 0.000000)">
+                <rect id="矩形" x="0" y="0" width="76" height="76"></rect>
+                <g id="word备份-8" transform="translate(9.500000, 0.000000)">
+                    <path d="M4,0 L37.9831399,0 C38.7383137,-5.82812391e-16 39.462616,0.299718056 39.9969792,0.833331643 L56.1638393,16.9775123 C56.6991835,17.5121055 57,18.2376204 57,18.9941807 L57,72 C57,74.209139 55.209139,76 53,76 L4,76 C1.790861,76 2.705415e-16,74.209139 0,72 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="矩形备份-113" fill="url(#linearGradient-1)"></path>
+                    <g id="矩形备份-136">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <path d="M39.8305111,0.587556678 L56.1730874,16.8932272 C56.3510444,17.0707616 56.5083071,17.2654991 56.6431489,17.4736588 C56.1348056,16.8026878 55.3299352,16.3688994 54.423748,16.3688994 L44.3305057,16.3688994 C42.2318236,16.3688994 40.5305057,14.6675814 40.5305057,12.5688994 L40.5318509,2.50238879 C40.5324003,2.47965159 40.5326766,2.4568467 40.5326766,2.43397728 C40.5326766,1.72521218 40.2673096,1.07842685 39.8305111,0.587556678 Z" id="形状结合" fill="#ECECEC"></path>
+                    <g filter="url(#filter-4)" id="编组-16">
+                        <g transform="translate(16.500000, 30.000000)">
+                            <g id="路径-6备份" fill-rule="nonzero">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                                <use fill="#FFFFFF" xlink:href="#path-5"></use>
+                            </g>
+                            <g id="矩形备份-153" fill-rule="nonzero">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                                <use fill="#FFFFFF" xlink:href="#path-7"></use>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

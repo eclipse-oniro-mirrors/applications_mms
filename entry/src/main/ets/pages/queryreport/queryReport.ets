@@ -12,85 +12,98 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import DeviceUtil from '../../utils/DeviceUtil';
-import router from '@system.router';
 import QueryReportController from './queryReportController';
 import WantUtil from '../../utils/WantUtil';
+import { EditableLeftIconType, EditableTitleBar } from '@ohos.arkui.advanced.EditableTitleBar';
+import LooseObject from '../../data/LooseObject';
+import myCommon from '@ohos.app.ability.common';
+import { i18n } from '@kit.LocalizationKit';
 
-@Entry
+@Builder
+export function queryReportLoader(param: LooseObject): void {
+    queryReport();
+}
+
+/*
+ * 1 when user send message to group
+ * 2 long press message item
+ * 3 press more
+ * 4 read send report
+ * */
 @Component
-struct queryReport {
+export struct queryReport {
+    private context = getContext(this) as myCommon.UIAbilityContext;
+    @Consume('pageInfos') pageInfos: NavPathStack
+    @LocalStorageProp('fullScreenPadding') fullScreenPadding: Padding = {};
     @StorageLink('QueryReportController') queryReportController: QueryReportController = QueryReportController.getInstance();
-    private gridColumns: GridRowColumnOption = { sm: 4, md: 8, lg: 12 };
-    private girdSpan: GridColColumnOption = { sm: 4, md: 8, lg: 12 };
-    private gridGutter: string = '24vp';
-    private gridMargin: string = '24vp';
 
-    onPageShow(): void  {
+    destinationShow(): void {
         this.queryReportController.onShow();
-        WantUtil.getWant();
+        WantUtil.getWant(this.context, this.pageInfos);
     }
 
-    aboutToAppear(): void {
-        this.queryReportController.onInit()
+    destinationAppear(): void {
+        this.queryReportController.onInit(this.pageInfos);
     }
 
     build() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-            Row() {
-                Image($rawfile('icon/ic_message_back.svg'))
-                    .width(24)
-                    .height(24)
-                    .onClick(() => {
-                        router.back()
-                    })
-                Text($r('app.string.send_reports'))
-                    .margin({ left: 16 })
-                    .fontSize(20)
-                    .fontWeight(FontWeight.Bold)
-                    .lineHeight(28)
-            }
-            .alignItems(VerticalAlign.Center)
-            .height(56)
+        NavDestination() {
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+                EditableTitleBar({
+                    leftIconStyle: EditableLeftIconType.Back,
+                    title: $r('app.string.send_reports'),
+                    onCancel: () => {
+                        this.pageInfos.pop();
+                    },
+                    isSaveIconRequired: false
+                })
 
-            Column() {
-                Text() {
-                    Span($r('app.string.putAddresser')).fontSize(16)
-                    Span(this.queryReportController.telephone).fontSize(16)
-                }
-                .fontSize(16)
-                .height(48)
-                .fontWeight(FontWeight.Medium)
-                .lineHeight(22)
+                Column() {
+                    Row() {
+                        Text($r('app.string.putAddresser'))
+                            .fontSize(16)
+                            .height('auto')
+                            .fontWeight(FontWeight.Medium)
+                            .lineHeight(22)
+                        Text(this.queryReportController.telephone)
+                            .fontSize(16)
+                            .height('auto')
+                            .fontWeight(FontWeight.Medium)
+                            .lineHeight(22)
+                            .textAlign(i18n.isRTL(i18n.System.getSystemLanguage()) ? TextAlign.End : TextAlign.Start)
+                            .direction(i18n.isRTL(i18n.System.getSystemLanguage()) ? Direction.Ltr : Direction.Auto)
+                    }
 
-                Text() {
-                    Span($r('app.string.Status')).fontSize(16)
-                    Span(this.queryReportController.sendStatusDesc).fontSize(16)
-                }
-                .fontSize(16)
-                .height(48)
-                .fontWeight(FontWeight.Medium)
-                .lineHeight(22)
-
-                if (!this.queryReportController.isMsm && this.queryReportController.sendStatus != 2) {
                     Text() {
-                        Span($r('app.string.Delivered')).fontSize(16)
-                        Span(this.queryReportController.mmsTime).fontSize(16)
-                        Span(' ')
-                        Span(this.queryReportController.specificTime).fontSize(16)
+                        Span($r('app.string.message_status', this.queryReportController.sendStatusDesc)).fontSize(16)
                     }
                     .fontSize(16)
-                    .height(48)
+                    .constraintSize({ minHeight: 48 })
                     .fontWeight(FontWeight.Medium)
                     .lineHeight(22)
-                }
-            }
-            .alignItems(HorizontalAlign.Start)
-            .padding({ left: 12, right: 12 })
 
+                    if (!this.queryReportController.isMsm && this.queryReportController.sendStatus != 2) {
+                        Text($r('app.string.Delivered', this.queryReportController.mmsTime,
+                          this.queryReportController.specificTime))
+                        .fontSize(16)
+                        .constraintSize({ minHeight: 48 })
+                        .fontWeight(FontWeight.Medium)
+                        .lineHeight(22)
+                    }
+                }
+                .alignItems(HorizontalAlign.Start)
+                .padding({ left: 12, right: 12 })
+
+            }.width('100%').height('100%')
+            .margin({ top: this.fullScreenPadding ? (this.fullScreenPadding.top as number) : 0,
+                left: 24, right: 24 })
         }
-        .width('100%')
-        .height('100%')
-        .margin({ left: this.gridMargin, right: this.gridMargin })
+        .onShown(() => {
+            this.destinationShow();
+        })
+        .onAppear(() => {
+            this.destinationAppear();
+        })
+        .hideTitleBar(true)
     }
 }

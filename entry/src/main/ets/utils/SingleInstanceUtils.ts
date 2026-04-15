@@ -15,8 +15,8 @@
 const TAG = 'SingleInstanceHelper';
 
 export default function createOrGet<T>(objectClass: { new(): T }, storageKey: string): T {
-    if (!globalThis[storageKey]) {
-        globalThis[storageKey] = new objectClass();
-    }
-    return globalThis[storageKey];
+  if (!globalThis[storageKey]) {
+    globalThis[storageKey] = new objectClass();
+  }
+  return globalThis[storageKey];
 }

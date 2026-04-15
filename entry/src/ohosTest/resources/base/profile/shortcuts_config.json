@@ -1,0 +1,20 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "new_sms",
+      "label": "$string:new_message",
+      "icon": "$media:ic_public_add",
+      "wants": [
+        {
+          "bundleName": "com.ohos.mms",
+          "moduleName": "entry",
+          "abilityName": "com.ohos.mms.MainAbility",
+          "parameters": {
+            "startByShortCut": "true",
+            "pageFlag": "CreateNewConversation"
+          }
+        }
+      ]
+    }
+  ]
+}

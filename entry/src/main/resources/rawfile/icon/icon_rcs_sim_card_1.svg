@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>SIM 1</title>
+    <g id="SIM-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" x="0" y="0" width="24" height="24"></rect>
+        <path d="M14.4644661,1 C15.1275073,1 15.7633921,1.2633921 16.232233,1.73223305 L20.267767,5.76776695 C20.7366079,6.2366079 21,6.87249268 21,7.53553391 L21,19 C21,21.209139 19.209139,23 17,23 L7,23 C4.790861,23 3,21.209139 3,19 L3,5 C3,2.790861 4.790861,1 7,1 L14.4644661,1 Z M13.6,7.612 L12.244,7.612 L9.556,9.136 L9.556,10.804 L11.836,9.532 L11.836,16.408 L13.6,16.408 L13.6,7.612 Z" id="形状结合" fill="#0A59F7" fill-rule="nonzero"></path>
+    </g>
+</svg>

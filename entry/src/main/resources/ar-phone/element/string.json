@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"chatbots_black_list",
+            "value":"قائمة الأرقام المحظورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_tips_again",
+            "value":"عدم الإظهار مرةً أخرى",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

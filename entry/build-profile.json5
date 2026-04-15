@@ -3,10 +3,35 @@
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/workers/base/Worker.ts"
+        "./src/main/ets/workers/base/Worker.ets"
+      ]
+    },
+    "napiLibFilterOption": {
+      "excludes": [
+        "**/libcurl.so",
+        "**/libnetwork-grs.so",
+        "**/libnetwork-common.so",
+        "**/libgrsservice.so",
+        "**/x86_64/*.so",
+        "**/armeabi-v7a/*.so"
       ]
     }
   },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          }
+        }
+      }
+    },
+  ],
   "targets": [
     {
       "name": "default"
