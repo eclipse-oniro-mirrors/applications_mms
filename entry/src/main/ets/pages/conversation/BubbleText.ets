@@ -253,101 +253,107 @@ export default struct BubbleText {
     return false;
   }
 
-  @Builder
+  // @Builder
   // instrument ignore next
-  MenuBuilder() {
-    Flex({
-      justifyContent: FlexAlign.SpaceAround,
-      alignItems: ItemAlign.Center
-    }) {
-      this.copyButton();
-      this.forwardButton()
-      this.deleteButton();
-      this.chooseTextButton()
-      MenuItem({ content: $r('app.string.more') })
-        .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
-        .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
-        .contentFontColor($r('sys.color.font_primary'))
-        .onClick(() => {
-          this.conversationCtrl.longPressSelected(this.context, 4)
-          this.showMenu = false;
-          this.showMMContentPicker = false;
-          // 长按功能弹窗打点
-          seleteParam.SELECT_STATE = 5;
-          DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
-        })
-    }
-    .width(this.curBp === common.STR.DEVICE_MOBILE_PHONE ? '85%' : '45%')
-    .height(40)
-    .borderRadius($r('sys.float.corner_radius_level8'))
-    .backgroundColor($r('sys.color.ohos_id_color_dialog_bg'))
-  }
+  // MenuBuilder() {
+  //   Flex({
+  //     justifyContent: FlexAlign.SpaceAround,
+  //     alignItems: ItemAlign.Center
+  //   }) {
+  //     this.copyButton();
+  //     this.forwardButton()
+  //     this.deleteButton();
+  //     this.chooseTextButton()
+  //     MenuItem({ content: $r('app.string.more') })
+  //       .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
+  //       .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
+  //       .contentFontColor($r('sys.color.font_primary'))
+  //       .onClick(() => {
+  //         this.conversationCtrl.longPressSelected(this.context, 4)
+  //         this.showMenu = false;
+  //         this.showMMContentPicker = false;
+  //         // 长按功能弹窗打点
+  //         seleteParam.SELECT_STATE = 5;
+  //         DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
+  //       })
+  //   }
+  //   .width(this.curBp === common.STR.DEVICE_MOBILE_PHONE ? '85%' : '45%')
+  //   .height(40)
+  //   .borderRadius($r('sys.float.corner_radius_level8'))
+  //   .backgroundColor($r('sys.color.ohos_id_color_dialog_bg'))
+  // }
 
-  @Builder
+  // @Builder
   // instrument ignore next
-  chooseTextButton() {
-    MenuItem({ content: $r('app.string.msg_select_text') })
-      .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
-      .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
-      .contentFontColor($r('sys.color.font_primary'))
-      .onClick(() => {
-        this.controller.stopEditing();
-        this.conversationCtrl.longPressSelected(this.context, 3);
-        this.showMenu = false;
-        // 长按功能弹窗打点
-        seleteParam.SELECT_STATE = 4;
-        DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
-      })
-  }
+  // chooseTextButton() {
+  //   MenuItem({ content: $r('app.string.msg_select_text') })
+  //     .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
+  //     .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
+  //     .contentFontColor($r('sys.color.font_primary'))
+  //     .onClick(() => {
+  //       this.controller.stopEditing();
+  //       this.conversationCtrl.longPressSelected(this.context, 3);
+  //       this.showMenu = false;
+  //       // 长按功能弹窗打点
+  //       seleteParam.SELECT_STATE = 4;
+  //       DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
+  //     })
+  // }
 
-  @Builder
-  // instrument ignore next
-  forwardButton() {
-    MenuItem({ content: $r('app.string.msg_transmit') })
-      .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
-      .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
-      .contentFontColor($r('sys.color.font_primary'))
-      .onClick(() => {
-        this.conversationCtrl.longPressSelected(this.context, 1);
-        this.showMenu = false
-        // 长按功能弹窗打点
-        seleteParam.SELECT_STATE = 2;
-        DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
-      })
-  }
+  // @Builder
+  // // instrument ignore next
+  // forwardButton() {
+  //   MenuItem({ content: $r('app.string.msg_transmit') })
+  //     .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
+  //     .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
+  //     .contentFontColor($r('sys.color.font_primary'))
+  //     .onClick(() => {
+  //       // 关键：在跳转前清理选中/高亮状态
+  //       this.conversationCtrl.resetSelectData(); // 或者单独写一个 clearLongPress()
+  //       // 例如：
+  //       this.conversationCtrl.setSelectStatus(false);
+  //       this.conversationCtrl.mmsList[this.itemIndex].isShowMsgLongMenu = false;
+  //       HiLog.e('tag','aaassssssssssss')
+  //       this.conversationCtrl.longPressSelected(this.context, 1);
+  //       this.showMenu = false
+  //       // 长按功能弹窗打点
+  //       seleteParam.SELECT_STATE = 2;
+  //       DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
+  //     })
+  // }
 
-  @Builder
-  // instrument ignore next
-  copyButton() {
-    MenuItem({ content: $r('app.string.msg_copy') })
-      .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
-      .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
-      .contentFontColor($r('sys.color.font_primary'))
-      .onClick(() => {
-        this.conversationCtrl.longPressSelected(this.context, 0);
-        this.showMenu = false;
-        // 长按功能弹窗打点
-        seleteParam.SELECT_STATE = 1;
-        DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
-      })
-  }
+  // @Builder
+  // // instrument ignore next
+  // copyButton() {
+  //   MenuItem({ content: $r('app.string.msg_copy') })
+  //     .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
+  //     .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
+  //     .contentFontColor($r('sys.color.font_primary'))
+  //     .onClick(() => {
+  //       this.conversationCtrl.longPressSelected(this.context, 0);
+  //       this.showMenu = false;
+  //       // 长按功能弹窗打点
+  //       seleteParam.SELECT_STATE = 1;
+  //       DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
+  //     })
+  // }
 
-  @Builder
-  // instrument ignore next
-  deleteButton() {
-    MenuItem({ content: $r('app.string.delete') })
-      .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
-      .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
-      .contentFontColor($r('sys.color.font_primary'))
-      .onClick(() => {
-        this.conversationCtrl.longPressSelected(this.context, 2);
-        this.showMenu = false
-        this.delConversionController?.open();
-        // 长按功能弹窗打点
-        seleteParam.SELECT_STATE = 3;
-        DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
-      })
-  }
+  // @Builder
+  // // instrument ignore next
+  // deleteButton() {
+  //   MenuItem({ content: $r('app.string.delete') })
+  //     .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
+  //     .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
+  //     .contentFontColor($r('sys.color.font_primary'))
+  //     .onClick(() => {
+  //       this.conversationCtrl.longPressSelected(this.context, 2);
+  //       this.showMenu = false
+  //       this.delConversionController?.open();
+  //       // 长按功能弹窗打点
+  //       seleteParam.SELECT_STATE = 3;
+  //       DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
+  //     })
+  // }
 
   @Styles
   normalStyles(){
@@ -642,7 +648,7 @@ export default struct BubbleText {
           })
       )
       .bindContextMenu(this.showMenu, this.longPressMenuBuild(), {
-        preview: MenuPreviewMode.IMAGE,
+        preview: MenuPreviewMode.NONE,
         previewAnimationOptions: {
           scale: [0.95, 1.1]
         },
@@ -661,11 +667,9 @@ export default struct BubbleText {
           } else if (this.itemIndex === this.scrollEndIndex) {
             this.listScroller.scrollToIndex(this.itemIndex, false, ScrollAlign.END);
           }
-          setTimeout(() => {
             this.showMenu = false
             this.isHidden = false;
-          }, 850);
-        })
+        }),
       })
       .draggable(true)
       .visibility(this.isHidden ? Visibility.Hidden : Visibility.Visible)

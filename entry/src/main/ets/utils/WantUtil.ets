@@ -29,7 +29,7 @@ import DeviceUtil from './DeviceUtil';
 import TelephoneUtil from './TelephoneUtil';
 import { AddressInfo, Mms, ShareExtraData } from './TypesUtils';
 import FileUtil from './FileUtil';
-//import { systemShare } from '@kit.ShareKit';
+import { systemShare } from '@kit.ShareKit';
 import { EnhancedInfoTemporaryDataSource } from '../model/EnhancedInfoTemporaryDataSource';
 import ConversationListController from '../pages/conversationlist/conversationListController';
 import ConversationListResponse from '../model/conversationlist/ConversationListResponse';
@@ -578,103 +578,103 @@ export class WantUtil {
     let transmitContentList: LooseObject[] = [];
     let hasMms: boolean = false;
     //key值为分享过来的文件的类型枚举值
-    // keys.forEach((key) => {
-    //   HiLog.i(TAG, 'buildTransmitParam start!');
-    //   let records: systemShare.SharedRecord[] = parameters['ability.picker.records'][key];
-    //   let streams: string[] = parameters['ability.params.stream'];
-    //   // record['2']保存content，record['4']保存filename
-    //   // record['7']保存extraData (当前仅存 ct-资源格式类型)
-    //   let record: systemShare.SharedRecord = records[0]
-    //   //key的枚举值是没顺序的，{"0":0,"1":0}{"0":2,"1":2}，"0"的值为该种类文件的在文件列表中的第几位
-    //   let index = record['0'] as number
-    //   let fileName = record['4'] as string;
-    //   let ct = '';
-    //   let ctRecord = record['7'] ? record['7'] as Record<string, string> : null;
-    //   ct = ctRecord ? ctRecord?.mmsShareTransferMmsCt : '';
-    //   HiLog.i(TAG, `buildTransmitParam get ctRecord is : ${JSON.stringify(ctRecord)}`);
-    //   let fileSuffix = '';
-    //   if (!StringUtil.isEmpty(fileName)) {
-    //     fileSuffix = fileName.substring(fileName.lastIndexOf('.') + 1);
-    //   }
-    //
-    //   let obj: Record<string, string | boolean | Mms[] | number> = {
-    //     'content': '', 'isMsm': false, 'mms': [], 'contentInfo': '', 'contentType': 0
-    //   };
-    //
-    //   let type: number | undefined = -1
-    //   if (key == 'general.text' || key == 'general.plain-text') {
-    //     type = commonData.MM_ATTACHMENT_TYPE.TEXT
-    //   } else if (record['7'] && !record['7'][ShareExtraData.MESSAGE_IS_RCS] &&
-    //     record['7'][ShareExtraData.MESSAGE_TYPE] === commonData.MM_ATTACHMENT_TYPE.MAP) {//彩信位置消息分享到信息应用的场景
-    //     type = commonData.MM_ATTACHMENT_TYPE.MAP;
-    //     obj.isRcs = record['7'][ShareExtraData.MESSAGE_IS_RCS] ?? undefined;
-    //   } else {
-    //     type = this.getMmsType(key, streams != null && streams.length > 0 ? streams[index] : '');
-    //   }
-    //   if (type === commonData.MM_ATTACHMENT_TYPE.TEXT && fileSuffix.toLowerCase() != 'txt') {
-    //     obj.content = record['2'] ? record['2'] : '';
-    //     transmitContentList.push(obj);
-    //   } else if (type === commonData.MM_ATTACHMENT_TYPE.TEXT && fileSuffix.toLowerCase() === 'txt') {
-    //     let stream = streams[index];
-    //     obj.content = FileUtil.getTextFileContent(stream);
-    //     transmitContentList.push(obj);
-    //   } else if (type !== undefined && streams && streams.length > 0 && streams[index] != null) {
-    //     let stream = streams[index];
-    //     let mmsSource: Mms[] = [];
-    //     let path = '';
-    //     let name = '';
-    //     let uri = '';
-    //     let text: string | undefined = undefined; //附件的text属性
-    //     let content: string | undefined = undefined; //附件的content属性
-    //     let address: AddressInfo | undefined = undefined; //附件的address属性
-    //     // audio duration
-    //     let duration: string = record['2'] ? record['2'] : ''; //附件的duration属性
-    //     if (fileSuffix === 'txt') {
-    //       type = commonData.ENHANCED_INFO_ITEM_TYPE.FILE;
-    //     }
-    //     if (stream.indexOf('file://com.ohos.mms') === -1) {
-    //       path = FileUtil.writeMediaToSandBox(context, stream, type, true);
-    //       name = FileUtil.getFileName(path);
-    //     } else {
-    //       name = FileUtil.getFileName(stream);
-    //       uri = FileUtil.getFileFullDirectoryUri(stream);
-    //       let sandboxPath = FileUtil.getSandboxPath(context);
-    //       let uriArr = uri.split(sandboxPath);
-    //       sandboxPath = uriArr.length > 1 ? sandboxPath + uriArr[uriArr.length - 1] : sandboxPath;
-    //       path = sandboxPath + '/' + name;
-    //
-    //       const textValue: string | undefined = record['7']?.[ShareExtraData.MESSAGE_CONTENT];
-    //       if (type === commonData.MM_ATTACHMENT_TYPE.MAP && textValue) { //彩信位置消息分享到信息应用的场景
-    //         HiLog.i(TAG, `buildTransmitParam: handle mms Map mesaage`);
-    //         content = textValue;
-    //         obj.content = '';
-    //         const longitude: number | undefined = record['7'][ShareExtraData.MESSAGE_LONGITUDE];
-    //         const latitude: number | undefined = record['7'][ShareExtraData.MESSAGE_LATITUDE];
-    //         let tempArray = textValue.split('\n');
-    //         let addressInfo: AddressInfo = new AddressInfo(latitude ?? 0, longitude ?? 0, tempArray?.[0] ?? '',
-    //           tempArray?.[1] ?? '');
-    //         address = addressInfo;
-    //         text = JSON.stringify(addressInfo);
-    //         let textSource = this.getMmsMapTextSourceByText(context, textValue);
-    //         if (textSource) {
-    //           mmsSource.push(textSource);
-    //         }
-    //       }
-    //     }
-    //     let size = FileUtil.getFileSizeByPath(path);
-    //     let mms: Mms = this.getMms(duration, type, path, type === commonData.MM_ATTACHMENT_TYPE.MAP ? String(size) :
-    //     this.setFileSize(size), name, text, content, address);
-    //     if (!StringUtil.isEmpty(ct)) {
-    //       mms.ct = ct;
-    //       HiLog.i(TAG, `buildTransmitParam mms.ct: ${mms?.ct}`);
-    //     }
-    //     mmsSource.push(mms);
-    //     obj.mms = mmsSource;
-    //     obj.isMsm = true;
-    //     hasMms = true;
-    //     transmitContentList.push(obj);
-    //   }
-    // });
+    keys.forEach((key) => {
+      HiLog.i(TAG, 'buildTransmitParam start!');
+      let records: systemShare.SharedRecord[] = parameters['ability.picker.records'][key];
+      let streams: string[] = parameters['ability.params.stream'];
+      // record['2']保存content，record['4']保存filename
+      // record['7']保存extraData (当前仅存 ct-资源格式类型)
+      let record: systemShare.SharedRecord = records[0]
+      //key的枚举值是没顺序的，{"0":0,"1":0}{"0":2,"1":2}，"0"的值为该种类文件的在文件列表中的第几位
+      let index = record['0'] as number
+      let fileName = record['4'] as string;
+      let ct = '';
+      let ctRecord = record['7'] ? record['7'] as Record<string, string> : null;
+      ct = ctRecord ? ctRecord?.mmsShareTransferMmsCt : '';
+      HiLog.i(TAG, `buildTransmitParam get ctRecord is : ${JSON.stringify(ctRecord)}`);
+      let fileSuffix = '';
+      if (!StringUtil.isEmpty(fileName)) {
+        fileSuffix = fileName.substring(fileName.lastIndexOf('.') + 1);
+      }
+
+      let obj: Record<string, string | boolean | Mms[] | number> = {
+        'content': '', 'isMsm': false, 'mms': [], 'contentInfo': '', 'contentType': 0
+      };
+
+      let type: number | undefined = -1
+      if (key == 'general.text' || key == 'general.plain-text') {
+        type = commonData.MM_ATTACHMENT_TYPE.TEXT
+      } else if (record['7'] && !record['7'][ShareExtraData.MESSAGE_IS_RCS] &&
+        record['7'][ShareExtraData.MESSAGE_TYPE] === commonData.MM_ATTACHMENT_TYPE.MAP) {//彩信位置消息分享到信息应用的场景
+        type = commonData.MM_ATTACHMENT_TYPE.MAP;
+        obj.isRcs = record['7'][ShareExtraData.MESSAGE_IS_RCS] ?? undefined;
+      } else {
+        type = this.getMmsType(key, streams != null && streams.length > 0 ? streams[index] : '');
+      }
+      if (type === commonData.MM_ATTACHMENT_TYPE.TEXT && fileSuffix.toLowerCase() != 'txt') {
+        obj.content = record['2'] ? record['2'] : '';
+        transmitContentList.push(obj);
+      } else if (type === commonData.MM_ATTACHMENT_TYPE.TEXT && fileSuffix.toLowerCase() === 'txt') {
+        let stream = streams[index];
+        obj.content = FileUtil.getTextFileContent(stream);
+        transmitContentList.push(obj);
+      } else if (type !== undefined && streams && streams.length > 0 && streams[index] != null) {
+        let stream = streams[index];
+        let mmsSource: Mms[] = [];
+        let path = '';
+        let name = '';
+        let uri = '';
+        let text: string | undefined = undefined; //附件的text属性
+        let content: string | undefined = undefined; //附件的content属性
+        let address: AddressInfo | undefined = undefined; //附件的address属性
+        // audio duration
+        let duration: string = record['2'] ? record['2'] : ''; //附件的duration属性
+        if (fileSuffix === 'txt') {
+          type = commonData.ENHANCED_INFO_ITEM_TYPE.FILE;
+        }
+        if (stream.indexOf('file://com.ohos.mms') === -1) {
+          path = FileUtil.writeMediaToSandBox(context, stream, type, true);
+          name = FileUtil.getFileName(path);
+        } else {
+          name = FileUtil.getFileName(stream);
+          uri = FileUtil.getFileFullDirectoryUri(stream);
+          let sandboxPath = FileUtil.getSandboxPath(context);
+          let uriArr = uri.split(sandboxPath);
+          sandboxPath = uriArr.length > 1 ? sandboxPath + uriArr[uriArr.length - 1] : sandboxPath;
+          path = sandboxPath + '/' + name;
+
+          const textValue: string | undefined = record['7']?.[ShareExtraData.MESSAGE_CONTENT];
+          if (type === commonData.MM_ATTACHMENT_TYPE.MAP && textValue) { //彩信位置消息分享到信息应用的场景
+            HiLog.i(TAG, `buildTransmitParam: handle mms Map mesaage`);
+            content = textValue;
+            obj.content = '';
+            const longitude: number | undefined = record['7'][ShareExtraData.MESSAGE_LONGITUDE];
+            const latitude: number | undefined = record['7'][ShareExtraData.MESSAGE_LATITUDE];
+            let tempArray = textValue.split('\n');
+            let addressInfo: AddressInfo = new AddressInfo(latitude ?? 0, longitude ?? 0, tempArray?.[0] ?? '',
+              tempArray?.[1] ?? '');
+            address = addressInfo;
+            text = JSON.stringify(addressInfo);
+            let textSource = this.getMmsMapTextSourceByText(context, textValue);
+            if (textSource) {
+              mmsSource.push(textSource);
+            }
+          }
+        }
+        let size = FileUtil.getFileSizeByPath(path);
+        let mms: Mms = this.getMms(duration, type, path, type === commonData.MM_ATTACHMENT_TYPE.MAP ? String(size) :
+        this.setFileSize(size), name, text, content, address);
+        if (!StringUtil.isEmpty(ct)) {
+          mms.ct = ct;
+          HiLog.i(TAG, `buildTransmitParam mms.ct: ${mms?.ct}`);
+        }
+        mmsSource.push(mms);
+        obj.mms = mmsSource;
+        obj.isMsm = true;
+        hasMms = true;
+        transmitContentList.push(obj);
+      }
+    });
     return {
       'transmitContent': '', 'transmitContentList': transmitContentList, 'transmitContentDetail': '',
       'mmsStatus': hasMms ? commonData.TRANSMIT_MSG_STATUS.SHARE_MMS : commonData.TRANSMIT_MSG_STATUS.SHARE_SMS,

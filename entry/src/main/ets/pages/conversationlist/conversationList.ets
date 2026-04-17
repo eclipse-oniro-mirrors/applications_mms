@@ -273,6 +273,8 @@ export default struct ConversationList {
   isSearchChange() {
     if (!this.isSearch) {
       this.inputText = ''
+      // 退出搜索状态时恢复首页数据源
+      this.searchInfoController.querySMS('', this.context)
     }
     AppStorage.setOrCreate('inputText', this.inputText)
   }
@@ -1701,9 +1703,8 @@ export default struct ConversationList {
 
     build() {
       Navigation() {
-        // 搜索框
-          this.searchBoxBuilder()
         if (this.isSearch && this.isSearchResultEmpty) {
+          this.searchBoxBuilder()
           EmptyPage({
             emptyDescription: $r('app.string.noMessagesSearchResult'), // 搜索无结果专属提示
           })
@@ -1757,198 +1758,206 @@ export default struct ConversationList {
             Stack({ alignContent: Alignment.TopStart }) {
               //会话列表
               Column() {
+                // 搜索状态：搜索框固定在顶部，列表在下方滚动
+                if (this.isSearch) {
+                  this.searchBoxBuilder()
+                }
                 //添加2px是防止不同设备DPI不同导致部分Divider视觉不可见（与像素取整相关，组件提供方案，API16可去除）
-                List({ space: '2px', scroller: this.listScroller }) {
-                  //通知信息
-                  if (this.mConListCtrl.hasAggregate && this.mConListCtrl.hasInfoMsg && this.inputText==='') {
-                    ListItem() {
-                      Column() {
-                        Column() {
-                          this.infoMsgItem()
-                          Divider().height($r('app.float.settings_divider_strokeWidth'))
-                            .margin(Configuration.getLocale().dir === 'rtl' ?
-                              {
-                                right: (this.isPad && this.isShowHeadIcon) ?
-                                  56 :
-                                  (this.isPad && !this.isShowHeadIcon) ? 0 :
-                                    this.isShowHeadIcon ? 56 : 0,
-                                left: this.isPad ? this.padMargin - 16 : 0
-                              } :
-                              {
-                                left: (this.isPad && this.isShowHeadIcon) ?
-                                  56 :
-                                  (this.isPad && !this.isShowHeadIcon) ? 0 :
-                                    this.isShowHeadIcon ? 56 : 0,
-                                right: this.isPad ? this.padMargin - 16 : 0
-                              })
-                            .color($r('sys.color.comp_divider'))
-                            .visibility((this.mConListCtrl.conversationListDataSource.mmsList.length > 0) ?
-                              Visibility.Visible : Visibility.None)
-                        }
-                        .padding({
-                          left: DeviceUtil.isPC() ? 24 :
-                            this.isPad ? this.padMargin : this.marginLeft,
-                          right: DeviceUtil.isPC() ? 24 :
-                            this.isPad ? this.padMargin : this.marginRight
-                        })
-                        .backgroundColor((this.isSelectInfoMsg &&
-                          this.curBp !== common.STR.DEVICE_MOBILE_PHONE) ?
-                          $r('app.color.mms_msg_fold_select_bg') : Color.Transparent)
-                      }
-                      .stateStyles({ normal: this.infoNormalStyles, pressed: this.pressedStyles })
-                    }
-                    .visibility(this.isSessionVisible ? Visibility.Visible : Visibility.None)
-                    .onAppear(() => {
-                      HiLog.i(TAG, 'infoMsg onAppear');
-                    })
-                    .width('100%')
-                    // 放大倍数大于2时，原先的固定高度76会导致文字放不下从而与下面内容重叠；修改高度为放大系数*48增加高度
-                    // 后续需要将此处高度重构为根据内容自适应
-                    .height((['en', 'bo'].includes(this.mConListCtrl.getAppPreferredLanguage()) &&
-                      this.fontSizeScale > 1.75) ? this.fontSizeScale * 44 :
-                      this.fontSizeScale > 2 ? this.fontSizeScale * 48 : NUMBER_FIFTY_EIGHT)
-                    .swipeAction(!this.mIsMultipleSelectState &&
-                      this.mConListCtrl.unreadTotalOfInfo > 0 ? {
-                      end: {
-                        builder: (type: void): void => {
-                          this.infoMsgEnd();
-                        },
-                        onStateChange: (swipeActionState) => {
-                          if (swipeActionState === SwipeActionState.EXPANDED) {
-                            // 通知-信息左滑打点
-                            DotUtil.getInstance().reportEvent(dotNoNeedParmas,
-                              dotCommon.eventName.NOTICELIST_SWIPE_LEFT_EVENT);
-                          }
-                        }
-                      },
-                      edgeEffect: SwipeEdgeEffect.None
-                    } : { edgeEffect: SwipeEdgeEffect.None })
+                List({ space: '2px', scroller: this.listScroller, }) {
+                  // 非搜索状态：搜索框随列表一起滚动
+                  if (!this.isSearch) {
+                    this.searchBoxBuilder()
                   }
-                  LazyForEach(this.mConListCtrl.conversationListDataSource,
-                    (item: messageType, index: number) => {
+                    //通知信息
+                    if (this.mConListCtrl.hasAggregate && this.mConListCtrl.hasInfoMsg && this.inputText==='') {
                       ListItem() {
                         Column() {
-                          Row() {
-                            MmsListItem({
-                              item: item,
-                              fatherView: 'Conversation',
-                              isMultipleSelectState: this.mIsMultipleSelectState,
-                              isInSetReadThreadIndex: this.currentHasReadIndex,
-                              isShowHeadIcon: this.isShowHeadIcon,
-                              loadFromDB: !this.isShowFromCheckAll,
-                              showCount: !this.isShowHeadIcon &&
-                                item.countOfUnread > 1,
-                              inputText: this.inputText,
-                              onClickHead: (clickPosition: number,
-                                event: ClickEvent | undefined) => {
-                                if (!this.listShowMenu) {
-                                  this.mConListCtrl.clickToGroupDetail(this.context, clickPosition);
-                                }
-                              },
-                              onClickCheckBox: (checkIndex: number,
-                                value: boolean) => {
-                                this.mConListCtrl.clickCheckBox(checkIndex, value);
-                              },
-                              menuMultSelect: (pressIndex: number) => {
-                                this.mulAction(pressIndex);
-                              },
-                              menuDelete: (pressIndex: number) => {
-                                this.deleteAction(pressIndex);
-                              },
-                              menuUnPin: (threadId: number, pressIndex: number) => {
-                                this.unPinAction(threadId, pressIndex);
-                              },
-                              menuPin: (threadId: number, pressIndex: number) => {
-                                this.pinAction(threadId, pressIndex);
-                              },
-                              menuReadOrUnRead: (item: messageType, countOfUnread: number, telephone: string) => {
-                                this.longPressReadOrUnRead(item, countOfUnread, telephone);
-                              },
-                              onClickListItem: (index: number) => {
-                                item.index = index;
-                                this.listItemClick(item, index);
-                              },
-                              isPad: this.isPad,
-                              curBp: this.curBp,
-                              showCountOfUnread: this.currentHasReadIndex != item.index,
-                              isShowBottomLine: index !==
-                                this.mConListCtrl.conversationListDataSource.mmsList.length -
-                                  1,
-                            })
-                              .reuseId(this.isNeedReuse ? 'conversation_list_item' : undefined)
-                          }
-                          .alignItems(VerticalAlign.Center)
-                          .width('100%')
-                          .height(this.sessionListHeight)
-                          .accessibilityLevel('no')
-                          //添加一个空的长按手势是为了屏幕朗读识别播报（单指双击并长按即可执行）
-                          .parallelGesture(
-                            GestureGroup(GestureMode.Exclusive,
-                              LongPressGesture({ repeat: false, duration: 500 })
-                                .onAction(() => {
+                          Column() {
+                            this.infoMsgItem()
+                            Divider().height($r('app.float.settings_divider_strokeWidth'))
+                              .margin(Configuration.getLocale().dir === 'rtl' ?
+                                {
+                                  right: (this.isPad && this.isShowHeadIcon) ?
+                                    56 :
+                                    (this.isPad && !this.isShowHeadIcon) ? 0 :
+                                      this.isShowHeadIcon ? 56 : 0,
+                                  left: this.isPad ? this.padMargin - 16 : 0
+                                } :
+                                {
+                                  left: (this.isPad && this.isShowHeadIcon) ?
+                                    56 :
+                                    (this.isPad && !this.isShowHeadIcon) ? 0 :
+                                      this.isShowHeadIcon ? 56 : 0,
+                                  right: this.isPad ? this.padMargin - 16 : 0
                                 })
-                            ))
-                          .onClick((event?: ClickEvent) => {
-                            HiLog.i(TAG, `conversation list item click,${item.threadId},${index}`);
-                            item.index = index;
-                            this.listItemClick(item, index);
+                              .color($r('sys.color.comp_divider'))
+                              .visibility((this.mConListCtrl.conversationListDataSource.mmsList.length > 0) ?
+                                Visibility.Visible : Visibility.None)
+                          }
+                          .padding({
+                            left: DeviceUtil.isPC() ? 24 :
+                              this.isPad ? this.padMargin : this.marginLeft,
+                            right: DeviceUtil.isPC() ? 24 :
+                              this.isPad ? this.padMargin : this.marginRight
                           })
-
+                          .backgroundColor((this.isSelectInfoMsg &&
+                            this.curBp !== common.STR.DEVICE_MOBILE_PHONE) ?
+                            $r('app.color.mms_msg_fold_select_bg') : Color.Transparent)
                         }
-                        .width('100%').height('100%')
-                        .backgroundColor(this.showSelectState(item) ?
-                          $r('app.color.mms_msg_fold_select_bg') : $r('sys.color.background_primary'))
+                        .stateStyles({ normal: this.infoNormalStyles, pressed: this.pressedStyles })
                       }
-                      // The lower level of the deletion selection is - 1.
-                      .zIndex(this.currentIndexListDel === index ? -1 : 0)
+                      .visibility(this.isSessionVisible ? Visibility.Visible : Visibility.None)
+                      .onAppear(() => {
+                        HiLog.i(TAG, 'infoMsg onAppear');
+                      })
                       .width('100%')
-                      .height(this.fontSizeScale >= 1.45 ? (this.fontSizeScale * 60) + 'vp' :
-                        (this.fontSizeScale * 80) + 'vp')
-                      .swipeAction((!this.mIsMultipleSelectState && !this.isDeleting) ? {
+                      // 放大倍数大于2时，原先的固定高度76会导致文字放不下从而与下面内容重叠；修改高度为放大系数*48增加高度
+                      // 后续需要将此处高度重构为根据内容自适应
+                      .height((['en', 'bo'].includes(this.mConListCtrl.getAppPreferredLanguage()) &&
+                        this.fontSizeScale > 1.75) ? this.fontSizeScale * 44 :
+                        this.fontSizeScale > 2 ? this.fontSizeScale * 48 : NUMBER_FIFTY_EIGHT)
+                      .swipeAction(!this.mIsMultipleSelectState &&
+                        this.mConListCtrl.unreadTotalOfInfo > 0 ? {
                         end: {
-                          builder: this.itemEnd(item, () => {
-                            this.currentIndexListDel = item.index;
-                            this.deleteAction(item.index);
-                            // 列表左滑删除打点
-                            stateParam.PAGE_STATE = 1;
-                            DotUtil.getInstance().reportEvent(stateParam,
-                              dotCommon.eventName.SWIPE_LEFT_TO_DELETE);
-                          }),
-                          actionAreaDistance: 56,
-                          onAction: () => {
-                            this.currentIndexListDel = item.index;
-                            this.deleteAction(item.index, true);
+                          builder: (type: void): void => {
+                            this.infoMsgEnd();
                           },
                           onStateChange: (swipeActionState) => {
-                            AppStorage.setOrCreate('swipeActionState', swipeActionState)
-                            HiLog.i(TAG, `swipeActionState ${swipeActionState}`);
-                            if (swipeActionState == SwipeActionState.EXPANDED) {
-                              // 信息左滑打点
+                            if (swipeActionState === SwipeActionState.EXPANDED) {
+                              // 通知-信息左滑打点
+                              DotUtil.getInstance().reportEvent(dotNoNeedParmas,
+                                dotCommon.eventName.NOTICELIST_SWIPE_LEFT_EVENT);
+                            }
+                          }
+                        },
+                        edgeEffect: SwipeEdgeEffect.None
+                      } : { edgeEffect: SwipeEdgeEffect.None })
+                    }
+                    LazyForEach(this.mConListCtrl.conversationListDataSource,
+                      (item: messageType, index: number) => {
+                        ListItem() {
+                          Column() {
+                            Row() {
+                              MmsListItem({
+                                item: item,
+                                fatherView: 'Conversation',
+                                isMultipleSelectState: this.mIsMultipleSelectState,
+                                isInSetReadThreadIndex: this.currentHasReadIndex,
+                                isShowHeadIcon: this.isShowHeadIcon,
+                                loadFromDB: !this.isShowFromCheckAll,
+                                showCount: !this.isShowHeadIcon &&
+                                  item.countOfUnread > 1,
+                                inputText: this.inputText,
+                                onClickHead: (clickPosition: number,
+                                  event: ClickEvent | undefined) => {
+                                  if (!this.listShowMenu) {
+                                    this.mConListCtrl.clickToGroupDetail(this.context, clickPosition);
+                                  }
+                                },
+                                onClickCheckBox: (checkIndex: number,
+                                  value: boolean) => {
+                                  this.mConListCtrl.clickCheckBox(checkIndex, value);
+                                },
+                                menuMultSelect: (pressIndex: number) => {
+                                  this.mulAction(pressIndex);
+                                },
+                                menuDelete: (pressIndex: number) => {
+                                  this.deleteAction(pressIndex);
+                                },
+                                menuUnPin: (threadId: number, pressIndex: number) => {
+                                  this.unPinAction(threadId, pressIndex);
+                                },
+                                menuPin: (threadId: number, pressIndex: number) => {
+                                  this.pinAction(threadId, pressIndex);
+                                },
+                                menuReadOrUnRead: (item: messageType, countOfUnread: number, telephone: string) => {
+                                  this.longPressReadOrUnRead(item, countOfUnread, telephone);
+                                },
+                                onClickListItem: (index: number) => {
+                                  item.index = index;
+                                  this.listItemClick(item, index);
+                                },
+                                isPad: this.isPad,
+                                curBp: this.curBp,
+                                showCountOfUnread: this.currentHasReadIndex != item.index,
+                                isShowBottomLine: index !==
+                                  this.mConListCtrl.conversationListDataSource.mmsList.length -
+                                    1,
+                              })
+                                .reuseId(this.isNeedReuse ? 'conversation_list_item' : undefined)
+                            }
+                            .alignItems(VerticalAlign.Center)
+                            .width('100%')
+                            .height(this.sessionListHeight)
+                            .accessibilityLevel('no')
+                            //添加一个空的长按手势是为了屏幕朗读识别播报（单指双击并长按即可执行）
+                            .parallelGesture(
+                              GestureGroup(GestureMode.Exclusive,
+                                LongPressGesture({ repeat: false, duration: 500 })
+                                  .onAction(() => {
+                                  })
+                              ))
+                            .onClick((event?: ClickEvent) => {
+                              HiLog.i(TAG, `conversation list item click,${item.threadId},${index}`);
+                              item.index = index;
+                              this.listItemClick(item, index);
+                            })
+
+                          }
+                          .width('100%').height('100%')
+                          .backgroundColor(this.showSelectState(item) ?
+                            $r('app.color.mms_msg_fold_select_bg') : $r('sys.color.background_primary'))
+                        }
+                        // The lower level of the deletion selection is - 1.
+                        .zIndex(this.currentIndexListDel === index ? -1 : 0)
+                        .width('100%')
+                        .height(this.fontSizeScale >= 1.45 ? (this.fontSizeScale * 60) + 'vp' :
+                          (this.fontSizeScale * 80) + 'vp')
+                        .swipeAction((!this.mIsMultipleSelectState && !this.isDeleting) ? {
+                          end: {
+                            builder: this.itemEnd(item, () => {
+                              this.currentIndexListDel = item.index;
+                              this.deleteAction(item.index);
+                              // 列表左滑删除打点
                               stateParam.PAGE_STATE = 1;
                               DotUtil.getInstance().reportEvent(stateParam,
-                                dotCommon.eventName.LIST_SWIPE_LEFT_EVENT);
-                            }
-                          },
+                                dotCommon.eventName.SWIPE_LEFT_TO_DELETE);
+                            }),
+                            actionAreaDistance: 56,
+                            onAction: () => {
+                              this.currentIndexListDel = item.index;
+                              this.deleteAction(item.index, true);
+                            },
+                            onStateChange: (swipeActionState) => {
+                              AppStorage.setOrCreate('swipeActionState', swipeActionState)
+                              HiLog.i(TAG, `swipeActionState ${swipeActionState}`);
+                              if (swipeActionState == SwipeActionState.EXPANDED) {
+                                // 信息左滑打点
+                                stateParam.PAGE_STATE = 1;
+                                DotUtil.getInstance().reportEvent(stateParam,
+                                  dotCommon.eventName.LIST_SWIPE_LEFT_EVENT);
+                              }
+                            },
 
-                        },
-                        edgeEffect: SwipeEdgeEffect.Spring,
-                      } : { edgeEffect: SwipeEdgeEffect.Spring })
-                      .onTouch((event: TouchEvent) => {
-                        this.currentScrollIndex = item.index;
-                        if (event.type === TouchType.Down) {
-                          this.swipeActionShowList =
-                            [this.swipeActionShowList[1], item.index];
+                          },
+                          edgeEffect: SwipeEdgeEffect.Spring,
+                        } : { edgeEffect: SwipeEdgeEffect.Spring })
+                        .onTouch((event: TouchEvent) => {
+                          this.currentScrollIndex = item.index;
+                          if (event.type === TouchType.Down) {
+                            this.swipeActionShowList =
+                              [this.swipeActionShowList[1], item.index];
+                          }
+                        })
+                      }, (item: messageType, index: number) => {
+                        if (index === this.mConListCtrl.conversationListDataSource.totalCount() - 1) {
+                          return util.getHash(item)?.toString() + index.toString() + true;
                         }
+                        return util.getHash(item)?.toString() + index.toString() + false;
                       })
-                    }, (item: messageType, index: number) => {
-                      if (index === this.mConListCtrl.conversationListDataSource.totalCount() - 1) {
-                        return util.getHash(item)?.toString() + index.toString() + true;
-                      }
-                      return util.getHash(item)?.toString() + index.toString() + false;
-                    })
-                  ListItem() {
-                    Row().width('100%').height('100%').backgroundColor(Color.Transparent)
-                  }.width('100%').height(this.fullScreenPadding?.bottom)
+                    ListItem() {
+                      Row().width('100%').height('100%').backgroundColor(Color.Transparent)
+                    }.width('100%').height(this.fullScreenPadding?.bottom)
                 }
                 .gesture(PanGesture({ direction: PanDirection.Vertical })
                   .onActionStart((event: GestureEvent) => {
@@ -2275,13 +2284,25 @@ export default struct ConversationList {
       .onClick(() => {
         this.getUIContext().getFocusController().clearFocus()
         this.isSearch = false;
+        AppStorage.setOrCreate('isSearch', this.isSearch)
+        this.inputText = ''
+        AppStorage.setOrCreate('inputText', this.inputText)
+        // 返回首页时恢复列表数据
+        this.searchInfoController.querySMS('', this.context)
       });
 
       Search({ placeholder: $r('app.string.search'), value: this.inputText })
+        .id('conversation_list_search')
         .layoutWeight(1)
+        .defaultFocus(this.isSearch)
         .onClick(() => {
           this.isSearch = true;
           AppStorage.setOrCreate('isSearch', this.isSearch)
+          // 进入搜索状态后主动请求焦点
+          let focusControl = this.getUIContext().getFocusController()
+          setTimeout(() => {
+            focusControl.requestFocus('conversation_list_search')
+          }, 0)
         })
         .onChange(async (value) => {
           this.inputText = value.trim()

@@ -44,7 +44,7 @@ import dotCommon from '../../utils/MmsDot/DotCommon';
 import lazy unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import LocationUtil from '../../utils/LocationUtil';
 import { VibrationUtils } from '../../utils/VibrationUtils';
-//import { filePreview } from '@kit.PreviewKit';
+import { filePreview } from '@kit.PreviewKit';
 import FavoriteController from '../../pages/favoritepage/favoriteController'
 import { GlobalContextKey } from '../../data/commonData';
 import LooseObject from '../../data/LooseObject';
@@ -1229,17 +1229,17 @@ export struct MMContentVideo {
     if (fs.accessSync(videoPath)) {
       videoPath = fileuri.getUriFromPath(videoPath);
     }
-    // let fileInfo: filePreview.PreviewInfo = {
-    //   title: this.item.name,
-    //   uri: videoPath,
-    //   mimeType: 'video/mp4'
-    // };
+    let fileInfo: filePreview.PreviewInfo = {
+      title: this.item.name,
+      uri: videoPath,
+      mimeType: 'video/mp4'
+    };
     GlobalContext.getContext().setObject(GlobalContextKey.IS_JUMP_TO_PREVIEW, true);
-    // filePreview.openPreview(uiContext, fileInfo).then(() => {
-    //   HiLog.i(TAG, 'previewMmsVideo success');
-    // }).catch((err: BusinessError) => {
-    //   HiLog.i(TAG, 'previewMmsVideo openPreview failed, err = ' + JSON.stringify(err));
-    // });
+    filePreview.openPreview(uiContext, fileInfo).then(() => {
+      HiLog.i(TAG, 'previewMmsVideo success');
+    }).catch((err: BusinessError) => {
+      HiLog.i(TAG, 'previewMmsVideo openPreview failed, err = ' + JSON.stringify(err));
+    });
   }
 }
 

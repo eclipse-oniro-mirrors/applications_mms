@@ -19,7 +19,7 @@ hdc shell mount -o remount,rw /
 hdc shell rm system/app/com.ohos.mms/Mms.hap
 hdc file send %HOME%entry\build\default\outputs\default\entry-default-signed.hap /system/app/com.ohos.mms/Mms.hap
 
-hdc shell rm -rf /data/*
+
 hdc shell chown root:root system/app/com.ohos.mms/Mms.hap
 hdc shell setenforce 0
 hdc shell sync

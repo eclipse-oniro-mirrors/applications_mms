@@ -117,6 +117,9 @@ export default struct InfoMsg {
     prevSearchOffsetY: number = 0;
     scrollReachEnd: boolean = false;
     @StorageLink('isShowContactHeadIcon') isShowHeadIcon: boolean = InfoMsgController.getInstance().isShowContactHeadIcon;
+    @State isSearch: boolean = false;
+    @State inputText: string = '';
+    @State filteredList: Array<messageType> = [];
 
     @StorageLink('isVDEFoldPhoneAndFoldedState') @Watch('onFoldStatusChange') isVDEFoldPhoneAndFoldedState
         : boolean = false;
@@ -655,63 +658,138 @@ export default struct InfoMsg {
         .height('40vp')
     }
 
+    private updateFilteredList() {
+        const keyword: string = this.inputText.trim();
+        if (!keyword) {
+            this.filteredList = [];
+            return;
+        }
+        const lowerKey: string = keyword.toLowerCase();
+        this.filteredList = this.mInfoMsgCtrl.messageList.filter((item: messageType) => {
+            const name: string = (item.name ?? '').toString();
+            const content: string = (item.content ?? '').toString();
+            const telephone: string = (item.telephone ?? '').toString();
+            return name.toLowerCase().includes(lowerKey) ||
+                content.toLowerCase().includes(lowerKey) ||
+                telephone.toLowerCase().includes(lowerKey);
+        });
+    }
+
+    @Builder
+    searchBoxBuilder() {
+        Row({ space: 12 }) {
+            Row() {
+                Image($r('app.media.ic_message_back'))
+                    .width(25)
+                    .height(25)
+            }
+            .visibility(this.isSearch ? Visibility.Visible : Visibility.None)
+            .padding(6)
+            .onClick(() => {
+                this.getUIContext().getFocusController().clearFocus();
+                this.isSearch = false;
+                this.inputText = '';
+                this.filteredList = [];
+            });
+
+            Search({ placeholder: $r('app.string.search'), value: this.inputText })
+                .id('info_msg_search')
+                .layoutWeight(1)
+                .defaultFocus(this.isSearch)
+                .onClick(() => {
+                    this.isSearch = true;
+                    let focusControl = this.getUIContext().getFocusController();
+                    setTimeout(() => {
+                        focusControl.requestFocus('info_msg_search');
+                    }, 0);
+                })
+                .onChange((value) => {
+                    this.inputText = value.trim();
+                    this.isSearch = this.inputText.length > 0;
+                    this.updateFilteredList();
+                })
+        }
+        .width('100%')
+        .padding({ left: 12, right: 12 })
+    }
+
     build() {
-        //HdsNavDestination() {
         NavDestination() {
             Stack({ alignContent: Alignment.Bottom }) {
                 Column() {
+                    if (this.isSearch) {
+                        this.searchBoxBuilder();
+                    }
                     //SMS message display list
                     List({ initialIndex: 0 ,scroller: this.listScroller}) {
+                        ListItem() {
+                            if (!this.isSearch) {
+                                this.searchBoxBuilder();
+                            }
+                        }
                         if (this.stages > 1) {
-                            LazyForEach(this.mInfoMsgCtrl.conversationListDataSource, (item: messageType, index?: number) => {
-                                ListItem() {
-                                    this.mmListItemBuilder(item, index as number)
-                                }
-                                .width('100%')
-                                .height(this.fontSizeScale >= 1.45 ? this.fontSizeScale * 60 + 'vp' :
-                                    this.fontSizeScale * 80 + 'vp')
-                                .swipeAction((!this.mIsMultipleSelectState && !this.isDeleting) ? {
-                                    end: {
-                                        builder: this.itemEnd(item, () => {
-                                            this.deleteAction(item.index);
-                                            // 通知列表左滑删除打点
-                                            stateParam.PAGE_STATE = 2;
-                                            DotUtil.getInstance().reportEvent(stateParam,
-                                                dotCommon.eventName.SWIPE_LEFT_TO_DELETE);
-                                        }),
-                                        onStateChange: (swipeActionState) => {
-                                            if (swipeActionState == SwipeActionState.EXPANDED) {
-                                                // 通知信息左滑打点
+                            if (this.isSearch && this.inputText.length > 0) {
+                                ForEach(this.filteredList, (item: messageType, index: number) => {
+                                    ListItem() {
+                                        this.mmListItemBuilder(item, index);
+                                    }
+                                    .width('100%')
+                                    .height(this.fontSizeScale >= 1.45 ? this.fontSizeScale * 60 + 'vp' :
+                                        this.fontSizeScale * 80 + 'vp')
+                                }, (item: messageType, index: number) => {
+                                    return util.getHash(item)?.toString() + index.toString();
+                                })
+                            } else {
+                                LazyForEach(this.mInfoMsgCtrl.conversationListDataSource, (item: messageType, index?: number) => {
+                                    ListItem() {
+                                        this.mmListItemBuilder(item, index as number)
+                                    }
+                                    .width('100%')
+                                    .height(this.fontSizeScale >= 1.45 ? this.fontSizeScale * 60 + 'vp' :
+                                        this.fontSizeScale * 80 + 'vp')
+                                    .swipeAction((!this.mIsMultipleSelectState && !this.isDeleting) ? {
+                                        end: {
+                                            builder: this.itemEnd(item, () => {
+                                                this.deleteAction(item.index);
+                                                // 通知列表左滑删除打点
                                                 stateParam.PAGE_STATE = 2;
                                                 DotUtil.getInstance().reportEvent(stateParam,
-                                                    dotCommon.eventName.LIST_SWIPE_LEFT_EVENT);
+                                                    dotCommon.eventName.SWIPE_LEFT_TO_DELETE);
+                                            }),
+                                            onStateChange: (swipeActionState) => {
+                                                if (swipeActionState == SwipeActionState.EXPANDED) {
+                                                    // 通知信息左滑打点
+                                                    stateParam.PAGE_STATE = 2;
+                                                    DotUtil.getInstance().reportEvent(stateParam,
+                                                        dotCommon.eventName.LIST_SWIPE_LEFT_EVENT);
+                                                }
+                                            },
+                                            actionAreaDistance: 56,
+                                            onAction: () => {
+                                                //Delete
+                                                this.deleteAction(item.index, true);
+                                            },
+                                        },
+                                        onOffsetChange: (offset: number) => {
+                                            if (offset !== 0) {
+                                                this.isSwipeAction = true;
                                             }
                                         },
-                                        actionAreaDistance: 56,
-                                        onAction: () => {
-                                            //Delete
-                                            this.deleteAction(item.index, true);
-                                        },
-                                    },
-                                    onOffsetChange: (offset: number) => {
-                                        if (offset !== 0) {
-                                            this.isSwipeAction = true;
+                                        edgeEffect: SwipeEdgeEffect.Spring
+                                    } : { edgeEffect: SwipeEdgeEffect.Spring })
+                                    .onTouch((event: TouchEvent) => {
+                                        this.currentScrollIndex = item.index;
+                                        if (event.type === TouchType.Down) {
+                                            this.isSwipeAction = false;
                                         }
-                                    },
-                                    edgeEffect: SwipeEdgeEffect.Spring
-                                } : { edgeEffect: SwipeEdgeEffect.Spring })
-                                .onTouch((event: TouchEvent) => {
-                                    this.currentScrollIndex = item.index;
-                                    if (event.type === TouchType.Down) {
-                                        this.isSwipeAction = false;
+                                    })
+                                }, (item: messageType, index: number) => {
+                                    if (index === this.mInfoMsgCtrl.conversationListDataSource.totalCount() - 1) {
+                                        return util.getHash(item)?.toString() + index.toString() + true;
                                     }
+                                    return util.getHash(item)?.toString() + index.toString() + false;
                                 })
-                            }, (item: messageType, index: number) => {
-                                if (index === this.mInfoMsgCtrl.conversationListDataSource.totalCount() - 1) {
-                                    return util.getHash(item)?.toString() + index.toString() + true;
-                                }
-                                return util.getHash(item)?.toString() + index.toString() + false;
-                            })
+                            }
                         }
                     }
                     .gesture(PanGesture({ direction: PanDirection.Vertical })
@@ -1090,11 +1168,11 @@ export default struct InfoMsg {
         //     isMultipleSelectState: this.mIsMultipleSelectState, selectedNumber:
         //     this.conversationSelectedNumber, callback: () => {this.destinationBackPress()}}))
         .hideBackButton(DeviceUtil.isTabletOrPC() || this.curBp === common.STR.DEVICE_Folding_SCREEN ||
-           DeviceUtil.isTrifoldExpandedState())
+            DeviceUtil.isTrifoldExpandedState())
        // .dynamicHideTitleBar({hideBottomBuilder: true, mode: HideMode.SCROLL_UP_TO})
         .bindToScrollable([this.listScroller])
         .backgroundColor($r('sys.color.ohos_id_color_background'))
-        .hideTitleBar((this.isVDE && this.mListScrolling) ? (this.isVDE && this.mListScrolling) :
+        .hideTitleBar(this.isSearch ? true :(this.isVDE && this.mListScrolling) ? (this.isVDE && this.mListScrolling) :
             this.splitInfoModel.isSmall ? this.splitInfoModel.isSmall :  (DeviceUtil.isPC() ?
             false:false), this.isVDE ? this.mListScrolling ? true : false : false)
         .onShown(() => {
@@ -1206,6 +1284,7 @@ export default struct InfoMsg {
                     showCount:
                     !this.conListCtrl.isShowContactHeadIcon &&
                         item.countOfUnread > 1,
+                    inputText: this.inputText,
                     onClickHead: (clickPosition: number, event: ClickEvent | undefined) => {
                         if (!this.listShowMenu) {
                             this.mInfoMsgCtrl.clickToGroupDetail(clickPosition);

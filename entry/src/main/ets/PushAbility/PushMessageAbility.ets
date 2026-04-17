@@ -19,7 +19,7 @@ import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 import { Configuration } from '@ohos.app.ability.Configuration';
-//import { pushCommon, pushService } from '@kit.PushKit';
+import { pushCommon, pushService } from '@kit.PushKit';
 import LooseObject from '../data/LooseObject';
 
 const TAG = 'PushMessageAbility';
@@ -33,16 +33,16 @@ export default class PushMessageAbility extends Ability {
 
   receiveMessage() {
     try {
-      // pushService.receiveMessage('BACKGROUND', this, (payload: pushCommon.PushPayload) => {
-      //   HiLog.w(TAG, '[receiveMessage] success');
-      //   try {
-      //     const payloadData: LooseObject = JSON.parse(payload?.data) ?? {}
-      //     // IpProcessorApi.parseIpMsg(this.context, payloadData.data)
-      //   } catch (e) {
-      //     let errRes: BusinessError = e as BusinessError;
-      //     HiLog.e(TAG, `[receiveMessage] deal msg failed: ${errRes.code} ${errRes.message}`);
-      //   }
-      // });
+      pushService.receiveMessage('BACKGROUND', this, (payload: pushCommon.PushPayload) => {
+        HiLog.w(TAG, '[receiveMessage] success');
+        try {
+          const payloadData: LooseObject = JSON.parse(payload?.data) ?? {}
+          // IpProcessorApi.parseIpMsg(this.context, payloadData.data)
+        } catch (e) {
+          let errRes: BusinessError = e as BusinessError;
+          HiLog.e(TAG, `[receiveMessage] deal msg failed: ${errRes.code} ${errRes.message}`);
+        }
+      });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       HiLog.e(TAG, `[receiveMessage] Get msg failed: ${e.code} ${e.message}`);

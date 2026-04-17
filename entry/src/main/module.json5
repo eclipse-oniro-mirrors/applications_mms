@@ -74,6 +74,14 @@
         "skills": [
           {
             "entities": [
+              'entity.system.home'
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          },
+          {
+            "entities": [
               "entity.system.home"
             ],
             "actions": [
@@ -275,7 +283,7 @@
         ]
       },
       {
-        "name": "MmsUriGrantServiceExtAbility",//影响应用运行
+        "name": "MmsUriGrantServiceExtAbility",
         "srcEntry": "./ets/ServiceExtension/servers/MmsUriGrantServiceExtAbility.ets",
         "type": "service",
         "exported": true,
@@ -285,7 +293,7 @@
         ]
       },
       {
-        "name": "MmsContactServiceExtAbility",//影响应用运行
+        "name": "MmsContactServiceExtAbility",
         "srcEntry": "./ets/ServiceExtension/servers/MmsContactServiceExtAbility.ets",
         "type": 'service',
         "exported": true,
@@ -295,7 +303,7 @@
         ]
       },
       {
-        "name": "ServiceExtAbility",//影响应用运行
+        "name": "ServiceExtAbility",
         "srcEntry": "./ets/StaticSubscriber/ServiceExtAbility.ets",
         "type": "service",
         "exported": false,
@@ -305,7 +313,7 @@
         ]
       },
       {
-        "name": "DeskDialogAbility",//影响应用运行
+        "name": "DeskDialogAbility",
         "srcEntry": "./ets/flashMessage/DeskDialogAbility.ets",
         "type": "service",
         "exported": false,
@@ -391,7 +399,7 @@
         "exported": false
       },
       {
-        "name": "VerCardUsedServiceExtAbility",//影响应用运行
+        "name": "VerCardUsedServiceExtAbility",
         "srcEntry": "./ets/ServiceExtension/servers/VerCardUsedServiceExtAbility.ets",
         "type": "service",
         "exported": true,

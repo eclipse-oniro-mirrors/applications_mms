@@ -14,6 +14,7 @@
     "long": "5.2.3"
   },
   "dependencies": {
-    "class-transformer": "0.5.1"
+    "class-transformer": "0.5.1",
+    "harmonyos-sdk-for-openharmony": "file:lib/harmonyos-sdk-for-openharmony.har"
   }
 }
