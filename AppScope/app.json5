@@ -2,10 +2,12 @@
   "app": {
     "bundleName": "com.ohos.mms",
     "vendor": "example",
-    "versionCode": 1000000,
-    "versionName": "1.0.4.013",
-    "icon": "$media:smsmms",
+    "versionCode": 600000522,
+    "versionName": "6.0.0.522",
+    "icon": "$media:messages",
     "label": "$string:app_name",
-    "distributedNotificationEnabled": true
+    "distributedNotificationEnabled": true,
+    "generateBuildHash": true,
+    "configuration": "$profile:configuration"
   }
 }

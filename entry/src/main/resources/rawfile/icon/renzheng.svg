@@ -1,0 +1,32 @@
+<svg width="32.000000" height="32.000000" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_111_46749_dd" x="6.000000" y="7.216797" width="20.000000" height="20.996094" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0" dy="1"/>
+			<feGaussianBlur stdDeviation="0.666667"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0.24706 0 0 0 0 0.62745 0 0 0 0 0.94118 0 0 0 1 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+		<linearGradient x1="10.970703" y1="1.500000" x2="23.107422" y2="30.500000" id="paint_linear_111_46745_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#5FC5FD"/>
+			<stop offset="1.000000" stop-color="#319AF5"/>
+		</linearGradient>
+	</defs>
+	<rect id="矩形" width="32.000000" height="32.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<path id="Path 3" d="M30.2617 4.95605L16.0005 0.180664L1.73682 4.95703L1.75049 5.87109C1.88184 14.6621 2.36084 20.2764 3.2334 22.8672C4.19189 25.7139 8.16748 28.501 15.2085 31.5195L15.9917 31.8535L16.4741 31.6553C23.9863 28.5791 28.1392 25.749 28.9858 22.8145L29.0479 22.5908C29.751 19.9268 30.1411 14.3945 30.25 5.86816L30.2617 4.95605ZM27.7383 6.74805L16.0015 2.81738L4.26611 6.74609L4.27588 7.23535C4.4292 14.8408 4.87402 19.7949 5.57227 21.9736L5.60352 22.0693C6.24365 23.9697 9.69629 26.4062 15.9165 29.1025L16.0093 29.1426L16.6484 28.874C22.6479 26.3115 25.9663 23.9941 26.5601 22.2021L26.585 22.1221C27.167 20.1064 27.5474 15.5762 27.7026 8.62988L27.7383 6.74805Z" clip-rule="evenodd" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<mask id="mask111_46745" mask-type="alpha" maskUnits="userSpaceOnUse" x="3.000000" y="1.500000" width="26.000000" height="29.000000">
+		<path id="蒙版" d="M16 30.5C9.09 27.56 5.23 24.89 4.41 22.46C3.6 20.04 3.12 14.5 3 5.85L9.88 3.54L16 1.5L29 5.85C28.88 14.5 28.48 20.04 27.78 22.46C27.08 24.89 23.15 27.56 16 30.5Z" fill="url(#paint_linear_111_46745_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</mask>
+	<path id="蒙版" d="M16 30.5C9.09 27.56 5.23 24.89 4.41 22.46C3.6 20.04 3.12 14.5 3 5.85L9.88 3.54L16 1.5L29 5.85C28.88 14.5 28.48 20.04 27.78 22.46C27.08 24.89 23.15 27.56 16 30.5Z" fill="url(#paint_linear_111_46745_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<g filter="url(#filter_111_46749_dd)">
+		<path id="Rectangle" d="M19.94 11.34C20.64 9.76 22.65 9.27 24 10.36L19.42 20.26C19.42 20.26 18.61 20.83 17.6 20.83C16.6 20.83 15.96 20.26 15.96 20.26L19.94 11.34Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Rectangle" d="M8 10.39C9.62 9.48 11.68 10.23 12.36 11.97C13.6 15.15 15.39 19.57 16.01 20.19C16.98 21.17 19.42 20.25 19.42 20.25L17.71 23.39C17.15 24.42 15.9 24.79 15.05 23.99C14.53 23.5 13.93 22.84 13.32 21.95C11.62 19.45 8 10.39 8 10.39Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Rectangle" d="" fill="#979797" fill-opacity="0" fill-rule="evenodd"/>
+	</g>
+</svg>

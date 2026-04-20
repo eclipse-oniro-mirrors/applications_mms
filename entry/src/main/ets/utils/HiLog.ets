@@ -27,6 +27,7 @@
  * @since 2022-02-18
  */
 import Log from '@ohos.hilog';
+import PafLog from '../log/PafLogUtil';
 
 const TAG = 'MmsLog';
 const DOMAIN = 0x0800;
@@ -39,23 +40,30 @@ export default class HiLog {
     }
 
     private static prefix(tag: string) {
-        return tag + this.COLON;
+        return tag + HiLog.COLON;
     }
 
-    static d(tag: string, msg: string, ...args: any[]) {
-        Log.debug(DOMAIN, TAG, this.prefix(tag) + msg, args);
+    static d(tag: string, msg: string, ...args: Object[]) {
+        Log.debug(DOMAIN, TAG, HiLog.prefix(tag) + msg, args);
     }
 
-    static i(tag: string, msg: string, ...args: any[]) {
-        Log.info(DOMAIN, TAG, this.prefix(tag) + msg, args);
+    static i(tag: string, msg: string, ...args: Object[]) {
+        Log.info(DOMAIN, TAG, HiLog.prefix(tag) + msg, args);
     }
 
-    static w(tag: string, msg: string, ...args: any[]) {
-        Log.warn(DOMAIN, TAG, this.prefix(tag) + msg, args);
+    static iw(tag: string, msg: string, ...args: Object[]) {
+        Log.warn(DOMAIN, TAG, HiLog.prefix(tag) + msg, args);
+        PafLog.warn(msg, args);
     }
 
-    static e(tag: string, msg: string, ...args: any[]) {
-        Log.error(DOMAIN, TAG, this.prefix(tag) + msg, args);
+    static w(tag: string, msg: string, ...args: Object[]) {
+        Log.warn(DOMAIN, TAG, HiLog.prefix(tag) + msg, args);
+        PafLog.warn(msg, args);
+    }
+
+    static e(tag: string, msg: string, ...args: Object[]) {
+        Log.error(DOMAIN, TAG, HiLog.prefix(tag) + msg, args);
+        PafLog.error(msg, args);
     }
 }
 

@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "title": "$string:oobe_rcs_enhanced_service_title",
+  "content": "$string:oobe_rcs_all_content_wlan",
+  "params": [
+    {
+      "name": "param1",
+      "value": "param value"
+    }
+  ],
+  "abilities": [
+    {
+      "key": "privacyStatement",
+      "value": {
+        "bundleName": "com.ohos.mms",
+        "abilityName": "OobeStatementAbilityPrivacy",
+        "parameters": {
+          "type": "privacyStatement",
+          "ability.want.params.uiExtensionType": "sys/commonUI"
+        }
+      }
+    }
+  ]
+}

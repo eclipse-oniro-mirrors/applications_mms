@@ -1,0 +1,4274 @@
+{
+    "string":[
+        {
+            "name":"calling_Alert",
+            "value":"Không thể bắt đầu cuộc gọi. Một cuộc gọi đang được thực hiện.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"my_avatar_button",
+            "value":"Ảnh hồ sơ của tôi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go_setting",
+            "value":"Cài đặt ngay",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_permission",
+            "value":"danh sách ứng dụng đã cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_microphone_permission_title",
+            "value":"Cấp quyền truy cập Micrô cho Nhắn tin trong Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_error",
+            "value":"Quét mã không thành công.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"realease_send_prompt_text",
+            "value":"Nhả ra để gửi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network",
+            "value":"Cho phép ứng dụng Nhắn tin truy cập Internet?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReported",
+            "value":"Đã báo cáo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_card_file",
+            "value":"Thẻ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"list_summary_vcard",
+            "value":"Bạn đã chia sẻ một liên hệ (%1$s)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_message",
+            "value":"Những quyền này được sử dụng để đọc/ghi tệp tin cũng như truy cập hình ảnh và video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_scan",
+            "value":"Quét",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query",
+            "value":"Hạn mức nhắn tin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"choose_sub_recommend_recently",
+            "value":"(Gần đây)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"downloading",
+            "value":"Đang tải xuống",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_verification_code",
+            "value":"Sao chép mã",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_status_sent",
+            "value":"Đã gửi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_send",
+            "value":"Bạn đã giới thiệu %1$s cho %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip1",
+            "value":"Xóa cuộc trò chuyện này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip4",
+            "value":"Xóa cuộc hội thoại đã chọn?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS",
+            "value":"Ứng dụng này muốn sử dụng máy ảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_to_message",
+            "value":"Khôi phục vào tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageRead",
+            "value":"Đã đọc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"interception_rule_blockall_title",
+            "value":"Chặn toàn bộ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip3",
+            "value":"Xóa tất cả cuộc trò chuyện?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_one_attachment",
+            "value":"Chỉ có thể gửi một tệp tin đính kèm.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enhanced_information",
+            "value":"Nhắn tin nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information_details",
+            "value":"Thông tin này bao gồm nhà sản xuất, model, phiên bản phần mềm và mức pin của thiết bị.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"removed_from_the_blocklist",
+            "value":"Đã xóa khỏi danh sách chặn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_copy",
+            "value":"Sao chép",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_picture",
+            "value":"Bộ sưu tập",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_loggedin_RCS",
+            "value":"Không gửi được. Chưa đăng nhập vào RCS.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cactus_map_no_location",
+            "value":"Không có thêm thông tin vị trí nào",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReceiveFailed",
+            "value":"Tải xuống không thành công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msgAcceptFailure",
+            "value":"Không có đủ bộ nhớ để nhận tin nhắn này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_network",
+            "value":"Chi tiết hiển thị khi mạng được khôi phục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_object",
+            "value":"Tài khoản",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type",
+            "value":"Loại: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subject",
+            "value":"Chủ đề: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_page_btn_continue_text",
+            "value":"Tiếp tục",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_file_permission",
+            "value":"Cho phép ứng dụng Nhắn tin truy cập vào các tệp tin trên thiết bị của bạn?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_no_sim",
+            "value":"Không có thẻ SIM",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"added_to_the_blocklist",
+            "value":"Đã thêm vào danh sách chặn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_location_service_not_enabled",
+            "value":"Dịch vụ Vị trí đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"me",
+            "value":"Tôi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contentSentTo",
+            "value":"Chuyển tiếp đến %1$s, bao gồm %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_title",
+            "value":"Cho phép ứng dụng Nhắn tin truy cập Tệp tin, Hình ảnh và video trong mục Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_is_occupied",
+            "value":"Dịch vụ không khả dụng khi MeeTime đang sử dụng dịch vụ Bắc Đẩu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all",
+            "value":"Chọn tất cả",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record",
+            "value":"Đang ghi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"info_has_been_stared",
+            "value":"Tin nhắn đã được thêm vào mục ưa thích.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title3",
+            "value":"Gửi/nhận tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title2",
+            "value":"Sửa tin nhắn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_title4",
+            "value":"Nhận tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_south_east",
+            "value":"%1$s Nam %2$s Đông",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_retract",
+            "value":"Ẩn bớt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title1",
+            "value":"Tin nhắn mới",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"archive_info_messages",
+            "value":"Lưu trữ tin nhắn thông báo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_cb_tip",
+            "value":"Xóa cả tin nhắn bị khóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_file",
+            "value":"[Tệp tin]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_conversation_no_sim",
+            "value":"Chưa lắp SIM",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"national_fraud_mms",
+            "value":"Rủi ro gian lận",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recently",
+            "value":"Sử dụng gần đây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blockedMms",
+            "value":"[MMS]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_konw",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_smc",
+            "value":"Tin nhắn qua vệ tinh Bắc Đẩu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_rcv_notice",
+            "value":"[Đã nhận được câu trả lời]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail",
+            "value":"Chi tiết",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"too_many_recipients",
+            "value":"Quá nhiều người nhận (%1$s). Số lượng người nhận tối đa là %2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_blockreason_strangenumber",
+            "value":"Người lạ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Camera_permission_prompt",
+            "value":"Cho phép ứng dụng Nhắn tin truy cập máy ảnh của thiết bị",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"justNow",
+            "value":"Vừa mới đây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot",
+            "value":"Trình trò chuyện tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_select_text",
+            "value":"Chọn văn bản",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_folders",
+            "value":"Đã lưu tệp đính kèm vào %s. Vui lòng giữ an toàn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_theme",
+            "value":"Chủ đề",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"haveread_reports",
+            "value":"Yêu cầu xác nhận đã đọc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_notice",
+            "value":"[Đã gửi tin nhắn]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recorder_failed",
+            "value":"Không ghi âm được. Có thể micrô đang được sử dụng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content2",
+            "value":"Sử dụng trò chuyện thoại để chia sẻ thông tin nhanh chóng và dễ dàng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint",
+            "value":"Dịch vụ này yêu cầu kết nối %1$s, quyền truy cập %2$s cũng như cần đọc và tải lên/truyền thông tin vị trí. Quyền này được dùng để cung cấp dịch vụ vị trí. Bằng việc chạm vào Đồng ý, bạn đồng ý với các điều khoản này. Để biết thêm chi tiết về cách thông tin cá nhân của bạn được xử lý, hãy tham khảo %3$s và %4$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delivery_reports_hint",
+            "value":"Yêu cầu báo cáo gửi thành công cho từng tin nhắn bạn gửi.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_recent",
+            "value":"%s (Mặc định)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"swiper_content1",
+            "value":"Gửi tệp tin, hình ảnh và các nội dung phương tiện khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_not_support_emoji",
+            "value":"Tính năng Nhắn tin qua vệ tinh Bắc Đẩu không hỗ trợ biểu tượng cảm xúc.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_default_settings",
+            "value":"Khôi phục cài đặt mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_view_contacts_mms",
+            "value":"Xem liên hệ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"share",
+            "value":"Chia sẻ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_when_roaming",
+            "value":"Không thực hiện khi chuyển vùng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_read_imageVideoMedia_write_media",
+            "value":"Bao gồm ảnh, phương tiện và các tệp tin khác trên thiết bị của bạn. Được sử dụng để gửi và nhận tin nhắn phương tiện.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"intelligent_information",
+            "value":"Thông báo thông minh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_video",
+            "value":"Đã gửi một video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_vcard",
+            "value":"Đã gửi một liên hệ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore",
+            "value":"Khôi phục",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_SMS_MMS",
+            "value":"Chuyển sang SMS/MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recent",
+            "value":"Gần đây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_remove_favourite_chatbot",
+            "value":"Xóa %1$s khỏi mục ưa thích của bạn? Lịch sử tin nhắn của bạn sẽ không bị xóa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_failed",
+            "value":"Tệp tin đính kèm quá lớn, không thêm được (Giới hạn: %s).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera_permission_info",
+            "value":"Quyền này được sử dụng để gửi hình ảnh và video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_location_info",
+            "value":"Chia sẻ vị trí",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_network",
+            "value":"Cho phép",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_shortcut_menu",
+            "value":"Trở về bảng đường dẫn tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_add",
+            "value":"Thêm từ ứng dụng Nhắn tin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_button",
+            "value":"Xóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_messages",
+            "value":"Không có tin nhắn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"carrying_position",
+            "value":"Bao gồm vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_submit",
+            "value":"Gửi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_slide",
+            "value":"Trang trình bày",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"query_report",
+            "value":"Xem báo cáo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_permissions",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_max_number_tips",
+            "value":"Tin nhắn quá dài.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disabled",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reminder_network",
+            "value":"Kết nối với Internet để sử dụng dịch vụ Nhắn tin nâng cao và tiết kiệm cước phí nhà mạng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageReportFailed",
+            "value":"Không báo cáo được.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_unsupport_toast_image",
+            "value":"Không thêm đươc tệp tin đính kèm. Không hỗ trợ định dạng hình ảnh này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_location_attachment",
+            "value":"[Vị trí]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_send",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no",
+            "value":"Không, cảm ơn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"china_telecom",
+            "value":"China Telecom",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"one_week_ago",
+            "value":"Một tuần trước",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_call",
+            "value":"Gọi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star",
+            "value":"Ưa thích",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copied_to_clipboard",
+            "value":"Đã sao chép vào bộ nhớ tạm.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_cancle",
+            "value":"Chạm đúp để hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advertisement_mms",
+            "value":"Quảng cáo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Not_allowed",
+            "value":"Từ chối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_no",
+            "value":"Không, cảm ơn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Delivered",
+            "value":"Đã gửi thành công: %1$s, %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete_this_message",
+            "value":"Xóa các tin nhắn đã chọn?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip3",
+            "value":"Xóa tất cả thư?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_frequent_questions",
+            "value":"Mẹo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip1",
+            "value":"Xóa thư này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages_hint",
+            "value":"Tin nhắn thông báo sẽ bị xóa sau %d ngày kể từ khi nhận được.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_content_location_to_smc",
+            "value":"Yêu cầu cấp quyền này để gửi tin nhắn qua vệ tinh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_personal_information_list",
+            "value":"Thông tin cá nhân được thu thập",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"always",
+            "value":"Tất cả mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"creat_new_conversation_receive_deleted",
+            "value":"Đã xóa liên hệ có tên %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sending_failed_button",
+            "value":"Gửi không thành công, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_number_center_new",
+            "value":"Trung tâm SMS của SIM %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vcard",
+            "value":"Xem vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_info_button",
+            "value":"Tin nhắn mới, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_message_new_4g",
+            "value":"Tính năng Nhắn tin nâng cao cho phép bạn gửi và nhận tin nhắn cũng như nội dung đa phương tiện (chẳng hạn như hình ảnh, tin nhắn thoại và vị trí) bằng cách sử dụng WLAN hoặc dữ liệu di động. Trong quá trình sử dụng, phiên bản thiết bị và mã định danh (bao gồm IMEI, IMSI, MSISDN và địa chỉ MAC WLAN) của bạn sẽ được gửi đến nhà mạng cung cấp dịch vụ này. Bạn có thể thay đổi cài đặt bất kỳ lúc nào trong Nhắn tin > Khác > Cài đặt > Nhắn tin nâng cao. Để biết thêm thông tin về phí sử dụng, vui lòng liên hệ với nhà mạng của bạn. Dịch vụ này sẽ đọc danh sách ứng dụng đã cài đặt trên thiết bị của bạn và kiểm tra trạng thái đăng nhập của các ứng dụng Nhắn tin nâng cao của bên thứ ba để đảm bảo dịch vụ này hoạt động bình thường. Bằng việc bật khóa chuyển, bạn đồng ý để chúng tôi cung cấp cho bạn dịch vụ này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms",
+            "value":"MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_split_tips",
+            "value":"Tính năng Giao tiếp qua vệ tinh chỉ khả dụng ở chế độ xem toàn màn hình.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"putTime",
+            "value":"Đã nhận: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbotNoLocal",
+            "value":"Không có nội dung nào",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"priority",
+            "value":"Ưu tiên: Bình thường",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_beidou_message",
+            "value":"Bắt đầu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_mobile",
+            "value":"Di động",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_smc_item_from",
+            "value":"Từ %1$s: %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"net_no_connection",
+            "value":"Không có kết nối Internet",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_in_favorites",
+            "value":"Ưa thích",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_sim_card_content",
+            "value":"Không thể gửi tin nhắn bằng SIM %2$d khi SIM %1$d đang gọi điện.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"infoMessages",
+            "value":"Tin nhắn thông báo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"manage_sim_card_messages",
+            "value":"Quản lý tin nhắn trên thẻ SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmit_send",
+            "value":"Gửi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_send_greet",
+            "value":"Xin chào",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"report",
+            "value":"Báo cáo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_all_emoji",
+            "value":"Tất cả",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url",
+            "value":"Cảnh báo: Liên kết này có thể độc hại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_from_who",
+            "value":"Từ: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unavailable_tips_unregistered",
+            "value":"Chưa kích hoạt dịch vụ Nhắn tin qua vệ tinh Bắc Đẩu hãy (liên hệ với nhà mạng của bạn)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"converting_sms",
+            "value":"Đang chuyển đổi sang SMS…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_prop",
+            "value":"Vị trí này được xác định khi bạn kết nối với vệ tinh. Để cập nhật vị trí, vui lòng kết nối lại.\n\nLưu ý: Vị trí được tính vào giới hạn ký tự của tin nhắn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_permission",
+            "value":"Để xem chi tiết vị trí, hãy chạm để cấp quyền truy cập vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages",
+            "value":"Tự động xóa tin nhắn thông báo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_play_error",
+            "value":"Không hỗ trợ định dạng tệp tin này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"Xóa khỏi danh sách chặn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attach_contacts",
+            "value":"Liên hệ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_location",
+            "value":"Ứng dụng Nhắn tin yêu cầu quyền truy cập Vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"today",
+            "value":"Hôm nay",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked",
+            "value":"Tin nhắn bị chặn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cannot_download_image_dialog_message",
+            "value":"Xác nhận rằng Nhắn tin nâng cao đã được bật và thẻ SIM của bạn hỗ trợ tính năng này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_no_valid_sim_card",
+            "value":"Lắp SIM China Mobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"privacy_statements",
+            "value":"Tuyên bố Quyền riêng tư",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked_guide_title",
+            "value":"Chặn tin nhắn không mong muốn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_recent_used",
+            "value":"Gần đây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_contact_profile_pics",
+            "value":"Hiện thị ảnh hồ sơ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report",
+            "value":"Báo cáo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_no_subject",
+            "value":"[Tệp tin đính kèm](Không có chủ đề)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version_not_support_function",
+            "value":"Tính năng không được hỗ trợ trong phiên bản này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_trafficprompttitle",
+            "value":"Thông báo nhắc dữ liệu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_loading",
+            "value":"Đang tải…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSending",
+            "value":"Đang gửi…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_access",
+            "value":"Thêm vào danh sách tin cậy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Photographing",
+            "value":"Đang chụp ảnh…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_nearby_chatbot",
+            "value":"Chatbot ở gần",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_enable_mobile_data",
+            "value":"Để bật dịch vụ Nhắn tin nâng cao, hãy tắt WLAN và đảm bảo dữ liệu di động được bật.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received",
+            "value":"%s đã nhận được tin nhắn của bạn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_info",
+            "value":"Quyền này được sử dụng để ghi âm tin nhắn thoại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_rcs_register_error",
+            "value":"Lỗi máy chủ của nhà mạng. Hãy thử lại sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_insufficient_balance",
+            "value":"Số dư không đủ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"spam_mms",
+            "value":"Tin nhắn quấy rối",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_gallery",
+            "value":"Bộ sưu tập",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"press_speak",
+            "value":"Giữ và nói",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"invalid_receive",
+            "value":"Người nhận không hợp lệ: %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_file_size_zero_error",
+            "value":"Kích cỡ tệp không thể là %d byte.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_transmit",
+            "value":"Chuyển tiếp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_floating_tips",
+            "value":"Tính năng Giao tiếp qua vệ tinh chỉ khả dụng ở chế độ xem toàn màn hình.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"refreshing",
+            "value":"Đang làm mới…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_south_west",
+            "value":"%1$s Nam %2$s Tây",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_prompt",
+            "value":"Không gửi được tin nhắn. Gửi lại?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"showSource",
+            "value":"Hiển thị nguồn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_favourite_chatbot",
+            "value":"Không có mục ưa thích",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_not_exist",
+            "value":"Trình trò chuyện tự động không hoạt động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_same_time",
+            "value":"Khôi phục tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients_upper_limit",
+            "value":"Đã đạt đến số lượng người nhận tối đa (%s).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"yesterday",
+            "value":"Hôm qua",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide_aid_text",
+            "value":"Gửi tin nhắn SOS ngay cả khi bạn không có kết nối di động hoặc WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcsFileSize",
+            "value":"Kích thước: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Xóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitHeadText",
+            "value":"Chọn cuộc trò chuyện",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageDeliver",
+            "value":"Đã nhận",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContent",
+            "value":"Chuyển tiếp từ Tôi:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_vCard_import_success",
+            "value":"%s sẽ được nhập sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_start",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_requires_access_to_camear",
+            "value":"Ứng dụng Nhắn tin yêu cầu quyền truy cập Máy ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"markAllAsRead",
+            "value":"Đánh dấu tất cả đã đọc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"expired",
+            "value":"Đã hết hạn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_star_info",
+            "value":"Chưa có mục ưa thích",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_tone",
+            "value":"Âm tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_single_recv",
+            "value":"%2$s đã giới thiệu %1$s cho bạn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_retrieve_mms",
+            "value":"Tự động truy xuất MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satelliteWaiting",
+            "value":"Đang chờ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description_head",
+            "value":"Bật tính năng Nhắn tin nâng cao sẽ bật Trình trò chuyện tự động theo mặc định và thêm cổng thông tin Trình trò chuyện tự động vào màn hình chính của ứng dụng Nhắn tin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deeplink_obtain_geographical_location",
+            "value":"Cho phép %1$s truy cập vị trí thiết bị của bạn?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rending",
+            "value":"Đang chờ xử lý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"noMessages",
+            "value":"Chưa có hội thoại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mark_as_read",
+            "value":"Đánh dấu là đã đọc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete_hint",
+            "value":"Khi bật tính năng này, tin nhắn thông báo sẽ tự động bị xóa sau %d ngày kể từ khi nhận được, bao gồm cả những tin nhắn quan trọng. Bật?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description",
+            "value":"Khi bật tùy chọn này, cổng thông tin Trình trò chuyện tự động sẽ được thêm vào màn hình chính của ứng dụng Nhắn tin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reply",
+            "value":"Trả lời",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_is_stared",
+            "value":"Đã thêm tin nhắn vào mục ưa thích.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_album",
+            "value":"Đã lưu vào Bộ sưu tập.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_authentication_invalidation",
+            "value":"Xác thực đã hết hạn. Hãy vào Cài đặt > Mạng vệ tinh > Nhắn tin qua vệ tinh Bắc Đẩu, rồi bật lại khóa chuyển.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msgDetails",
+            "value":"Chi tiết tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_map_no_more_location",
+            "value":"Không có thông tin địa chỉ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_website",
+            "value":"Trang web",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_more_show",
+            "value":"Xem thêm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_new_msg",
+            "value":"Tin nhắn mới",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages_hint",
+            "value":"Chạm đúp vào tin nhắn trong vòng %d giây để thu hồi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_my_position",
+            "value":"Vị trí của tôi:\u0020",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showCard",
+            "value":"Hiển thị thẻ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_vcard",
+            "value":"[vCard]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content7",
+            "value":"Chạm vào \"↓\" ở cuối để tải câu trả lời.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_up_text",
+            "value":"Vuốt ngược để hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"just",
+            "value":"Vừa mới đây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_APPROXIMATELY_LOCATION",
+            "value":"Quyền này được sử dụng để nhận vị trí gần đúng của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search",
+            "value":"Tìm kiếm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_video",
+            "value":"[Video]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_not_open_rcs",
+            "value":"Bạn chưa bật Nhắn tin nâng cao.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verification_authority",
+            "value":"Điều khoản và điều kiện",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_groupchat_notify_silent",
+            "value":"Tắt âm thông báo tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content1",
+            "value":"Có thể sử dụng dịch vụ này để gửi tin nhắn SOS qua vệ tinh nếu bạn ở ngoài vùng phủ sóng WLAN và di động.\n",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search2",
+            "value":"Tìm kiếm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_rcv_msg",
+            "value":"Nhận tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content5",
+            "value":"Mỗi tin nhắn có thể được gửi đến tối đa %s liên hệ. Bạn có thể thêm vị trí hiện tại của mình nếu bạn muốn chia sẻ vị trí.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts_button",
+            "value":"Chọn liên hệ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content6",
+            "value":"Chỉ cần hướng điện thoại của bạn về phía vệ tinh Bắc Đẩu theo thông báo nhắc. Tính năng này hoạt động hiệu quả nhất ở môi trường thông thoáng ngoài trời.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_beidou_content3",
+            "value":"%s. Dịch vụ này hiện ch hoạt động với China Mobile.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content4",
+            "value":"Chạm vào \"%s\" để tạo tin nhắn mới.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verified_explain",
+            "value":"Bot trò chuyện này đã được %1$s xác minh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_picture",
+            "value":"Đã gửi một ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReceivingFailed",
+            "value":"Không nhận được",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"informationSize",
+            "value":"Kích thước tin nhắn: %s KB",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"translate_other",
+            "value":"Chỉ chuyển tiếp những tin nhắn được hỗ trợ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url_check_desc",
+            "value":"Kiểm tra các liên kết độc hại trong tin nhắn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_character_prompt",
+            "value":"Tên của liên hệ được tính vào giới hạn ký tự, do đó, bạn càng chọn nhiều liên hệ hơn thì bạn càng nhập được ít ký tự hơn vào tin nhắn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received_2",
+            "value":"%s đã nhận được tin nhắn của bạn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_1",
+            "value":"Internet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contacts_open",
+            "value":"Hiển thị thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_card_in_conversation_list",
+            "value":"Thẻ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delivery_reports",
+            "value":"Báo cáo đã gửi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_microphone",
+            "value":"Ứng dụng Nhắn tin yêu cầu quyền truy cập Micrô",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_4",
+            "value":"Thông báo Quyền hạn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_3",
+            "value":"Tuyên bố về Dịch vụ Vị trí Nhắn tin và Quyền riêng tư",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_2",
+            "value":"Vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageSize",
+            "value":"Kích thước tin nhắn: %s KB",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_upper_limit",
+            "value":"Giới hạn %1$d tệp tin đính kèm. Chỉ %2$d tệp tin đầu tiên sẽ được thêm vào.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_item_is_sent_insufficient",
+            "value":"– Đã gửi tin nhắn nhưng không thành công (Hạn mức không đủ)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tryAgain",
+            "value":"Thử lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start_failed",
+            "value":"Không thể bật dịch vụ Nhắn tin nâng cao.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center",
+            "value":"Số trung tâm SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_network",
+            "value":"Dịch vụ dữ liệu không hoạt động. Kiểm tra các thiết lập mạng của bạn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title_content",
+            "value":"Tính năng này kết nối Internet để kiểm tra các liên kết độc hại trong tin nhắn của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_face_change_detect_content",
+            "value":"Hình ảnh có thể được tạo ra bởi AI",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_release_to_cancel",
+            "value":"Nhả tay để hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment",
+            "value":"[Tệp tin đính kèm] %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"selectContacts",
+            "value":"Chọn liên hệ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"refused",
+            "value":"Bị từ chối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_session",
+            "value":"Nghi ngờ lừa đảo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_audio",
+            "value":"[Âm thanh]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"expiresTime",
+            "value":"Hết hạn: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_subject",
+            "value":"(Không có chủ đề)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete",
+            "value":"Bật xóa tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast",
+            "value":"Đọc to tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_location_permissions",
+            "value":"Hãy chạm để xem địa chỉ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_mms",
+            "value":"Rủi ro lừa đảo cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_audio",
+            "value":"Âm thanh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_sms",
+            "value":"Nhắn tin qua vệ tinh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_list",
+            "value":"Danh sách chặn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vCard_import_success",
+            "value":"Đã nhập thành công %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"transmitContentReceive",
+            "value":"Chuyển tiếp từ %s:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_net_error",
+            "value":"Không có kết nối Internet. Trình trò chuyện tự động không hoạt động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recorder_error",
+            "value":"Không ghi âm được.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_note_mms",
+            "value":"Tin nhắn văn bản",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages",
+            "value":"Thu hồi tin nhắn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_status",
+            "value":"Trạng thái: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title",
+            "value":"Nhắn tin qua vệ tinh Bắc Đẩu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"harassment_interception",
+            "value":"Nhận dạng cuộc gọi và tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save",
+            "value":"Lưu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"in_maintenance_mode",
+            "value":"Không thể xem tin nhắn ở chế độ Bảo trì.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSendFailed",
+            "value":"Gửi không thành công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_north_west",
+            "value":"%1$s N %2$s W",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_reports",
+            "value":"Thông báo gửi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_detail_resend_all",
+            "value":"Gửi lại tất cả",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_mms2",
+            "value":"Thêm mô tả",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url_check",
+            "value":"Kiểm tra bảo mật URL",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_sim",
+            "value":"Gửi (SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"share_device_info",
+            "value":"Đã chia sẻ thông tin thiết bị.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_send",
+            "value":"Nhắn tin nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmit_expenses_info",
+            "value":"Nội dung này sẽ được gửi đến %s như nhiều tin nhắn SMS/MMS. Vẫn gửi?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_to_contacts",
+            "value":"Lưu vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record_short",
+            "value":"Ghi âm quá ngắn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_favrite",
+            "value":"Ưa thích",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_no_reply",
+            "value":"Tin nhắn đã được gửi nhưng không có xác nhận từ vệ tinh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_take_photos",
+            "value":"Máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_down_text",
+            "value":"Vuốt xuôi để tiếp tục",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_rcv_succ",
+            "value":"Tin nhắn đã được gửi và đã nhận được thông báo xác nhận từ vệ tinh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_rcs",
+            "value":"Gửi lại bằng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_file_not_exist",
+            "value":"Tệp tin không tồn tại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocked_guide_text",
+            "value":"Gần đây bạn đã nhận được rất nhiều tin nhắn rác. Hãy điều chỉnh bộ lọc tin nhắn để chặn quảng cáo và các tin nhắn rác không mong muốn khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attach_anyfile",
+            "value":"Tệp tin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_add_button",
+            "value":"Thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enhanced_information_is_not_supported_rcs",
+            "value":"Tính năng Nhắn tin nâng cao không khả dụng khi bật chế độ Khiên an toàn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_recommand_chatbot",
+            "value":"Không có đề xuất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_provider",
+            "value":"Nhà cung cấp dịch vụ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_notice",
+            "value":"Không có kết nối WLAN. Tiếp tục bằng dữ liệu di động?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite_title",
+            "value":"Bao gồm vị trí trong tin nhắn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_network",
+            "value":"Cài đặt mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sendTime",
+            "value":"Gửi: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_content",
+            "value":"Mô tả (bắt buộc)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_satellite_card_content",
+            "value":"Không gửi được tin nhắn trong khi gọi điện qua vệ tinh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"favorites",
+            "value":"Ưa thích",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_dialog_send_sim",
+            "value":"Gửi (SIM %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contacts_call_number",
+            "value":"Gọi %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_advanced_mode",
+            "value":"Không thể xem được loại tin nhắn này khi bật chế độ Khiên an toàn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_center_hint",
+            "value":"Cảnh báo: Bạn sẽ không thể gửi tin nhắn văn bản nếu số trung tâm SMS không được đặt chính xác. Bạn có thể lấy số này từ nhà mạng của bạn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms_tips",
+            "value":"Lưu ý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_input_limit",
+            "value":"Bạn đã nhập quá nhiều ký tự.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_limit_one",
+            "value":"Tối đa một tệp tin đính kèm cho mỗi tin nhắn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_button",
+            "value":"Xóa, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_share_device_info",
+            "value":"Chia sẻ thông tin thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients",
+            "value":"Người nhận",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_mic_permission_title",
+            "value":"Cấp quyền truy cập micrô trong mục Cài đặt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_file_exceed_max_size",
+            "value":"Giới hạn kích thước: %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_who",
+            "value":"Tới: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":"Số này sẽ không còn bị chặn nữa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_content",
+            "value":"Nếu bạn chọn \"Bao gồm vị trí\" khi soạn tin nhắn, ứng dụng Nhắn tin sẽ bao gồm vị trí chính xác của bạn trong tin nhắn. Việc này có thể giúp những người ứng cứu đầu tiên liên lạc với bạn trong trường hợp khẩn cấp.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_blocked_message",
+            "value":"Không có tin nhắn bị chặn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"size",
+            "value":"Kích thước: %s KB",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_title",
+            "value":"Dịch vụ Vị trí Nhắn tin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"emoticon_button",
+            "value":"Biểu tượng cảm xúc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query_error",
+            "value":"Không có kết nối mạng. Không kiểm tra được hạn mức. Hãy thử lại lần sau khi bạn có kết nối Internet.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_import_contacts_from_vCard",
+            "value":"Nhập danh bạ từ vCard?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unselected_tip",
+            "value":"Chưa chọn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_title",
+            "value":"Nhắn tin nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"Chưa biết",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_button",
+            "value":"Gửi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advanced",
+            "value":"Nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"failed",
+            "value":"Không thành công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"agree",
+            "value":"Đồng ý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_seeking_timeout",
+            "value":"Không nhận được vị trí. Hãy di chuyển đến khu vực ngoài trời, không có vật cản rồi thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_keypad_button",
+            "value":"Chuyển sang phương thức nhập văn bản",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messages",
+            "value":"Nhắn tin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_report_dialog_con_tip1",
+            "value":"Báo cáo tin nhắn này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_mobile",
+            "value":"China Mobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title",
+            "value":"Nhắn tin nâng cao",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"leave_setting_advanced_mode",
+            "value":"Không thể xem tin nhắn này vì tin nhắn được nhận khi Khiên an toàn đang hoạt động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saveAll",
+            "value":"Lưu tất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enabled",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_Camera",
+            "value":"Cho phép",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_exit_star_search_tips",
+            "value":"Chạm lại để thoát.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS_NAME",
+            "value":"Cần có quyền này để quét mã QR và tải hình ảnh lên một số trang web nhất định.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_sms_number",
+            "value":"SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_activation_failed_message",
+            "value":"Đảm bảo đã tắt WLAN và dữ liệu di động được bật. Quá trình kích hoạt có thể mất khoảng %d phút.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_north_east",
+            "value":"%1$s N %2$s E",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim",
+            "value":"Thẻ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_send_to",
+            "value":"Gửi tới",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_picture",
+            "value":"[Hình ảnh]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network_description",
+            "value":"Quyền này được sử dụng để xem nội dung web, như Tuyên bố Quyền riêng tư.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera_permission_title",
+            "value":"Cấp quyền truy cập Máy ảnh cho Nhắn tin trong Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"query_details",
+            "value":"Xem chi tiết",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information",
+            "value":"Cho phép %1$s truy cập thông tin về thiết bị của bạn?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_File_Image_video_permission_title",
+            "value":"Cấp quyền truy cập vào tệp tin, hình ảnh và video trong mục Cài đặt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_audio",
+            "value":"Đã gửi một đoạn âm thanh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_message",
+            "value":"Quyền này được sử dụng để ghi âm tin nhắn thoại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_network",
+            "value":"Không có kết nối Internet. Hãy kiểm tra các cài đặt mạng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"there_is_no_match",
+            "value":"Không có kết quả nào phù hợp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"address_details",
+            "value":"Địa chỉ: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"status_canceled",
+            "value":"Đã hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"putAddresser",
+            "value":"Người nhận:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search_content_cannot_be_empty",
+            "value":"Không được để trống.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocklist_number",
+            "value":"Số ĐT danh sách chặn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"Thêm vào danh sách chặn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_reason_keywords",
+            "value":"Tin nhắn chứa từ khóa thuộc danh sách chặn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"archive_info_messages_hint",
+            "value":"Hiển thị tin nhắn thông báo trong một danh sách.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide",
+            "value":"Hướng dẫn nhanh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_sms_center_number",
+            "value":"Thay đổi số trung tâm SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_introduced",
+            "value":"Giới thiệu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"TipsForBlockedMms",
+            "value":"Tin nhắn đa phương tiện MMS cần phải được khôi phục mới có thể xem được nội dung.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_and_mms",
+            "value":"SMS và MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_title",
+            "value":"Khi bật tùy chọn này, nội dung tin nhắn đến và tên người gửi sẽ được đọc to.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"prohibited",
+            "value":"Từ chối",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_microphone_permission",
+            "value":"Cho phép ứng dụng Nhắn tin sử dụng micrô?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tap_content_to_edit",
+            "value":"Chạm vào nội dung để sửa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"oobe_rcs_all_content_wlan",
+            "value":"Dịch vụ này giúp bạn gửi và nhận tin nhắn, hình ảnh, vị trí, v.v. bằng kết nối Internet của bạn. Để biết thông tin chi tiết về phí, hãy liên hệ với nhà mạng của bạn. Dịch vụ này yêu cầu kết nối Internet cũng như cần đọc số điện thoại, danh bạ và nhật ký cuộc gọi của bạn. Dịch vụ này cũng cần đọc và tải lên/truyền nội dung tin nhắn, sự kiện, hình ảnh, video, âm thanh cũng như IMEI và địa chỉ MAC WLAN của bạn. Bằng việc bật khóa chuyển này, bạn đồng ý với các điều trên. Để biết thêm chi tiết về cách thông tin cá nhân của bạn được xử lý, hãy tham khảo <a link=\"privacyStatement\">Tuyên bố về Nhắn tin và Quyền riêng tư</a>.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rejectRecord",
+            "value":"Không thể ghi âm khi bạn đang gọi điện.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"air_plane_mode_message",
+            "value":"Hiện không thể gửi được tin nhắn. Sẽ gửi tin nhắn khi dịch vụ được khôi phục.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_type",
+            "value":"Loại dịch vụ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"in_advanced_mode",
+            "value":"Không mở được tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_more",
+            "value":"Chọn nhiều",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContentMulti",
+            "value":"Nguồn: cuộc trò chuyện với %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_detail_mms",
+            "value":"Chi tiết",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_fail",
+            "value":"Gửi thất bại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_tips_again",
+            "value":"Không hiện lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"air_plane_mode_receive_message",
+            "value":"Không nhận được tin nhắn cho đến khi dịch vụ được khôi phục.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_title_content",
+            "value":"Gửi và nhận tin nhắn hình ảnh, tin nhắn thoại, vị trí, v.v. bằng kết nối Internet của bạn. Liên hệ với nhà mạng của bạn để biết giá.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_recent_chatbot",
+            "value":"Không có trình trò chuyện tự động gần đây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION_NAME",
+            "value":"Quyền này được sử dụng để truy cập vị trí chính xác của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_local_black",
+            "value":"Bạn sẽ không nhận được câu trả lời từ chatbot này vì bạn đã chặn chatbot đó",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_file",
+            "value":"Đã gửi một tệp tin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content2_new",
+            "value":"%s. Trong hầu hết các trường hợp, dịch vụ này sẽ chỉ hoạt động bình thường ở những khu vực không có WLAN hoặc vùng phủ sóng di động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"postalLabelsGroup",
+            "value":"Địa chỉ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_resend",
+            "value":"Gửi lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"roaming_fees_may_apply",
+            "value":"Có thể mất phí chuyển vùng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_message",
+            "value":"Tin nhắn mới",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_content1",
+            "value":"Internet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exist_contact",
+            "value":"Lưu vào liên hệ hiện có",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_start_conversation",
+            "value":"Trò chuyện",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_location",
+            "value":"Vị trí",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms",
+            "value":"Nhắn tin qua vệ tinh Bắc Đẩu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_button",
+            "value":"Hủy bỏ, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_mobileemail",
+            "value":"Email",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_name",
+            "value":"Tên",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_map_no_network",
+            "value":"Địa chỉ sẽ hiển thị khi Internet được khôi phục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_callback_number",
+            "value":"Điện thoại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"translate_audio",
+            "value":"Không thể chuyển tiếp tin nhắn thoại và một số tin nhắn phương tiện.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Status",
+            "value":"Trạng thái: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_all_default_settings",
+            "value":"Khôi phục toàn bộ cài đặt mặc định?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms",
+            "value":"Tin nhắn văn bản",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"explain",
+            "value":"Lưu ý:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_quota_exhausted",
+            "value":"Không gửi được tin nhắn qua vệ tinh Bắc Đẩu. Bạn không còn tin nhắn miễn phí nào nữa trong tháng này. Giới hạn sẽ được đặt lại vào đầu tháng sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sender",
+            "value":"Từ: ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"searchHit",
+            "value":"Nhập số hoặc tìm kiếm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_unicom",
+            "value":"China Unicom",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contentSentContentToSingle",
+            "value":"Gửi nội dung này đến %s?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_contact",
+            "value":"Tạo liên hệ mới",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_deselect_all",
+            "value":"Bỏ chọn tất cả",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Malicious_title",
+            "value":"Bật kiểm tra bảo mật URL?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"handover_to_enhanced_message",
+            "value":"Chuyển sang Nhắn tin nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_audio_size_maximum",
+            "value":"Đã đạt đến kích thước tin nhắn tối đa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_all_content",
+            "value":"Dịch vụ Nhắn tin nâng cao cho phép bạn gửi và nhận tin nhắn, hình ảnh, tin nhắn thoại, vị trí, v.v. bằng kết nối Internet của bạn. Để biết thông tin chi tiết về phí, hãy liên hệ với nhà mạng của bạn. Dịch vụ này yêu cầu kết nối %1$s cũng như cần đọc số điện thoại, danh bạ và nhật ký cuộc gọi của bạn. Dịch vụ này cũng cần đọc và tải lên/truyền nội dung tin nhắn, sự kiện, hình ảnh, video, âm thanh cũng như IMEI và địa chỉ MAC WLAN của bạn. Bằng việc bật khóa chuyển này, bạn đồng ý với các điều trên. Để biết thêm chi tiết về cách thông tin cá nhân của bạn được xử lý, hãy tham khảo %2$d.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_select",
+            "value":"Chạm đúp để chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_network_prompt",
+            "value":"Để bật tính năng này, hãy tắt WLAN và bật dữ liệu di động.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"converting_mms",
+            "value":"Đang chuyển đổi sang MMS…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"position",
+            "value":"Vị trí: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_pre_call_editor",
+            "value":"Chỉnh sửa trước khi gọi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reportDetail",
+            "value":"Báo cáo nội dung không phù hợp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_current_size_new",
+            "value":"%1$s/%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recommand",
+            "value":"Đề xuất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_search",
+            "value":"Tìm kiếm trình trò chuyện tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION",
+            "value":"Ứng dụng này sẽ có thể truy cập vị trí chính xác của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable",
+            "value":"‎Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ask_before_deleting",
+            "value":"Không hỏi lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_privacy_state",
+            "value":"Tuyên bố về Nhắn tin và Quyền riêng tư",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_send_failed",
+            "value":"Không gửi được",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"post_allowed_return_havereadreport",
+            "value":"Yêu cầu/Gửi xác nhận đã đọc cho mỗi tin nhắn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"satellite",
+            "value":"Nhắn tin qua vệ tinh Tiantong",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy_failed",
+            "value":"Không sao chép được.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showText",
+            "value":"Hiển thị bản gốc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_subtitle",
+            "value":"Dịch vụ này cho phép bạn gửi và xem vị trí trong tin nhắn văn bản.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"draft",
+            "value":"[Bản nháp]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_rcs",
+            "value":"Tin nhắn trò chuyện",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_file_name_extra_long",
+            "value":"Tên tệp tin vượt quá giới hạn độ dài. Vui lòng đổi tên.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_duplicate_numbers",
+            "value":"Đã xóa các số điện thoại trùng lặp.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_send_failed_number_new",
+            "value":"Không thành công: %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_sms_forward_dialog_single",
+            "value":"Gửi đến %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"received",
+            "value":"Đã nhận",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_prompt",
+            "value":"Vui lòng cho phép ứng dụng Nhắn tin sử dụng micrô của thiết bị.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_report_result_success",
+            "value":"Đã gửi báo cáo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_broadnet",
+            "value":"China Broadnet",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"download",
+            "value":"Tải xuống",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_pin",
+            "value":"Ghim",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpin_button",
+            "value":"Nút Bỏ ghim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pin_button",
+            "value":"Nút Ghim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unpin",
+            "value":"Bỏ ghim",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"un_read_button",
+            "value":"Nút Đánh dấu là chưa đọc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"un_read",
+            "value":"Đánh dấu là chưa đọc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_read_button",
+            "value":"Nút Đánh dấu là đã đọc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read",
+            "value":"Đánh dấu là đã đọc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_read_msg_unpin",
+            "value":"Đã bỏ ghim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_msg_pin",
+            "value":"Đã ghim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_exit_tip_content",
+            "value":"Số lượng tin nhắn đến có chứa mã xác minh có vẻ như đã trở lại bình thường. Thông báo sẽ không bị tắt tiếng nữa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_exit",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit",
+            "value":"Khôi phục thông báo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card",
+            "value":"Số lượng tin nhắn đến có chứa mã xác minh trên SIM %d có vẻ như đã trở lại bình thường. Thông báo sẽ không bị tắt tiếng nữa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_title",
+            "value":"Khôi phục thông báo mã xác minh?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card_esim",
+            "value":"Bạn đã nhận được một số lượng lớn mã xác minh SMS trong một khoảng thời gian rất ngắn trên eSIM %d. Đây có thể là một hình thức quấy rối. Để đảm bảo an toàn cho bạn, hệ thống đã tạm thời tắt tiếng thông báo cho loại tin nhắn này.",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card_esim",
+            "value":"Số lượng tin nhắn đến có chứa mã xác minh trên eSIM %d có vẻ như đã trở lại bình thường. Thông báo sẽ không bị tắt tiếng nữa.",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card",
+            "value":"Bạn đã nhận được một số lượng lớn mã xác minh SMS trong một khoảng thời gian rất ngắn trên SIM %d. Đây có thể là một hình thức quấy rối. Để đảm bảo an toàn cho bạn, hệ thống đã tạm thời tắt tiếng thông báo cho loại tin nhắn này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_title",
+            "value":"Đã khôi phục thông báo mã xác minh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_two_card",
+            "value":"Bạn đã nhận được một số lượng lớn mã xác minh SMS trong một khoảng thời gian rất ngắn trên SIM %1$d/SIM %2$d. Đây có thể là một hình thức quấy rối. Để đảm bảo an toàn cho bạn, hệ thống đã tạm thời tắt tiếng thông báo cho loại tin nhắn này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_title",
+            "value":"Đã tắt tiếng thông báo mã xác minh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_new",
+            "value":"Bạn đã nhận được một số lượng lớn mã xác minh SMS trong một khoảng thời gian rất ngắn. Đây có thể là một hình thức quấy rối. Để đảm bảo an toàn cho bạn, hệ thống đã tạm thời tắt tiếng thông báo cho loại tin nhắn này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_content",
+            "value":"Sau khi khôi phục, bạn sẽ được thông báo như bình thường khi nhận tin nhắn có chứa mã xác minh. Thông báo sẽ không bị tắt tiếng lại trong %s phút tiếp theo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_switch_to_message",
+            "value":"Chuyển sang gửi tin nhắn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_validated",
+            "value":"Đã xác thực",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_switch_to_menu",
+            "value":"Hiện menu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_access",
+            "value":"Chạm đúp và giữ để bật nhập bằng giọng nói. Vuốt lên để hủy hoặc vuốt xuống để tiếp tục.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_star_saved",
+            "value":"Thêm vào mục ưa thích",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_dialog_tip",
+            "value":"Thay thế nội dung?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text",
+            "value":"Văn bản",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_vCard",
+            "value":"vCard MMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star_remove",
+            "value":"Xóa khỏi mục ưa thích",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_action",
+            "value":"Không thực hiện được thao tác này ở chế độ Bồng Lai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_limit_function",
+            "value":"Một số tùy chọn không khả dụng ở chế độ Thám hiểm.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_message",
+            "value":"Không xem được loại tin nhắn này ở chế độ Bồng Lai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"split_screen_prompt",
+            "value":"Mở rộng cửa sổ ứng dụng và thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_entrence",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_body",
+            "value":"Từ màn hình chính của ứng dụng Nhắn tin, chạm vào biểu tượng Thêm ở trên cùng bên phải, sau đó đi tới Cài đặt > Nhắn tin nâng cao, và bật hoặc tắt \"Trình trò chuyện tự động\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_title",
+            "value":"Làm cách nào để bật/tắt trình trò chuyện tự động?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_go_setting",
+            "value":"Vào Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_hometel",
+            "value":"Điện thoại nhà riêng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_othertel",
+            "value":"Điện thoại khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_worktel",
+            "value":"Điện thoại nơi làm việc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_tip",
+            "value":"Lưu ý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vCard_details",
+            "value":"Xem chi tiết vCard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments",
+            "value":"Tệp tin đính kèm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments_deleted",
+            "value":"Đã xóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_nickname",
+            "value":"Biệt danh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_input_box",
+            "value":"Chuyển sang phương thức nhập văn bản",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"avatar_button",
+            "value":"Ảnh hồ sơ, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workemail",
+            "value":"Thư điện tử nơi làm việc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_tips",
+            "value":"Bạn đã nhận được một tin nhắn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read_button",
+            "value":"Đánh dấu là đã đọc, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_preview_picture",
+            "value":"Xem trước hình ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_attachment_button",
+            "value":"Thêm tệp tin đính kèm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workaddress",
+            "value":"Địa chỉ nơi làm việc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"group_avatar_button",
+            "value":"Ảnh hồ sơ của nhóm, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel_button_double_click_operation",
+            "value":"Nút Hủy, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_homeaddress",
+            "value":"Địa chỉ nhà",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_to_record",
+            "value":"Chuyển sang tin nhắn thoại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othermail",
+            "value":"Thư điện tử khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_sim",
+            "value":"Chọn SIM, SIM %s, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_video",
+            "value":"video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_clickable",
+            "value":"Không hoạt động",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contact_avatar_button",
+            "value":"Ảnh hồ sơ của liên hệ, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options_button",
+            "value":"Tùy chọn khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_button",
+            "value":"Giữ và nói, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_title",
+            "value":"Chức danh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guide_action_text_previous",
+            "value":"Trở lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"websiteLabelsGroup",
+            "value":"Trang web",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"label_notes",
+            "value":"Ghi chú",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_personalemail",
+            "value":"Email cá nhân",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_otheraddress",
+            "value":"Địa chỉ khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_organisation",
+            "value":"Tổ chức",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_birthday",
+            "value":"Ngày sinh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Dual_card_switchover",
+            "value":"Chuyển đổi giữa các SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_add_failed",
+            "value":"Độ phân giải hình ảnh tối đa được hỗ trợ là %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unsupported_hyacinth_card_content",
+            "value":"Không gửi được tin nhắn trong khi gọi qua vệ tinh Dạ lan hương.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_message",
+            "value":"Tin nhắn qua vệ tinh Dạ lan hương",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_prop",
+            "value":"Vị trí này đã thu được khi bạn kết nối với vệ tinh Dạ lan hương. Để cập nhật vị trí, vui lòng kết nối lại.\n\nLưu ý: Thông tin vị trí được tính vào giới hạn ký tự của thông báo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_operation",
+            "value":"Chạm đúp để kích hoạt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center_with_prefix",
+            "value":"Trung tâm SMS %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_deselect_all_done",
+            "value":"Đã bỏ chọn tất cả các mục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_press_speak",
+            "value":"Chạm đúp và giữ để bật nhập bằng giọng nói",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all_done",
+            "value":"Đã chọn tất cả các mục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_new_message",
+            "value":"Có tin nhắn mới",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_content",
+            "value":"Mở ứng dụng nhắn tin để xem",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_title",
+            "value":"Bạn có tin nhắn mới",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_read",
+            "value":"Đánh dấu là đã đọc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_unread",
+            "value":"Đánh dấu là chưa đọc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enabled_notification",
+            "value":"Đã bật thông báo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_not_allowed",
+            "value":"Từ chối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_title",
+            "value":"Cho phép ứng dụng Nhắn tin gửi thông báo cho bạn?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_allowed",
+            "value":"Cho phép",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_content",
+            "value":"Để không bỏ lỡ các tin nhắn quan trọng, hãy cho phép ứng dụng Nhắn tin gửi thông báo cho bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_esim",
+            "value":"Chọn SIM, eSIM %d, nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_esim",
+            "value":"Gửi (eSIM %d)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_input_box",
+            "value":"Đã chuyển sang phương thức nhập văn bản",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_to_shortcut_menu",
+            "value":"Đã chuyển sang menu lối tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_support_toast",
+            "value":"Thao tác này không được hỗ trợ trong chế độ này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"help_and_feedback",
+            "value":"Trợ giúp và phản hồi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_rich_media_card_in_conversation_list",
+            "value":"Đã gửi cho bạn một tin nhắn dạng thẻ đa phương tiện.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_long_clickable",
+            "value":"Chạm đúp và giữ để hiển thị thêm tùy chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_inline_links",
+            "value":"Màn hình này chứa văn bản có thể chọn. Sử dụng chức năng trích xuất liên kết trong menu nhanh để truy cập.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_empty_content",
+            "value":"MMS không có nội dung",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

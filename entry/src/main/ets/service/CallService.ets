@@ -13,35 +13,92 @@
  * limitations under the License.
  */
 
-import call from '@ohos.telephony.call';
 import HiLog from '../utils/HiLog';
 import common from '../data/commonData';
 import LooseObject from '../data/LooseObject'
+import MmsPreferences from '../utils/MmsPreferences'
+import StringUtil from '../utils/StringUtil';
+import sim from '@ohos.telephony.sim';
+import call from '@ohos.telephony.call';
 
 const TAG = 'CallService';
 
-export default {
+export class CallService {
+  readonly number: string;
 
-    /**
-     * Calling
-     *
-     * @param telephone
-     * @callback callback
-     */
-    call(telephone, callback) {
-        if (telephone == null || telephone == common.string.EMPTY_STR) {
-            HiLog.i(TAG, 'telephone is null');
-            return;
+  constructor(number: string) {
+    this.number = number;
+  }
+
+  static fromString(number: string): CallService {
+    return new CallService(StringUtil.removeSpace(number));
+  }
+
+  public isDialEmergencyNum(): Promise<boolean> {
+    let phoneNumber = this.number;
+    let result: Promise<boolean> = new Promise((resolve) => {
+      call.isEmergencyPhoneNumber(phoneNumber, (err, data) => {
+        let isDialEmergencyNum: boolean = false;
+        if (err) {
+          HiLog.e(TAG, 'isEmergencyPhoneNumber error: ' + JSON.stringify(err));
+        } else {
+          HiLog.i(TAG, 'isEmergencyPhoneNumber data: ' + JSON.stringify(data));
+          isDialEmergencyNum = data;
         }
-        let result: LooseObject = {};
-        call.dial(telephone).then((value) => {
-            result.code = common.int.SUCCESS;
-            result.value = value;
-            callback(result);
-        }).catch((err) => {
-            HiLog.e(TAG, 'dial error: ' + err.message);
-            result.code = common.int.FAILURE;
-            callback(result);
-        });
+        resolve(isDialEmergencyNum);
+      });
+    });
+    return result;
+  }
+
+  public getNumber(): string {
+    return this.number;
+  }
+
+  public call(callback?: LooseObject): void {
+    this.dial(callback);
+  }
+
+  public async dial(options?: call.DialOptions, callback?: Function): Promise<void> {
+    HiLog.i(TAG, 'dial start');
+    if (StringUtil.isEmpty(this.number)) {
+      HiLog.w(TAG, 'dial number is empty, return!');
+      return;
     }
+    HiLog.i(TAG, `dial options: ${options?.accountId}`);
+    if (options == null) {
+      let dialSlotId: number = MmsPreferences.getInstance().getDefaultSlotId();
+      HiLog.w(TAG, `options is null, dial getDefaultSlotId: ${dialSlotId}`);
+      if (sim.isSimActiveSync(common.int.SIM_ONE)) {
+        dialSlotId = common.int.SIM_ONE;
+      } else if (sim.isSimActiveSync(common.int.SIM_TWO)) {
+        dialSlotId = common.int.SIM_TWO;
+      }
+      HiLog.w(TAG, `dial dialSlotId: ${dialSlotId}`);
+      if (dialSlotId !== common.int.INVALID) {
+        HiLog.w(TAG, `dial dialSlotId is not invalid, dialSlotId: ${dialSlotId}`);
+        options = {
+          accountId: dialSlotId,
+        }
+      }
+    }
+    try {
+      call.dial(this.number, options, (error, value) => {
+        if (error != null) {
+          HiLog.e(TAG, `dial finish err: ${error}`);
+        } else {
+          HiLog.i(TAG, 'dial finish value: ' + value);
+        }
+        if (callback) {
+          let result: LooseObject = {};
+          result.code = error != null ? common.int.FAILURE : common.int.SUCCESS;
+          result.value = value;
+          callback(result);
+        }
+      });
+    } catch (err) {
+      HiLog.e(TAG, `dial error: ${err}`);
+    }
+
+  }
 }

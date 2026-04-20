@@ -1,0 +1,25 @@
+{
+    "string":[
+        {
+            "name":"msg_delete_dialog_tip1",
+            "value":"حذف هذه المحادثة؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip3",
+            "value":"حذف جميع المحادثات؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_resend_prompt",
+            "value":"تعذر إرسال رسالتك. إعادة الإرسال؟",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

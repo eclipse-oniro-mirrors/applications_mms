@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,32 +14,36 @@
  */
 import BaseDataSource from './BaseDataSource';
 import HiLog from '../utils/HiLog';
+import LooseObject from '../data/LooseObject';
+import { mmsListType } from '../pages/conversation/conversationController';
+
+export class listDataType {
+    index: number = 0
+    conversation?: mmsListType
+}
 
 const TAG = 'transmitMsgDataSource';
 
 export default class TransmitMsgDataSource extends BaseDataSource {
-    private mmsList: Array = [];
+    public mmsList: Array<mmsListType> = [];
 
     public totalCount(): number {
         return this.mmsList.length;
     }
 
-    public getData(index: number): any {
+    public getData(index: number): mmsListType | null {
         if (this.mmsList == null || index >= this.mmsList.length) {
-            HiLog.i(TAG, 'getData Conversationlist is empty');
+            HiLog.i(TAG, 'getData is empty');
             return null;
         } else {
-            let conversation = this.mmsList[index];
-            return {
-                index: index,
-                conversation: conversation
-            };
+            this.mmsList[index].index = index;
+            return this.mmsList[index];
         }
     }
 
-    public refresh(conversationList) {
+    public refresh(listData: Array<mmsListType>) {
         HiLog.i(TAG, ' refresh!');
-        this.mmsList = conversationList;
+        this.mmsList = listData;
         this.notifyDataReload();
     }
 }

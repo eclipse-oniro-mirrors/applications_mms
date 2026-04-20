@@ -1,0 +1,132 @@
+{
+  "routerMap": [
+    {
+      "name": "Conversation",
+      "pageSourceFile": "src/main/ets/pages/conversation/conversation.ets",
+      "buildFunction": "ConversationLoader",
+      "data": {
+        "description": "this is Conversation"
+      }
+    },
+    {
+      "name": "CreateNewConversation",
+      "pageSourceFile": "src/main/ets/pages/conversation/CreateNewConversation.ets",
+      "buildFunction": "CreateNewConversationLoader",
+      "data": {
+        "description": "this is CreateNewConversation"
+      }
+    },
+    {
+      "name": "Settings",
+      "pageSourceFile": "src/main/ets/pages/settings/settings.ets",
+      "buildFunction": "SettingsLoader",
+      "data": {
+        "description": "this is Settings"
+      }
+    },
+    {
+      "name": "groupContactList",
+      "pageSourceFile": "src/main/ets/pages/groupcontactlist/groupContactList.ets",
+      "buildFunction": "GroupContactListLoader",
+      "data": {
+        "description": "this is groupContactList"
+      }
+    },
+    {
+      "name": "CopyView",
+      "pageSourceFile": "src/main/ets/pages/copy/copyView.ets",
+      "buildFunction": "CopyViewLoader",
+      "data": {
+        "description": "this is CopyView"
+      }
+    },
+    {
+      "name": "GroupDetail",
+      "pageSourceFile": "src/main/ets/pages/groupdetail/groupDetail.ets",
+      "buildFunction": "GroupDetailLoader",
+      "data": {
+        "description": "this is GroupDetail"
+      }
+    },
+    {
+      "name": "queryReport",
+      "pageSourceFile": "src/main/ets/pages/queryreport/queryReport.ets",
+      "buildFunction": "queryReportLoader",
+      "data": {
+        "description": "this is queryReport"
+      }
+    },
+    {
+      "name": "TransmitMsg",
+      "pageSourceFile": "src/main/ets/pages/transmitmsg/transmitMsg.ets",
+      "buildFunction": "TransmitMsgLoader",
+      "data": {
+        "description": "this is TransmitMsg"
+      }
+    },
+    {
+      "name": "InfoMsg",
+      "pageSourceFile": "src/main/ets/pages/infomsg/InfoMsg.ets",
+      "buildFunction": "InfoMsgLoader",
+      "data": {
+        "description": "this is InfoMsg"
+      }
+    },
+    {
+      "name": "AdvancedSettings",
+      "pageSourceFile": "src/main/ets/pages/settings/advancedSettings/advancedSettings.ets",
+      "buildFunction": "AdvancedSettingsLoader",
+      "data": {
+        "description": "this is AdvancedSettings"
+      }
+    },
+    {
+      "name": "TransmitSearchMsg",
+      "pageSourceFile": "src/main/ets/pages/transmitmsg/transmitSearchMsg.ets",
+      "buildFunction": "TransmitSearchMsgLoader",
+      "data": {
+        "description": "this is TransmitSearchMsg"
+      }
+    },
+    {
+      "name": "ManageSim",
+      "pageSourceFile": "src/main/ets/pages/managesim/ManageSim.ets",
+      "buildFunction": "ManageSimLoader",
+      "data": {
+        "description": "this is ManageSim"
+      }
+    },
+    {
+      "name": "FullImageDisplay",
+      "pageSourceFile": "src/main/ets/pages/FullImage/FullImageDisplay.ets",
+      "buildFunction": "FullImageDisplayLoader",
+      "data": {
+        "description": "this is FullImageDisplay"
+      }
+    },
+    {
+      "name": "PrivacyState",
+      "pageSourceFile": "src/main/ets/pages/privacy/PrivacyState.ets",
+      "buildFunction": "PrivacyStateLoader",
+      "data": {
+        "description": "this is PrivacyState"
+      }
+    },
+    {
+      "name": "Favorites",
+      "pageSourceFile": "src/main/ets/pages/favoritepage/favorite.ets",
+      "buildFunction": "FavoritesLoader",
+      "data": {
+        "description": "this is Favorites"
+      }
+    },
+    {
+      "name": "SlidePreview",
+      "pageSourceFile": "src/main/ets/pages/slidePreview/SlidePreview.ets",
+      "buildFunction": "SlidePreviewLoader",
+      "data": {
+        "description": "this is SlidePreview"
+      }
+    }
+  ]
+}

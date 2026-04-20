@@ -13,45 +13,59 @@
  * limitations under the License.
  */
 import common from '../../data/commonData';
-import dateUtil from '../../utils/DateUtil';
-import router from '@system.router';
+import lazy { DateUtil } from '../../utils/DateUtil';
 import HiLog from '../../utils/HiLog'
 
 const TAG = 'QueryReportController';
 
-let queryReportCtrl;
+let queryReportCtrl: QueryReportController;
+
+class RouterParams {
+    isMsm: boolean = false;
+    telephone: string = '';
+    sendStatus: number = -1; //0：已送达
+    timeMillisecond: number = 0;
+}
 
 export default class QueryReportController {
     // MMS or not
-    isMsm: boolean = true;
+    public isMsm: boolean = true;
     // Sending Status Description
-    sendStatusDesc: Resource;
+    public sendStatusDesc: Resource | string = ''
     // Sending Status
-    sendStatus: number = 0;
+    public sendStatus: number = 0;
     // Time
-    mmsTime: Resource;
+    public mmsTime: Resource | string = '';
     // Specific morning and afternoon time
-    specificTime: Resource;
+    public specificTime: Resource | string = '';
     // Timestamp
-    timeMillisecond: string = '0';
+    public timeMillisecond: string = '0';
     // telephoneNo
-    telephone: string = '';
+    public telephone: string = '';
+    public pageInfos: NavPathStack | null = null;
+    private static sInstance: QueryReportController | undefined = undefined;
 
-    static getInstance() {
-        if (queryReportCtrl == null) {
-            queryReportCtrl = new QueryReportController();
-            AppStorage.SetAndLink('QueryReportController', queryReportCtrl);
+    public static release() {
+        QueryReportController.sInstance = undefined;
+    }
+
+    public static getInstance(): QueryReportController {
+        if (!QueryReportController.sInstance) {
+            QueryReportController.sInstance = new QueryReportController();
+            AppStorage.SetAndLink('QueryReportController', QueryReportController.sInstance);
         }
-        return queryReportCtrl;
+        return QueryReportController.sInstance as QueryReportController;
     };
 
-    onInit() {
+    onInit(pageInfos: NavPathStack) {
         HiLog.i(TAG, 'onInit')
-        this.isMsm = router.getParams().isMsm == undefined ? true : Boolean(router.getParams().isMsm);
-        this.sendStatus = router.getParams().sendStatus == undefined ? 0 : Number(router.getParams().sendStatus);
+        this.pageInfos = pageInfos;
+        let routerParams: Array<RouterParams> = this.pageInfos.getParamByName('queryReport') as Array<RouterParams>;
+        this.isMsm = routerParams[0]?.isMsm == undefined ? true : Boolean<Object>(routerParams[0]?.isMsm);
+        this.sendStatus = routerParams[0]?.sendStatus == undefined ? 0 : Number(routerParams[0]?.sendStatus);
         this.timeMillisecond =
-            router.getParams().timeMillisecond == undefined ? '0' : String(router.getParams().timeMillisecond);
-        this.telephone = router.getParams().telephone == undefined ? '' : String(router.getParams().telephone)
+            routerParams[0]?.timeMillisecond == undefined ? '0' : String(routerParams[0]?.timeMillisecond);
+        this.telephone = routerParams[0]?.telephone == undefined ? '' : String(routerParams[0]?.telephone)
     };
 
     onShow() {
@@ -74,7 +88,7 @@ export default class QueryReportController {
     };
 
     dealTime() {
-        this.mmsTime = dateUtil.convertTimeStampDate(this.timeMillisecond);
-        this.specificTime = dateUtil.convertTimeStampTime(this.timeMillisecond, false)
+        this.mmsTime = DateUtil.convertTimeStampDate(Number(this.timeMillisecond));
+        this.specificTime = DateUtil.convertTimeStampTime(Number(this.timeMillisecond));
     }
 }

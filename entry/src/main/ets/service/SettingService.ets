@@ -15,35 +15,44 @@
 
 import SettingModel from '../model/SettingsModel';
 
-let mSettingModel = new SettingModel();
 import HiLog from '../utils/HiLog';
 import common from '../data/commonData';
 import LooseObject from '../data/LooseObject'
 import MmsPreferences from '../utils/MmsPreferences';
+import SharedPreferencesUtils from '../utils/SharedPreferencesUtils';
+
+let mSettingModel = new SettingModel();
 
 const TAG = 'SettingService';
+export interface MmsSettingServiceType {
+    setOnSettingValueListener: (callback: Function) => void,
+    restoreSwitchValue: (callback: Function) => void,
+    updateSettingValue: (code: number, actionData: LooseObject, callback: Function) => void,
+    getAdvancedPageSwitchValue: (callback: Function) => void,
+    shareSmsEnterSelectedText: (actionData: LooseObject) => void,
+    getSettingFlagForConvListPage: () => (Record<string,boolean>),
+    judgeIsDeliveryReport: (isMms: Object) => boolean,
+    calculateChecked: (simMessageList:Array<LooseObject>, isAllSelect: Object) => LooseObject,
 
-export default {
+}
+
+let MmsSettingService: MmsSettingServiceType = {
 
     /**
      * Set Initial Value
      *
      * @param {Object} callback
      */
-    setOnSettingValueListener(callback) {
-        let result: LooseObject = {
+    setOnSettingValueListener(callback: Function) {
+        let result: Record<string,boolean> = {
             'integrationSwitch': false,
-            'maliciousWebSwitch': false,
             'showContactSwitch': false,
         };
-        mSettingModel.setOnSettingValueListener(settingValue => {
+        mSettingModel.setOnSettingValueListener((settingValue: Record<string,Object>) => {
             if (settingValue.integrationSwitch === common.bool.TRUE || settingValue.integrationSwitch === '') {
                 result.integrationSwitch = true;
             }
-            if (settingValue.maliciousWebSwitch === common.bool.TRUE || settingValue.integrationSwitch === '') {
-                result.maliciousWebSwitch = true;
-            }
-            if (settingValue.showContactSwitch === common.bool.TRUE || settingValue.integrationSwitch === '') {
+            if (settingValue.showContactSwitch === common.bool.TRUE || settingValue.showContactSwitch === '') {
                 result.showContactSwitch = true;
             }
         });
@@ -55,7 +64,7 @@ export default {
      *
      * @param {Object} callback
      */
-    restoreSwitchValue(callback) {
+    restoreSwitchValue(callback: Function) {
         mSettingModel.restoreSwitchValueToDefault(callback);
     },
 
@@ -66,45 +75,25 @@ export default {
      * @param callback
      * @return
      */
-    updateSettingValue(code, actionData, callback) {
+    updateSettingValue(code: number, actionData: LooseObject, callback: Function) {
         switch (code) {
-          case common.route.MESSAGE_CODE_UPDATE_DELIVERY_REPORTS_VALUE:
+            case common.route.MESSAGE_CODE_UPDATE_DELIVERY_REPORTS_VALUE:
             // Delivery Report
-              mSettingModel.updateSwitchValue(common.string.KEY_OF_DELIVERY_REPORT_SWITCH,
+                mSettingModel.updateSwitchValue(common.STR.KEY_OF_DELIVERY_REPORT_SWITCH,
                     actionData.intValue, callback);
-              break;
-          case common.route.MESSAGE_CODE_UPDATE_AUTO_RETRIEVE_MMS_VALUE:
-            // Automatically downloading MMs
-              mSettingModel.updateSwitchValue(common.string.KEY_OF_AUTO_RETRIEVE_SWITCH,
-                    actionData.intValue, callback);
-              break;
-          case common.route.MESSAGE_CODE_UPDATE_RECALL_MESSAGES_VALUE:
-            // Cancel Sending
-              mSettingModel.updateSwitchValue(common.string.KEY_OF_RECALL_MESSAGE_SWITCH,
-                    actionData.booleanValue, callback);
-              break;
-          case common.route.MESSAGE_CODE_UPDATE_AUTO_DELETE_INFO_MESSAGES_VALUE:
-            // Automatically delete notification information
-              mSettingModel.updateSwitchValue(common.string.KEY_OF_AUTO_DELETE_INFO_SWITCH,
-                    actionData.booleanValue, callback);
-              break;
-          case common.route.MESSAGE_CODE_UPDATE_ARCHIVE_INFO_MESSAGES_VALUE:
+                break;
+            case common.route.MESSAGE_CODE_UPDATE_ARCHIVE_INFO_MESSAGES_VALUE:
             // Notification information integration
-              mSettingModel.updateSwitchValue(common.string.KEY_OF_INTEGRATION_SWITCH,
+                mSettingModel.updateSwitchValue(common.STR.KEY_OF_INTEGRATION_SWITCH,
                     actionData.booleanValue, callback);
-              break;
-          case common.route.MESSAGE_CODE_UPDATE_MALICIOUS_WEBSITE_IDENTIFICATION_VALUE:
-            // Malicious Website Identification
-                mSettingModel.updateSwitchValue(common.string.KEY_OF_MALICIOUS_WEB_SWITCH,
-                    actionData.booleanValue, callback);
-              break;
-          case common.route.MESSAGE_CODE_UPDATE_SHOW_CONTACT_PROFILE_PICS_VALUE:
+                break;
+            case common.route.MESSAGE_CODE_UPDATE_SHOW_CONTACT_PROFILE_PICS_VALUE:
             // Display contact avatar
-              mSettingModel.updateSwitchValue(common.string.KEY_OF_SHOW_CONTACT_SWITCH,
+                mSettingModel.updateSwitchValue(common.STR.KEY_OF_SHOW_CONTACT_SWITCH,
                     actionData.booleanValue, callback);
-              break;
-          default:
-              HiLog.w(TAG, 'updateSettingValue, code is not exit');
+                break;
+            default:
+                HiLog.w(TAG, 'updateSettingValue, code is not exit');
         }
     },
 
@@ -113,24 +102,8 @@ export default {
      *
      * @param {Object} callback
      */
-    getAdvancedPageSwitchValue(callback) {
+    getAdvancedPageSwitchValue(callback: Function) {
         mSettingModel.getAdvancedPageSwitchValue(callback);
-    },
-
-    /**
-     * Updating SMSC Numbers
-     * @param actionData
-     * @param callback
-     * @return
-     */
-    updateSmscNumber(actionData) {
-        mSettingModel.updateSmscNumber(actionData, result => {
-            if (result.code == common.int.SUCCESS) {
-                HiLog.i(TAG, 'updateSmscNumber, success');
-            } else {
-                HiLog.w(TAG, 'updateSmscNumber, fail');
-            }
-        });
     },
 
     /**
@@ -139,9 +112,9 @@ export default {
      * @param callback
      * @return
      */
-    shareSmsEnterSelectedText(actionData) {
+    shareSmsEnterSelectedText(actionData: LooseObject) {
         // The sharing API is not provided.
-        mSettingModel.shareSmsEnterSelectedText(actionData, result => {
+        mSettingModel.shareSmsEnterSelectedText(actionData, (result: Record<string,number>) => {
             if (result.code == common.int.SUCCESS) {
                 HiLog.i(TAG, 'shareSmsEnterSelectedText, success');
             } else {
@@ -153,12 +126,12 @@ export default {
      * Values of the notification information integration switch and whether to display contact avatars
      */
     getSettingFlagForConvListPage() {
-        let result: LooseObject = {
+        let result: Record<string,boolean> = {
             'isShowContactHeadIcon': false,
             'hasAggregate': false,
-            'recallMessagesFlag': false,
+            'isDistributedFlag': false,
         };
-        mSettingModel.getSettingValue(settingValue => {
+        mSettingModel.getSettingValue((settingValue: LooseObject) => {
             if (settingValue.code === common.int.SUCCESS) {
                 HiLog.i(TAG, 'getSettingFlagForConvListPage, Success');
                 if (settingValue.abilityResult.isShowContactHeadIcon === common.bool.TRUE ||
@@ -169,9 +142,9 @@ export default {
                     settingValue.abilityResult.hasAggregate === '') {
                     result.hasAggregate = true;
                 }
-                if (settingValue.abilityResult.recallMessagesFlag == common.bool.TRUE ||
-                    settingValue.abilityResult.recallMessagesFlag === '') {
-                    result.recallMessagesFlag = true;
+                if (settingValue.abilityResult.isDistributedFlag === 2 ||
+                    settingValue.abilityResult.isDistributedFlag === '') {
+                    result.isDistributedFlag = true;
                 }
             } else {
                 HiLog.w(TAG, 'getSettingFlagForConvListPage, fail');
@@ -210,9 +183,9 @@ export default {
      * @param mmsList
      * @param isAllSelect
      */
-    calculateChecked(simMessageList, isAllSelect) {
+    calculateChecked(simMessageList:Array<LooseObject>, isAllSelect) {
         let count = 0;
-        let checkedList = [];
+        let checkedList: LooseObject[] = [];
         let result: LooseObject = {};
         let switchOff = false;
         for (let item of simMessageList) {
@@ -231,3 +204,6 @@ export default {
         return result;
     },
 }
+
+export default MmsSettingService
+export { mSettingModel }

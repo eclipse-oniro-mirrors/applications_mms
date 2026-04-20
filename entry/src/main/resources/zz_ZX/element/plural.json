@@ -1,0 +1,758 @@
+{
+    "plural":[
+        {
+            "name":"msg_delete_dialog_con_tip2",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_866900]_Delete %d message?"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_866876]_Delete %d messages?"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_866882]_Delete %d messages?"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_866909]_Delete %d messages?"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_866895]_Delete %d messages?"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_866905]_Delete %d messages?"
+                }
+            ]
+        },
+        {
+            "name":"and_others",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_866889]_%1$s & %2$d other…"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_866899]_%1$s & %2$d others…"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_866885]_%1$s & %2$d others…"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_866881]_%1$s & %2$d others…"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_866888]_%1$s & %2$d others…"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_866906]_%1$s & %2$d others…"
+                }
+            ]
+        },
+        {
+            "name":"members",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_863742]_%d members"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_863762]_%d member"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_863755]_%d members"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_863734]_%d members"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_863757]_%d members"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_863752]_%d members"
+                }
+            ]
+        },
+        {
+            "name":"msg_delete_dialog_tip2",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_866884]_Delete %d conversation?"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_866896]_Delete %d conversations?"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_866894]_Delete %d conversations?"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_866879]_Delete %d conversations?"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_866877]_Delete %d conversations?"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_866891]_Delete %d conversations?"
+                }
+            ]
+        },
+        {
+            "name":"unread_messages",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_863740]_%d unread"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_863751]_%d unread"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_863767]_%d unread"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_863766]_%d unread"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_863739]_%d unread"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_863761]_%d unread"
+                }
+            ]
+        },
+        {
+            "name":"msg_selected_tip_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1114405]_%s items selected"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1114410]_%s item selected"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1114416]_%s items selected"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1114418]_%s items selected"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1114425]_%s items selected"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1114422]_%s items selected"
+                }
+            ]
+        },
+        {
+            "name":"minAgo_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1114424]_%s min ago"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1114419]_%s min ago"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1114409]_%s min ago"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1114420]_%s min ago"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1114411]_%s min ago"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1114406]_%s min ago"
+                }
+            ]
+        },
+        {
+            "name":"multiUnread",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_863769]_[%d message]"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_863753]_[%d messages]"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_863749]_[%d messages]"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_863759]_[%d messages]"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_863760]_[%d messages]"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_863744]_[%d messages]"
+                }
+            ]
+        },
+        {
+            "name":"contacts_found",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_863754]_Found %1$d contact"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_863750]_Found %1$d contacts"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_863747]_Found %1$d contacts"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_863763]_Found %1$d contacts"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_863741]_Found %1$d contacts"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_863765]_Found %1$d contacts"
+                }
+            ]
+        },
+        {
+            "name":"search_session_content",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_879966]_%d message"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_879976]_%d messages"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_879967]_%d messages"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_879962]_%d messages"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_879977]_%d messages"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_879972]_%d messages"
+                }
+            ]
+        },
+        {
+            "name":"search_message_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_879964]_Found %d messages"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_879961]_Found %d message"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_879971]_Found %d messages"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_879968]_Found %d messages"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_879969]_Found %d messages"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_879975]_Found %d messages"
+                }
+            ]
+        },
+        {
+            "name":"search_session_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_879965]_Found %d conversations"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_879974]_Found %d conversation"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_879973]_Found %d conversations"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_879970]_Found %d conversations"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_879963]_Found %d conversations"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_879960]_Found %d conversations"
+                }
+            ]
+        },
+        {
+            "name":"mms_count",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_898390]_[%d messages]"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_898386]_[%d message]"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_898387]_[%d messages]"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_898393]_[%d messages]"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_898384]_[%d messages]"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_898391]_[%d messages]"
+                }
+            ]
+        },
+        {
+            "name":"plural_people",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_898388]_%d person"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_898389]_%d people"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_898394]_%d people"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_898392]_%d people"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_898385]_%d people"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_898395]_%d people"
+                }
+            ]
+        },
+        {
+            "name":"share_description",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_939063]_%d characters"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_939069]_%d character"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_939064]_%d characters"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_939070]_%d characters"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_939065]_%d characters"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_939067]_%d characters"
+                }
+            ]
+        },
+        {
+            "name":"rcs_vcard_number",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_944616]_%d person"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_944620]_%d people"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_944612]_%d people"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_944618]_%d people"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_944615]_%d people"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_944614]_%d people"
+                }
+            ]
+        },
+        {
+            "name":"accessibility_audio_time_second",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_954085]_%d seconds"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_954088]_%d second"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_954096]_%d seconds"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_954097]_%d seconds"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_954094]_%d seconds"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_954087]_%d seconds"
+                }
+            ]
+        },
+        {
+            "name":"accessibility_audio_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_954089]_%d min"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_954086]_%d min"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_954093]_%d min"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_954095]_%d min"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_954091]_%d min"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_954090]_%d min"
+                }
+            ]
+        },
+        {
+            "name":"blocked_notify_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_959844]_Blocked %d nuisance message"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_959839]_Blocked %d nuisance messages"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_959843]_Blocked %d nuisance messages"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_959835]_Blocked %d nuisance messages"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_959847]_Blocked %d nuisance messages"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_959841]_Blocked %d nuisance messages"
+                }
+            ]
+        },
+        {
+            "name":"blocked_notify_text",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_959846]_Recent blocks: %d"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_959836]_Recent blocks: %d"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_959845]_Recent blocks: %d"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_959840]_Recent blocks: %d"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_959842]_Recent blocks: %d"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_959838]_Recent blocks: %d"
+                }
+            ]
+        },
+        {
+            "name":"blocked_count_text_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1114423]_Blocked messages: %s"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1114426]_Blocked messages: %s"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1114412]_Blocked messages: %s"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1114432]_Blocked messages: %s"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1114421]_Blocked messages: %s"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1114413]_Blocked messages: %s"
+                }
+            ]
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1022365]_This number will no longer be blocked."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1022366]_These numbers will no longer be blocked."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1022368]_These numbers will no longer be blocked."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1022367]_These numbers will no longer be blocked."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1022370]_These numbers will no longer be blocked."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1022369]_These numbers will no longer be blocked."
+                }
+            ]
+        },
+        {
+            "name":"smc_also_enter_words",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1023722]_%d character left"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1023724]_%d characters left"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1023720]_%d characters left"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1023718]_%d characters left"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1023719]_%d characters left"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1023716]_%d characters left"
+                }
+            ]
+        },
+        {
+            "name":"smc_enter_words",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1023926]_Max %d character"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1023927]_Max %d characters"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1023928]_Max %d characters"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1023929]_Max %d characters"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1023930]_Max %d characters"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1023931]_Max %d characters"
+                }
+            ]
+        },
+        {
+            "name":"every_satellite_worried",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1024758]_Each message can be sent to up to %d contact."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1024751]_Each message can be sent to up to %d contacts."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1024754]_Each message can be sent to up to %d contacts."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1024760]_Each message can be sent to up to %d contacts."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1024755]_Each message can be sent to up to %d contacts."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1024752]_Each message can be sent to up to %d contacts."
+                }
+            ]
+        },
+        {
+            "name":"smc_sim_card_quota_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1114430]_Remaining quota: %1$s message"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1114414]_Remaining quota: %1$s messages"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1114428]_Remaining quota: %1$s messages"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1114429]_Remaining quota: %1$s messages"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1114417]_Remaining quota: %1$s messages"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1114408]_Remaining quota: %1$s messages"
+                }
+            ]
+        }
+    ]
+}

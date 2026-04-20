@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>图片删除</title>
+    <defs>
+        <path d="M11,0 C17.0751322,0 22,4.92486775 22,11 C22,17.0751322 17.0751322,22 11,22 C4.92486775,22 0,17.0751322 0,11 C0,4.92486775 4.92486775,0 11,0 Z" id="path-1"></path>
+    </defs>
+    <g id="图片删除" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" x="0" y="0" width="24" height="24"></rect>
+        <g id="编组" transform="translate(1.000000, 1.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="形状结合" fill-opacity="0.3" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <path d="M11,5 C11.4142136,5 11.75,5.33578644 11.75,5.75 L11.749,10.25 L11.75,11.75 L11.749,11.75 L11.75,16.25 C11.75,16.6642136 11.4142136,17 11,17 C10.5857864,17 10.25,16.6642136 10.25,16.25 L10.249,11.75 L5.75,11.75 C5.33578644,11.75 5,11.4142136 5,11 C5,10.5857864 5.33578644,10.25 5.75,10.25 L10.249,10.25 L10.25,5.75 C10.25,5.33578644 10.5857864,5 11,5 Z M16.25,10.25 C16.6642136,10.25 17,10.5857864 17,11 C17,11.4142136 16.6642136,11.75 16.25,11.75 L12.75,11.75 L12.75,10.25 L16.25,10.25 Z" id="形状结合" fill="#FFFFFF" transform="translate(11.000000, 11.000000) rotate(-315.000000) translate(-11.000000, -11.000000) "></path>
+        </g>
+    </g>
+</svg>

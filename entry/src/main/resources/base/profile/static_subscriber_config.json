@@ -5,7 +5,20 @@
       "permission": "",
       "types": [],
       "events": [
-        "usual.event.SMS_RECEIVE_COMPLETED"
+        "usual.event.SMS_RECEIVE_COMPLETED",
+        "usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED",
+        "usual.event.SHUTDOWN",
+        "usual.event.BOOT_COMPLETED",
+        "usual.event.USER_UNLOCKED",
+        "smsrdb.event.StoreChanged"
+      ]
+    },
+    {
+      "name": "SmsRdbStoreChangedSubscriber",
+      "permission": "ohos.permission.READ_MESSAGES",
+      "types": [],
+      "events": [
+        "smsrdb.event.StoreChanged"
       ]
     }
   ]
