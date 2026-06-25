@@ -1,0 +1,4278 @@
+{
+    "string":[
+        {
+            "name":"install_permission",
+            "value":"قاچىلىغان ئەپ تىزىملىكى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_microphone_permission_title",
+            "value":"تەڭشەكتىن «ئۇچۇر» غا مىكروفون ئىجازىتى بېرىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msgDetails",
+            "value":"ئۇچۇر تەپسىلاتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network",
+            "value":"«ئۇچۇر» تورغا ئۇلىنىدۇ، رۇخسەتمۇ؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"downloading",
+            "value":"چۈشۈۋاتىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"just",
+            "value":"بايا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search",
+            "value":"ئۇچۇر ئىزدەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip1",
+            "value":"بۇ سۆھبەتنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsupport_sim_card_content",
+            "value":"كارتا %1$d سۆزلىشىۋاتقاندا كارتا %2$d ئارقىلىق ئۇچۇر يوللانمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip4",
+            "value":"بارلىق تاللىغان سۆزلىشىشنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_tip3",
+            "value":"بارلىق سۆھبەتنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"search2",
+            "value":"ئۇقتۇرۇش ئىزدەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enhanced_information",
+            "value":"كۈچەيمە ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_loggedin_RCS",
+            "value":"يوللانمىدى، RCS قا تىزىملاپ كىرمىگەن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contacts_open",
+            "value":"يېيىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"جەزملەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReceiveFailed",
+            "value":"چۈشمىدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delivery_reports",
+            "value":"يەتكۈزۈش دوكلاتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_center",
+            "value":"ئۇچۇر مەركىزى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type",
+            "value":"تۈرى:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_network",
+            "value":"ئېقىم مۇلازىمىتى ئىشلىمىدى، تور تەڭشىكىنى تەكشۈرۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"selectContacts",
+            "value":"ئالاقىداش تاللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete",
+            "value":"ئۆزلۈكىدىن ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_select_all",
+            "value":"ﮬﻪﻣﻤﯩﻨﻰ ﺗﺎﻟﻼﺵ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record",
+            "value":"ئۈن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contacts_retract",
+            "value":"يىغىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContentReceive",
+            "value":"\u200f%s تارقاتقان:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"archive_info_messages",
+            "value":"ئۇقتۇرۇش ئۇچۇرى بىرىكتۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_mms",
+            "value":"ئۇچۇر/رەڭلىك ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recently",
+            "value":"يېقىنقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"in_maintenance_mode",
+            "value":"رېمونت ھالىتىدە ئۇچۇر مەزمۇنى كۆرۈنمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSendFailed",
+            "value":"يوللانمىدى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_reports",
+            "value":"يوللاش دوكلاتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_detail_resend_all",
+            "value":"ھەممىنى قايتا يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_mms2",
+            "value":"چۈشەنچە قوشۇش ياكى يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_sim",
+            "value":"يوللاش (كارتا %d)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Camera_permission_prompt",
+            "value":"«ئۇچۇر» ئۈچۈن كامېرا ئىجازىتى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"justNow",
+            "value":"بايا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_send",
+            "value":"كۈچەيمە ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmit_expenses_info",
+            "value":"تاللىغان مەزمۇن بىر نەچچە رەڭلىك ئۇچۇرغا بۆلۈنۈپ ‎%s‎ غا يوللىنىدۇ، ھەق كېلىدۇ، يوللامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_select_text",
+            "value":"تېكىست تاللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"haveread_reports",
+            "value":"ئوقۇش دوكلاتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"swiper_content2",
+            "value":"ئاۋازلىق سۆھبەت تېخىمۇ قولايلىق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_record_short",
+            "value":"ئالغان ئۈن بەك قىسقا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"باشقىلار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"swiper_content1",
+            "value":"رەسىم، ئاۋاز، ھۆججەت قاتارلىق مول مېدىيالىق ئۇچۇر يوللاشقا بولىدۇ، ئالاقە تېخىمۇ قولايلىشىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_resend_rcs",
+            "value":"قايتا يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_network",
+            "value":"تور تەڭشىكى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sendTime",
+            "value":"يوللىغان:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore",
+            "value":"ئەسلىگە كەلتۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_to_SMS_MMS",
+            "value":"قىسقا/رەڭلىك ئۇچۇرغا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_network",
+            "value":"رۇخسەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contacts_call_number",
+            "value":"\u200f%s نى چاقىرىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_input_limit",
+            "value":"مەزمۇن چەككە يەتتى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients",
+            "value":"تاپشۇرۇۋالغۇچى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"query_report",
+            "value":"دوكلاتنى كۆرۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_permissions",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disabled",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reminder_network",
+            "value":"تور ئارقىلىق كۈچەيمە ئۇچۇر مۇلازىمىتىنى ئىشلەتسىڭىز پۇل تېجەيسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_send",
+            "value":"قىسقا ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_unselected_tip",
+            "value":"تاللانمىدى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advanced",
+            "value":"ئالىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messages",
+            "value":"ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable",
+            "value":"ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enabled",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_Camera",
+            "value":"رۇخسەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip3",
+            "value":"بارلىق ئۇچۇرنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_con_tip1",
+            "value":"بۇ ئۇچۇرنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages_hint",
+            "value":"ئۇقتۇرۇش تىزىملىكىدىكى %d كۈندىن ئاشقان ئۇچۇرلار ئۆچۈرۈلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_personal_information_list",
+            "value":"توپلايدىغان شەخسىي ئۇچۇر تىزىملىكى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"always",
+            "value":"بارلىق تور",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_send_to",
+            "value":"يوللاش:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_need_network_description",
+            "value":"بۇ ئارقىلىق مەخپىيەتلىك باياناتى قاتارلىق توربەت مەزمۇنلىرى ئېچىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_number_center_new",
+            "value":"كارتا %s نىڭ ئۇچۇر مەركىزى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera_permission_title",
+            "value":"تەڭشەكتىن «ئۇچۇر» غا كامېرا ئىجازىتى بېرىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms",
+            "value":"رەڭلىك ئۇچۇر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"query_details",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_network",
+            "value":"تور يوق، تور تەڭشىكىنى تەكشۈرۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"there_is_no_match",
+            "value":"شەرتكە ئۇيغۇن مەزمۇن يوق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"putAddresser",
+            "value":"تاپشۇرۇۋالغۇچى:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"archive_info_messages_hint",
+            "value":"ئۇقتۇرۇش تۈرىدىكى ئۇچۇرلار ئايرىم تىزىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_sms_center_number",
+            "value":"ئۇچۇر مەركىزى نومۇرىنى ئۆزگەرتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"infoMessages",
+            "value":"ئۇقتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"manage_sim_card_messages",
+            "value":"\u200fSIM كارتا ئۇچۇرى باشقۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_and_mms",
+            "value":"قىسقا ۋە رەڭلىك ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"prohibited",
+            "value":"چەكلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tap_content_to_edit",
+            "value":"مەزمۇننى بېسىپ تەھرىرلەڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rejectRecord",
+            "value":"سۆزلىشىۋاتقاندا ئۈن ئالغىلى بولمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_delete_info_messages",
+            "value":"ئۇقتۇرۇش ئۇچۇرىنى ئۆزلۈكىدىن ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"air_plane_mode_message",
+            "value":"ئۇچۇر يوللانمىدى، مۇلازىمەت ئەسلىگە كەلگەندىن كېيىن قايتا يوللاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContentMulti",
+            "value":"مەنبە: %s بىلەن ئۆتكۈزگەن سۆھبەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_detail_mms",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_resend",
+            "value":"قايتا يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"roaming_fees_may_apply",
+            "value":"رايون ئاتلاش ھەققى كېلىشى مۇمكىن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageSending",
+            "value":"يوللاۋاتىدۇ...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_message",
+            "value":"ئۇچۇر قۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_received",
+            "value":"ئۇچۇرنى ‎%s‎ تاپشۇرۇۋالدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_info",
+            "value":"بۇ ئىجازەت ئاۋازلىق ئۇچۇر ئۈچۈن ئۈن ئېلىشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"translate_audio",
+            "value":"ئاۋاز ۋە بىر قىسىم مېدىيا تارقىتىلمايدۇ، باشقا ئۇچۇرلارنى تارقىتامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Status",
+            "value":"ھالەت:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"press_speak",
+            "value":"بېسىپ تۇرۇپ سۆزلەڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_all_default_settings",
+            "value":"بارلىق سۈكۈت تەڭشەكنى ئەسلىگە كەلتۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms",
+            "value":"قىسقا ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_transmit",
+            "value":"يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sender",
+            "value":"يوللىغۇچى:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"searchHit",
+            "value":"نومۇر كىرگۈزۈڭ ياكى ئىزدەڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_resend_prompt",
+            "value":"ئۇچۇر يوللانمىدى، قايتا يوللامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"contentSentContentToSingle",
+            "value":"تاللىغان مەزمۇننى %s غا يوللامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showSource",
+            "value":"مەنبەنى قوشۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_deselect_all",
+            "value":"قالدۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"yesterday",
+            "value":"تۈنۈگۈن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_pre_call_editor",
+            "value":"چاقىرىشتىن بۇرۇن تەھرىرلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitHeadText",
+            "value":"سۆھبەت تاللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageDeliver",
+            "value":"يەتكۈزۈلگەن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ask_before_deleting",
+            "value":"قايتا سورىماڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_privacy_state",
+            "value":"ئۇچۇر ۋە مەخپىيەتلىك ھەققىدە بايانات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"markAllAsRead",
+            "value":"ھەممىنى ئوقۇلغان قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_send_failed",
+            "value":"يوللانمىغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"post_allowed_return_havereadreport",
+            "value":"ئۇچۇر ئوقۇلغانلىق دوكلاتى تەلەپ قىلىنىدۇ ۋە ئەۋەتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_retrieve_mms",
+            "value":"رەڭلىك ئۇچۇرنى ئۆزلۈكىدىن چۈشۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rending",
+            "value":"يوللانماقچى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"noMessages",
+            "value":"ئۇچۇر يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"draft",
+            "value":"[ئورىگىنال]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_note_rcs",
+            "value":"كۈچەيمە ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"know",
+            "value":"بىلدىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_auto_delete_hint",
+            "value":"بۇ ئىقتىدارنى ئاچسىڭىز، %d كۈنگە يەتكەن ئۇقتۇرۇش ئۇچۇرلار ئۆزلۈكىدىن ئۆچۈرۈلىدۇ (سىز ئۈچۈن مۇھىم ئۇچۇرلارمۇ ئۆچۈپ كېتىشى مۇمكىن).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_send_failed_number_new",
+            "value":"بولمىدى: %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_sms_forward_dialog_single",
+            "value":"بۇ مەزمۇن ‎%s‎ غا يوللىنىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"received",
+            "value":"تاپشۇرۇۋالغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_prompt",
+            "value":"«ئۇچۇر» نىڭ مىكروفون ئىشلىتىشىگە رۇخسەت قىلىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"download",
+            "value":"چۈشۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Saved_to_album",
+            "value":"ئالبومغا ساقلاندى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReceivingFailed",
+            "value":"تاپشۇرۇۋېلىنمىدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_received_2",
+            "value":"ئۇچۇرىڭىزنى %s تاپشۇرۇۋالدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msgAcceptFailure",
+            "value":"كۈچەيمە ئۇچۇر قوبۇللاشقا يېتەرلىك بوشلۇق يوق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recorder_error",
+            "value":"ئۈن ئېلىنمىدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_konw",
+            "value":"بىلدىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recorder_failed",
+            "value":"ئۈن ئېلىنمىدى، مىكروفون ئالدىراش بولۇشى مۇمكىن.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delivery_reports_hint",
+            "value":"يوللىغان ئۇچۇر ئۈچۈن يەتكۈزۈلگەنلىك دوكلاتى كېلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_File_mic_permission_title",
+            "value":"تەڭشەكتىن «ئۇچۇر» ئۈچۈن «مىكروفون» ئىجازىتى بېرىڭ، بۇ ئىجازەت ئۈن ئېلىش ۋە ئاۋازلىق ئۇچۇر يوللاش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_File_Image_video_permission_title",
+            "value":"تەڭشەكتىن «ئۇچۇر» ئۈچۈن «ھۆججەت» ۋە «رەسىم ۋە سىن» ئىجازىتى بېرىڭ، بۇ ئىجازەت ھۆججەت ئوقۇش/يېزىش ھەمدە رەسىم ۋە سىن ئوقۇش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_play_error",
+            "value":"بۇ فورماتلىق ھۆججەتنى قوللىمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"in_advanced_mode",
+            "value":"بۇ ئۇچۇر ئېچىلمايدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_not_support_function",
+            "value":"بۇ نەشرى بۇ ئىقتىدارنى ھازىرچە قوللىمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_enable_mobile_data",
+            "value":"«كۈچەيمە ئۇچۇر» نى ئېچىش ئۈچۈن WLAN نى ئېتىش ۋە كۆچمە ئېقىمنى ئېچىش كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"invalid_receive",
+            "value":"تاپشۇرۇۋالغۇچى ئىناۋەتسىز: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_one_attachment",
+            "value":"يوللانمىدى، پەقەت بىر يۈكلەنمە تاللاڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageSize",
+            "value":"ئۇچۇر سىغىمى: %sKB",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_upper_limit",
+            "value":"يۈكلەنمە چېكى %1$d، شۇڭا پەقەت ئالدىنقى %2$d يۈكلەنمە قوشۇلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_start_failed",
+            "value":"كۈچەيمە ئۇچۇر ئېچىلمىدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"expiresTime",
+            "value":"قەرەلى: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"default_recent",
+            "value":"%s (سۈكۈت)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera_permission_info",
+            "value":"بۇ ئىجازەت رەسىم ۋە سىن يوللاشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_title",
+            "value":"كۈچەيمە ئۇچۇر مۇلازىمىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"oobe_rcs_enhanced_service_message_new_4g",
+            "value":"«كۈچەيمە ئۇچۇر» يۈرۈتكۈچى تەمىنلەيدىغان مول مېدىيالىق ئالاقە مۇلازىمىتىدۇر. ئاچسىڭىز، ئۇچۇر بېتىدە سۈكۈتتە WLAN ياكى كۆچمە ئېقىم ئارقىلىق ئۇچۇر يوللاش ۋە قوبۇللاشقا بولىدۇ، يەنە رەسىم، ئاۋاز ۋە جۇغراپىيەلىك ئورۇن يوللاش قاتارلىق كۆپ خىل ئۇچۇر تۈرىنى قوللايدۇ. بۇ مۇلازىمەت ئۈسكۈنە نەشرى ۋە ئۈسكۈنە بەلگىسى (IMEI / IMSI / MSISDN / WLAN MAC قاتارلىقلار) نى يۈرۈتكۈچىگە يوللايدۇ. بۇنى ئۇچۇر > كۆپرەك > تەڭشەك > كۈچەيمە ئۇچۇر دېگەن ئورۇندىن تەڭشىيەلەيسىز. بۇ مۇلازىمەتنىڭ ھەق ئېلىش تەپسىلاتىنى يۈرۈتكۈچىدىن سۈرۈشتۈرۈڭ. بۇ مۇلازىمەتنىڭ نورمال ئىشلىشى ئۈچۈن، ئۆلچەملىك كېلىشىم تەلىپى بويىچە، قاچىلىغان ئەپ تىزىملىكى ئۇچۇرى توپلىنىپ، ئۈچىنچى تەرەپ كۈچەيمە ئۇچۇر ئەپىنىڭ تىزىملاپ كىرىش ھالىتى ئېنىقلىنىدۇ. بۇ مۇلازىمەتنى ئاچسىڭىز، سىزگە كۈچەيمە ئۇچۇر مۇلازىمىتى تەمىنلىشىمىزگە قوشۇلغان بولىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"converting_sms",
+            "value":"قىسقا ئۇچۇرغا ئايلاندۇرۇلۇۋاتىدۇ...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"air_plane_mode_receive_message",
+            "value":"مۇلازىمەت ئەسلىگە كەلمىگۈچە ئۇچۇر قوبۇللانمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_title_content",
+            "value":"قىسقا ئۇچۇر ئىقتىدارى ئۆستۈرۈلۈپ، رەسىم، ئاۋاز، ھۆججەت ۋە ئورۇن قاتارلىق مەلۇماتلارنى يوللاش ۋە قوبۇللاشنى قوللايدۇ. ھەق ئېلىش ئۆلچىمىنى يۈرۈتكۈچىدىن سوراڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Photographing",
+            "value":"رەسىم تارتىۋاتىدۇ...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"converting_mms",
+            "value":"رەڭلىك ئۇچۇرغا ئايلاندۇرۇلۇۋاتىدۇ...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"expired",
+            "value":"ۋاقتى ئۆتكەن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"informationSize",
+            "value":"ئۇچۇر سىغىمى: %sKB",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contentSentTo",
+            "value":"تۆۋەندىكى مەزمۇن %1$s قاتارلىق %2$sگە ئەۋەتىلىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"too_many_recipients",
+            "value":"تاپشۇرۇۋالغۇچى بەك كۆپ (%1$s كىشى)، چەك %2$s كىشى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_dialog_send_sim",
+            "value":"يوللاش (كارتا %d)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_advanced_mode",
+            "value":"قالقان ھالەتتە بۇ خىل ئۇچۇر ئېچىلمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Delivered",
+            "value":"يەتكۈزۈلگەن: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_title",
+            "value":"كۈچەيمە ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmit_send",
+            "value":"يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"handover_to_enhanced_message",
+            "value":"كۈچەيمە ئۇچۇرغا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_content1",
+            "value":"تور",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recipients_upper_limit",
+            "value":"تاپشۇرۇۋالغۇچى سانى چەك (%s) كە يەتتى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_audio_size_maximum",
+            "value":"ئۇچۇر سىغىمى چەككە يەتتى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_copy",
+            "value":"كۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_when_roaming",
+            "value":"رايون ئاتلىمىغاندا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"failed",
+            "value":"بولمىدى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_know",
+            "value":"بىلدىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_duplicate_numbers",
+            "value":"تەكرار نومۇر چىقىرىۋېتىلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_to_message",
+            "value":"ئۇچۇر ئەسلىگە كەلتۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked",
+            "value":"دەخلى توسۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_access",
+            "value":"ئاق تىزىملىككە قوشۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_all_content",
+            "value":"بۇ مۇلازىمەت ئارقىلىق قىسقا ئۇچۇر ئارايۈزىدە سۈكۈت ھالەتتە WLAN ياكى كۆچمە تور ئارقىلىق ئۇچۇر يوللاش ۋە قوبۇللاشقا بولىدۇ؛ يەنە رەسىم، ئاۋاز ۋە جۇغراپىيەلىك ئورۇن قاتارلىق كۆپ خىل ئۇچۇر تۈرىنى قوللايدۇ (ھەق ئېلىش ئۆلچىمىنى يۈرۈتكۈچىدىن سۈرۈشتۈرۈڭ). بۇ مۇلازىمەت %1$s ئىشلىتىدۇ؛ بۇ ئۈسكۈنىنىڭ تېلېفون نومۇرى، ئالاقىداش، سۆزلىشىش خاتىرىسىنى ئوقۇيدۇ؛ ئۇچۇر مەزمۇنى، كۈنتەرتىپ، رەسىم، سىن، ئاۋاز، IMEI ۋە WLAN MAC ئادرېسىنى ئوقۇپ ۋە يوللاپ، كۈچەيمە ئۇچۇر مۇلازىمەتلىرىنى تەمىنلەيدۇ. بۇ مۇلازىمەتنى ئاچسىڭىز، يۇقىرىقىلارغا قوشۇلغان بولىسىز. شەخسىي ئۇچۇر بىر تەرەپ قىلىش ھەققىدىكى تەپسىلاتلارنى «%2$d» ئارقىلىق كۆرۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_blocked_message",
+            "value":"ئۇچۇر قوغداش خاتىرىسى يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"one_week_ago",
+            "value":"يەتتە كۈن بۇرۇن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_this_message",
+            "value":"تاللىغان ئۇچۇرلارنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_more",
+            "value":"كۆپ تاللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"removed_from_the_blocklist",
+            "value":"قارا تىزىملىكتىن چىقىرىلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"added_to_the_blocklist",
+            "value":"قارا تىزىملىككە قوشۇلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"size",
+            "value":"سىغىمى: %sKB",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"priority",
+            "value":"ئالدىنلىق: نورمال",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"قارا تىزىملىككە قوشۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"قارا تىزىملىكتىن چىقىرىۋېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"interception_rule_blockall_title",
+            "value":"ھەممىنى توسۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"harassment_blockreason_strangenumber",
+            "value":"ناتونۇش نومۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"نامەلۇم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocklist_number",
+            "value":"قارا تىزىملىكتىكى نومۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"spam_mms",
+            "value":"ئەخلەت ئۇچۇر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"contact_avatar_button",
+            "value":"ئالاقىداشنىڭ باش سۈرىتى، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options_button",
+            "value":"باشقا تاللانمىلار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_call",
+            "value":"چاقىرىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sending_failed_button",
+            "value":"يوللانمىدى، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_info_button",
+            "value":"ئۇچۇر قۇرۇش، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"group_avatar_button",
+            "value":"توپ باش سۈرىتى، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recall_messages",
+            "value":"ئۇچۇر قايتۇرۇۋېلىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_take_photos",
+            "value":"كامېرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_default_settings",
+            "value":"سۈكۈت تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"share",
+            "value":"ئورتاقلىشىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"favorites",
+            "value":"يىغقۇچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sms_center_hint",
+            "value":"ئەسكەرتىش: ئۇچۇر مەركىزى نومۇرى توغرا بولمىسا، ئۇچۇر يوللاش ئىقتىدارى ئىشلىمەيدۇ. ئۇچۇر مەركىزى نومۇرىنى يۈرۈتكۈچىدىن سوراڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star",
+            "value":"يىغىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_contact_profile_pics",
+            "value":"باش سۈرەت كۆرسىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_no_subject",
+            "value":"[يۈكلەنمە](تېمىسىز)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"on",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_gallery",
+            "value":"ئامبار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"جەزملەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_start",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_star_info",
+            "value":"يىغما يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_tone",
+            "value":"ئۇچۇر قوڭغۇرىقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_is_stared",
+            "value":"ئۇچۇر يىغقۇچقا قوشۇلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"realease_send_prompt_text",
+            "value":"قويۇپ بەرسىڭىز يوللىنىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_message",
+            "value":"بۇ ئىجازەت ھۆججەت ئوقۇش/يېزىش ھەمدە رەسىم ۋە سىن ئوقۇش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"choose_sub_recommend_recently",
+            "value":"(يېقىنقى)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_up_text",
+            "value":"ئۈستىگە سىيرىپ بىكار قىلىڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_release_to_cancel",
+            "value":"قويۇپ بەرسىڭىز توختايدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_Image_video_permission_title",
+            "value":"تەڭشەكتىن «ئۇچۇر» ئۈچۈن «ھۆججەت» ۋە «رەسىم ۋە سىن» ئىجازىتى بېرىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save",
+            "value":"ساقلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_to_contacts",
+            "value":"\u200fvCard ساقلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slide_down_text",
+            "value":"ئاستىغا سىيرىپ داۋاملاشتۇرۇڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attach_anyfile",
+            "value":"ھۆججەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_title",
+            "value":"ئۇچۇرغا ئورۇن قوشۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_failed",
+            "value":"يۈكلەنمە قوشۇلمىدى، چەك (%s) تىن ئارتۇق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"carrying_position",
+            "value":"ئورۇن قوشۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_file_exceed_max_size",
+            "value":"ھۆججەت يوللاش چېكى %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_content",
+            "value":"سۈنئىي ھەمراھ ئۇچۇرى يوللىغاندا «ئورۇن قوشۇش» نى تاللىسىڭىز، ئۇچۇرغا ئېنىق ئورۇن ئۇچۇرىڭىز قوشۇلۇپ، قارشى تەرەپكە ئەۋەتىلىدۇ. بۇ جىددىي قۇتقۇزۇش ياردەملىرىگە ئەسقاتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_title",
+            "value":"ئۇچۇر ئورۇن مۇلازىمىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no",
+            "value":"ياق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vcard",
+            "value":"\u200fvCard كۆرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_microphone_permission_message",
+            "value":"بۇ ئىجازەت ئۈن ئېلىپ ئاۋازلىق ئۇچۇر يوللاشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"status_canceled",
+            "value":"بىكار قىلغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_mobile",
+            "value":"يانفون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_all_emoji",
+            "value":"بارلىق ئىپادە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attach_contacts",
+            "value":"ئالاقىداش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_recent_used",
+            "value":"يېقىنقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_name",
+            "value":"ئىسىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_current_size_new",
+            "value":"%1$s/%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite",
+            "value":"تيەنتۇڭ سۈنئىي ھەمراھ ئۇچۇرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satelliteWaiting",
+            "value":"يوللانماقچى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_subtitle",
+            "value":"بۇ مۇلازىمەت ئارقىلىق ئۇچۇردا جۇغراپىيەلىك ئورۇن ئەۋەتىش ۋە خەرىتە ئۇچۇرى كۆرسىتىشكە بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_picture",
+            "value":"رەسىم ئەۋەتكەن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_file_permission",
+            "value":"«ئۇچۇر» ئۈچۈن ھۆججەت ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_vcard",
+            "value":"ئالاقىداش ئۇچۇرى ئەۋەتكەن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_audio",
+            "value":"ئاۋاز ئەۋەتكەن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_prop",
+            "value":"بۇ تيەنتۇڭ سۈنئىي ھەمراھ ئالاقىسى بىلەن ئۇلانغاندا ئېنىقلىغان ئورۇن، ئورۇننى يېڭىلاش ئۈچۈن تيەنتۇڭ سۈنئىي ھەمراھ ئالاقىسىدىن چېكىنىپ، قايتا ئۇلاش كېرەك. ئورۇن ئۇچۇرىمۇ ئۇچۇر ئۇزۇنلۇقى قاتارىدا سانىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcsFileSize",
+            "value":"سىغىمى: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_vcard",
+            "value":"\u200f[vCard]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy_verification_code",
+            "value":"كود كۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_1",
+            "value":"تور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_4",
+            "value":"ئىجازەت ئىشلىتىش كۆرسەتمىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_3",
+            "value":"ئۇچۇر ئورۇن بەلگىلەش مۇلازىمىتى ۋە مەخپىيەتلىك ھەققىدە بايانات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint_2",
+            "value":"ئورۇن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_audio",
+            "value":"[ئاۋاز]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"me",
+            "value":"مەن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cactus_sms",
+            "value":"تيەنتۇڭ سۈنئىي ھەمراھ ئۇچۇرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vCard_import_success",
+            "value":"\u200f%s كىرگۈزۈلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_south_east",
+            "value":"جەنۇب ‎%1$s شەرق ‎%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_file",
+            "value":"[ھۆججەت]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_north_west",
+            "value":"شىمال ‎%1$s غەرب ‎%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_privacy_dialog_hint",
+            "value":"بۇ مۇلازىمەت %1$s ئىشلىتىدۇ؛ %2$s ئىجازىتى ئالىدۇ؛ ئورۇن ئۇچۇرىنى ئوقۇپ ۋە يۈكلەپ، ئۇچۇر ئورۇن بەلگىلەش مۇلازىمىتى تەمىنلەيدۇ. «قوشۇلىمەن» نى چەكسىڭىز، يۇقىرىقىلارغا قوشۇلغان بولىسىز. شەخسىي ئۇچۇر بىر تەرەپ قىلىش ھەققىدىكى تەپسىلاتلارنى «%3$s» ۋە «%4$s» ئارقىلىق كۆرۈڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_import_contacts_from_vCard",
+            "value":"\u200fvCard دىن ئالاقىداش كىرگۈزەمسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copied_to_clipboard",
+            "value":"كېسىش تاختىسىغا كۆچۈرۈلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"agree",
+            "value":"قوشۇلىمەن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_north_east",
+            "value":"شىمال ‎%1$s شەرق ‎%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_picture",
+            "value":"[رەسىم]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"address_details",
+            "value":"ئادرېس: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_smc_item_from",
+            "value":"\u200f%1$s ئەۋەتكەن: %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_microphone_permission",
+            "value":"«ئۇچۇر» ئۈچۈن مىكروفون ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_send_file",
+            "value":"ھۆججەتنى ئەۋەتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_south_west",
+            "value":"جەنۇب ‎%1$s غەرب ‎%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"position",
+            "value":"ئورۇن: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_vCard_import_success",
+            "value":"\u200f%s كېيىنرەك كىرگۈزۈلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Dual_card_switchover",
+            "value":"كارتا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy_failed",
+            "value":"كۆچۈرۈلمىدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_send",
+            "value":"سىز %2$s غا %1$s نى تەۋسىيە قىلغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_ft_type_vcard_single_recv",
+            "value":"\u200f%2$s سىزگە %1$s نى تەۋسىيە قىلغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_messages_hint",
+            "value":"يوللىغان ئۇچۇرنى %d سېكۇنت ئىچىدە قوش چېكىپ قايتۇرۇۋېلىشقا بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"messageRead",
+            "value":"ئوقۇلغان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment",
+            "value":"[يۈكلەنمە] %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"refused",
+            "value":"رەت قىلغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_subject",
+            "value":"(تېمىسىز)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_delete_dialog_cb_tip",
+            "value":"قۇلۇپلاق ئۇچۇرنىمۇ ئۆچۈرۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_read_imageVideoMedia_write_media",
+            "value":"ئۈسكۈنىدىن رەسىم، مېدىيا ياكى ھۆججەت زىيارەت قىلىش شۇنىڭ ئىچىدە. بۇ ئىجازەت مېدىيا ئۇچۇرى يوللاش ۋە قوبۇللاشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"intelligent_information",
+            "value":"ئاڭلىق ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_messages",
+            "value":"ئۇچۇر يوق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_slide",
+            "value":"سۇنۇم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_in_favorites",
+            "value":"يىغقان ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"today",
+            "value":"بۈگۈن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"transmitContent",
+            "value":"مەن تارقاتقان:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mark_as_read",
+            "value":"ئوقۇلغان قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reply",
+            "value":"جاۋاب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_theme",
+            "value":"تېما",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_file_not_exist",
+            "value":"ھۆججەت يوق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"refreshing",
+            "value":"يېڭىلىنىۋاتىدۇ...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts_button",
+            "value":"ئالاقىداش تاللاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_attachment_button",
+            "value":"يۈكلەنمە قوشۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"emoticon_button",
+            "value":"ئىپادە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_button",
+            "value":"يوللاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel_button",
+            "value":"بىكار قىلىش كۇنۇپكىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blockedMms",
+            "value":"[ رەڭلىك ئۇچۇر ]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unsupport_satellite_card_content",
+            "value":"سۈنئىي ھەمراھ تورىدا سۆزلىشىۋاتقاندا ئۇچۇر يوللانمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"TipsForBlockedMms",
+            "value":"خەت ساندۇقىغا ئەسلىگە كەلتۈرۈلگەندىن كېيىن، رەڭلىك ئۇچۇرنى كۆرەلەيسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_status_sent",
+            "value":"يوللاندى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"malicious_web_url",
+            "value":"يامان غەرەزلىك تور ئادرېسى مەۋجۇت، ئېھتىياتچانلىق بىلەن مەشغۇلات قىلىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_button",
+            "value":"ئۆچۈرۈش كۇنۇپكىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"oobe_rcs_all_content_wlan",
+            "value":"بۇ مۇلازىمەت ئارقىلىق قىسقا ئۇچۇر ئارايۈزىدە سۈكۈت ھالەتتە WLAN ياكى كۆچمە تور ئارقىلىق ئۇچۇر يوللاش ۋە قوبۇللاشقا بولىدۇ؛ يەنە رەسىم، ئاۋاز ۋە جۇغراپىيەلىك ئورۇن قاتارلىق كۆپ خىل ئۇچۇر تۈرىنى قوللايدۇ (ھەق ئېلىش ئۆلچىمىنى يۈرۈتكۈچىدىن سۈرۈشتۈرۈڭ). بۇ مۇلازىمەت تور ئىشلىتىدۇ؛ بۇ ئۈسكۈنىنىڭ تېلېفون نومۇرى، ئالاقىداش، سۆزلىشىش خاتىرىسىنى ئوقۇيدۇ؛ ئۇچۇر مەزمۇنى، كۈنتەرتىپ، رەسىم، سىن، ئاۋاز، IMEI ۋە WLAN نىڭ MAC ئادرېسىنى ئوقۇپ ۋە يوللاپ، كۈچەيمە ئۇچۇر مۇلازىمەتلىرىنى تەمىنلەيدۇ. بۇ مۇلازىمەتنى ئاچسىڭىز، يۇقىرىقىلارغا قوشۇلغان بولىسىز. شەخسىي ئۇچۇر بىر تەرەپ قىلىش ھەققىدىكى تەپسىلاتلارنى <a link=\"privacyStatement\">«ئۇچۇر ۋە مەخپىيەتلىك ھەققىدە بايانات»</a> ئارقىلىق كۆرۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReported",
+            "value":"پاش قىلغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"avatar_button",
+            "value":"باش سۈرەت، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read_button",
+            "value":"ئوقۇلغان قىلىش، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"malicious_web_url_check",
+            "value":"زىيانداش توربېكەت تونۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"messageReportFailed",
+            "value":"پاش قىلىنمىدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_keypad_button",
+            "value":"كىرگۈزگۈچنى ئېچىپ ئۇچۇر كىرگۈزۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_report_dialog_con_tip1",
+            "value":"بۇ ئۇچۇرنى پاش قىلامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sim",
+            "value":"كارتا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"report",
+            "value":"پاش قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"my_avatar_button",
+            "value":"باش سۈرىتىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"welcome_page_btn_continue_text",
+            "value":"داۋاملاشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_input_box",
+            "value":"تېكىست رامكىسىغا ئۆتۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_to_shortcut_menu",
+            "value":"قولايلىق تىزىملىككە ئالمىشىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_unsupport_toast_image",
+            "value":"قوشۇلمىدى، بۇ فورماتلىق رەسىمنى قوللىمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"text_trafficprompttitle",
+            "value":"ئېقىم ئەسكەرتمىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_to_record",
+            "value":"ئاۋازغا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_sim",
+            "value":"كارتا تاللاش، كارتا %s، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_clickable",
+            "value":"ئىشلىمەيدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"malicious_web_url_check_desc",
+            "value":"ئۇچۇردىكى زىيانداش تور ئۇلانمىسىنى ئېنىقلايدۇ (تور كېرەك).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_title_content",
+            "value":"توردا سۈرۈشتۈرۈش جەريانىدا يامان نىيەتلىك ئۇچۇر ۋە غەيرىي ھۆكۈمەت تور ئادرېسىنى پەرقلەندۈرۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_file_name_extra_long",
+            "value":"ھۆججەت نامى چەكتىن ئارتۇق، قىسقارتىڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_picture",
+            "value":"رەسىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_location_attachment",
+            "value":"[ئورۇن]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showCard",
+            "value":"كارتا كۆرسىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_notice",
+            "value":"نۆۋەتتە WLAN يوق. داۋاملاشتۇرسىڭىز كۆچمە ئېقىم سەرپ بولىدۇ (ئېقىم ھەققىنى يۈرۈتكۈچى ئالىدۇ).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_location",
+            "value":"ئورۇن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_title",
+            "value":"زىيانداش توربېكەت تونۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"showText",
+            "value":"ئەسلى تېكىست",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"list_summary_vcard",
+            "value":"ئالاقىداش (%1$s) تەۋسىيە قىلدىڭىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_no",
+            "value":"ياق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Malicious_start",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tryAgain",
+            "value":"قايتا سىناش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_activation_failed",
+            "value":"كۈچەيمە ئۇچۇر ئاكتىپلانمىدى"
+        },
+        {
+            "name":"accessibility_video",
+            "value":"سىن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_audio",
+            "value":"ئاۋاز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_activation_failed_message",
+            "value":"كۆچمە ئېقىم ئوچۇق ۋە WLAN ئېتىك بولسۇن. تۇنجى قېتىم ئاكتىپلاشقا %d مىنۇت ئەتراپىدا ۋاقىت كېتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_no_network_prompt",
+            "value":"بۇنى ئاچقاندا WLAN ئېتىك، كۆچمە ئېقىم ئوچۇق بولۇشى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_limit_one",
+            "value":"پەقەت بىر يۈكلەنمە قوللايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"press_speak_button",
+            "value":"بېسىپ تۇرۇپ سۆزلەش كۇنۇپكىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exist_contact",
+            "value":"بار ئالاقىداشقا ساقلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_contact",
+            "value":"ئالاقىداش قۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"putTime",
+            "value":"قوبۇللىغان: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advertisement_mms",
+            "value":"ئېلان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_ft_file_size_zero_error",
+            "value":"ھۆججەت سىغىمى %d بايت بولسا بولمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_telecom",
+            "value":"جۇڭگو تېلېگرافى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_mobile",
+            "value":"جۇڭگو كۆچمە خەۋەرلىشىشى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_unicom",
+            "value":"جۇڭگو بىرلەشمە خەۋەرلىشىشى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"china_broadnet",
+            "value":"جۇڭگو رادىيو-تېلېۋىزىيە تورى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_map_no_more_location",
+            "value":"باشقا ئورۇن ئۇچۇرى يوق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_location_permissions",
+            "value":"چېكىپ ئورۇن ئىجازىتى بېرىپ، تەپسىلاتىنى كۆرەلەيسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"satellite_map_no_network",
+            "value":"ئورۇن تەپسىلاتى تور ئەسلىگە كەلگەندە كۆرۈنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_status",
+            "value":"ھالەت: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Not_allowed",
+            "value":"چەكلەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"translate_other",
+            "value":"بەزى ئۇچۇرلار تارقىتىلمايدۇ، باشقا ئۇچۇرلارنى تارقىتامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"harassment_interception",
+            "value":"نومۇر ۋە ئۇچۇر تونۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_setting",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_microphone",
+            "value":"«ئۇچۇر» ئۈچۈن مىكروفون ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"privacy_statements",
+            "value":"مەخپىيەتلىك باياناتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"leave_setting_advanced_mode",
+            "value":"بۇ قالقان ھالەتتە كەلگەن ئۇچۇر، ئېچىلمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_reason_keywords",
+            "value":"قارا تىزىملىكتىكى سۆز بار.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enhanced_information_is_not_supported_rcs",
+            "value":"قالقان ھالەتتە كۈچەيمە ئۇچۇر ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guide_action_text_previous",
+            "value":"قايتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"saveAll",
+            "value":"ھەممىنى ساقلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subject",
+            "value":"تېما: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"info_has_been_stared",
+            "value":"بۇ ئۇچۇر يىغقۇچقا قوشۇلغان.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_error",
+            "value":"كود سايىلەنمىدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_card_file",
+            "value":"كارتا ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_scan",
+            "value":"سايىلەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_object",
+            "value":"پاش قىلىنغۇچى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_detail",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot",
+            "value":"ئەپچاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recent",
+            "value":"يېقىنقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_remove_favourite_chatbot",
+            "value":"ئەپچاق يىغقۇچتىن «%1$s» نى چىقىرىۋېتەمسىز؟ ئۇچۇر تارىخى ئۆچۈرۈلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_share_location_info",
+            "value":"ئورۇن ئورتاقلىشىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_submit",
+            "value":"يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"net_no_connection",
+            "value":"تور يوق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_send_greet",
+            "value":"ياخشىمۇسىز!",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cannot_download_image_dialog_message",
+            "value":"بۇ ھۆججەت چۈشمەيدۇ. كۈچەيمە ئۇچۇر ئېتىك، مۇلازىمىتېر ئۇلانمىغان ياكى نۆۋەتتىكى SIM كۈچەيمە ئۇچۇر قوللىمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report",
+            "value":"پاش قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_loading",
+            "value":"يۈكلەۋاتىدۇ...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_nearby_chatbot",
+            "value":"ئەتراپتىكى ئەپچاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_favourite_chatbot",
+            "value":"يىغقان ئەپچاق يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_not_exist",
+            "value":"بۇ ئەپچاق ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_website",
+            "value":"توربەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_more_show",
+            "value":"باشقىلار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_APPROXIMATELY_LOCATION",
+            "value":"بۇ ئىجازەت تەخمىنىي ئورۇن ئۇچۇرىنى ئوقۇش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text_not_open_rcs",
+            "value":"كۈچەيمە ئۇچۇر ئېتىك.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verification_authority",
+            "value":"مۇلازىمەت شەرتلىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_groupchat_notify_silent",
+            "value":"ئۇچۇردا ئاۋارە قىلماسلىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_verified_explain",
+            "value":"بۇ ئەپچاقنى %1$s دەلىللىگەن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_scan_code_net_error",
+            "value":"تور يوق، بۇ ئەپچاق ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_favrite",
+            "value":"يىغقۇچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_recommand_chatbot",
+            "value":"تەۋسىيەلىك ئەپچاق يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_provider",
+            "value":"تەمىنلىگۈچى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_report_content",
+            "value":"تەپسىلات (زۆرۈر)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_share_device_info",
+            "value":"ئۈسكۈنە ئۇچۇرىنى ئورتاقلىشىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_sms_number",
+            "value":"ئۇچۇر نومۇرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_introduced",
+            "value":"مۇلازىمەت ھەققىدە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_service_type",
+            "value":"مۇلازىمەت تۈرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_no_recent_chatbot",
+            "value":"يېقىنقى ئەپچاق يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"postalLabelsGroup",
+            "value":"ئادرېس",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_start_conversation",
+            "value":"سۆھبەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vcard_mobileemail",
+            "value":"خەت ساندۇقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_callback_number",
+            "value":"قايتۇرۇش نومۇرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_recommand",
+            "value":"تەۋسىيە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_search",
+            "value":"ئەپچاق ئىزدەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_report_result_success",
+            "value":"يوللاندى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_no_sim",
+            "value":"ئىشلەيدىغان SIM كارتا يوق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbotNoLocal",
+            "value":"ئەپچاق يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reportDetail",
+            "value":"چۈشەندۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION",
+            "value":"ئېنىق ئورۇن ئۇچۇرى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_rcs_register_error",
+            "value":"يۈرۈتكۈچى مۇلازىمىتېر خاتالىقى، قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS",
+            "value":"كامېرا ئىجازىتى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_conversation_no_sim",
+            "value":"ئۈسكۈنىدە SIM يوق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbot_card_in_conversation_list",
+            "value":"كارتا ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_location_service_not_enabled",
+            "value":"ئورۇن مۇلازىمىتى ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title3",
+            "value":"ئۇچۇر يوللاش/قوبۇللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title2",
+            "value":"ئۇچۇر تەھرىرلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title1",
+            "value":"ئۇچۇر قۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_notice",
+            "value":"[بېيدوۋ ئۇچۇرى يوللاندى]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_send_video",
+            "value":"سىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_add",
+            "value":"ئۇچۇردىن قوشۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_button",
+            "value":"چىقىرىۋېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_content_location_to_smc",
+            "value":"بۇ ئىجازەت بېيدوۋ سۈنئىي ھەمراھ ئۇچۇرى يوللاشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_beidou_message",
+            "value":"كىرىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_from_who",
+            "value":"ئەۋەتكۈچى: %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unavailable_tips_unregistered",
+            "value":"نۆۋەتتە بېيدوۋ سۈنئىي ھەمراھ ئۇچۇر مۇلازىمىتى ئېچىلمىغان (يۈرۈتكۈچى بىلەن ئالاقىلىشىپ ئېچىڭ).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_location",
+            "value":"«ئۇچۇر» ئۈچۈن ئورۇن ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_no_valid_sim_card",
+            "value":"جۇڭگو كۆچمە خەۋەرلىشىشى SIM كارتىسى سېلىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove_same_time",
+            "value":"ئۇچۇر ئەسلىگە كەلتۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide_aid_text",
+            "value":"كۆچمە تور ۋە WLAN يوق ئەھۋالدا جىددىي ئالاقە ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_requires_access_to_camear",
+            "value":"«ئۇچۇر» ئۈچۈن كامېرا ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_my_position",
+            "value":"ئورنۇم:\u0020",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"attachment_video",
+            "value":"[سىن]",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content1",
+            "value":"جىددىي ئەھۋال كۆرۈلگەن ھەمدە كۆچمە تور ۋە WLAN يوق ئەھۋالدا بېيدوۋ سۈنئىي ھەمراھ سىستېمىسى ئارقىلىق جىددىي ئۇچۇر يوللىيالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content2_new",
+            "value":"%s. بۇ مۇلازىمەت كۆچمە تور ياكى WLAN يوق مۇھىتتا ئىشلەيدۇ، كۆپىنچە ئەھۋالدا نورمال ئىشلىمەسلىكى مۇمكىن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content5",
+            "value":"بىر ئۇچۇرنى كۆپىدە %s ئالاقىداشقا يوللاشقا بولىدۇ؛ ئۇچۇرغا ئورۇن ئۇچۇرىنى قوشۇپ ئەۋەتەلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content6",
+            "value":"ئۇچۇر يوللىغان ۋە قوبۇللىغاندا ئوچۇقچىلىقتا يانفوننى كۆرسەتمە بويىچە بېيدوۋ سۈنئىي ھەمراھىغا توغرىلاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content3",
+            "value":"%s. بۇ مۇلازىمەت ھازىرچە پەقەت جۇڭگو كۆچمە خەۋەرلىشىشىنى قوللايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content4",
+            "value":"ئېكراننىڭ ئاستىدىكى %s نى بېسىپ ئۇچۇر قۇرىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_list",
+            "value":"قارا تىزىملىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title",
+            "value":"بېيدوۋ سۈنئىي ھەمراھ ئۇچۇرى مۇلازىمىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"share_device_info",
+            "value":"ئۈسكۈنە ئۇچۇرىنى ئورتاقلاشتىڭىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_add_button",
+            "value":"قوشۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_who",
+            "value":"تاپشۇرۇۋالغۇچى: %1$s %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"chatbots_black_remove",
+            "value":"قارا تىزىملىكتىن چىقىرىۋەتكەن نومۇر توسۇلمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_CAMERA_PERMISSIONS_NAME",
+            "value":"كامېرا ئىجازىتى كود سايىلەش ۋە توربەتلەردە رەسىم يۈكلەش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_usage_guide",
+            "value":"ئىشلىتىش يېتەكچىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_fail",
+            "value":"يوللانمىدى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"GET_LOCATION_NAME",
+            "value":"بۇ ئىجازەت ئېنىق جۇغراپىيەلىك ئورۇننى ئېنىقلاش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"rcs_chatbot_local_black",
+            "value":"بۇ مۇلازىمەت قارا تىزىملىكتە، ئۇچۇر كەلمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"explain",
+            "value":"چۈشەندۈرۈش:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_quota_query",
+            "value":"قالدۇق تەكشۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_is_occupied",
+            "value":"تەلراۋان بېيدوۋ يۈرۈۋاتقاندا بۇ ئىقتىدار ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_title4",
+            "value":"ئۇچۇر قوبۇللاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_note_smc",
+            "value":"بېيدوۋ ئۇچۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_rcv_notice",
+            "value":"[بېيدوۋ ئۇچۇرىغا جاۋاب كەلدى]",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit_text_not_support_emoji",
+            "value":"بېيدوۋ ئۇچۇرى ھازىرچە ئىپادە قوللىمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"edit_text_max_number_tips",
+            "value":"مەزمۇن ئۇزۇنلۇقى چەكتىن ئېشىپ كەتتى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_frequent_questions",
+            "value":"ئىشلىتىش كۆرسەتمىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blocked_guide_title",
+            "value":"دەخلى توسۇش تەڭشىكىنى تەڭشەڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beidou_insufficient_balance",
+            "value":"قالدۇق يېتەرسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unavailable_tips_authentication_invalidation",
+            "value":"تەكشۈرۈلمىدى. تەڭشەك > سۈنئىي ھەمراھ تورى > بېيدوۋ سۈنئىي ھەمراھ ئۇچۇرى دېگەن ئورۇندىن قايتا ئېچىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_new_msg",
+            "value":"ئۇچۇر قۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"welcome_beidou_content7",
+            "value":"ئاستىدىكى «↓» نى بېسىپ ئۇچۇر قوبۇللايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_rcv_msg",
+            "value":"ئۇچۇر قوبۇللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_character_prompt",
+            "value":"ئالاقىداش ئىسمىمۇ ئۇچۇر ئۇزۇنلۇقى چەكلىمىسى ئىچىدە، قانچە كۆپ ئالاقىداش تاللىسىڭىز، كىرگۈزگىلى بولىدىغان ئۇچۇر مەزمۇنى شۇنچە ئازلايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_no_reply",
+            "value":"- ئۇچۇر سۈنئىي ھەمراھقا يوللاندى، جەزملەنمىدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_send_rcv_succ",
+            "value":"- ئۇچۇر سۈنئىي ھەمراھقا يوللاندى، جەزملەندى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blocked_guide_text",
+            "value":"يېقىندا كەلگەن دەخلى ئۇچۇر كۆپ، ئېلان ئۇچۇر توسۇشنى ئېچىش قاتارلىقلار ئارقىلىق دەخلى توسۇش تەڭشەكلىرىنى تەڭشەشنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smc_quota_query_error",
+            "value":"نۆۋەتتە تور يوق، قالدۇق تەكشۈرۈلمەيدۇ. كېيىنكى قېتىم تورغا ئۇلانغاندا تەكشۈرۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_seeking_timeout",
+            "value":"ئورۇن بەلگىلەنمىدى. ئوچۇقچىلىق ئورۇندا قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms",
+            "value":"بېيدوۋ سۈنئىي ھەمراھ ئۇچۇرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_quota_exhausted",
+            "value":"بۇ ئايلىق چەك توشتى، بېيدوۋ سۈنئىي ھەمراھ ئۇچۇرى يوللانمايدۇ. چەك كېلەر ئاينىڭ 1-كۈنى يېڭىلىنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_item_is_sent_insufficient",
+            "value":"- يوللاندى (قالدۇق يېتەرسىز، قارشى تەرەپكە بارمايدۇ)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information_details",
+            "value":"ئىشلەپچىقارغۇچى، ئۈسكۈنە تىپى، يۇمشاق دېتال نەشرى ۋە قالدۇق توك قاتارلىق ئۇچۇرلار شۇنىڭ ئىچىدە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_geographical_location",
+            "value":"نۆۋەتتە %1$s ئورنىڭىزنى ئېنىقلىماقچى، رۇخسەتمۇ؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deeplink_obtain_device_information",
+            "value":"نۆۋەتتە %1$s ئۈسكۈنە ئۇچۇرىنى ئوقۇماقچى، رۇخسەتمۇ؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_tips_again",
+            "value":"قايتا ئەسكەرتمەڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"national_fraud_mms",
+            "value":"ئالدامچىلىق خەۋپى بار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fraud_session",
+            "value":"ئېھتىمال ئالدامچى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cactus_map_no_location",
+            "value":"باشقا ئورۇن ئۇچۇرى يوق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_network",
+            "value":"ئورۇن تەپسىلاتى تور ئەسلىگە كەلگەندە كۆرۈنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cactus_map_no_permission",
+            "value":"ئورۇن تەپسىلاتىنى كۆرۈش ئۈچۈن چېكىپ ئورۇن ئىجازىتى بېرىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fraud_mms",
+            "value":"خەۋپ يۇقىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_split_tips",
+            "value":"ئېكران بۆلۈش ھالىتىدە سۈنئىي ھەمراھ ئالاقە مۇلازىمىتى ئىشلىمەيدۇ. تولۇق ئېكرانلىق ھالەتتە ئىشلىتىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_not_supported_floating_tips",
+            "value":"سۈنئىي ھەمراھ ئالاقە مۇلازىمىتى پەقەت تولۇق ئېكرانلىق ھالەتتە ئىشلەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smc_exit_star_search_tips",
+            "value":"يەنە بىر چەكسىڭىز چېكىنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beidou_sms_tips",
+            "value":"بېيدوۋ سۈنئىي ھەمراھ ئۇچۇرى كۆرسەتمىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast",
+            "value":"ئۇچۇرنى ئاۋازلىق ئاڭلىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_tips",
+            "value":"بىر ئۇچۇر كەلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel_button_double_click_operation",
+            "value":"بىكار قىلىش كۇنۇپكىسى، بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Saved_to_folders",
+            "value":"يۈكلەنمە ساقلاندى، بىخەتەر ساقلاڭ. ئورنى:\n%s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_preview_picture",
+            "value":"كۆرەك رەسىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_face_change_detect_content",
+            "value":"بۇ مەزمۇن ئېھتىمال AI ئارقىلىق ئىشلەنگەن.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search_content_cannot_be_empty",
+            "value":"مەزمۇن بوش قالمىسۇن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_view_contacts_mms",
+            "value":"ئالاقىداش كۆرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"message_speech_broadcast_title",
+            "value":"ئۇچۇر يوللىغۇچى نامى ۋە ئۇچۇر مەزمۇنىنى ئاڭلىتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"calling_Alert",
+            "value":"سۆزلىشىۋاتىدۇ، چاقىرىلمايدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_cancle",
+            "value":"بىر بارماقتا قوش چەكسىڭىز تاللاشتىن قالىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_select",
+            "value":"بىر بارماقتا قوش چەكسىڭىز تاللىنىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"creat_new_conversation_receive_deleted",
+            "value":"ئالاقىداش %s ئۆچۈرۈلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description_head",
+            "value":"كۈچەيمە ئۇچۇرنى ئاچسىڭىز، ئۇچۇر باشبېتىگە «ئەپچاق» ئېغىزى قوشۇلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rcs_chatbot_setting_description",
+            "value":"ئۇچۇر باشبېتىگە «ئەپچاق» ئېغىزى قوشۇلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_pin",
+            "value":"چوققىلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpin_button",
+            "value":"چوققىدىن ئېلىۋېتىش، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pin_button",
+            "value":"چوققىلاش، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_unpin",
+            "value":"ئېلىۋېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_read_button",
+            "value":"ئوقۇلغان قىلىش كۇنۇپكىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"un_read_button",
+            "value":"ئوقۇلمىغان قىلىش كۇنۇپكىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"read",
+            "value":"ئوقۇلغان قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"un_read",
+            "value":"ئوقۇلمىغان قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_read_msg_unpin",
+            "value":"چوققىدىن ئېلىۋېتىلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_msg_pin",
+            "value":"چوققىلاندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_exit_tip_content",
+            "value":"تاپشۇرۇۋالغان دەلىللەش ئۇچۇرىنىڭ قېتىمى نورماللاشقان، شۇڭا ئۈنسىز ئۇقتۇرۇش ھالىتىنى ئەتتۇق. دەلىللەش كودى بار قىسقا ئۇچۇرلارنىڭ ئۇقتۇرۇشى نورمال كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_exit",
+            "value":"چېكىنىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit",
+            "value":"ئۈنسىز ئۇقتۇرۇشتىن چېكىنىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card",
+            "value":"نۆۋەتتە SIM كارتا %d تاپشۇرۇۋالغان دەلىللەش ئۇچۇرىنىڭ قېتىمى نورماللاشقان، شۇڭا ئۈنسىز ئۇقتۇرۇش ھالىتىنى ئەتتۇق. دەلىللەش كودى بار قىسقا ئۇچۇرلارنىڭ ئۇقتۇرۇشى نورمال كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_title",
+            "value":"ئۈنسىز ئۇقتۇرۇش ھالىتىدىن چېكىنەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card_esim",
+            "value":"قىسقا ۋاقىت ئىچىدە eSIM كارتا %d كۆپ قېتىم دەلىللەش ئۇچۇرى تاپشۇرۇۋالغان، غەرەزلىك دەخلى بولۇشى مۇمكىن، شۇڭا ئۇقتۇرۇش تورمۇزلاپ، دەلىللەش كودى بار ئۇچۇرلارنى ئۈنسىزلىدۇق.",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"notification_mute_exit_content_one_card_esim",
+            "value":"نۆۋەتتە eSIM كارتا %d تاپشۇرۇۋالغان دەلىللەش ئۇچۇرىنىڭ قېتىمى نورماللاشقان، شۇڭا ئۈنسىز ئۇقتۇرۇش ھالىتىنى ئەتتۇق. دەلىللەش كودى بار قىسقا ئۇچۇرلارنىڭ ئۇقتۇرۇشى نورمال كېلىدۇ.",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"notification_mute_content_one_card",
+            "value":"قىسقا ۋاقىت ئىچىدە SIM كارتا %d كۆپ قېتىم دەلىللەش ئۇچۇرى تاپشۇرۇۋالغان، غەرەزلىك دەخلى بولۇشى مۇمكىن، شۇڭا ئۇقتۇرۇش تورمۇزلاپ، دەلىللەش كودى بار ئۇچۇرلارنى ئۈنسىزلىدۇق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_exit_title",
+            "value":"دەلىللەش كودى ئۇقتۇرۇشى ئەسلىگە كەلدى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_two_card",
+            "value":"قىسقا ۋاقىت ئىچىدە SIM كارتا %1$d ياكى SIM كارتا %2$d كۆپ قېتىم دەلىللەش ئۇچۇرى تاپشۇرۇۋالغان، غەرەزلىك دەخلى بولۇشى مۇمكىن، شۇڭا ئۇقتۇرۇش تورمۇزلاپ، دەلىللەش كودى بار ئۇچۇرلارنى ئۈنسىزلىدۇق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"notification_mute_title",
+            "value":"دەلىللەش كودى ئۇقتۇرۇشى ئۈنسىزلەندى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_content_new",
+            "value":"قىسقا ۋاقىت ئىچىدە كۆپ قېتىم دەلىللەش ئۇچۇرى تاپشۇرۇۋالدىڭىز، غەرەزلىك دەخلىگە ئۇچرىغان بولۇشىڭىز مۇمكىن، شۇڭا ئۇقتۇرۇش تورمۇزلاپ، دەلىللەش كودى بار ئۇچۇرلارنى ئۈنسىزلىدۇق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"notification_mute_dialog_content",
+            "value":"چېكىنسىڭىز، دەلىللەش كودى ئۇقتۇرۇشى ئەسلىگە كېلىدۇ، %s مىنۇت ئىچىدە ئۆزلۈكىدىن ئۈنسىزلەنمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_switch_to_message",
+            "value":"ئۇچۇر يوللاشقا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_validated",
+            "value":"دەلىللەنگەن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_switch_to_menu",
+            "value":"تىزىملىككە ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_action",
+            "value":"پېڭلەي ھالەت بۇ مەشغۇلاتنى قوللىمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_limit_function",
+            "value":"دالا ھالىتى ئوچۇق، بەزى ئىقتىدار يوق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"penglai_not_support_message",
+            "value":"پېڭلەي ھالەت بۇ خىل ئۇچۇر كۆرۈشنى قوللىمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"press_speak_access",
+            "value":"بىر بارماقتا قوش بېسىپ تۇرۇپ ئاۋازلىق كىرگۈزىسىز، ئۈستىگە سىيرىپ بىكار قىلىسىز، ئاستىغا سىيرىپ داۋاملاشتۇرىسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_star_saved",
+            "value":"يىغقۇچقا قوشۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_dialog_tip",
+            "value":"تاللاپ بولغان مەزمۇننى ئالماشتۇرامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"text",
+            "value":"تېكىست",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mms_vCard",
+            "value":"رەڭلىك ئۇچۇر vCard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"msg_star_remove",
+            "value":"يىغقۇچتىن چىقىرىۋېتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"split_screen_prompt",
+            "value":"ئەپ كۆزنىكىنى كېڭەيتىپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_entrence",
+            "value":"ئەپچاق تەڭشىكى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_body",
+            "value":"«ئۇچۇر» ئەپنىڭ باشبېتىدە سول ئۈستىدىن باشقا تاللانمىلار كۇنۇپكىسىنى چېكىپ تەڭشەك > كۈچەيمە ئۇچۇر بېتىگە كىرىپ، ئەپچاق ئېچىش ياكى ئېتىشكە بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_title",
+            "value":"ئەپچاق ئېچىش/ئېتىش ئۇسۇلى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_setting_notice_go_setting",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_hometel",
+            "value":"ئۆي تېلېفونى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othertel",
+            "value":"باشقا تېلېفون",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_worktel",
+            "value":"ئىدارە تېلېفونى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_replace_tip",
+            "value":"ئەسكەرتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_vCard_details",
+            "value":"\u200fvCard تەپسىلاتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments",
+            "value":"يۈكلەنمە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_attachments_deleted",
+            "value":"ئۆچۈرۈلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_nickname",
+            "value":"لەقەم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workemail",
+            "value":"ئىدارە خەت ساندۇقى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_workaddress",
+            "value":"ئىدارە ئادرېسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_homeaddress",
+            "value":"ئۆي ئادرېسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_othermail",
+            "value":"باشقا خەت ساندۇقى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_title",
+            "value":"ۋەزىپە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"websiteLabelsGroup",
+            "value":"تور بېكەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"label_notes",
+            "value":"ئىزاھات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_personalemail",
+            "value":"شەخسىي خەت ساندۇقى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_otheraddress",
+            "value":"باشقا ئادرېس",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_organisation",
+            "value":"شىركەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vcard_birthday",
+            "value":"تۇغۇلغان كۈن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attachment_add_failed",
+            "value":"ئېنىقلىقى %s دىن يۇقىرى رەسىم يوللانمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unsupported_hyacinth_card_content",
+            "value":"ياقۇت سۈنئىي ھەمراھ تورىدا سۆزلىشىۋاتقاندا ئۇچۇر يوللانمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_message",
+            "value":"ياقۇت سۈنئىي ھەمراھ ئۇچۇرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hyacinth_prop",
+            "value":"بۇ ياقۇت سۈنئىي ھەمراھ ئالاقىسى بىلەن ئۇلانغاندا ئېنىقلىغان ئورۇن، ئورۇننى يېڭىلاش ئۈچۈن ياقۇت سۈنئىي ھەمراھ ئالاقىسى مۇلازىمىتىدىن چېكىنىپ، قايتا ئۇلاش كېرەك. ئورۇن ئۇچۇرىمۇ ئۇچۇر ئۇزۇنلۇقى قاتارىدا سانىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_operation",
+            "value":"بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sms_center_with_prefix",
+            "value":"\u200f%s ئۇچۇر مەركىزى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_deselect_all_done",
+            "value":"ھەممىنى تاللاش قالدۇرۇلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_press_speak",
+            "value":"بىر بارماقتا قوش بېسىپ تۇرۇپ ئاۋازلىق كىرگۈزىسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"msg_select_all_done",
+            "value":"ھەممىسى تاللاندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_new_message",
+            "value":"يېڭى ئۇچۇر بار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_content",
+            "value":"ئۇچۇر ئەپىنى ئېچىپ كۆرۈڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_lock_message_title",
+            "value":"يېڭى ئۇچۇر بار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_read",
+            "value":"ئوقۇلغان قىلىندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_read_unread",
+            "value":"ئوقۇلمىغان قىلىندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enabled_notification",
+            "value":"ئۇچۇر ئۇقتۇرۇشى ئېچىلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_not_allowed",
+            "value":"چەكلەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_title",
+            "value":"ئۇچۇر ئۈچۈن ئۇقتۇرۇش ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_allowed",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_notification_dialog_content",
+            "value":"ئۇچۇرنىڭ ئۇقتۇرۇش ئىجازىتى ئېتىك، ئۇچۇر ئەسكەرتمىسى كەلمەيدۇ. مۇھىم ئۇچۇرلارنى ۋاقتىدا كۆرۈش ئۈچۈن ئۇچۇر ئۇقتۇرۇشىنى ئېچىڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_esim",
+            "value":"كارتا تاللاش، eSIM %d، كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forward_dialog_forward_esim",
+            "value":"يوللاش (eSIM %d)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_input_box",
+            "value":"تېكىست رامكىسىغا ئالماشتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switched_to_shortcut_menu",
+            "value":"تېزلەتمە تىزىملىككە ئالماشتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_support_toast",
+            "value":"نۆۋەتتىكى ھالەت بۇ مەشغۇلاتنى قوللىمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"help_and_feedback",
+            "value":"ياردەم ۋە تەكلىپ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"chatbot_rich_media_card_in_conversation_list",
+            "value":"سىزگە مول مېدىيالىق ئۇچۇر ئەۋەتتى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_long_clickable",
+            "value":"قوش بېسىپ تۇرسىڭىز، باشقا تاللانمىلار كۆرۈنىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_inline_links",
+            "value":"بۇ كۆرۈنۈشتە چېكىلىدىغان تېكىست بار، تېزلەتمە تىزىملىكتىكى ئۇلانما ئىقتىدارى ئارقىلىق ئېچىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mms_empty_content",
+            "value":"رەڭلىك ئۇچۇردا مەزمۇن يوق",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

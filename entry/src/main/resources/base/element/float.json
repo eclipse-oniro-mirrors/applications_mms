@@ -117,6 +117,30 @@
       "value": "14fp"
     },
     {
+      "name": "conversation_list_padding_left",
+      "value": "12vp"
+    },
+    {
+      "name": "conversation_list_padding_right",
+      "value": "12vp"
+    },
+    {
+      "name": "infoMsg_list_padding_left",
+      "value": "12vp"
+    },
+    {
+      "name": "infoMsg_list_padding_right",
+      "value": "12vp"
+    },
+    {
+      "name": "conversation_item_press_Shadow_padding_left",
+      "value": "12vp"
+    },
+    {
+      "name": "conversation_item_press_Shadow_padding_right",
+      "value": "12vp"
+    },
+    {
       "name": "empty_text_top_margin",
       "value": "9vp"
     },
@@ -142,6 +166,138 @@
     },
     {
       "name": "page_padding_right",
+      "value": "12vp"
+    },
+    {
+      "name": "id_item_height_mid",
+      "value": "48vp"
+    },
+    {
+      "name": "id_card_margin_xxl",
+      "value": "16vp"
+    },
+    {
+      "name": "id_card_image_mid",
+      "value": "40vp"
+    },
+    {
+      "name": "id_card_margin_large",
+      "value": "8vp"
+    },
+    {
+      "name": "id_item_height_large",
+      "value": "56vp"
+    },
+    {
+      "name": "settings_item_primary_title_height_2",
+      "value": "21vp"
+    },
+    {
+      "name": "settings_item_secondary_title_height_2",
+      "value": "19vp"
+    },
+    {
+      "name": "settings_item_secondary_title_height_3",
+      "value": "40vp"
+    },
+    {
+      "name": "settings_item_height_3",
+      "value": "96vp"
+    },
+    {
+      "name": "settings_secondary_title_width",
+      "value": "250vp"
+    },
+    {
+      "name": "settings_item_primary_title_font_size_2",
+      "value": "20vp"
+    },
+    {
+      "name": "settings_item_primary_title_line_height",
+      "value": "23vp"
+    },
+    {
+      "name": "settings_item_primary_title_height_3",
+      "value": "26vp"
+    },
+    {
+      "name": "settings_items_padding_top_2",
+      "value": "14vp"
+    },
+    {
+      "name": "settings_items_padding_bottom_2",
+      "value": "16vp"
+    },
+    {
+      "name": "settings_item_shadow_title_width",
+      "value": "312vp"
+    },
+    {
+      "name": "settings_item_auto_dialog_width",
+      "value": "336vp"
+    },
+    {
+      "name": "settings_item_auto_dialog_height",
+      "value": "280vp"
+    },
+    {
+      "name": "settings_primary_title_line_height",
+      "value": "23vp"
+    },
+    {
+      "name": "settings_content_line_height",
+      "value": "22vp"
+    },
+    {
+      "name": "settings_divider_strokeWidth",
+      "value": "1px"
+    },
+    {
+      "name": "blocked_records_subHeader_padding",
+      "value": "12vp"
+    },
+    {
+      "name": "blocked_records_content_padding",
+      "value": "8vp"
+    },
+    {
+      "name": "blocked_records_divider_padding",
+      "value": "12vp"
+    },
+    {
+      "name": "blocked_details_button_padding",
+      "value": "12vp"
+    },
+    {
+      "name": "blocked_records_padding",
+      "value": "16vp"
+    },
+    {
+      "name": "blocked_records_list_padding",
+      "value": "4vp"
+    },
+    {
+      "name": "recording_button_width",
+      "value": "180vp"
+    },
+    {
+      "name": "transmitMsg_min_height",
+      "value": "250vp"
+    },
+    {
+      "name": "list_notification_larger_six",
+      "value": "76vp"
+    },
+    {
+      "name": "conversation_title_min_font_size",
+      "value": "14vp"
+    },
+    {
+      "name": "padding_zero",
+      "value": "0vp"
+    },
+    {
+      "name": "elements_margin_horizontal_middle",
       "value": "12vp"
     }
   ]

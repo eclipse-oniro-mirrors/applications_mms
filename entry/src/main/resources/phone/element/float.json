@@ -26,7 +26,7 @@
     },
     {
       "name": "bottom_send_bar_padding_right",
-      "value": "16vp"
+      "value": "4vp"
     },
     {
       "name": "user_avatar_left_margin",
@@ -46,7 +46,7 @@
     },
     {
       "name": "dialog_bottom_margin",
-      "value": "-12vp"
+      "value": "-16vp"
     },
     {
       "name": "menu_layout_padding_left",
@@ -55,6 +55,22 @@
     {
       "name": "menu_layout_padding_right",
       "value": "24vp"
+    },
+    {
+      "name": "new_dialog_bottom_margin",
+      "value": "-16vp"
+    },
+    {
+      "name": "privacy_state_setting_network",
+      "value": "40vp"
+    },
+    {
+      "name": "permissions_ic_message_width",
+      "value": "32vp"
+    },
+    {
+      "name": "permissions_ic_message_height",
+      "value": "32vp"
     }
   ]
 }
