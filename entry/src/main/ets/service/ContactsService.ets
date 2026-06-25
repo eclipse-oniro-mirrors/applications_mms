@@ -229,6 +229,7 @@ export default class ContactsService {
       let contactsName: string = common.STR.EMPTY_STR;
       let contactsNumberFormat: string = common.STR.EMPTY_STR;
       let rawContactIds: Array<string> = [];
+      let contactIds: Array<string> = [];
       let length: number = params.length;
       for (let i = 0; i < params.length; i++) {
         let item: LooseObject = params[i];
@@ -240,6 +241,8 @@ export default class ContactsService {
           contactsName += (item.telephone + common.STR.COMMA);
         }
         rawContactIds.push(item.contactId || '');
+        // 解决联系人拉起信息头像未正常显示的问题，传入的contactID需要正确接收处理，头像正常显示依赖contactId字段
+        contactIds.push(item.contactId || '');
       }
       let telephone: string = contactsNumber.substring(0, contactsNumber.length - 1);
       contactsNumber = TelephoneUtil.dealTelephoneSort(telephone);
@@ -248,6 +251,7 @@ export default class ContactsService {
       contactParams.strContactsName = contactsName.substring(0, contactsName.length - 1);
       contactParams.contactsNum = length;
       contactParams.rawContactId = rawContactIds.join(common.STR.COMMA);
+      contactParams.contactId = contactIds.join(common.STR.COMMA);
     } catch (error) {
       HiLog.e(TAG, 'dealContactParams failed, return!');
       return contactParams;

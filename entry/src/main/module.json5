@@ -585,7 +585,25 @@
       },
       {
         "name": "ohos.permission.ACCESS_HIVIEWCARE"
-      }
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:GET_APPROXIMATELY_LOCATION",
+        "usedScene": {
+          "abilities": [
+//            "com.ohos.emergencycommunication.EmergencyCallAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:GET_LOCATION",
+        "usedScene": {
+          "abilities": [
+//            "com.ohos.emergencycommunication.EmergencyCallAbility"
+          ]
+        }
+      },
     ],
     "dependencies": [
       {

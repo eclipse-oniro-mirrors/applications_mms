@@ -64,6 +64,7 @@ export class Result {
 export class ContactsParamMsg {
   strContactsNumber: string = common.STR.EMPTY_STR;
   rawContactId: string = common.STR.EMPTY_STR;
+  contactId: string = common.STR.EMPTY_STR;
   strContactsName: string = common.STR.EMPTY_STR;
   strContactsNumberFormat: string = common.STR.EMPTY_STR;
   contactsNum: number = 0
@@ -97,6 +98,7 @@ class NotificationWantHelper {
       let contactsName: string = common.STR.EMPTY_STR;
       let contactsNumberFormat: string = common.STR.EMPTY_STR;
       let rawContactIds: Array<string> = [];
+      let contactIds: Array<string> = [];
       let length: number = params.length;
       for (let i = 0; i < params.length; i++) {
         let item: LooseObject = params[i];
@@ -107,6 +109,8 @@ class NotificationWantHelper {
         } else if (length > 1) {
           contactsName += (item.telephone + common.STR.COMMA);
         }
+        // 联系人跳转信息，头像展示依赖contactId字段
+        contactIds.push(item.contactId || '');
         rawContactIds.push(item.contactId || '');
       }
       let telephone: string = contactsNumber.substring(0, contactsNumber.length - 1);
@@ -116,6 +120,7 @@ class NotificationWantHelper {
       contactParams.strContactsName = contactsName.substring(0, contactsName.length - 1);
       contactParams.contactsNum = length;
       contactParams.rawContactId = rawContactIds.join(common.STR.COMMA);
+      contactParams.contactId = contactIds.join(common.STR.COMMA);
     } catch (error) {
       HiLog.e(TAG, 'dealContactParams failed, return!');
       return contactParams;

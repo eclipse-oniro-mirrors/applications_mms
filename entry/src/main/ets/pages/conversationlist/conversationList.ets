@@ -1186,6 +1186,10 @@ export default struct ConversationList {
     if (this.mConListCtrl.hasAggregate && this.mConListCtrl.hasInfoMsg) {
       number++
     }
+    // 列表项包含搜索框的场景，需要增加一个索引偏移量
+    if (!this.isSearch) {
+      number++
+    }
     return number
   }
 
@@ -1507,11 +1511,12 @@ export default struct ConversationList {
           })
         }
       }
-      .width('50%')
+      // 解决非折叠屏且分屏状态下菜单栏宽度计算错误，导致右侧更多按钮不显示的问题
+      .width(!this.isVDE && this.splitInfoModel.isMediumAndSmall ? 'auto' : '50%')
       .height($r('app.float.id_item_height_large'))
       .margin({
         // top: this.fullScreenPadding?.top,
-        right: $r('app.float.menu_layout_padding_right'),
+        // right: $r('app.float.menu_layout_padding_right'),
         left: $r('app.float.menu_layout_padding_left')
       })
       .justifyContent(FlexAlign.End)
@@ -2215,7 +2220,9 @@ export default struct ConversationList {
       // .titleBar(TitleBarUtil.getTitleBar(this.getTitleBarParams()))
       //   .dynamicHideTitleBar({hideBottomBuilder: true, mode: HideMode.SCROLL_UP_TO})
       //   .bindToScrollable([this.listScroller])
-      .hideBackButton(this.isVDE ? true : (this.mIsMultipleSelectState ? true : false))
+      // 同步解决分屏状态下，标题栏显示了返回按钮的问题（单框架无此按钮
+      .hideBackButton(this.isVDE ? true : (this.splitInfoModel.isMediumAndSmall ? true :
+          (this.mIsMultipleSelectState ? true : false)))
       .titleMode(DeviceUtil.isPC() ? NavigationTitleMode.Mini : this.isVDE ? NavigationTitleMode.Mini :
         this.splitInfoModel.isMediumAndSmall ? NavigationTitleMode.Mini :
           this.mIsMultipleSelectState ? NavigationTitleMode.Mini :

@@ -956,6 +956,9 @@ export default struct BubbleText {
           // 转发
           this.transmitMenuButton()
           this.multDivider()
+          //收藏
+          this.collectMenuButton()
+          this.multDivider()
           // 选择文本
           this.selectTextMenuButton()
           this.multDivider()
@@ -1118,6 +1121,25 @@ export default struct BubbleText {
         // 长按功能弹窗打点
         seleteParam.SELECT_STATE = 3;
         DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_LONGPRESS_EVENT);
+      })
+  }
+
+  @Builder
+  // instrument ignore next
+  collectMenuButton() {
+    MenuItem({ content: $r('app.string.msg_star') })
+      .constraintSize({ minHeight: $r('app.float.id_item_height_mid') })
+      .contentFont({ weight: FontWeight.Medium, size: $r('sys.float.Body_L') })
+      .contentFontColor($r('sys.color.font_primary'))
+      .accessibilityText(getContext(this).resourceManager.getStringSync($r('app.string.msg_star').id))
+      .onClick(() => {
+        this.conversationCtrl.longPressSelected(this.context, 7);
+        // this.mConversationCtrl.mmsFavorite(this.context,true,this.mmsItem);
+        // this.mConversationCtrl.setSelectStatus(false)
+        this.closeMenuSelections();
+        // 详情-更多组件打点
+        seleteParam.SELECT_STATE = 3;
+        DotUtil.getInstance().reportEvent(seleteParam, dotCommon.eventName.CONTENT_MORE_SELECT_ITEM);
       })
   }
 
