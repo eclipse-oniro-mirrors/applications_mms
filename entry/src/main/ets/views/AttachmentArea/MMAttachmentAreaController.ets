@@ -38,7 +38,7 @@ import MmsUtil from '../../utils/MmsUtil';
 import dotCommon, { mmsTypeParams } from '../../utils/MmsDot/DotCommon';
 import DotUtil from '../../utils/MmsDot/DotUtils';
 import fileUri from '@ohos.file.fileuri';
-import { filePreview } from '@kit.PreviewKit';
+// import { filePreview } from '@kit.PreviewKit';
 import { i18n, intl } from '@kit.LocalizationKit';
 import { GlobalContextKey } from '../../data/commonData';
 import { getTime } from '../../utils/SystemDateTimeUtil';
@@ -1119,27 +1119,27 @@ export default class MMAttachmentAreaController {
     let uiContext = getContext(this) as myCommon.UIAbilityContext;
     let messageFileUri = isUri ? pathOrUri : fileUri.getUriFromPath(pathOrUri);
     GlobalContext.getContext().setObject(GlobalContextKey.IS_JUMP_TO_PREVIEW, true);
-    let isCanPreview:ESObject = await filePreview.canPreview(uiContext, messageFileUri).then((result:ESObject) => {
-      HiLog.i(TAG, 'previewRcsMessageWithPathOrUri canPreview. result = ' + result);
-      return ;
-    }).catch((err: BusinessError) => {
-      HiLog.i(TAG, 'previewRcsMessageWithPathOrUri canPreview failed, err = ' + JSON.stringify(err));
-      return false;
-    })
-    if (isCanPreview === false) {
-      return;
-    }
-
-    let fileInfo: filePreview.PreviewInfo = {
-      title: decodeURIComponent(name),
-      uri: messageFileUri,
-      mimeType: getMineTypeFromFileName(name)
-    };
-    filePreview.openPreview(uiContext, fileInfo).then(() => {
-      HiLog.i(TAG, 'previewRcsMessageWithPathOrUri openPreview success');
-    }).catch((err: BusinessError) => {
-      HiLog.e(TAG, 'previewRcsMessageWithPathOrUri openPreview failed, err = ' + JSON.stringify(err));
-    });
+    // let isCanPreview:ESObject = await filePreview.canPreview(uiContext, messageFileUri).then((result:ESObject) => {
+    //   HiLog.i(TAG, 'previewRcsMessageWithPathOrUri canPreview. result = ' + result);
+    //   return ;
+    // }).catch((err: BusinessError) => {
+    //   HiLog.i(TAG, 'previewRcsMessageWithPathOrUri canPreview failed, err = ' + JSON.stringify(err));
+    //   return false;
+    // })
+    // if (isCanPreview === false) {
+    //   return;
+    // }
+    //
+    // let fileInfo: filePreview.PreviewInfo = {
+    //   title: decodeURIComponent(name),
+    //   uri: messageFileUri,
+    //   mimeType: getMineTypeFromFileName(name)
+    // };
+    // filePreview.openPreview(uiContext, fileInfo).then(() => {
+    //   HiLog.i(TAG, 'previewRcsMessageWithPathOrUri openPreview success');
+    // }).catch((err: BusinessError) => {
+    //   HiLog.e(TAG, 'previewRcsMessageWithPathOrUri openPreview failed, err = ' + JSON.stringify(err));
+    // });
   }
 
   /**

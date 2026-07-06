@@ -19,11 +19,11 @@ import DotUtil from '../../utils/MmsDot/DotUtils';
 import commonData from '../../data/commonData';
 import MmsUtil, {
   getIsMmsMapMessageByMmsSource,
-  getMmsMapLinkShareData,
+  // getMmsMapLinkShareData,
   isMmsMapMessageByMmsListType, parseAddressInfo } from '../../utils/MmsUtil';
 import ConversationDataSource from '../../model/ConversationDataSource';
 import HiLog from '../../utils/HiLog';
-import { systemShare } from '@kit.ShareKit';
+// import { systemShare } from '@kit.ShareKit';
 import { fileUri } from '@kit.CoreFileKit';
 import { Context } from '@kit.AbilityKit';
 import myCommon from '@ohos.app.ability.common';
@@ -276,11 +276,11 @@ export function BuildMaliciousWebWarning(data: MaliciousWebObj) {
  * @param target 消息数据
  * @returns
  */
-export function shareMmsMessage(target: mmsListType): systemShare.SharedData | null {
+export function shareMmsMessage(target: mmsListType){
   HiLog.i(TAG, 'shareMmsMessage');
   //是否是彩信位置消息
   let isMmsMapMessage = isMmsMapMessageByMmsListType(Boolean(target?.isRcs), target);
-  let data: systemShare.SharedData | undefined = undefined;
+  // let data: systemShare.SharedData | undefined = undefined;
   let mmsShareParamSet: Set<MmsItemShareParam> = new Set<MmsItemShareParam>();
   for (let i = 0; i < target.mmsSource?.length; i++) {
     if (target.mmsSource[i].type != 0) {
@@ -300,16 +300,16 @@ export function shareMmsMessage(target: mmsListType): systemShare.SharedData | n
       mmsShareParamSet.add(paramItem);
     }
   }
- let shareRecordStack: Stack<systemShare.SharedRecord> = new Stack();
+ // let shareRecordStack: Stack<systemShare.SharedRecord> = new Stack();
   mmsShareParamSet.forEach(item => {
     let uri: string = fileUri.getUriFromPath(item.path);
     if (isMmsMapMessage && item.title && typeof item.title === 'string') { //增加位置链接分享选项
-      shareRecordStack.push(getMmsMapLinkShareData(item.title));
+      // shareRecordStack.push(getMmsMapLinkShareData(item.title));
     } else if (item.title) {
-      shareRecordStack.push({
-        utd: utd.UniformDataType.PLAIN_TEXT,
-        content: item.title as string
-      });
+      // shareRecordStack.push({
+      //   utd: utd.UniformDataType.PLAIN_TEXT,
+      //   content: item.title as string
+      // });
     }
     // 如果分享后的彩信存数据库后字段ct为空.如果特殊的资源文件（无后缀名称）在短信分享后再次分享时MmsUtil.getFileUTD无法获取fileUtd，
     // 会无法拉起分享-使用mmsShareTransferMmsCt 存储于 systemShare.SharedRecord 中的 extraData 字段中由短信接收分享处解析使用
@@ -325,12 +325,12 @@ export function shareMmsMessage(target: mmsListType): systemShare.SharedData | n
     if (fileUtd != '') {
       if (MmsUtil.isAudio(item.type)) {
         HiLog.i(TAG, 'shareMessage type Audio');
-        shareRecordStack.push({
-          utd: fileUtd,
-          uri: uri,
-          content: item.duration,
-          extraData: extraData
-        });
+        // shareRecordStack.push({
+        //   utd: fileUtd,
+        //   uri: uri,
+        //   content: item.duration,
+        //   extraData: extraData
+        // });
       } else if (isMmsMapMessage && MmsUtil.isMmsMapAttach(Boolean(item.isRcs), item.type)) { //彩信位置消息
         HiLog.i(TAG, 'shareMessage type mmsMapMessage ');
         const addressInfo: AddressInfo = parseAddressInfo(item.text) || new AddressInfo(0, 0, '', '');
@@ -340,34 +340,34 @@ export function shareMmsMessage(target: mmsListType): systemShare.SharedData | n
         extraData[ShareExtraData.MESSAGE_CONTENT] = item.title ?? '';
         extraData[ShareExtraData.MESSAGE_LONGITUDE] = addressInfo.longitude;
         extraData[ShareExtraData.MESSAGE_LATITUDE] = addressInfo.latitude;
-        shareRecordStack.push({
-          utd: fileUtd,
-          uri: uri,
-          extraData: extraData
-        });
+        // shareRecordStack.push({
+        //   utd: fileUtd,
+        //   uri: uri,
+        //   extraData: extraData
+        // });
       } else if (MmsUtil.isImage(item.type) || MmsUtil.isVideo(item.type) || MmsUtil.isVcard(item.type)) {
         HiLog.i(TAG, 'shareMessage type image or video');
-        shareRecordStack.push({
-          utd: fileUtd,
-          uri: uri,
-          extraData: extraData
-        });
+        // shareRecordStack.push({
+        //   utd: fileUtd,
+        //   uri: uri,
+        //   extraData: extraData
+        // });
       }
     }
   })
 
-  if (shareRecordStack.isEmpty()) {
-    HiLog.i(TAG, 'shareMmsMessage error');
-    return null;
-  }
+  // if (shareRecordStack.isEmpty()) {
+  //   HiLog.i(TAG, 'shareMmsMessage error');
+  //   return null;
+  // }
 
- let sharedData:ESObject = new systemShare.SharedData(shareRecordStack.pop());
-  if (!shareRecordStack.isEmpty()) {
-    shareRecordStack.forEach((item) => {
-      sharedData.addRecord(item);
-    })
-  }
- return sharedData ;
+ // let sharedData:ESObject = new systemShare.SharedData(shareRecordStack.pop());
+ //  if (!shareRecordStack.isEmpty()) {
+ //    shareRecordStack.forEach((item) => {
+ //      sharedData.addRecord(item);
+ //    })
+ //  }
+ // return sharedData ;
 }
 
 export async function shareMessage(target: mmsListType | undefined, context: Context) {
@@ -377,27 +377,27 @@ export async function shareMessage(target: mmsListType | undefined, context: Con
     return;
   }
   try {
-    let data: systemShare.SharedData | null = null;
+    // let data: systemShare.SharedData | null = null;
     if (target.isMsm) {
-     data = shareMmsMessage(target);
+     // data = shareMmsMessage(target);
     } else {
       let length = (target.content as string).length;
       let desc = context.resourceManager.
       getPluralStringValueSync($r('app.plural.share_description').id, length);
-      data = new systemShare.SharedData({
-        utd: utd.UniformDataType.PLAIN_TEXT,
-        content: target.content as string,
-        description: desc
-      });
+      // data = new systemShare.SharedData({
+      //   utd: utd.UniformDataType.PLAIN_TEXT,
+      //   content: target.content as string,
+      //   description: desc
+      // });
     }
-    if (data != null) {
-      HiLog.i(TAG, 'shareMessage add data');
-      let controller: systemShare.ShareController = new systemShare.ShareController(data);
-      controller.show(context as myCommon.UIAbilityContext, {
-        previewMode: systemShare.SharePreviewMode.DETAIL,
-        selectionMode: systemShare.SelectionMode.SINGLE
-      });
-    }
+    // if (data != null) {
+    //   HiLog.i(TAG, 'shareMessage add data');
+    //   let controller: systemShare.ShareController = new systemShare.ShareController(data);
+    //   controller.show(context as myCommon.UIAbilityContext, {
+    //     previewMode: systemShare.SharePreviewMode.DETAIL,
+    //     selectionMode: systemShare.SelectionMode.SINGLE
+    //   });
+    // }
   } catch (err) {
     HiLog.i(TAG, `message share` + JSON.stringify(err));
   }

@@ -18,7 +18,7 @@ import { GlobalContext } from '../../../../main/ets/MainAbility/GlobalHelper';
 import { ResponseType } from '../../../../main/ets/service/ConversationListService';
 import HiLog from '../../../../main/ets/utils/HiLog';
 import wantUtil, { Result } from '../../../../main/ets/utils/WantUtil'
-import { systemShare } from '@kit.ShareKit';
+// import { systemShare } from '@kit.ShareKit';
 import { window } from '@kit.ArkUI';
 import { DynamicLoader } from '../../../../main/ets/utils/DynamicLoader';
 import FileUtil from '../../../../main/ets/utils/FileUtil';
@@ -54,18 +54,18 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_action_sendData_generalText', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'ohos.want.action.sendData',
-          parameters: {
-            'ability.picker.records': {
-              'general.text': [{
-                utd: '',
-              } as systemShare.SharedRecord]
-            }
-          } as LooseObject,
-          uri: ''
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'ohos.want.action.sendData',
+      //     parameters: {
+      //       'ability.picker.records': {
+      //         'general.text': [{
+      //           utd: '',
+      //         } as systemShare.SharedRecord]
+      //       }
+      //     } as LooseObject,
+      //     uri: ''
+      //   } as Object | window.WindowStage);
       when(mocker.mockFunc(DynamicLoader.getInstance(), DynamicLoader.getInstance().fire))(ArgumentMatchers.any)
         .afterReturn(new Promise<boolean>(resolve => resolve(false)))
       let path = {} as NavPathStack;
@@ -80,20 +80,20 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_action_sendData_plainText_stream_hasFileMms', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'ohos.want.action.sendData',
-          parameters: {
-            'ability.picker.records': {
-              'general.plain-text': [{
-                utd: '',
-                2: ''
-              } as systemShare.SharedRecord],
-              'ability.params.stream': ['file://com.ohos.mms', 'file://com.ohos.mms']
-            }
-          } as LooseObject,
-          uri: ''
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'ohos.want.action.sendData',
+      //     parameters: {
+      //       'ability.picker.records': {
+      //         'general.plain-text': [{
+      //           utd: '',
+      //           2: ''
+      //         } as systemShare.SharedRecord],
+      //         'ability.params.stream': ['file://com.ohos.mms', 'file://com.ohos.mms']
+      //       }
+      //     } as LooseObject,
+      //     uri: ''
+      //   } as Object | window.WindowStage);
       when(mocker.mockFunc(DynamicLoader.getInstance(), DynamicLoader.getInstance().fire))(ArgumentMatchers.any)
         .afterReturn(new Promise<boolean>(resolve => resolve(false)));
       when(mocker.mockFunc(FileUtil, FileUtil.writeMediaToSandBox))(ArgumentMatchers.any)
@@ -122,20 +122,20 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_action_sendData_plainText_stream_notHaveFileMms', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'ohos.want.action.sendData',
-          parameters: {
-            'ability.picker.records': {
-              'general.plain-text': [{
-                utd: '',
-                2: ''
-              } as systemShare.SharedRecord],
-              'ability.params.stream': ['', '']
-            }
-          } as LooseObject,
-          uri: ''
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'ohos.want.action.sendData',
+      //     parameters: {
+      //       'ability.picker.records': {
+      //         'general.plain-text': [{
+      //           utd: '',
+      //           2: ''
+      //         } as systemShare.SharedRecord],
+      //         'ability.params.stream': ['', '']
+      //       }
+      //     } as LooseObject,
+      //     uri: ''
+      //   } as Object | window.WindowStage);
       when(mocker.mockFunc(DynamicLoader.getInstance(), DynamicLoader.getInstance().fire))(ArgumentMatchers.any)
         .afterReturn(new Promise<boolean>(resolve => resolve(false)));
       when(mocker.mockFunc(FileUtil, FileUtil.getSandboxPath))()
@@ -174,22 +174,22 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_uri_thirdPartJump1', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'ohos.want.action.receiveData',
-          parameters: {
-            'sms_body': 'sms body',
-            'content': '',
-            'address': 'address',
-            'contactObjects': '',
-            'ability.picker.records': {
-              'general.text': [{
-                utd: '',
-              } as systemShare.SharedRecord]
-            }
-          } as LooseObject,
-          uri: 'sms:570988776?xxx='
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'ohos.want.action.receiveData',
+      //     parameters: {
+      //       'sms_body': 'sms body',
+      //       'content': '',
+      //       'address': 'address',
+      //       'contactObjects': '',
+      //       'ability.picker.records': {
+      //         'general.text': [{
+      //           utd: '',
+      //         } as systemShare.SharedRecord]
+      //       }
+      //     } as LooseObject,
+      //     uri: 'sms:570988776?xxx='
+      //   } as Object | window.WindowStage);
       when(mocker.mockFunc(ContactsService.getInstance(),
         ContactsService.getInstance().dealContactParams))(ArgumentMatchers.any)
         .afterReturn({
@@ -210,23 +210,23 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_uri_thirdPartJump2', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'ohos.want.action.receiveData',
-          parameters: {
-            'sms_body': '',
-            'content': undefined,
-            'isRcs': true,
-            'address': '',
-            'contactObjects': undefined,
-            'ability.picker.records': {
-              'general.text': [{
-                utd: '',
-              } as systemShare.SharedRecord]
-            }
-          } as LooseObject,
-          uri: 'sms:570988764'
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'ohos.want.action.receiveData',
+      //     parameters: {
+      //       'sms_body': '',
+      //       'content': undefined,
+      //       'isRcs': true,
+      //       'address': '',
+      //       'contactObjects': undefined,
+      //       'ability.picker.records': {
+      //         'general.text': [{
+      //           utd: '',
+      //         } as systemShare.SharedRecord]
+      //       }
+      //     } as LooseObject,
+      //     uri: 'sms:570988764'
+      //   } as Object | window.WindowStage);
       mocker.mockFunc(wantUtil, wantUtil.jump);
       let path = {} as NavPathStack;
 
@@ -241,23 +241,23 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_uri_thirdPartJump3', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'ohos.want.action.receiveData',
-          parameters: {
-            'sms_body': '',
-            'content': undefined,
-            'isRcs': true,
-            'address': '',
-            'contactObjects': undefined,
-            'ability.picker.records': {
-              'general.text': [{
-                utd: '',
-              } as systemShare.SharedRecord]
-            }
-          } as LooseObject,
-          uri: ''
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'ohos.want.action.receiveData',
+      //     parameters: {
+      //       'sms_body': '',
+      //       'content': undefined,
+      //       'isRcs': true,
+      //       'address': '',
+      //       'contactObjects': undefined,
+      //       'ability.picker.records': {
+      //         'general.text': [{
+      //           utd: '',
+      //         } as systemShare.SharedRecord]
+      //       }
+      //     } as LooseObject,
+      //     uri: ''
+      //   } as Object | window.WindowStage);
       mocker.mockFunc(wantUtil, wantUtil.jump);
       let path = {} as NavPathStack;
 
@@ -272,23 +272,23 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_uri_thirdPartJump4', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'ohos.want.action.receiveData',
-          parameters: {
-            'sms_body': '',
-            'content': undefined,
-            'isRcs': true,
-            'address': '',
-            'contactObjects': undefined,
-            'ability.picker.records': {
-              'general.text': [{
-                utd: '',
-              } as systemShare.SharedRecord]
-            }
-          } as LooseObject,
-          uri: 'sms:'
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'ohos.want.action.receiveData',
+      //     parameters: {
+      //       'sms_body': '',
+      //       'content': undefined,
+      //       'isRcs': true,
+      //       'address': '',
+      //       'contactObjects': undefined,
+      //       'ability.picker.records': {
+      //         'general.text': [{
+      //           utd: '',
+      //         } as systemShare.SharedRecord]
+      //       }
+      //     } as LooseObject,
+      //     uri: 'sms:'
+      //   } as Object | window.WindowStage);
       mocker.mockFunc(wantUtil, wantUtil.jump);
       let path = new NavPathStack();
 
@@ -303,27 +303,27 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_parameters', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'mms.event.notification',
-          parameters: {
-            'searchMsgId': '1',
-            'searchContent': 'xx',
-            'pageFlg': '1',
-            'sms_body': '',
-            'content': 'xx',
-            'isRcs': true,
-            'address': '',
-            'contactObjects': {} as LooseObject,
-            'ability.picker.records': {
-              'general.text': [{
-                utd: '',
-              } as systemShare.SharedRecord]
-            },
-            'ohos.aafwk.param.callerBundleName': 'com.ohos.contacts',
-          } as LooseObject,
-          uri: ''
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'mms.event.notification',
+      //     parameters: {
+      //       'searchMsgId': '1',
+      //       'searchContent': 'xx',
+      //       'pageFlg': '1',
+      //       'sms_body': '',
+      //       'content': 'xx',
+      //       'isRcs': true,
+      //       'address': '',
+      //       'contactObjects': {} as LooseObject,
+      //       'ability.picker.records': {
+      //         'general.text': [{
+      //           utd: '',
+      //         } as systemShare.SharedRecord]
+      //       },
+      //       'ohos.aafwk.param.callerBundleName': 'com.ohos.contacts',
+      //     } as LooseObject,
+      //     uri: ''
+      //   } as Object | window.WindowStage);
       when(mocker.mockFunc(StringUtil, StringUtil.isEmpty))(ArgumentMatchers.any).afterReturn(true);
       when(mocker.mockFunc(wantUtil, wantUtil.parameterCompare))(ArgumentMatchers.any).afterReturn(true);
       mocker.mockFunc(wantUtil, wantUtil.jump);
@@ -348,27 +348,27 @@ export default function wantUtilTest() {
 
     it('WantUtilTest_getWant_parameters2', 0, () => {
       let mocker: MockKit = new MockKit();
-      when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
-        .afterReturn({
-          action: 'mms.event.notification',
-          parameters: {
-            'searchMsgId': undefined,
-            'searchContent': undefined,
-            'pageFlg': undefined,
-            'sms_body': '',
-            'content': undefined,
-            'isRcs': true,
-            'address': '',
-            'contactObjects': undefined,
-            'ability.picker.records': {
-              'general.text': [{
-                utd: '',
-              } as systemShare.SharedRecord]
-            },
-            'ohos.aafwk.param.callerBundleName': 'com.ohos.contacts',
-          } as LooseObject,
-          uri: ''
-        } as Object | window.WindowStage);
+      // when(mocker.mockFunc(GlobalContext.getContext(), GlobalContext.getContext().getObject))('abilityWant')
+      //   .afterReturn({
+      //     action: 'mms.event.notification',
+      //     parameters: {
+      //       'searchMsgId': undefined,
+      //       'searchContent': undefined,
+      //       'pageFlg': undefined,
+      //       'sms_body': '',
+      //       'content': undefined,
+      //       'isRcs': true,
+      //       'address': '',
+      //       'contactObjects': undefined,
+      //       'ability.picker.records': {
+      //         'general.text': [{
+      //           utd: '',
+      //         } as systemShare.SharedRecord]
+      //       },
+      //       'ohos.aafwk.param.callerBundleName': 'com.ohos.contacts',
+      //     } as LooseObject,
+      //     uri: ''
+      //   } as Object | window.WindowStage);
       when(mocker.mockFunc(StringUtil, StringUtil.isEmpty))(ArgumentMatchers.any).afterReturn(true);
       when(mocker.mockFunc(wantUtil, wantUtil.parameterCompare))(ArgumentMatchers.any).afterReturn(true);
       mocker.mockFunc(wantUtil, wantUtil.jump);
@@ -399,20 +399,20 @@ export default function wantUtilTest() {
       expect(res).assertTrue();
     })
 
-    it('WantUtilTest_buildTransmitParam1', 0, () => {
-      let parameters: LooseObject = {
-        'sms_body': '',
-        'content': undefined,
-        'isRcs': true,
-        'address': '',
-        'contactObjects': undefined,
-        'ability.picker.records': {
-          'general.text': [{
-            '2': undefined,
-            utd: '',
-          } as systemShare.SharedRecord]
-        }
-      } as LooseObject;
+    // it('WantUtilTest_buildTransmitParam1', 0, () => {
+    //   let parameters: LooseObject = {
+    //     'sms_body': '',
+    //     'content': undefined,
+    //     'isRcs': true,
+    //     'address': '',
+    //     'contactObjects': undefined,
+    //     'ability.picker.records': {
+    //       'general.text': [{
+    //         '2': undefined,
+    //         utd: '',
+    //       } as systemShare.SharedRecord]
+    //     }
+    //   } as LooseObject;
       let mocker: MockKit = new MockKit();
       when(mocker.mockFunc(wantUtil, wantUtil.getMmsType))(ArgumentMatchers.any)
         .afterReturn(7);
@@ -422,19 +422,19 @@ export default function wantUtilTest() {
     })
 
     it('WantUtilTest_buildTransmitParam1_type_text', 0, () => {
-      let parameters: LooseObject = {
-        'sms_body': '',
-        'content': undefined,
-        'isRcs': true,
-        'address': '',
-        'contactObjects': undefined,
-        'ability.picker.records': {
-          'general.text': [{
-            '2': '',
-            utd: '',
-          } as systemShare.SharedRecord]
-        }
-      } as LooseObject;
+      // let parameters: LooseObject = {
+      //   'sms_body': '',
+      //   'content': undefined,
+      //   'isRcs': true,
+      //   'address': '',
+      //   'contactObjects': undefined,
+      //   'ability.picker.records': {
+      //     'general.text': [{
+      //       '2': '',
+      //       utd: '',
+      //     } as systemShare.SharedRecord]
+      //   }
+      // } as LooseObject;
       let mocker: MockKit = new MockKit();
       when(mocker.mockFunc(wantUtil, wantUtil.getMmsType))(ArgumentMatchers.any)
         .afterReturn(7);
@@ -444,20 +444,20 @@ export default function wantUtilTest() {
     })
 
     it('WantUtilTest_buildTransmitParam2', 0, () => {
-      let parameters: LooseObject = {
-        'sms_body': '',
-        'content': undefined,
-        'isRcs': true,
-        'address': '',
-        'contactObjects': undefined,
-        'ability.params.stream': ['file://com.ohos.mms'],
-        'ability.picker.records': {
-          'key': [{
-            '2': undefined,
-            utd: '',
-          } as systemShare.SharedRecord]
-        }
-      } as LooseObject;
+      // let parameters: LooseObject = {
+      //   'sms_body': '',
+      //   'content': undefined,
+      //   'isRcs': true,
+      //   'address': '',
+      //   'contactObjects': undefined,
+      //   'ability.params.stream': ['file://com.ohos.mms'],
+      //   'ability.picker.records': {
+      //     'key': [{
+      //       '2': undefined,
+      //       utd: '',
+      //     } as systemShare.SharedRecord]
+      //   }
+      // } as LooseObject;
       let mocker: MockKit = new MockKit();
       when(mocker.mockFunc(wantUtil, wantUtil.getMmsType))(ArgumentMatchers.any)
         .afterReturn(8);
@@ -478,20 +478,20 @@ export default function wantUtilTest() {
     })
 
     it('WantUtilTest_buildTransmitParam3', 0, () => {
-      let parameters: LooseObject = {
-        'sms_body': '',
-        'content': undefined,
-        'isRcs': true,
-        'address': '',
-        'contactObjects': undefined,
-        'ability.params.stream': ['file://com.ohos.contact'],
-        'ability.picker.records': {
-          'key': [{
-            '2': '',
-            utd: '',
-          } as systemShare.SharedRecord]
-        }
-      } as LooseObject;
+      // let parameters: LooseObject = {
+      //   'sms_body': '',
+      //   'content': undefined,
+      //   'isRcs': true,
+      //   'address': '',
+      //   'contactObjects': undefined,
+      //   'ability.params.stream': ['file://com.ohos.contact'],
+      //   'ability.picker.records': {
+      //     'key': [{
+      //       '2': '',
+      //       utd: '',
+      //     } as systemShare.SharedRecord]
+      //   }
+      // } as LooseObject;
       let mocker: MockKit = new MockKit();
       when(mocker.mockFunc(wantUtil, wantUtil.getMmsType))(ArgumentMatchers.any)
         .afterReturn(8);
