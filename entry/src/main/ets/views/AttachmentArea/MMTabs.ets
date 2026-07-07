@@ -78,6 +78,7 @@ export default struct MMTabs {
   @State longitude:string=''//经度
   @State latitude:string=''//维度
   @State canSearchLocation:boolean=true//能否获取位置
+  private locationListeningActive: boolean = false;
 
   /**
    * 彩信位置消息的位置数据
@@ -308,16 +309,25 @@ export default struct MMTabs {
     try {
       GLM.on('locationChange', this.request, this.locationCallback);
       GLM.on('satelliteStatusChange', this.gnssStatusCb);
+      this.locationListeningActive = true;
     } catch (err) {
       HiLog.e(TAG, "errCode:" + JSON.stringify(err));
     }
   }
 
   locationOff() {
-    // 关闭位置监听和卫星监听
-    GLM.off('locationChange', this.locationCallback);
-    GLM.off('satelliteStatusChange', this.gnssStatusCb);
-    this.canSearchLocation=true
+    if (!this.locationListeningActive) {
+      this.canSearchLocation = true;
+      return;
+    }
+    try {
+      GLM.off('locationChange', this.locationCallback);
+      GLM.off('satelliteStatusChange', this.gnssStatusCb);
+    } catch (err) {
+      HiLog.e(TAG, `locationOff errCode:${(err as BusinessError)?.code}`);
+    }
+    this.locationListeningActive = false;
+    this.canSearchLocation = true;
   }
 
   getPermissionOfLocation() {

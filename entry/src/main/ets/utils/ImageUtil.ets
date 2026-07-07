@@ -24,7 +24,7 @@ import Want from '@ohos.app.ability.Want';
 import { GlobalContext } from '../MainAbility/GlobalHelper';
 import myCommon from '@ohos.app.ability.common';
 import ImageCompression, { CompressedImageInfo } from './ImageCompression';
-import { filePreview } from '@kit.PreviewKit';
+// import { filePreview } from '@kit.PreviewKit';
 import fileUri from '@ohos.file.fileuri';
 import { IPhotoProp } from '../pages/photoBrowser/photoBrowser';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -224,17 +224,17 @@ class ImageUtil {
     if (fs.accessSync(videoPath)) {
       videoPath = fileuri.getUriFromPath(videoPath);
     }
-    let fileInfo: filePreview.PreviewInfo = {
-      title: item.name,
-      uri: videoPath,
-      mimeType: 'video/mp4'
-    };
+    // let fileInfo: filePreview.PreviewInfo = {
+    //   title: item.name,
+    //   uri: videoPath,
+    //   mimeType: 'video/mp4'
+    // };
     GlobalContext.getContext().setObject(GlobalContextKey.IS_JUMP_TO_PREVIEW, true);
-    filePreview.openPreview(uiContext, fileInfo).then(() => {
-      HiLog.i(TAG, 'previewMmsVideo success');
-    }).catch((err: BusinessError) => {
-      HiLog.i(TAG, 'previewMmsVideo openPreview failed, err = ' + JSON.stringify(err));
-    });
+    // filePreview.openPreview(uiContext, fileInfo).then(() => {
+    //   HiLog.i(TAG, 'previewMmsVideo success');
+    // }).catch((err: BusinessError) => {
+    //   HiLog.i(TAG, 'previewMmsVideo openPreview failed, err = ' + JSON.stringify(err));
+    // });
   }
 
   private addCt(fileName: string) {
@@ -249,32 +249,33 @@ class ImageUtil {
   //判断是否可以预览
   private async fileCanPreview(uri: string, ct: string | undefined) {
     let uiContext = getContext(this) as myCommon.UIAbilityContext;
-    let result: boolean = await filePreview.canPreview(uiContext, uri);
-    let resultCt: boolean = false;
-    if (!StringUtil.isEmpty(ct)) {
-      resultCt = true;
-    }
-    return result || resultCt;
+    // let result: boolean = await filePreview.canPreview(uiContext, uri);
+    // let resultCt: boolean = false;
+    // if (!StringUtil.isEmpty(ct)) {
+    //   resultCt = true;
+    // }
+    // return result || resultCt;
+    return true;
   }
 
   //打开预览窗口
   private openPreviewWindow(title: string, uri: string, mimeType: string) {
     let uiContext = getContext(this) as myCommon.UIAbilityContext;
-    let displayInfo: filePreview.DisplayInfo = {
-      x: 100,
-      y: 100,
-      width: 800,
-      height: 800
-    }
-    let fileInfo: filePreview.PreviewInfo = {
-      title: title,
-      uri: uri,
-      mimeType: mimeType
-    }
-    filePreview.openPreview(uiContext, fileInfo, displayInfo).then(() => { //仅当预览窗口存在时起效
-    }).catch((err:BusinessError) => {
-
-    });
+    // let displayInfo: filePreview.DisplayInfo = {
+    //   x: 100,
+    //   y: 100,
+    //   width: 800,
+    //   height: 800
+    // }
+    // let fileInfo: filePreview.PreviewInfo = {
+    //   title: title,
+    //   uri: uri,
+    //   mimeType: mimeType
+    // }
+    // filePreview.openPreview(uiContext, fileInfo, displayInfo).then(() => { //仅当预览窗口存在时起效
+    // }).catch((err:BusinessError) => {
+    //
+    // });
   }
 
   /**

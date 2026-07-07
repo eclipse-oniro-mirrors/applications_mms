@@ -40,7 +40,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { plainToClass } from 'class-transformer';
 import { getCountryCode } from '../chatbot/utils/ChatbotLocationUtil';
 import utd from '@ohos.data.uniformTypeDescriptor';
-import { systemShare } from '@kit.ShareKit';
+// import { systemShare } from '@kit.ShareKit';
 
 const TAG = 'MmsUtil ';
 const SUPPORT_FORMART = [
@@ -1088,23 +1088,23 @@ export function findMapSourceOfMmsMapMessage(isRcs: boolean, mmsSource: Mms[] | 
  * 获取彩信位置链接分享选项
  * @param textContent 彩信位置文本内容
  */
-export function getMmsMapLinkShareData(textContent: string): systemShare.SharedRecord {
-  //彩信位置文本内容为固定格式的字符串，第一行为标题；第二行为位置详细描述；第三行为位置链接；第四行及之后内容为消息附带的输入框文本。
-  let tempArray = textContent.split('\n');
-  if (tempArray.length >= 3) {
-    return {
-      utd: utd.UniformDataType.HYPERLINK,
-      content: tempArray[2] ?? '',
-      title: tempArray[0] ?? '',
-      description: tempArray[1] ?? ''
-    };
-  } else {
-    return {
-      utd: utd.UniformDataType.PLAIN_TEXT,
-      content: textContent
-    };
-  }
-}
+// export function getMmsMapLinkShareData(textContent: string): systemShare.SharedRecord {
+//   //彩信位置文本内容为固定格式的字符串，第一行为标题；第二行为位置详细描述；第三行为位置链接；第四行及之后内容为消息附带的输入框文本。
+//   let tempArray = textContent.split('\n');
+//   if (tempArray.length >= 3) {
+//     return {
+//       utd: utd.UniformDataType.HYPERLINK,
+//       content: tempArray[2] ?? '',
+//       title: tempArray[0] ?? '',
+//       description: tempArray[1] ?? ''
+//     };
+//   } else {
+//     return {
+//       utd: utd.UniformDataType.PLAIN_TEXT,
+//       content: textContent
+//     };
+//   }
+// }
 
 //会话页面中 从短彩信模式切换到增强信息模式时 附件待发区保留的附件类型
 export const KEEP_MESSAGE_TYPE_WHEN_MMS_TO_RCS: number[] = [
