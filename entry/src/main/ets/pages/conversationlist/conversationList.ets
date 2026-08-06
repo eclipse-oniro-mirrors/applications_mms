@@ -961,7 +961,10 @@ export default struct ConversationList {
         }, 1000)
       let swipeActionStateInnerEvent: emitter.InnerEvent = { eventId: EmitterConstant.EVENT_SWIPE_ACTION_CLOSE };
       emitter.on(swipeActionStateInnerEvent, () => {
-        this.listScroller.closeAllSwipeActions();
+        try {
+          this.listScroller.closeAllSwipeActions();
+        } catch () {
+        }
         AppStorage.setOrCreate('swipeActionState', SwipeActionState.COLLAPSED);
       });
       this.initMultiSelectToolBarList();

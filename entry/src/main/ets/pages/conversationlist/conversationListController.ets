@@ -2049,7 +2049,7 @@ export default class ConversationListController {
         let actionData: ActionData = {
           phoneNumber: telephone,
           pageFlag: common.contactPage.PAGE_FLAG_CONTACT_DETAILS,
-          contactId:this.messageList[index].contactId,
+          contactId:this.messageList[index]?.contactId,
         };
         this.jumpToContact(context, actionData);
         // 列表-点击单人头像打点
