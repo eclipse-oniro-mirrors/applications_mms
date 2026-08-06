@@ -963,7 +963,8 @@ export default struct ConversationList {
       emitter.on(swipeActionStateInnerEvent, () => {
         try {
           this.listScroller.closeAllSwipeActions();
-        } catch () {
+        } catch (err) {
+          HiLog.e(TAG, `listScroller.closeAllSwipeActions error code: ${err.code}, message: ${err.message}`);
         }
         AppStorage.setOrCreate('swipeActionState', SwipeActionState.COLLAPSED);
       });
