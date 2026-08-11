@@ -273,6 +273,8 @@ export default struct ConversationList {
   isSearchChange() {
     if (!this.isSearch) {
       this.inputText = ''
+      // 退出搜索状态时恢复首页数据源
+      this.searchInfoController.querySMS('', this.context)
     }
     AppStorage.setOrCreate('inputText', this.inputText)
   }
@@ -1184,6 +1186,10 @@ export default struct ConversationList {
     if (this.mConListCtrl.hasAggregate && this.mConListCtrl.hasInfoMsg) {
       number++
     }
+    // 列表项包含搜索框的场景，需要增加一个索引偏移量
+    if (!this.isSearch) {
+      number++
+    }
     return number
   }
 
@@ -1505,11 +1511,12 @@ export default struct ConversationList {
           })
         }
       }
-      .width('50%')
+      // 解决非折叠屏且分屏状态下菜单栏宽度计算错误，导致右侧更多按钮不显示的问题
+      .width(!this.isVDE && this.splitInfoModel.isMediumAndSmall ? 'auto' : '50%')
       .height($r('app.float.id_item_height_large'))
       .margin({
         // top: this.fullScreenPadding?.top,
-        right: $r('app.float.menu_layout_padding_right'),
+        // right: $r('app.float.menu_layout_padding_right'),
         left: $r('app.float.menu_layout_padding_left')
       })
       .justifyContent(FlexAlign.End)
@@ -1701,9 +1708,8 @@ export default struct ConversationList {
 
     build() {
       Navigation() {
-        // 搜索框
-          this.searchBoxBuilder()
         if (this.isSearch && this.isSearchResultEmpty) {
+          this.searchBoxBuilder()
           EmptyPage({
             emptyDescription: $r('app.string.noMessagesSearchResult'), // 搜索无结果专属提示
           })
@@ -1757,8 +1763,16 @@ export default struct ConversationList {
             Stack({ alignContent: Alignment.TopStart }) {
               //会话列表
               Column() {
+                // 搜索状态：搜索框固定在顶部，列表在下方滚动
+                if (this.isSearch) {
+                  this.searchBoxBuilder()
+                }
                 //添加2px是防止不同设备DPI不同导致部分Divider视觉不可见（与像素取整相关，组件提供方案，API16可去除）
                 List({ space: '2px', scroller: this.listScroller }) {
+                  // 非搜索状态：搜索框随列表一起滚动
+                  if (!this.isSearch) {
+                    this.searchBoxBuilder()
+                  }
                   //通知信息
                   if (this.mConListCtrl.hasAggregate && this.mConListCtrl.hasInfoMsg && this.inputText==='') {
                     ListItem() {
@@ -2206,7 +2220,9 @@ export default struct ConversationList {
       // .titleBar(TitleBarUtil.getTitleBar(this.getTitleBarParams()))
       //   .dynamicHideTitleBar({hideBottomBuilder: true, mode: HideMode.SCROLL_UP_TO})
       //   .bindToScrollable([this.listScroller])
-      .hideBackButton(this.isVDE ? true : (this.mIsMultipleSelectState ? true : false))
+      // 同步解决分屏状态下，标题栏显示了返回按钮的问题（单框架无此按钮
+      .hideBackButton(this.isVDE ? true : (this.splitInfoModel.isMediumAndSmall ? true :
+          (this.mIsMultipleSelectState ? true : false)))
       .titleMode(DeviceUtil.isPC() ? NavigationTitleMode.Mini : this.isVDE ? NavigationTitleMode.Mini :
         this.splitInfoModel.isMediumAndSmall ? NavigationTitleMode.Mini :
           this.mIsMultipleSelectState ? NavigationTitleMode.Mini :
@@ -2275,13 +2291,25 @@ export default struct ConversationList {
       .onClick(() => {
         this.getUIContext().getFocusController().clearFocus()
         this.isSearch = false;
+        AppStorage.setOrCreate('isSearch', this.isSearch)
+        this.inputText = ''
+        AppStorage.setOrCreate('inputText', this.inputText)
+        // 返回首页时恢复列表数据
+        this.searchInfoController.querySMS('', this.context)
       });
 
       Search({ placeholder: $r('app.string.search'), value: this.inputText })
+        .id('conversation_list_search')
         .layoutWeight(1)
+        .defaultFocus(this.isSearch)
         .onClick(() => {
           this.isSearch = true;
           AppStorage.setOrCreate('isSearch', this.isSearch)
+          // 进入搜索状态后主动请求焦点
+          let focusControl = this.getUIContext().getFocusController()
+          setTimeout(() => {
+            focusControl.requestFocus('conversation_list_search')
+          }, 0)
         })
         .onChange(async (value) => {
           this.inputText = value.trim()

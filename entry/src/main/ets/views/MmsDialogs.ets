@@ -440,13 +440,6 @@ export struct TransmitMsgDialog {
                 },
                 simCardClick: (value) => {
                     HiLog.i(TAG, 'simCardClick defCellularSlotId: ' + this.defCellularSlotId + 'value: ' + value)
-                    let isSlotIdChange = false;
-                    if(this.defCellularSlotId + 1 == value && this.isOnlineRcs){
-                        this.mConversationCtrl.changeIsRcsMms(true, isSlotIdChange);
-                    }else{
-                        this.mConversationCtrl.changeIsRcsMms(false, isSlotIdChange);
-                    }
-                    HiLog.i(TAG, 'simCardClick isRcsMms: ' + this.mConversationCtrl.isRcsMms);
                     if (value === 1) {
                         HiLog.i(TAG, `Transmit simCardClick, set KEY_OF_SELECTED_SLOTID SIM_ONE`);
                         MmsPreferences.getInstance().setValueToMap(common.STR.KEY_OF_SELECTED_SLOTID, common.int.SIM_ONE);

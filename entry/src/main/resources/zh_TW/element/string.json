@@ -4185,7 +4185,7 @@
         },
         {
             "name":"enable_notification_dialog_title",
-            "value":"允許「簡訊」傳送通知給您？",
+            "value":"允許「訊息」傳送通知給您？",
             "attr":{
                 "priority":"translate"
             }

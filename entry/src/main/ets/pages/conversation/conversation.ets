@@ -1942,6 +1942,8 @@ export struct Conversation {
   }
 
   public async clickToContacts(actionData: ActionData) {
+    // 解决从会话详情进联系人再回列表，点同一条会话无反应的问题，跳转到联系人后返回列表时，需允许再次点击同一会话
+    ConListController.getInstance().resetLastIndexValue();
     let str = await commonService.commonContactParam(actionData);
     (this.context as myCommon.UIAbilityContext).startAbility(str).then((data) => {
       HiLog.iw(TAG, 'jumpToContact, startAbility success');
@@ -4406,6 +4408,7 @@ export struct Conversation {
                   left: { anchor: '__container__', align: HorizontalAlign.Start },
                   bottom: { anchor: 'inputBoxBottom', align: VerticalAlign.Top }
                 })
+                .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
                 .backgroundColor($r('sys.color.ohos_id_color_list_card_bg'))
                 .translate({ y: this.isVDE && this.isScrolling ? this.mOffsetY + this.getListMargin() : 0 })
                 .opacity(this.isVDE && this.isScrolling ? 0 : 1)
@@ -5230,6 +5233,8 @@ export struct Conversation {
                 }
                 .width('100%')
                 .id('inputBoxBottom')
+                // 使底部区域向导航条非安全区域延申，且软键盘弹起不影响整体布局
+                .expandSafeArea([SafeAreaType.SYSTEM,SafeAreaType.KEYBOARD], [SafeAreaEdge.BOTTOM])
                 .translate({ y: this.isVDE && this.isScrolling ? this.mOffsetY + this.getListMargin() +
                 this.bottomPadding + this.locationMargin() : 0 })
                 .opacity(this.isVDE && this.isScrolling ? 0 : 1)
@@ -5271,7 +5276,8 @@ export struct Conversation {
             AppStorage.setOrCreate('isTransmitShow', false);
           },
         })
-        .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+        // 使顶部和底部区域向非安全区域延申，且软键盘弹起不影响整体布局
+        .expandSafeArea([SafeAreaType.KEYBOARD,SafeAreaType.SYSTEM], [SafeAreaEdge.TOP,SafeAreaEdge.BOTTOM])
         .border({ color: $r('sys.color.background_secondary') })
         .backgroundColor($r('sys.color.background_secondary'))
         .hideTitleBar(DeviceUtil.isPC() || this.splitInfoModel.isSmall || this.hideVdeTitle ||

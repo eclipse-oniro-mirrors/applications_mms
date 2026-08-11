@@ -496,6 +496,7 @@ export default class NotificationService {
       groupName: 'MMS',
       id: actionData.msgId,
       label: label + actionData.msgId,
+      isOngoing:true//1
     };
     if (isVerCode) {
       notificationRequest.classification = 'ANS_VERIFICATION_CODE'

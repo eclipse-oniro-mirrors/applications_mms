@@ -2738,55 +2738,54 @@ export default class ConversationController {
         HiLog.i('clickGroupCheckAll', JSON.stringify(this.isMessageCheckAll))
     }
 
-    mmsFavorite(context: Context) {
-        this.mmsList.forEach(item=>{
-            if (item.isCbChecked) {
+    mmsFavorite(context: Context,isLongPress?:boolean,mmsIndex?:number) {
+        this.mmsList.filter((item, index) => !(isLongPress ?? false) || index == mmsIndex).forEach(item => {
+            if (item.isCbChecked || (isLongPress ?? false)) {
                 if (item?.isRcs === common.MESSAGE_TYPE.RCS) {
-                    let valueBucket: ValuesBucket = {
-                        'is_collect': common.is_collect.FAVORITE,
-                    }
-                    let actionData: LooseObject = {
-                        'rcsId': item.rcsId,
-                    }
-                    ConversationRcsService.getInstance()
-                        .updateRcsReceivedMmsInfoByRcsId(context, actionData, valueBucket, null);
-                    let conversationModel = new ConversationModel();
-                    let valueBucketMms: ValuesBucket = {
-                        'is_collect': common.is_collect.FAVORITE,
-                    }
-                    let actionDataMms: LooseObject = {
-                        'rcsId': item.rcsId,
-                    }
-                    conversationModel.updateSmsMmsInfoByRcsID(actionDataMms, valueBucketMms, null, context);
-                    if (item.is_collect == false) {
-                        ConversationService.getInstance().updateMmsPartByCondition(context, actionData, null);
-                        let pathItem: LooseObject | null = null;
-                        ConversationService.getInstance()
-                            .queryMmsInfoByFavoriteCondition(context, actionDataMms, (result: LooseObject) => {
-                                if (result.code === common.int.SUCCESS && result.abilityResult != null) {
-                                    // let vCard: number = result.abilityResult.findIndex(data  => data.type === common.MM_ATTACHMENT_TYPE.VCARD);
-                                    // if (vCard !== -1) {
-                                    //     result.abilityResult.forEach((item) => {
-                                    //         if (item.type && item.type === common.MM_ATTACHMENT_TYPE.VCARD) {
-                                    //             pathItem = item; // type = 4,vCard卡片正确显示
-                                    //         }
-                                    //     })
-                                    // } else {
-                                    //     pathItem = result.abilityResult[result.abilityResult.length -1]
-                                    // }
-                                } else {
-                                    HiLog.e(TAG, '[mmsFavorite] queryMmsInfoByFavoriteCondition fail');
-                                }
-                                this.handleQueryAndInsertRcsFavorite(context, actionData, pathItem, item);
-                            })
-                    } else {
-                        promptAction.showToast({
-                            message: $r('app.string.info_has_been_stared'),
-                            duration: 2000
-                        })
-                    }
-                }
-                else {
+                    // let valueBucket: ValuesBucket = {
+                    //     'is_collect': common.is_collect.FAVORITE,
+                    // }
+                    // let actionData: LooseObject = {
+                    //     'rcsId': item.rcsId,
+                    // }
+                    // ConversationRcsService.getInstance()
+                    //     .updateRcsReceivedMmsInfoByRcsId(context, actionData, valueBucket, null);
+                    // let conversationModel = new ConversationModel();
+                    // let valueBucketMms: ValuesBucket = {
+                    //     'is_collect': common.is_collect.FAVORITE,
+                    // }
+                    // let actionDataMms: LooseObject = {
+                    //     'rcsId': item.rcsId,
+                    // }
+                    // conversationModel.updateSmsMmsInfoByRcsID(actionDataMms, valueBucketMms, null, context);
+                    // if (item.is_collect == false) {
+                    //     ConversationService.getInstance().updateMmsPartByCondition(context, actionData, null);
+                    //     let pathItem: LooseObject | null = null;
+                    //     ConversationService.getInstance()
+                    //         .queryMmsInfoByFavoriteCondition(context, actionDataMms, (result: LooseObject) => {
+                    //             if (result.code === common.int.SUCCESS && result.abilityResult != null) {
+                    //                 // let vCard: number = result.abilityResult.findIndex(data  => data.type === common.MM_ATTACHMENT_TYPE.VCARD);
+                    //                 // if (vCard !== -1) {
+                    //                 //     result.abilityResult.forEach((item) => {
+                    //                 //         if (item.type && item.type === common.MM_ATTACHMENT_TYPE.VCARD) {
+                    //                 //             pathItem = item; // type = 4,vCard卡片正确显示
+                    //                 //         }
+                    //                 //     })
+                    //                 // } else {
+                    //                 //     pathItem = result.abilityResult[result.abilityResult.length -1]
+                    //                 // }
+                    //             } else {
+                    //                 HiLog.e(TAG, '[mmsFavorite] queryMmsInfoByFavoriteCondition fail');
+                    //             }
+                    //             this.handleQueryAndInsertRcsFavorite(context, actionData, pathItem, item);
+                    //         })
+                    // } else {
+                    //     promptAction.showToast({
+                    //         message: $r('app.string.info_has_been_stared'),
+                    //         duration: 2000
+                    //     })
+                    // }
+                } else {
                     let valueBucket: ValuesBucket = {
                         'is_collect': common.is_collect.FAVORITE,
                     }
@@ -3203,36 +3202,40 @@ export default class ConversationController {
         pageName: string, param: Record<string, number | boolean | string | LooseObject[]>,
         pageInfos: NavPathStack) => void, selectText?: string) {
         switch (index) {
-          case 0:
-          // duplicating
-            this.copyText(selectText);
-            break;
-          case 1:
-          // Forwarding
-            this.transmitMsg(context, this.mmsIndex, jumpPageAfterAnimationEffect);
-            break;
-          case 2:
-          // Delete
-            this.deleteDialogShow();
-            break;
-          case 3:
-          // Select Text
-            this.gotoTextSelect(this.mmsIndex);
-            break;
-          case 4:
-          // more
-            this.more();
-            break;
-          case 5:
-          // Save
-            this.saveImage(context);
-            break;
-          case 6:
-          // report
-            this.reportDialogShow();
-            break;
-          default:
-            break;
+            case 0:
+                // duplicating
+                this.copyText(selectText);
+                break;
+            case 1:
+                // Forwarding
+                this.transmitMsg(context, this.mmsIndex, jumpPageAfterAnimationEffect);
+                break;
+            case 2:
+                // Delete
+                this.deleteDialogShow();
+                break;
+            case 3:
+                // Select Text
+                this.gotoTextSelect(this.mmsIndex);
+                break;
+            case 4:
+                // more
+                this.more();
+                break;
+            case 5:
+                // Save
+                this.saveImage(context);
+                break;
+            case 6:
+                // report
+                this.reportDialogShow();
+                break;
+            case 7:
+                // collect
+                this.mmsFavorite(context, true, this.mmsIndex);
+                break;
+            default:
+                break;
         }
     }
 
@@ -3413,10 +3416,18 @@ export default class ConversationController {
             contents: contents,
             mmsSource: []
         };
-        this.delayTransmitSend(context, actionData, false);
+        let isOriginalNotRcs: boolean = this.getIsOriginalNotRcsFromTransmitSource(transmitSource);
+        this.delayTransmitSend(context, actionData, false, isOriginalNotRcs);
     }
 
-    delayTransmitSend(context: Context, element: ActionData, isMms: boolean) {
+    private getIsOriginalNotRcsFromTransmitSource(transmitSource: TransmitInfoType[]): boolean {
+        if (!transmitSource || transmitSource.length === 0) {
+            return true;
+        }
+        return transmitSource[0]?.isRcs == 0;
+    }
+
+    delayTransmitSend(context: Context, element: ActionData, isMms: boolean, isOriginalNotRcs: boolean = true) {
         if (element.contents.length === 0) {
             HiLog.i(TAG, 'delayTransmitSend error');
             return;
@@ -3433,15 +3444,15 @@ export default class ConversationController {
             let firstContent: string = element.contents[0]?.trim();
             if (element.contents.length === 1) {
                 HiLog.i(TAG, 'delayTransmitSend contents length is 1');
-                await this.sendSms(context, firstContent, isMms, element.mmsSource, false);
+                await this.sendSms(context, firstContent, isMms, element.mmsSource, isOriginalNotRcs);
             } else {
                 // One segment is sent first to prevent a new session.
                 // No session ID is generated. Cyclic sending may cause different session IDs in multiple segments.
                 HiLog.i(TAG, 'delayTransmitSend segment multiple pieces of information');
-                this.sendSms(context, firstContent, isMms, element.mmsSource, false, () => {
+                this.sendSms(context, firstContent, isMms, element.mmsSource, isOriginalNotRcs, () => {
                     let lastContents = element.contents.slice(1);
                     lastContents.forEach(content => {
-                        this.sendSms(context, content?.trim(), isMms, element.mmsSource, false);
+                        this.sendSms(context, content?.trim(), isMms, element.mmsSource, isOriginalNotRcs);
                     })
                 });
             }

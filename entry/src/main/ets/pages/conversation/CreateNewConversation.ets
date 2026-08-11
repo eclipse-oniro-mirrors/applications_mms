@@ -1289,6 +1289,8 @@ export struct CreateNewConversation {
         .visibility(!this.isVDE ? Visibility.Visible :
           (this.receiveCtrl.isHideTextArea ? Visibility.None : Visibility.Visible))
         .id('bottomView')
+        // 使底部区域向导航条非安全区域延申，且软键盘弹起不影响整体布局
+        .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
         .constraintSize({ minHeight: 52 })
         .alignRules({
           left: { anchor: '__container__', align: HorizontalAlign.Start },
@@ -1313,6 +1315,8 @@ export struct CreateNewConversation {
     //   menuValue: (this.isShowMoreMenu && !this.fullHeightMMPicker) ? this.menusCreateNewConversation : undefined,
     //   backgroundColor: $r('sys.color.background_secondary'), callback: () => { this.destinationBackPress() } }))
     .title(this.navTitle())
+    // 使顶部和底部区域向非安全区域延申，且软键盘弹起不影响整体布局
+    .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM], [SafeAreaEdge.TOP,SafeAreaEdge.BOTTOM])
     .hideBackButton(DeviceUtil.isTabletOrPC() || this.mCurBp === common.STR.DEVICE_Folding_SCREEN ||
        DeviceUtil.isTrifoldExpandedState())
     .padding({ top: DeviceUtil.isPC() ? 56 : '' })
