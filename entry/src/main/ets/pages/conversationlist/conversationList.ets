@@ -178,6 +178,8 @@ export default struct ConversationList {
     private marginLeft: number = px2vp(getContext(this).resourceManager.getNumber($r('sys.float.margin_left').id));
     private marginRight: number = px2vp(getContext(this).resourceManager.getNumber($r('sys.float.margin_right').id));
     private debounceTimer: number | null = null;
+    // 记录当前展开态item的index
+    private expandedIndex = -1;
 
     // List滑动多选
     private listWidth: number = 0
@@ -959,7 +961,11 @@ export default struct ConversationList {
         }, 1000)
       let swipeActionStateInnerEvent: emitter.InnerEvent = { eventId: EmitterConstant.EVENT_SWIPE_ACTION_CLOSE };
       emitter.on(swipeActionStateInnerEvent, () => {
-        this.listScroller.closeAllSwipeActions();
+        try {
+          this.listScroller.closeAllSwipeActions();
+        } catch (err) {
+          HiLog.e(TAG, `listScroller.closeAllSwipeActions error code: ${err.code}, message: ${err.message}`);
+        }
         AppStorage.setOrCreate('swipeActionState', SwipeActionState.COLLAPSED);
       });
       this.initMultiSelectToolBarList();
@@ -999,6 +1005,7 @@ export default struct ConversationList {
                         action: () => {
                             this.currentHasReadIndex = -1;
                             if (this.currentDeleteIndex !== -1) {
+                                this.setSwipeActionStateCollapsed();
                                 this.mConListCtrl.deleteAction(this.currentDeleteIndex);
                                 this.currentDeleteIndex = -1;
                             }
@@ -1036,6 +1043,15 @@ export default struct ConversationList {
             }
           }
         });
+    }
+
+    private setSwipeActionStateCollapsed(): void {
+        HiLog.i(TAG, `setSwipeActionStateCollapsed expandedIndex:${this.expandedIndex}}, ` +
+            `currentDeleteIndex:${this.currentDeleteIndex}`);
+        if (this.expandedIndex === this.currentDeleteIndex) {
+            AppStorage.setOrCreate('swipeActionState', SwipeActionState.COLLAPSED);
+            this.expandedIndex = -1;
+        }
     }
 
     @Builder
@@ -1927,7 +1943,12 @@ export default struct ConversationList {
                               stateParam.PAGE_STATE = 1;
                               DotUtil.getInstance().reportEvent(stateParam,
                                 dotCommon.eventName.LIST_SWIPE_LEFT_EVENT);
+                              this.expandedIndex = item.index;
+                            } else {
+                              this.expandedIndex = -1;
                             }
+                            HiLog.i(TAG, `expandedIndex: ${this.expandedIndex}, ` +
+                              `swipeActionState: ${swipeActionState}`);
                           },
 
                         },

@@ -1161,8 +1161,11 @@ export default class ConversationListController {
             PanGestureUtil.refresh()
             return true;
         }
-      this.listSwipeActionState = AppStorage.get('swipeActionState') ?? SwipeActionState.COLLAPSED
-      if (this.listSwipeActionState === SwipeActionState.EXPANDED ) {
+      this.listSwipeActionState = AppStorage.get('swipeActionState') ?? SwipeActionState.COLLAPSED;
+      HiLog.i(TAG, `onBackPress messageDataStatus: ${this.messageDataStatus}, ` +
+        `listSwipeActionState:${this.listSwipeActionState}`);
+      if (this.listSwipeActionState === SwipeActionState.EXPANDED &&
+        this.messageDataStatus !== common.MSG_DATA_STATUS.MSG_EMPTY) {
         let innerEvent: emitter.InnerEvent = { eventId: EmitterConstant.EVENT_SWIPE_ACTION_CLOSE };
         emitter.emit(innerEvent)
         return true;
@@ -2046,7 +2049,7 @@ export default class ConversationListController {
         let actionData: ActionData = {
           phoneNumber: telephone,
           pageFlag: common.contactPage.PAGE_FLAG_CONTACT_DETAILS,
-          contactId:this.messageList[index].contactId,
+          contactId:this.messageList[index]?.contactId,
         };
         this.jumpToContact(context, actionData);
         // 列表-点击单人头像打点
