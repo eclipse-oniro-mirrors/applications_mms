@@ -493,6 +493,9 @@ export struct MmsListItem {
             previewAnimationOptions: {
                 scale: [0.95, 1.1]
             },
+            transition: TransitionEffect.OPACITY.animation({
+              duration: 200 , curve: Curve.Ease,
+            }),
             onAppear: (() => {
                 AppStorage.setOrCreate('listShowMenu', true)
                 this.item.smsType == 0 ? stateParam.PAGE_STATE = 1 : stateParam.PAGE_STATE = 2;

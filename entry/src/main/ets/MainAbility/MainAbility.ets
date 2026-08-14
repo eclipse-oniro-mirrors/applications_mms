@@ -335,7 +335,7 @@ export default class MainAbility extends Ability {
     let properties: Window.WindowProperties = windowObj.getWindowProperties();
     SplitScreenManager.getInstance().updateScreenSize(properties.windowRect.width, properties.windowRect.height);
     let avoidArea = windowObj.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
-    let navigationArea = windowObj.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
+    let navigationArea = windowObj.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
     AppStorage.setOrCreate('bottomAvoidHeight', navigationArea.bottomRect.height);
     let pxs: number[] = [];
     pxs.push(properties.windowRect.width);

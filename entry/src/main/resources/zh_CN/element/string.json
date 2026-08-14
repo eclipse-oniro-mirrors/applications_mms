@@ -4264,7 +4264,7 @@
         },
         {
             "name":"enable_notification_dialog_title",
-            "value":"允许“短信”向您发送通知？",
+            "value":"允许“信息”向您发送通知？",
             "attr":{
                 "priority":"translate"
             }
