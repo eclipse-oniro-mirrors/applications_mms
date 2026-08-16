@@ -30,6 +30,7 @@ import commonData from '../data/commonData';
 import call from '@ohos.telephony.call';
 import ResourceUtils from './ResourceUtils';
 import { i18n } from '@kit.LocalizationKit';
+import numberLookup from '@ohos.contact.numberLookup';
 
 const TAG: string = 'BlockedUtil';
 
