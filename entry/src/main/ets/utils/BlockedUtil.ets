@@ -216,10 +216,10 @@ class BlockedUtil {
     }
     try {
       let beginTime = Date.now();
-      // numberMarkInfo = await numberLookup.getNumberMarkInfo(context, phoneNumber);
-      // HiLog.w(TAG, 'getNumberMarkInfo, markType: ' + numberMarkInfo.markType + ', markCount: ' +
-      //   numberMarkInfo.markCount + ', markSource: ' + numberMarkInfo.markSource + ', isCloud: ' +
-      //   numberMarkInfo.isCloud + ', time consume: ' + (Date.now() - beginTime) + 'ms');
+      numberMarkInfo = await numberLookup.getNumberMarkInfo(context, phoneNumber);
+      HiLog.w(TAG, 'getNumberMarkInfo, markType: ' + numberMarkInfo.markType + ', markCount: ' +
+        numberMarkInfo.markCount + ', markSource: ' + numberMarkInfo.markSource + ', isCloud: ' +
+        numberMarkInfo.isCloud + ', time consume: ' + (Date.now() - beginTime) + 'ms');
       return numberMarkInfo;
     } catch (error) {
       HiLog.e(TAG, `getNumberMarkInfo failed, error : ` + JSON.stringify(error));
