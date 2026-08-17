@@ -30,6 +30,7 @@ import commonData from '../data/commonData';
 import call from '@ohos.telephony.call';
 import ResourceUtils from './ResourceUtils';
 import { i18n } from '@kit.LocalizationKit';
+import numberLookup from '@ohos.contact.numberLookup';
 
 const TAG: string = 'BlockedUtil';
 
@@ -216,10 +217,10 @@ class BlockedUtil {
     }
     try {
       let beginTime = Date.now();
-      // numberMarkInfo = await numberLookup.getNumberMarkInfo(context, phoneNumber);
-      // HiLog.w(TAG, 'getNumberMarkInfo, markType: ' + numberMarkInfo.markType + ', markCount: ' +
-      //   numberMarkInfo.markCount + ', markSource: ' + numberMarkInfo.markSource + ', isCloud: ' +
-      //   numberMarkInfo.isCloud + ', time consume: ' + (Date.now() - beginTime) + 'ms');
+      numberMarkInfo = await numberLookup.getNumberMarkInfo(context, phoneNumber);
+      HiLog.w(TAG, 'getNumberMarkInfo, markType: ' + numberMarkInfo.markType + ', markCount: ' +
+        numberMarkInfo.markCount + ', markSource: ' + numberMarkInfo.markSource + ', isCloud: ' +
+        numberMarkInfo.isCloud + ', time consume: ' + (Date.now() - beginTime) + 'ms');
       return numberMarkInfo;
     } catch (error) {
       HiLog.e(TAG, `getNumberMarkInfo failed, error : ` + JSON.stringify(error));
